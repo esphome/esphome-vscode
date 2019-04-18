@@ -131,7 +131,7 @@ The websocket connection and esphome process are kept open after a validation re
 
 - Error handling like websocket connection lost.
 
-**Need any changes in the backend or some protocol changes? I can implement that when necessary no problem! Use [this issue](TODO) to discuss changes and coordinate efforts.**
+**Need any changes in the backend or some protocol changes? I can implement that when necessary no problem! Use [this issue](https://github.com/esphome/esphome-vscode/issues/1) to discuss changes and coordinate efforts.**
 
 ## Future work
 
