@@ -7,29 +7,51 @@ import * as ChildProcess from "child_process";
 // This code is bad (I don't know typescript, and hate js :D)
 // It's only a very crude prototype, please do change the architecture where necessary.
 
-class EsphomeRange {
-	public document!: string;
-	public start_line!: number;
-	public start_col!: number;
-	public end_line!: number;
-	public end_col!: number;
+interface EsphomeRange {
+	document: string;
+	start_line: number;
+	start_col: number;
+	end_line: number;
+	end_col: number;
 }
 
-class ValidationError {
-	public range!: EsphomeRange | null;
-	public message!: string;
+interface ValidationError {
+	range: EsphomeRange | null;
+	message: string;
 }
+
+const MESSAGE_READ_FILE = 'read_file';
+const MESSAGE_RESULT = 'result';
+
+interface MessageReadFile {
+	type: typeof MESSAGE_READ_FILE;
+	path: string;
+}
+
+interface YamlValidationError {
+	message: string;
+}
+
+interface MessageResult {
+	type: typeof MESSAGE_RESULT;
+	validation_errors: ValidationError[];
+	yaml_errors: YamlValidationError[];
+}
+
+type MessageTypes = MessageReadFile | MessageResult;
 
 export default class EsphomeProvider {
 	private output_channel !: vscode.OutputChannel;
 
 	private useWs = false; // if false use local esphome
+	private validating: string | null = null;
+
 
 	private diagnosticCollection!: vscode.DiagnosticCollection;
 	private ws!: WebSocket;
 	private process!: ChildProcess.ChildProcess;
 
-	private handleMessage(msg: any) {
+	private handleMessage(msg: MessageTypes) {
 		switch (msg.type) {
 			case 'read_file': {
 				console.log(`Got read_file message ${msg.path}`);
@@ -48,7 +70,7 @@ export default class EsphomeProvider {
 				console.log(msg);
 				let diagnostics: vscode.Diagnostic[] = [];
 				let openDocument = vscode.window.activeTextEditor!.document;
-				msg.validation_errors.forEach((error: ValidationError) => {
+				msg.validation_errors.forEach((error) => {
 					let message = error.message;
 					let range;
 					if (error.range === null) {
@@ -60,7 +82,47 @@ export default class EsphomeProvider {
 					let diagnostic = new vscode.Diagnostic(range, message, vscode.DiagnosticSeverity.Error);
 					diagnostics.push(diagnostic);
 				});
+				msg.yaml_errors.forEach((error) => {
+					let message = error.message;
+					// Todo: Use error.range.document to add it to the correct diagnostics collection
+
+					let skip = 3;
+					let parse_error = '';
+					message.split('\n').forEach(line => {
+						console.log(`- ${skip} : ${line}`);
+						if (--skip > 0) {
+							return;
+						}
+						if (parse_error === '') {
+							parse_error = line;
+							console.log('got error ' + line);
+						}
+						else
+						{
+							console.log('adding diag ' + line);
+							let location = line.match(/in "([^"]*)", line (\d*), column (\d*):/);
+							if (location)
+							{
+								let line_number = parseInt(location[2]) - 1;
+								let col_number = parseInt(location[3]) - 1;
+								console.log(`parsed loc: ${location[1]}:${col_number}`);
+								let range = new vscode.Range(line_number, col_number, line_number, col_number + 1);
+								let diagnostic = new vscode.Diagnostic(range, parse_error, vscode.DiagnosticSeverity.Error);
+								diagnostics.push(diagnostic);
+							}
+							else {
+								console.log('unknown location ' + line);
+								console.log(location);
+							}
+							parse_error = '';
+							skip = 3;
+						}
+
+					});
+
+				});
 				this.diagnosticCollection.set(openDocument.uri, diagnostics);
+				this.validating = null;
 				break;
 			}
 			default: {
@@ -122,11 +184,11 @@ export default class EsphomeProvider {
 		// TODO: Activate linting when changing
 		// Currently this causes issues because the client is not implemented
 		// thread-safe
-		//vscode.workspace.onDidChangeTextDocument((evt) => {
-		//	this.doLint(evt.document);
-		//}, this);
+		vscode.workspace.onDidChangeTextDocument((evt) => {
+			this.doLint(evt.document);
+		}, this);
 
-		// vscode.workspace.textDocuments.forEach(this.doLint, this);
+		vscode.workspace.textDocuments.forEach(this.doLint, this);
 	}
 
 	public dispose(): void {
@@ -166,7 +228,14 @@ export default class EsphomeProvider {
 		if (textDocument.languageId !== 'yaml') {
 			return;
 		}
+		if (textDocument.fileName.endsWith('secrets.yaml')) {
+			return;
+		}
 
+		if (this.validating !== null) {
+			return;
+		}
+		this.validating = textDocument.fileName;
 		// TODO: The open file may not be the file we want to validate
 		// For example when editing an !included file.
 		console.log(`Validating ${textDocument.fileName}`);
