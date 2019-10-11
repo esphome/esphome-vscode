@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import * as WebSocket from "ws";
 import * as ChildProcess from "child_process";
 import * as ESPHome from './esphome_types';
+import * as Path from 'path';
 
 export default class EsphomeProvider {
 	private output_channel !: vscode.OutputChannel;
@@ -85,11 +86,21 @@ export default class EsphomeProvider {
 			switch (msg.type) {
 				case 'read_file': {
 					console.log(`Got read_file message ${msg.path}`);
-					const uri = vscode.Uri.file(msg.path);
+					let pathStr = msg.path;
+					const path = Path.parse(msg.path);
+					if (path.root.length === 0)
+					{
+						// got a relative path filename
+						pathStr = Path.join(Path.parse(this.validating!.fileName).dir, msg.path);
+					}
+					console.log(`Parsed path`, path, pathStr);
+					const uri = vscode.Uri.file(pathStr);
 					if (msg.path !== this.validating!.fileName) {
 						this.addIncludeFile(this.validating!.fileName, uri.path);
 					}
 					this.diagnosticCollection.delete(uri);
+					// ESPHome might send included files withouth path
+
 					vscode.workspace.openTextDocument(uri).then((document) => {
 						let text = document.getText();
 						this.sendMsg({
@@ -98,7 +109,7 @@ export default class EsphomeProvider {
 						});
 					}, (reason) => {
 						// won't validate as an include file is missing
-						this.addError(this.validating!.uri, new vscode.Range(0, 0, 1, 0), `Could not found '${msg.path}'`);
+						this.addError(this.validating!.uri, new vscode.Range(0, 0, 1, 0), `Could not open '${msg.path}': ${reason}`);
 						this.sendMsg({
 							type: 'file_response',
 							content: '',
