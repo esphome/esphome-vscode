@@ -4,6 +4,27 @@ This is a (pre-experimental) plugin for providing live validation of ESPHome con
 
 ![Plugin Preview](preview.gif)
 
+## Configuration and usage
+
+The plugin validates against ESPHome itself, so you will get the same errors. In order for that to work the plugin offers two options:
+
+1. _Less supported:_ Use the **ESPHome Dashboard**, this can be the ESPHome running in Hass.io, in that case you will need to configure the add on to 'leave the front door open' and also give a tcp port in the addon for external access (in case you are only accessing via Ingress).
+
+2. _Recommended:_ Use a **local installation of ESPHome**, if you can run esphome in your terminal, then you can use this option.
+
+To select an option use VSCode built in settings editor and search for `ESPHome`. As this extension is under development for changes of these options to take effect you will have to reload VSCode window. If seems don't seem to work try to reload VSCode window again.
+
+
+### Known bugs
+
+Using dashboard has some issues specially when including files, the addon will error that your includes (.h files, images, fonts, etc.) don't exist.
+
+Please submit your issues to https://github.com/esphome/esphome-vscode/issues
+
+## Contributing
+
+> Below is original readme written by @OttoWinter and is inteded for contributing to the development of this plugin, of course contributions are welcome.
+
 In the current state, *it is not supposed to be used for anything more than testing*. The reason for open-sourcing this plugin in this state is that the developer (@OttoWinter) does not know VSCode nor typescript at all.
 
 The hope is that a contributor who knows these systems better can pick it up to get it in a more usable state :) ESPHome would certainly gain a lot of improved UX from the work.
