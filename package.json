@@ -2,9 +2,15 @@
 	"name": "esphome-vscode",
 	"displayName": "ESPHome VSCode",
 	"description": "Provide instant validation of ESPHome configuration files",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"engines": {
 		"vscode": "^1.33.0"
+	},
+	"publisher": "ESPHome",
+	"icon": "esphome128.png",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/esphome/esphome-vscode.git"
 	},
 	"categories": [
 		"Other"
@@ -13,7 +19,30 @@
 		"onLanguage:yaml"
 	],
 	"main": "./out/extension.js",
-	"contributes": {},
+	"contributes": {
+		"configuration": {
+			"title": "ESPHome",
+			"properties": {
+				"esphome.validator": {
+					"type": "string",
+					"default": "local",
+					"enum": [
+						"local",
+						"dashboard"
+					],
+					"enumDescriptions": [
+						"Uses a local installation of ESPHome",
+						"Uses a remote dashboard "
+					]
+				},
+				"esphome.dashboardUri": {
+					"type": "string",
+					"default": "hassio:6052",
+					"description": "Specifies the dashboard uri location, e.g. hassio:6052."
+				}
+			}
+		}
+	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
@@ -30,6 +59,7 @@
 		"@types/ws": "6.0.1"
 	},
 	"dependencies": {
+		"child-process": "1.0.2",
 		"ws": "6.2.0"
 	}
 }
