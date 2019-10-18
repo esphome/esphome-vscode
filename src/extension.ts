@@ -3,6 +3,7 @@ import * as WebSocket from "ws";
 import * as ChildProcess from "child_process";
 import * as ESPHome from './esphome_types';
 import * as Path from 'path';
+import * as Fs from 'fs';
 
 export default class EsphomeProvider {
 	private output_channel !: vscode.OutputChannel;
@@ -81,19 +82,23 @@ export default class EsphomeProvider {
 		});
 	}
 
+	private handleRelativePath(path: string) {
+		let pathStr = path;
+		const parsedPath = Path.parse(path);
+		if (parsedPath.root.length === 0) {
+			// got a relative path filename
+			pathStr = Path.join(Path.parse(this.validating!.fileName).dir, path);
+		}
+		console.log(`Parsed path`, path, pathStr);
+		return pathStr;
+	}
+
 	private handleMessage(msg: ESPHome.MessageTypes) {
 		try {
+			console.log(`Got message`, msg.type, msg);
 			switch (msg.type) {
 				case 'read_file': {
-					console.log(`Got read_file message ${msg.path}`);
-					let pathStr = msg.path;
-					const path = Path.parse(msg.path);
-					if (path.root.length === 0)
-					{
-						// got a relative path filename
-						pathStr = Path.join(Path.parse(this.validating!.fileName).dir, msg.path);
-					}
-					console.log(`Parsed path`, path, pathStr);
+					const pathStr = this.handleRelativePath(msg.path);
 					const uri = vscode.Uri.file(pathStr);
 					if (msg.path !== this.validating!.fileName) {
 						this.addIncludeFile(this.validating!.fileName, uri.path);
@@ -118,7 +123,6 @@ export default class EsphomeProvider {
 					break;
 				}
 				case 'result': {
-					console.log(`Got result message`, msg);
 					msg.validation_errors.forEach((error) => {
 						this.handleEsphomeError(error);
 					});
@@ -130,6 +134,28 @@ export default class EsphomeProvider {
 					this.validating = null;
 
 					this.validateNext();
+					break;
+				}
+				case 'check_directory_exists': {
+					const pathStr = this.handleRelativePath(msg.path);
+					const fileExists = Fs.existsSync(pathStr);
+					console.log(`checking directory exists: `, pathStr, fileExists);
+
+					this.sendMsg({
+						type: 'directory_exists_response',
+						content: fileExists
+					});
+					break;
+				}
+				case 'check_file_exists': {
+					const pathStr = this.handleRelativePath(msg.path);
+					const fileExists = Fs.existsSync(pathStr);
+					console.log(`checking file exists: `, pathStr, fileExists);
+
+					this.sendMsg({
+						type: 'file_exists_response',
+						content: fileExists
+					});
 					break;
 				}
 				default: {
