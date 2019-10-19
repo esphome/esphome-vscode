@@ -1,20 +1,18 @@
 import * as vscode from 'vscode';
-import * as WebSocket from "ws";
-import * as ChildProcess from "child_process";
 import * as ESPHome from './esphome_types';
 import * as Path from 'path';
 import * as Fs from 'fs';
+import { EsphomeConnection } from './EsphomeConnection';
+import { EsphomeDashboardConnection } from './EsphomeDashboardConnection';
+import { EsphomeLocalConnection } from './EsphomeLocalConnection';
 
 export default class EsphomeProvider {
+	private connection!: EsphomeConnection;
 	private output_channel !: vscode.OutputChannel;
 
-	private useWs = false; // if false use local esphome
 	private validating: vscode.TextDocument | null = null;
 
 	private diagnosticCollection!: vscode.DiagnosticCollection;
-	private ws!: WebSocket;
-	private process!: ChildProcess.ChildProcess;
-
 	private pendingValidation: vscode.Uri[] = [];
 
 	private includedFiles: { [id: string]: string[] } = {};
@@ -98,6 +96,7 @@ export default class EsphomeProvider {
 			console.log(`Got message`, msg.type, msg);
 			switch (msg.type) {
 				case 'read_file': {
+					console.log(`openning`, msg.path, this);
 					const pathStr = this.handleRelativePath(msg.path);
 					const uri = vscode.Uri.file(pathStr);
 					if (msg.path !== this.validating!.fileName) {
@@ -106,16 +105,17 @@ export default class EsphomeProvider {
 					this.diagnosticCollection.delete(uri);
 					// ESPHome might send included files withouth path
 
+					console.log(`openning`, uri, this.connection);
 					vscode.workspace.openTextDocument(uri).then((document) => {
 						let text = document.getText();
-						this.sendMsg({
+						this.connection.sendMessage({
 							type: 'file_response',
 							content: text,
 						});
 					}, (reason) => {
 						// won't validate as an include file is missing
 						this.addError(this.validating!.uri, new vscode.Range(0, 0, 1, 0), `Could not open '${msg.path}': ${reason}`);
-						this.sendMsg({
+						this.connection.sendMessage({
 							type: 'file_response',
 							content: '',
 						});
@@ -141,7 +141,7 @@ export default class EsphomeProvider {
 					const fileExists = Fs.existsSync(pathStr);
 					console.log(`checking directory exists: `, pathStr, fileExists);
 
-					this.sendMsg({
+					this.connection.sendMessage({
 						type: 'directory_exists_response',
 						content: fileExists
 					});
@@ -152,7 +152,7 @@ export default class EsphomeProvider {
 					const fileExists = Fs.existsSync(pathStr);
 					console.log(`checking file exists: `, pathStr, fileExists);
 
-					this.sendMsg({
+					this.connection.sendMessage({
 						type: 'file_exists_response',
 						content: fileExists
 					});
@@ -190,6 +190,29 @@ export default class EsphomeProvider {
 		}
 	}
 
+	private connectToEsphome() {
+		if (this.connection) {
+			this.connection.disconnect();
+		}
+
+		const useWs = vscode.workspace.getConfiguration("esphome").get("validator") !== "local";
+		if (useWs) {
+			let address: string = vscode.workspace.getConfiguration("esphome").get("dashboardUri") || '';
+			this.connection = new EsphomeDashboardConnection(this.output_channel, address);
+		}
+		else {
+			this.connection = new EsphomeLocalConnection(this.output_channel);
+		}
+		this.connection.onResponse((m) => this.handleMessage(m));
+		this.connection.connect();
+	}
+
+	private handleConfigUpdate(e: vscode.ConfigurationChangeEvent) {
+		if (e.affectsConfiguration('esphome.validator')) {
+			this.connectToEsphome();
+		}
+	}
+
 	public activate(subscriptions: vscode.Disposable[]) {
 		subscriptions.push(this);
 		this.diagnosticCollection = vscode.languages.createDiagnosticCollection();
@@ -197,41 +220,9 @@ export default class EsphomeProvider {
 		this.output_channel = vscode.window.createOutputChannel("ESPHome");
 		this.output_channel.appendLine("ESPHome initialized");
 
-		this.useWs = vscode.workspace.getConfiguration("esphome").get("validator") !== "local";
+		vscode.workspace.onDidChangeConfiguration(this.handleConfigUpdate);
 
-		// TODO: Make config option
-		if (this.useWs) {
-			let address = vscode.workspace.getConfiguration("esphome").get("dashboardUri");
-			this.output_channel.appendLine(`Using ESPHome dashboard at: ${address}`);
-			this.ws = new WebSocket(`ws://${address}/vscode`);
-
-			// TODO: Open dynamically, re-open when connection lost etc.
-			this.ws.on('open', () => {
-				console.log("Websocket Open!");
-				const msg = JSON.stringify({ type: 'spawn' });
-				this.ws.send(msg);
-			});
-			this.ws.on('message', (data) => {
-				const raw = JSON.parse(data.toString());
-				console.log(raw);
-				const msg = JSON.parse(raw.data);
-				this.handleMessage(msg);
-			});
-		}
-		else {
-			this.output_channel.appendLine("Using local ESPHome");
-			this.process = ChildProcess.spawn('esphome', ['dummy', "vscode"]);
-			this.process.stdout.on('data', (data) => {
-				console.log('Got out: ' + data.toString());
-				const msg = JSON.parse(data);
-				this.handleMessage(msg);
-			});
-			this.process.stderr.on('data', (data) => {
-				console.log('Got err: ' + data.toString());
-				const msg = JSON.parse(data);
-				this.handleMessage(msg);
-			});
-		}
+		this.connectToEsphome();
 
 		vscode.workspace.onDidOpenTextDocument(this.doLint, this, subscriptions);
 		vscode.workspace.onDidSaveTextDocument(this.doLint, this);
@@ -248,33 +239,6 @@ export default class EsphomeProvider {
 	public dispose(): void {
 		this.diagnosticCollection.clear();
 		this.diagnosticCollection.dispose();
-	}
-
-	private sendMsg(msg: any) {
-		if (this.useWs) {
-			this.sendWsMsg(msg);
-		}
-		else {
-			this.sendCpMsg(msg);
-		}
-	}
-	private sendWsMsg(data: any): void {
-		// Check if WS is open, otherwise ignore
-		if (this.ws.readyState !== 1) {
-			return;
-		}
-		let send = JSON.stringify({
-			type: 'stdin',
-			data: JSON.stringify(data) + '\n',
-		});
-		console.log(`Sending ${send}`);
-		this.ws.send(send);
-	}
-
-	private sendCpMsg(data: any) {
-		let send = JSON.stringify(data) + '\n';
-		console.log(`Sending ${send}`);
-		this.process.stdin.write(send);
 	}
 
 	private doLint(textDocument: vscode.TextDocument) {
@@ -304,7 +268,7 @@ export default class EsphomeProvider {
 
 		console.log(`Validating ${this.validating.fileName}`);
 
-		this.sendMsg({
+		this.connection.sendMessage({
 			type: 'validate',
 			file: this.validating.fileName
 		});
