@@ -3,7 +3,7 @@ import * as WebSocket from "ws";
 import { EsphomeConnection } from "./EsphomeConnection";
 
 export class EsphomeDashboardConnection extends EsphomeConnection {
-    sendMessage(msg: any): void {
+    sendMessageInternal(msg: any): void {
         // Check if WS is open, otherwise ignore
         if (this.ws.readyState !== 1) {
             return;
@@ -35,8 +35,8 @@ export class EsphomeDashboardConnection extends EsphomeConnection {
             this.ws.send(msg);
         });
         this.ws.on('error', (err: Error) => {
-            this.outputChannel.appendLine("Cannot connect to ...." + err);
-            vscode.window.showErrorMessage("Cannot connect to ESPHome!");
+            this.outputChannel.appendLine("Cannot connect to ESPHome dashboard" + err);
+            vscode.window.showErrorMessage("Cannot connect to ESPHome dashboard. Make sure you can access to ${this.endPoint} and have set option 'leave_front_door_open': true");
         });
         this.ws.on('message', (data) => {
             const raw = JSON.parse(data.toString());

@@ -191,6 +191,7 @@ export default class EsphomeProvider {
 	}
 
 	private connectToEsphome() {
+		console.log(`changing esphome connection`, this);
 		if (this.connection) {
 			this.connection.disconnect();
 		}
@@ -203,14 +204,9 @@ export default class EsphomeProvider {
 		else {
 			this.connection = new EsphomeLocalConnection(this.output_channel);
 		}
+		this.validating = null;
 		this.connection.onResponse((m) => this.handleMessage(m));
 		this.connection.connect();
-	}
-
-	private handleConfigUpdate(e: vscode.ConfigurationChangeEvent) {
-		if (e.affectsConfiguration('esphome.validator')) {
-			this.connectToEsphome();
-		}
 	}
 
 	public activate(subscriptions: vscode.Disposable[]) {
@@ -220,20 +216,26 @@ export default class EsphomeProvider {
 		this.output_channel = vscode.window.createOutputChannel("ESPHome");
 		this.output_channel.appendLine("ESPHome initialized");
 
-		vscode.workspace.onDidChangeConfiguration(this.handleConfigUpdate);
-
-		this.connectToEsphome();
+		vscode.workspace.onDidChangeConfiguration(e => {
+			try {
+				if (e.affectsConfiguration('esphome.validator')
+					|| e.affectsConfiguration('esphome.dashboardUri')) {
+					this.connectToEsphome();
+				}
+			}
+			catch (e) { console.log(e); }
+		});
 
 		vscode.workspace.onDidOpenTextDocument(this.doLint, this, subscriptions);
 		vscode.workspace.onDidSaveTextDocument(this.doLint, this);
-		vscode.workspace.onDidChangeTextDocument((evt) => {
-			this.doLint(evt.document);
-		}, this);
+		vscode.workspace.onDidChangeTextDocument((evt) => this.doLint(evt.document), this);
 
-		vscode.workspace.findFiles('*.yaml').then((uris: vscode.Uri[]) => {
-			this.pendingValidation = uris;
-			this.validateNext();
-		});
+		this.connectToEsphome();
+
+		// vscode.workspace.findFiles('*.yaml').then((uris: vscode.Uri[]) => {
+		// 	this.pendingValidation = uris;
+		// 	this.validateNext();
+		// });
 	}
 
 	public dispose(): void {
@@ -242,36 +244,42 @@ export default class EsphomeProvider {
 	}
 
 	private doLint(textDocument: vscode.TextDocument) {
-		// Only lint for YAML
-		if (textDocument.languageId !== 'yaml') {
-			return;
-		}
-		if (this.validating !== null) {
-			return;
-		}
+		console.log(`do lint on ` + textDocument.fileName + ` current: `, this.validating);
+		try {
+			// Only lint for YAML
+			if (textDocument.languageId !== 'yaml') {
+				return;
+			}
+			if (this.validating !== null) {
+				return;
+			}
 
-		this.validating = textDocument;
-		// Check if this is an included file
-		const thisFilePath = vscode.Uri.file(textDocument.fileName).path;
-		console.log(`this file path: ${thisFilePath}`);
-		for (let key in this.includedFiles) {
-			console.log(`testing included file key: ${key} files: ${this.includedFiles[key]}`);
-			if (this.includedFiles[key].indexOf(thisFilePath) >= 0) {
-				console.log(`Not validating ${textDocument.fileName} as is listed as included file`);
-				const doc = vscode.workspace.textDocuments.find(td => td.fileName === key);
-				if (doc !== undefined) {
-					console.log(`Validating containing document ${doc.uri.path} instead`);
-					this.validating = doc;
+			this.validating = textDocument;
+			// Check if this is an included file
+			const thisFilePath = vscode.Uri.file(textDocument.fileName).path;
+			console.log(`this file path: ${thisFilePath}`);
+			for (let key in this.includedFiles) {
+				console.log(`testing included file key: ${key} files: ${this.includedFiles[key]}`);
+				if (this.includedFiles[key].indexOf(thisFilePath) >= 0) {
+					console.log(`Not validating ${textDocument.fileName} as is listed as included file`);
+					const doc = vscode.workspace.textDocuments.find(td => td.fileName === key);
+					if (doc !== undefined) {
+						console.log(`Validating containing document ${doc.uri.path} instead`);
+						this.validating = doc;
+					}
 				}
 			}
+
+			console.log(`Validating ${this.validating.fileName}`);
+
+			this.connection.sendMessage({
+				type: 'validate',
+				file: this.validating.fileName
+			});
+		} catch (e) {
+			console.log(e);
+			this.validating = null;
 		}
-
-		console.log(`Validating ${this.validating.fileName}`);
-
-		this.connection.sendMessage({
-			type: 'validate',
-			file: this.validating.fileName
-		});
 	}
 }
 

@@ -9,7 +9,7 @@ export class EsphomeLocalConnection extends EsphomeConnection {
         super();
     }
 
-    sendMessage(msg: any): void {
+    sendMessageInternal(msg: any): void {
         let send = JSON.stringify(msg) + '\n';
         console.log(`Sending ${send}`);
         this.process.stdin.write(send);
@@ -17,7 +17,7 @@ export class EsphomeLocalConnection extends EsphomeConnection {
 
     connect(): void {
         this.outputChannel.appendLine("Using local ESPHome");
-        this.process = ChildProcess.spawn('esphome', ['dummy', "vscode"]);
+        this.process = ChildProcess.spawn('esphomex', ['dummy', "vscode"]);
         this.process.stdout.on('data', (data) => {
             console.log('Got out: ' + data.toString());
             const msg = JSON.parse(data);
@@ -35,12 +35,18 @@ export class EsphomeLocalConnection extends EsphomeConnection {
             console.log('Got exit: ', code, signal);
         });
         this.process.on("error", (args) => {
-            this.outputChannel.appendLine("Could not execute ESPHome. Make sure you can run ESPHome from the command line.");
+            if (args.message.startsWith("spawn esphome")) {
+                const errorMessage = "Could not execute ESPHome. Make sure you can run ESPHome from the command line.";
+                vscode.window.showErrorMessage(errorMessage);
+                this.outputChannel.appendLine(errorMessage);
+            }
+            else { this.outputChannel.appendLine("Unknown error: " + args.message); }
             console.log('Got error: ', args);
         });
     }
 
     disconnect(): void {
-
+        this.outputChannel.appendLine("Terminating local ESPHome");
+        this.process.kill();
     }
 }

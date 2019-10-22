@@ -3,7 +3,10 @@ import { MessageTypes } from './esphome_types';
 export abstract class EsphomeConnection {
     handleMessage_!: (msg: MessageTypes) => void;
 
-    abstract sendMessage(msg: any): void;
+    abstract sendMessageInternal(msg: any): void;
+    sendMessage(msg: any): void {
+        this.sendMessageInternal(msg);
+    }
     abstract connect(): void;
     abstract disconnect(): void;
     private _isConnected: boolean = false;
@@ -15,7 +18,6 @@ export abstract class EsphomeConnection {
     }
 
     protected handleMessage(msg: MessageTypes) {
-        console.log('forwarding ', msg);
         this.handleMessage_(msg);
     }
 
