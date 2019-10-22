@@ -6,6 +6,8 @@ This is a (experimental) plugin for providing live validation of ESPHome configu
 
 ## Configuration and usage
 
+ESPHome Version 1.14 is required.
+
 The plugin validates against ESPHome itself, so you will get the same errors. In order for that to work the plugin offers two options:
 
 1. Use the **ESPHome Dashboard**, this can be the ESPHome running in Hass.io, in that case you will need to configure the add on to 'leave the front door open' and also give a tcp port in the addon for external access (in case you are only accessing via Ingress).
