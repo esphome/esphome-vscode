@@ -17,7 +17,7 @@ export class EsphomeLocalConnection extends EsphomeConnection {
 
     connect(): void {
         this.outputChannel.appendLine("Using local ESPHome");
-        this.process = ChildProcess.spawn('esphomex', ['dummy', "vscode"]);
+        this.process = ChildProcess.spawn('esphome', ['dummy', "vscode"]);
         this.process.stdout.on('data', (data) => {
             console.log('Got out: ' + data.toString());
             const msg = JSON.parse(data);
