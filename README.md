@@ -1,23 +1,22 @@
 # ESPHome VSCode plugin
 
-This is a (pre-experimental) plugin for providing live validation of ESPHome configuration files with VSCode.
+This is a (experimental) plugin for providing live validation of ESPHome configuration files with VSCode.
 
 ![Plugin Preview](preview.gif)
 
 ## Configuration and usage
 
+ESPHome Version 1.14 is required.
+
 The plugin validates against ESPHome itself, so you will get the same errors. In order for that to work the plugin offers two options:
 
-1. _Less supported:_ Use the **ESPHome Dashboard**, this can be the ESPHome running in Hass.io, in that case you will need to configure the add on to 'leave the front door open' and also give a tcp port in the addon for external access (in case you are only accessing via Ingress).
+1. Use the **ESPHome Dashboard**, this can be the ESPHome running in Hass.io, in that case you will need to configure the add on to 'leave the front door open' and also give a tcp port in the addon for external access (in case you are only accessing via Ingress).
 
-2. _Recommended:_ Use a **local installation of ESPHome**, if you can run esphome in your terminal, then you can use this option.
+2. Use a **local installation of ESPHome**, if you can run esphome in your terminal, then you can use this option.
 
-To select an option use VSCode built in settings editor and search for `ESPHome`. As this extension is under development for changes of these options to take effect you will have to reload VSCode window. If seems don't seem to work try to reload VSCode window again.
+To select an option use VSCode built in settings editor and search for `ESPHome`. As this extension is under development for changes of these options to take effect you will have to reload VSCode window. If it doesn't seem to work try to reload VSCode window again.
 
-
-### Known bugs
-
-Using dashboard has some issues specially when including files, the addon will error that your includes (.h files, images, fonts, etc.) don't exist.
+### Feedback
 
 Please submit your issues to https://github.com/esphome/esphome-vscode/issues
 
