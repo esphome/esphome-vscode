@@ -2,7 +2,7 @@
 	"name": "esphome-vscode",
 	"displayName": "ESPHome VSCode",
 	"description": "Provide instant validation of ESPHome configuration files",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"engines": {
 		"vscode": "^1.33.0"
 	},
