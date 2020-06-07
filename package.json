@@ -20,6 +20,11 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
+		"taskDefinitions": [
+			{
+				"type": "esphome"
+			}
+		],
 		"configuration": {
 			"title": "ESPHome",
 			"properties": {
