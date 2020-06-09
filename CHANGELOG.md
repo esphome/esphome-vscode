@@ -1,4 +1,9 @@
-## v.0.3.0
+# Changelog
+
+## [Unreleased]
+- Added secutiry
+
+## v.0.3.0 - 2020-06-09
 - Improved icon
 - Add OTA task for active file
 
