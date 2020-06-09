@@ -7,9 +7,8 @@ let esphomeTaskProvider: vscode.Disposable | undefined;
 let esphomeOtaStatusBarItem: vscode.StatusBarItem;
 
 export function activate(ctx: vscode.ExtensionContext) {
-	// let linter = new EsphomeProvider();
-	// linter.activate(ctx.subscriptions);
-
+	let linter = new EsphomeProvider();
+	linter.activate(ctx.subscriptions);
 
 	let workspaceRoot = vscode.workspace.rootPath;
 	console.log('Workspaceroot: ', workspaceRoot);
