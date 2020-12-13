@@ -36,7 +36,7 @@ export class EsphomeDashboardConnection extends EsphomeConnection {
         });
         this.ws.on('error', (err: Error) => {
             this.outputChannel.appendLine("Cannot connect to ESPHome dashboard" + err);
-            vscode.window.showErrorMessage("Cannot connect to ESPHome dashboard. Make sure you can access to ${this.endPoint} and have set option 'leave_front_door_open': true");
+            vscode.window.showErrorMessage(`Cannot connect to ESPHome dashboard. Make sure you can access '${this.endPoint}' and have set the option 'leave_front_door_open': true`);
         });
         this.ws.on('message', (data) => {
             const raw = JSON.parse(data.toString());
