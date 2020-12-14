@@ -10,7 +10,7 @@ ESPHome Version 1.14 is required.
 
 The plugin validates against ESPHome itself, so you will get the same errors. In order for that to work the plugin offers two options:
 
-1. Use the **ESPHome Dashboard**, this can be the ESPHome running in Hass.io, in that case you will need to configure the add on to 'leave the front door open' and also give a tcp port in the addon for external access (in case you are only accessing via Ingress).
+1. Use the **ESPHome Dashboard**, this can be the ESPHome running in Home Assistant, in that case you will need to configure the add on to 'leave the front door open' and also give a tcp port in the addon for external access (in case you are only accessing via Ingress).
 
 2. Use a **local installation of ESPHome**, if you can run esphome in your terminal, then you can use this option.
 
