@@ -1,70 +1,71 @@
 {
-	"name": "esphome-vscode",
-	"displayName": "ESPHome VSCode",
-	"description": "Provide instant validation of ESPHome configuration files",
-	"version": "0.3.0",
-	"engines": {
-		"vscode": "^1.33.0"
-	},
-	"publisher": "ESPHome",
-	"icon": "esphome128.png",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/esphome/esphome-vscode.git"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onLanguage:yaml"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"taskDefinitions": [
-			{
-				"type": "esphome"
-			}
-		],
-		"configuration": {
-			"title": "ESPHome",
-			"properties": {
-				"esphome.validator": {
-					"type": "string",
-					"default": "local",
-					"enum": [
-						"local",
-						"dashboard"
-					],
-					"enumDescriptions": [
-						"Uses a local installation of ESPHome",
-						"Uses a remote dashboard "
-					]
-				},
-				"esphome.dashboardUri": {
-					"type": "string",
-					"default": "hassio:6052",
-					"description": "Specifies the dashboard uri location, e.g. hassio:6052."
-				}
-			}
-		}
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"postinstall": "node ./node_modules/vscode/bin/install",
-		"test": "npm run compile && node ./node_modules/vscode/bin/test"
-	},
-	"devDependencies": {
-		"typescript": "^3.3.1",
-		"vscode": "^1.1.28",
-		"tslint": "^5.12.1",
-		"@types/node": "^10.12.21",
-		"@types/mocha": "^2.2.42",
-		"@types/ws": "6.0.1"
-	},
-	"dependencies": {
-		"child-process": "1.0.2",
-		"ws": "6.2.0"
-	}
+  "name": "esphome-vscode",
+  "displayName": "ESPHome VSCode",
+  "description": "Provide instant validation of ESPHome configuration files",
+  "version": "0.3.0",
+  "engines": {
+    "vscode": "^1.33.0"
+  },
+  "publisher": "ESPHome",
+  "icon": "esphome128.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/esphome/esphome-vscode.git"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:yaml"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "taskDefinitions": [
+      {
+        "type": "esphome"
+      }
+    ],
+    "configuration": {
+      "title": "ESPHome",
+      "properties": {
+        "esphome.validator": {
+          "type": "string",
+          "default": "local",
+          "enum": [
+            "local",
+            "dashboard"
+          ],
+          "enumDescriptions": [
+            "Uses a local installation of ESPHome",
+            "Uses a remote dashboard "
+          ]
+        },
+        "esphome.dashboardUri": {
+          "type": "string",
+          "default": "hassio:6052",
+          "description": "Specifies the dashboard uri location, e.g. hassio:6052."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "typescript": "^3.3.1",
+    "vscode": "^1.1.28",
+    "tslint": "^5.12.1",
+    "@types/node": "^10.12.21",
+    "@types/mocha": "^2.2.42",
+    "@types/ws": "6.0.1"
+  },
+  "dependencies": {
+    "child-process": "1.0.2",
+    "ws": "6.2.0",
+    "yaml-language-server": "next"
+  }
 }

@@ -1,21 +1,16 @@
-
 import * as vscode from 'vscode';
 
 export let OtaUploadTask = new vscode.Task({
     type: 'esphome',
     task: 'esphome'
-}, 'esphome compile', 'ESPHome', new vscode.ShellExecution('esphome ${relativeFile} run --upload-port OTA'));
+}, vscode.TaskScope.Workspace, 'Upload OTA', 'ESPHome',
+    new vscode.ShellExecution('esphome', ['${relativeFile}', 'run', '--upload-port', 'OTA']));
 
 export class EsphomeTaskProvider implements vscode.TaskProvider {
     static EsphomeType: string = 'esphome';
 
     constructor(workspaceRoot: string) {
         console.log('returning provideTAsks');
-        // let pattern = path.join(workspaceRoot, 'Rakefile');
-        // let fileWatcher = vscode.workspace.createFileSystemWatcher(pattern);
-        // fileWatcher.onDidChange(() => this.rakePromise = undefined);
-        // fileWatcher.onDidCreate(() => this.rakePromise = undefined);
-        // fileWatcher.onDidDelete(() => this.rakePromise = undefined);
     }
 
     public provideTasks(): Thenable<vscode.Task[]> | undefined {
@@ -30,7 +25,7 @@ export class EsphomeTaskProvider implements vscode.TaskProvider {
 
     public resolveTask(_task: vscode.Task): vscode.Task | undefined {
 
-        console.log('returning provideTAsks');
+        console.log('returning provideTasks');
         const task = _task.definition.task;
         // A Rake task consists of a task and an optional file as specified in RakeTaskDefinition
         // Make sure that this looks like a Rake task by checking that there is a task.
@@ -39,20 +34,19 @@ export class EsphomeTaskProvider implements vscode.TaskProvider {
             const definition: EsphomeTaskDefinition = <any>_task.definition;
 
             console.log('returning new resolved task', definition.task);
-            return new vscode.Task(definition, definition.task, 'esphome', new vscode.ShellExecution(`${definition.task}`));
+            return new vscode.Task(definition, vscode.TaskScope.Workspace, definition.task,
+                'esphome', new vscode.ShellExecution(`${definition.task}`));
         }
         console.log('returning undefined resolved task');
 
-
         return undefined;
-
     }
 }
 
 
 interface EsphomeTaskDefinition extends vscode.TaskDefinition {
-	/**
-	 * The task name
-	 */
+    /**
+     * The task name
+     */
     task: string;
 }
