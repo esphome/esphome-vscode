@@ -1,4 +1,4 @@
-import * as vscode from 'vscode';
+/*import * as vscode from 'vscode';
 import EsphomeProvider from "./EsphomeProvider";
 import { OtaUploadTask, EsphomeTaskProvider } from './EsphomeTaskProvider';
 
@@ -6,7 +6,7 @@ let esphomeTaskProvider: vscode.Disposable | undefined;
 
 let esphomeOtaStatusBarItem: vscode.StatusBarItem;
 
-export function activate(ctx: vscode.ExtensionContext) {
+export function activate_(ctx: vscode.ExtensionContext) {
 	let linter = new EsphomeProvider();
 	linter.activate(ctx.subscriptions);
 
@@ -38,3 +38,4 @@ export function activate(ctx: vscode.ExtensionContext) {
 }
 
 export function deactivate() { }
+*/

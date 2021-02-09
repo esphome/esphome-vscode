@@ -1,7 +1,8 @@
-const MESSAGE_READ_FILE = 'read_file';
-const MESSAGE_RESULT = 'result';
-const MESSAGE_CHECK_FILE = 'check_file_exists';
-const MESSAGE_CHECK_DIRECTORY = 'check_directory_exists';
+export const MESSAGE_READ_FILE = 'read_file';
+export const MESSAGE_FILE_RESPONSE = 'file_response'
+export const MESSAGE_RESULT = 'result';
+export const MESSAGE_CHECK_FILE = 'check_file_exists';
+export const MESSAGE_CHECK_DIRECTORY = 'check_directory_exists';
 
 export interface EsphomeRange {
 	document: string;

@@ -1,4 +1,4 @@
-import * as vscode from 'vscode';
+/*import * as vscode from 'vscode';
 import * as WebSocket from "ws";
 import { EsphomeConnection } from "./EsphomeConnection";
 
@@ -16,9 +16,6 @@ export class EsphomeDashboardConnection extends EsphomeConnection {
         this.ws.send(send);
     }
 
-    /**
-     *
-     */
     private ws!: WebSocket;
     constructor(readonly outputChannel: vscode.OutputChannel, readonly endPoint: string) {
         super();
@@ -49,3 +46,4 @@ export class EsphomeDashboardConnection extends EsphomeConnection {
     public disconnect(): void { }
 
 }
+*/

@@ -1,7 +1,7 @@
 import { MessageTypes } from './esphome_types';
 
-export abstract class EsphomeConnection {
-    handleMessage_!: (msg: MessageTypes) => void;
+export abstract class ESPHomeConnection {
+    private handleMessage_!: (msg: MessageTypes) => void;
 
     abstract sendMessageInternal(msg: any): void;
     sendMessage(msg: any): void {

@@ -1,4 +1,4 @@
-import * as vscode from 'vscode';
+/*import * as vscode from 'vscode';
 import * as ESPHome from './esphome_types';
 import * as Path from 'path';
 import * as Fs from 'fs';
@@ -283,3 +283,4 @@ export default class EsphomeProvider {
         }
     }
 }
+*/

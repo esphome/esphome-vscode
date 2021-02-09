@@ -1,4 +1,4 @@
-import * as vscode from 'vscode';
+/*import * as vscode from 'vscode';
 
 export let OtaUploadTask = new vscode.Task({
     type: 'esphome',
@@ -45,8 +45,5 @@ export class EsphomeTaskProvider implements vscode.TaskProvider {
 
 
 interface EsphomeTaskDefinition extends vscode.TaskDefinition {
-    /**
-     * The task name
-     */
     task: string;
-}
+}*/
