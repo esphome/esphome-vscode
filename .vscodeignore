@@ -2,6 +2,10 @@
 .vscode-test/**
 out/test/**
 src/**
+client/src/**
+server/src/**
+./yaml-language/**
+
 .gitignore
 vsc-extension-quickstart.md
 **/tsconfig.json

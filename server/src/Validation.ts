@@ -7,7 +7,7 @@ import { ESPHomeConnection } from "./EsphomeConnection";
 import { MessageTypes, MESSAGE_FILE_RESPONSE, MESSAGE_READ_FILE, MESSAGE_RESULT, ValidationError as ESPHomeValidationError, YamlValidationError } from "./esphome_types";
 import { FileAccessor } from "./fileAccessor";
 
-export class ESPHomeLanguageService {
+export class Validation {
     constructor(
         private fileAccessor: FileAccessor,
         private connection: ESPHomeConnection,

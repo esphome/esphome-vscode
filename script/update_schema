@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+# ../esphome/script/build_jsonschema.py $@ --output "./schema.json"
+
+# cp -r schema.json ../esphome-docs/
+# rm schema.json
+
+cd ../esphome-docs
+
+sphinx-build . _build -E
+
+cd -
+
+cp -r ../esphome-docs/schema.json ./server/src/schema.json
+
+rm ../esphome-docs/schema.json

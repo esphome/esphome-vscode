@@ -5,10 +5,12 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
+    "resolveJsonModule": true,
     "strict": true,
     "outDir": "out",
-    "rootDir": "src"
+    "rootDir": "src",
+    "skipLibCheck": true // remove when fixed issue with vscode-json-languageservice
   },
-  "include": ["src"],
+  "include": ["src", "src/*.json"],
   "exclude": ["node_modules", ".vscode-test"]
 }
