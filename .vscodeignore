@@ -12,3 +12,10 @@ vsc-extension-quickstart.md
 **/tslint.json
 **/*.map
 **/*.ts
+
+client/**
+!client/out/extension.js
+server/**
+!server/out/esphomeServer.js
+!server/node_modules/prettier
+!server/node_modules/yaml-language-server

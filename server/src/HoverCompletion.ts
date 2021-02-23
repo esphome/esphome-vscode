@@ -4,9 +4,8 @@ import {
     getLanguageService,
     LanguageService,
     LanguageSettings,
-} from "yaml-language-server/out/server/src/languageservice/yamlLanguageService";
-import { CompletionItem, CompletionList, Hover, Position, TextDocument } from "vscode-languageserver";
-// import { JSONSchema } from "vscode-json-languageservice";
+} from "yaml-language-server";
+import { CompletionList, Hover, Position, TextDocument } from "vscode-languageserver";
 
 
 export class HoverCompletion {

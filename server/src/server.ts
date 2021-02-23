@@ -13,7 +13,6 @@ import {
 	TextDocument
 } from 'vscode-languageserver-textdocument';
 import { Validation } from './Validation';
-import { ESPHomeLocalConnection } from './EsphomeLocalConnection';
 import { VsCodeFileAccessor } from './fileAccessor';
 import { HoverCompletion } from './HoverCompletion';
 import { ESPHomeConnectionSource } from "./ESPHomeConnectionSource";
