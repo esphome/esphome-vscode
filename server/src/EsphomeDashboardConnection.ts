@@ -1,8 +1,13 @@
-/*import * as vscode from 'vscode';
-import * as WebSocket from "ws";
-import { EsphomeConnection } from "./EsphomeConnection";
 
-export class EsphomeDashboardConnection extends EsphomeConnection {
+import * as WebSocket from "ws";
+import { ESPHomeConnection } from "./ESPHomeConnection";
+
+export class ESPHomeDashboardConnection extends ESPHomeConnection {
+    private ws!: WebSocket;
+    constructor(readonly endPoint: string) {
+        super();
+    }
+
     sendMessageInternal(msg: any): void {
         // Check if WS is open, otherwise ignore
         if (this.ws.readyState !== 1) {
@@ -16,24 +21,33 @@ export class EsphomeDashboardConnection extends EsphomeConnection {
         this.ws.send(send);
     }
 
-    private ws!: WebSocket;
-    constructor(readonly outputChannel: vscode.OutputChannel, readonly endPoint: string) {
-        super();
-    }
-
     connect(): void {
-        this.outputChannel.appendLine(`Using ESPHome dashboard at: ${this.endPoint}`);
-        this.ws = new WebSocket(`ws://${this.endPoint}/vscode`);
+        const regex = /^(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/
+        let uri = this.endPoint;
+        if (uri.indexOf('//') === -1)
+            uri = 'http://' + uri;
+        const match = uri.match(regex)
 
-        // TODO: Open dynamically, re-open when connection lost etc.
+        if (match === null) {
+            console.error(`Could not understand end point '${this.endPoint}'`)
+            return;
+        }
+
+        const httpUri = `${match[2]}://${match[4]}/`
+        const wsUri = `ws://${match[4]}/vscode`
+
+        console.log(`Using ESPHome dashboard at: ${wsUri} server: ${httpUri}`);
+        this.ws = new WebSocket(wsUri.toString());
+
+        // TODO: Open dynamically, re - open when connection lost etc.
         this.ws.on('open', () => {
-            this.outputChannel.appendLine("Connection established.");
+            console.log("Connection established.");
             const msg = JSON.stringify({ type: 'spawn' });
             this.ws.send(msg);
         });
         this.ws.on('error', (err: Error) => {
-            this.outputChannel.appendLine("Cannot connect to ESPHome dashboard" + err);
-            vscode.window.showErrorMessage(`Cannot connect to ESPHome dashboard. Make sure you can access '${this.endPoint}' and have set the option 'leave_front_door_open': true`);
+            console.log("Cannot connect to ESPHome dashboard" + err);
+            console.error(`Cannot connect to ESPHome dashboard. Make sure you can access '${httpUri}' and have set the option 'leave_front_door_open': true`);
         });
         this.ws.on('message', (data) => {
             const raw = JSON.parse(data.toString());
@@ -46,4 +60,3 @@ export class EsphomeDashboardConnection extends EsphomeConnection {
     public disconnect(): void { }
 
 }
-*/

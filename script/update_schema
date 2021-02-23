@@ -4,10 +4,10 @@ set -e
 
 cd "$(dirname "$0")/.."
 
-# ../esphome/script/build_jsonschema.py $@ --output "./schema.json"
+../esphome/script/build_jsonschema.py $@ --output "./schema.json"
 
-# cp -r schema.json ../esphome-docs/
-# rm schema.json
+cp -r schema.json ../esphome-docs/
+rm schema.json
 
 cd ../esphome-docs
 

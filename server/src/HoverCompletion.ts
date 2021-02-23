@@ -14,11 +14,10 @@ export class HoverCompletion {
     yamlLanguageService: LanguageService;
 
     constructor() {
+
         this.yamlLanguageService = getLanguageService(
             // eslint-disable-next-line @typescript-eslint/require-await
-            async () => "",
-            null!,
-            []);
+            async () => "", null!);
 
         const jsonPath = path.join(__dirname, "schema.json");
         const filecontents = fs.readFileSync(jsonPath, "utf-8");
@@ -67,11 +66,11 @@ export class HoverCompletion {
         return CompletionList.create(currentCompletions.items, false);
     };
 
-    public onCompletionResolve = async (
-        completionItem: CompletionItem
-    ): Promise<CompletionItem> => {
-        return this.yamlLanguageService.doResolve(completionItem);
-    };
+    // public onCompletionResolve = async (
+    //     completionItem: CompletionItem
+    // ): Promise<CompletionItem> => {
+    //     //return this.yamlLanguageService.doResolve(completionItem);
+    // };
 
     public onHover = async (
         document: TextDocument,

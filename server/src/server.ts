@@ -1,18 +1,10 @@
-/* --------------------------------------------------------------------------------------------
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
 import {
 	createConnection,
 	TextDocuments,
 	Diagnostic,
-	DiagnosticSeverity,
 	ProposedFeatures,
 	InitializeParams,
 	DidChangeConfigurationNotification,
-	CompletionItem,
-	CompletionItemKind,
-	TextDocumentPositionParams,
 	TextDocumentSyncKind,
 	InitializeResult
 } from 'vscode-languageserver/node';
@@ -24,6 +16,8 @@ import { Validation } from './Validation';
 import { ESPHomeLocalConnection } from './EsphomeLocalConnection';
 import { VsCodeFileAccessor } from './fileAccessor';
 import { HoverCompletion } from './HoverCompletion';
+import { ESPHomeConnectionSource } from "./ESPHomeConnectionSource";
+import { ESPHomeSettings } from './ESPHomeSettings';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -40,14 +34,15 @@ let hasConfigurationCapability: boolean = false;
 let hasWorkspaceFolderCapability: boolean = false;
 let hasDiagnosticRelatedInformationCapability: boolean = false;
 
-
-
 const sendDiagnostics = (uri: string, diagnostics: Diagnostic[]) => {
 	connection.sendDiagnostics({
 		uri,
 		diagnostics,
 	});
 };
+let fileAccessor: VsCodeFileAccessor;
+
+const esphomeConnection = new ESPHomeConnectionSource()
 
 connection.onInitialize((params: InitializeParams) => {
 	let capabilities = params.capabilities;
@@ -83,10 +78,30 @@ connection.onInitialize((params: InitializeParams) => {
 		};
 	}
 
-	const fileAccessor = new VsCodeFileAccessor(params.rootUri, documents);
 
-	const esphomeConnection = new ESPHomeLocalConnection();
-	esphomeConnection.connect();
+	fileAccessor = new VsCodeFileAccessor(params.rootUri, documents);
+
+	result.capabilities.hoverProvider = true;
+	return result;
+});
+
+connection.onInitialized(async () => {
+	if (hasConfigurationCapability) {
+		// Register for all configuration changes.
+		connection.client.register(DidChangeConfigurationNotification.type, undefined);
+	}
+	if (hasWorkspaceFolderCapability) {
+		connection.workspace.onDidChangeWorkspaceFolders(_event => {
+			connection.console.log('Workspace folder change event received.');
+		});
+	}
+
+
+	const config = await getSettings();
+
+	esphomeConnection.configure(config);
+
+
 	const validation = new Validation(
 		fileAccessor,
 		esphomeConnection,
@@ -107,9 +122,9 @@ connection.onInitialize((params: InitializeParams) => {
 		)
 	);
 
-	connection.onCompletionResolve((p) =>
-		completion.onCompletionResolve(p)
-	);
+	// connection.onCompletionResolve((p) =>
+	// 	completion.onCompletionResolve(p)
+	// );
 
 	connection.onHover((p) =>
 		completion.onHover(
@@ -117,54 +132,42 @@ connection.onInitialize((params: InitializeParams) => {
 			p.position
 		)
 	);
+});
 
-	result.capabilities.hoverProvider = true;
+function getSettings(): Thenable<ESPHomeSettings> {
+	if (!hasConfigurationCapability) {
+		return Promise.resolve(globalSettings);
+	}
+	const result = connection.workspace.getConfiguration({
+		scopeUri: '.',
+		section: 'esphome'
+	});
+
 	return result;
-});
-
-connection.onInitialized(() => {
-	if (hasConfigurationCapability) {
-		// Register for all configuration changes.
-		connection.client.register(DidChangeConfigurationNotification.type, undefined);
-	}
-	if (hasWorkspaceFolderCapability) {
-		connection.workspace.onDidChangeWorkspaceFolders(_event => {
-			connection.console.log('Workspace folder change event received.');
-		});
-	}
-
-
-});
-
-// The example settings
-interface ExampleSettings {
-	maxNumberOfProblems: number;
 }
 
 // The global settings, used when the `workspace/configuration` request is not supported by the client.
 // Please note that this is not the case when using this server with the client provided in this example
 // but could happen with other clients.
-const defaultSettings: ExampleSettings = { maxNumberOfProblems: 1000 };
-let globalSettings: ExampleSettings = defaultSettings;
+const defaultSettings: ESPHomeSettings = { validator: 'local' };
+let globalSettings: ESPHomeSettings = defaultSettings;
 
 // Cache the settings of all open documents
-let documentSettings: Map<string, Thenable<ExampleSettings>> = new Map();
+let documentSettings: Map<string, Thenable<ESPHomeSettings>> = new Map();
 
-connection.onDidChangeConfiguration(change => {
+connection.onDidChangeConfiguration(async change => {
 	if (hasConfigurationCapability) {
-		// Reset all cached document settings
-		documentSettings.clear();
+		esphomeConnection.configure(await getSettings());
 	} else {
-		globalSettings = <ExampleSettings>(
-			(change.settings.languageServerExample || defaultSettings)
+		globalSettings = <ESPHomeSettings>(
+			(change.settings.esphome || defaultSettings)
 		);
 	}
 
-	// Revalidate all open text documents
-	//documents.all().forEach(validateTextDocument);
+
 });
 
-function getDocumentSettings(resource: string): Thenable<ExampleSettings> {
+function getDocumentSettings(resource: string): Thenable<ESPHomeSettings> {
 	if (!hasConfigurationCapability) {
 		return Promise.resolve(globalSettings);
 	}
@@ -172,7 +175,7 @@ function getDocumentSettings(resource: string): Thenable<ExampleSettings> {
 	if (!result) {
 		result = connection.workspace.getConfiguration({
 			scopeUri: resource,
-			section: 'languageServerExample'
+			section: 'esphome'
 		});
 		documentSettings.set(resource, result);
 	}

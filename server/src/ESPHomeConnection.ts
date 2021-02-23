@@ -25,3 +25,4 @@ export abstract class ESPHomeConnection {
         this.handleMessage_ = handleMessage;
     }
 }
+

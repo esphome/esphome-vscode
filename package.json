@@ -43,7 +43,7 @@
         "esphome.dashboardUri": {
           "type": "string",
           "default": "hassio:6052",
-          "description": "Specifies the dashboard uri location, e.g. hassio:6052."
+          "description": "Specifies the dashboard uri location, e.g. http://homeassistant:6052/."
         }
       }
     },
