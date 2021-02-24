@@ -1,12 +1,12 @@
-/*import * as vscode from 'vscode';
+import * as vscode from 'vscode';
 
-export let OtaUploadTask = new vscode.Task({
+let OtaUploadTask = new vscode.Task({
     type: 'esphome',
     task: 'esphome'
 }, vscode.TaskScope.Workspace, 'Upload OTA', 'ESPHome',
     new vscode.ShellExecution('esphome', ['${relativeFile}', 'run', '--upload-port', 'OTA']));
 
-export class EsphomeTaskProvider implements vscode.TaskProvider {
+class EsphomeTaskProvider implements vscode.TaskProvider {
     static EsphomeType: string = 'esphome';
 
     constructor(workspaceRoot: string) {
@@ -46,4 +46,33 @@ export class EsphomeTaskProvider implements vscode.TaskProvider {
 
 interface EsphomeTaskDefinition extends vscode.TaskDefinition {
     task: string;
-}*/
+}
+
+
+export function addTasks(context: vscode.ExtensionContext) {
+    let workspaceRoot = vscode.workspace.rootPath;
+    console.log('Workspaceroot: ', workspaceRoot);
+    if (!workspaceRoot) {
+        return;
+    }
+
+    console.log('creating provider: ', workspaceRoot);
+    const esphomeTaskProvider = vscode.tasks.registerTaskProvider(EsphomeTaskProvider.EsphomeType, new EsphomeTaskProvider(workspaceRoot));
+
+    const esphomeOtaStatusBarCommandId = 'esphome.otaUpload';
+
+    const command = vscode.commands.registerCommand(esphomeOtaStatusBarCommandId, () => {
+        vscode.tasks.executeTask(OtaUploadTask);
+    });
+
+    // Add taskbar icon for OTA
+    // create a new status bar item that we can now manage
+    const esphomeOtaStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left);
+    esphomeOtaStatusBarItem.command = esphomeOtaStatusBarCommandId;
+
+    context.subscriptions.push(esphomeOtaStatusBarItem);
+
+    esphomeOtaStatusBarItem.text = "$(rocket) OTA";
+    esphomeOtaStatusBarItem.tooltip = "Compile and upload Over The Air";
+    esphomeOtaStatusBarItem.show();
+}

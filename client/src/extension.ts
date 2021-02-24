@@ -12,13 +12,11 @@ import {
 	ServerOptions,
 	TransportKind
 } from 'vscode-languageclient/node';
+import { addTasks } from './EsphomeTaskProvider';
 
 let client: LanguageClient;
 
 export function activate(context: ExtensionContext) {
-
-	let workspaceRoot = workspace.rootPath;
-	console.log('Workspaceroot: ', workspaceRoot);
 	// The server is implemented in node
 	let serverModule = context.asAbsolutePath(
 		path.join('server', 'out', 'esphomeServer.js')
@@ -58,6 +56,10 @@ export function activate(context: ExtensionContext) {
 
 	// Start the client. This will also launch the server
 	client.start();
+
+
+	addTasks(context);
+
 }
 
 export function deactivate(): Thenable<void> | undefined {
