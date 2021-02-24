@@ -22,10 +22,11 @@ export class ESPHomeDashboardConnection extends ESPHomeConnection {
     }
 
     connect(): void {
-        const regex = /^(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/
+        const regex = /^(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/;
         let uri = this.endPoint;
-        if (uri.indexOf('//') === -1)
+        if (uri.indexOf('//') === -1) {
             uri = 'http://' + uri;
+        }
         const match = uri.match(regex)
 
         if (match === null) {
@@ -33,8 +34,8 @@ export class ESPHomeDashboardConnection extends ESPHomeConnection {
             return;
         }
 
-        const httpUri = `${match[2]}://${match[4]}/`
-        const wsUri = `ws://${match[4]}/vscode`
+        const httpUri = `${match[2]}://${match[4]}/`;
+        const wsUri = `ws://${match[4]}/vscode`;
 
         console.log(`Using ESPHome dashboard at: ${wsUri} server: ${httpUri}`);
         this.ws = new WebSocket(wsUri.toString());
@@ -51,7 +52,6 @@ export class ESPHomeDashboardConnection extends ESPHomeConnection {
         });
         this.ws.on('message', (data) => {
             const raw = JSON.parse(data.toString());
-            console.log(raw);
             const msg = JSON.parse(raw.data);
             this.handleMessage(msg);
         });

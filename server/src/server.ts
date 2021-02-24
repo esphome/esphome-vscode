@@ -168,7 +168,7 @@ documents.onDidClose(e => {
 
 connection.onDidChangeWatchedFiles(_change => {
 	// Monitored files have change in VSCode
-	connection.console.log('We received an file change event');
+	// connection.console.log('We received an file change event');
 });
 
 // Make the text document manager listen on the connection

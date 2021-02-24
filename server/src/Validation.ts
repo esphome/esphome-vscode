@@ -82,8 +82,7 @@ export class Validation {
                     this.addError(uri, range, message);
                 }
                 else {
-                    console.log('unknown location ' + line);
-                    console.log(location);
+                    console.log('unknown location ' + line + ' -- ' + location);
                 }
                 message = '';
                 skip = 3;
@@ -160,7 +159,7 @@ export class Validation {
                 }
             }
         } catch (e) {
-            console.log(e);
+            console.log('Income message error: ' + e);
             this.validating_uri = null;
         }
     }

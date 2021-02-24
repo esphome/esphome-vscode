@@ -48,8 +48,9 @@ export class ESPHomeConnectionSource extends ESPHomeConnection {
     }
 
     sendMessage(msg: any): void {
-        if (this.relay !== undefined)
+        if (this.relay !== undefined) {
             this.relay.sendMessage(msg);
+        }
     }
 
     onResponse(handleMessage: (msg: MessageTypes) => void) {

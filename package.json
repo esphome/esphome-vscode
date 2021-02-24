@@ -69,7 +69,7 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
+    "vscode:prepublish": "npm run webpack",
     "compile": "tsc -b",
     "watch": "tsc -b -w",
     "postinstall": "cd server && npm install && cd ../client && npm install && cd ..",
