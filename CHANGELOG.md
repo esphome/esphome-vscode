@@ -1,9 +1,10 @@
 # Changelog
 
-## [Unreleased]
+## v.0.4.0 - 2021-02-23
 
-- Added secutiry
-- Fix error message string interpolation
+- Add hover and completion 🧉
+- Converted to LSP architecture
+- Fix error message string interpolation 💊
 
 ## v.0.3.0 - 2020-06-09
 

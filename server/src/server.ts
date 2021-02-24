@@ -65,7 +65,7 @@ connection.onInitialize((params: InitializeParams) => {
 			textDocumentSync: TextDocumentSyncKind.Incremental,
 			// Tell the client that this server supports code completion.
 			completionProvider: {
-				resolveProvider: true
+				resolveProvider: false
 			}
 		}
 	};
@@ -121,10 +121,6 @@ connection.onInitialized(async () => {
 		)
 	);
 
-	// connection.onCompletionResolve((p) =>
-	// 	completion.onCompletionResolve(p)
-	// );
-
 	connection.onHover((p) =>
 		completion.onHover(
 			documents.get(p.textDocument.uri)!,
@@ -151,8 +147,6 @@ function getSettings(): Thenable<ESPHomeSettings> {
 const defaultSettings: ESPHomeSettings = { validator: 'local' };
 let globalSettings: ESPHomeSettings = defaultSettings;
 
-// Cache the settings of all open documents
-let documentSettings: Map<string, Thenable<ESPHomeSettings>> = new Map();
 
 connection.onDidChangeConfiguration(async change => {
 	if (hasConfigurationCapability) {
@@ -166,67 +160,16 @@ connection.onDidChangeConfiguration(async change => {
 
 });
 
-function getDocumentSettings(resource: string): Thenable<ESPHomeSettings> {
-	if (!hasConfigurationCapability) {
-		return Promise.resolve(globalSettings);
-	}
-	let result = documentSettings.get(resource);
-	if (!result) {
-		result = connection.workspace.getConfiguration({
-			scopeUri: resource,
-			section: 'esphome'
-		});
-		documentSettings.set(resource, result);
-	}
-	return result;
-}
 
 // Only keep settings for open documents, and clear diagnostics.
 documents.onDidClose(e => {
 	sendDiagnostics(e.document.uri, []);
-	documentSettings.delete(e.document.uri);
 });
 
 connection.onDidChangeWatchedFiles(_change => {
 	// Monitored files have change in VSCode
 	connection.console.log('We received an file change event');
 });
-
-// // This handler provides the initial list of the completion items.
-// connection.onCompletion(
-// 	(_textDocumentPosition: TextDocumentPositionParams): CompletionItem[] => {
-// 		// The pass parameter contains the position of the text document in
-// 		// which code complete got requested. For the example we ignore this
-// 		// info and always provide the same completion items.
-// 		return [
-// 			{
-// 				label: 'TypeScript',
-// 				kind: CompletionItemKind.Text,
-// 				data: 1
-// 			},
-// 			{
-// 				label: 'JavaScript',
-// 				kind: CompletionItemKind.Text,
-// 				data: 2
-// 			}
-// 		];
-// 	}
-// );
-
-// // This handler resolves additional information for the item selected in
-// // the completion list.
-// connection.onCompletionResolve(
-// 	(item: CompletionItem): CompletionItem => {
-// 		if (item.data === 1) {
-// 			item.detail = 'TypeScript details';
-// 			item.documentation = 'TypeScript documentation';
-// 		} else if (item.data === 2) {
-// 			item.detail = 'JavaScript details';
-// 			item.documentation = 'JavaScript documentation';
-// 		}
-// 		return item;
-// 	}
-// );
 
 // Make the text document manager listen on the connection
 // for open, change and close text document events

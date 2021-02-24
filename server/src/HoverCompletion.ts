@@ -5,8 +5,7 @@ import {
     LanguageService,
     LanguageSettings,
 } from "yaml-language-server";
-import { CompletionList, Hover, Position, TextDocument } from "vscode-languageserver";
-
+import { CompletionItem, CompletionList, Hover, Position, TextDocument } from "vscode-languageserver";
 
 export class HoverCompletion {
 
@@ -40,7 +39,6 @@ export class HoverCompletion {
         } catch (e) {
             console.log(e);
         }
-
     }
 
     public onCompletion = async (
@@ -63,13 +61,7 @@ export class HoverCompletion {
         );
 
         return CompletionList.create(currentCompletions.items, false);
-    };
-
-    // public onCompletionResolve = async (
-    //     completionItem: CompletionItem
-    // ): Promise<CompletionItem> => {
-    //     //return this.yamlLanguageService.doResolve(completionItem);
-    // };
+    }
 
     public onHover = async (
         document: TextDocument,
@@ -80,6 +72,5 @@ export class HoverCompletion {
         }
 
         return this.yamlLanguageService.doHover(document, position);
-    };
-
+    }
 }

@@ -37,17 +37,11 @@ module.exports = function withDefaults(/**@type WebpackConfig*/extConfig) {
         },
         externals: {
             'vscode': 'commonjs vscode', // ignored because it doesn't exist
-            'prettier': 'prettier',
-            'bufferutil': 'bufferutil',
-            'utf-8-validate': 'utf-8-validate',
-            'yaml-language-server': 'yaml-language-server'
-
         },
+
         output: {
-            // all output goes into `dist`.
-            // packaging depends on that and this must always be like it
             filename: '[name].js',
-            path: path.join(extConfig.context, 'dist'),
+            path: path.join(extConfig.context, 'out'),
             libraryTarget: "commonjs",
         },
         // yes, really source maps

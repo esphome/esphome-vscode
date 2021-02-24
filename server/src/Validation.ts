@@ -65,13 +65,11 @@ export class Validation {
         let skip = 3;
         let message = '';
         error.message.split('\n').forEach((line: string) => {
-            console.log(`- ${skip} : ${line}`);
             if (--skip > 0) {
                 return;
             }
             if (message === '') {
                 message = line;
-                console.log('got error ' + line);
             }
             else {
                 let location = line.match(/in "([^"]*)", line (\d*), column (\d*):/);
@@ -139,7 +137,6 @@ export class Validation {
                 case 'check_directory_exists': {
                     const uri = this.handleRelativeUri(msg.path);
                     const pathExists = await this.fileAccessor.checkPathExists(uri);
-                    console.log(`checking directory exists: ${uri}: ${pathExists}`);
 
                     this.connection.sendMessage({
                         type: 'directory_exists_response',
@@ -150,7 +147,6 @@ export class Validation {
                 case 'check_file_exists': {
                     const uri = this.handleRelativeUri(msg.path);
                     const fileExists = await this.fileAccessor.checkPathExists(uri);
-                    console.log(`checking directory exists: ${uri}: ${fileExists}`);
 
                     this.connection.sendMessage({
                         type: 'file_exists_response',
