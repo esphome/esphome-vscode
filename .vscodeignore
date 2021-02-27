@@ -16,7 +16,7 @@ vsc-extension-quickstart.md
 client/**
 !client/out/extension.js
 server/**
-!server/out/esphomeServer.js
+!server/out/server.js
 !server/out/schema.json
 
 # TODO: Figure out how to package yaml-language-server

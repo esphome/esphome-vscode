@@ -1,5 +1,10 @@
 # Changelog
 
+## v.0.5.0 - 2021-02-27
+
+- Fix validating multi documents
+- Fix handling ESPHome errors crashed connection
+
 ## v.0.4.0 - 2021-02-23
 
 - Add hover and completion 🧉

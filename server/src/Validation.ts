@@ -48,18 +48,19 @@ export class Validation {
 
     private handleEsphomeError(error: ESPHomeValidationError) {
         const message = error.message;
-        let range: Range;
 
-        if (error.range === null) {
-            range = Range.create(1, 0, 1, 2);
-            // uri = this.validating!.uri;
-        } else {
-            range = Range.create(error.range.start_line, error.range.start_col, error.range.end_line, error.range.end_col);
-
-            //uri = vscode.Uri.file(error.range.document);
+        if (error.range !== null) {
+            this.addError(
+                error.range.document,
+                Range.create(error.range.start_line, error.range.start_col, error.range.end_line, error.range.end_col),
+                message);
         }
-
-        this.addError(this.validating_uri!, range, message)
+        else {
+            this.addError(
+                this.validating_uri!,
+                Range.create(1, 0, 1, 2),
+                message);
+        }
     }
 
     private handleYamlError(error: YamlValidationError) {
@@ -174,7 +175,7 @@ export class Validation {
                 const lastRequestElapsedTime = new Date().getTime() - this.lastRequest.getTime();
                 // 10 seconds without response
                 if (lastRequestElapsedTime > 10000) {
-                    console.log("Timeout waiting for previous validation to complete. Discarding.")
+                    console.log("Timeout waiting for previous validation to complete. Discarding.");
                 }
                 return;
 

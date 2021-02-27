@@ -14,7 +14,7 @@ module.exports = {
             extension: './src/server.ts',
         },
         output: {
-            filename: 'esphomeServer.js',
+            filename: 'server.js',
             path: path.join(__dirname, 'out')
         },
         externals: {
