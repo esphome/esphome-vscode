@@ -1,5 +1,6 @@
 import * as ChildProcess from "child_process";
 import { ESPHomeConnection } from "./ESPHomeConnection";
+import { MESSAGE_RESULT } from "./esphome_types";
 
 export class ESPHomeLocalConnection extends ESPHomeConnection {
     private process!: ChildProcess.ChildProcess;
@@ -29,9 +30,13 @@ export class ESPHomeLocalConnection extends ESPHomeConnection {
         }
         if (this.process.stderr !== null) {
             this.process.stderr.on('data', (data) => {
-                console.log('Got err: ' + data.toString());
-                const msg = JSON.parse(data);
-                this.handleMessage(msg);
+                console.error(data.toString());
+
+                this.handleMessage({
+                    type: MESSAGE_RESULT,
+                    validation_errors: [],
+                    yaml_errors: []
+                });
             });
         }
         this.process.on("close", (code, signal) => {
