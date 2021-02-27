@@ -8,6 +8,7 @@ import { MessageTypes, MESSAGE_FILE_RESPONSE, MESSAGE_READ_FILE, MESSAGE_RESULT,
 import { FileAccessor } from "./fileAccessor";
 
 export class Validation {
+    lastRequest!: Date;
     constructor(
         private fileAccessor: FileAccessor,
         private connection: ESPHomeConnection,
@@ -170,7 +171,13 @@ export class Validation {
     onDocumentChange(e: TextDocumentChangeEvent<TextDocument>): void {
         try {
             if (this.validating_uri !== null) {
+                const lastRequestElapsedTime = new Date().getTime() - this.lastRequest.getTime();
+                // 10 seconds without response
+                if (lastRequestElapsedTime > 10000) {
+                    console.log("Timeout waiting for previous validation to complete. Discarding.")
+                }
                 return;
+
             }
             this.validating_uri = e.document.uri;
             this.diagnosticCollection.clear();
@@ -191,7 +198,7 @@ export class Validation {
             }
 
             console.log(`Validating ${this.validating_uri}`);
-
+            this.lastRequest = new Date();
             this.connection.sendMessage({
                 type: 'validate',
                 file: this.validating_uri
