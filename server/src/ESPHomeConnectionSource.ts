@@ -1,4 +1,4 @@
-import { ESPHomeDashboardConnection } from './EsphomeDashboardConnection';
+import { ESPHomeDashboardConnection } from './ESPHomeDashboardConnection';
 import { ESPHomeLocalConnection } from './ESPHomeLocalConnection';
 import { ESPHomeSettings } from './ESPHomeSettings';
 import { MessageTypes } from './esphome_types';

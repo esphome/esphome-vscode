@@ -23,9 +23,17 @@ export class ESPHomeLocalConnection extends ESPHomeConnection {
         this.process = ChildProcess.spawn('esphome', ['dummy', "vscode"]);
         if (this.process.stdout !== null) {
             this.process.stdout.on('data', (data) => {
-                console.log('Got out: ' + data.toString());
-                const msg = JSON.parse(data);
-                this.handleMessage(msg);
+                try {
+                    if (data.length < 2) {
+                        console.log(`Unexpected data too small: ${data}'`);
+                        return;
+                    }
+                    const msg = JSON.parse(data);
+                    this.handleMessage(msg);
+                }
+                catch (e) {
+                    console.log(`Error handling reponse: data: ${typeof (data)}: '${data?.toString()}' ${e}`);
+                }
             });
         }
         if (this.process.stderr !== null) {

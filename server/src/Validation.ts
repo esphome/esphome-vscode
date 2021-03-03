@@ -24,7 +24,7 @@ export class Validation {
 
 
     private addError(uri: DocumentUri, range: Range, message: string) {
-        console.log(`added error: ${message} to ${uri}`);
+        //console.log(`diag error: ${message} to ${uri}`);
         let diagnostics = this.diagnosticCollection.get(uri) || [];
         const diagnostic = Diagnostic.create(range, message);
         diagnostics = [...diagnostics, diagnostic];
@@ -43,7 +43,7 @@ export class Validation {
             includes.push(included);
             this.includedFiles[file] = includes;
         }
-        console.log(`files for ${file} : ${this.includedFiles[file]}`);
+        // console.log(`files for ${file} : ${this.includedFiles[file]}`);
     }
 
     private handleEsphomeError(error: ESPHomeValidationError) {
@@ -105,7 +105,7 @@ export class Validation {
                         // This file is validated indirectly, if it had errors then they must be cleared
                         this.diagnosticCollection.set(uri, []);
                     }
-                    console.log(`openning ${uri}`);
+                    //console.log(`openning ${uri}`);
                     try {
                         const docText = await this.fileAccessor.getFileContents(uri);
                         this.connection.sendMessage({
@@ -185,16 +185,13 @@ export class Validation {
             this.diagnosticCollection.set(this.validating_uri, []);
             const uri = this.validating_uri;
             // Check if this is an included file
-
-            // const thisFilePath = vscode.Uri.file(textDocument.fileName).path;
-
-            console.log(`this file path: ${uri}`);
+            // console.log(`this file path: ${uri}`);
             for (let key in this.includedFiles) {
                 // TODO: When an included file is in turn included, this should call the top most file, not the next one.
-                console.log(`testing included files in: ${key} files: ${this.includedFiles[key]}`);
+                // console.log(`testing included files in: ${key} files: ${this.includedFiles[key]}`);
                 if (this.includedFiles[key].indexOf(uri) >= 0) {
                     this.validating_uri = key;
-                    console.log(`Not validating ${uri} as is listed as included file. Validating containing document ${key} instead`);
+                    // console.log(`Not validating ${uri} as is listed as included file. Validating containing document ${key} instead`);
                 }
             }
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## v.0.6.0 - 2021-03-03
+
+- Fix handle unexpected responses when using ESPHome local
+
 ## v.0.5.0 - 2021-02-27
 
 - Fix validating multi documents
