@@ -20,7 +20,10 @@ export class ESPHomeLocalConnection extends ESPHomeConnection {
 
     connect(): void {
         console.log("Using local ESPHome");
-        this.process = ChildProcess.spawn('esphome', ['dummy', "vscode"]);
+
+        this.process = ChildProcess.exec('esphome dummy vscode',
+            { 'encoding': 'utf-8', 'env': { 'PYTHONIOENCODING': 'utf-8' } }
+        );
         if (this.process.stdout !== null) {
             this.process.stdout.on('data', (data) => {
                 try {
