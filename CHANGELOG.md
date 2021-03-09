@@ -1,5 +1,10 @@
 # Changelog
 
+## v.0.10.0 - 2021-03-09
+
+- Update yaml language server
+- Fix schema missing docs
+
 ## v.0.9.0 - 2021-03-08
 
 - Update schema
