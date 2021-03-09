@@ -1,8 +1,12 @@
 # Changelog
 
+## v.0.9.0 - 2021-03-08
+
+- Update schema
+
 ## v.0.8.0 - 2021-03-07
 
-- Fix ESPHome validator local might not validate UTF-8 characters under Windows.
+- Fix ESPHome validator local might not validate UTF-8 characters under Windows.ls
 
 ## v.0.6.0 - 2021-03-03
 
