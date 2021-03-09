@@ -15,7 +15,7 @@ export class HoverCompletion {
 
         this.yamlLanguageService = getLanguageService(
             // eslint-disable-next-line @typescript-eslint/require-await
-            async () => "", null!, connection);
+            async () => "", null!);
 
         const jsonPath = path.join(__dirname, "schema.json");
         const filecontents = fs.readFileSync(jsonPath, "utf-8");

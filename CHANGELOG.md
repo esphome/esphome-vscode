@@ -1,5 +1,9 @@
 # Changelog
 
+## v.0.11.0 - 2021-03-09
+
+- Revert yaml language server update
+
 ## v.0.10.0 - 2021-03-09
 
 - Update yaml language server
