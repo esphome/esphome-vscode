@@ -41,7 +41,7 @@ const sendDiagnostics = (uri: string, diagnostics: Diagnostic[]) => {
 };
 let fileAccessor: VsCodeFileAccessor;
 
-const esphomeConnection = new ESPHomeConnectionSource()
+const esphomeConnection = new ESPHomeConnectionSource();
 
 connection.onInitialize((params: InitializeParams) => {
 	let capabilities = params.capabilities;
@@ -112,7 +112,7 @@ connection.onInitialized(async () => {
 	);
 
 
-	const completion = new HoverCompletion();
+	const completion = new HoverCompletion(connection);
 
 	connection.onCompletion((p) =>
 		completion.onCompletion(

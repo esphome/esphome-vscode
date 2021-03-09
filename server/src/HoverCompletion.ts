@@ -5,17 +5,17 @@ import {
     LanguageService,
     LanguageSettings,
 } from "yaml-language-server";
-import { CompletionItem, CompletionList, Hover, Position, TextDocument } from "vscode-languageserver";
+import { CompletionItem, CompletionList, Connection, Hover, Position, TextDocument } from "vscode-languageserver";
 
 export class HoverCompletion {
 
     yamlLanguageService: LanguageService;
 
-    constructor() {
+    constructor(connection: Connection) {
 
         this.yamlLanguageService = getLanguageService(
             // eslint-disable-next-line @typescript-eslint/require-await
-            async () => "", null!);
+            async () => "", null!, connection);
 
         const jsonPath = path.join(__dirname, "schema.json");
         const filecontents = fs.readFileSync(jsonPath, "utf-8");
