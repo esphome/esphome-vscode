@@ -1,5 +1,9 @@
 # Changelog
 
+## v.0.12.0 - 2021-03-11
+
+- Update Schema add pins and filters
+
 ## v.0.11.0 - 2021-03-09
 
 - Revert yaml language server update
