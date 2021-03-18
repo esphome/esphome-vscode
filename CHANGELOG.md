@@ -1,5 +1,9 @@
 # Changelog
 
+## v.0.13.0 - 2021-03-18
+
+- Update Schema add some enums
+
 ## v.0.12.0 - 2021-03-11
 
 - Update Schema add pins and filters
