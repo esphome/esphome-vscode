@@ -6,6 +6,7 @@ import { DocumentUri, TextDocument } from "vscode-languageserver-textdocument";
 import { ESPHomeConnection } from "./EsphomeConnection";
 import { MessageTypes, MESSAGE_FILE_RESPONSE, MESSAGE_READ_FILE, MESSAGE_RESULT, ValidationError as ESPHomeValidationError, YamlValidationError } from "./esphome_types";
 import { FileAccessor } from "./fileAccessor";
+import * as vscodeUri from "vscode-uri";
 
 export class Validation {
     lastRequest!: Date;
@@ -31,19 +32,12 @@ export class Validation {
         this.diagnosticCollection.set(uri, diagnostics);
     }
 
-    private handleRelativeUri(path: string) {
-        // Fix path for Windows
-        const uri = path.replace("\\", "/");
-        return uri;
-    }
-
     private addIncludeFile(file: string, included: string) {
         var includes = this.includedFiles[file] || [];
         if (includes.indexOf(included) === -1) {
             includes.push(included);
             this.includedFiles[file] = includes;
         }
-        // console.log(`files for ${file} : ${this.includedFiles[file]}`);
     }
 
     private handleEsphomeError(error: ESPHomeValidationError) {
@@ -51,7 +45,7 @@ export class Validation {
 
         if (error.range !== null) {
             this.addError(
-                error.range.document,
+                vscodeUri.URI.file(error.range.document).toString(),
                 Range.create(error.range.start_line, error.range.start_col, error.range.end_line, error.range.end_col),
                 message);
         }
@@ -96,7 +90,7 @@ export class Validation {
         try {
             switch (msg.type) {
                 case MESSAGE_READ_FILE: {
-                    const uri = this.handleRelativeUri(msg.path);
+                    const uri = vscodeUri.URI.file(msg.path).toString();
 
                     if (uri !== this.validating_uri) {
                         // Track this as an included file, so when the user edits this file
@@ -105,7 +99,6 @@ export class Validation {
                         // This file is validated indirectly, if it had errors then they must be cleared
                         this.diagnosticCollection.set(uri, []);
                     }
-                    //console.log(`openning ${uri}`);
                     try {
                         const docText = await this.fileAccessor.getFileContents(uri);
                         this.connection.sendMessage({
@@ -136,7 +129,7 @@ export class Validation {
                     break;
                 }
                 case 'check_directory_exists': {
-                    const uri = this.handleRelativeUri(msg.path);
+                    const uri = vscodeUri.URI.file(msg.path).toString();
                     const pathExists = await this.fileAccessor.checkPathExists(uri);
 
                     this.connection.sendMessage({
@@ -146,7 +139,7 @@ export class Validation {
                     break;
                 }
                 case 'check_file_exists': {
-                    const uri = this.handleRelativeUri(msg.path);
+                    const uri = vscodeUri.URI.file(msg.path).toString();
                     const fileExists = await this.fileAccessor.checkPathExists(uri);
 
                     this.connection.sendMessage({
@@ -199,7 +192,7 @@ export class Validation {
             this.lastRequest = new Date();
             this.connection.sendMessage({
                 type: 'validate',
-                file: this.validating_uri
+                file: vscodeUri.URI.parse(this.validating_uri).fsPath
             });
         } catch (e) {
             console.log(e);

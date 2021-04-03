@@ -18,7 +18,6 @@ export interface FileAccessor {
   ): string[];
   getRelativePath(relativeFrom: string, filename: string): string;
   getRelativePathAsFileUri(relativeFrom: string, filename: string): string;
-  fromUriToLocalPath(uri: string): string;
 }
 
 export class VsCodeFileAccessor implements FileAccessor {
@@ -90,7 +89,7 @@ export class VsCodeFileAccessor implements FileAccessor {
       relativeFrom = vscodeUri.URI.file(relativeFrom).fsPath;
     }
     return relativeFrom;
-  };
+  }
 
   public getFilesInFolderRelativeFrom(
     subFolder: string,
@@ -118,7 +117,7 @@ export class VsCodeFileAccessor implements FileAccessor {
     const joinedPath = path.join(dirOfFile, filename);
 
     return joinedPath;
-  };
+  }
 
   public getRelativePathAsFileUri = (
     relativeFrom: string,
@@ -127,17 +126,5 @@ export class VsCodeFileAccessor implements FileAccessor {
     return vscodeUri.URI.file(
       this.getRelativePath(relativeFrom, filename)
     ).toString();
-  };
-
-  public fromUriToLocalPath = (uri: string): string => {
-    const workspaceFolderUri = vscodeUri.URI.parse(this.workspaceFolder!);
-    const fileUri = vscodeUri.URI.parse(uri);
-    let local = fileUri.fsPath.replace(workspaceFolderUri.fsPath, "");
-    if (local[0] === "/" || local[0] === "\\") {
-      local = local.substring(1);
-    }
-    // let joined = path.join(workspaceFolderUri.fsPath, uri);
-    // let normalized = path.normalize(joined);
-    return local;
-  };
+  }
 }
