@@ -70,7 +70,7 @@ export class Validation {
             else {
                 let location = line.match(/in "([^"]*)", line (\d*), column (\d*):/);
                 if (location) {
-                    const uri = location[1];
+                    const uri = vscodeUri.URI.file(location[1]).toString();
                     const line_number = parseInt(location[2]) - 1;
                     const col_number = parseInt(location[3]) - 1;
                     const range = Range.create(line_number, col_number, line_number, col_number + 1);

@@ -1,5 +1,7 @@
 # Changelog
 
+- Fix using wrong paths for validation
+
 ## v.0.13.0 - 2021-03-18
 
 - Update Schema add some enums
