@@ -1,5 +1,8 @@
 # Changelog
 
+## v.0.14.0 - 2021-05-14
+
+- Update schema
 - Fix using wrong paths for validation
 
 ## v.0.13.0 - 2021-03-18
