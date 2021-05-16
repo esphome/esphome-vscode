@@ -5,7 +5,8 @@ import {
     LanguageService,
     LanguageSettings,
 } from "yaml-language-server";
-import { CompletionItem, CompletionList, Connection, Hover, Position, TextDocument } from "vscode-languageserver";
+import { CompletionList, Connection, Hover, Position } from "vscode-languageserver";
+import { TextDocument } from "vscode-languageserver-textdocument";
 
 export class HoverCompletion {
 
@@ -15,11 +16,11 @@ export class HoverCompletion {
 
         this.yamlLanguageService = getLanguageService(
             // eslint-disable-next-line @typescript-eslint/require-await
-            async () => "", null!);
+            async () => "", null!, connection);
 
         const jsonPath = path.join(__dirname, "schema.json");
-        const filecontents = fs.readFileSync(jsonPath, "utf-8");
-        const schema = JSON.parse(filecontents);
+        const fileContents = fs.readFileSync(jsonPath, "utf-8");
+        const schema = JSON.parse(fileContents);
 
         try {
             this.yamlLanguageService.configure(<LanguageSettings>{
@@ -50,27 +51,45 @@ export class HoverCompletion {
             isIncomplete: false,
         };
 
-        if (!textDocument) {
+        try {
+            if (!textDocument) {
+                return Promise.resolve(result);
+            }
+
+            const currentCompletions: CompletionList = await this.yamlLanguageService.doComplete(
+                textDocument,
+                position,
+                false
+            );
+
+            return CompletionList.create(currentCompletions.items, false);
+        }
+        catch (e) {
+            console.error("onHover:");
+            console.error(e);
             return Promise.resolve(result);
         }
-
-        const currentCompletions: CompletionList = await this.yamlLanguageService.doComplete(
-            textDocument,
-            position,
-            false
-        );
-
-        return CompletionList.create(currentCompletions.items, false);
     }
 
     public onHover = async (
         document: TextDocument,
         position: Position
     ): Promise<Hover | null> => {
+        console.error("Hovering...");
         if (!document) {
             return null;
         }
 
-        return this.yamlLanguageService.doHover(document, position);
+        // console.log("Hovering have doc...");
+        // try {
+
+        //     const result = await this.yamlLanguageService.doHover(document, position);
+        //     console.log("Got result");
+        //     return result;
+        // }
+        // catch (e) {
+        console.log("Got error");
+        return null;
+        //}
     }
 }

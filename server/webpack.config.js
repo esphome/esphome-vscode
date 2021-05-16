@@ -18,18 +18,25 @@ module.exports = {
             path: path.join(__dirname, 'out')
         },
         externals: {
-            'prettier': 'prettier',
-            'bufferutil': 'bufferutil',
             'utf-8-validate': 'utf-8-validate',
-            'yaml-language-server': 'yaml-language-server/lib/umd',
-            'yaml-language-server-parser': 'yaml-language-server-parser',
-            'vscode-json-languageservice': 'vscode-json-languageservice',
+            'bufferutil': 'bufferutil',
+
+            'balanced-match': 'balanced-match',
+            'brace-expansion': 'brace-expansion',
+            'concat-map': 'concat-map',
             'jsonc-parser': 'jsonc-parser',
-            'vscode-uri': 'vscode-uri',
+            'js-yaml': 'js-yaml',
+            'minimatch': 'minimatch',
+            'prettier': 'prettier',
+            'vscode-json-languageservice': 'vscode-json-languageservice',
+            'vscode-jsonrpc': 'vscode-jsonrpc',
+            'vscode-languageserver': 'vscode-languageserver',
             'vscode-languageserver-textdocument': 'vscode-languageserver-textdocument',
             'vscode-languageserver-types': 'vscode-languageserver-types',
-            'js-yaml': 'js-yaml',
             'vscode-nls': 'vscode-nls',
+            'vscode-uri': 'vscode-uri',
+            'yaml-language-server': 'yaml-language-server',
+            'yaml-language-server-parser': 'yaml-language-server-parser',
         }
     }),
     plugins: [
