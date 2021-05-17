@@ -13,7 +13,6 @@ export class HoverCompletion {
     yamlLanguageService: LanguageService;
 
     constructor(connection: Connection) {
-
         this.yamlLanguageService = getLanguageService(
             // eslint-disable-next-line @typescript-eslint/require-await
             async () => "", null!, connection);
@@ -75,21 +74,10 @@ export class HoverCompletion {
         document: TextDocument,
         position: Position
     ): Promise<Hover | null> => {
-        console.error("Hovering...");
         if (!document) {
             return null;
         }
 
-        // console.log("Hovering have doc...");
-        // try {
-
-        //     const result = await this.yamlLanguageService.doHover(document, position);
-        //     console.log("Got result");
-        //     return result;
-        // }
-        // catch (e) {
-        console.log("Got error");
-        return null;
-        //}
+        return this.yamlLanguageService.doHover(document, position);
     }
 }

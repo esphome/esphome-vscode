@@ -1,38 +1,18 @@
 .vscode/**
 .vscode-test/**
 out/test/**
-dist/**
 script/**
 ./yaml-language/**
 
 .gitignore
-vsc-extension-quickstart.md
 **/tsconfig.json
 **/tslint.json
 **/*.map
 **/*.ts
-**/*.js
 
+# client uses webpack
 client/**
 !client/out/extension.js
-server/**
-!server/out/server.js
-!server/out/schema.json
 
-# TODO: Figure out how to package yaml-language-server
-!server/node_modules/balanced-match
-!server/node_modules/brace-expansion
-!server/node_modules/concat-map
-!server/node_modules/js-yaml
-!server/node_modules/jsonc-parser
-!server/node_modules/minimatch
-!server/node_modules/prettier
-!server/node_modules/vscode-json-languageservice
-!server/node_modules/vscode-jsonrpc
-!server/node_modules/vscode-languageserver
-!server/node_modules/vscode-languageserver-textdocument
-!server/node_modules/vscode-languageserver-types
-!server/node_modules/vscode-nls
-!server/node_modules/vscode-uri
-!server/node_modules/yaml-language-server
-!server/node_modules/yaml-language-server-parser
+# server does not
+server/src/**

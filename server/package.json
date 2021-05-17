@@ -24,7 +24,6 @@
   "devDependencies": {
     "@types/js-yaml": "^4.0.0",
     "@types/ws": "^7.4.0",
-    "@types/yaml": "1.9.7",
-    "copy-webpack-plugin": "^7.0.0"
+    "@types/yaml": "1.9.7"
   }
 }

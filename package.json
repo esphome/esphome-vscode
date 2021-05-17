@@ -74,8 +74,8 @@
     "watch": "tsc -b -w",
     "postinstall": "cd server && npm install && cd ../client && npm install && cd ..",
     "test": "npm run compile && node ./node_modules/vscode/bin/test",
-    "webpack": "npm run clean && webpack --mode production --config ./client/webpack.config.js && webpack --mode production --config ./server/webpack.config.js",
-    "webpack:dev": "npm run clean && webpack --mode none --config ./client/webpack.config.js && webpack --mode none --config ./server/webpack.config.js",
+    "webpack": "npm run clean && npm run compile && webpack --mode production --config ./client/webpack.config.js",
+    "webpack:dev": "npm run clean && npm run compile && webpack --mode none --config ./client/webpack.config.js",
     "clean": "rimraf client/out && rimraf server/out",
     "test-compile": "tsc -p ./"
   },
