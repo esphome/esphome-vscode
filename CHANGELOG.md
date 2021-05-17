@@ -3,6 +3,7 @@
 ## v.0.15.0 - 2021-05-16
 
 - Bump yaml-language-server to v0.19.0
+- Removed LSP webpack
 
 ## v.0.14.0 - 2021-05-14
 
