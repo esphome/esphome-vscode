@@ -64,7 +64,7 @@ export class HoverCompletion {
             return CompletionList.create(currentCompletions.items, false);
         }
         catch (e) {
-            console.error("onHover:");
+            console.error("Error generating completion list");
             console.error(e);
             return Promise.resolve(result);
         }
