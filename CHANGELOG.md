@@ -1,5 +1,11 @@
 # Changelog
 
+## v.0.17.0 - 2021-05-26
+
+- Update schema
+  - Fix `script:`, `api: services` and `interval:` completion/hover help
+  - Fix recursive pin definition
+
 ## v.0.16.0 - 2021-05-16
 
 - Update schema
