@@ -12,13 +12,17 @@
     "url": "https://github.com/esphome/esphome-vscode"
   },
   "dependencies": {
+    "js-yaml": "^4.1.0",
+    "jsonc-parser": "^2.2.1",
     "vscode-json-languageservice": "^4.1.0",
-    "vscode-languageserver": "^7.0.0",
     "vscode-languageserver-protocol": "3.15.3",
     "vscode-languageserver-textdocument": "^1.0.1",
+    "vscode-languageserver-types": "^3.16.0",
+    "vscode-languageserver": "^7.0.0",
+    "vscode-nls": "^4.1.2",
     "vscode-uri": "^2.1.1",
     "ws": "6.2.0",
-    "yaml-language-server": "0.19.0"
+    "yaml-language-server-parser": "next"
   },
   "scripts": {},
   "devDependencies": {

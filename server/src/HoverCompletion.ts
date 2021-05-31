@@ -1,14 +1,16 @@
 import * as path from "path";
 import * as fs from "fs";
-import {
-    getLanguageService,
-    LanguageService,
-    LanguageSettings,
-} from "yaml-language-server";
+// import {
+//     getLanguageService,
+//     LanguageService,
+//     LanguageSettings,
+// } from "yaml-language-server";
+
 import { CompletionList, Connection, Hover, Position } from "vscode-languageserver";
 import { TextDocument } from "vscode-languageserver-textdocument";
+import { getLanguageService, LanguageService, LanguageSettings } from "./yamlLanguageService";
 
-export class HoverCompletion {
+export class ESPHomeLanguageService {
 
     yamlLanguageService: LanguageService;
 
@@ -60,6 +62,7 @@ export class HoverCompletion {
                 position,
                 false
             );
+
 
             return CompletionList.create(currentCompletions.items, false);
         }

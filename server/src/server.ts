@@ -14,7 +14,7 @@ import {
 } from 'vscode-languageserver-textdocument';
 import { Validation } from './Validation';
 import { VsCodeFileAccessor } from './fileAccessor';
-import { HoverCompletion } from './HoverCompletion';
+import { ESPHomeLanguageService } from './HoverCompletion';
 import { ESPHomeConnectionSource } from "./ESPHomeConnectionSource";
 import { ESPHomeSettings } from './ESPHomeSettings';
 
@@ -112,7 +112,7 @@ connection.onInitialized(async () => {
 	);
 
 
-	const completion = new HoverCompletion(connection);
+	const completion = new ESPHomeLanguageService(connection);
 
 	connection.onCompletion((p) =>
 		completion.onCompletion(
