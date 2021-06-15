@@ -17,7 +17,7 @@ export class ESPHomeLanguageService {
     constructor(connection: Connection) {
         this.yamlLanguageService = getLanguageService(
             // eslint-disable-next-line @typescript-eslint/require-await
-            async () => "", null!, connection);
+            async () => "", null!, null!, connection);
 
         const jsonPath = path.join(__dirname, "schema.json");
         const fileContents = fs.readFileSync(jsonPath, "utf-8");

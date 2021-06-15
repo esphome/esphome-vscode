@@ -36,10 +36,10 @@ export class YAMLDocumentSymbols {
   ): SymbolInformation[] {
     const doc = yamlDocumentsCache.getYamlDocument(document);
     if (!doc || doc['documents'].length === 0) {
-      return null;
+      return null!;
     }
 
-    let results = [];
+    let results: any[] = [];
     for (const yamlDoc of doc['documents']) {
       if (yamlDoc.root) {
         results = results.concat(this.jsonDocumentSymbols.findDocumentSymbols(document, yamlDoc, context));
@@ -55,10 +55,10 @@ export class YAMLDocumentSymbols {
   ): DocumentSymbol[] {
     const doc = yamlDocumentsCache.getYamlDocument(document);
     if (!doc || doc['documents'].length === 0) {
-      return null;
+      return null!;
     }
 
-    let results = [];
+    let results: any[] = [];
     for (const yamlDoc of doc['documents']) {
       if (yamlDoc.root) {
         results = results.concat(this.jsonDocumentSymbols.findDocumentSymbols2(document, yamlDoc, context));

@@ -54,7 +54,7 @@ export class ESPHomeCompletion extends JSONCompletion {
 
     public configure(languageSettings: LanguageSettings, customTags: Array<string>): void {
         if (languageSettings) {
-            this.completion = languageSettings.completion;
+            this.completion = languageSettings.completion!;
         }
         this.customTags = customTags;
         this.configuredIndentation = languageSettings.indentation;
@@ -103,11 +103,11 @@ export class ESPHomeCompletion extends JSONCompletion {
         if (node && node.type === 'null') {
             const nodeStartPos = document.positionAt(node.offset);
             nodeStartPos.character += 1;
-            const nodeEndPos = document.positionAt(node.offset + node.length);
+            const nodeEndPos = document.positionAt(node.offset + node.length!);
             nodeEndPos.character += 1;
             overwriteRange = Range.create(nodeStartPos, nodeEndPos);
         } else if (node && (node.type === 'string' || node.type === 'number' || node.type === 'boolean')) {
-            overwriteRange = Range.create(document.positionAt(node.offset), document.positionAt(node.offset + node.length));
+            overwriteRange = Range.create(document.positionAt(node.offset), document.positionAt(node.offset + node.length!));
         } else {
             let overwriteStart = document.offsetAt(originalPosition) - currentWord.length;
             if (overwriteStart > 0 && document.getText()[overwriteStart - 1] === '"') {
@@ -130,7 +130,7 @@ export class ESPHomeCompletion extends JSONCompletion {
                         }
                     }
                     if (overwriteRange && overwriteRange.start.line === overwriteRange.end.line) {
-                        suggestion.textEdit = TextEdit.replace(overwriteRange, suggestion.insertText);
+                        suggestion.textEdit = TextEdit.replace(overwriteRange, suggestion.insertText!);
                     }
                     suggestion.label = label;
                     proposed[label] = suggestion;
@@ -169,7 +169,7 @@ export class ESPHomeCompletion extends JSONCompletion {
 
             let addValue = true;
 
-            let currentProperty: PropertyASTNode = null;
+            let currentProperty: PropertyASTNode | null = null;
             if (node) {
                 if (node.type === 'string') {
                     const parent = node.parent;
@@ -177,7 +177,7 @@ export class ESPHomeCompletion extends JSONCompletion {
                         addValue = !parent.valueNode;
                         currentProperty = parent;
                         if (parent) {
-                            node = parent.parent;
+                            node = parent.parent!;
                         }
                     }
                 }
@@ -222,7 +222,7 @@ export class ESPHomeCompletion extends JSONCompletion {
                     collector.add({
                         kind: CompletionItemKind.Property,
                         label: currentWord,
-                        insertText: this.getInsertTextForProperty(currentWord, null, false, separatorAfter),
+                        insertText: this.getInsertTextForProperty(currentWord, null!, false, separatorAfter),
                         insertTextFormat: InsertTextFormat.Snippet,
                         documentation: '',
                     });
@@ -356,7 +356,7 @@ export class ESPHomeCompletion extends JSONCompletion {
         let parentKey: string | null = null;
 
         if (node && (node.type === 'string' || node.type === 'number' || node.type === 'boolean')) {
-            node = node.parent;
+            node = node.parent!;
         }
 
         if (node && node.type === 'null') {
@@ -381,13 +381,13 @@ export class ESPHomeCompletion extends JSONCompletion {
             return;
         }
 
-        if (node.type === 'property' && offset > (<PropertyASTNode>node).colonOffset) {
+        if (node.type === 'property' && offset > (<PropertyASTNode>node).colonOffset!) {
             const valueNode = node.valueNode;
-            if (valueNode && offset > valueNode.offset + valueNode.length) {
+            if (valueNode && offset > valueNode.offset + valueNode.length!) {
                 return; // we are past the value node
             }
             parentKey = node.keyNode.value;
-            node = node.parent;
+            node = node.parent!;
         }
 
         if (node && (parentKey !== null || node.type === 'array')) {
@@ -419,7 +419,7 @@ export class ESPHomeCompletion extends JSONCompletion {
                         } else if (typeof s.schema.items === 'object' && s.schema.items.anyOf) {
                             s.schema.items.anyOf
                                 .filter((i) => typeof i === 'object')
-                                .forEach((i: JSONSchema, index) => {
+                                .forEach((i: any, index) => { // i : JSONSchema
                                     const insertText = `- ${this.getInsertTextForObject(i, separatorAfter).insertText.trimLeft()}`;
                                     //append insertText to documentation
                                     const documentation = this.getDocumentationWithMarkdownText(
@@ -440,7 +440,7 @@ export class ESPHomeCompletion extends JSONCompletion {
                         }
                     }
                     if (s.schema.properties) {
-                        const propertySchema = s.schema.properties[parentKey];
+                        const propertySchema = s.schema.properties[parentKey!];
                         if (propertySchema) {
                             this.addSchemaValueCompletions(propertySchema, separatorAfter, collector, types);
                         }
@@ -494,12 +494,12 @@ export class ESPHomeCompletion extends JSONCompletion {
             if (typeof value == 'object') {
                 label = 'Default value';
             } else {
-                label = (value as unknown).toString().replace(doubleQuotesEscapeRegExp, '"');
+                label = (value as any).toString().replace(doubleQuotesEscapeRegExp, '"');
             }
             collector.add({
                 kind: this.getSuggestionKind(type),
                 label,
-                insertText: this.getInsertTextForValue(value, separatorAfter, type),
+                insertText: this.getInsertTextForValue(value, separatorAfter, type!),
                 insertTextFormat: InsertTextFormat.Snippet,
                 detail: localize('json.suggest.default', 'Default value'),
             });
@@ -516,7 +516,7 @@ export class ESPHomeCompletion extends JSONCompletion {
                 collector.add({
                     kind: this.getSuggestionKind(type),
                     label: value,
-                    insertText: this.getInsertTextForValue(value, separatorAfter, type),
+                    insertText: this.getInsertTextForValue(value, separatorAfter, type!),
                     insertTextFormat: InsertTextFormat.Snippet,
                 });
                 hasProposals = true;
@@ -553,9 +553,9 @@ export class ESPHomeCompletion extends JSONCompletion {
                         const fixedObj = {};
                         Object.keys(value).forEach((val, index) => {
                             if (index === 0 && !val.startsWith('-')) {
-                                fixedObj[`- ${val}`] = value[val];
+                                (fixedObj as any)[`- ${val}`] = value[val];
                             } else {
-                                fixedObj[`  ${val}`] = value[val];
+                                (fixedObj as any)[`  ${val}`] = value[val];
                             }
                         });
                         value = fixedObj;
@@ -578,11 +578,11 @@ export class ESPHomeCompletion extends JSONCompletion {
                 }
                 collector.add({
                     kind: s.suggestionKind || this.getSuggestionKind(type),
-                    label,
+                    label: label!,
                     documentation: super.fromMarkup(s.markdownDescription) || s.description,
-                    insertText,
+                    insertText: insertText!,
                     insertTextFormat: InsertTextFormat.Snippet,
-                    filterText,
+                    filterText: filterText!,
                 });
             });
         }
@@ -671,7 +671,7 @@ export class ESPHomeCompletion extends JSONCompletion {
         switch (typeof value) {
             case 'object': {
                 const indent = this.indentation;
-                return this.getInsertTemplateForValue(value, indent, { index: 1 }, separatorAfter);
+                return this.getInsertTemplateForValue(value, indent!, { index: 1 }, separatorAfter);
             }
         }
         type = Array.isArray(type) ? type[0] : type;
@@ -697,7 +697,7 @@ export class ESPHomeCompletion extends JSONCompletion {
             let insertText = '\n';
             for (const key in value) {
                 if (Object.prototype.hasOwnProperty.call(value, key)) {
-                    const element = value[key];
+                    const element = (value as any)[key];
                     insertText += `${indent}\${${navOrder.index++}:${key}}:`;
                     let valueTemplate;
                     if (typeof element === 'object') {
@@ -730,7 +730,7 @@ export class ESPHomeCompletion extends JSONCompletion {
         }
 
         Object.keys(schema.properties).forEach((key: string) => {
-            const propertySchema = schema.properties[key] as JSONSchema;
+            const propertySchema = schema.properties![key] as JSONSchema;
             let type = Array.isArray(propertySchema.type) ? propertySchema.type[0] : propertySchema.type;
             if (!type) {
                 if (propertySchema.properties) {
@@ -883,20 +883,20 @@ export class ESPHomeCompletion extends JSONCompletion {
                 nValueProposals += propertySchema.defaultSnippets.length;
             }
             if (propertySchema.enum) {
-                if (!value && propertySchema.enum.length === 1) {
-                    value = ' ' + this.getInsertTextForGuessedValue(propertySchema.enum[0], '', type);
+                if (!value! && propertySchema.enum.length === 1) {
+                    value = ' ' + this.getInsertTextForGuessedValue(propertySchema.enum[0], '', type!);
                 }
                 nValueProposals += propertySchema.enum.length;
             }
             if (isDefined(propertySchema.default)) {
-                if (!value) {
-                    value = ' ' + this.getInsertTextForGuessedValue(propertySchema.default, '', type);
+                if (!value!) {
+                    value = ' ' + this.getInsertTextForGuessedValue(propertySchema.default, '', type!);
                 }
                 nValueProposals++;
             }
             if (Array.isArray(propertySchema.examples) && propertySchema.examples.length) {
-                if (!value) {
-                    value = ' ' + this.getInsertTextForGuessedValue(propertySchema.examples[0], '', type);
+                if (!value!) {
+                    value = ' ' + this.getInsertTextForGuessedValue(propertySchema.examples[0], '', type!);
                 }
                 nValueProposals += propertySchema.examples.length;
             }
@@ -932,7 +932,7 @@ export class ESPHomeCompletion extends JSONCompletion {
                 }
             }
         }
-        if (!value || nValueProposals > 1) {
+        if (!value! || nValueProposals > 1) {
             value = ' $1';
         }
         return resultText + value + separatorAfter;

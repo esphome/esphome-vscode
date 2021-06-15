@@ -6,11 +6,11 @@ export function getSchemaTypeName(schema: JSONSchema): string {
     return type;
   }
   if (schema.$ref || schema._$ref) {
-    const type = getSchemaRefTypeTitle(schema.$ref || schema._$ref);
+    const type = getSchemaRefTypeTitle(schema.$ref! || schema._$ref!);
     return type;
   }
   const typeStr = schema.title || (Array.isArray(schema.type) ? schema.type.join(' | ') : schema.type); //object
-  return typeStr;
+  return typeStr!;
 }
 
 /**

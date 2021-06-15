@@ -24,8 +24,8 @@ export class YamlDocuments {
    * @returns the YAMLDocument
    */
   getYamlDocument(document: TextDocument, customTags?: string[], addRootObject = false): YAMLDocument {
-    this.ensureCache(document, customTags, addRootObject);
-    return this.cache.get(document.uri).document;
+    this.ensureCache(document, customTags!, addRootObject);
+    return this.cache.get(document.uri)!.document;
   }
 
   /**
@@ -41,16 +41,16 @@ export class YamlDocuments {
       this.cache.set(key, { version: -1, document: new YAMLDocument([]), customTags: [] });
     }
     const cacheEntry = this.cache.get(key);
-    if (cacheEntry.version !== document.version || (customTags && !isArrayEqual(cacheEntry.customTags, customTags))) {
+    if (cacheEntry!.version !== document.version || (customTags && !isArrayEqual(cacheEntry!.customTags, customTags))) {
       let text = document.getText();
       // if text is contains only whitespace wrap all text in object to force schema selection
       if (addRootObject && !/\S/.test(text)) {
         text = `{${text}}`;
       }
       const doc = parseYAML(text, customTags);
-      cacheEntry.document = doc;
-      cacheEntry.version = document.version;
-      cacheEntry.customTags = customTags;
+      cacheEntry!.document = doc;
+      cacheEntry!.version = document.version;
+      cacheEntry!.customTags = customTags;
     }
   }
 }

@@ -85,9 +85,9 @@ export abstract class ASTNodeImpl {
   public abstract readonly type: 'object' | 'property' | 'array' | 'number' | 'boolean' | 'null' | 'string';
 
   public offset: number;
-  public length: number;
+  public length?: number;
   public readonly parent: ASTNode;
-  public location: string;
+  public location!: string;
 
   constructor(parent: ASTNode, offset: number, length?: number) {
     this.offset = offset;
@@ -96,32 +96,32 @@ export abstract class ASTNodeImpl {
   }
 
   public getNodeFromOffsetEndInclusive(offset: number): ASTNode {
-    const collector = [];
+    const collector: (ASTNode | ASTNodeImpl)[] = [];
     const findNode = (node: ASTNode | ASTNodeImpl): ASTNode | ASTNodeImpl => {
-      if (offset >= node.offset && offset <= node.offset + node.length) {
+      if (offset >= node.offset && offset <= node.offset + (node.length || 0)) {
         const children = node.children;
-        for (let i = 0; i < children.length && children[i].offset <= offset; i++) {
-          const item = findNode(children[i]);
+        for (let i = 0; i < children!.length && children![i].offset <= offset; i++) {
+          const item = findNode(children![i]);
           if (item) {
             collector.push(item);
           }
         }
         return node;
       }
-      return null;
+      return null!;
     };
     const foundNode = findNode(this);
     let currMinDist = Number.MAX_VALUE;
     let currMinNode = null;
     for (const possibleNode in collector) {
       const currNode = collector[possibleNode];
-      const minDist = currNode.length + currNode.offset - offset + (offset - currNode.offset);
+      const minDist = (currNode.length || 0) + currNode.offset - offset + (offset - currNode.offset);
       if (minDist < currMinDist) {
         currMinNode = currNode;
         currMinDist = minDist;
       }
     }
-    return currMinNode || foundNode;
+    return currMinNode || foundNode as any;
   }
 
   public get children(): ASTNode[] {
@@ -198,8 +198,8 @@ export class StringASTNodeImpl extends ASTNodeImpl implements StringASTNode {
 
 export class PropertyASTNodeImpl extends ASTNodeImpl implements PropertyASTNode {
   public type: 'property' = 'property';
-  public keyNode: StringASTNode;
-  public valueNode: ASTNode;
+  public keyNode!: StringASTNode;
+  public valueNode!: ASTNode;
   public colonOffset: number;
 
   constructor(parent: ObjectASTNode, offset: number, length?: number) {
@@ -259,7 +259,7 @@ export interface ISchemaCollector {
 
 class SchemaCollector implements ISchemaCollector {
   schemas: IApplicableSchema[] = [];
-  constructor(private focusOffset = -1, private exclude: ASTNode = null) {}
+  constructor(private focusOffset = -1, private exclude: ASTNode | null = null) { }
   add(schema: IApplicableSchema): void {
     this.schemas.push(schema);
   }
@@ -309,7 +309,7 @@ export class ValidationResult {
   public primaryValueMatches: number;
   public enumValueMatch: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  public enumValues: any[];
+  public enumValues: any[] | null;
 
   constructor(isKubernetes: boolean) {
     this.problems = [];
@@ -370,14 +370,14 @@ export class ValidationResult {
             (p) =>
               p.problemType === problemType &&
               bestResult.location.offset === p.location.offset &&
-              (problemType !== ProblemType.missingRequiredPropWarning || isArrayEqual(p.problemArgs, bestResult.problemArgs)) // missingProp is merged only with same problemArg
+              (problemType !== ProblemType.missingRequiredPropWarning || isArrayEqual(p.problemArgs!, bestResult.problemArgs!)) // missingProp is merged only with same problemArg
           );
           if (mergingResult) {
-            if (mergingResult.problemArgs.length) {
+            if (mergingResult.problemArgs?.length) {
               mergingResult.problemArgs
-                .filter((p) => !bestResult.problemArgs.includes(p))
-                .forEach((p) => bestResult.problemArgs.push(p));
-              bestResult.message = getWarningMessage(bestResult.problemType, bestResult.problemArgs);
+                .filter((p) => !bestResult.problemArgs?.includes(p))
+                .forEach((p) => bestResult.problemArgs?.push(p));
+              bestResult.message = getWarningMessage(bestResult.problemType!, bestResult.problemArgs!);
             }
             this.mergeSources(mergingResult, bestResult);
           }
@@ -401,12 +401,12 @@ export class ValidationResult {
   }
 
   private mergeSources(mergingResult: IProblem, bestResult: IProblem): void {
-    const mergingSource = mergingResult.source.replace(YAML_SCHEMA_PREFIX, '');
-    if (!bestResult.source.includes(mergingSource)) {
+    const mergingSource = mergingResult.source!.replace(YAML_SCHEMA_PREFIX, '');
+    if (!bestResult.source!.includes(mergingSource)) {
       bestResult.source = bestResult.source + ' | ' + mergingSource;
     }
-    if (!bestResult.schemaUri.includes(mergingResult.schemaUri[0])) {
-      bestResult.schemaUri = bestResult.schemaUri.concat(mergingResult.schemaUri);
+    if (!bestResult.schemaUri!.includes(mergingResult.schemaUri![0])) {
+      bestResult.schemaUri = bestResult.schemaUri!.concat(mergingResult.schemaUri!);
     }
   }
 
@@ -454,32 +454,32 @@ export function newJSONDocument(root: ASTNode, diagnostics: Diagnostic[] = []): 
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getNodeValue(node: ASTNode): any {
-  return Json.getNodeValue(node);
+  return Json.getNodeValue(node as Json.Node);
 }
 
 export function getNodePath(node: ASTNode): JSONPath {
-  return Json.getNodePath(node);
+  return Json.getNodePath(node as Json.Node);
 }
 
 export function contains(node: ASTNode, offset: number, includeRightBound = false): boolean {
   return (
-    (offset >= node.offset && offset <= node.offset + node.length) || (includeRightBound && offset === node.offset + node.length)
+    (offset >= node.offset && offset <= node.offset + node.length!) || (includeRightBound && offset === node.offset + node.length!)
   );
 }
 
 export class JSONDocument {
-  public isKubernetes: boolean;
-  public disableAdditionalProperties: boolean;
+  public isKubernetes!: boolean;
+  public disableAdditionalProperties!: boolean;
 
   constructor(
     public readonly root: ASTNode,
     public readonly syntaxErrors: Diagnostic[] = [],
     public readonly comments: Range[] = []
-  ) {}
+  ) { }
 
   public getNodeFromOffset(offset: number, includeRightBound = false): ASTNode | undefined {
     if (this.root) {
-      return <ASTNode>Json.findNodeAtOffset(this.root, offset, includeRightBound);
+      return <ASTNode>Json.findNodeAtOffset(this.root as Json.Node, offset, includeRightBound);
     }
     return undefined;
   }
@@ -527,10 +527,10 @@ export class JSONDocument {
         return diagnostic;
       });
     }
-    return null;
+    return null!;
   }
 
-  public getMatchingSchemas(schema: JSONSchema, focusOffset = -1, exclude: ASTNode = null): IApplicableSchema[] {
+  public getMatchingSchemas(schema: JSONSchema, focusOffset = -1, exclude: ASTNode | null = null): IApplicableSchema[] {
     const matchingSchemas = new SchemaCollector(focusOffset, exclude);
     if (this.root && schema) {
       validate(this.root, schema, schema, new ValidationResult(this.isKubernetes), matchingSchemas, {
@@ -580,7 +580,7 @@ function validate(
       _validateNumberNode(node, schema, validationResult);
       break;
     case 'property':
-      return validate(node.valueNode, schema, schema, validationResult, matchingSchemas, options);
+      return validate(node.valueNode!, schema, schema, validationResult, matchingSchemas, options);
   }
   _validateNode();
 
@@ -594,7 +594,7 @@ function validate(
     if (Array.isArray(schema.type)) {
       if (!schema.type.some(matchesType)) {
         validationResult.problems.push({
-          location: { offset: node.offset, length: node.length },
+          location: { offset: node.offset, length: node.length! },
           severity: DiagnosticSeverity.Warning,
           message:
             schema.errorMessage ||
@@ -608,7 +608,7 @@ function validate(
         //get more specific name than just object
         const schemaType = schema.type === 'object' ? getSchemaTypeName(schema) : schema.type;
         validationResult.problems.push({
-          location: { offset: node.offset, length: node.length },
+          location: { offset: node.offset, length: node.length! },
           severity: DiagnosticSeverity.Warning,
           message: schema.errorMessage || getWarningMessage(ProblemType.typeMismatchWarning, [schemaType]),
           source: getSchemaSource(schema, originalSchema),
@@ -623,14 +623,14 @@ function validate(
         validate(node, asSchema(subSchemaRef), schema, validationResult, matchingSchemas, options);
       }
     }
-    const notSchema = asSchema(schema.not);
+    const notSchema = asSchema(schema.not!);
     if (notSchema) {
       const subValidationResult = new ValidationResult(isKubernetes);
       const subMatchingSchemas = matchingSchemas.newSub();
       validate(node, notSchema, schema, subValidationResult, subMatchingSchemas, options);
       if (!subValidationResult.hasProblems()) {
         validationResult.problems.push({
-          location: { offset: node.offset, length: node.length },
+          location: { offset: node.offset, length: node.length! },
           severity: DiagnosticSeverity.Warning,
           message: localize('notSchemaWarning', 'Matches a schema that is not allowed.'),
           source: getSchemaSource(schema, originalSchema),
@@ -651,7 +651,7 @@ function validate(
         schema: JSONSchema;
         validationResult: ValidationResult;
         matchingSchemas: ISchemaCollector;
-      } = null;
+      } | null = null;
       for (const subSchemaRef of alternatives) {
         const subSchema = asSchema(subSchemaRef);
         const subValidationResult = new ValidationResult(isKubernetes);
@@ -731,9 +731,9 @@ function validate(
       }
     };
 
-    const ifSchema = asSchema(schema.if);
+    const ifSchema = asSchema(schema.if!);
     if (ifSchema) {
-      testCondition(ifSchema, schema, asSchema(schema.then), asSchema(schema.else));
+      testCondition(ifSchema, schema, asSchema(schema.then!), asSchema(schema.else!));
     }
 
     if (Array.isArray(schema.enum)) {
@@ -749,7 +749,7 @@ function validate(
       validationResult.enumValueMatch = enumValueMatch;
       if (!enumValueMatch) {
         validationResult.problems.push({
-          location: { offset: node.offset, length: node.length },
+          location: { offset: node.offset, length: node.length! },
           severity: DiagnosticSeverity.Warning,
           code: ErrorCode.EnumValueMismatch,
           message:
@@ -773,7 +773,7 @@ function validate(
       const val = getNodeValue(node);
       if (!equals(val, schema.const)) {
         validationResult.problems.push({
-          location: { offset: node.offset, length: node.length },
+          location: { offset: node.offset, length: node.length! },
           severity: DiagnosticSeverity.Warning,
           code: ErrorCode.EnumValueMismatch,
           problemType: ProblemType.constWarning,
@@ -791,7 +791,7 @@ function validate(
 
     if (schema.deprecationMessage && node.parent) {
       validationResult.problems.push({
-        location: { offset: node.parent.offset, length: node.parent.length },
+        location: { offset: node.parent.offset, length: node.parent.length! },
         severity: DiagnosticSeverity.Warning,
         message: schema.deprecationMessage,
         source: getSchemaSource(schema, originalSchema),
@@ -806,7 +806,7 @@ function validate(
     if (isNumber(schema.multipleOf)) {
       if (val % schema.multipleOf !== 0) {
         validationResult.problems.push({
-          location: { offset: node.offset, length: node.length },
+          location: { offset: node.offset, length: node.length! },
           severity: DiagnosticSeverity.Warning,
           message: localize('multipleOfWarning', 'Value is not divisible by {0}.', schema.multipleOf),
           source: getSchemaSource(schema, originalSchema),
@@ -832,7 +832,7 @@ function validate(
     const exclusiveMinimum = getExclusiveLimit(schema.minimum, schema.exclusiveMinimum);
     if (isNumber(exclusiveMinimum) && val <= exclusiveMinimum) {
       validationResult.problems.push({
-        location: { offset: node.offset, length: node.length },
+        location: { offset: node.offset, length: node.length! },
         severity: DiagnosticSeverity.Warning,
         message: localize('exclusiveMinimumWarning', 'Value is below the exclusive minimum of {0}.', exclusiveMinimum),
         source: getSchemaSource(schema, originalSchema),
@@ -842,7 +842,7 @@ function validate(
     const exclusiveMaximum = getExclusiveLimit(schema.maximum, schema.exclusiveMaximum);
     if (isNumber(exclusiveMaximum) && val >= exclusiveMaximum) {
       validationResult.problems.push({
-        location: { offset: node.offset, length: node.length },
+        location: { offset: node.offset, length: node.length! },
         severity: DiagnosticSeverity.Warning,
         message: localize('exclusiveMaximumWarning', 'Value is above the exclusive maximum of {0}.', exclusiveMaximum),
         source: getSchemaSource(schema, originalSchema),
@@ -852,7 +852,7 @@ function validate(
     const minimum = getLimit(schema.minimum, schema.exclusiveMinimum);
     if (isNumber(minimum) && val < minimum) {
       validationResult.problems.push({
-        location: { offset: node.offset, length: node.length },
+        location: { offset: node.offset, length: node.length! },
         severity: DiagnosticSeverity.Warning,
         message: localize('minimumWarning', 'Value is below the minimum of {0}.', minimum),
         source: getSchemaSource(schema, originalSchema),
@@ -862,7 +862,7 @@ function validate(
     const maximum = getLimit(schema.maximum, schema.exclusiveMaximum);
     if (isNumber(maximum) && val > maximum) {
       validationResult.problems.push({
-        location: { offset: node.offset, length: node.length },
+        location: { offset: node.offset, length: node.length! },
         severity: DiagnosticSeverity.Warning,
         message: localize('maximumWarning', 'Value is above the maximum of {0}.', maximum),
         source: getSchemaSource(schema, originalSchema),
@@ -874,7 +874,7 @@ function validate(
   function _validateStringNode(node: StringASTNode, schema: JSONSchema, validationResult: ValidationResult): void {
     if (isNumber(schema.minLength) && node.value.length < schema.minLength) {
       validationResult.problems.push({
-        location: { offset: node.offset, length: node.length },
+        location: { offset: node.offset, length: node.length! },
         severity: DiagnosticSeverity.Warning,
         message: localize('minLengthWarning', 'String is shorter than the minimum length of {0}.', schema.minLength),
         source: getSchemaSource(schema, originalSchema),
@@ -884,7 +884,7 @@ function validate(
 
     if (isNumber(schema.maxLength) && node.value.length > schema.maxLength) {
       validationResult.problems.push({
-        location: { offset: node.offset, length: node.length },
+        location: { offset: node.offset, length: node.length! },
         severity: DiagnosticSeverity.Warning,
         message: localize('maxLengthWarning', 'String is longer than the maximum length of {0}.', schema.maxLength),
         source: getSchemaSource(schema, originalSchema),
@@ -896,7 +896,7 @@ function validate(
       const regex = new RegExp(schema.pattern);
       if (!regex.test(node.value)) {
         validationResult.problems.push({
-          location: { offset: node.offset, length: node.length },
+          location: { offset: node.offset, length: node.length! },
           severity: DiagnosticSeverity.Warning,
           message:
             schema.patternErrorMessage ||
@@ -928,7 +928,7 @@ function validate(
             }
             if (errorMessage) {
               validationResult.problems.push({
-                location: { offset: node.offset, length: node.length },
+                location: { offset: node.offset, length: node.length! },
                 severity: DiagnosticSeverity.Warning,
                 message:
                   schema.patternErrorMessage ||
@@ -949,7 +949,7 @@ function validate(
             const format = formats[schema.format];
             if (!node.value || !format.pattern.exec(node.value)) {
               validationResult.problems.push({
-                location: { offset: node.offset, length: node.length },
+                location: { offset: node.offset, length: node.length! },
                 severity: DiagnosticSeverity.Warning,
                 message: schema.patternErrorMessage || schema.errorMessage || format.errorMessage,
                 source: getSchemaSource(schema, originalSchema),
@@ -994,7 +994,7 @@ function validate(
           }
         } else if (schema.additionalItems === false) {
           validationResult.problems.push({
-            location: { offset: node.offset, length: node.length },
+            location: { offset: node.offset, length: node.length! },
             severity: DiagnosticSeverity.Warning,
             message: localize(
               'additionalItemsWarning',
@@ -1007,7 +1007,7 @@ function validate(
         }
       }
     } else {
-      const itemSchema = asSchema(schema.items);
+      const itemSchema = asSchema(schema.items!);
       if (itemSchema) {
         for (const item of node.items) {
           const itemValidationResult = new ValidationResult(isKubernetes);
@@ -1018,7 +1018,7 @@ function validate(
       }
     }
 
-    const containsSchema = asSchema(schema.contains);
+    const containsSchema = asSchema(schema.contains!);
     if (containsSchema) {
       const doesContain = node.items.some((item) => {
         const itemValidationResult = new ValidationResult(isKubernetes);
@@ -1028,7 +1028,7 @@ function validate(
 
       if (!doesContain) {
         validationResult.problems.push({
-          location: { offset: node.offset, length: node.length },
+          location: { offset: node.offset, length: node.length! },
           severity: DiagnosticSeverity.Warning,
           message: schema.errorMessage || localize('requiredItemMissingWarning', 'Array does not contain required item.'),
           source: getSchemaSource(schema, originalSchema),
@@ -1039,7 +1039,7 @@ function validate(
 
     if (isNumber(schema.minItems) && node.items.length < schema.minItems) {
       validationResult.problems.push({
-        location: { offset: node.offset, length: node.length },
+        location: { offset: node.offset, length: node.length! },
         severity: DiagnosticSeverity.Warning,
         message: localize('minItemsWarning', 'Array has too few items. Expected {0} or more.', schema.minItems),
         source: getSchemaSource(schema, originalSchema),
@@ -1049,7 +1049,7 @@ function validate(
 
     if (isNumber(schema.maxItems) && node.items.length > schema.maxItems) {
       validationResult.problems.push({
-        location: { offset: node.offset, length: node.length },
+        location: { offset: node.offset, length: node.length! },
         severity: DiagnosticSeverity.Warning,
         message: localize('maxItemsWarning', 'Array has too many items. Expected {0} or fewer.', schema.maxItems),
         source: getSchemaSource(schema, originalSchema),
@@ -1059,12 +1059,12 @@ function validate(
 
     if (schema.uniqueItems === true) {
       const values = getNodeValue(node);
-      const duplicates = values.some((value, index) => {
+      const duplicates = (values as []).some((value, index) => {
         return index !== values.lastIndexOf(value);
       });
       if (duplicates) {
         validationResult.problems.push({
-          location: { offset: node.offset, length: node.length },
+          location: { offset: node.offset, length: node.length! },
           severity: DiagnosticSeverity.Warning,
           message: localize('uniqueItemsWarning', 'Array has duplicate items.'),
           source: getSchemaSource(schema, originalSchema),
@@ -1086,18 +1086,18 @@ function validate(
 
     while (unprocessedNodes.length > 0) {
       const propertyNode = unprocessedNodes.pop();
-      const key = propertyNode.keyNode.value;
+      const key = propertyNode!.keyNode.value;
 
       //Replace the merge key with the actual values of what the node value points to in seen keys
-      if (key === '<<' && propertyNode.valueNode) {
-        switch (propertyNode.valueNode.type) {
+      if (key === '<<' && propertyNode!.valueNode) {
+        switch (propertyNode!.valueNode.type) {
           case 'object': {
-            unprocessedNodes.push(...propertyNode.valueNode['properties']);
+            unprocessedNodes.push(...propertyNode!.valueNode['properties']);
             break;
           }
           case 'array': {
-            propertyNode.valueNode['items'].forEach((sequenceNode) => {
-              unprocessedNodes.push(...sequenceNode['properties']);
+            propertyNode!.valueNode['items'].forEach((sequenceNode) => {
+              unprocessedNodes.push(...(sequenceNode as any)['properties']);
             });
             break;
           }
@@ -1106,7 +1106,7 @@ function validate(
           }
         }
       } else {
-        seenKeys[key] = propertyNode.valueNode;
+        (seenKeys as any)[key] = propertyNode!.valueNode;
         unprocessedProperties.push(key);
       }
     }
@@ -1117,7 +1117,7 @@ function validate(
           const keyNode = node.parent && node.parent.type === 'property' && node.parent.keyNode;
           const location = keyNode ? { offset: keyNode.offset, length: keyNode.length } : { offset: node.offset, length: 1 };
           validationResult.problems.push({
-            location: location,
+            location: location as IRange,
             severity: DiagnosticSeverity.Warning,
             message: getWarningMessage(ProblemType.missingRequiredPropWarning, [propertyName]),
             source: getSchemaSource(schema, originalSchema),
@@ -1149,7 +1149,7 @@ function validate(
               validationResult.problems.push({
                 location: {
                   offset: propertyNode.keyNode.offset,
-                  length: propertyNode.keyNode.length,
+                  length: propertyNode.keyNode.length!,
                 },
                 severity: DiagnosticSeverity.Warning,
                 message:
@@ -1187,7 +1187,7 @@ function validate(
                   validationResult.problems.push({
                     location: {
                       offset: propertyNode.keyNode.offset,
-                      length: propertyNode.keyNode.length,
+                      length: propertyNode.keyNode.length!,
                     },
                     severity: DiagnosticSeverity.Warning,
                     message:
@@ -1231,7 +1231,7 @@ function validate(
           if (child) {
             let propertyNode = null;
             if (child.type !== 'property') {
-              propertyNode = <PropertyASTNode>child.parent;
+              propertyNode = <PropertyASTNode>child.parent as any;
               if (propertyNode.type === 'object') {
                 propertyNode = propertyNode.properties[0];
               }
@@ -1257,7 +1257,7 @@ function validate(
     if (isNumber(schema.maxProperties)) {
       if (node.properties.length > schema.maxProperties) {
         validationResult.problems.push({
-          location: { offset: node.offset, length: node.length },
+          location: { offset: node.offset, length: node.length! },
           severity: DiagnosticSeverity.Warning,
           message: localize('MaxPropWarning', 'Object has more properties than limit of {0}.', schema.maxProperties),
           source: getSchemaSource(schema, originalSchema),
@@ -1269,7 +1269,7 @@ function validate(
     if (isNumber(schema.minProperties)) {
       if (node.properties.length < schema.minProperties) {
         validationResult.problems.push({
-          location: { offset: node.offset, length: node.length },
+          location: { offset: node.offset, length: node.length! },
           severity: DiagnosticSeverity.Warning,
           message: localize(
             'MinPropWarning',
@@ -1291,7 +1291,7 @@ function validate(
             for (const requiredProp of propertyDep) {
               if (!seenKeys[requiredProp]) {
                 validationResult.problems.push({
-                  location: { offset: node.offset, length: node.length },
+                  location: { offset: node.offset, length: node.length! },
                   severity: DiagnosticSeverity.Warning,
                   message: localize(
                     'RequiredDependentPropWarning',
@@ -1319,7 +1319,7 @@ function validate(
       }
     }
 
-    const propertyNames = asSchema(schema.propertyNames);
+    const propertyNames = asSchema(schema.propertyNames!);
     if (propertyNames) {
       for (const f of node.properties) {
         const key = f.keyNode;
@@ -1332,7 +1332,7 @@ function validate(
 
   //Alternative comparison is specifically used by the kubernetes/openshift schema but may lead to better results then genericComparison depending on the schema
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function alternativeComparison(subValidationResult, bestMatch, subSchema, subMatchingSchemas): any {
+  function alternativeComparison(subValidationResult: any, bestMatch: any, subSchema: any, subMatchingSchemas: any): any {
     const compareResult = subValidationResult.compareKubernetes(bestMatch.validationResult);
     if (compareResult > 0) {
       // our node is the best matching so far
@@ -1351,15 +1351,15 @@ function validate(
 
   //genericComparison tries to find the best matching schema using a generic comparison
   function genericComparison(
-    maxOneMatch,
+    maxOneMatch: any,
     subValidationResult: ValidationResult,
     bestMatch: {
       schema: JSONSchema;
       validationResult: ValidationResult;
       matchingSchemas: ISchemaCollector;
     },
-    subSchema,
-    subMatchingSchemas
+    subSchema: any,
+    subMatchingSchemas: any
   ): {
     schema: JSONSchema;
     validationResult: ValidationResult;
@@ -1411,7 +1411,7 @@ function getSchemaSource(schema: JSONSchema, originalSchema: JSONSchema): string
         label = url.toString();
       }
     }
-    if (label) {
+    if (label!) {
       return `${YAML_SCHEMA_PREFIX}${label}`;
     }
   }

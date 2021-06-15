@@ -31,7 +31,6 @@ import { guessIndentation } from '../utils/indentationGuesser';
 import { TextBuffer } from '../utils/textBuffer';
 import { setKubernetesParserOption } from '../parser/isKubernetes';
 import { ClientCapabilities, MarkupContent } from 'vscode-languageserver';
-import { Telemetry } from '../../languageserver/telemetry';
 const localize = nls.loadMessageBundle();
 
 const doubleQuotesEscapeRegExp = /[\\]+"/g;
@@ -45,8 +44,7 @@ export class YAMLCompletion extends JSONCompletion {
 
   constructor(
     schemaService: YAMLSchemaService,
-    clientCapabilities: ClientCapabilities = {},
-    private readonly telemetry: Telemetry
+    clientCapabilities: ClientCapabilities = {}
   ) {
     super(schemaService, [], Promise, clientCapabilities);
     this.schemaService = schemaService;
@@ -101,15 +99,15 @@ export class YAMLCompletion extends JSONCompletion {
 
     const currentWord = super.getCurrentWord(document, offset);
 
-    let overwriteRange = null;
+    let overwriteRange: Range | null = null;
     if (node && node.type === 'null') {
       const nodeStartPos = document.positionAt(node.offset);
       nodeStartPos.character += 1;
-      const nodeEndPos = document.positionAt(node.offset + node.length);
+      const nodeEndPos = document.positionAt(node.offset + node.length!);
       nodeEndPos.character += 1;
       overwriteRange = Range.create(nodeStartPos, nodeEndPos);
     } else if (node && (node.type === 'string' || node.type === 'number' || node.type === 'boolean')) {
-      overwriteRange = Range.create(document.positionAt(node.offset), document.positionAt(node.offset + node.length));
+      overwriteRange = Range.create(document.positionAt(node.offset), document.positionAt(node.offset + node.length!));
     } else {
       let overwriteStart = document.offsetAt(originalPosition) - currentWord.length;
       if (overwriteStart > 0 && document.getText()[overwriteStart - 1] === '"') {
@@ -172,7 +170,7 @@ export class YAMLCompletion extends JSONCompletion {
 
       let addValue = true;
 
-      let currentProperty: PropertyASTNode = null;
+      let currentProperty: PropertyASTNode | null = null;
       if (node) {
         if (node.type === 'string') {
           const parent = node.parent;
@@ -180,7 +178,7 @@ export class YAMLCompletion extends JSONCompletion {
             addValue = !parent.valueNode;
             currentProperty = parent;
             if (parent) {
-              node = parent.parent;
+              node = parent.parent!;
             }
           }
         }
@@ -225,7 +223,7 @@ export class YAMLCompletion extends JSONCompletion {
           collector.add({
             kind: CompletionItemKind.Property,
             label: currentWord,
-            insertText: this.getInsertTextForProperty(currentWord, null, false, separatorAfter),
+            insertText: this.getInsertTextForProperty(currentWord, null!, false, separatorAfter),
             insertTextFormat: InsertTextFormat.Snippet,
             documentation: '',
           });
@@ -356,10 +354,10 @@ export class YAMLCompletion extends JSONCompletion {
     collector: CompletionsCollector,
     types: { [type: string]: boolean }
   ): void {
-    let parentKey: string = null;
+    let parentKey: string | null = null;
 
     if (node && (node.type === 'string' || node.type === 'number' || node.type === 'boolean')) {
-      node = node.parent;
+      node = node.parent!;
     }
 
     if (node && node.type === 'null') {
@@ -413,9 +411,8 @@ export class YAMLCompletion extends JSONCompletion {
               collector.add({
                 kind: super.getSuggestionKind(s.schema.items.type),
                 label: '- (array item)',
-                documentation: `Create an item of an array${
-                  s.schema.description === undefined ? '' : '(' + s.schema.description + ')'
-                }`,
+                documentation: `Create an item of an array${s.schema.description === undefined ? '' : '(' + s.schema.description + ')'
+                  }`,
                 insertText: `- ${this.getInsertTextForObject(s.schema.items, separatorAfter, '  ').insertText.trimLeft()}`,
                 insertTextFormat: InsertTextFormat.Snippet,
               });
@@ -907,9 +904,8 @@ export class YAMLCompletion extends JSONCompletion {
       if (propertySchema.properties) {
         return `${resultText}\n${this.getInsertTextForObject(propertySchema, separatorAfter, ident).insertText}`;
       } else if (propertySchema.items) {
-        return `${resultText}\n${this.indentation}- ${
-          this.getInsertTextForArray(propertySchema.items, separatorAfter).insertText
-        }`;
+        return `${resultText}\n${this.indentation}- ${this.getInsertTextForArray(propertySchema.items, separatorAfter).insertText
+          }`;
       }
       if (nValueProposals === 0) {
         switch (type) {

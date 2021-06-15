@@ -96,7 +96,7 @@ export class YAMLDocument {
  * returns YAML AST nodes, which are then formatted
  * for consumption via the language server.
  */
-export function parse(text: string, customTags = []): YAMLDocument {
+export function parse(text: string, customTags: string[] = []): YAMLDocument {
   const additionalOptions = customTagsToAdditionalOptions(customTags);
 
   // Parse the AST using `yaml-ast-parser-custom-tags`
