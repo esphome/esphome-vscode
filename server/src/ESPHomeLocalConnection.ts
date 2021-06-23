@@ -21,7 +21,7 @@ export class ESPHomeLocalConnection extends ESPHomeConnection {
     connect(): void {
         console.log("Using local ESPHome");
 
-        this.process = ChildProcess.exec('esphome dummy vscode',
+        this.process = ChildProcess.exec('esphome vscode dummy',
             { 'encoding': 'utf-8', 'env': { 'PYTHONIOENCODING': 'utf-8' } }
         );
         if (this.process.stdout !== null) {
@@ -35,7 +35,7 @@ export class ESPHomeLocalConnection extends ESPHomeConnection {
                     this.handleMessage(msg);
                 }
                 catch (e) {
-                    console.log(`Error handling reponse: data: ${typeof (data)}: '${data?.toString()}' ${e}`);
+                    console.log(`Error handling response: data: ${typeof (data)}: '${data?.toString()}' ${e}`);
                 }
             });
         }

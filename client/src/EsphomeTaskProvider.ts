@@ -4,7 +4,7 @@ let OtaUploadTask = new vscode.Task({
     type: 'esphome',
     task: 'esphome'
 }, vscode.TaskScope.Workspace, 'Upload OTA', 'ESPHome',
-    new vscode.ShellExecution('esphome', ['${relativeFile}', 'run', '--upload-port', 'OTA']));
+    new vscode.ShellExecution('esphome', ['run', '${relativeFile}', '--device', 'OTA']));
 
 class EsphomeTaskProvider implements vscode.TaskProvider {
     static EsphomeType: string = 'esphome';
