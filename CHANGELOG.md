@@ -1,5 +1,9 @@
 # Changelog
 
+## v.0.19.0 - 2021-06-30
+
+- Republish due to packaging issue
+
 ## v.0.18.0 - 2021-06-17
 
 - Fixes due to change in ESPHome command line format
