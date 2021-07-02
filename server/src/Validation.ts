@@ -3,7 +3,7 @@ import {
 } from "vscode-languageserver-protocol";
 import { TextDocumentChangeEvent } from "vscode-languageserver";
 import { DocumentUri, TextDocument } from "vscode-languageserver-textdocument";
-import { ESPHomeConnection } from "./EsphomeConnection";
+import { ESPHomeConnection } from "./ESPHomeConnection";
 import { MessageTypes, MESSAGE_FILE_RESPONSE, MESSAGE_READ_FILE, MESSAGE_RESULT, ValidationError as ESPHomeValidationError, YamlValidationError } from "./esphome_types";
 import { FileAccessor } from "./fileAccessor";
 import * as vscodeUri from "vscode-uri";

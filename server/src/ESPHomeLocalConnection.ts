@@ -1,4 +1,5 @@
 import * as ChildProcess from "child_process";
+import * as process from "process";
 import { ESPHomeConnection } from "./ESPHomeConnection";
 import { MESSAGE_RESULT } from "./esphome_types";
 
@@ -20,9 +21,11 @@ export class ESPHomeLocalConnection extends ESPHomeConnection {
 
     connect(): void {
         console.log("Using local ESPHome");
+        var environment = process.env;
+        environment.PYTHONIOENCODING = 'utf-8';
 
         this.process = ChildProcess.exec('esphome vscode dummy',
-            { 'encoding': 'utf-8', 'env': { 'PYTHONIOENCODING': 'utf-8' } }
+            { 'encoding': 'utf-8', 'env': environment }
         );
         if (this.process.stdout !== null) {
             this.process.stdout.on('data', (data) => {
