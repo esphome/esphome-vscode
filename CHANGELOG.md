@@ -1,5 +1,10 @@
 # Changelog
 
+## v.0.20.0 - 2021-07-2
+
+- Use user environment variables (@definitio)
+- Fix compiling on case-sensitive file systems (@definitio)
+
 ## v.0.19.0 - 2021-06-30
 
 - Republish due to packaging issue
