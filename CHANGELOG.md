@@ -1,5 +1,9 @@
 # Changelog
 
+## v.0.21.0 - 2021-07-29
+
+- Sync schema with ESPHome v1.20.2
+
 ## v.0.20.0 - 2021-07-2
 
 - Use user environment variables (@definitio)
