@@ -24,7 +24,6 @@ import {
 } from 'vscode-languageserver-types';
 import { JSONSchema } from './jsonSchema';
 import { YAMLDocumentSymbols } from './services/documentSymbols';
-import { YAMLCompletion } from './services/yamlCompletion';
 import { YAMLHover } from './services/yamlHover';
 import { YAMLValidation } from './services/yamlValidation';
 import { YAMLFormatter } from './services/yamlFormatter';
@@ -42,10 +41,14 @@ import {
 import { getFoldingRanges } from './services/yamlFolding';
 import { FoldingRangesContext } from './yamlTypes';
 import { YamlCodeActions } from './services/yamlCodeActions';
-import { commandExecutor } from '../languageserver/commandExecutor';
+import { commandExecutor } from './commandExecutor';
 import { doDocumentOnTypeFormatting } from './services/yamlOnTypeFormatting';
 import { YamlCodeLens } from './services/yamlCodeLens';
 import { registerCommands } from './services/yamlCommands';
+import { Telemetry } from './telemetry';
+import { YamlVersion } from './parser/yamlParser07';
+import { YamlCompletion } from './services/yamlCompletion';
+import { yamlDocumentsCache } from './parser/yaml-documents';
 
 export enum SchemaPriority {
   SchemaStore = 1,
@@ -66,7 +69,6 @@ export interface LanguageSettings {
   hover?: boolean; //Setting for whether we want to have hover results
   completion?: boolean; //Setting for whether we want to have completion results
   format?: boolean; //Setting for whether we want to have the formatter or not
-  isKubernetes?: boolean; //If true then its validating against kubernetes
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   schemas?: SchemasSettings[]; //List of schemas,
   customTags?: Array<string>; //Array of Custom Tags
@@ -80,6 +82,10 @@ export interface LanguageSettings {
    * So if its true, no extra properties are allowed inside yaml.
    */
   disableAdditionalProperties?: boolean;
+  /**
+   * Default yaml lang version
+   */
+  yamlVersion?: YamlVersion;
 }
 
 export interface WorkspaceContextService {
@@ -120,8 +126,8 @@ export interface CustomFormatterOptions {
 export interface LanguageService {
   configure(settings: LanguageSettings): void;
   registerCustomSchemaProvider(schemaProvider: CustomSchemaProvider): void;
-  doComplete(document: TextDocument, position: Position, isKubernetes: boolean): Promise<CompletionList>;
-  doValidation(document: TextDocument, isKubernetes: boolean): Promise<Diagnostic[]>;
+  doComplete(document: TextDocument, position: Position): Promise<CompletionList>;
+  doValidation(document: TextDocument): Promise<Diagnostic[]>;
   doHover(document: TextDocument, position: Position): Promise<Hover | null>;
   findDocumentSymbols(document: TextDocument, context: DocumentSymbolsContext): SymbolInformation[];
   findDocumentSymbols2(document: TextDocument, context: DocumentSymbolsContext): DocumentSymbol[];
@@ -145,16 +151,17 @@ export function getLanguageService(
   schemaRequestService: SchemaRequestService,
   workspaceContext: WorkspaceContextService,
   connection: Connection,
+  telemetry: Telemetry,
   clientCapabilities?: ClientCapabilities
 ): LanguageService {
   const schemaService = new YAMLSchemaService(schemaRequestService, workspaceContext);
-  const completer = new YAMLCompletion(schemaService, clientCapabilities);
-  const hover = new YAMLHover(schemaService);
-  const yamlDocumentSymbols = new YAMLDocumentSymbols(schemaService);
+  const completer = new YamlCompletion(schemaService, clientCapabilities, yamlDocumentsCache, telemetry);
+  const hover = new YAMLHover(schemaService, telemetry);
+  const yamlDocumentSymbols = new YAMLDocumentSymbols(schemaService, telemetry);
   const yamlValidation = new YAMLValidation(schemaService);
   const formatter = new YAMLFormatter();
   const yamlCodeActions = new YamlCodeActions(clientCapabilities);
-  const yamlCodeLens = new YamlCodeLens(schemaService);
+  const yamlCodeLens = new YamlCodeLens(schemaService, telemetry);
   // register all commands
   registerCommands(commandExecutor, connection);
   return {
@@ -170,8 +177,7 @@ export function getLanguageService(
       }
       yamlValidation.configure(settings);
       hover.configure(settings);
-      const customTagsSetting = settings && settings['customTags'] ? settings['customTags'] : [];
-      completer.configure(settings, customTagsSetting);
+      completer.configure(settings);
       formatter.configure(settings);
       yamlCodeActions.configure(settings);
     },

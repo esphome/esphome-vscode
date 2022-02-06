@@ -9,15 +9,17 @@ import * as fs from "fs";
 import { CompletionList, Connection, Hover, Position } from "vscode-languageserver";
 import { TextDocument } from "vscode-languageserver-textdocument";
 import { getLanguageService, LanguageService, LanguageSettings } from "./yamlLanguageService";
+import { Telemetry } from "./telemetry";
 
 export class ESPHomeLanguageService {
 
     yamlLanguageService: LanguageService;
+    telemetry: Telemetry;
 
     constructor(connection: Connection) {
+        this.telemetry = new Telemetry(connection);
         this.yamlLanguageService = getLanguageService(
-            // eslint-disable-next-line @typescript-eslint/require-await
-            async () => "", null!, null!, connection);
+            async () => "", null!, connection, this.telemetry);
 
         const jsonPath = path.join(__dirname, "schema.json");
         const fileContents = fs.readFileSync(jsonPath, "utf-8");
@@ -26,7 +28,6 @@ export class ESPHomeLanguageService {
         try {
             this.yamlLanguageService.configure(<LanguageSettings>{
                 validate: false,
-                isKubernetes: false,
                 completion: true,
                 format: true,
                 hover: true,
@@ -35,7 +36,8 @@ export class ESPHomeLanguageService {
                     "!secret scalar",
                     "!lambda scalar",
                     "!include scalar"
-                ]
+                ],
+                yamlVersion: "1.1"
             });
 
         } catch (e) {
@@ -59,8 +61,7 @@ export class ESPHomeLanguageService {
 
             const currentCompletions: CompletionList = await this.yamlLanguageService.doComplete(
                 textDocument,
-                position,
-                false
+                position
             );
 
 

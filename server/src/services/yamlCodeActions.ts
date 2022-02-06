@@ -16,7 +16,7 @@ import {
   TextEdit,
   WorkspaceEdit,
 } from 'vscode-languageserver';
-import { YamlCommands } from '../../commands';
+import { YamlCommands } from '../commands';
 import * as path from 'path';
 import { TextBuffer } from '../utils/textBuffer';
 import { LanguageSettings } from '../yamlLanguageService';
@@ -27,7 +27,7 @@ interface YamlDiagnosticData {
 export class YamlCodeActions {
   private indentation = '  ';
 
-  constructor(private readonly clientCapabilities: ClientCapabilities) {}
+  constructor(private readonly clientCapabilities: ClientCapabilities) { }
 
   configure(settings: LanguageSettings): void {
     this.indentation = settings.indentation;

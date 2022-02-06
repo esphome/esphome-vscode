@@ -34,7 +34,6 @@ export function binarySearch(array: number[], sought: number): number {
       upper = idx - 1;
     }
   }
-  return 0;
 }
 
 export function getLineStartPositions(text: string): number[] {

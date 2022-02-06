@@ -7,7 +7,7 @@
 
 import { Diagnostic, Position } from 'vscode-languageserver';
 import { LanguageSettings } from '../yamlLanguageService';
-import { YAMLDocument } from '../parser/yamlParser07';
+import { YAMLDocument, YamlVersion } from '../parser/yamlParser07';
 import { SingleYAMLDocument } from '../parser/yamlParser07';
 import { YAMLSchemaService } from './yamlSchemaService';
 import { YAMLDocDiagnostic } from '../utils/parseUtils';
@@ -27,7 +27,7 @@ export const yamlDiagToLSDiag = (yamlDiag: YAMLDocDiagnostic, textDocument: Text
   const range = {
     start,
     end: yamlDiag.location.toLineEnd
-      ? Position.create(start.line, new TextBuffer(textDocument).getLineLength(yamlDiag.location.start))
+      ? Position.create(start.line, new TextBuffer(textDocument).getLineLength(start.line))
       : textDocument.positionAt(yamlDiag.location.end),
   };
 
@@ -39,6 +39,7 @@ export class YAMLValidation {
   private customTags: string[];
   private jsonValidation;
   private disableAdditionalProperties: boolean;
+  private yamlVersion: YamlVersion;
 
   private MATCHES_MULTIPLE = 'Matches multiple schemas when only one must validate.';
 
@@ -52,51 +53,50 @@ export class YAMLValidation {
       this.validationEnabled = settings.validate;
       this.customTags = settings.customTags;
       this.disableAdditionalProperties = settings.disableAdditionalProperties;
+      this.yamlVersion = settings.yamlVersion;
     }
   }
 
-  public async doValidation(textDocument: TextDocument, isKubernetes = false): Promise<Diagnostic[]> {
+  public async doValidation(textDocument: TextDocument): Promise<Diagnostic[]> {
     if (!this.validationEnabled) {
       return Promise.resolve([]);
     }
 
-    const yamlDocument: YAMLDocument = yamlDocumentsCache.getYamlDocument(textDocument, this.customTags, true);
     const validationResult = [];
+    try {
+      const yamlDocument: YAMLDocument = yamlDocumentsCache.getYamlDocument(
+        textDocument,
+        { customTags: this.customTags, yamlVersion: this.yamlVersion },
+        true
+      );
 
-    let index = 0;
-    for (const currentYAMLDoc of yamlDocument.documents) {
-      currentYAMLDoc.isKubernetes = isKubernetes;
-      currentYAMLDoc.currentDocIndex = index;
-      currentYAMLDoc.disableAdditionalProperties = this.disableAdditionalProperties;
+      let index = 0;
+      for (const currentYAMLDoc of yamlDocument.documents) {
+        currentYAMLDoc.currentDocIndex = index;
+        currentYAMLDoc.disableAdditionalProperties = this.disableAdditionalProperties;
 
-      const validation = await this.jsonValidation.doValidation(textDocument, currentYAMLDoc);
+        const validation = await this.jsonValidation.doValidation(textDocument, currentYAMLDoc);
 
-      const syd = (currentYAMLDoc as unknown) as SingleYAMLDocument;
-      if (syd.errors.length > 0) {
-        // TODO: Get rid of these type assertions (shouldn't need them)
-        validationResult.push(...syd.errors);
+        const syd = (currentYAMLDoc as unknown) as SingleYAMLDocument;
+        if (syd.errors.length > 0) {
+          // TODO: Get rid of these type assertions (shouldn't need them)
+          validationResult.push(...syd.errors);
+        }
+        if (syd.warnings.length > 0) {
+          validationResult.push(...syd.warnings);
+        }
+
+        validationResult.push(...validation);
+        index++;
       }
-      if (syd.warnings.length > 0) {
-        validationResult.push(...syd.warnings);
-      }
-
-      validationResult.push(...validation);
-      index++;
+    } catch (err) {
+      console.error(err.toString());
     }
 
     let previousErr: Diagnostic;
     const foundSignatures = new Set();
     const duplicateMessagesRemoved: Diagnostic[] = [];
     for (let err of validationResult) {
-      /**
-       * A patch ontop of the validation that removes the
-       * 'Matches many schemas' error for kubernetes
-       * for a better user experience.
-       */
-      if (isKubernetes && err.message === this.MATCHES_MULTIPLE) {
-        continue;
-      }
-
       if (Object.prototype.hasOwnProperty.call(err, 'location')) {
         err = yamlDiagToLSDiag(err, textDocument);
       }
