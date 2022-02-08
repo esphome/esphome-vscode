@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { TextDocument } from 'vscode-languageserver-textdocument';
-import { JSONDocument, ValidationResult } from './jsonParser07';
-import { Document, isPair, isScalar, LineCounter, visit, YAMLError } from 'yaml';
-import { ASTNode } from '../jsonASTTypes';
+import { JSONDocument } from './jsonParser07';
+import { Document, isNode, isPair, isScalar, LineCounter, visit, YAMLError } from 'yaml';
+import { ASTNode, YamlNode } from '../jsonASTTypes';
 import { defaultOptions, parse as parseYAML, ParserOptions } from './yamlParser07';
 import { ErrorCode } from 'vscode-json-languageservice';
 import { Node } from 'yaml';
@@ -14,10 +14,9 @@ import { convertAST } from './ast-converter';
 import { YAMLDocDiagnostic } from '../utils/parseUtils';
 import { isArrayEqual } from '../utils/arrUtils';
 import { getParent } from '../utils/astUtils';
-import { ApplicableSchema, SchemaCollectorImpl, validate } from './json-schema07-validator';
-import { JSONSchema } from '../jsonSchema';
 import { TextBuffer } from '../utils/textBuffer';
 import { getIndentation } from '../utils/strings';
+import { Token } from 'yaml/dist/parse/cst';
 
 /**
  * These documents are collected into a final YAMLDocument
@@ -35,16 +34,39 @@ export class SingleYAMLDocument extends JSONDocument {
     this.lineCounter = lineCounter;
   }
 
+  /**
+   * Create a deep copy of this document
+   */
+  clone(): SingleYAMLDocument {
+    const copy = new SingleYAMLDocument(this.lineCounter);
+    copy.disableAdditionalProperties = this.disableAdditionalProperties;
+    copy.currentDocIndex = this.currentDocIndex;
+    copy._lineComments = this.lineComments.slice();
+    // this will re-create root node
+    copy.internalDocument = this._internalDocument.clone();
+    return copy;
+  }
+
   private collectLineComments(): void {
     this._lineComments = [];
     if (this._internalDocument.commentBefore) {
-      this._lineComments.push(`#${this._internalDocument.commentBefore}`);
+      const comments = this._internalDocument.commentBefore.split('\n');
+      comments.forEach((comment) => this._lineComments.push(`#${comment}`));
     }
     visit(this.internalDocument, (_key, node: Node) => {
       if (node?.commentBefore) {
-        this._lineComments.push(`#${node.commentBefore}`);
+        const comments = node?.commentBefore.split('\n');
+        comments.forEach((comment) => this._lineComments.push(`#${comment}`));
+      }
+
+      if (node?.comment) {
+        this._lineComments.push(`#${node.comment}`);
       }
     });
+
+    if (this._internalDocument.comment) {
+      this._lineComments.push(`#${this._internalDocument.comment}`);
+    }
   }
 
   set internalDocument(document: Document) {
@@ -71,14 +93,14 @@ export class SingleYAMLDocument extends JSONDocument {
   get warnings(): YAMLDocDiagnostic[] {
     return this.internalDocument.warnings.map(YAMLErrorToYamlDocDiagnostics);
   }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
-  public getSchemas(schema: any, doc: any, node: any): any[] {
-    const matchingSchemas = [];
-    doc.validate(schema, matchingSchemas, node.start);
-    return matchingSchemas;
-  }
 
-  getNodeFromPosition(positionOffset: number): Node | undefined {
+  getNodeFromPosition(positionOffset: number, textBuffer: TextBuffer): [YamlNode | undefined, boolean] {
+    const position = textBuffer.getPosition(positionOffset);
+    const lineContent = textBuffer.getLineContent(position.line);
+    if (lineContent.trim().length === 0) {
+      return [this.findClosestNode(positionOffset, textBuffer), true];
+    }
+
     let closestNode: Node;
     visit(this.internalDocument, (key, node: Node) => {
       if (!node) {
@@ -96,13 +118,13 @@ export class SingleYAMLDocument extends JSONDocument {
       }
     });
 
-    return closestNode;
+    return [closestNode, false];
   }
 
-  findClosestNode(offset: number, textBuffer: TextBuffer): Node {
+  findClosestNode(offset: number, textBuffer: TextBuffer): YamlNode {
     let offsetDiff = this.internalDocument.range[2];
     let maxOffset = this.internalDocument.range[0];
-    let closestNode: Node;
+    let closestNode: YamlNode;
     visit(this.internalDocument, (key, node: Node) => {
       if (!node) {
         return;
@@ -111,9 +133,9 @@ export class SingleYAMLDocument extends JSONDocument {
       if (!range) {
         return;
       }
-      const diff = Math.abs(range[2] - offset);
-      if (maxOffset <= range[0] && diff <= offsetDiff) {
-        offsetDiff = diff;
+      const diff = range[2] - offset;
+      if (maxOffset <= range[0] && diff <= 0 && Math.abs(diff) <= offsetDiff) {
+        offsetDiff = Math.abs(diff);
         maxOffset = range[0];
         closestNode = node;
       }
@@ -134,13 +156,21 @@ export class SingleYAMLDocument extends JSONDocument {
     return closestNode;
   }
 
-  private getProperParentByIndentation(indentation: number, node: Node, textBuffer: TextBuffer): Node {
-    if (node.range) {
+  private getProperParentByIndentation(indentation: number, node: YamlNode, textBuffer: TextBuffer): YamlNode {
+    if (!node) {
+      return this.internalDocument.contents as Node;
+    }
+    if (isNode(node) && node.range) {
       const position = textBuffer.getPosition(node.range[0]);
-      if (position.character !== indentation && position.character > 0) {
+      if (position.character > indentation && position.character > 0) {
         const parent = this.getParent(node);
         if (parent) {
           return this.getProperParentByIndentation(indentation, parent, textBuffer);
+        }
+      } else if (position.character < indentation) {
+        const parent = this.getParent(node);
+        if (isPair(parent) && isNode(parent.value)) {
+          return parent.value;
         }
       } else {
         return node;
@@ -152,31 +182,8 @@ export class SingleYAMLDocument extends JSONDocument {
     return node;
   }
 
-  getParent(node: Node): Node | undefined {
+  getParent(node: YamlNode): YamlNode | undefined {
     return getParent(this.internalDocument, node);
-  }
-
-  /**
-   * Match JSON Schemas to this document
-   * @param schema the JSON Schema
-   * @returns array of matching schemas
-   */
-  matchSchemas(schema: JSONSchema): ApplicableSchema[] {
-    const matchingSchemas = new SchemaCollectorImpl(-1, null);
-    if (this.internalDocument.contents && schema) {
-      validate(
-        this.internalDocument.contents as Node,
-        this.internalDocument,
-        schema,
-        schema,
-        new ValidationResult(),
-        matchingSchemas,
-        {
-          disableAdditionalProperties: this.disableAdditionalProperties,
-        }
-      );
-    }
-    return matchingSchemas.schemas;
   }
 }
 
@@ -185,12 +192,15 @@ export class SingleYAMLDocument extends JSONDocument {
  * to the `parseYAML` caller.
  */
 export class YAMLDocument {
-  public documents: SingleYAMLDocument[];
+  documents: SingleYAMLDocument[];
+  tokens: Token[];
+
   private errors: YAMLDocDiagnostic[];
   private warnings: YAMLDocDiagnostic[];
 
-  constructor(documents: SingleYAMLDocument[]) {
+  constructor(documents: SingleYAMLDocument[], tokens: Token[]) {
     this.documents = documents;
+    this.tokens = tokens;
     this.errors = [];
     this.warnings = [];
   }
@@ -227,7 +237,7 @@ export class YamlDocuments {
   private ensureCache(document: TextDocument, parserOptions: ParserOptions, addRootObject: boolean): void {
     const key = document.uri;
     if (!this.cache.has(key)) {
-      this.cache.set(key, { version: -1, document: new YAMLDocument([]), parserOptions: defaultOptions });
+      this.cache.set(key, { version: -1, document: new YAMLDocument([], []), parserOptions: defaultOptions });
     }
     const cacheEntry = this.cache.get(key);
     if (
@@ -239,7 +249,7 @@ export class YamlDocuments {
       if (addRootObject && !/\S/.test(text)) {
         text = `{${text}}`;
       }
-      const doc = parseYAML(text, parserOptions);
+      const doc = parseYAML(text, parserOptions, document);
       cacheEntry.document = doc;
       cacheEntry.version = document.version;
       cacheEntry.parserOptions = parserOptions;

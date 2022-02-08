@@ -2,16 +2,6 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "definitions": {
-    "PIN.OUTPUT_INTERNAL": {
-      "type": ["object", "null"]
-    },
-    "PIN.INPUT_INTERNAL": {
-      "type": ["object", "null"]
-    },
-    "PIN.GPIO_FULL_INPUT_PIN_SCHEMA": {
-      "type": ["object", "null"]
-    },
-
     "CONFIG.COMPONENT_SCHEMA": {
       "properties": { "setup_priority": { "type": "number" } },
       "type": ["object", "null"]
@@ -21,7 +11,10 @@
         "name": { "type": "string" },
         "internal": { "type": "boolean" },
         "disabled_by_default": { "type": "boolean", "default": false },
-        "icon": { "type": ["null", "object", "string", "array", "number"] }
+        "icon": { "type": ["null", "object", "string", "array", "number"] },
+        "entity_category": {
+          "type": ["null", "object", "string", "array", "number"]
+        }
       },
       "type": ["object", "null"]
     },
@@ -44,7 +37,8 @@
               "type": ["object", "null"],
               "required_": ["topic"]
             },
-            "command_topic": { "type": "string" }
+            "command_topic": { "type": "string" },
+            "command_retain": { "type": "boolean" }
           },
           "type": ["object", "null"]
         }
@@ -90,6 +84,11 @@
       },
       "type": ["object", "null"]
     },
+    "REMOTE_BASE.COOLIX_SCHEMA": {
+      "properties": { "data": { "type": "string" } },
+      "type": ["object", "null"],
+      "required_": ["data"]
+    },
     "REMOTE_BASE.DISH_SCHEMA": {
       "properties": {
         "address": { "type": "number", "default": 1 },
@@ -97,11 +96,6 @@
       },
       "type": ["object", "null"],
       "required_": ["command"]
-    },
-    "REMOTE_BASE.JVC_SCHEMA": {
-      "properties": { "data": { "type": "string" } },
-      "type": ["object", "null"],
-      "required_": ["data"]
     },
     "REMOTE_BASE.LG_SCHEMA": {
       "properties": {
@@ -130,6 +124,17 @@
       "type": ["object", "null"],
       "required_": ["address", "command"]
     },
+    "REMOTE_BASE.NEXA_SCHEMA": {
+      "properties": {
+        "device": { "type": "string" },
+        "group": { "type": "string" },
+        "state": { "type": "string" },
+        "channel": { "type": "string" },
+        "level": { "type": "string" }
+      },
+      "type": ["object", "null"],
+      "required_": ["device", "group", "state", "channel", "level"]
+    },
     "REMOTE_BASE.PANASONIC_SCHEMA": {
       "properties": {
         "address": { "type": "string" },
@@ -145,6 +150,11 @@
       },
       "type": ["object", "null"],
       "required_": ["rc_code_1"]
+    },
+    "REMOTE_BASE.PRONTO_SCHEMA": {
+      "properties": { "data": { "type": "string" } },
+      "type": ["object", "null"],
+      "required_": ["data"]
     },
     "REMOTE_BASE.RAW_SCHEMA-code[]": {
       "type": ["object", "null"],
@@ -510,6 +520,31 @@
         }
       }
     },
+    "automation.ACTION_REGISTRY-repeat": {
+      "type": "object",
+      "properties": {
+        "repeat": {
+          "properties": {
+            "count": {
+              "type": ["null", "object", "string", "array", "number"]
+            },
+            "then": {
+              "anyOf": [
+                { "$ref": "#/definitions/automation.ACTION_REGISTRY" },
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/automation.ACTION_REGISTRY"
+                  }
+                }
+              ]
+            }
+          },
+          "type": ["object", "null"],
+          "required_": ["count", "then"]
+        }
+      }
+    },
     "automation.ACTION_REGISTRY-wait_until": {
       "type": "object",
       "properties": {
@@ -583,6 +618,27 @@
           },
           "type": ["object", "null"],
           "required_": ["topic", "payload"]
+        }
+      }
+    },
+    "automation.ACTION_REGISTRY-remote_transmitter.transmit_coolix": {
+      "type": "object",
+      "properties": {
+        "remote_transmitter.transmit_coolix": {
+          "allOf": [
+            {
+              "properties": {
+                "data": {
+                  "type": ["null", "object", "string", "array", "number"]
+                }
+              },
+              "type": ["object", "null"],
+              "required_": ["data"]
+            },
+            {
+              "$ref": "#/definitions/REMOTE_BASE.BASE_REMOTE_TRANSMITTER_SCHEMA"
+            }
+          ]
         }
       }
     },
@@ -698,6 +754,27 @@
               },
               "type": ["object", "null"],
               "required_": ["rc_code_1"]
+            },
+            {
+              "$ref": "#/definitions/REMOTE_BASE.BASE_REMOTE_TRANSMITTER_SCHEMA"
+            }
+          ]
+        }
+      }
+    },
+    "automation.ACTION_REGISTRY-remote_transmitter.transmit_pronto": {
+      "type": "object",
+      "properties": {
+        "remote_transmitter.transmit_pronto": {
+          "allOf": [
+            {
+              "properties": {
+                "data": {
+                  "type": ["null", "object", "string", "array", "number"]
+                }
+              },
+              "type": ["object", "null"],
+              "required_": ["data"]
             },
             {
               "$ref": "#/definitions/REMOTE_BASE.BASE_REMOTE_TRANSMITTER_SCHEMA"
@@ -1005,6 +1082,39 @@
               },
               "type": ["object", "null"],
               "required_": ["address", "command"]
+            },
+            {
+              "$ref": "#/definitions/REMOTE_BASE.BASE_REMOTE_TRANSMITTER_SCHEMA"
+            }
+          ]
+        }
+      }
+    },
+    "automation.ACTION_REGISTRY-remote_transmitter.transmit_nexa": {
+      "type": "object",
+      "properties": {
+        "remote_transmitter.transmit_nexa": {
+          "allOf": [
+            {
+              "properties": {
+                "device": {
+                  "type": ["null", "object", "string", "array", "number"]
+                },
+                "group": {
+                  "type": ["null", "object", "string", "array", "number"]
+                },
+                "state": {
+                  "type": ["null", "object", "string", "array", "number"]
+                },
+                "channel": {
+                  "type": ["null", "object", "string", "array", "number"]
+                },
+                "level": {
+                  "type": ["null", "object", "string", "array", "number"]
+                }
+              },
+              "type": ["object", "null"],
+              "required_": ["device", "group", "state", "channel", "level"]
             },
             {
               "$ref": "#/definitions/REMOTE_BASE.BASE_REMOTE_TRANSMITTER_SCHEMA"
@@ -1331,6 +1441,12 @@
             }
           ]
         }
+      }
+    },
+    "automation.ACTION_REGISTRY-button.press": {
+      "type": "object",
+      "properties": {
+        "button.press": { "properties": {}, "type": ["object", "null"] }
       }
     },
     "canbus.send": {
@@ -1887,6 +2003,24 @@
         }
       }
     },
+    "automation.ACTION_REGISTRY-lock.open": {
+      "type": "object",
+      "properties": {
+        "lock.open": { "properties": {}, "type": ["object", "null"] }
+      }
+    },
+    "automation.ACTION_REGISTRY-lock.lock": {
+      "type": "object",
+      "properties": {
+        "lock.lock": { "properties": {}, "type": ["object", "null"] }
+      }
+    },
+    "automation.ACTION_REGISTRY-lock.unlock": {
+      "type": "object",
+      "properties": {
+        "lock.unlock": { "properties": {}, "type": ["object", "null"] }
+      }
+    },
     "automation.ACTION_REGISTRY-rf_bridge.send_code": {
       "type": "object",
       "properties": {
@@ -2254,6 +2388,7 @@
         { "$ref": "#/definitions/automation.ACTION_REGISTRY-delay" },
         { "$ref": "#/definitions/automation.ACTION_REGISTRY-if" },
         { "$ref": "#/definitions/automation.ACTION_REGISTRY-while" },
+        { "$ref": "#/definitions/automation.ACTION_REGISTRY-repeat" },
         { "$ref": "#/definitions/automation.ACTION_REGISTRY-wait_until" },
         { "$ref": "#/definitions/automation.ACTION_REGISTRY-lambda" },
         { "$ref": "#/definitions/automation.ACTION_REGISTRY-component.update" },
@@ -2261,6 +2396,9 @@
         { "$ref": "#/definitions/automation.ACTION_REGISTRY-mqtt.publish" },
         {
           "$ref": "#/definitions/automation.ACTION_REGISTRY-mqtt.publish_json"
+        },
+        {
+          "$ref": "#/definitions/automation.ACTION_REGISTRY-remote_transmitter.transmit_coolix"
         },
         {
           "$ref": "#/definitions/automation.ACTION_REGISTRY-remote_transmitter.transmit_dish"
@@ -2276,6 +2414,9 @@
         },
         {
           "$ref": "#/definitions/automation.ACTION_REGISTRY-remote_transmitter.transmit_pioneer"
+        },
+        {
+          "$ref": "#/definitions/automation.ACTION_REGISTRY-remote_transmitter.transmit_pronto"
         },
         {
           "$ref": "#/definitions/automation.ACTION_REGISTRY-remote_transmitter.transmit_sony"
@@ -2314,6 +2455,9 @@
           "$ref": "#/definitions/automation.ACTION_REGISTRY-remote_transmitter.transmit_panasonic"
         },
         {
+          "$ref": "#/definitions/automation.ACTION_REGISTRY-remote_transmitter.transmit_nexa"
+        },
+        {
           "$ref": "#/definitions/automation.ACTION_REGISTRY-remote_transmitter.transmit_midea"
         },
         { "$ref": "#/definitions/automation.ACTION_REGISTRY-uart.write" },
@@ -2345,6 +2489,7 @@
         {
           "$ref": "#/definitions/automation.ACTION_REGISTRY-homeassistant.tag_scanned"
         },
+        { "$ref": "#/definitions/automation.ACTION_REGISTRY-button.press" },
         { "$ref": "#/definitions/automation.ACTION_REGISTRY-canbus.send" },
         { "$ref": "#/definitions/automation.ACTION_REGISTRY-climate.control" },
         { "$ref": "#/definitions/automation.ACTION_REGISTRY-cover.open" },
@@ -2422,6 +2567,9 @@
           "$ref": "#/definitions/automation.ACTION_REGISTRY-http_request.post"
         },
         { "$ref": "#/definitions/automation.ACTION_REGISTRY-http_request.get" },
+        { "$ref": "#/definitions/automation.ACTION_REGISTRY-lock.open" },
+        { "$ref": "#/definitions/automation.ACTION_REGISTRY-lock.lock" },
+        { "$ref": "#/definitions/automation.ACTION_REGISTRY-lock.unlock" },
         {
           "$ref": "#/definitions/automation.ACTION_REGISTRY-rf_bridge.send_code"
         },
@@ -2516,6 +2664,9 @@
           "$ref": "#/definitions/automation.ACTION_REGISTRY-fan.hbridge.brake"
         },
         {
+          "$ref": "#/definitions/automation.ACTION_REGISTRY-lock.template.publish"
+        },
+        {
           "$ref": "#/definitions/automation.ACTION_REGISTRY-output.esp8266_pwm.set_frequency"
         },
         {
@@ -2537,6 +2688,9 @@
         },
         {
           "$ref": "#/definitions/automation.ACTION_REGISTRY-pulse_meter.set_total_pulses"
+        },
+        {
+          "$ref": "#/definitions/automation.ACTION_REGISTRY-pzemac.reset_energy"
         },
         {
           "$ref": "#/definitions/automation.ACTION_REGISTRY-sensor.rotary_encoder.set_value"
@@ -2759,6 +2913,18 @@
         "dfplayer.is_playing": { "properties": {}, "type": ["object", "null"] }
       }
     },
+    "automation.CONDITION_REGISTRY-lock.is_locked": {
+      "type": "object",
+      "properties": {
+        "lock.is_locked": { "properties": {}, "type": ["object", "null"] }
+      }
+    },
+    "automation.CONDITION_REGISTRY-lock.is_unlocked": {
+      "type": "object",
+      "properties": {
+        "lock.is_unlocked": { "properties": {}, "type": ["object", "null"] }
+      }
+    },
     "automation.CONDITION_REGISTRY-pn532.is_writing": {
       "type": "object",
       "properties": {
@@ -2858,6 +3024,12 @@
         },
         {
           "$ref": "#/definitions/automation.CONDITION_REGISTRY-dfplayer.is_playing"
+        },
+        {
+          "$ref": "#/definitions/automation.CONDITION_REGISTRY-lock.is_locked"
+        },
+        {
+          "$ref": "#/definitions/automation.CONDITION_REGISTRY-lock.is_unlocked"
         },
         {
           "$ref": "#/definitions/automation.CONDITION_REGISTRY-pn532.is_writing"
@@ -3512,6 +3684,12 @@
         { "$ref": "#/definitions/light.EFFECTS_REGISTRY-wled" }
       ]
     },
+    "remote_base.BINARY_SENSOR_REGISTRY-coolix": {
+      "type": "object",
+      "properties": {
+        "coolix": { "$ref": "#/definitions/REMOTE_BASE.COOLIX_SCHEMA" }
+      }
+    },
     "remote_base.BINARY_SENSOR_REGISTRY-dish": {
       "type": "object",
       "properties": {
@@ -3521,7 +3699,7 @@
     "remote_base.BINARY_SENSOR_REGISTRY-jvc": {
       "type": "object",
       "properties": {
-        "jvc": { "$ref": "#/definitions/REMOTE_BASE.JVC_SCHEMA" }
+        "jvc": { "$ref": "#/definitions/REMOTE_BASE.COOLIX_SCHEMA" }
       }
     },
     "remote_base.BINARY_SENSOR_REGISTRY-lg": {
@@ -3538,6 +3716,12 @@
       "type": "object",
       "properties": {
         "pioneer": { "$ref": "#/definitions/REMOTE_BASE.PIONEER_SCHEMA" }
+      }
+    },
+    "remote_base.BINARY_SENSOR_REGISTRY-pronto": {
+      "type": "object",
+      "properties": {
+        "pronto": { "$ref": "#/definitions/REMOTE_BASE.PRONTO_SCHEMA" }
       }
     },
     "remote_base.BINARY_SENSOR_REGISTRY-sony": {
@@ -3625,6 +3809,12 @@
         "panasonic": { "$ref": "#/definitions/REMOTE_BASE.PANASONIC_SCHEMA" }
       }
     },
+    "remote_base.BINARY_SENSOR_REGISTRY-nexa": {
+      "type": "object",
+      "properties": {
+        "nexa": { "$ref": "#/definitions/REMOTE_BASE.NEXA_SCHEMA" }
+      }
+    },
     "remote_base.BINARY_SENSOR_REGISTRY-midea": {
       "type": "object",
       "properties": {
@@ -3633,11 +3823,13 @@
     },
     "remote_base.BINARY_SENSOR_REGISTRY": {
       "anyOf": [
+        { "$ref": "#/definitions/remote_base.BINARY_SENSOR_REGISTRY-coolix" },
         { "$ref": "#/definitions/remote_base.BINARY_SENSOR_REGISTRY-dish" },
         { "$ref": "#/definitions/remote_base.BINARY_SENSOR_REGISTRY-jvc" },
         { "$ref": "#/definitions/remote_base.BINARY_SENSOR_REGISTRY-lg" },
         { "$ref": "#/definitions/remote_base.BINARY_SENSOR_REGISTRY-nec" },
         { "$ref": "#/definitions/remote_base.BINARY_SENSOR_REGISTRY-pioneer" },
+        { "$ref": "#/definitions/remote_base.BINARY_SENSOR_REGISTRY-pronto" },
         { "$ref": "#/definitions/remote_base.BINARY_SENSOR_REGISTRY-sony" },
         { "$ref": "#/definitions/remote_base.BINARY_SENSOR_REGISTRY-raw" },
         { "$ref": "#/definitions/remote_base.BINARY_SENSOR_REGISTRY-rc5" },
@@ -3666,8 +3858,13 @@
         {
           "$ref": "#/definitions/remote_base.BINARY_SENSOR_REGISTRY-panasonic"
         },
+        { "$ref": "#/definitions/remote_base.BINARY_SENSOR_REGISTRY-nexa" },
         { "$ref": "#/definitions/remote_base.BINARY_SENSOR_REGISTRY-midea" }
       ]
+    },
+    "remote_base.DUMPER_REGISTRY-coolix": {
+      "type": "object",
+      "properties": { "coolix": { "type": "null" } }
     },
     "remote_base.DUMPER_REGISTRY-dish": {
       "type": "object",
@@ -3688,6 +3885,10 @@
     "remote_base.DUMPER_REGISTRY-pioneer": {
       "type": "object",
       "properties": { "pioneer": { "type": "null" } }
+    },
+    "remote_base.DUMPER_REGISTRY-pronto": {
+      "type": "object",
+      "properties": { "pronto": { "type": "null" } }
     },
     "remote_base.DUMPER_REGISTRY-sony": {
       "type": "object",
@@ -3721,17 +3922,23 @@
       "type": "object",
       "properties": { "panasonic": { "type": "null" } }
     },
+    "remote_base.DUMPER_REGISTRY-nexa": {
+      "type": "object",
+      "properties": { "nexa": { "type": "null" } }
+    },
     "remote_base.DUMPER_REGISTRY-midea": {
       "type": "object",
       "properties": { "midea": { "type": "null" } }
     },
     "remote_base.DUMPER_REGISTRY": {
       "anyOf": [
+        { "$ref": "#/definitions/remote_base.DUMPER_REGISTRY-coolix" },
         { "$ref": "#/definitions/remote_base.DUMPER_REGISTRY-dish" },
         { "$ref": "#/definitions/remote_base.DUMPER_REGISTRY-jvc" },
         { "$ref": "#/definitions/remote_base.DUMPER_REGISTRY-lg" },
         { "$ref": "#/definitions/remote_base.DUMPER_REGISTRY-nec" },
         { "$ref": "#/definitions/remote_base.DUMPER_REGISTRY-pioneer" },
+        { "$ref": "#/definitions/remote_base.DUMPER_REGISTRY-pronto" },
         { "$ref": "#/definitions/remote_base.DUMPER_REGISTRY-sony" },
         { "$ref": "#/definitions/remote_base.DUMPER_REGISTRY-raw" },
         { "$ref": "#/definitions/remote_base.DUMPER_REGISTRY-rc5" },
@@ -3740,6 +3947,7 @@
         { "$ref": "#/definitions/remote_base.DUMPER_REGISTRY-samsung36" },
         { "$ref": "#/definitions/remote_base.DUMPER_REGISTRY-toshiba_ac" },
         { "$ref": "#/definitions/remote_base.DUMPER_REGISTRY-panasonic" },
+        { "$ref": "#/definitions/remote_base.DUMPER_REGISTRY-nexa" },
         { "$ref": "#/definitions/remote_base.DUMPER_REGISTRY-midea" }
       ]
     },
@@ -3754,6 +3962,20 @@
     "sensor.FILTER_REGISTRY-filter_out": {
       "type": "object",
       "properties": { "filter_out": { "type": "number" } }
+    },
+    "sensor.FILTER_REGISTRY-quantile": {
+      "type": "object",
+      "properties": {
+        "quantile": {
+          "properties": {
+            "window_size": { "type": "number", "default": 5 },
+            "send_every": { "type": "number", "default": 5 },
+            "send_first_at": { "type": "number", "default": 1 },
+            "quantile": { "type": "number", "default": 0.9 }
+          },
+          "type": ["object", "null"]
+        }
+      }
     },
     "sensor.FILTER_REGISTRY-median": {
       "type": "object",
@@ -3950,6 +4172,7 @@
         { "$ref": "#/definitions/sensor.FILTER_REGISTRY-offset" },
         { "$ref": "#/definitions/sensor.FILTER_REGISTRY-multiply" },
         { "$ref": "#/definitions/sensor.FILTER_REGISTRY-filter_out" },
+        { "$ref": "#/definitions/sensor.FILTER_REGISTRY-quantile" },
         { "$ref": "#/definitions/sensor.FILTER_REGISTRY-median" },
         { "$ref": "#/definitions/sensor.FILTER_REGISTRY-min" },
         { "$ref": "#/definitions/sensor.FILTER_REGISTRY-max" },
@@ -4008,6 +4231,17 @@
         }
       }
     },
+    "text_sensor.FILTER_REGISTRY-map": {
+      "type": "object",
+      "properties": {
+        "map": {
+          "anyOf": [
+            { "$ref": "#/definitions/substitute" },
+            { "type": "array", "items": { "$ref": "#/definitions/substitute" } }
+          ]
+        }
+      }
+    },
     "text_sensor.FILTER_REGISTRY": {
       "anyOf": [
         { "$ref": "#/definitions/text_sensor.FILTER_REGISTRY-lambda" },
@@ -4015,7 +4249,8 @@
         { "$ref": "#/definitions/text_sensor.FILTER_REGISTRY-to_lower" },
         { "$ref": "#/definitions/text_sensor.FILTER_REGISTRY-append" },
         { "$ref": "#/definitions/text_sensor.FILTER_REGISTRY-prepend" },
-        { "$ref": "#/definitions/text_sensor.FILTER_REGISTRY-substitute" }
+        { "$ref": "#/definitions/text_sensor.FILTER_REGISTRY-substitute" },
+        { "$ref": "#/definitions/text_sensor.FILTER_REGISTRY-map" }
       ]
     },
     "condition_list": {
@@ -4275,9 +4510,11 @@
                 "power",
                 "presence",
                 "problem",
+                "running",
                 "safety",
                 "smoke",
                 "sound",
+                "tamper",
                 "update",
                 "vibration",
                 "window"
@@ -4338,6 +4575,19 @@
         }
       },
       "type": ["object", "null"]
+    },
+    "button.BUTTON_SCHEMA": {
+      "allOf": [
+        { "$ref": "#/definitions/CONFIG.ENTITY_BASE_SCHEMA" },
+        { "$ref": "#/definitions/CONFIG.MQTT_COMMAND_COMPONENT_SCHEMA" },
+        {
+          "properties": {
+            "device_class": { "enum": ["restart", "update"] },
+            "on_press": { "$ref": "#/definitions/simple_automation" }
+          },
+          "type": ["object", "null"]
+        }
+      ]
     },
     "canbus.CANBUS_SCHEMA-on_frame-on_frame": {
       "anyOf": [
@@ -4491,7 +4741,8 @@
             "target_temperature_high_command_topic": { "type": "string" },
             "target_temperature_high_state_topic": { "type": "string" },
             "target_temperature_low_command_topic": { "type": "string" },
-            "target_temperature_low_state_topic": { "type": "string" }
+            "target_temperature_low_state_topic": { "type": "string" },
+            "on_state": { "$ref": "#/definitions/simple_automation" }
           },
           "type": ["object", "null"]
         }
@@ -4570,7 +4821,8 @@
                 }
               ]
             },
-            "on_page_change": { "$ref": "#/definitions/simple_automation" }
+            "on_page_change": { "$ref": "#/definitions/simple_automation" },
+            "auto_clear_enabled": { "type": "boolean", "default": true }
           },
           "type": ["object", "null"]
         }
@@ -4582,6 +4834,17 @@
         { "$ref": "#/definitions/CONFIG.MQTT_COMMAND_COMPONENT_SCHEMA" },
         {
           "properties": {
+            "restore_mode": {
+              "enum": [
+                "NO_RESTORE",
+                "ALWAYS_OFF",
+                "ALWAYS_ON",
+                "RESTORE_DEFAULT_OFF",
+                "RESTORE_DEFAULT_ON",
+                "RESTORE_INVERTED_DEFAULT_OFF",
+                "RESTORE_INVERTED_DEFAULT_ON"
+              ]
+            },
             "oscillation_state_topic": { "type": "string" },
             "oscillation_command_topic": { "type": "string" },
             "speed_level_state_topic": { "type": "string" },
@@ -4615,6 +4878,7 @@
             },
             "on_turn_on": { "$ref": "#/definitions/simple_automation" },
             "on_turn_off": { "$ref": "#/definitions/simple_automation" },
+            "on_state": { "$ref": "#/definitions/simple_automation" },
             "gamma_correct": { "type": "number", "default": 2.8 },
             "default_transition_length": {
               "properties": {
@@ -4719,6 +4983,7 @@
             },
             "on_turn_on": { "$ref": "#/definitions/simple_automation" },
             "on_turn_off": { "$ref": "#/definitions/simple_automation" },
+            "on_state": { "$ref": "#/definitions/simple_automation" },
             "effects": {
               "anyOf": [
                 {
@@ -4758,6 +5023,7 @@
             },
             "on_turn_on": { "$ref": "#/definitions/simple_automation" },
             "on_turn_off": { "$ref": "#/definitions/simple_automation" },
+            "on_state": { "$ref": "#/definitions/simple_automation" },
             "gamma_correct": { "type": "number", "default": 2.8 },
             "default_transition_length": {
               "properties": {
@@ -4824,7 +5090,21 @@
               ]
             },
             "on_turn_on": { "$ref": "#/definitions/simple_automation" },
-            "on_turn_off": { "$ref": "#/definitions/simple_automation" }
+            "on_turn_off": { "$ref": "#/definitions/simple_automation" },
+            "on_state": { "$ref": "#/definitions/simple_automation" }
+          },
+          "type": ["object", "null"]
+        }
+      ]
+    },
+    "lock.LOCK_SCHEMA": {
+      "allOf": [
+        { "$ref": "#/definitions/CONFIG.ENTITY_BASE_SCHEMA" },
+        { "$ref": "#/definitions/CONFIG.MQTT_COMMAND_COMPONENT_SCHEMA" },
+        {
+          "properties": {
+            "on_lock": { "$ref": "#/definitions/simple_automation" },
+            "on_unlock": { "$ref": "#/definitions/simple_automation" }
           },
           "type": ["object", "null"]
         }
@@ -4860,13 +5140,15 @@
     "number.NUMBER_SCHEMA": {
       "allOf": [
         { "$ref": "#/definitions/CONFIG.ENTITY_BASE_SCHEMA" },
-        { "$ref": "#/definitions/CONFIG.MQTT_COMPONENT_SCHEMA" },
+        { "$ref": "#/definitions/CONFIG.MQTT_COMMAND_COMPONENT_SCHEMA" },
         {
           "properties": {
             "on_value": { "$ref": "#/definitions/simple_automation" },
             "on_value_range": {
               "$ref": "#/definitions/number.NUMBER_SCHEMA-on_value_range"
-            }
+            },
+            "unit_of_measurement": { "type": "string" },
+            "mode": { "enum": ["AUTO", "BOX", "SLIDER"] }
           },
           "type": ["object", "null"]
         }
@@ -4892,7 +5174,7 @@
     "select.SELECT_SCHEMA": {
       "allOf": [
         { "$ref": "#/definitions/CONFIG.ENTITY_BASE_SCHEMA" },
-        { "$ref": "#/definitions/CONFIG.MQTT_COMPONENT_SCHEMA" },
+        { "$ref": "#/definitions/CONFIG.MQTT_COMMAND_COMPONENT_SCHEMA" },
         {
           "properties": {
             "on_value": { "$ref": "#/definitions/simple_automation" }
@@ -5024,7 +5306,8 @@
           "properties": {
             "inverted": { "type": "boolean" },
             "on_turn_on": { "$ref": "#/definitions/simple_automation" },
-            "on_turn_off": { "$ref": "#/definitions/simple_automation" }
+            "on_turn_off": { "$ref": "#/definitions/simple_automation" },
+            "device_class": { "enum": ["", "outlet", "switch"] }
           },
           "type": ["object", "null"]
         }
@@ -5104,7 +5387,8 @@
         {
           "properties": {
             "timezone": {
-              "type": ["null", "object", "string", "array", "number"]
+              "type": ["null", "object", "string", "array", "number"],
+              "default": "<-03>3"
             },
             "on_time": { "$ref": "#/definitions/time.TIME_SCHEMA-on_time" },
             "on_time_sync": { "$ref": "#/definitions/simple_automation" }
@@ -5113,6 +5397,12 @@
         },
         { "$ref": "#/definitions/POLLING_COMPONENT" }
       ]
+    },
+    "touchscreen.TOUCHSCREEN_SCHEMA": {
+      "properties": {
+        "on_touch": { "$ref": "#/definitions/simple_automation" }
+      },
+      "type": ["object", "null"]
     },
     "ads1115": {
       "allOf": [
@@ -5130,7 +5420,9 @@
       "properties": {
         "file": { "type": ["null", "object", "string", "array", "number"] },
         "resize": { "type": ["null", "object", "string", "array", "number"] },
-        "type": { "enum": ["BINARY", "GRAYSCALE", "RGB24"] }
+        "type": {
+          "enum": ["BINARY", "GRAYSCALE", "RGB24", "TRANSPARENT_BINARY"]
+        }
       },
       "type": ["object", "null"],
       "required_": ["file"]
@@ -5169,6 +5461,7 @@
       "type": ["object", "null"],
       "required_": ["key"]
     },
+    "binary_sensor-modbus_controller-custom_command": { "type": "string" },
     "ble_client": {
       "allOf": [
         {
@@ -5182,6 +5475,47 @@
           },
           "type": ["object", "null"],
           "required_": ["mac_address"]
+        },
+        { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+      ]
+    },
+    "cap1188": {
+      "allOf": [
+        {
+          "properties": {
+            "reset_pin": { "$ref": "#/definitions/PIN.OUTPUT_INTERNAL" },
+            "touch_threshold": { "type": "number", "default": 32 },
+            "allow_multiple_touches": { "type": "boolean", "default": false },
+            "address": { "type": "string", "default": "41" }
+          },
+          "type": ["object", "null"]
+        },
+        { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+      ]
+    },
+    "cd74hc4067": {
+      "allOf": [
+        {
+          "properties": {
+            "pin_s0": { "$ref": "#/definitions/PIN.OUTPUT_INTERNAL" },
+            "pin_s1": { "$ref": "#/definitions/PIN.OUTPUT_INTERNAL" },
+            "pin_s2": { "$ref": "#/definitions/PIN.OUTPUT_INTERNAL" },
+            "pin_s3": { "$ref": "#/definitions/PIN.OUTPUT_INTERNAL" },
+            "delay": {
+              "properties": {
+                "days": { "type": "number" },
+                "hours": { "type": "number" },
+                "minutes": { "type": "number" },
+                "seconds": { "type": "number" },
+                "milliseconds": { "type": "number" },
+                "microseconds": { "type": "number" }
+              },
+              "type": ["object", "null"],
+              "default": "2ms"
+            }
+          },
+          "type": ["object", "null"],
+          "required_": ["pin_s0", "pin_s1", "pin_s2", "pin_s3"]
         },
         { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
       ]
@@ -5389,7 +5723,9 @@
       "properties": {
         "version": { "type": "string", "default": "recommended" },
         "source": { "type": "string" },
-        "platform_version": { "type": "string" },
+        "platform_version": {
+          "type": ["null", "object", "string", "array", "number"]
+        },
         "sdkconfig_options": { "what": "is_this" },
         "advanced": { "$ref": "#/definitions/esp32-framework-esp-idf-advanced" }
       },
@@ -5399,7 +5735,9 @@
       "properties": {
         "version": { "type": "string", "default": "recommended" },
         "source": { "type": "string" },
-        "platform_version": { "type": "string" }
+        "platform_version": {
+          "type": ["null", "object", "string", "array", "number"]
+        }
       },
       "type": ["object", "null"]
     },
@@ -5495,6 +5833,19 @@
       "type": ["object", "null"],
       "required_": ["sda", "scl"]
     },
+    "esp32_camera_web_server": {
+      "allOf": [
+        {
+          "properties": {
+            "port": { "type": "number" },
+            "mode": { "enum": ["STREAM", "SNAPSHOT"] }
+          },
+          "type": ["object", "null"],
+          "required_": ["port", "mode"]
+        },
+        { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+      ]
+    },
     "ethernet-manual_ip": {
       "allOf": [
         {
@@ -5525,7 +5876,9 @@
     "external_components-source-git": {
       "properties": {
         "url": { "type": ["null", "object", "string", "array", "number"] },
-        "ref": { "type": ["null", "object", "string", "array", "number"] }
+        "ref": { "type": ["null", "object", "string", "array", "number"] },
+        "username": { "type": "string" },
+        "password": { "type": "string" }
       },
       "type": ["object", "null"],
       "required_": ["url"]
@@ -5746,7 +6099,9 @@
       "properties": {
         "file": { "type": ["null", "object", "string", "array", "number"] },
         "resize": { "type": ["null", "object", "string", "array", "number"] },
-        "type": { "enum": ["BINARY", "GRAYSCALE", "RGB24"] },
+        "type": {
+          "enum": ["BINARY", "GRAYSCALE", "RGB24", "TRANSPARENT_BINARY"]
+        },
         "dither": { "enum": ["NONE", "FLOYDSTEINBERG"] }
       },
       "type": ["object", "null"],
@@ -5952,6 +6307,20 @@
         { "$ref": "#/definitions/spi_bus" }
       ]
     },
+    "mcp3204": {
+      "allOf": [
+        {
+          "properties": {
+            "reference_voltage": {
+              "type": ["null", "object", "string", "array", "number"],
+              "default": "3.3V"
+            }
+          },
+          "type": ["object", "null"]
+        },
+        { "$ref": "#/definitions/spi_bus" }
+      ]
+    },
     "modbus": {
       "allOf": [
         {
@@ -6104,6 +6473,98 @@
       },
       "type": ["object", "null"],
       "required_": ["lambda", "outputs"]
+    },
+    "output-modbus_controller-coil": {
+      "allOf": [
+        { "$ref": "#/definitions/output.BINARY_OUTPUT_SCHEMA" },
+        {
+          "properties": {
+            "address": { "type": "number" },
+            "custom_command": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/binary_sensor-modbus_controller-custom_command"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/binary_sensor-modbus_controller-custom_command"
+                  }
+                }
+              ]
+            },
+            "offset": { "type": "number" },
+            "byte_offset": { "type": "number" },
+            "bitmask": { "type": "string", "default": "4294967295" },
+            "skip_updates": { "type": "number", "default": 0 },
+            "force_new_range": { "type": "boolean", "default": false },
+            "lambda": {
+              "type": ["null", "object", "string", "array", "number"]
+            },
+            "response_size": { "type": "number", "default": 0 },
+            "write_lambda": {
+              "type": ["null", "object", "string", "array", "number"]
+            },
+            "use_write_multiple": { "type": "boolean", "default": false }
+          },
+          "type": ["object", "null"]
+        }
+      ]
+    },
+    "output-modbus_controller-holding": {
+      "allOf": [
+        { "$ref": "#/definitions/output.FLOAT_OUTPUT_SCHEMA" },
+        {
+          "properties": {
+            "address": { "type": "number" },
+            "custom_command": {
+              "anyOf": [
+                {
+                  "$ref": "#/definitions/binary_sensor-modbus_controller-custom_command"
+                },
+                {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/binary_sensor-modbus_controller-custom_command"
+                  }
+                }
+              ]
+            },
+            "offset": { "type": "number" },
+            "byte_offset": { "type": "number" },
+            "bitmask": { "type": "string", "default": "4294967295" },
+            "skip_updates": { "type": "number", "default": 0 },
+            "force_new_range": { "type": "boolean", "default": false },
+            "lambda": {
+              "type": ["null", "object", "string", "array", "number"]
+            },
+            "response_size": { "type": "number", "default": 0 },
+            "value_type": {
+              "enum": [
+                "RAW",
+                "U_WORD",
+                "S_WORD",
+                "U_DWORD",
+                "U_DWORD_R",
+                "S_DWORD",
+                "S_DWORD_R",
+                "U_QWORD",
+                "U_QWORDU_R",
+                "S_QWORD",
+                "U_QWORD_R",
+                "FP32",
+                "FP32_R"
+              ]
+            },
+            "write_lambda": {
+              "type": ["null", "object", "string", "array", "number"]
+            },
+            "multiply": { "type": "number", "default": 1.0 },
+            "use_write_multiple": { "type": "boolean", "default": false }
+          },
+          "type": ["object", "null"]
+        }
+      ]
     },
     "output-pipsolar-battery_recharge_voltage-possible_values": {
       "type": "number"
@@ -6420,6 +6881,14 @@
         { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
       ]
     },
+    "qr_code": {
+      "properties": {
+        "value": { "type": "string" },
+        "ecc": { "enum": ["LOW", "MEDIUM", "QUARTILE", "HIGH"] }
+      },
+      "type": ["object", "null"],
+      "required_": ["value"]
+    },
     "rc522_i2c": {
       "allOf": [
         {
@@ -6484,11 +6953,13 @@
               "type": ["null", "object", "string", "array", "number"],
               "default": 3
             },
+            "on_coolix": { "$ref": "#/definitions/simple_automation" },
             "on_dish": { "$ref": "#/definitions/simple_automation" },
             "on_jvc": { "$ref": "#/definitions/simple_automation" },
             "on_lg": { "$ref": "#/definitions/simple_automation" },
             "on_nec": { "$ref": "#/definitions/simple_automation" },
             "on_pioneer": { "$ref": "#/definitions/simple_automation" },
+            "on_pronto": { "$ref": "#/definitions/simple_automation" },
             "on_sony": { "$ref": "#/definitions/simple_automation" },
             "on_raw": { "$ref": "#/definitions/simple_automation" },
             "on_rc5": { "$ref": "#/definitions/simple_automation" },
@@ -6497,6 +6968,7 @@
             "on_samsung36": { "$ref": "#/definitions/simple_automation" },
             "on_toshiba_ac": { "$ref": "#/definitions/simple_automation" },
             "on_panasonic": { "$ref": "#/definitions/simple_automation" },
+            "on_nexa": { "$ref": "#/definitions/simple_automation" },
             "on_midea": { "$ref": "#/definitions/simple_automation" }
           },
           "type": ["object", "null"],
@@ -6707,6 +7179,44 @@
         }
       ]
     },
+    "sensor-bmp3xx-temperature": {
+      "allOf": [
+        { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
+        {
+          "properties": {
+            "oversampling": { "enum": ["NONE", "2X", "4X", "8X", "16X", "32x"] }
+          },
+          "type": ["object", "null"]
+        }
+      ]
+    },
+    "sensor-bmp3xx-pressure": {
+      "allOf": [
+        { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
+        {
+          "properties": {
+            "oversampling": { "enum": ["NONE", "2X", "4X", "8X", "16X", "32x"] }
+          },
+          "type": ["object", "null"]
+        }
+      ]
+    },
+    "sensor-growatt_solar-phase_a": {
+      "properties": {
+        "voltage": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
+        "current": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
+        "active_power": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" }
+      },
+      "type": ["object", "null"]
+    },
+    "sensor-growatt_solar-pv1": {
+      "properties": {
+        "voltage": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
+        "current": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
+        "active_power": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" }
+      },
+      "type": ["object", "null"]
+    },
     "sensor-havells_solar-phase_a": {
       "properties": {
         "voltage": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
@@ -6750,6 +7260,13 @@
         }
       },
       "type": ["object", "null"]
+    },
+    "sensor-kalman_combinator-sources": {
+      "properties": {
+        "error": { "type": ["null", "object", "string", "array", "number"] }
+      },
+      "type": ["object", "null"],
+      "required_": ["error"]
     },
     "sensor-sdm_meter-phase_a": {
       "properties": {
@@ -7059,6 +7576,34 @@
         }
       ]
     },
+    "tuya-on_datapoint_update": {
+      "properties": {
+        "sensor_datapoint": { "type": "number" },
+        "datapoint_type": {
+          "enum": [
+            "any",
+            "raw",
+            "bool",
+            "int",
+            "uint",
+            "string",
+            "enum",
+            "bitmask"
+          ]
+        },
+        "then": {
+          "anyOf": [
+            {
+              "type": "array",
+              "items": { "$ref": "#/definitions/automation.ACTION_REGISTRY" }
+            },
+            { "$ref": "#/definitions/automation.ACTION_REGISTRY" }
+          ]
+        }
+      },
+      "type": ["object", "null"],
+      "required_": ["sensor_datapoint"]
+    },
     "uart": {
       "allOf": [
         {
@@ -7075,7 +7620,8 @@
             },
             "stop_bits": { "enum": [1, 2] },
             "data_bits": { "type": "number", "default": 8 },
-            "parity": { "enum": ["NONE", "EVEN", "ODD"] }
+            "parity": { "enum": ["NONE", "EVEN", "ODD"] },
+            "debug": { "type": ["null", "object", "string", "array", "number"] }
           },
           "type": ["object", "null"],
           "required_": ["baud_rate"]
@@ -7321,6 +7867,18 @@
         "fan.hbridge.brake": { "properties": {}, "type": ["object", "null"] }
       }
     },
+    "automation.ACTION_REGISTRY-lock.template.publish": {
+      "type": "object",
+      "properties": {
+        "lock.template.publish": {
+          "properties": {
+            "state": { "type": ["null", "object", "string", "array", "number"] }
+          },
+          "type": ["object", "null"],
+          "required_": ["state"]
+        }
+      }
+    },
     "automation.ACTION_REGISTRY-output.esp8266_pwm.set_frequency": {
       "type": "object",
       "properties": {
@@ -7405,6 +7963,12 @@
           "type": ["object", "null"],
           "required_": ["value"]
         }
+      }
+    },
+    "automation.ACTION_REGISTRY-pzemac.reset_energy": {
+      "type": "object",
+      "properties": {
+        "pzemac.reset_energy": { "properties": {}, "type": ["object", "null"] }
       }
     },
     "automation.ACTION_REGISTRY-sensor.rotary_encoder.set_value": {
@@ -7507,24 +8071,34 @@
         "ds1307.read_time": { "properties": {}, "type": ["object", "null"] }
       }
     },
-    "PIN.GPIO_FULL_PIN_SCHEMA": {
+    "PIN.GPIO_FULL_INPUT_PIN_SCHEMA": {
       "oneOf": [
-        { "$ref": "#/definitions/PIN.INTERNAL", "required": ["number"] },
-        { "$ref": "#/definitions/PIN_esp32", "required": ["esp32"] },
-        { "$ref": "#/definitions/PIN_esp8266", "required": ["esp8266"] },
-        { "$ref": "#/definitions/PIN_mcp23xxx", "required": ["mcp23xxx"] },
-        { "$ref": "#/definitions/PIN_mcp23016", "required": ["mcp23016"] },
-        { "$ref": "#/definitions/PIN_pcf8574", "required": ["pcf8574"] },
-        { "$ref": "#/definitions/PIN_sn74hc595", "required": ["sn74hc595"] },
-        { "$ref": "#/definitions/PIN_sx1509", "required": ["sx1509"] }
+        { "$ref": "#/definitions/PIN.INPUT_INTERNAL", "required": ["number"] },
+        { "$ref": "#/definitions/PIN.INPUT_esp32", "required": ["esp32"] },
+        { "$ref": "#/definitions/PIN.INPUT_esp8266", "required": ["esp8266"] },
+        {
+          "$ref": "#/definitions/PIN.INPUT_mcp23xxx",
+          "required": ["mcp23xxx"]
+        },
+        {
+          "$ref": "#/definitions/PIN.INPUT_mcp23016",
+          "required": ["mcp23016"]
+        },
+        { "$ref": "#/definitions/PIN.INPUT_pcf8574", "required": ["pcf8574"] },
+        {
+          "$ref": "#/definitions/PIN.INPUT_sn74hc595",
+          "required": ["sn74hc595"]
+        },
+        { "$ref": "#/definitions/PIN.INPUT_sx1509", "required": ["sx1509"] }
       ],
       "type": ["string", "object"]
     },
-    "PIN.INTERNAL": {
+    "PIN.INPUT_INTERNAL": {
+      "type": ["object", "null"],
       "properties": { "number": { "type": ["number", "string"] } },
       "additionalItems": false
     },
-    "PIN_esp32-mode": {
+    "PIN.INPUT_esp32-mode": {
       "properties": {
         "input": { "type": "boolean", "default": false },
         "output": { "type": "boolean", "default": false },
@@ -7534,18 +8108,18 @@
       },
       "type": ["object", "null"]
     },
-    "PIN_esp32": {
+    "PIN.INPUT_esp32": {
       "properties": {
         "id": { "type": ["null", "object", "string", "array", "number"] },
         "number": { "type": ["null", "object", "string", "array", "number"] },
-        "mode": { "$ref": "#/definitions/PIN_esp32-mode" },
+        "mode": { "$ref": "#/definitions/PIN.INPUT_esp32-mode" },
         "inverted": { "type": "boolean", "default": false },
         "drive_strength": { "properties": {}, "type": ["object", "null"] }
       },
       "type": ["object", "null"],
       "required_": ["number"]
     },
-    "PIN_esp8266-mode": {
+    "PIN.INPUT_esp8266-mode": {
       "properties": {
         "analog": { "type": "boolean", "default": false },
         "input": { "type": "boolean", "default": false },
@@ -7556,16 +8130,16 @@
       },
       "type": ["object", "null"]
     },
-    "PIN_esp8266": {
+    "PIN.INPUT_esp8266": {
       "properties": {
         "number": { "type": ["null", "object", "string", "array", "number"] },
-        "mode": { "$ref": "#/definitions/PIN_esp8266-mode" },
+        "mode": { "$ref": "#/definitions/PIN.INPUT_esp8266-mode" },
         "inverted": { "type": "boolean", "default": false }
       },
       "type": ["object", "null"],
       "required_": ["number"]
     },
-    "PIN_mcp23xxx": {
+    "PIN.INPUT_mcp23xxx": {
       "properties": {
         "number": { "type": "number" },
         "mode": {
@@ -7583,7 +8157,7 @@
       "type": ["object", "null"],
       "required_": ["number"]
     },
-    "PIN_mcp23016": {
+    "PIN.INPUT_mcp23016": {
       "properties": {
         "number": { "type": "number" },
         "mode": {
@@ -7599,7 +8173,7 @@
       "type": ["object", "null"],
       "required_": ["number"]
     },
-    "PIN_pcf8574": {
+    "PIN.INPUT_pcf8574": {
       "properties": {
         "number": { "type": "number" },
         "mode": {
@@ -7615,7 +8189,7 @@
       "type": ["object", "null"],
       "required_": ["number"]
     },
-    "PIN_sn74hc595": {
+    "PIN.INPUT_sn74hc595": {
       "properties": {
         "number": { "type": "number" },
         "mode": {
@@ -7628,7 +8202,7 @@
       "type": ["object", "null"],
       "required_": ["number"]
     },
-    "PIN_sx1509": {
+    "PIN.INPUT_sx1509": {
       "properties": {
         "number": { "type": "number" },
         "mode": {
@@ -7644,6 +8218,33 @@
       },
       "type": ["object", "null"],
       "required_": ["number"]
+    },
+    "PIN.GPIO_FULL_OUTPUT_PIN_SCHEMA": {
+      "oneOf": [
+        { "$ref": "#/definitions/PIN.OUTPUT_INTERNAL", "required": ["number"] },
+        { "$ref": "#/definitions/PIN.INPUT_esp32", "required": ["esp32"] },
+        { "$ref": "#/definitions/PIN.INPUT_esp8266", "required": ["esp8266"] },
+        {
+          "$ref": "#/definitions/PIN.INPUT_mcp23xxx",
+          "required": ["mcp23xxx"]
+        },
+        {
+          "$ref": "#/definitions/PIN.INPUT_mcp23016",
+          "required": ["mcp23016"]
+        },
+        { "$ref": "#/definitions/PIN.INPUT_pcf8574", "required": ["pcf8574"] },
+        {
+          "$ref": "#/definitions/PIN.INPUT_sn74hc595",
+          "required": ["sn74hc595"]
+        },
+        { "$ref": "#/definitions/PIN.INPUT_sx1509", "required": ["sx1509"] }
+      ],
+      "type": ["string", "object"]
+    },
+    "PIN.OUTPUT_INTERNAL": {
+      "type": ["object", "null"],
+      "properties": { "number": { "type": ["number", "string"] } },
+      "additionalItems": false
     }
   },
   "properties": {
@@ -7687,9 +8288,11 @@
                         "power",
                         "presence",
                         "problem",
+                        "running",
                         "safety",
                         "smoke",
                         "sound",
+                        "tamper",
                         "update",
                         "vibration",
                         "window"
@@ -7730,6 +8333,19 @@
                   "type": ["object", "null"]
                 },
                 { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "platform": { "const": "cap1188" } } },
+            "then": {
+              "allOf": [
+                { "$ref": "#/definitions/binary_sensor.BINARY_SENSOR_SCHEMA" },
+                {
+                  "properties": { "channel": { "type": "number" } },
+                  "type": ["object", "null"],
+                  "required_": ["channel"]
+                }
               ]
             }
           },
@@ -7848,25 +8464,44 @@
             "then": {
               "allOf": [
                 { "$ref": "#/definitions/binary_sensor.BINARY_SENSOR_SCHEMA" },
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" },
                 {
                   "properties": {
                     "address": { "type": "number" },
-                    "register_type": {
-                      "enum": ["coil", "discrete_input", "holding", "read"]
+                    "custom_command": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/definitions/binary_sensor-modbus_controller-custom_command"
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/binary_sensor-modbus_controller-custom_command"
+                          }
+                        }
+                      ]
                     },
-                    "offset": { "type": "number", "default": 0 },
+                    "offset": { "type": "number" },
                     "byte_offset": { "type": "number" },
-                    "bitmask": { "type": "string", "default": "1" },
+                    "bitmask": { "type": "string", "default": "4294967295" },
                     "skip_updates": { "type": "number", "default": 0 },
                     "force_new_range": { "type": "boolean", "default": false },
                     "lambda": {
                       "type": ["null", "object", "string", "array", "number"]
+                    },
+                    "response_size": { "type": "number", "default": 0 },
+                    "register_type": {
+                      "enum": [
+                        "custom",
+                        "coil",
+                        "holding",
+                        "discrete_input",
+                        "read"
+                      ]
                     }
                   },
-                  "type": ["object", "null"],
-                  "required_": ["address", "register_type"]
-                },
-                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+                  "type": ["object", "null"]
+                }
               ]
             }
           },
@@ -8212,6 +8847,24 @@
             }
           },
           {
+            "if": { "properties": { "platform": { "const": "touchscreen" } } },
+            "then": {
+              "allOf": [
+                { "$ref": "#/definitions/binary_sensor.BINARY_SENSOR_SCHEMA" },
+                {
+                  "properties": {
+                    "x_min": { "type": "number" },
+                    "x_max": { "type": "number" },
+                    "y_min": { "type": "number" },
+                    "y_max": { "type": "number" }
+                  },
+                  "type": ["object", "null"],
+                  "required_": ["x_min", "x_max", "y_min", "y_max"]
+                }
+              ]
+            }
+          },
+          {
             "if": { "properties": { "platform": { "const": "ttp229_bsf" } } },
             "then": {
               "allOf": [
@@ -8286,9 +8939,11 @@
                         "power",
                         "presence",
                         "problem",
+                        "running",
                         "safety",
                         "smoke",
                         "sound",
+                        "tamper",
                         "update",
                         "vibration",
                         "window"
@@ -8348,9 +9003,11 @@
                         "power",
                         "presence",
                         "problem",
+                        "running",
                         "safety",
                         "smoke",
                         "sound",
+                        "tamper",
                         "update",
                         "vibration",
                         "window"
@@ -8410,9 +9067,11 @@
                         "power",
                         "presence",
                         "problem",
+                        "running",
                         "safety",
                         "smoke",
                         "sound",
+                        "tamper",
                         "update",
                         "vibration",
                         "window"
@@ -8483,6 +9142,98 @@
         ]
       }
     },
+    "button": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          { "$ref": "#/definitions/button.BUTTON_SCHEMA" },
+          {
+            "type": "object",
+            "properties": { "platform": { "type": "string" } }
+          },
+          {
+            "if": { "properties": { "platform": { "const": "output" } } },
+            "then": {
+              "allOf": [
+                { "$ref": "#/definitions/button.BUTTON_SCHEMA" },
+                {
+                  "properties": {
+                    "duration": {
+                      "properties": {
+                        "days": { "type": "number" },
+                        "hours": { "type": "number" },
+                        "minutes": { "type": "number" },
+                        "seconds": { "type": "number" },
+                        "milliseconds": { "type": "number" },
+                        "microseconds": { "type": "number" }
+                      },
+                      "type": ["object", "null"]
+                    }
+                  },
+                  "type": ["object", "null"],
+                  "required_": ["duration"]
+                },
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "platform": { "const": "restart" } } },
+            "then": {
+              "allOf": [
+                { "$ref": "#/definitions/button.BUTTON_SCHEMA" },
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "platform": { "const": "safe_mode" } } },
+            "then": {
+              "allOf": [
+                { "$ref": "#/definitions/button.BUTTON_SCHEMA" },
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "platform": { "const": "shutdown" } } },
+            "then": {
+              "allOf": [
+                { "$ref": "#/definitions/button.BUTTON_SCHEMA" },
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "platform": { "const": "template" } } },
+            "then": {
+              "allOf": [
+                { "$ref": "#/definitions/button.BUTTON_SCHEMA" },
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "platform": { "const": "wake_on_lan" } } },
+            "then": {
+              "allOf": [
+                { "$ref": "#/definitions/button.BUTTON_SCHEMA" },
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" },
+                {
+                  "properties": {
+                    "target_mac_address": {
+                      "type": ["null", "object", "string", "array", "number"]
+                    }
+                  },
+                  "type": ["object", "null"],
+                  "required_": ["target_mac_address"]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
     "canbus": {
       "type": "array",
       "items": {
@@ -8491,6 +9242,36 @@
           {
             "type": "object",
             "properties": { "platform": { "type": "string" } }
+          },
+          {
+            "if": { "properties": { "platform": { "const": "esp32_can" } } },
+            "then": {
+              "allOf": [
+                { "$ref": "#/definitions/canbus.CANBUS_SCHEMA" },
+                {
+                  "properties": {
+                    "bit_rate": {
+                      "enum": [
+                        "50KBPS",
+                        "100KBPS",
+                        "125KBPS",
+                        "250KBPS",
+                        "500KBPS",
+                        "1000KBPS"
+                      ]
+                    },
+                    "rx_pin": {
+                      "type": ["null", "object", "string", "array", "number"]
+                    },
+                    "tx_pin": {
+                      "type": ["null", "object", "string", "array", "number"]
+                    }
+                  },
+                  "type": ["object", "null"],
+                  "required_": ["rx_pin", "tx_pin"]
+                }
+              ]
+            }
           },
           {
             "if": { "properties": { "platform": { "const": "mcp2515" } } },
@@ -8763,6 +9544,7 @@
                         "gree",
                         "greeya",
                         "greeyan",
+                        "greeyac",
                         "hisense_aud",
                         "hitachi",
                         "hyundai",
@@ -8961,6 +9743,23 @@
                     "humidity_setpoint": {
                       "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
                     }
+                  },
+                  "type": ["object", "null"]
+                },
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "platform": { "const": "midea_ir" } } },
+            "then": {
+              "allOf": [
+                { "$ref": "#/definitions/climate.CLIMATE_SCHEMA" },
+                {
+                  "properties": {
+                    "supports_cool": { "type": "boolean", "default": true },
+                    "supports_heat": { "type": "boolean", "default": true },
+                    "use_fahrenheit": { "type": "boolean", "default": false }
                   },
                   "type": ["object", "null"]
                 },
@@ -9666,10 +10465,16 @@
                 { "$ref": "#/definitions/cover.COVER_SCHEMA" },
                 {
                   "properties": {
+                    "control_datapoint": { "type": "number" },
+                    "direction_datapoint": { "type": "number" },
                     "position_datapoint": { "type": "number" },
+                    "position_report_datapoint": { "type": "number" },
                     "min_value": { "type": "number", "default": 0 },
                     "max_value": { "type": "number", "default": 100 },
-                    "invert_position": { "type": "boolean", "default": false }
+                    "invert_position": { "type": "boolean", "default": false },
+                    "restore_mode": {
+                      "enum": ["NO_RESTORE", "RESTORE", "RESTORE_AND_CALL"]
+                    }
                   },
                   "type": ["object", "null"],
                   "required_": ["position_datapoint"]
@@ -9754,6 +10559,7 @@
                     "greyscale": { "type": "boolean", "default": false },
                     "partial_updating": { "type": "boolean", "default": true },
                     "full_update_every": { "type": "number", "default": 10 },
+                    "model": { "enum": ["inkplate_6", "inkplate_10"] },
                     "ckv_pin": { "$ref": "#/definitions/PIN.OUTPUT_INTERNAL" },
                     "gmod_pin": { "$ref": "#/definitions/PIN.OUTPUT_INTERNAL" },
                     "gpio0_enable_pin": {
@@ -9886,6 +10692,8 @@
                 {
                   "properties": {
                     "num_chips": { "type": "number", "default": 4 },
+                    "num_chip_lines": { "type": "number", "default": 1 },
+                    "chip_lines_style": { "enum": ["ZIGZAG", "SNAKE"] },
                     "intensity": { "type": "number", "default": 15 },
                     "rotate_chip": { "enum": ["0", "90", "180", "270"] },
                     "scroll_mode": { "enum": ["CONTINUOUS", "STOP"] },
@@ -9991,10 +10799,12 @@
                         "SSD1306_128X64",
                         "SSD1306_96X16",
                         "SSD1306_64X48",
+                        "SSD1306_64X32",
                         "SH1106_128X32",
                         "SH1106_128X64",
                         "SH1106_96X16",
                         "SH1106_64X48",
+                        "SH1107_128X64",
                         "SSD1305_128X32",
                         "SSD1305_128X64"
                       ]
@@ -10032,10 +10842,12 @@
                         "SSD1306_128X64",
                         "SSD1306_96X16",
                         "SSD1306_64X48",
+                        "SSD1306_64X32",
                         "SH1106_128X32",
                         "SH1106_128X64",
                         "SH1106_96X16",
                         "SH1106_64X48",
+                        "SH1107_128X64",
                         "SSD1305_128X32",
                         "SSD1305_128X64"
                       ]
@@ -10289,6 +11101,10 @@
                     "intensity": {
                       "$ref": "#/definitions/REMOTE_BASE.RC_SWITCH_RAW_SCHEMA-protocol-sync[]"
                     },
+                    "inverted": { "type": "boolean", "default": false },
+                    "length": {
+                      "$ref": "#/definitions/REMOTE_BASE.RC_SWITCH_RAW_SCHEMA-protocol-sync[]"
+                    },
                     "clk_pin": { "$ref": "#/definitions/PIN.OUTPUT_INTERNAL" },
                     "dio_pin": { "$ref": "#/definitions/PIN.OUTPUT_INTERNAL" }
                   },
@@ -10326,6 +11142,7 @@
                         "4.20in-bv2",
                         "5.83in",
                         "7.50in",
+                        "7.50in-bv2",
                         "7.50in-bc",
                         "7.50inv2",
                         "2.13in-ttgo-dke"
@@ -10335,7 +11152,18 @@
                       "$ref": "#/definitions/PIN.OUTPUT_INTERNAL"
                     },
                     "busy_pin": { "$ref": "#/definitions/PIN.INPUT_INTERNAL" },
-                    "full_update_every": { "type": "number" }
+                    "full_update_every": { "type": "number" },
+                    "reset_duration": {
+                      "properties": {
+                        "days": { "type": "number" },
+                        "hours": { "type": "number" },
+                        "minutes": { "type": "number" },
+                        "seconds": { "type": "number" },
+                        "milliseconds": { "type": "number" },
+                        "microseconds": { "type": "number" }
+                      },
+                      "type": ["object", "null"]
+                    }
                   },
                   "type": ["object", "null"],
                   "required_": ["dc_pin", "model"]
@@ -10644,8 +11472,25 @@
                       "default": "GRB"
                     },
                     "variant": {
-                      "type": ["null", "object", "string", "array", "number"],
-                      "default": "800KBPS"
+                      "enum": [
+                        "ws2811",
+                        "ws2812",
+                        "ws2812x",
+                        "ws2813",
+                        "sk6812",
+                        "tm1814",
+                        "tm1829",
+                        "tm1914",
+                        "800kbps",
+                        "400kbps",
+                        "apa106",
+                        "lc8812",
+                        "dotstar",
+                        "ws2801",
+                        "lpd6803",
+                        "lpd8806",
+                        "p9813"
+                      ]
                     },
                     "method": {
                       "type": ["null", "object", "string", "array", "number"]
@@ -10663,7 +11508,7 @@
                     "num_leds": { "type": "number" }
                   },
                   "type": ["object", "null"],
-                  "required_": ["num_leds"]
+                  "required_": ["variant", "num_leds"]
                 },
                 { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
               ]
@@ -10846,6 +11691,53 @@
         ]
       }
     },
+    "lock": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          { "$ref": "#/definitions/lock.LOCK_SCHEMA" },
+          {
+            "type": "object",
+            "properties": { "platform": { "type": "string" } }
+          },
+          {
+            "if": { "properties": { "platform": { "const": "output" } } },
+            "then": {
+              "allOf": [
+                { "$ref": "#/definitions/lock.LOCK_SCHEMA" },
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "platform": { "const": "template" } } },
+            "then": {
+              "allOf": [
+                { "$ref": "#/definitions/lock.LOCK_SCHEMA" },
+                {
+                  "properties": {
+                    "lambda": {
+                      "type": ["null", "object", "string", "array", "number"]
+                    },
+                    "optimistic": { "type": "boolean", "default": false },
+                    "assumed_state": { "type": "boolean", "default": false },
+                    "unlock_action": {
+                      "$ref": "#/definitions/simple_automation"
+                    },
+                    "lock_action": {
+                      "$ref": "#/definitions/simple_automation"
+                    },
+                    "open_action": { "$ref": "#/definitions/simple_automation" }
+                  },
+                  "type": ["object", "null"]
+                },
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+              ]
+            }
+          }
+        ]
+      }
+    },
     "number": {
       "type": "array",
       "items": {
@@ -10865,9 +11757,28 @@
                 {
                   "properties": {
                     "address": { "type": "number" },
-                    "offset": { "type": "number", "default": 0 },
+                    "custom_command": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/definitions/binary_sensor-modbus_controller-custom_command"
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/binary_sensor-modbus_controller-custom_command"
+                          }
+                        }
+                      ]
+                    },
+                    "offset": { "type": "number" },
                     "byte_offset": { "type": "number" },
                     "bitmask": { "type": "string", "default": "4294967295" },
+                    "skip_updates": { "type": "number", "default": 0 },
+                    "force_new_range": { "type": "boolean", "default": false },
+                    "lambda": {
+                      "type": ["null", "object", "string", "array", "number"]
+                    },
+                    "response_size": { "type": "number", "default": 0 },
                     "value_type": {
                       "enum": [
                         "RAW",
@@ -10885,24 +11796,20 @@
                         "FP32_R"
                       ]
                     },
-                    "register_count": { "type": "number", "default": 0 },
-                    "skip_updates": { "type": "number", "default": 0 },
-                    "force_new_range": { "type": "boolean", "default": false },
-                    "lambda": {
-                      "type": ["null", "object", "string", "array", "number"]
-                    },
                     "write_lambda": {
                       "type": ["null", "object", "string", "array", "number"]
                     },
                     "max_value": { "type": "number", "default": 16777215.0 },
                     "min_value": { "type": "number", "default": -16777215.0 },
                     "step": { "type": "number", "default": 1 },
-                    "multiply": { "type": "number", "default": 1.0 }
+                    "multiply": { "type": "number", "default": 1.0 },
+                    "use_write_multiple": {
+                      "type": "boolean",
+                      "default": false
+                    }
                   },
-                  "type": ["object", "null"],
-                  "required_": ["address"]
-                },
-                { "$ref": "#/definitions/POLLING_COMPONENT" }
+                  "type": ["object", "null"]
+                }
               ]
             }
           },
@@ -10928,6 +11835,30 @@
                   "required_": ["max_value", "min_value", "step"]
                 },
                 { "$ref": "#/definitions/POLLING_COMPONENT" }
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "platform": { "const": "tuya" } } },
+            "then": {
+              "allOf": [
+                { "$ref": "#/definitions/number.NUMBER_SCHEMA" },
+                {
+                  "properties": {
+                    "number_datapoint": { "type": "number" },
+                    "max_value": { "type": "number" },
+                    "min_value": { "type": "number" },
+                    "step": { "type": "number" }
+                  },
+                  "type": ["object", "null"],
+                  "required_": [
+                    "number_datapoint",
+                    "max_value",
+                    "min_value",
+                    "step"
+                  ]
+                },
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
               ]
             }
           }
@@ -10963,6 +11894,27 @@
                   },
                   "type": ["object", "null"],
                   "required_": ["gate_pin", "zero_cross_pin"]
+                },
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "platform": { "const": "ble_client" } } },
+            "then": {
+              "allOf": [
+                { "$ref": "#/definitions/output.BINARY_OUTPUT_SCHEMA" },
+                {
+                  "properties": {
+                    "service_uuid": {
+                      "type": ["null", "object", "string", "array", "number"]
+                    },
+                    "characteristic_uuid": {
+                      "type": ["null", "object", "string", "array", "number"]
+                    }
+                  },
+                  "type": ["object", "null"],
+                  "required_": ["service_uuid", "characteristic_uuid"]
                 },
                 { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
               ]
@@ -11076,41 +12028,41 @@
             }
           },
           {
+            "if": { "properties": { "platform": { "const": "mcp47a1" } } },
+            "then": {
+              "allOf": [
+                { "$ref": "#/definitions/output.FLOAT_OUTPUT_SCHEMA" },
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" },
+                {
+                  "properties": {
+                    "address": { "type": "string", "default": "46" }
+                  },
+                  "type": ["object", "null"]
+                }
+              ]
+            }
+          },
+          {
             "if": {
               "properties": { "platform": { "const": "modbus_controller" } }
             },
             "then": {
               "allOf": [
-                { "$ref": "#/definitions/output.FLOAT_OUTPUT_SCHEMA" },
                 {
-                  "properties": {
-                    "address": { "type": "number" },
-                    "offset": { "type": "number", "default": 0 },
-                    "byte_offset": { "type": "number" },
-                    "value_type": {
-                      "enum": [
-                        "RAW",
-                        "U_WORD",
-                        "S_WORD",
-                        "U_DWORD",
-                        "U_DWORD_R",
-                        "S_DWORD",
-                        "S_DWORD_R",
-                        "U_QWORD",
-                        "U_QWORDU_R",
-                        "S_QWORD",
-                        "U_QWORD_R",
-                        "FP32",
-                        "FP32_R"
-                      ]
-                    },
-                    "write_lambda": {
-                      "type": ["null", "object", "string", "array", "number"]
-                    },
-                    "multiply": { "type": "number", "default": 1.0 }
-                  },
-                  "type": ["object", "null"],
-                  "required_": ["address"]
+                  "type": "object",
+                  "properties": { "type": { "type": "string" } }
+                },
+                {
+                  "if": { "properties": { "type": { "const": "coil" } } },
+                  "then": {
+                    "$ref": "#/definitions/output-modbus_controller-coil"
+                  }
+                },
+                {
+                  "if": { "properties": { "type": { "const": "holding" } } },
+                  "then": {
+                    "$ref": "#/definitions/output-modbus_controller-holding"
+                  }
                 }
               ]
             }
@@ -11190,6 +12142,15 @@
                 {
                   "properties": {
                     "pin": { "$ref": "#/definitions/PIN.OUTPUT_INTERNAL" },
+                    "turn_on_action": {
+                      "$ref": "#/definitions/simple_automation"
+                    },
+                    "turn_off_action": {
+                      "$ref": "#/definitions/simple_automation"
+                    },
+                    "state_change_action": {
+                      "$ref": "#/definitions/simple_automation"
+                    },
                     "period": {
                       "properties": {
                         "days": { "type": "number" },
@@ -11200,10 +12161,14 @@
                         "microseconds": { "type": "number" }
                       },
                       "type": ["object", "null"]
+                    },
+                    "restart_cycle_on_state_change": {
+                      "type": "boolean",
+                      "default": false
                     }
                   },
                   "type": ["object", "null"],
-                  "required_": ["pin", "period"]
+                  "required_": ["period"]
                 },
                 { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
               ]
@@ -11362,6 +12327,7 @@
                     "pin": {
                       "type": ["null", "object", "string", "array", "number"]
                     },
+                    "raw": { "type": "boolean", "default": false },
                     "attenuation": {
                       "properties": {
                         "auto": {
@@ -11614,6 +12580,9 @@
                     },
                     "battery_voltage": {
                       "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
+                    },
+                    "signal_strength": {
+                      "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
                     }
                   },
                   "type": ["object", "null"],
@@ -11689,6 +12658,29 @@
                     "$ref": "#/definitions/sensor-binary_sensor_map-group"
                   }
                 }
+              ]
+            }
+          },
+          {
+            "if": { "properties": { "platform": { "const": "bl0940" } } },
+            "then": {
+              "allOf": [
+                {
+                  "properties": {
+                    "voltage": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
+                    "current": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
+                    "power": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
+                    "energy": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
+                    "internal_temperature": {
+                      "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
+                    },
+                    "external_temperature": {
+                      "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
+                    }
+                  },
+                  "type": ["object", "null"]
+                },
+                { "$ref": "#/definitions/POLLING_COMPONENT" }
               ]
             }
           },
@@ -11893,6 +12885,38 @@
             }
           },
           {
+            "if": { "properties": { "platform": { "const": "bmp3xx" } } },
+            "then": {
+              "allOf": [
+                {
+                  "properties": {
+                    "temperature": {
+                      "$ref": "#/definitions/sensor-bmp3xx-temperature"
+                    },
+                    "pressure": {
+                      "$ref": "#/definitions/sensor-bmp3xx-pressure"
+                    },
+                    "iir_filter": {
+                      "enum": [
+                        "OFF",
+                        "2X",
+                        "4X",
+                        "8X",
+                        "16X",
+                        "32X",
+                        "64X",
+                        "128X"
+                      ]
+                    },
+                    "address": { "type": "string", "default": "119" }
+                  },
+                  "type": ["object", "null"]
+                },
+                { "$ref": "#/definitions/POLLING_COMPONENT" }
+              ]
+            }
+          },
+          {
             "if": { "properties": { "platform": { "const": "b_parasite" } } },
             "then": {
               "allOf": [
@@ -11946,6 +12970,20 @@
             }
           },
           {
+            "if": { "properties": { "platform": { "const": "cd74hc4067" } } },
+            "then": {
+              "allOf": [
+                { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
+                {
+                  "properties": { "number": { "type": "number" } },
+                  "type": ["object", "null"],
+                  "required_": ["number"]
+                },
+                { "$ref": "#/definitions/POLLING_COMPONENT" }
+              ]
+            }
+          },
+          {
             "if": { "properties": { "platform": { "const": "cs5460a" } } },
             "then": {
               "allOf": [
@@ -11974,6 +13012,32 @@
             }
           },
           {
+            "if": { "properties": { "platform": { "const": "cse7761" } } },
+            "then": {
+              "allOf": [
+                {
+                  "properties": {
+                    "voltage": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
+                    "current_1": {
+                      "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
+                    },
+                    "current_2": {
+                      "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
+                    },
+                    "active_power_1": {
+                      "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
+                    },
+                    "active_power_2": {
+                      "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
+                    }
+                  },
+                  "type": ["object", "null"]
+                },
+                { "$ref": "#/definitions/POLLING_COMPONENT" }
+              ]
+            }
+          },
+          {
             "if": { "properties": { "platform": { "const": "cse7766" } } },
             "then": {
               "allOf": [
@@ -11981,7 +13045,8 @@
                   "properties": {
                     "voltage": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
                     "current": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
-                    "power": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" }
+                    "power": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
+                    "energy": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" }
                   },
                   "type": ["object", "null"]
                 },
@@ -12104,6 +13169,20 @@
                 },
                 { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
               ]
+            }
+          },
+          {
+            "if": { "properties": { "platform": { "const": "debug" } } },
+            "then": {
+              "properties": {
+                "free": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
+                "block": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
+                "fragmentation": {
+                  "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
+                },
+                "loop_time": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" }
+              },
+              "type": ["object", "null"]
             }
           },
           {
@@ -12358,6 +13437,54 @@
                 }
               },
               "type": ["object", "null"]
+            }
+          },
+          {
+            "if": {
+              "properties": { "platform": { "const": "growatt_solar" } }
+            },
+            "then": {
+              "allOf": [
+                {
+                  "properties": {
+                    "phase_a": {
+                      "$ref": "#/definitions/sensor-growatt_solar-phase_a"
+                    },
+                    "phase_b": {
+                      "$ref": "#/definitions/sensor-growatt_solar-phase_a"
+                    },
+                    "phase_c": {
+                      "$ref": "#/definitions/sensor-growatt_solar-phase_a"
+                    },
+                    "pv1": { "$ref": "#/definitions/sensor-growatt_solar-pv1" },
+                    "pv2": { "$ref": "#/definitions/sensor-growatt_solar-pv1" },
+                    "inverter_status": {
+                      "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
+                    },
+                    "frequency": {
+                      "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
+                    },
+                    "active_power": {
+                      "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
+                    },
+                    "pv_active_power": {
+                      "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
+                    },
+                    "energy_production_day": {
+                      "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
+                    },
+                    "total_energy_production": {
+                      "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
+                    },
+                    "inverter_module_temp": {
+                      "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
+                    },
+                    "address": { "type": "string", "default": "1" }
+                  },
+                  "type": ["object", "null"]
+                },
+                { "$ref": "#/definitions/POLLING_COMPONENT" }
+              ]
             }
           },
           {
@@ -12665,6 +13792,25 @@
             }
           },
           {
+            "if": { "properties": { "platform": { "const": "ina260" } } },
+            "then": {
+              "allOf": [
+                {
+                  "properties": {
+                    "bus_voltage": {
+                      "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
+                    },
+                    "current": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
+                    "power": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
+                    "address": { "type": "string", "default": "64" }
+                  },
+                  "type": ["object", "null"]
+                },
+                { "$ref": "#/definitions/POLLING_COMPONENT" }
+              ]
+            }
+          },
+          {
             "if": { "properties": { "platform": { "const": "ina3221" } } },
             "then": {
               "allOf": [
@@ -12747,6 +13893,38 @@
                   "required_": ["time_unit"]
                 },
                 { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+              ]
+            }
+          },
+          {
+            "if": {
+              "properties": { "platform": { "const": "kalman_combinator" } }
+            },
+            "then": {
+              "allOf": [
+                { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" },
+                {
+                  "properties": {
+                    "process_std_dev": { "type": "number" },
+                    "sources": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/definitions/sensor-kalman_combinator-sources"
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/sensor-kalman_combinator-sources"
+                          }
+                        }
+                      ]
+                    },
+                    "std_dev": { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" }
+                  },
+                  "type": ["object", "null"],
+                  "required_": ["process_std_dev", "sources"]
+                }
               ]
             }
           },
@@ -12870,6 +14048,20 @@
             }
           },
           {
+            "if": { "properties": { "platform": { "const": "mcp3204" } } },
+            "then": {
+              "allOf": [
+                { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
+                {
+                  "properties": { "number": { "type": "number" } },
+                  "type": ["object", "null"],
+                  "required_": ["number"]
+                },
+                { "$ref": "#/definitions/POLLING_COMPONENT" }
+              ]
+            }
+          },
+          {
             "if": { "properties": { "platform": { "const": "mcp9808" } } },
             "then": {
               "allOf": [
@@ -12910,15 +14102,41 @@
             "then": {
               "allOf": [
                 { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" },
                 {
                   "properties": {
                     "address": { "type": "number" },
-                    "register_type": {
-                      "enum": ["coil", "discrete_input", "holding", "read"]
+                    "custom_command": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/definitions/binary_sensor-modbus_controller-custom_command"
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/binary_sensor-modbus_controller-custom_command"
+                          }
+                        }
+                      ]
                     },
-                    "offset": { "type": "number", "default": 0 },
+                    "offset": { "type": "number" },
                     "byte_offset": { "type": "number" },
                     "bitmask": { "type": "string", "default": "4294967295" },
+                    "skip_updates": { "type": "number", "default": 0 },
+                    "force_new_range": { "type": "boolean", "default": false },
+                    "lambda": {
+                      "type": ["null", "object", "string", "array", "number"]
+                    },
+                    "response_size": { "type": "number", "default": 0 },
+                    "register_type": {
+                      "enum": [
+                        "custom",
+                        "coil",
+                        "holding",
+                        "discrete_input",
+                        "read"
+                      ]
+                    },
                     "value_type": {
                       "enum": [
                         "RAW",
@@ -12936,17 +14154,10 @@
                         "FP32_R"
                       ]
                     },
-                    "register_count": { "type": "number", "default": 0 },
-                    "skip_updates": { "type": "number", "default": 0 },
-                    "force_new_range": { "type": "boolean", "default": false },
-                    "lambda": {
-                      "type": ["null", "object", "string", "array", "number"]
-                    }
+                    "register_count": { "type": "number", "default": 0 }
                   },
-                  "type": ["object", "null"],
-                  "required_": ["address", "register_type"]
-                },
-                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+                  "type": ["object", "null"]
+                }
               ]
             }
           },
@@ -13294,7 +14505,9 @@
               "allOf": [
                 {
                   "properties": {
-                    "type": { "enum": ["PMSX003", "PMS5003T", "PMS5003ST"] },
+                    "type": {
+                      "enum": ["PMSX003", "PMS5003T", "PMS5003ST", "PMS5003S"]
+                    },
                     "pm_1_0_std": {
                       "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
                     },
@@ -13586,6 +14799,13 @@
                     "resolution": { "enum": [1, 2, 4] },
                     "min_value": { "type": "number" },
                     "max_value": { "type": "number" },
+                    "publish_initial_value": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "restore_mode": {
+                      "enum": ["RESTORE_DEFAULT_ZERO", "ALWAYS_ZERO"]
+                    },
                     "on_clockwise": {
                       "$ref": "#/definitions/simple_automation"
                     },
@@ -13675,11 +14895,23 @@
                     "temperature_offset": {
                       "type": ["null", "object", "string", "array", "number"]
                     },
+                    "update_interval": {
+                      "properties": {
+                        "days": { "type": "number" },
+                        "hours": { "type": "number" },
+                        "minutes": { "type": "number" },
+                        "seconds": { "type": "number" },
+                        "milliseconds": { "type": "number" },
+                        "microseconds": { "type": "number" }
+                      },
+                      "type": ["object", "null"],
+                      "default": "60s"
+                    },
                     "address": { "type": "string", "default": "97" }
                   },
                   "type": ["object", "null"]
                 },
-                { "$ref": "#/definitions/POLLING_COMPONENT" }
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
               ]
             }
           },
@@ -13737,6 +14969,9 @@
                     "frequency": {
                       "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
                     },
+                    "total_power": {
+                      "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
+                    },
                     "import_active_energy": {
                       "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
                     },
@@ -13762,13 +14997,16 @@
             "then": {
               "allOf": [
                 { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
-                { "$ref": "#/definitions/POLLING_COMPONENT" },
                 {
                   "properties": {
+                    "measurement_mode": {
+                      "enum": ["mass_flow", "differential_pressure"]
+                    },
                     "address": { "type": "string", "default": "33" }
                   },
                   "type": ["object", "null"]
-                }
+                },
+                { "$ref": "#/definitions/POLLING_COMPONENT" }
               ]
             }
           },
@@ -14230,6 +15468,7 @@
                 { "$ref": "#/definitions/sensor.SENSOR_SCHEMA" },
                 {
                   "properties": {
+                    "restore": { "type": "boolean", "default": true },
                     "min_save_interval": {
                       "properties": {
                         "days": { "type": "number" },
@@ -14303,7 +15542,8 @@
                         "HIGH",
                         "9500X",
                         "MAX",
-                        "MAXIMUM"
+                        "MAXIMUM",
+                        "AUTO"
                       ]
                     },
                     "power_save_mode": { "type": "boolean", "default": true },
@@ -14732,6 +15972,34 @@
           },
           {
             "if": {
+              "properties": { "platform": { "const": "xiaomi_mhoc303" } }
+            },
+            "then": {
+              "allOf": [
+                {
+                  "properties": {
+                    "mac_address": {
+                      "type": ["null", "object", "string", "array", "number"]
+                    },
+                    "temperature": {
+                      "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
+                    },
+                    "humidity": {
+                      "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
+                    },
+                    "battery_level": {
+                      "$ref": "#/definitions/sensor.SENSOR_SCHEMA"
+                    }
+                  },
+                  "type": ["object", "null"],
+                  "required_": ["mac_address"]
+                },
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+              ]
+            }
+          },
+          {
+            "if": {
               "properties": { "platform": { "const": "xiaomi_mhoc401" } }
             },
             "then": {
@@ -14958,24 +16226,51 @@
             "then": {
               "allOf": [
                 { "$ref": "#/definitions/switch.SWITCH_SCHEMA" },
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" },
                 {
                   "properties": {
-                    "register_type": {
-                      "enum": ["coil", "discrete_input", "holding", "read"]
-                    },
                     "address": { "type": "number" },
-                    "offset": { "type": "number", "default": 0 },
+                    "custom_command": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/definitions/binary_sensor-modbus_controller-custom_command"
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/binary_sensor-modbus_controller-custom_command"
+                          }
+                        }
+                      ]
+                    },
+                    "offset": { "type": "number" },
                     "byte_offset": { "type": "number" },
-                    "bitmask": { "type": "string", "default": "1" },
+                    "bitmask": { "type": "string", "default": "4294967295" },
+                    "skip_updates": { "type": "number", "default": 0 },
                     "force_new_range": { "type": "boolean", "default": false },
                     "lambda": {
                       "type": ["null", "object", "string", "array", "number"]
+                    },
+                    "response_size": { "type": "number", "default": 0 },
+                    "register_type": {
+                      "enum": [
+                        "custom",
+                        "coil",
+                        "holding",
+                        "discrete_input",
+                        "read"
+                      ]
+                    },
+                    "use_write_multiple": {
+                      "type": "boolean",
+                      "default": false
+                    },
+                    "write_lambda": {
+                      "type": ["null", "object", "string", "array", "number"]
                     }
                   },
-                  "type": ["object", "null"],
-                  "required_": ["register_type", "address"]
-                },
-                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+                  "type": ["object", "null"]
+                }
               ]
             }
           },
@@ -15018,6 +16313,21 @@
             "then": {
               "allOf": [
                 { "$ref": "#/definitions/switch.SWITCH_SCHEMA" },
+                {
+                  "properties": {
+                    "restore_mode": {
+                      "enum": [
+                        "RESTORE_DEFAULT_OFF",
+                        "RESTORE_DEFAULT_ON",
+                        "ALWAYS_OFF",
+                        "ALWAYS_ON",
+                        "RESTORE_INVERTED_DEFAULT_OFF",
+                        "RESTORE_INVERTED_DEFAULT_ON"
+                      ]
+                    }
+                  },
+                  "type": ["object", "null"]
+                },
                 { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
               ]
             }
@@ -15221,6 +16531,17 @@
             }
           },
           {
+            "if": { "properties": { "platform": { "const": "debug" } } },
+            "then": {
+              "properties": {
+                "device": {
+                  "$ref": "#/definitions/text_sensor.TEXT_SENSOR_SCHEMA"
+                }
+              },
+              "type": ["object", "null"]
+            }
+          },
+          {
             "if": { "properties": { "platform": { "const": "dsmr" } } },
             "then": {
               "allOf": [
@@ -15299,27 +16620,46 @@
             "then": {
               "allOf": [
                 { "$ref": "#/definitions/text_sensor.TEXT_SENSOR_SCHEMA" },
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" },
                 {
                   "properties": {
-                    "register_type": {
-                      "enum": ["coil", "discrete_input", "holding", "read"]
-                    },
                     "address": { "type": "number" },
-                    "offset": { "type": "number", "default": 0 },
+                    "custom_command": {
+                      "anyOf": [
+                        {
+                          "$ref": "#/definitions/binary_sensor-modbus_controller-custom_command"
+                        },
+                        {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/definitions/binary_sensor-modbus_controller-custom_command"
+                          }
+                        }
+                      ]
+                    },
+                    "offset": { "type": "number" },
                     "byte_offset": { "type": "number" },
-                    "register_count": { "type": "number", "default": 0 },
-                    "response_size": { "type": "number", "default": 2 },
-                    "raw_encode": { "enum": ["NONE", "HEXBYTES", "COMMA"] },
+                    "bitmask": { "type": "string", "default": "4294967295" },
                     "skip_updates": { "type": "number", "default": 0 },
                     "force_new_range": { "type": "boolean", "default": false },
                     "lambda": {
                       "type": ["null", "object", "string", "array", "number"]
-                    }
+                    },
+                    "response_size": { "type": "number", "default": 2 },
+                    "register_type": {
+                      "enum": [
+                        "custom",
+                        "coil",
+                        "holding",
+                        "discrete_input",
+                        "read"
+                      ]
+                    },
+                    "register_count": { "type": "number", "default": 0 },
+                    "raw_encode": { "enum": ["NONE", "HEXBYTES", "COMMA"] }
                   },
-                  "type": ["object", "null"],
-                  "required_": ["register_type", "address"]
-                },
-                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+                  "type": ["object", "null"]
+                }
               ]
             }
           },
@@ -15459,6 +16799,20 @@
             }
           },
           {
+            "if": { "properties": { "platform": { "const": "tuya" } } },
+            "then": {
+              "allOf": [
+                { "$ref": "#/definitions/text_sensor.TEXT_SENSOR_SCHEMA" },
+                {
+                  "properties": { "sensor_datapoint": { "type": "number" } },
+                  "type": ["object", "null"],
+                  "required_": ["sensor_datapoint"]
+                },
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+              ]
+            }
+          },
+          {
             "if": { "properties": { "platform": { "const": "version" } } },
             "then": {
               "allOf": [
@@ -15469,7 +16823,11 @@
                       "type": ["null", "object", "string", "array", "number"],
                       "default": "mdi:new-box"
                     },
-                    "hide_timestamp": { "type": "boolean", "default": false }
+                    "hide_timestamp": { "type": "boolean", "default": false },
+                    "entity_category": {
+                      "type": ["null", "object", "string", "array", "number"],
+                      "default": "diagnostic"
+                    }
                   },
                   "type": ["object", "null"]
                 },
@@ -15555,6 +16913,38 @@
                   },
                   "type": ["object", "null"]
                 }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "touchscreen": {
+      "type": "array",
+      "items": {
+        "allOf": [
+          { "$ref": "#/definitions/touchscreen.TOUCHSCREEN_SCHEMA" },
+          {
+            "type": "object",
+            "properties": { "platform": { "type": "string" } }
+          },
+          {
+            "if": { "properties": { "platform": { "const": "ektf2232" } } },
+            "then": {
+              "allOf": [
+                {
+                  "properties": {
+                    "interrupt_pin": {
+                      "$ref": "#/definitions/PIN.INPUT_INTERNAL"
+                    },
+                    "rts_pin": { "$ref": "#/definitions/PIN.OUTPUT_INTERNAL" },
+                    "address": { "type": "string", "default": "21" }
+                  },
+                  "type": ["object", "null"],
+                  "required_": ["interrupt_pin", "rts_pin"]
+                },
+                { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" },
+                { "$ref": "#/definitions/touchscreen.TOUCHSCREEN_SCHEMA" }
               ]
             }
           }
@@ -15684,7 +17074,19 @@
         }
       ]
     },
+    "cap1188": {
+      "anyOf": [
+        { "type": "array", "items": { "$ref": "#/definitions/cap1188" } },
+        { "$ref": "#/definitions/cap1188" }
+      ]
+    },
     "captive_portal": { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" },
+    "cd74hc4067": {
+      "anyOf": [
+        { "type": "array", "items": { "$ref": "#/definitions/cd74hc4067" } },
+        { "$ref": "#/definitions/cd74hc4067" }
+      ]
+    },
     "color": {
       "anyOf": [
         { "type": "array", "items": { "$ref": "#/definitions/color" } },
@@ -15716,7 +17118,7 @@
       "type": ["object", "null"],
       "required_": ["package_import_url"]
     },
-    "debug": { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" },
+    "debug": { "$ref": "#/definitions/POLLING_COMPONENT" },
     "deep_sleep": {
       "allOf": [
         {
@@ -15730,7 +17132,8 @@
                 "milliseconds": { "type": "number" },
                 "microseconds": { "type": "number" }
               },
-              "type": ["object", "null"]
+              "type": ["object", "null"],
+              "required_": ["default"]
             },
             "sleep_duration": {
               "properties": {
@@ -15920,7 +17323,33 @@
           "type": ["null", "object", "string", "array", "number"]
         },
         "crc_check": { "type": "boolean", "default": true },
-        "gas_mbus_id": { "type": "number", "default": 1 }
+        "gas_mbus_id": { "type": "number", "default": 1 },
+        "max_telegram_length": { "type": "number", "default": 1500 },
+        "request_pin": { "$ref": "#/definitions/PIN.OUTPUT_INTERNAL" },
+        "request_interval": {
+          "properties": {
+            "days": { "type": "number" },
+            "hours": { "type": "number" },
+            "minutes": { "type": "number" },
+            "seconds": { "type": "number" },
+            "milliseconds": { "type": "number" },
+            "microseconds": { "type": "number" }
+          },
+          "type": ["object", "null"],
+          "default": "0ms"
+        },
+        "receive_timeout": {
+          "properties": {
+            "days": { "type": "number" },
+            "hours": { "type": "number" },
+            "minutes": { "type": "number" },
+            "seconds": { "type": "number" },
+            "milliseconds": { "type": "number" },
+            "microseconds": { "type": "number" }
+          },
+          "type": ["object", "null"],
+          "default": "200ms"
+        }
       },
       "type": ["object", "null"]
     },
@@ -16072,14 +17501,6 @@
             "power_down_pin": {
               "type": ["null", "object", "string", "array", "number"]
             },
-            "max_framerate": {
-              "type": ["null", "object", "string", "array", "number"],
-              "default": "10 fps"
-            },
-            "idle_framerate": {
-              "type": ["null", "object", "string", "array", "number"],
-              "default": "0.1 fps"
-            },
             "resolution": {
               "enum": [
                 "160X120",
@@ -16110,7 +17531,38 @@
             "saturation": { "type": "number", "default": 0 },
             "vertical_flip": { "type": "boolean", "default": true },
             "horizontal_mirror": { "type": "boolean", "default": true },
-            "test_pattern": { "type": "boolean", "default": false }
+            "special_effect": {
+              "enum": [
+                "NONE",
+                "NEGATIVE",
+                "GRAYSCALE",
+                "RED_TINT",
+                "GREEN_TINT",
+                "BLUE_TINT",
+                "SEPIA"
+              ]
+            },
+            "agc_mode": { "enum": ["MANUAL", "AUTO"] },
+            "aec2": { "type": "boolean", "default": false },
+            "ae_level": { "type": "number", "default": 0 },
+            "aec_value": { "type": "number", "default": 300 },
+            "aec_mode": { "enum": ["MANUAL", "AUTO"] },
+            "agc_value": { "type": "number", "default": 0 },
+            "agc_gain_ceiling": {
+              "enum": ["2X", "4X", "8X", "16X", "32X", "64X", "128X"]
+            },
+            "wb_mode": {
+              "enum": ["AUTO", "SUNNY", "CLOUDY", "OFFICE", "HOME"]
+            },
+            "test_pattern": { "type": "boolean", "default": false },
+            "max_framerate": {
+              "type": ["null", "object", "string", "array", "number"],
+              "default": "10 fps"
+            },
+            "idle_framerate": {
+              "type": ["null", "object", "string", "array", "number"],
+              "default": "0.1 fps"
+            }
           },
           "type": ["object", "null"],
           "required_": [
@@ -16123,6 +17575,15 @@
           ]
         },
         { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" }
+      ]
+    },
+    "esp32_camera_web_server": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": { "$ref": "#/definitions/esp32_camera_web_server" }
+        },
+        { "$ref": "#/definitions/esp32_camera_web_server" }
       ]
     },
     "esp32_improv": {
@@ -16225,7 +17686,9 @@
           "properties": {
             "version": { "type": "string", "default": "recommended" },
             "source": { "type": "string" },
-            "platform_version": { "type": "string" }
+            "platform_version": {
+              "type": ["null", "object", "string", "array", "number"]
+            }
           },
           "type": ["object", "null"],
           "default": {}
@@ -16321,6 +17784,8 @@
         {
           "properties": {
             "useragent": { "type": "string", "default": "ESPHome" },
+            "follow_redirects": { "type": "boolean", "default": true },
+            "redirect_limit": { "type": "number", "default": 3 },
             "timeout": {
               "properties": {
                 "days": { "type": "number" },
@@ -16352,13 +17817,14 @@
         { "$ref": "#/definitions/image" }
       ]
     },
+    "improv_serial": { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" },
     "interval": {
       "anyOf": [
         { "type": "array", "items": { "$ref": "#/definitions/interval" } },
         { "$ref": "#/definitions/interval" }
       ]
     },
-    "json": { "type": ["null", "object", "string", "array", "number"] },
+    "json": {},
     "logger": {
       "allOf": [
         {
@@ -16429,6 +17895,12 @@
         { "$ref": "#/definitions/spi_bus" }
       ]
     },
+    "mcp3204": {
+      "anyOf": [
+        { "type": "array", "items": { "$ref": "#/definitions/mcp3204" } },
+        { "$ref": "#/definitions/mcp3204" }
+      ]
+    },
     "mdns": {
       "properties": { "disabled": { "type": "boolean", "default": false } },
       "type": ["object", "null"]
@@ -16464,6 +17936,8 @@
         "discovery": { "type": "boolean", "default": true },
         "discovery_retain": { "type": "boolean", "default": true },
         "discovery_prefix": { "type": "string", "default": "homeassistant" },
+        "discovery_unique_id_generator": { "enum": ["legacy", "mac"] },
+        "use_abbreviations": { "type": "boolean", "default": true },
         "birth_message": {
           "allOf": [
             {
@@ -16588,6 +18062,10 @@
         { "$ref": "#/definitions/my9231" }
       ]
     },
+    "network": {
+      "properties": { "enable_ipv6": { "type": "boolean" } },
+      "type": ["object", "null"]
+    },
     "ota": {
       "allOf": [
         {
@@ -16624,6 +18102,8 @@
         "<class 'str'>": {
           "properties": {
             "url": { "type": ["null", "object", "string", "array", "number"] },
+            "username": { "type": "string" },
+            "password": { "type": "string" },
             "file": { "type": ["null", "object", "string", "array", "number"] },
             "files": {
               "anyOf": [
@@ -16723,6 +18203,13 @@
       ]
     },
     "prometheus": { "$ref": "#/definitions/CONFIG.COMPONENT_SCHEMA" },
+    "psram": { "properties": {}, "type": ["object", "null"] },
+    "qr_code": {
+      "anyOf": [
+        { "type": "array", "items": { "$ref": "#/definitions/qr_code" } },
+        { "$ref": "#/definitions/qr_code" }
+      ]
+    },
     "rc522_i2c": {
       "anyOf": [
         { "type": "array", "items": { "$ref": "#/definitions/rc522_i2c" } },
@@ -16927,6 +18414,9 @@
                   }
                 }
               ]
+            },
+            "on_datapoint_update": {
+              "$ref": "#/definitions/tuya-on_datapoint_update"
             }
           },
           "type": ["object", "null"]
@@ -16959,7 +18449,9 @@
             "js_include": {
               "type": ["null", "object", "string", "array", "number"]
             },
-            "auth": { "$ref": "#/definitions/web_server-auth" }
+            "auth": { "$ref": "#/definitions/web_server-auth" },
+            "include_internal": { "type": "boolean", "default": false },
+            "ota": { "type": "boolean", "default": true }
           },
           "type": ["object", "null"]
         },
