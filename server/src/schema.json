@@ -2,6 +2,16 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "type": "object",
   "definitions": {
+    "PIN.OUTPUT_INTERNAL": {
+      "type": ["object", "null"]
+    },
+    "PIN.INPUT_INTERNAL": {
+      "type": ["object", "null"]
+    },
+    "PIN.GPIO_FULL_INPUT_PIN_SCHEMA": {
+      "type": ["object", "null"]
+    },
+
     "CONFIG.COMPONENT_SCHEMA": {
       "properties": { "setup_priority": { "type": "number" } },
       "type": ["object", "null"]

@@ -170,6 +170,8 @@ export class YamlCompletion {
     try {
       const schema = await this.schemaService.getSchemaForResource(document.uri, currentDoc);
       if (!schema || schema.errors.length) {
+        if (schema.errors.length)
+          throw new Error('schema has errors.');
         return result;
       }
 
