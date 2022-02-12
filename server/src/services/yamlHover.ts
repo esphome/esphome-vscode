@@ -139,9 +139,6 @@ export class YAMLHover {
           result += `\`${toMarkdownCodeBlock(enumValue)}\`: ${markdownEnumValueDescription}`;
         }
 
-        if (result.length > 0 && schema.schema.url) {
-          result += `\n\nSource: [${getSchemaName(schema.schema)}](${schema.schema.url})`;
-        }
         return createHover(result);
       }
       return null;
