@@ -120,6 +120,8 @@ export class YamlCompletion {
 
     const currentWord = this.getCurrentWord(document, offset);
 
+
+
     let overwriteRange = null;
     if (node && isScalar(node) && node.value === 'null') {
       const nodeStartPos = document.positionAt(node.range[0]);

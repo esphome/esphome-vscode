@@ -6,7 +6,7 @@ import * as fs from "fs";
 //     LanguageSettings,
 // } from "yaml-language-server";
 
-import { CompletionList, Connection, Hover, Position } from "vscode-languageserver";
+import { CompletionList, Connection, Hover, Position, CompletionItemKind } from "vscode-languageserver";
 import { TextDocument } from "vscode-languageserver-textdocument";
 import { getLanguageService, LanguageService, LanguageSettings } from "./yamlLanguageService";
 import { Telemetry } from "./telemetry";
@@ -17,6 +17,8 @@ export class ESPHomeLanguageService {
     telemetry: Telemetry;
 
     constructor(connection: Connection) {
+
+        return;
         this.telemetry = new Telemetry(connection);
         this.yamlLanguageService = getLanguageService(
             async () => "", null!, connection, this.telemetry);
@@ -58,6 +60,20 @@ export class ESPHomeLanguageService {
             if (!textDocument) {
                 return Promise.resolve(result);
             }
+
+            return CompletionList.create(
+                [
+                    {
+                        label: 'TypeScript',
+                        kind: CompletionItemKind.Text,
+                        data: 1
+                    },
+                    {
+                        label: 'JavaScript',
+                        kind: CompletionItemKind.Text,
+                        data: 2
+                    }
+                ], false);
 
             const currentCompletions: CompletionList = await this.yamlLanguageService.doComplete(
                 textDocument,

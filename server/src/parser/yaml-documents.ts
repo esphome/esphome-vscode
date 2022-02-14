@@ -113,6 +113,7 @@ export class SingleYAMLDocument extends JSONDocument {
 
       if (range[0] <= positionOffset && range[1] >= positionOffset) {
         closestNode = node;
+        console.log("finding node: " + node.toString())
       } else {
         return visit.SKIP;
       }

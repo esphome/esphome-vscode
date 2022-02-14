@@ -12,6 +12,6 @@
     "rootDir": "src",
     "skipLibCheck": true // remove when fixed issue with vscode-json-languageservice
   },
-  "include": ["src", "src/*.json"],
+  "include": ["src", "src/schema/*.json"],
   "exclude": ["node_modules", ".vscode-test"]
 }

@@ -1,0 +1,1 @@
+{"schema": {"binary_sensor": {"config_vars": {"pin": {"raw": "<function _schema_creator.<locals>.validator at 0x000001DDB8806438>"}, "setup_priority": {"raw": "Coerce(float, msg=None)"}}, "extends": ["binary_sensor"]}}}

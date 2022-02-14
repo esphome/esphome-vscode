@@ -6,7 +6,10 @@ import {
 	InitializeParams,
 	DidChangeConfigurationNotification,
 	TextDocumentSyncKind,
-	InitializeResult
+	InitializeResult,
+	TextDocumentPositionParams,
+	CompletionItem,
+	CompletionItemKind
 } from 'vscode-languageserver/node';
 
 import {
@@ -14,9 +17,11 @@ import {
 } from 'vscode-languageserver-textdocument';
 import { Validation } from './Validation';
 import { VsCodeFileAccessor } from './fileAccessor';
-import { ESPHomeLanguageService } from './HoverCompletion';
 import { ESPHomeConnectionSource } from "./ESPHomeConnectionSource";
 import { ESPHomeSettings } from './ESPHomeSettings';
+import { CompletionHandler } from './completions';
+
+import { yamlDocumentsCache } from './parser/yaml-documents';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -80,7 +85,7 @@ connection.onInitialize((params: InitializeParams) => {
 
 	fileAccessor = new VsCodeFileAccessor(params.rootUri, documents);
 
-	result.capabilities.hoverProvider = true;
+	//result.capabilities.hoverProvider = true;
 	return result;
 });
 
@@ -100,7 +105,6 @@ connection.onInitialized(async () => {
 
 	esphomeConnection.configure(config);
 
-
 	const validation = new Validation(
 		fileAccessor,
 		esphomeConnection,
@@ -111,22 +115,25 @@ connection.onInitialized(async () => {
 		validation.onDocumentChange(e)
 	);
 
+	connection.console.log("Setting up completion handler 1");
+	console.log("Setting up completion handler 2");
 
-	const completion = new ESPHomeLanguageService(connection);
+	try {
+		const completionHandler = new CompletionHandler(documents, yamlDocumentsCache);
+		console.log("Setting up onCompletion");
+		connection.onCompletion(completionHandler.onCompletion);
+	}
+	catch (ex) {
+		console.log("Error " + ex)
+	}
 
-	connection.onCompletion((p) =>
-		completion.onCompletion(
-			documents.get(p.textDocument.uri)!,
-			p.position
-		)
-	);
 
-	connection.onHover((p) =>
-		completion.onHover(
-			documents.get(p.textDocument.uri)!,
-			p.position
-		)
-	);
+	// connection.onHover((p) =>
+	// 	completion.onHover(
+	// 		documents.get(p.textDocument.uri)!,
+	// 		p.position
+	// 	)
+	// );
 });
 
 function getSettings(): Thenable<ESPHomeSettings> {
