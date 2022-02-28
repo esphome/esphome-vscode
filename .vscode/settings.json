@@ -17,5 +17,7 @@
     "matchs",
     "schema",
     "schemaservice"
-  ]
+  ],
+  "mochaExplorer.files": "server/test/**/*.ts",
+  "mochaExplorer.require": "ts-node/register"
 }

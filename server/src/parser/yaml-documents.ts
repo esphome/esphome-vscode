@@ -113,7 +113,7 @@ export class SingleYAMLDocument extends JSONDocument {
 
       if (range[0] <= positionOffset && range[1] >= positionOffset) {
         closestNode = node;
-        console.log("finding node: " + node.toString())
+        console.log("finding node: " + node.toString());
       } else {
         return visit.SKIP;
       }
@@ -146,9 +146,10 @@ export class SingleYAMLDocument extends JSONDocument {
     const lineContent = textBuffer.getLineContent(position.line);
     const indentation = getIndentation(lineContent, position.character);
 
-    if (isScalar(closestNode) && closestNode.value === null) {
-      return closestNode;
-    }
+    // why?
+    // if (isScalar(closestNode) && closestNode.value === null) {
+    //   return closestNode;
+    // }
 
     if (indentation === position.character) {
       closestNode = this.getProperParentByIndentation(indentation, closestNode, textBuffer);
@@ -177,6 +178,9 @@ export class SingleYAMLDocument extends JSONDocument {
         return node;
       }
     } else if (isPair(node)) {
+      if (isScalar(node.value) && node.value.value === null && isScalar(node.key) && textBuffer.getPosition(node.key.range[0]).character < indentation) {
+        return node;
+      }
       const parent = this.getParent(node);
       return this.getProperParentByIndentation(indentation, parent, textBuffer);
     }

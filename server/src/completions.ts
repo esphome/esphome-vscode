@@ -1,58 +1,118 @@
 import * as fs from "fs";
 import path = require("path");
-import { CompletionItem, CompletionItemKind, Range, TextDocument, TextDocumentPositionParams, TextDocuments } from "vscode-languageserver/node";
-import { isNode, isPair, isMap, isScalar, isSeq, YAMLMap, Node, Scalar } from "yaml";
+import { Position } from "vscode-languageserver-textdocument";
+import { CompletionItem, CompletionItemKind, Range, TextDocument } from "vscode-languageserver/node";
+import { isPair, isMap, isScalar, isSeq, YAMLMap, Node, Scalar } from "yaml";
+import { coreKnownTags } from "yaml/dist/schema/tags";
 import { YamlNode } from "./jsonASTTypes";
 import { SingleYAMLDocument, YamlDocuments } from "./parser/yaml-documents";
 import { matchOffsetToDocument } from "./utils/arrUtils";
-import { indexOf, isMapContainsEmptyPair } from "./utils/astUtils";
+import { isNumber, isString } from "./utils/objects";
 import { TextBuffer } from "./utils/textBuffer";
 
 
-interface Schema {
-    config_vars: {};
-    extends: string[];
-}
 interface SchemaSet {
-    component: Schema;
-    [name: string]: Schema;
-}
-interface Component {
-    name: string;
-    multi_conf: Boolean;
-    loaded: Boolean;
-    schema: SchemaSet;
-    /// Name of the included components when this is a platform component
-    platforms: string[];
+    [name: string]: Component;
+    core: CoreComponent;
 }
 
-class CoreSchema {
+interface ConfigVarBase {
+    key: string;
+}
 
-    constructor() {
-        const initData = this.readFile("core");
-        this.platforms = initData["platforms"];
-        this.components = initData["components"];
-        this.extended = initData["extended"];
-    }
+interface ConfigVarRegistry extends ConfigVarBase {
+    type: 'registry';
+    registry: string;
+}
 
-    platforms: string[];
-    components: {
-        [name: string]: Component;
-    };
-    extended: {
+interface ConfigVarTrigger extends ConfigVarBase {
+    type: 'trigger';
+    schema: Schema;
+    has_required_var: Boolean;
+}
+
+interface ConfigVarEnum extends ConfigVarBase {
+    type: 'enum';
+    values: string[];
+}
+
+interface ConfigVarSchema extends ConfigVarBase {
+    type: 'schema';
+    schema: Schema;
+}
+interface ConfigVarTyped extends ConfigVarBase {
+    type: 'typed';
+    types: {
         [name: string]: Schema;
     };
+}
 
-    getComponent(domain: string) {
-        const component = this.components[domain];
-        if (component?.loaded !== true) {
-            this.readComponentSchema(domain);
+type ConfigVar = ConfigVarSchema | ConfigVarRegistry | ConfigVarEnum | ConfigVarTrigger | ConfigVarTyped;
+
+interface ConfigVars {
+    [name: string]: ConfigVar;
+}
+interface Schema {
+    config_vars: ConfigVars;
+    extends: string[];
+}
+interface Component {
+    schemas: {
+        [name: string]: Schema;
+        CONFIG_SCHEMA: Schema;
+    };
+    // These are the components e.g. of sensor, binary_sensor
+    components: string[];
+    actions: {
+        [name: string]: Schema;
+    };
+    conditions: {
+        [name: string]: Schema;
+    };
+    filters: {
+        [name: string]: Schema;
+    };
+}
+interface CoreComponent extends Component {
+    platforms: string[];
+    components: string[];
+}
+class CoreSchema {
+    schema: SchemaSet;
+    loaded_schemas: string[] = ["core", "esphome"];
+
+    constructor() {
+        this.schema = this.readFile("esphome");
+    }
+
+    getPlatformList() {
+        return this.schema.core.platforms;
+    }
+    getComponentList() {
+        return this.schema.core.components;
+    }
+
+    getComponent(domain: string, platform: string = null) {
+        if (!this.loaded_schemas.includes(domain)) {
+            this.schema = {
+                ...this.schema,
+                ...this.readFile(domain)
+            };
+            this.loaded_schemas.push(domain);
         }
-        return this.components[domain];
+        if (platform !== null) {
+            return this.schema[`${domain}.${platform}`];
+        }
+        return this.schema[domain];
+    }
+
+    getComponentSchema(domain: string) {
+        const component = this.getComponent(domain);
+        return component.schemas.CONFIG_SCHEMA;
     }
     getComponentPlatformSchema(domain: string, platform: string): Schema {
-        const component = this.getComponent(domain);
-        return component.schema[platform];
+        const component = this.getComponent(domain, platform);
+        return component.schemas.CONFIG_SCHEMA;
     }
 
     private readFile(name: string) {
@@ -61,36 +121,47 @@ class CoreSchema {
         return JSON.parse(fileContents);
     }
 
-    private readComponentSchema(name: string) {
-        const read = this.readFile(name);
-
-        if (this.components[name] === undefined) {
-            this.components[name] = read;
-        }
-        else {
-            const component = this.components[name];
-            for (var k in read) {
-                component[k] = {
-                    ...component[k],
-                    ...read[k]
-                };
-            }
-        }
-        this.components[name].loaded = true;
-    }
 
     getExtendedSchema(name: string) {
-        const e = this.extended[name];
-        if (e !== undefined) {
-            return e;
+        const parts = name.split('.');
+        const c = this.getComponent(parts[0]);
+        return c.schemas[parts[1]];
+    }
+
+    isPlatform(name: string): boolean {
+        return (this.schema.core.platforms.indexOf(name) !== -1);
+    }
+
+    * getRegistry(registry: string): Generator<string> {
+        if (registry === "core.ACTION_REGISTRY") {
+            registry = "actions";
         }
-        const comp = this.components[name];
-        if (comp !== undefined) {
-            return comp.schema.component;
+        for (const c in this.schema) {
+
+            if (this.schema[c][registry] !== undefined) {
+                for (const name in this.schema[c][registry]) {
+                    yield ((c === "core") ? "" : (c + ".")) + name;
+                }
+            }
         }
-        // TODO: try load component
-        console.log("Could not find extended schema: " + name);
-        return undefined;
+    }
+
+    getRegistrySchema(registry: string, entry: string): Schema {
+        if (registry === "actions" || registry === "core.ACTION_REGISTRY") {
+            for (const c in this.schema) {
+                if (this.schema[c].actions !== undefined) {
+                    for (const action_name in this.schema[c].actions) {
+                        if (action_name === entry) {
+                            return this.schema[c].actions[action_name];
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+    getActionSchema(entry: string) {
+        return this.getRegistrySchema("actions", entry);
     }
 
 }
@@ -101,29 +172,52 @@ interface PlatformSchema {
 }
 
 export class CompletionHandler {
+
+
+    getPath(node: YamlNode, currentDoc: SingleYAMLDocument) {
+        const path = [];
+        let child: YamlNode;
+        while (node) {
+            if (isPair(node)) {
+                if (isScalar(node.key)) {
+                    path.push(node.key.value);
+                }
+            }
+            if (isSeq(node) && child !== undefined) {
+                path.push(node.items.indexOf(child));
+            }
+            child = node;
+            node = currentDoc.getParent(node);
+        }
+        return path.reverse();
+    }
+
     dumpNode(node: YamlNode, currentDoc: SingleYAMLDocument) {
         let i = 1;
         while (node) {
+            let log_str;
             if (isScalar(node)) {
-                console.log(`${i}: scalar ${node.value}`);
+                log_str = `scalar ${node.value}`;
             }
             else if (isMap(node)) {
-                console.log(`${i}: map ${node.items.length}`);
+                log_str = `map ${node.items.length}`;
             }
             else if (isPair(node)) {
-                console.log(`${i}: pair key: ${node.key} value: ${node.value} `);
+                log_str = `pair key: ${node.key} value: ${node.value} `;
             }
             else if (isSeq(node)) {
-                console.log(`${i}: seq ${node.items.length}`);
+                log_str = `seq ${node.items.length}`;
             }
             else {
-                console.log(`${i}: unknown ${node.toString()}`);
+                log_str = "unknown" + node.toString();
             }
 
-            node = currentDoc.getParent(node);
             i = i + 1;
+            node = currentDoc.getParent(node);
+            console.log("- " + i + " " + log_str);
         }
     }
+
     private createTempObjNode(currentWord: string, node: Node, currentDoc: SingleYAMLDocument): YAMLMap {
         const obj = {};
         obj[currentWord] = null;
@@ -145,22 +239,17 @@ export class CompletionHandler {
     private core_schema: CoreSchema;
 
     constructor(
-        private textDocuments: TextDocuments<TextDocument>,
         private yamlDocuments: YamlDocuments) {
 
         this.core_schema = new CoreSchema();
     }
 
-    onCompletion = ({ textDocument, position }: TextDocumentPositionParams): CompletionItem[] => {
+    onCompletion = (document: TextDocument, position: Position): CompletionItem[] => {
         let result: CompletionItem[] = [];
-        const document = this.textDocuments.get(textDocument.uri);
+
         // tslint:disable-next-line: curly
         if (!document)
             return result;
-
-        if (position.character === 0) {
-            return this.resolveCoreComponents(result);
-        }
 
         const doc = this.yamlDocuments.getYamlDocument(document, {
             customTags: ["!secret scalar", "!lambda scalar", "!include scalar"], yamlVersion: "1.1"
@@ -188,12 +277,22 @@ export class CompletionHandler {
         }
 
         // as we modify AST for completion, we need to use copy of original document
+        const originalDoc = currentDoc;
         currentDoc = currentDoc.clone();
+
+        const docMap = currentDoc.root.internalNode;
+        if (!isMap(docMap)) {
+            return;
+        }
+
+        if (position.character === 0) {
+
+            return this.addCoreComponents(result, docMap);
+        }
 
         let [node, foundByClosest] = currentDoc.getNodeFromPosition(offset, textBuffer);
         const currentWord = this.getCurrentWord(document, offset);
 
-        this.dumpNode(node, currentDoc);
 
         let overwriteRange = null;
         if (node && isScalar(node) && node.value === 'null') {
@@ -220,164 +319,46 @@ export class CompletionHandler {
         if (lineContent.endsWith('\n')) {
             lineContent = lineContent.substr(0, lineContent.length - 1);
         }
+        let originalNode = node;
 
         try {
-
-            let currentProperty: YamlNode = null;
-
-            if (!node) {
-                if (!currentDoc.internalDocument.contents || isScalar(currentDoc.internalDocument.contents)) {
-                    const map = currentDoc.internalDocument.createNode({});
-                    map.range = [offset, offset + 1, offset + 1];
-                    currentDoc.internalDocument.contents = map;
-                    // eslint-disable-next-line no-self-assign
-                    currentDoc.internalDocument = currentDoc.internalDocument;
-                    node = map;
-                } else {
-                    node = currentDoc.findClosestNode(offset, textBuffer);
-                    foundByClosest = true;
-                }
-            }
-
-            const originalNode = node;
             if (node) {
-                // Are we in the value side of a map?
+                // Are we in the value side of a map? (this fix for when the cursor is at the right of : and sometimes (depending whitespace after the caret)
+                // the returned node is not the value node of the pair but the map itself)
                 if (isMap(node)
                     && isPair(node.items[0])
                     && isScalar(node.items[0].key)
                     && isScalar(node.items[0].value)
                     && node.items[0].key.range[2] < offset
                     && node.items[0].value.range[0] > offset) {
-                    // are we at the right side of =
+                    // are we at the right side of :
                     console.log("we are in the scalar null? value");
                     node = node.items[0].value;
                 }
+                originalNode = node;
+            }
 
-                if (lineContent.length === 0) {
-                    node = currentDoc.internalDocument.contents as Node;
-                } else {
-                    const parent = currentDoc.getParent(node);
-                    if (parent) {
-                        if (isScalar(node)) {
-                            if (node.value) {
-                                if (isPair(parent)) {
-                                    if (parent.value === node) {
-                                        if (lineContent.trim().length > 0 && lineContent.indexOf(':') < 0) {
-                                            const map = this.createTempObjNode(currentWord, node, currentDoc);
-                                            if (isSeq(currentDoc.internalDocument.contents)) {
-                                                const index = indexOf(currentDoc.internalDocument.contents, parent);
-                                                if (typeof index === 'number') {
-                                                    currentDoc.internalDocument.set(index, map);
-                                                    // eslint-disable-next-line no-self-assign
-                                                    currentDoc.internalDocument = currentDoc.internalDocument;
-                                                }
-                                            } else {
-                                                currentDoc.internalDocument.set(parent.key, map);
-                                                // eslint-disable-next-line no-self-assign
-                                                currentDoc.internalDocument = currentDoc.internalDocument;
-                                            }
-
-                                            currentProperty = (map as YAMLMap).items[0];
-                                            node = map;
-                                        } else if (lineContent.trim().length === 0) {
-                                            const parentParent = currentDoc.getParent(parent);
-                                            if (parentParent) {
-                                                node = parentParent;
-                                            }
-                                        }
-                                    } else if (parent.key === node) {
-                                        const parentParent = currentDoc.getParent(parent);
-                                        currentProperty = parent;
-                                        if (parentParent) {
-                                            node = parentParent;
-                                        }
-                                    }
-                                } else if (isSeq(parent)) {
-                                    if (lineContent.trim().length > 0) {
-                                        const map = this.createTempObjNode(currentWord, node, currentDoc);
-                                        parent.delete(node);
-                                        parent.add(map);
-                                        // eslint-disable-next-line no-self-assign
-                                        currentDoc.internalDocument = currentDoc.internalDocument;
-                                        node = map;
-                                    } else {
-                                        node = parent;
-                                    }
-                                }
-                            } else if (node.value === null) {
-                                if (isPair(parent)) {
-                                    if (parent.key === node) {
-                                        node = parent;
-                                    } else {
-                                        if (isNode(parent.key) && parent.key.range) {
-                                            const parentParent = currentDoc.getParent(parent);
-                                            if (foundByClosest && parentParent && isMap(parentParent) && isMapContainsEmptyPair(parentParent)) {
-                                                node = parentParent;
-                                            } else {
-                                                const parentPosition = document.positionAt(parent.key.range[0]);
-                                                //if cursor has bigger indentation that parent key, then we need to complete new empty object
-                                                if (position.character > parentPosition.character && position.line !== parentPosition.line) {
-                                                    const map = this.createTempObjNode(currentWord, node, currentDoc);
-
-                                                    if (parentParent && (isMap(parentParent) || isSeq(parentParent))) {
-                                                        parentParent.set(parent.key, map);
-                                                        // eslint-disable-next-line no-self-assign
-                                                        currentDoc.internalDocument = currentDoc.internalDocument;
-                                                    } else {
-                                                        currentDoc.internalDocument.set(parent.key, map);
-                                                        // eslint-disable-next-line no-self-assign
-                                                        currentDoc.internalDocument = currentDoc.internalDocument;
-                                                    }
-                                                    currentProperty = (map as YAMLMap).items[0];
-                                                    node = map;
-                                                } else if (parentPosition.character === position.character) {
-                                                    if (parentParent) {
-                                                        node = parentParent;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                } else if (isSeq(parent)) {
-                                    if (lineContent.charAt(position.character - 1) !== '-') {
-                                        const map = this.createTempObjNode(currentWord, node, currentDoc);
-                                        parent.delete(node);
-                                        parent.add(map);
-                                        // eslint-disable-next-line no-self-assign
-                                        currentDoc.internalDocument = currentDoc.internalDocument;
-                                        node = map;
-                                    } else {
-                                        node = parent;
-                                    }
-                                }
-                            }
-                        } else if (isMap(node)) {
-                            if (!foundByClosest && lineContent.trim().length === 0 && isSeq(parent)) {
-                                const nextLine = textBuffer.getLineContent(position.line + 1);
-                                if (textBuffer.getLineCount() === position.line + 1 || nextLine.trim().length === 0) {
-                                    node = parent;
-                                }
-                            }
-                        }
-                    } else if (isScalar(node)) {
-                        const map = this.createTempObjNode(currentWord, node, currentDoc);
-                        currentDoc.internalDocument.contents = map;
-                        // eslint-disable-next-line no-self-assign
-                        currentDoc.internalDocument = currentDoc.internalDocument;
-                        currentProperty = map.items[0];
-                        node = map;
-                    } else if (isMap(node)) {
-                        for (const pair of node.items) {
-                            if (isNode(pair.value) && pair.value.range && pair.value.range[0] === offset + 1) {
-                                node = pair.value;
-                            }
-                        }
+            if (!foundByClosest && isScalar(node)) {
+                const p1 = currentDoc.getParent(node);
+                if (isPair(p1) && p1.value === null) {
+                    // seems to be writing on a key still without value
+                    const p2 = currentDoc.getParent(p1);
+                    if (isMap(p2)) {
+                        node = p2;
                     }
                 }
             }
-            console.log("FIXED:");
+
             this.dumpNode(node, currentDoc);
             const p1 = currentDoc.getParent(node);
+
+            var path = this.getPath(node, currentDoc);
+
+            console.log("path " + path.join(' - ') + ' found by closest: ' + foundByClosest);
+
+            // At this point node and path should be meaningful and consistent
+            // Path is were completions need to be listed, it really doesn't matter where the cursor is, cursor shouldn't be checked
+            // to see what completions are need anymore
 
             // List items under - platform: |
             if (isPair(p1) && isScalar(p1.key)) {
@@ -389,62 +370,275 @@ export class CompletionHandler {
                             const p4 = currentDoc.getParent(p3);
                             if (isPair(p4) && isScalar(p4.key)) {
                                 const platform_name = p4.key.value as string;
-                                return this.resolvePlatformNames(result, platform_name);
+                                return this.addPlatformNames(result, platform_name);
                             }
                         }
                     }
                 }
             }
 
-            if (isMap(node) && isSeq(p1)) {
-                const p2 = currentDoc.getParent(p1);
-                if (isPair(p2)) {
-                    const p3 = currentDoc.getParent(p2);
-                    if (p3 === currentDoc.root.internalNode
-                        && isScalar(p2.key)) {
-                        const platform = p2.key.value as string;
-                        let domain = null;
-                        // Find platform name
-                        for (var m of node.items) {
-                            if (isScalar(m.key) && isScalar(m.value) && m.key.value === "platform") {
-                                domain = m.value.value;
-                                break;
+            let pathElement;
+            // First get the root component
+            let schema: Schema;
+            let pathIndex = 0;
+            if (path.length) {
+                pathElement = docMap.get(path[0]);
+                if (this.core_schema.isPlatform(path[0])) {
+                    if (path.length > 1) {
+                        // we are in a platform (e.g. sensor) and there are inner stuff
+                        if (isNumber(path[1])) {
+                            // the index in the sequence
+                            const index = path[1];
+                            if (isSeq(pathElement)) {
+                                pathElement = pathElement.get(index);
+                                pathIndex++;
                             }
                         }
-                        if (domain === null) {
-                            result.push({
-                                label: "platform",
-                                kind: CompletionItemKind.EnumMember,
-                                insertText: 'platform: ',
-                                command: { title: 'chain', command: "editor.action.triggerSuggest" }
-                            });
-                            return result;
+                    }
+                    // else branch not needed here as pathElement should be pointing
+                    // to the object with the platform key
+                    if (isMap(pathElement)) {
+                        const domain = pathElement.get("platform");
+                        if (isString(domain)) {
+                            // this.resolvePlatformComponent(result, path[0], domain, rootComponentMap);
+                            schema = this.core_schema.getComponentPlatformSchema(domain, path[0]);
+                            // return result;
                         }
-                        this.resolvePlatformComponent(result, platform, domain);
+                    }
+                    if (!schema) {
+                        result.push({
+                            label: "platform",
+                            kind: CompletionItemKind.EnumMember,
+                            insertText: isSeq(currentDoc.getParent(node)) ? 'platform: ' : '- platform: ',
+                            command: { title: 'chain', command: "editor.action.triggerSuggest" }
+                        });
+                        return result;
                     }
                 }
-                const xp1 = p1;
+                else {
+                    schema = this.core_schema.getComponentSchema(path[0]);
+                }
+
+
             }
 
+
+            if (path.length === 0) {
+                this.addCoreComponents(result, docMap);
+            }
+            else {
+                // schema should be ok at this level
+                if (pathIndex + 1 === path.length) {
+                    // this case might be if a component has any child yet
+                    this.addConfigVars(result, schema, pathElement);
+                    return result;
+                }
+
+                // Now that a component is known, revolve completions recursively
+                this.resolveComponent(result, path, pathIndex, schema, pathElement);
+            }
+            return result;
 
         } catch (error) {
-            console.log(error);
+            console.log("ERROR:" + JSON.stringify(error));
         }
-        if (result.length === 0) {
-            return this.resolveCoreComponents(result);
-        }
+
         return result;
     }
 
-    private resolvePlatformNames(result: CompletionItem[], platform_name: string) {
+    private resolveComponent(result: CompletionItem[], path: any[], pathIndex: number, schema: Schema, pathElement: YAMLMap) {
+        console.log("component: " + path[pathIndex]);
+        pathIndex++;
+        this.resolveConfigVar(result, path, pathIndex, this.findConfigVar(schema, path[pathIndex]), pathElement);
+    }
+
+    private resolveConfigVar(result: CompletionItem[], path: any[], pathIndex: number, cv: ConfigVar, pathElement: YAMLMap) {
+
+        if (isMap(pathElement) && isString(path[pathIndex])) {
+            if (cv.type === "schema") {
+                const innerElement = pathElement.get(path[pathIndex]);
+                if (isMap(innerElement)) {
+                    if (pathIndex + 1 === path.length) {
+                        return this.addConfigVars(result, cv.schema, innerElement);
+                    }
+                    return this.resolveComponent(result, path, pathIndex + 1, cv.schema, innerElement);
+                }
+                else {
+                    if (pathIndex + 1 === path.length) {
+                        return this.addConfigVars(result, cv.schema, null);
+                    }
+                    throw new Error("Expected map not found in " + pathIndex);
+                }
+            }
+            else if (cv.type === "enum") {
+                return this.addEnums(result, cv);
+            }
+            else if (cv.type === "trigger") {
+                return this.resolveTrigger(result, path, pathIndex, pathElement, cv);
+            }
+            else if (cv.type === "registry") {
+                if (pathIndex + 1 < path.length) {
+                    if (isNumber(path[pathIndex + 1])) {
+                        const item = pathElement.items[path[pathIndex + 1]];
+                        if (isPair(item)) {
+                            // is this an action?
+                            const action = this.core_schema.getActionSchema(item.key.toString());
+                            if (action !== undefined) {
+                                if (pathIndex + 3 === path.length) {
+                                    return this.addConfigVars(result, action, pathElement);
+                                }
+                                return this.resolveComponent(result, path, pathIndex + 3, action, pathElement);
+                            }
+                        }
+                    }
+                    if (isString(path[pathIndex + 1])) {
+                        const inner = pathElement.get(path[pathIndex + 1]);
+                        // we should only have actions here, maps should be one key only
+                        if (isMap(inner)) {
+                            const item = inner.items[0];
+                            if (isPair(item)) {
+                                // is this an action?
+                                const action = this.core_schema.getActionSchema(item.key.toString());
+                                if (action !== undefined) {
+                                    if (pathIndex + 3 === path.length) {
+                                        return this.addConfigVars(result, action, inner);
+                                    }
+                                    return this.resolveComponent(result, path, pathIndex + 3, action, inner);
+                                }
+                            }
+                        }
+                    }
+                }
+                return this.addRegistry(result, cv.registry);
+            }
+            else if (cv.type === "typed") {
+                const innerElement = pathElement.get(path[pathIndex]);
+                if (innerElement === null) {
+                    result.push({
+                        label: "type",
+                        kind: CompletionItemKind.Enum,
+                        insertText: 'type: ',
+                        command: { title: 'chain', command: "editor.action.triggerSuggest" }
+                    });
+                    return result;
+                }
+                else if (pathIndex + 2 >= path.length && path[pathIndex + 1] === "type") {
+                    for (const schema_type in cv.types) {
+                        result.push({
+                            label: schema_type,
+                            kind: CompletionItemKind.Enum,
+                            insertText: schema_type + '\n',
+                            command: { title: 'chain', command: "editor.action.triggerSuggest" }
+                        });
+                    }
+                    return result;
+                }
+                else {
+                    if (innerElement !== null && isMap(innerElement)) {
+                        const type = innerElement.get('type');
+                        if (type !== null && isString(type)) {
+                            if (pathIndex + 1 === path.length) {
+                                return this.addConfigVars(result, cv.types[type], null);
+                            }
+                            return this.resolveComponent(result, path, pathIndex, cv.types[type], innerElement);
+                        }
+                    }
+                }
+
+            }
+        }
+
+        throw new Error("Unexpected path traverse.");
+    }
+
+    resolveTrigger(result: CompletionItem[], path: any[], pathIndex: number, pathElement: YAMLMap<unknown, unknown>, cv: ConfigVarTrigger) {
+        console.log("trigger: " + path[pathIndex]);
+        // trigger can be a single item on a map or otherwise a seq.
+        let inner = pathElement.get(path[pathIndex]);
+        if (isMap(inner)) {
+            const final = pathIndex + 1 === path.length;
+            if (final) {
+                // show autocomplete for other props, like then, (depending on trigger schema, on_value_range / above; on_boot / priority, etc)
+                this.addConfigVars(result, cv.schema, inner);
+                return;
+            }
+
+            if (path[pathIndex + 1] === "then") {
+                // all triggers support then, even when they do not have a schema
+                // then is a trigger without schema so...
+                return this.resolveTrigger(result, path, pathIndex + 1, inner, { type: 'trigger', key: 'Optional', schema: undefined, has_required_var: false });
+            }
+
+            // navigate into the prop
+            // this can be an action or a prop of this trigger
+            if (cv.schema !== undefined) {
+                const innerProp = this.findConfigVar(cv.schema, path[pathIndex + 1]);
+                if (innerProp !== undefined) {
+                    return this.resolveComponent(result, path, pathIndex + 1, cv.schema, inner);
+                }
+            }
+            // is this an action?
+            const action = this.core_schema.getActionSchema(path[pathIndex + 1]);
+            if (action !== undefined) {
+                if (pathIndex + 2 === path.length) {
+                    return this.addConfigVars(result, action, inner);
+                }
+                return this.resolveComponent(result, path, pathIndex + 1, action, inner);
+            }
+
+            return this.resolveComponent(result, path, pathIndex + 1, cv.schema, inner);
+
+        }
+        if (isSeq(inner)) {
+            if (pathIndex + 2 < path.length) {
+                // navigate into seq
+                inner = inner.items[path[pathIndex + 1]];
+                // we should only have actions here, maps should be one key only
+                if (isMap(inner)) {
+                    const item = inner.items[0];
+                    if (isPair(item)) {
+                        // is this an action?
+                        const action = this.core_schema.getActionSchema(item.key.toString());
+                        if (action !== undefined) {
+                            if (pathIndex + 3 === path.length) {
+                                return this.addConfigVars(result, action, inner);
+                            }
+                            return this.resolveComponent(result, path, pathIndex + 2, action, inner);
+                        }
+                    }
+                }
+            }
+            this.addRegistry(result, "actions");
+            return;
+        }
+        if (inner === null) {
+            // This is an empty action
+            // If this has a schema, use it, these are suggestions so user will see the trigger parameters even when they are optional
+            // However if the only option is 'then:' we should avoid it for readability
+            if (cv.schema !== undefined) {
+                return this.addConfigVars(result, cv.schema, null);
+            }
+            else {
+                return this.addRegistry(result, "actions");
+            }
+        }
+    }
+
+    resolveRegistry(result: CompletionItem[], path: any[], pathIndex: number, schema: Schema, pathElement: YAMLMap<unknown, unknown>) {
+
+
+    }
+
+
+    private addPlatformNames(result: CompletionItem[], platform_name: string) {
         const c = this.core_schema.getComponent(platform_name);
 
-        if (c.platforms === undefined) {
+        if (c.components === undefined) {
             console.log(`Error: not a platform ${platform_name}`);
             return result;
         }
 
-        for (var component of c.platforms) {
+        for (var component of c.components) {
             result.push({
                 label: component,
                 kind: CompletionItemKind.EnumMember,
@@ -456,8 +650,14 @@ export class CompletionHandler {
         return result;
     }
 
-    private resolveCoreComponents(result: CompletionItem[]) {
-        for (var name of this.core_schema.platforms) {
+    private addCoreComponents(result: CompletionItem[], docMap: YAMLMap) {
+        // suggest platforms, e.g. sensor:, binary_sensor:
+        const platformList = this.core_schema.getPlatformList();
+        for (var name of platformList) {
+            // Don't add duplicate keys
+            if (this.mapHasScalarKey(docMap, name)) {
+                continue;
+            }
             result.push({
                 label: name,
                 kind: CompletionItemKind.Class,
@@ -465,38 +665,124 @@ export class CompletionHandler {
                 command: { title: 'chain', command: "editor.action.triggerSuggest" }
             });
         }
-        for (var component in this.core_schema.components) {
-            const schema = this.core_schema.components[component];
-            if (schema.schema.component !== undefined) {
-                result.push({
-                    label: component,
-                    kind: CompletionItemKind.Field,
-                    insertText: component + ':\n  ',
-                    command: { title: 'chain', command: "editor.action.triggerSuggest" }
-                });
+        // suggest component/hub e.g. dallas:, sim800l:
+        for (var component of this.core_schema.getComponentList()) {
+            // skip platforms added in previous loop
+            if (platformList.indexOf(component) !== -1) {
+                continue;
             }
+            // Don't add duplicate keys
+            if (this.mapHasScalarKey(docMap, component)) {
+                continue;
+            }
+            result.push({
+                label: component,
+                kind: CompletionItemKind.Field,
+                insertText: component + ':\n  ',
+                command: { title: 'chain', command: "editor.action.triggerSuggest" }
+            });
         }
         return result;
     }
 
-    private resolvePlatformComponent(result: CompletionItem[], platform: string, domain: string) {
+    private resolvePlatformComponent(result: CompletionItem[], platform: string, domain: string, node: YAMLMap) {
         const schema = this.core_schema.getComponentPlatformSchema(domain, platform);
-        this.addConfigVars(result, schema);
+        this.addConfigVars(result, schema, node);
     }
 
-    private addConfigVars(result: CompletionItem[], schema: Schema) {
-        for (var prop in schema.config_vars) {
-            result.push({
+
+    private mapHasScalarKey(map: YAMLMap, key: string): boolean {
+        for (var item of map.items) {
+            if (isScalar(item.key) && item.key.value === key) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private addConfigVars(result: CompletionItem[], schema: Schema, node: YAMLMap) {
+        for (const [prop, config] of this.iter_configVars(schema)) {
+            // Skip existent properties
+            if (node !== null && this.mapHasScalarKey(node, prop)) {
+                continue;
+            }
+            let triggerSuggest = false;
+            const item: CompletionItem = {
                 label: prop,
-                kind: CompletionItemKind.Property,
-                insertText: prop + ': ',
+                insertText: prop + ': '
+            };
+            switch (config.type) {
+                case "schema":
+                    item.kind = CompletionItemKind.Struct;
+                    item.insertText += '\n  ';
+                    triggerSuggest = true;
+                    break;
+                case "enum":
+                    item.kind = CompletionItemKind.Enum;
+                    triggerSuggest = true;
+                    break;
+                case "trigger":
+                    item.kind = CompletionItemKind.Event;
+                    break;
+                case "registry":
+                    item.kind = CompletionItemKind.Field;
+
+                    break;
+                default:
+                    item.kind = CompletionItemKind.Property;
+                    break;
+            }
+            if (triggerSuggest) {
+                item.command = { title: 'chain', command: "editor.action.triggerSuggest" };
+            }
+            result.push(item);
+        }
+    }
+
+    * iter_configVars(schema: Schema): Generator<[string, ConfigVar]> {
+        for (var prop in schema.config_vars) {
+            yield [prop, schema.config_vars[prop]];
+        }
+        if (schema.extends !== undefined) {
+            for (var extended of schema.extends) {
+                const s = this.core_schema.getExtendedSchema(extended);
+                for (const pair of this.iter_configVars(s)) {
+                    yield pair;
+                }
+            }
+        }
+    }
+
+    findConfigVar(schema, prop): ConfigVar {
+        for (const [p, config] of this.iter_configVars(schema)) {
+            if (p === prop) {
+                return config;
+            }
+        }
+        return undefined;
+    }
+
+
+    addEnums(result: CompletionItem[], cv: ConfigVarEnum) {
+        for (var value of cv.values) {
+            result.push({
+                label: value,
+                kind: CompletionItemKind.EnumMember,
+                insertText: value,
                 // command: { title: 'chain', command: "editor.action.triggerSuggest" }
             });
         }
-        for (var extended of schema.extends) {
-            const s = this.core_schema.getExtendedSchema(extended);
-            this.addConfigVars(result, s);
-        }
     }
 
+    addRegistry(result: CompletionItem[], registry: string) {
+        for (var value of this.core_schema.getRegistry(registry)) {
+            result.push({
+                label: value,
+                kind: CompletionItemKind.Keyword,
+                insertText: "- " + value + ": ",
+                // command: { title: 'chain', command: "editor.action.triggerSuggest" }
+            });
+        }
+    }
 }
+

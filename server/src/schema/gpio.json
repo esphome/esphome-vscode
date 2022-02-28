@@ -1,1 +1,1 @@
-{"schema": {"binary_sensor": {"config_vars": {"pin": {"raw": "<function _schema_creator.<locals>.validator at 0x000001DDB8806438>"}, "setup_priority": {"raw": "Coerce(float, msg=None)"}}, "extends": ["binary_sensor"]}}}
+{"gpio.binary_sensor": {"schemas": {"CONFIG_SCHEMA": {"config_vars": {"pin": {"key": "Required", "type": "<class 'function'>"}}, "extends": ["binary_sensor.BINARY_SENSOR_SCHEMA", "core.COMPONENT_SCHEMA"]}}}}

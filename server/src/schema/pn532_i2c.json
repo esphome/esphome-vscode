@@ -1,0 +1,1 @@
+{"pn532_i2c": {"schemas": {"CONFIG_SCHEMA": {"config_vars": {"i2c_id": {"key": "GeneratedID", "type": "<class 'function'>"}, "address": {"key": "Optional", "default": "36", "type": "<class 'voluptuous.validators.All'>"}}, "extends": ["pn532.PN532_SCHEMA"]}}}}

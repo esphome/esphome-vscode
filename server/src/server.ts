@@ -119,9 +119,10 @@ connection.onInitialized(async () => {
 	console.log("Setting up completion handler 2");
 
 	try {
-		const completionHandler = new CompletionHandler(documents, yamlDocumentsCache);
+		const completionHandler = new CompletionHandler(yamlDocumentsCache);
 		console.log("Setting up onCompletion");
-		connection.onCompletion(completionHandler.onCompletion);
+		connection.onCompletion(({ textDocument, position }: TextDocumentPositionParams) =>
+			completionHandler.onCompletion(documents.get(textDocument.uri), position));
 	}
 	catch (ex) {
 		console.log("Error " + ex)
