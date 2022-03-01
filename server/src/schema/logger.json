@@ -1,1 +1,1 @@
-{"logger": {"actions": {"log": {"config_vars": {}}}}}
+{"logger": {"action": {"log": {"config_vars": {}}}}}

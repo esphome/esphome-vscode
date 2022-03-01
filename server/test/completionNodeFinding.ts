@@ -13,7 +13,7 @@ const testCompletionHasLabels = (result: CompletionItem[], testSet) => {
       count++;
     }
     else {
-      assert.fail(`expected label '${c}' in result`);
+      assert.fail(`expected label '${c}' in result, got instead: ${JSON.stringify(result)}`);
     }
   }
   assert(count === testSet.length, "some completion labels not found");
@@ -240,6 +240,25 @@ sensor:
 esphome:
   name_add_mac_suffix: `), { line: 1, character: 23 });
     testCompletionHasLabels(result, ["True", "False"]);
+  });
+
+  it('list sensor filters', () => {
+    const result = x.onCompletion(Docs.getTextDoc(`
+sensor:
+  - platform: template
+    filters:
+      `), { line: 3, character: 6 });
+    testCompletionHasLabels(result, ["delta", "median"]);
+  });
+
+
+  it('list binary sensor filters', () => {
+    const result = x.onCompletion(Docs.getTextDoc(`
+binary_sensor:
+  - platform: template
+    filters:
+      `), { line: 3, character: 6 });
+    testCompletionHasLabels(result, ["delayed_on", "invert"]);
   });
 
 

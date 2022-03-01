@@ -220,26 +220,26 @@
       "pn532_i2c",
       "pcf8574"
     ],
-    "actions": {
+    "action": {
       "delay": { "config_vars": {} },
       "if": {
         "config_vars": {
           "condition": {
             "key": "Required",
             "type": "registry",
-            "registry": "conditions"
+            "registry": "condition"
           },
           "then": {
             "key": "Optional",
             "type": "registry",
             "is_list": true,
-            "registry": "core.ACTION_REGISTRY"
+            "registry": "action"
           },
           "else": {
             "key": "Optional",
             "type": "registry",
             "is_list": true,
-            "registry": "core.ACTION_REGISTRY"
+            "registry": "action"
           }
         }
       },
@@ -248,13 +248,13 @@
           "condition": {
             "key": "Required",
             "type": "registry",
-            "registry": "conditions"
+            "registry": "condition"
           },
           "then": {
             "key": "Required",
             "type": "registry",
             "is_list": true,
-            "registry": "core.ACTION_REGISTRY"
+            "registry": "action"
           }
         }
       },
@@ -265,14 +265,14 @@
             "key": "Required",
             "type": "registry",
             "is_list": true,
-            "registry": "core.ACTION_REGISTRY"
+            "registry": "action"
           }
         }
       },
       "wait_until": { "config_vars": {} },
       "lambda": { "config_vars": {} }
     },
-    "conditions": {
+    "condition": {
       "and": { "config_vars": {} },
       "or": { "config_vars": {} },
       "not": { "config_vars": {} },
@@ -283,11 +283,12 @@
           "condition": {
             "key": "Required",
             "type": "registry",
-            "registry": "conditions"
+            "registry": "condition"
           }
         },
         "extends": ["core.COMPONENT_SCHEMA"]
       }
-    }
+    },
+    "pins": ["esp32", "esp8266", "pcf8574"]
   }
 }

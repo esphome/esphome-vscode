@@ -19,6 +19,7 @@ interface SchemaSet {
 
 interface ConfigVarBase {
     key: string;
+    detail?: string;
 }
 
 interface ConfigVarRegistry extends ConfigVarBase {
@@ -57,8 +58,11 @@ interface ConfigVarBoolean extends ConfigVarBase {
     type: 'boolean';
     default: string;
 }
+interface ConfigVarString extends ConfigVarBase {
+    type: 'string';
+}
 
-type ConfigVar = ConfigVarSchema | ConfigVarRegistry | ConfigVarEnum | ConfigVarTrigger | ConfigVarTyped | ConfigVarPin | ConfigVarBoolean;
+type ConfigVar = ConfigVarSchema | ConfigVarRegistry | ConfigVarEnum | ConfigVarTrigger | ConfigVarTyped | ConfigVarPin | ConfigVarBoolean | ConfigVarString;
 
 interface ConfigVars {
     [name: string]: ConfigVar;
@@ -74,19 +78,20 @@ interface Component {
     };
     // These are the components e.g. of sensor, binary_sensor
     components: string[];
-    actions: {
+    action: {
         [name: string]: Schema;
     };
-    conditions: {
+    condition: {
         [name: string]: Schema;
     };
-    filters: {
+    filter: {
         [name: string]: Schema;
     };
 }
 interface CoreComponent extends Component {
     platforms: string[];
     components: string[];
+    pins: string[];
 }
 class CoreSchema {
     schema: SchemaSet;
@@ -144,26 +149,30 @@ class CoreSchema {
     }
 
     * getRegistry(registry: string): Generator<string> {
-        if (registry === "core.ACTION_REGISTRY") {
-            registry = "actions";
+        if (registry.includes(".")) {
+            const [domain, registryName] = registry.split('.');
+            for (const name in this.schema[domain][registryName]) {
+                yield name;
+            }
         }
-        for (const c in this.schema) {
-
-            if (this.schema[c][registry] !== undefined) {
-                for (const name in this.schema[c][registry]) {
-                    yield ((c === "core") ? "" : (c + ".")) + name;
+        else {
+            for (const c in this.schema) {
+                if (this.schema[c][registry] !== undefined) {
+                    for (const name in this.schema[c][registry]) {
+                        yield ((c === "core") ? "" : (c + ".")) + name;
+                    }
                 }
             }
         }
     }
 
     getRegistrySchema(registry: string, entry: string): Schema {
-        if (registry === "actions" || registry === "core.ACTION_REGISTRY") {
+        if (registry === "action") {
             for (const c in this.schema) {
-                if (this.schema[c].actions !== undefined) {
-                    for (const action_name in this.schema[c].actions) {
+                if (this.schema[c].action !== undefined) {
+                    for (const action_name in this.schema[c].action) {
                         if (action_name === entry) {
-                            return this.schema[c].actions[action_name];
+                            return this.schema[c].action[action_name];
                         }
                     }
                 }
@@ -172,9 +181,14 @@ class CoreSchema {
         }
     }
     getActionSchema(entry: string) {
-        return this.getRegistrySchema("actions", entry);
+        return this.getRegistrySchema("action", entry);
     }
-
+    getPinSchema(component: string): Schema {
+        return this.getComponent(component)["pin"];
+    }
+    getPins(): string[] {
+        return this.schema.core.pins;
+    }
 }
 interface PlatformSchema {
     name: string;
@@ -232,15 +246,6 @@ export class CompletionHandler {
         }
     }
 
-    private createTempObjNode(currentWord: string, node: Node, currentDoc: SingleYAMLDocument): YAMLMap {
-        const obj = {};
-        obj[currentWord] = null;
-        const map: YAMLMap = currentDoc.internalDocument.createNode(obj) as YAMLMap;
-        map.range = node.range;
-        (map.items[0].key as Node).range = node.range;
-        (map.items[0].value as Node).range = node.range;
-        return map;
-    }
     private getCurrentWord(doc: TextDocument, offset: number): string {
         let i = offset - 1;
         const text = doc.getText();
@@ -441,12 +446,12 @@ export class CompletionHandler {
                 // schema should be ok at this level
                 if (pathIndex + 1 === path.length) {
                     // this case might be if a component has any child yet
-                    this.addConfigVars(result, schema, pathElement);
+                    this.addConfigVars(result, schema, pathElement, docMap);
                     return result;
                 }
 
                 // Now that a component is known, revolve completions recursively
-                this.resolveComponent(result, path, pathIndex, schema, pathElement, node);
+                this.resolveComponent(result, path, pathIndex, schema, pathElement, node, docMap);
             }
             return result;
 
@@ -457,26 +462,26 @@ export class CompletionHandler {
         return result;
     }
 
-    private resolveComponent(result: CompletionItem[], path: any[], pathIndex: number, schema: Schema, pathElement: YAMLMap, node: YamlNode) {
+    private resolveComponent(result: CompletionItem[], path: any[], pathIndex: number, schema: Schema, pathElement: YAMLMap, node: YamlNode, docMap: YAMLMap) {
         console.log("component: " + path[pathIndex]);
         pathIndex++;
-        this.resolveConfigVar(result, path, pathIndex, this.findConfigVar(schema, path[pathIndex]), pathElement, node);
+        this.resolveConfigVar(result, path, pathIndex, this.findConfigVar(schema, path[pathIndex], docMap), pathElement, node, docMap);
     }
 
-    private resolveConfigVar(result: CompletionItem[], path: any[], pathIndex: number, cv: ConfigVar, pathElement: YAMLMap, node: YamlNode) {
+    private resolveConfigVar(result: CompletionItem[], path: any[], pathIndex: number, cv: ConfigVar, pathElement: YAMLMap, node: YamlNode, docMap: YAMLMap) {
 
         if (isMap(pathElement) && isString(path[pathIndex])) {
             if (cv.type === "schema") {
                 const innerElement = pathElement.get(path[pathIndex]);
                 if (isMap(innerElement)) {
                     if (pathIndex + 1 === path.length) {
-                        return this.addConfigVars(result, cv.schema, innerElement);
+                        return this.addConfigVars(result, cv.schema, innerElement, docMap);
                     }
-                    return this.resolveComponent(result, path, pathIndex, cv.schema, innerElement, node);
+                    return this.resolveComponent(result, path, pathIndex, cv.schema, innerElement, node, docMap);
                 }
                 else {
                     if (pathIndex + 1 === path.length) {
-                        return this.addConfigVars(result, cv.schema, null);
+                        return this.addConfigVars(result, cv.schema, null, docMap);
                     }
                     throw new Error("Expected map not found in " + pathIndex);
                 }
@@ -485,7 +490,7 @@ export class CompletionHandler {
                 return this.addEnums(result, cv);
             }
             else if (cv.type === "trigger") {
-                return this.resolveTrigger(result, path, pathIndex, pathElement, cv, node);
+                return this.resolveTrigger(result, path, pathIndex, pathElement, cv, node, docMap);
             }
             else if (cv.type === "registry") {
                 if (pathIndex + 1 < path.length) {
@@ -496,9 +501,9 @@ export class CompletionHandler {
                             const action = this.core_schema.getActionSchema(item.key.toString());
                             if (action !== undefined) {
                                 if (pathIndex + 3 === path.length) {
-                                    return this.addConfigVars(result, action, pathElement);
+                                    return this.addConfigVars(result, action, pathElement, docMap);
                                 }
-                                return this.resolveComponent(result, path, pathIndex + 3, action, pathElement, node);
+                                return this.resolveComponent(result, path, pathIndex + 3, action, pathElement, node, docMap);
                             }
                         }
                     }
@@ -512,9 +517,9 @@ export class CompletionHandler {
                                 const action = this.core_schema.getActionSchema(item.key.toString());
                                 if (action !== undefined) {
                                     if (pathIndex + 3 === path.length) {
-                                        return this.addConfigVars(result, action, inner);
+                                        return this.addConfigVars(result, action, inner, docMap);
                                     }
-                                    return this.resolveComponent(result, path, pathIndex + 3, action, inner, node);
+                                    return this.resolveComponent(result, path, pathIndex + 3, action, inner, node, docMap);
                                 }
                             }
                         }
@@ -549,16 +554,19 @@ export class CompletionHandler {
                         const type = innerElement.get('type');
                         if (type !== null && isString(type)) {
                             if (pathIndex + 1 === path.length) {
-                                return this.addConfigVars(result, cv.types[type], innerElement);
+                                return this.addConfigVars(result, cv.types[type], innerElement, docMap);
                             }
-                            return this.resolveComponent(result, path, pathIndex, cv.types[type], innerElement, node);
+                            return this.resolveComponent(result, path, pathIndex, cv.types[type], innerElement, node, docMap);
                         }
                     }
                 }
-
             }
+            else if (cv.type === "string") {
+                return result;
+            }
+
             else if (cv.type === "pin") {
-                if (pathElement.items.length > 0 && node === pathElement.items[0].value) {
+                if (pathElement.items.length > 0 && isScalar(node) && node === pathElement.items[0].value) {
                     // cursor is in the value of the pair
                     return this.resolvePinNumbers(result, cv);
                 }
@@ -569,18 +577,43 @@ export class CompletionHandler {
 
                 const innerElement = pathElement.get(path[pathIndex]);
 
+                let schema: Schema;
+
+                if (isMap(innerElement)) {
+                    // Check if it is using a port expander
+                    for (const expander of this.core_schema.getPins()) {
+                        if (expander !== "esp32" && expander !== "esp8266" && docMap.get(expander)) {
+                            if (innerElement.get(expander)) {
+                                schema = this.core_schema.getPinSchema(expander);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                if (schema === undefined) {
+                    if (docMap.get("esp32")) { // TODO: Support old esphome / board
+                        schema = this.core_schema.getPinSchema("esp32");
+                    }
+                    else if (docMap.get("esp8266")) {
+                        schema = this.core_schema.getPinSchema("esp8266");
+                    }
+                }
+
+                if (schema !== undefined && innerElement === null && !cv.internal) {
+                    // suggest all expanders
+                    for (const expander of this.core_schema.getPins()) {
+                        if (expander !== "esp32" && expander !== "esp8266" && docMap.get(expander)) {
+                            schema.config_vars[expander] = { key: "Optional", "type": "string" };
+                        }
+                    }
+                }
+
                 return this.resolveConfigVar(result, path, pathIndex, {
                     type: "schema",
                     key: "Optional",
-                    schema: {
-                        config_vars: {
-                            number: { type: "boolean", default: "False", key: "Optional" },
-                            mode: { type: "boolean", default: "False", key: "Optional" },
-
-                        },
-                        extends: []
-                    }
-                }, pathElement, node);
+                    schema: schema,
+                }, pathElement, node, docMap);
             }
             else if (cv.type === "boolean") {
                 for (var value of ["True", "False"]) {
@@ -609,7 +642,7 @@ export class CompletionHandler {
         });
     }
 
-    resolveTrigger(result: CompletionItem[], path: any[], pathIndex: number, pathElement: YAMLMap<unknown, unknown>, cv: ConfigVarTrigger, node: YamlNode) {
+    resolveTrigger(result: CompletionItem[], path: any[], pathIndex: number, pathElement: YAMLMap<unknown, unknown>, cv: ConfigVarTrigger, node: YamlNode, docMap: YAMLMap) {
         console.log("trigger: " + path[pathIndex]);
         // trigger can be a single item on a map or otherwise a seq.
         let inner = pathElement.get(path[pathIndex]);
@@ -617,34 +650,34 @@ export class CompletionHandler {
             const final = pathIndex + 1 === path.length;
             if (final) {
                 // show autocomplete for other props, like then, (depending on trigger schema, on_value_range / above; on_boot / priority, etc)
-                this.addConfigVars(result, cv.schema, inner);
+                this.addConfigVars(result, cv.schema, inner, docMap);
                 return;
             }
 
             if (path[pathIndex + 1] === "then") {
                 // all triggers support then, even when they do not have a schema
                 // then is a trigger without schema so...
-                return this.resolveTrigger(result, path, pathIndex + 1, inner, { type: 'trigger', key: 'Optional', schema: undefined, has_required_var: false }, node);
+                return this.resolveTrigger(result, path, pathIndex + 1, inner, { type: 'trigger', key: 'Optional', schema: undefined, has_required_var: false }, node, docMap);
             }
 
             // navigate into the prop
             // this can be an action or a prop of this trigger
             if (cv.schema !== undefined) {
-                const innerProp = this.findConfigVar(cv.schema, path[pathIndex + 1]);
+                const innerProp = this.findConfigVar(cv.schema, path[pathIndex + 1], docMap);
                 if (innerProp !== undefined) {
-                    return this.resolveComponent(result, path, pathIndex + 1, cv.schema, inner, node);
+                    return this.resolveComponent(result, path, pathIndex + 1, cv.schema, inner, node, docMap);
                 }
             }
             // is this an action?
             const action = this.core_schema.getActionSchema(path[pathIndex + 1]);
             if (action !== undefined) {
                 if (pathIndex + 2 === path.length) {
-                    return this.addConfigVars(result, action, inner);
+                    return this.addConfigVars(result, action, inner, docMap);
                 }
-                return this.resolveComponent(result, path, pathIndex + 1, action, inner, node);
+                return this.resolveComponent(result, path, pathIndex + 1, action, inner, node, docMap);
             }
 
-            return this.resolveComponent(result, path, pathIndex + 1, cv.schema, inner, node);
+            return this.resolveComponent(result, path, pathIndex + 1, cv.schema, inner, node, docMap);
 
         }
         if (isSeq(inner)) {
@@ -659,14 +692,14 @@ export class CompletionHandler {
                         const action = this.core_schema.getActionSchema(item.key.toString());
                         if (action !== undefined) {
                             if (pathIndex + 3 === path.length) {
-                                return this.addConfigVars(result, action, inner);
+                                return this.addConfigVars(result, action, inner, docMap);
                             }
-                            return this.resolveComponent(result, path, pathIndex + 2, action, inner, node);
+                            return this.resolveComponent(result, path, pathIndex + 2, action, inner, node, docMap);
                         }
                     }
                 }
             }
-            this.addRegistry(result, "actions");
+            this.addRegistry(result, "action");
             return;
         }
         if (inner === null) {
@@ -674,10 +707,10 @@ export class CompletionHandler {
             // If this has a schema, use it, these are suggestions so user will see the trigger parameters even when they are optional
             // However if the only option is 'then:' we should avoid it for readability
             if (cv.schema !== undefined) {
-                return this.addConfigVars(result, cv.schema, null);
+                return this.addConfigVars(result, cv.schema, null, docMap);
             }
             else {
-                return this.addRegistry(result, "actions");
+                return this.addRegistry(result, "action");
             }
         }
     }
@@ -738,12 +771,6 @@ export class CompletionHandler {
         return result;
     }
 
-    private resolvePlatformComponent(result: CompletionItem[], platform: string, domain: string, node: YAMLMap) {
-        const schema = this.core_schema.getComponentPlatformSchema(domain, platform);
-        this.addConfigVars(result, schema, node);
-    }
-
-
     private mapHasScalarKey(map: YAMLMap, key: string): boolean {
         for (var item of map.items) {
             if (isScalar(item.key) && item.key.value === key) {
@@ -753,9 +780,9 @@ export class CompletionHandler {
         return false;
     }
 
-    private addConfigVars(result: CompletionItem[], schema: Schema, node: YAMLMap) {
+    private addConfigVars(result: CompletionItem[], schema: Schema, node: YAMLMap, docMap: YAMLMap) {
         let preselected = false;
-        for (const [prop, config] of this.iter_configVars(schema)) {
+        for (const [prop, config] of this.iter_configVars(schema, docMap)) {
             // Skip existent properties
             if (node !== null && this.mapHasScalarKey(node, prop)) {
                 continue;
@@ -765,6 +792,13 @@ export class CompletionHandler {
                 label: prop,
                 insertText: prop + ': '
             };
+            if (config.detail) {
+                item.detail = config.detail;
+            }
+            else {
+                item.detail = config.key;
+            }
+
             switch (config.type) {
                 case "schema":
                     item.kind = CompletionItemKind.Struct;
@@ -804,22 +838,28 @@ export class CompletionHandler {
         }
     }
 
-    * iter_configVars(schema: Schema): Generator<[string, ConfigVar]> {
+    * iter_configVars(schema: Schema, docMap: YAMLMap): Generator<[string, ConfigVar]> {
         for (var prop in schema.config_vars) {
+            if (prop === "mqtt_id" && docMap.get("mqtt") === undefined) {
+                continue;
+            }
             yield [prop, schema.config_vars[prop]];
         }
         if (schema.extends !== undefined) {
             for (var extended of schema.extends) {
+                if (extended.startsWith("core.MQTT") && docMap.get("mqtt") === undefined) {
+                    continue;
+                }
                 const s = this.core_schema.getExtendedSchema(extended);
-                for (const pair of this.iter_configVars(s)) {
+                for (const pair of this.iter_configVars(s, docMap)) {
                     yield pair;
                 }
             }
         }
     }
 
-    findConfigVar(schema, prop): ConfigVar {
-        for (const [p, config] of this.iter_configVars(schema)) {
+    findConfigVar(schema, prop, docMap: YAMLMap): ConfigVar {
+        for (const [p, config] of this.iter_configVars(schema, docMap)) {
             if (p === prop) {
                 return config;
             }

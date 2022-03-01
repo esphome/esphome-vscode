@@ -1,1 +1,1 @@
-{"uart": {"actions": {"write": {"config_vars": {}}}}}
+{"uart": {"action": {"write": {"config_vars": {}}}}}

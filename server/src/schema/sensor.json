@@ -61,7 +61,7 @@
             "key": "Optional",
             "type": "registry",
             "is_list": true,
-            "registry": "sensor.FILTER_REGISTRY"
+            "registry": "sensor.filter"
           },
           "on_value": { "key": "Optional", "type": "trigger" },
           "on_raw_value": { "key": "Optional", "type": "trigger" },
@@ -204,7 +204,7 @@
         }
       }
     },
-    "actions": {
+    "action": {
       "template.publish": {
         "config_vars": {
           "id": { "key": "Required", "type": "<class 'function'>" },
@@ -212,7 +212,7 @@
         }
       }
     },
-    "conditions": {
+    "condition": {
       "in_range": {
         "config_vars": {},
         "extends": ["sensor.SENSOR_IN_RANGE_CONDITION_SCHEMA"]

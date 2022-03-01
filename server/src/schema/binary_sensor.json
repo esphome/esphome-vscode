@@ -57,7 +57,7 @@
             "key": "Optional",
             "type": "registry",
             "is_list": true,
-            "registry": "binary_sensor.FILTER_REGISTRY"
+            "registry": "binary_sensor.filter"
           },
           "on_press": { "key": "Optional", "type": "trigger" },
           "on_release": { "key": "Optional", "type": "trigger" },
@@ -135,7 +135,7 @@
         "extends": ["core.ENTITY_BASE_SCHEMA", "core.MQTT_COMPONENT_SCHEMA"]
       }
     },
-    "actions": {
+    "action": {
       "template.publish": {
         "config_vars": {
           "id": { "key": "Required", "type": "<class 'function'>" },
@@ -143,7 +143,7 @@
         }
       }
     },
-    "conditions": {
+    "condition": {
       "is_on": { "config_vars": {} },
       "is_off": { "config_vars": {} }
     },
