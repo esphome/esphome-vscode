@@ -1,3 +1,4 @@
+import { createVerify } from "crypto";
 import * as fs from "fs";
 import path = require("path");
 import { Position } from "vscode-languageserver-textdocument";
@@ -46,8 +47,18 @@ interface ConfigVarTyped extends ConfigVarBase {
         [name: string]: Schema;
     };
 }
+interface ConfigVarPin extends ConfigVarBase {
+    type: 'pin';
+    schema: Boolean;
+    internal: Boolean;
+    modes: ('output' | 'input' | 'pullup')[];
+}
+interface ConfigVarBoolean extends ConfigVarBase {
+    type: 'boolean';
+    default: string;
+}
 
-type ConfigVar = ConfigVarSchema | ConfigVarRegistry | ConfigVarEnum | ConfigVarTrigger | ConfigVarTyped;
+type ConfigVar = ConfigVarSchema | ConfigVarRegistry | ConfigVarEnum | ConfigVarTrigger | ConfigVarTyped | ConfigVarPin | ConfigVarBoolean;
 
 interface ConfigVars {
     [name: string]: ConfigVar;
@@ -193,9 +204,9 @@ export class CompletionHandler {
     }
 
     dumpNode(node: YamlNode, currentDoc: SingleYAMLDocument) {
-        let i = 1;
+        const strArr = [];
         while (node) {
-            let log_str;
+            let log_str: string;
             if (isScalar(node)) {
                 log_str = `scalar ${node.value}`;
             }
@@ -211,10 +222,13 @@ export class CompletionHandler {
             else {
                 log_str = "unknown" + node.toString();
             }
-
-            i = i + 1;
+            strArr.push(log_str);
             node = currentDoc.getParent(node);
-            console.log("- " + i + " " + log_str);
+        }
+
+        let i = 0;
+        for (const strLine of strArr.reverse()) {
+            console.log(`${i++} ${strLine}`);
         }
     }
 
@@ -418,10 +432,7 @@ export class CompletionHandler {
                 else {
                     schema = this.core_schema.getComponentSchema(path[0]);
                 }
-
-
             }
-
 
             if (path.length === 0) {
                 this.addCoreComponents(result, docMap);
@@ -435,7 +446,7 @@ export class CompletionHandler {
                 }
 
                 // Now that a component is known, revolve completions recursively
-                this.resolveComponent(result, path, pathIndex, schema, pathElement);
+                this.resolveComponent(result, path, pathIndex, schema, pathElement, node);
             }
             return result;
 
@@ -446,13 +457,13 @@ export class CompletionHandler {
         return result;
     }
 
-    private resolveComponent(result: CompletionItem[], path: any[], pathIndex: number, schema: Schema, pathElement: YAMLMap) {
+    private resolveComponent(result: CompletionItem[], path: any[], pathIndex: number, schema: Schema, pathElement: YAMLMap, node: YamlNode) {
         console.log("component: " + path[pathIndex]);
         pathIndex++;
-        this.resolveConfigVar(result, path, pathIndex, this.findConfigVar(schema, path[pathIndex]), pathElement);
+        this.resolveConfigVar(result, path, pathIndex, this.findConfigVar(schema, path[pathIndex]), pathElement, node);
     }
 
-    private resolveConfigVar(result: CompletionItem[], path: any[], pathIndex: number, cv: ConfigVar, pathElement: YAMLMap) {
+    private resolveConfigVar(result: CompletionItem[], path: any[], pathIndex: number, cv: ConfigVar, pathElement: YAMLMap, node: YamlNode) {
 
         if (isMap(pathElement) && isString(path[pathIndex])) {
             if (cv.type === "schema") {
@@ -461,7 +472,7 @@ export class CompletionHandler {
                     if (pathIndex + 1 === path.length) {
                         return this.addConfigVars(result, cv.schema, innerElement);
                     }
-                    return this.resolveComponent(result, path, pathIndex + 1, cv.schema, innerElement);
+                    return this.resolveComponent(result, path, pathIndex, cv.schema, innerElement, node);
                 }
                 else {
                     if (pathIndex + 1 === path.length) {
@@ -474,7 +485,7 @@ export class CompletionHandler {
                 return this.addEnums(result, cv);
             }
             else if (cv.type === "trigger") {
-                return this.resolveTrigger(result, path, pathIndex, pathElement, cv);
+                return this.resolveTrigger(result, path, pathIndex, pathElement, cv, node);
             }
             else if (cv.type === "registry") {
                 if (pathIndex + 1 < path.length) {
@@ -487,7 +498,7 @@ export class CompletionHandler {
                                 if (pathIndex + 3 === path.length) {
                                     return this.addConfigVars(result, action, pathElement);
                                 }
-                                return this.resolveComponent(result, path, pathIndex + 3, action, pathElement);
+                                return this.resolveComponent(result, path, pathIndex + 3, action, pathElement, node);
                             }
                         }
                     }
@@ -503,7 +514,7 @@ export class CompletionHandler {
                                     if (pathIndex + 3 === path.length) {
                                         return this.addConfigVars(result, action, inner);
                                     }
-                                    return this.resolveComponent(result, path, pathIndex + 3, action, inner);
+                                    return this.resolveComponent(result, path, pathIndex + 3, action, inner, node);
                                 }
                             }
                         }
@@ -538,20 +549,67 @@ export class CompletionHandler {
                         const type = innerElement.get('type');
                         if (type !== null && isString(type)) {
                             if (pathIndex + 1 === path.length) {
-                                return this.addConfigVars(result, cv.types[type], null);
+                                return this.addConfigVars(result, cv.types[type], innerElement);
                             }
-                            return this.resolveComponent(result, path, pathIndex, cv.types[type], innerElement);
+                            return this.resolveComponent(result, path, pathIndex, cv.types[type], innerElement, node);
                         }
                     }
                 }
 
             }
+            else if (cv.type === "pin") {
+                if (pathElement.items.length > 0 && node === pathElement.items[0].value) {
+                    // cursor is in the value of the pair
+                    return this.resolvePinNumbers(result, cv);
+                }
+                if (!cv.schema) {
+                    // This pin does not accept schema, e.g. i2c
+                    return result;
+                }
+
+                const innerElement = pathElement.get(path[pathIndex]);
+
+                return this.resolveConfigVar(result, path, pathIndex, {
+                    type: "schema",
+                    key: "Optional",
+                    schema: {
+                        config_vars: {
+                            number: { type: "boolean", default: "False", key: "Optional" },
+                            mode: { type: "boolean", default: "False", key: "Optional" },
+
+                        },
+                        extends: []
+                    }
+                }, pathElement, node);
+            }
+            else if (cv.type === "boolean") {
+                for (var value of ["True", "False"]) {
+                    const item: CompletionItem = {
+                        label: value,
+                        kind: CompletionItemKind.Constant,
+                        insertText: value,
+                        // command: { title: 'chain', command: "editor.action.triggerSuggest" }
+                    };
+                    item.preselect = (cv.default === value);
+                    result.push(item);
+                }
+                return result;
+            }
         }
 
         throw new Error("Unexpected path traverse.");
     }
+    resolvePinNumbers(result: CompletionItem[], cv: ConfigVarPin) {
 
-    resolveTrigger(result: CompletionItem[], path: any[], pathIndex: number, pathElement: YAMLMap<unknown, unknown>, cv: ConfigVarTrigger) {
+        result.push({
+            label: "D0",
+            kind: CompletionItemKind.Constant,
+            insertText: 'type: ',
+            command: { title: 'chain', command: "editor.action.triggerSuggest" }
+        });
+    }
+
+    resolveTrigger(result: CompletionItem[], path: any[], pathIndex: number, pathElement: YAMLMap<unknown, unknown>, cv: ConfigVarTrigger, node: YamlNode) {
         console.log("trigger: " + path[pathIndex]);
         // trigger can be a single item on a map or otherwise a seq.
         let inner = pathElement.get(path[pathIndex]);
@@ -566,7 +624,7 @@ export class CompletionHandler {
             if (path[pathIndex + 1] === "then") {
                 // all triggers support then, even when they do not have a schema
                 // then is a trigger without schema so...
-                return this.resolveTrigger(result, path, pathIndex + 1, inner, { type: 'trigger', key: 'Optional', schema: undefined, has_required_var: false });
+                return this.resolveTrigger(result, path, pathIndex + 1, inner, { type: 'trigger', key: 'Optional', schema: undefined, has_required_var: false }, node);
             }
 
             // navigate into the prop
@@ -574,7 +632,7 @@ export class CompletionHandler {
             if (cv.schema !== undefined) {
                 const innerProp = this.findConfigVar(cv.schema, path[pathIndex + 1]);
                 if (innerProp !== undefined) {
-                    return this.resolveComponent(result, path, pathIndex + 1, cv.schema, inner);
+                    return this.resolveComponent(result, path, pathIndex + 1, cv.schema, inner, node);
                 }
             }
             // is this an action?
@@ -583,10 +641,10 @@ export class CompletionHandler {
                 if (pathIndex + 2 === path.length) {
                     return this.addConfigVars(result, action, inner);
                 }
-                return this.resolveComponent(result, path, pathIndex + 1, action, inner);
+                return this.resolveComponent(result, path, pathIndex + 1, action, inner, node);
             }
 
-            return this.resolveComponent(result, path, pathIndex + 1, cv.schema, inner);
+            return this.resolveComponent(result, path, pathIndex + 1, cv.schema, inner, node);
 
         }
         if (isSeq(inner)) {
@@ -603,7 +661,7 @@ export class CompletionHandler {
                             if (pathIndex + 3 === path.length) {
                                 return this.addConfigVars(result, action, inner);
                             }
-                            return this.resolveComponent(result, path, pathIndex + 2, action, inner);
+                            return this.resolveComponent(result, path, pathIndex + 2, action, inner, node);
                         }
                     }
                 }
@@ -622,11 +680,6 @@ export class CompletionHandler {
                 return this.addRegistry(result, "actions");
             }
         }
-    }
-
-    resolveRegistry(result: CompletionItem[], path: any[], pathIndex: number, schema: Schema, pathElement: YAMLMap<unknown, unknown>) {
-
-
     }
 
 
@@ -701,6 +754,7 @@ export class CompletionHandler {
     }
 
     private addConfigVars(result: CompletionItem[], schema: Schema, node: YAMLMap) {
+        let preselected = false;
         for (const [prop, config] of this.iter_configVars(schema)) {
             // Skip existent properties
             if (node !== null && this.mapHasScalarKey(node, prop)) {
@@ -726,12 +780,23 @@ export class CompletionHandler {
                     break;
                 case "registry":
                     item.kind = CompletionItemKind.Field;
-
+                    break;
+                case "pin":
+                    item.kind = CompletionItemKind.Interface;
+                    break;
+                case "boolean":
+                    triggerSuggest = true;
+                    item.kind = CompletionItemKind.Variable;
                     break;
                 default:
                     item.kind = CompletionItemKind.Property;
                     break;
             }
+            if (config.key === "Required" && !preselected) {
+                item.preselect = true;
+                preselected = true;
+            }
+
             if (triggerSuggest) {
                 item.command = { title: 'chain', command: "editor.action.triggerSuggest" };
             }
