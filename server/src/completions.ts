@@ -7,7 +7,7 @@ import { isPair, isMap, isScalar, isSeq, YAMLMap, Node, Scalar } from "yaml";
 import { coreKnownTags } from "yaml/dist/schema/tags";
 import { YamlNode } from "./jsonASTTypes";
 import { SingleYAMLDocument, YamlDocuments } from "./parser/yaml-documents";
-import { matchOffsetToDocument } from "./utils/arrUtils";
+import { filterInvalidCustomTags, matchOffsetToDocument } from "./utils/arrUtils";
 import { isNumber, isString } from "./utils/objects";
 import { TextBuffer } from "./utils/textBuffer";
 
@@ -25,6 +25,7 @@ interface ConfigVarBase {
 interface ConfigVarRegistry extends ConfigVarBase {
     type: 'registry';
     registry: string;
+    filter?: string[];
 }
 
 interface ConfigVarTrigger extends ConfigVarBase {
@@ -78,14 +79,15 @@ interface Component {
     };
     // These are the components e.g. of sensor, binary_sensor
     components: string[];
+
     action: {
-        [name: string]: Schema;
+        [name: string]: ConfigVar;
     };
     condition: {
-        [name: string]: Schema;
+        [name: string]: ConfigVar;
     };
     filter: {
-        [name: string]: Schema;
+        [name: string]: ConfigVar;
     };
 }
 interface CoreComponent extends Component {
@@ -166,22 +168,21 @@ class CoreSchema {
         }
     }
 
-    getRegistrySchema(registry: string, entry: string): Schema {
-        if (registry === "action") {
+    getRegistryConfigVar(registry: string, entry: string): ConfigVar {
+        if (registry.includes(".")) {
+            const [domain, registryName] = registry.split('.');
+            return this.schema[domain][registryName][entry];
+        }
+        else {
             for (const c in this.schema) {
-                if (this.schema[c].action !== undefined) {
-                    for (const action_name in this.schema[c].action) {
-                        if (action_name === entry) {
-                            return this.schema[c].action[action_name];
-                        }
-                    }
+                if (this.schema[c][registry] !== undefined && this.schema[c][registry][entry] !== undefined) {
+                    return this.schema[c][registry][entry];
                 }
-
             }
         }
     }
-    getActionSchema(entry: string) {
-        return this.getRegistrySchema("action", entry);
+    getActionConfigVar(entry: string): ConfigVarTrigger {
+        return this.getRegistryConfigVar("action", entry) as ConfigVarTrigger;
     }
     getPinSchema(component: string): Schema {
         return this.getComponent(component)["pin"];
@@ -493,39 +494,30 @@ export class CompletionHandler {
                 return this.resolveTrigger(result, path, pathIndex, pathElement, cv, node, docMap);
             }
             else if (cv.type === "registry") {
-                if (pathIndex + 1 < path.length) {
-                    if (isNumber(path[pathIndex + 1])) {
-                        const item = pathElement.items[path[pathIndex + 1]];
-                        if (isPair(item)) {
-                            // is this an action?
-                            const action = this.core_schema.getActionSchema(item.key.toString());
-                            if (action !== undefined) {
-                                if (pathIndex + 3 === path.length) {
-                                    return this.addConfigVars(result, action, pathElement, docMap);
-                                }
-                                return this.resolveComponent(result, path, pathIndex + 3, action, pathElement, node, docMap);
-                            }
-                        }
-                    }
-                    if (isString(path[pathIndex + 1])) {
-                        const inner = pathElement.get(path[pathIndex + 1]);
+                let inner = pathElement.get(path[pathIndex]);
+                if (isSeq(inner)) {
+                    if (pathIndex + 2 < path.length) {
+                        // navigate into seq
+                        inner = inner.items[path[pathIndex + 1]];
                         // we should only have actions here, maps should be one key only
                         if (isMap(inner)) {
                             const item = inner.items[0];
                             if (isPair(item)) {
-                                // is this an action?
-                                const action = this.core_schema.getActionSchema(item.key.toString());
-                                if (action !== undefined) {
+                                const registry = this.core_schema.getRegistryConfigVar(cv.registry, item.key.toString());
+                                if (registry !== undefined && registry.type === "schema") {
                                     if (pathIndex + 3 === path.length) {
-                                        return this.addConfigVars(result, action, inner, docMap);
+                                        return this.addConfigVars(result, registry.schema, isMap(item.value) ? item.value : null, docMap);
                                     }
-                                    return this.resolveComponent(result, path, pathIndex + 3, action, inner, node, docMap);
+                                    return this.resolveComponent(result, path, pathIndex + 2, registry.schema, isMap(item.value) ? item.value : null, node, docMap);
                                 }
                             }
                         }
                     }
+                    this.addRegistry(result, cv);
+                    return;
                 }
-                return this.addRegistry(result, cv.registry);
+
+                return this.addRegistry(result, cv);
             }
             else if (cv.type === "typed") {
                 const innerElement = pathElement.get(path[pathIndex]);
@@ -669,16 +661,14 @@ export class CompletionHandler {
                 }
             }
             // is this an action?
-            const action = this.core_schema.getActionSchema(path[pathIndex + 1]);
+            const action = this.core_schema.getActionConfigVar(path[pathIndex + 1]);
             if (action !== undefined) {
                 if (pathIndex + 2 === path.length) {
-                    return this.addConfigVars(result, action, inner, docMap);
+                    return this.addConfigVars(result, action.schema, inner, docMap);
                 }
-                return this.resolveComponent(result, path, pathIndex + 1, action, inner, node, docMap);
+                return this.resolveComponent(result, path, pathIndex + 1, action.schema, inner, node, docMap);
             }
-
             return this.resolveComponent(result, path, pathIndex + 1, cv.schema, inner, node, docMap);
-
         }
         if (isSeq(inner)) {
             if (pathIndex + 2 < path.length) {
@@ -689,17 +679,17 @@ export class CompletionHandler {
                     const item = inner.items[0];
                     if (isPair(item)) {
                         // is this an action?
-                        const action = this.core_schema.getActionSchema(item.key.toString());
+                        const action = this.core_schema.getActionConfigVar(item.key.toString());
                         if (action !== undefined) {
                             if (pathIndex + 3 === path.length) {
-                                return this.addConfigVars(result, action, inner, docMap);
+                                return this.addConfigVars(result, action.schema, inner, docMap);
                             }
-                            return this.resolveComponent(result, path, pathIndex + 2, action, inner, node, docMap);
+                            return this.resolveComponent(result, path, pathIndex + 2, action.schema, inner, node, docMap);
                         }
                     }
                 }
             }
-            this.addRegistry(result, "action");
+            this.addRegistry(result, { type: "registry", "registry": "action", "key": null });
             return;
         }
         if (inner === null) {
@@ -709,9 +699,8 @@ export class CompletionHandler {
             if (cv.schema !== undefined) {
                 return this.addConfigVars(result, cv.schema, null, docMap);
             }
-            else {
-                return this.addRegistry(result, "action");
-            }
+            return this.addRegistry(result, { type: "registry", "registry": "action", "key": null });
+
         }
     }
 
@@ -879,8 +868,11 @@ export class CompletionHandler {
         }
     }
 
-    addRegistry(result: CompletionItem[], registry: string) {
-        for (var value of this.core_schema.getRegistry(registry)) {
+    addRegistry(result: CompletionItem[], configVar: ConfigVarRegistry) {
+        for (var value of this.core_schema.getRegistry(configVar.registry)) {
+            if (configVar.filter && !configVar.filter.includes(value)) {
+                continue;
+            }
             result.push({
                 label: value,
                 kind: CompletionItemKind.Keyword,

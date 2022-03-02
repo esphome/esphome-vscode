@@ -6,7 +6,7 @@ import { yamlDocumentsCache } from '../src/parser/yaml-documents';
 import { CompletionItem } from 'vscode-languageserver-types';
 import * as Docs from './sampleEsphomeYaml';
 
-const testCompletionHasLabels = (result: CompletionItem[], testSet) => {
+const testCompletionHaveLabels = (result: CompletionItem[], testSet) => {
   let count = 0;
   for (var c of testSet) {
     if (result.find(x => x.label === c)) {
@@ -18,7 +18,7 @@ const testCompletionHasLabels = (result: CompletionItem[], testSet) => {
   }
   assert(count === testSet.length, "some completion labels not found");
 };
-const testCompletionDoesNotHasLabels = (result: CompletionItem[], testSet) => {
+const testCompletionDoesNotHaveLabels = (result: CompletionItem[], testSet) => {
   let count = 0;
   for (var c of testSet) {
     if (result.find(x => x.label === c)) {
@@ -33,7 +33,7 @@ describe('complete', () => {
   it('empty file lists esphome, wifi and others', () => {
     const d = TextDocument.create('x', 'x', 0, '');
     const result = x.onCompletion(d, { line: 0, character: 0 });
-    testCompletionHasLabels(result, ["esphome", "wifi"]);
+    testCompletionHaveLabels(result, ["esphome", "wifi"]);
 
   });
 
@@ -41,15 +41,15 @@ describe('complete', () => {
     const result = x.onCompletion(Docs.getTextDoc(`
 esphome:
   `), { line: 1, character: 2 });
-    testCompletionHasLabels(result, ["name", "on_boot", "project"]);
+    testCompletionHaveLabels(result, ["name", "on_boot", "project"]);
 
   });
 
   it('esphome props, not empty esphome dict', () => {
     const d = Docs.esphomeDoc2;
     const result = x.onCompletion(d, { line: 2, character: 2 });
-    testCompletionHasLabels(result, ["name", "on_boot"]);
-    testCompletionDoesNotHasLabels(result, ["project"]);
+    testCompletionHaveLabels(result, ["name", "on_boot"]);
+    testCompletionDoesNotHaveLabels(result, ["project"]);
   });
 
   it('esphome project props, not empty project dict', () => {
@@ -59,8 +59,8 @@ esphome:
     name:
     `);
     const result = x.onCompletion(d, { line: 3, character: 4 });
-    assert(result.length === 1, "only one result expected");
-    testCompletionHasLabels(result, ["version"]);
+    expect(result).to.be.lengthOf(1);
+    testCompletionHaveLabels(result, ["version"]);
   });
 
   it('esphome project props, full project dict, no suggestions', () => {
@@ -73,7 +73,7 @@ esphome:
 esphome:
   on_boot:
     `), { line: 2, character: 4 });
-    testCompletionHasLabels(result, ["then", "priority"]);
+    testCompletionHaveLabels(result, ["then", "priority"]);
   });
 
   it('trigger with optional props and then', () => {
@@ -82,7 +82,7 @@ esphome:
   on_boot:
     then:
     `), { line: 3, character: 4 });
-    testCompletionHasLabels(result, ["priority"]);
+    testCompletionHaveLabels(result, ["priority"]);
   });
 
 
@@ -91,7 +91,7 @@ esphome:
 esphome:
   on_loop:
     `), { line: 2, character: 4 });
-    testCompletionHasLabels(result, ["delay", "if"]);
+    testCompletionHaveLabels(result, ["delay", "if"]);
   });
 
 
@@ -101,7 +101,7 @@ esphome:
   on_loop:
     then:
       `), { line: 4, character: 6 });
-    testCompletionHasLabels(result, ["delay", "if"]);
+    testCompletionHaveLabels(result, ["delay", "if"]);
   });
 
   it('trigger with prop and then', () => {
@@ -111,7 +111,7 @@ esphome:
     priority: 100
     then:
       `), { line: 4, character: 6 });
-    testCompletionHasLabels(result, ["delay", "if"]);
+    testCompletionHaveLabels(result, ["delay", "if"]);
   });
 
   it('trigger with action list', () => {
@@ -120,7 +120,7 @@ esphome:
   on_loop:
     - delay: 3s
     `), { line: 3, character: 6 });
-    testCompletionHasLabels(result, ["delay", "if"]);
+    testCompletionHaveLabels(result, ["delay", "if"]);
   });
 
   it('trigger with then and action list', () => {
@@ -130,7 +130,7 @@ esphome:
     then:
       - delay: 3s
       `), { line: 4, character: 8 });
-    testCompletionHasLabels(result, ["delay", "if"]);
+    testCompletionHaveLabels(result, ["delay", "if"]);
   });
 
 
@@ -149,7 +149,7 @@ esphome:
   on_loop:
     if:
       `), { line: 3, character: 6 });
-    testCompletionHasLabels(result, ["condition", "then", "else"]);
+    testCompletionHaveLabels(result, ["condition", "then", "else"]);
   });
 
   it('trigger with an action as seq', () => {
@@ -158,8 +158,24 @@ esphome:
   on_loop:
     - if:
         `), { line: 3, character: 8 });
-    testCompletionHasLabels(result, ["condition", "then", "else"]);
+    testCompletionHaveLabels(result, ["condition", "then", "else"]);
   });
+
+  it('trigger with an action as seq dont repeat props', () => {
+    const result = x.onCompletion(Docs.getTextDoc(`
+esphome:
+  name: arduino
+  on_loop:
+    - delay:
+        days: 1
+        hours: 3
+        `), { line: 5, character: 8 });
+    testCompletionHaveLabels(result, ["minutes", "seconds"]);
+    testCompletionDoesNotHaveLabels(result, ["days", "hours"]);
+  });
+
+
+
 
   it('action registry (not a normal trigger)', () => {
     const result = x.onCompletion(Docs.getTextDoc(`
@@ -168,7 +184,7 @@ esphome:
       if:
         then:
           `), { line: 4, character: 10 });
-    testCompletionHasLabels(result, ["delay", "if"]);
+    testCompletionHaveLabels(result, ["delay", "if"]);
   });
 
   it('condition registry', () => {
@@ -178,7 +194,7 @@ esphome:
     if:
       condition:
         `), { line: 4, character: 8 });
-    testCompletionHasLabels(result, ["and", "for", "or"]);
+    testCompletionHaveLabels(result, ["and", "for", "or"]);
   });
 
   it('sensors lists platform only', () => {
@@ -186,7 +202,7 @@ esphome:
 sensor:
   `), { line: 1, character: 2 });
     expect(result.length).to.be.equal(1);
-    testCompletionHasLabels(result, ["platform"]);
+    testCompletionHaveLabels(result, ["platform"]);
   });
 
   it('typed schema ask type only', () => {
@@ -195,7 +211,7 @@ esp32:
   framework:
     `), { line: 2, character: 4 });
     expect(result.length).to.be.equal(1);
-    testCompletionHasLabels(result, ["type"]);
+    testCompletionHaveLabels(result, ["type"]);
   });
 
   it('typed schema suggests types', () => {
@@ -204,7 +220,7 @@ esp32:
   framework:
     type: `), { line: 2, character: 10 });
     expect(result.length).to.be.equal(2);
-    testCompletionHasLabels(result, ["esp-idf", "arduino"]);
+    testCompletionHaveLabels(result, ["esp-idf", "arduino"]);
   });
 
   it('typed schema suggests props of type', () => {
@@ -213,7 +229,7 @@ esp32:
   framework:
     type: esp-idf
     `), { line: 3, character: 4 });
-    testCompletionHasLabels(result, ["advanced", "version", "source"]);
+    testCompletionHaveLabels(result, ["advanced", "version", "source"]);
   });
 
 
@@ -224,7 +240,7 @@ esp32:
     type: arduino
     `), { line: 3, character: 4 });
     expect(result.length).to.be.equal(3);
-    testCompletionHasLabels(result, ["version"]);
+    testCompletionHaveLabels(result, ["version"]);
   });
 
   it('sensor device enum', () => {
@@ -232,14 +248,23 @@ esp32:
 sensor:
   - platform: dallas
     device_class: `), { line: 2, character: 18 });
-    testCompletionHasLabels(result, ["aqi", "power"]);
+    testCompletionHaveLabels(result, ["aqi", "power"]);
+  });
+
+  it('logger action enum', () => {
+    const result = x.onCompletion(Docs.getTextDoc(`
+logger:
+  level: DEBUG
+  on_message:
+    level: `), { line: 3, character: 11 });
+    testCompletionHaveLabels(result, ["DEBUG", "ERROR"]);
   });
 
   it('complete bools', () => {
     const result = x.onCompletion(Docs.getTextDoc(`
 esphome:
   name_add_mac_suffix: `), { line: 1, character: 23 });
-    testCompletionHasLabels(result, ["True", "False"]);
+    testCompletionHaveLabels(result, ["True", "False"]);
   });
 
   it('list sensor filters', () => {
@@ -248,7 +273,7 @@ sensor:
   - platform: template
     filters:
       `), { line: 3, character: 6 });
-    testCompletionHasLabels(result, ["delta", "median"]);
+    testCompletionHaveLabels(result, ["delta", "median"]);
   });
 
 
@@ -258,7 +283,17 @@ binary_sensor:
   - platform: template
     filters:
       `), { line: 3, character: 6 });
-    testCompletionHasLabels(result, ["delayed_on", "invert"]);
+    testCompletionHaveLabels(result, ["delayed_on", "invert"]);
+  });
+
+
+  it('list light effects', () => {
+    const result = x.onCompletion(Docs.getTextDoc(`
+light:
+  - platform: binary
+    effects:
+      `), { line: 3, character: 6 });
+    testCompletionHaveLabels(result, ["strobe", "automation"]);
   });
 
 
