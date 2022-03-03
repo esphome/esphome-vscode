@@ -494,41 +494,17 @@ export class CompletionHandler {
                 return this.resolveTrigger(result, path, pathIndex, pathElement, cv, node, docMap);
             }
             else if (cv.type === "registry") {
-                // let inner = pathElement.get(path[pathIndex]);
-                // if (isSeq(inner) && inner.items.length) {
-                //     inner = inner.items[path[pathIndex + 1]];
-                //     if (isNode(inner)) {
-                //         return this.resolveRegistryInner(result, path, pathIndex + 1, inner, cv, node, docMap);
-                //     }
-                // }
-                // if (isMap(inner)) {
-                //     return this.resolveRegistryInner(result, path, pathIndex, inner, cv, node, docMap);
-                // }
-                // return this.resolveRegistryInner(result, path, pathIndex, isMap(inner) ? inner : null, cv, node, docMap);
                 let inner = pathElement.get(path[pathIndex]);
-                if (isSeq(inner)) {
-                    if (pathIndex + 2 < path.length) {
-                        // navigate into seq
-                        inner = inner.items[path[pathIndex + 1]];
-                        // we should only have actions here, maps should be one key only
-                        if (isMap(inner)) {
-                            const item = inner.items[0];
-                            if (isPair(item)) {
-                                const registry = this.core_schema.getRegistryConfigVar(cv.registry, item.key.toString());
-                                if (registry !== undefined && registry.type === "schema") {
-                                    if (pathIndex + 3 === path.length) {
-                                        return this.addConfigVars(result, registry.schema, isMap(item.value) ? item.value : null, docMap);
-                                    }
-                                    return this.resolveComponent(result, path, pathIndex + 2, registry.schema, isMap(item.value) ? item.value : null, node, docMap);
-                                }
-                            }
-                        }
+                if (isSeq(inner) && inner.items.length) {
+                    inner = inner.items[path[pathIndex + 1]];
+                    if (isNode(inner)) {
+                        return this.resolveRegistryInner(result, path, pathIndex + 1, inner, cv, node, docMap);
                     }
-                    this.addRegistry(result, cv);
-                    return;
                 }
-
-                return this.addRegistry(result, cv);
+                if (isMap(inner)) {
+                    return this.resolveRegistryInner(result, path, pathIndex, inner, cv, node, docMap);
+                }
+                return this.resolveRegistryInner(result, path, pathIndex, isMap(inner) ? inner : null, cv, node, docMap);
             }
             else if (cv.type === "typed") {
                 const innerElement = pathElement.get(path[pathIndex]);
@@ -638,16 +614,13 @@ export class CompletionHandler {
 
     resolveRegistryInner(result: CompletionItem[], path: any[], pathIndex: number, inner: YamlNode, cv: ConfigVarRegistry, node: YamlNode, docMap: YAMLMap<unknown, unknown>) {
         const final = pathIndex + 1 === path.length;
-        if (final) {
-            if (inner === null) {
-                return this.addRegistry(result, cv);
-            }
+        if (final && inner === null) {
+            return this.addRegistry(result, cv);
         }
         const registryCv = this.core_schema.getRegistryConfigVar(cv.registry, path[pathIndex + 1]);
-        if (registryCv.type === "schema") {
-            return this.resolveComponent(result, path, pathIndex + 1, registryCv.schema, isMap(inner) ? inner : null, node, docMap);
-        }
+        return this.resolveConfigVar(result, path, pathIndex + 1, registryCv, isMap(inner) ? inner : null, node, docMap);
     }
+
     resolvePinNumbers(result: CompletionItem[], cv: ConfigVarPin) {
 
         result.push({
