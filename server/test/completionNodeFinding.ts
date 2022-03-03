@@ -169,11 +169,24 @@ esphome:
     - delay:
         days: 1
         hours: 3
-        `), { line: 5, character: 8 });
+        `), { line: 6, character: 8 });
     testCompletionHaveLabels(result, ["minutes", "seconds"]);
     testCompletionDoesNotHaveLabels(result, ["days", "hours"]);
   });
 
+
+  it('trigger with an action dont repeat props', () => {
+    const result = x.onCompletion(Docs.getTextDoc(`
+esphome:
+  name: arduino
+  on_loop:
+    delay:
+      days: 1
+      hours: 3
+      `), { line: 6, character: 6 });
+    testCompletionHaveLabels(result, ["minutes", "seconds"]);
+    testCompletionDoesNotHaveLabels(result, ["days", "hours"]);
+  });
 
 
 
@@ -260,6 +273,15 @@ logger:
     testCompletionHaveLabels(result, ["DEBUG", "ERROR"]);
   });
 
+  it('logger seq action enum', () => {
+    const result = x.onCompletion(Docs.getTextDoc(`
+logger:
+  level: DEBUG
+  on_message:
+    - level: `), { line: 3, character: 13 });
+    testCompletionHaveLabels(result, ["DEBUG", "ERROR"]);
+  });
+
   it('complete bools', () => {
     const result = x.onCompletion(Docs.getTextDoc(`
 esphome:
@@ -297,6 +319,29 @@ light:
   });
 
 
+  it('sensor filter in prop show props', () => {
+    const result = x.onCompletion(Docs.getTextDoc(`
+sensor:
+  - platform: template
+    filters:
+      median:
+        send_every:
+        `), { line: 5, character: 8 });
+    testCompletionHaveLabels(result, ["window_size", "send_first_at"]);
+    expect(result).to.be.lengthOf(2);
+  });
+
+  it('sensor filter in seq show props', () => {
+    const result = x.onCompletion(Docs.getTextDoc(`
+sensor:
+  - platform: template
+    filters:
+      - median:
+          send_every:
+          `), { line: 5, character: 10 });
+    testCompletionHaveLabels(result, ["window_size", "send_first_at"]);
+    expect(result).to.be.lengthOf(2);
+  });
 
 });
 

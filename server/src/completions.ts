@@ -3,7 +3,7 @@ import * as fs from "fs";
 import path = require("path");
 import { Position } from "vscode-languageserver-textdocument";
 import { CompletionItem, CompletionItemKind, Range, TextDocument } from "vscode-languageserver/node";
-import { isPair, isMap, isScalar, isSeq, YAMLMap, Node, Scalar } from "yaml";
+import { isPair, isMap, isScalar, isSeq, YAMLMap, Node, Scalar, isNode } from "yaml";
 import { coreKnownTags } from "yaml/dist/schema/tags";
 import { YamlNode } from "./jsonASTTypes";
 import { SingleYAMLDocument, YamlDocuments } from "./parser/yaml-documents";
@@ -494,6 +494,17 @@ export class CompletionHandler {
                 return this.resolveTrigger(result, path, pathIndex, pathElement, cv, node, docMap);
             }
             else if (cv.type === "registry") {
+                // let inner = pathElement.get(path[pathIndex]);
+                // if (isSeq(inner) && inner.items.length) {
+                //     inner = inner.items[path[pathIndex + 1]];
+                //     if (isNode(inner)) {
+                //         return this.resolveRegistryInner(result, path, pathIndex + 1, inner, cv, node, docMap);
+                //     }
+                // }
+                // if (isMap(inner)) {
+                //     return this.resolveRegistryInner(result, path, pathIndex, inner, cv, node, docMap);
+                // }
+                // return this.resolveRegistryInner(result, path, pathIndex, isMap(inner) ? inner : null, cv, node, docMap);
                 let inner = pathElement.get(path[pathIndex]);
                 if (isSeq(inner)) {
                     if (pathIndex + 2 < path.length) {
@@ -624,6 +635,19 @@ export class CompletionHandler {
 
         throw new Error("Unexpected path traverse.");
     }
+
+    resolveRegistryInner(result: CompletionItem[], path: any[], pathIndex: number, inner: YamlNode, cv: ConfigVarRegistry, node: YamlNode, docMap: YAMLMap<unknown, unknown>) {
+        const final = pathIndex + 1 === path.length;
+        if (final) {
+            if (inner === null) {
+                return this.addRegistry(result, cv);
+            }
+        }
+        const registryCv = this.core_schema.getRegistryConfigVar(cv.registry, path[pathIndex + 1]);
+        if (registryCv.type === "schema") {
+            return this.resolveComponent(result, path, pathIndex + 1, registryCv.schema, isMap(inner) ? inner : null, node, docMap);
+        }
+    }
     resolvePinNumbers(result: CompletionItem[], cv: ConfigVarPin) {
 
         result.push({
@@ -634,74 +658,60 @@ export class CompletionHandler {
         });
     }
 
+    resolveTriggerInner(result: CompletionItem[], path: any[], pathIndex: number, inner: YamlNode, cv: ConfigVarTrigger, node: YamlNode, docMap: YAMLMap) {
+        console.log("resolve inner: " + inner?.toString() + ' - cv: ' + cv.type);
+        const final = pathIndex + 1 === path.length;
+        if (final) {
+            // If this has a schema, use it, these are suggestions so user will see the trigger parameters even when they are optional
+            // However if the only option is 'then:' we should avoid it for readability
+            if (cv.schema !== undefined) {
+                // TODO: suggest in seq mode
+                return this.addConfigVars(result, cv.schema, null, docMap);
+            }
+            if (inner === null) {
+                return this.addRegistry(result, { type: "registry", "registry": "action", "key": null });
+            }
+        }
+
+        if (path[pathIndex + 1] === "then") {
+            // all triggers support then, even when they do not have a schema
+            // then is a trigger without schema so...
+            return this.resolveTrigger(result, path, pathIndex + 1, isMap(inner) ? inner : null, { type: 'trigger', key: 'Optional', schema: undefined, has_required_var: false }, node, docMap);
+        }
+
+        // navigate into the prop
+        // this can be an action or a prop of this trigger
+        if (cv.schema !== undefined) {
+            const innerProp = this.findConfigVar(cv.schema, path[pathIndex + 1], docMap);
+            if (innerProp !== undefined) {
+                return this.resolveComponent(result, path, pathIndex, cv.schema, isMap(inner) ? inner : null, node, docMap);
+            }
+        }
+        // is this an action?
+        const action = this.core_schema.getActionConfigVar(path[pathIndex + 1]);
+        if (action !== undefined) {
+            if (pathIndex + 2 === path.length && isMap(inner)) {
+                const props = inner.get(path[pathIndex + 1]);
+                return this.addConfigVars(result, action.schema, isMap(props) ? props : null, docMap);
+            }
+            return this.resolveComponent(result, path, pathIndex + 1, action.schema, isMap(inner) ? inner : null, node, docMap);
+        }
+    }
+
     resolveTrigger(result: CompletionItem[], path: any[], pathIndex: number, pathElement: YAMLMap<unknown, unknown>, cv: ConfigVarTrigger, node: YamlNode, docMap: YAMLMap) {
         console.log("trigger: " + path[pathIndex]);
         // trigger can be a single item on a map or otherwise a seq.
         let inner = pathElement.get(path[pathIndex]);
+        if (isSeq(inner) && inner.items.length) {
+            inner = inner.items[path[pathIndex + 1]];
+            if (isNode(inner)) {
+                return this.resolveTriggerInner(result, path, pathIndex + 1, inner, cv, node, docMap);
+            }
+        }
         if (isMap(inner)) {
-            const final = pathIndex + 1 === path.length;
-            if (final) {
-                // show autocomplete for other props, like then, (depending on trigger schema, on_value_range / above; on_boot / priority, etc)
-                this.addConfigVars(result, cv.schema, inner, docMap);
-                return;
-            }
-
-            if (path[pathIndex + 1] === "then") {
-                // all triggers support then, even when they do not have a schema
-                // then is a trigger without schema so...
-                return this.resolveTrigger(result, path, pathIndex + 1, inner, { type: 'trigger', key: 'Optional', schema: undefined, has_required_var: false }, node, docMap);
-            }
-
-            // navigate into the prop
-            // this can be an action or a prop of this trigger
-            if (cv.schema !== undefined) {
-                const innerProp = this.findConfigVar(cv.schema, path[pathIndex + 1], docMap);
-                if (innerProp !== undefined) {
-                    return this.resolveComponent(result, path, pathIndex + 1, cv.schema, inner, node, docMap);
-                }
-            }
-            // is this an action?
-            const action = this.core_schema.getActionConfigVar(path[pathIndex + 1]);
-            if (action !== undefined) {
-                if (pathIndex + 2 === path.length) {
-                    return this.addConfigVars(result, action.schema, inner, docMap);
-                }
-                return this.resolveComponent(result, path, pathIndex + 1, action.schema, inner, node, docMap);
-            }
-            return this.resolveComponent(result, path, pathIndex + 1, cv.schema, inner, node, docMap);
+            return this.resolveTriggerInner(result, path, pathIndex, inner, cv, node, docMap);
         }
-        if (isSeq(inner)) {
-            if (pathIndex + 2 < path.length) {
-                // navigate into seq
-                inner = inner.items[path[pathIndex + 1]];
-                // we should only have actions here, maps should be one key only
-                if (isMap(inner)) {
-                    const item = inner.items[0];
-                    if (isPair(item)) {
-                        // is this an action?
-                        const action = this.core_schema.getActionConfigVar(item.key.toString());
-                        if (action !== undefined) {
-                            if (pathIndex + 3 === path.length) {
-                                return this.addConfigVars(result, action.schema, inner, docMap);
-                            }
-                            return this.resolveComponent(result, path, pathIndex + 2, action.schema, inner, node, docMap);
-                        }
-                    }
-                }
-            }
-            this.addRegistry(result, { type: "registry", "registry": "action", "key": null });
-            return;
-        }
-        if (inner === null) {
-            // This is an empty action
-            // If this has a schema, use it, these are suggestions so user will see the trigger parameters even when they are optional
-            // However if the only option is 'then:' we should avoid it for readability
-            if (cv.schema !== undefined) {
-                return this.addConfigVars(result, cv.schema, null, docMap);
-            }
-            return this.addRegistry(result, { type: "registry", "registry": "action", "key": null });
-
-        }
+        return this.resolveTriggerInner(result, path, pathIndex, isMap(inner) ? inner : null, cv, node, docMap);
     }
 
 
