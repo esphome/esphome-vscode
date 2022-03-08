@@ -1,201 +1,12 @@
-import { createVerify } from "crypto";
-import * as fs from "fs";
-import path = require("path");
 import { Position } from "vscode-languageserver-textdocument";
-import { CompletionItem, CompletionItemKind, Range, TextDocument } from "vscode-languageserver/node";
+import { CompletionItem, CompletionItemKind, MarkupContent, Range, TextDocument } from "vscode-languageserver/node";
 import { isPair, isMap, isScalar, isSeq, YAMLMap, Node, Scalar, isNode } from "yaml";
-import { coreKnownTags } from "yaml/dist/schema/tags";
+import { ConfigVar, CoreSchema, Schema, ConfigVarTrigger, ConfigVarRegistry, ConfigVarPin, ConfigVarEnum } from "./CoreSchema";
 import { YamlNode } from "./jsonASTTypes";
 import { SingleYAMLDocument, YamlDocuments } from "./parser/yaml-documents";
-import { filterInvalidCustomTags, matchOffsetToDocument } from "./utils/arrUtils";
+import { matchOffsetToDocument } from "./utils/arrUtils";
 import { isNumber, isString } from "./utils/objects";
 import { TextBuffer } from "./utils/textBuffer";
-
-
-interface SchemaSet {
-    [name: string]: Component;
-    core: CoreComponent;
-}
-
-interface ConfigVarBase {
-    key: string;
-    detail?: string;
-}
-
-interface ConfigVarRegistry extends ConfigVarBase {
-    type: 'registry';
-    registry: string;
-    filter?: string[];
-}
-
-interface ConfigVarTrigger extends ConfigVarBase {
-    type: 'trigger';
-    schema: Schema;
-    has_required_var: Boolean;
-}
-
-interface ConfigVarEnum extends ConfigVarBase {
-    type: 'enum';
-    values: string[];
-}
-
-interface ConfigVarSchema extends ConfigVarBase {
-    type: 'schema';
-    schema: Schema;
-}
-interface ConfigVarTyped extends ConfigVarBase {
-    type: 'typed';
-    types: {
-        [name: string]: Schema;
-    };
-}
-interface ConfigVarPin extends ConfigVarBase {
-    type: 'pin';
-    schema: Boolean;
-    internal: Boolean;
-    modes: ('output' | 'input' | 'pullup')[];
-}
-interface ConfigVarBoolean extends ConfigVarBase {
-    type: 'boolean';
-    default: string;
-}
-interface ConfigVarString extends ConfigVarBase {
-    type: 'string';
-}
-
-type ConfigVar = ConfigVarSchema | ConfigVarRegistry | ConfigVarEnum | ConfigVarTrigger | ConfigVarTyped | ConfigVarPin | ConfigVarBoolean | ConfigVarString;
-
-interface ConfigVars {
-    [name: string]: ConfigVar;
-}
-interface Schema {
-    config_vars: ConfigVars;
-    extends: string[];
-}
-interface Component {
-    schemas: {
-        [name: string]: Schema;
-        CONFIG_SCHEMA: Schema;
-    };
-    // These are the components e.g. of sensor, binary_sensor
-    components: string[];
-
-    action: {
-        [name: string]: ConfigVar;
-    };
-    condition: {
-        [name: string]: ConfigVar;
-    };
-    filter: {
-        [name: string]: ConfigVar;
-    };
-}
-interface CoreComponent extends Component {
-    platforms: string[];
-    components: string[];
-    pins: string[];
-}
-class CoreSchema {
-    schema: SchemaSet;
-    loaded_schemas: string[] = ["core", "esphome"];
-
-    constructor() {
-        this.schema = this.readFile("esphome");
-    }
-
-    getPlatformList() {
-        return this.schema.core.platforms;
-    }
-    getComponentList() {
-        return this.schema.core.components;
-    }
-
-    getComponent(domain: string, platform: string = null) {
-        if (!this.loaded_schemas.includes(domain)) {
-            this.schema = {
-                ...this.schema,
-                ...this.readFile(domain)
-            };
-            this.loaded_schemas.push(domain);
-        }
-        if (platform !== null) {
-            return this.schema[`${domain}.${platform}`];
-        }
-        return this.schema[domain];
-    }
-
-    getComponentSchema(domain: string) {
-        const component = this.getComponent(domain);
-        return component.schemas.CONFIG_SCHEMA;
-    }
-    getComponentPlatformSchema(domain: string, platform: string): Schema {
-        const component = this.getComponent(domain, platform);
-        return component.schemas.CONFIG_SCHEMA;
-    }
-
-    private readFile(name: string) {
-        const jsonPath = path.join(__dirname, `schema/${name}.json`);
-        const fileContents = fs.readFileSync(jsonPath, "utf-8");
-        return JSON.parse(fileContents);
-    }
-
-
-    getExtendedSchema(name: string) {
-        const parts = name.split('.');
-        const c = this.getComponent(parts[0]);
-        return c.schemas[parts[1]];
-    }
-
-    isPlatform(name: string): boolean {
-        return (this.schema.core.platforms.indexOf(name) !== -1);
-    }
-
-    * getRegistry(registry: string): Generator<string> {
-        if (registry.includes(".")) {
-            const [domain, registryName] = registry.split('.');
-            for (const name in this.schema[domain][registryName]) {
-                yield name;
-            }
-        }
-        else {
-            for (const c in this.schema) {
-                if (this.schema[c][registry] !== undefined) {
-                    for (const name in this.schema[c][registry]) {
-                        yield ((c === "core") ? "" : (c + ".")) + name;
-                    }
-                }
-            }
-        }
-    }
-
-    getRegistryConfigVar(registry: string, entry: string): ConfigVar {
-        if (registry.includes(".")) {
-            const [domain, registryName] = registry.split('.');
-            return this.schema[domain][registryName][entry];
-        }
-        else {
-            for (const c in this.schema) {
-                if (this.schema[c][registry] !== undefined && this.schema[c][registry][entry] !== undefined) {
-                    return this.schema[c][registry][entry];
-                }
-            }
-        }
-    }
-    getActionConfigVar(entry: string): ConfigVarTrigger {
-        return this.getRegistryConfigVar("action", entry) as ConfigVarTrigger;
-    }
-    getPinSchema(component: string): Schema {
-        return this.getComponent(component)["pin"];
-    }
-    getPins(): string[] {
-        return this.schema.core.pins;
-    }
-}
-interface PlatformSchema {
-    name: string;
-    components: Component[];
-    schema: Schema;
-}
 
 export class CompletionHandler {
 
@@ -256,13 +67,7 @@ export class CompletionHandler {
         return text.substring(i + 1, offset);
     }
 
-    private core_schema: CoreSchema;
-
-    constructor(
-        private yamlDocuments: YamlDocuments) {
-
-        this.core_schema = new CoreSchema();
-    }
+    constructor(private yamlDocuments: YamlDocuments, private coreSchema: CoreSchema) { }
 
     onCompletion = (document: TextDocument, position: Position): CompletionItem[] => {
         let result: CompletionItem[] = [];
@@ -296,9 +101,9 @@ export class CompletionHandler {
             return result;
         }
 
-        // as we modify AST for completion, we need to use copy of original document
-        const originalDoc = currentDoc;
-        currentDoc = currentDoc.clone();
+        // // as we modify AST for completion, we need to use copy of original document
+        // const originalDoc = currentDoc;
+        // currentDoc = currentDoc.clone();
 
         const docMap = currentDoc.root.internalNode;
         if (!isMap(docMap)) {
@@ -403,7 +208,7 @@ export class CompletionHandler {
             let pathIndex = 0;
             if (path.length) {
                 pathElement = docMap.get(path[0]);
-                if (this.core_schema.isPlatform(path[0])) {
+                if (this.coreSchema.isPlatform(path[0])) {
                     if (path.length > 1) {
                         // we are in a platform (e.g. sensor) and there are inner stuff
                         if (isNumber(path[1])) {
@@ -421,7 +226,7 @@ export class CompletionHandler {
                         const domain = pathElement.get("platform");
                         if (isString(domain)) {
                             // this.resolvePlatformComponent(result, path[0], domain, rootComponentMap);
-                            schema = this.core_schema.getComponentPlatformSchema(domain, path[0]);
+                            schema = this.coreSchema.getComponentPlatformSchema(domain, path[0]);
                             // return result;
                         }
                     }
@@ -436,7 +241,7 @@ export class CompletionHandler {
                     }
                 }
                 else {
-                    schema = this.core_schema.getComponentSchema(path[0]);
+                    schema = this.coreSchema.getComponentSchema(path[0]);
                 }
             }
 
@@ -466,7 +271,7 @@ export class CompletionHandler {
     private resolveComponent(result: CompletionItem[], path: any[], pathIndex: number, schema: Schema, pathElement: YAMLMap, node: YamlNode, docMap: YAMLMap) {
         console.log("component: " + path[pathIndex]);
         pathIndex++;
-        this.resolveConfigVar(result, path, pathIndex, this.findConfigVar(schema, path[pathIndex], docMap), pathElement, node, docMap);
+        this.resolveConfigVar(result, path, pathIndex, this.coreSchema.findConfigVar(schema, path[pathIndex], docMap), pathElement, node, docMap);
     }
 
     private resolveConfigVar(result: CompletionItem[], path: any[], pathIndex: number, cv: ConfigVar, pathElement: YAMLMap, node: YamlNode, docMap: YAMLMap) {
@@ -482,7 +287,7 @@ export class CompletionHandler {
                 }
                 else {
                     if (pathIndex + 1 === path.length) {
-                        return this.addConfigVars(result, cv.schema, null, docMap);
+                        return this.addConfigVars(result, cv.schema, null, docMap, cv.is_list);
                     }
                     throw new Error("Expected map not found in " + pathIndex);
                 }
@@ -560,10 +365,10 @@ export class CompletionHandler {
 
                 if (isMap(innerElement)) {
                     // Check if it is using a port expander
-                    for (const expander of this.core_schema.getPins()) {
+                    for (const expander of this.coreSchema.getPins()) {
                         if (expander !== "esp32" && expander !== "esp8266" && docMap.get(expander)) {
                             if (innerElement.get(expander)) {
-                                schema = this.core_schema.getPinSchema(expander);
+                                schema = this.coreSchema.getPinSchema(expander);
                                 break;
                             }
                         }
@@ -572,16 +377,16 @@ export class CompletionHandler {
 
                 if (schema === undefined) {
                     if (docMap.get("esp32")) { // TODO: Support old esphome / board
-                        schema = this.core_schema.getPinSchema("esp32");
+                        schema = this.coreSchema.getPinSchema("esp32");
                     }
                     else if (docMap.get("esp8266")) {
-                        schema = this.core_schema.getPinSchema("esp8266");
+                        schema = this.coreSchema.getPinSchema("esp8266");
                     }
                 }
 
                 if (schema !== undefined && innerElement === null && !cv.internal) {
                     // suggest all expanders
-                    for (const expander of this.core_schema.getPins()) {
+                    for (const expander of this.coreSchema.getPins()) {
                         if (expander !== "esp32" && expander !== "esp8266" && docMap.get(expander)) {
                             schema.config_vars[expander] = { key: "Optional", "type": "string" };
                         }
@@ -617,7 +422,7 @@ export class CompletionHandler {
         if (final && inner === null) {
             return this.addRegistry(result, cv);
         }
-        const registryCv = this.core_schema.getRegistryConfigVar(cv.registry, path[pathIndex + 1]);
+        const registryCv = this.coreSchema.getRegistryConfigVar(cv.registry, path[pathIndex + 1]);
         return this.resolveConfigVar(result, path, pathIndex + 1, registryCv, isMap(inner) ? inner : null, node, docMap);
     }
 
@@ -655,13 +460,13 @@ export class CompletionHandler {
         // navigate into the prop
         // this can be an action or a prop of this trigger
         if (cv.schema !== undefined) {
-            const innerProp = this.findConfigVar(cv.schema, path[pathIndex + 1], docMap);
+            const innerProp = this.coreSchema.findConfigVar(cv.schema, path[pathIndex + 1], docMap);
             if (innerProp !== undefined) {
                 return this.resolveComponent(result, path, pathIndex, cv.schema, isMap(inner) ? inner : null, node, docMap);
             }
         }
         // is this an action?
-        const action = this.core_schema.getActionConfigVar(path[pathIndex + 1]);
+        const action = this.coreSchema.getActionConfigVar(path[pathIndex + 1]);
         if (action !== undefined) {
             if (pathIndex + 2 === path.length && isMap(inner)) {
                 const props = inner.get(path[pathIndex + 1]);
@@ -689,20 +494,27 @@ export class CompletionHandler {
 
 
     private addPlatformNames(result: CompletionItem[], platform_name: string) {
-        const c = this.core_schema.getComponent(platform_name);
+        const c = this.coreSchema.getComponent(platform_name);
 
         if (c.components === undefined) {
             console.log(`Error: not a platform ${platform_name}`);
             return result;
         }
 
-        for (var component of c.components) {
-            result.push({
+        for (var component in c.components) {
+            const item: CompletionItem = {
                 label: component,
                 kind: CompletionItemKind.EnumMember,
                 insertText: component + '\n  ',
                 command: { title: 'chain', command: "editor.action.triggerSuggest" }
-            });
+            };
+            if (c.components[component].docs !== undefined) {
+                item.documentation = {
+                    kind: "markdown",
+                    value: c.components[component].docs
+                };
+            }
+            result.push(item);
         }
 
         return result;
@@ -710,33 +522,42 @@ export class CompletionHandler {
 
     private addCoreComponents(result: CompletionItem[], docMap: YAMLMap) {
         // suggest platforms, e.g. sensor:, binary_sensor:
-        const platformList = this.core_schema.getPlatformList();
-        for (var name of platformList) {
+        const platformList = this.coreSchema.getPlatformList();
+        for (var platformName in platformList) {
             // Don't add duplicate keys
-            if (this.mapHasScalarKey(docMap, name)) {
+            if (this.mapHasScalarKey(docMap, platformName)) {
                 continue;
             }
             result.push({
-                label: name,
+                label: platformName,
+                documentation: {
+                    kind: "markdown",
+                    value: platformList[platformName].docs
+                },
                 kind: CompletionItemKind.Class,
-                insertText: name + ':\n  - platform: ',
+                insertText: platformName + ':\n  - platform: ',
                 command: { title: 'chain', command: "editor.action.triggerSuggest" }
             });
         }
         // suggest component/hub e.g. dallas:, sim800l:
-        for (var component of this.core_schema.getComponentList()) {
+        const components = this.coreSchema.getComponentList();
+        for (var componentName in components) {
             // skip platforms added in previous loop
-            if (platformList.indexOf(component) !== -1) {
+            if (componentName in platformList) {
                 continue;
             }
             // Don't add duplicate keys
-            if (this.mapHasScalarKey(docMap, component)) {
+            if (this.mapHasScalarKey(docMap, componentName)) {
                 continue;
             }
             result.push({
-                label: component,
+                label: componentName,
+                documentation: {
+                    kind: "markdown",
+                    value: components[componentName].docs
+                },
                 kind: CompletionItemKind.Field,
-                insertText: component + ':\n  ',
+                insertText: componentName + ':\n  ',
                 command: { title: 'chain', command: "editor.action.triggerSuggest" }
             });
         }
@@ -752,9 +573,9 @@ export class CompletionHandler {
         return false;
     }
 
-    private addConfigVars(result: CompletionItem[], schema: Schema, node: YAMLMap, docMap: YAMLMap) {
+    private addConfigVars(result: CompletionItem[], schema: Schema, node: YAMLMap, docMap: YAMLMap, isList = false) {
         let preselected = false;
-        for (const [prop, config] of this.iter_configVars(schema, docMap)) {
+        for (const [prop, config] of this.coreSchema.iter_configVars(schema, docMap)) {
             // Skip existent properties
             if (node !== null && this.mapHasScalarKey(node, prop)) {
                 continue;
@@ -762,8 +583,18 @@ export class CompletionHandler {
             let triggerSuggest = false;
             const item: CompletionItem = {
                 label: prop,
-                insertText: prop + ': '
+                insertText: prop + ': ',
+
             };
+            if (config.docs) {
+                item.documentation = {
+                    kind: 'markdown',
+                    value: config.docs,
+                };
+            }
+            if (isList) {
+                item.insertText = "- " + item.insertText;
+            }
             if (config.detail) {
                 item.detail = config.detail;
             }
@@ -810,36 +641,6 @@ export class CompletionHandler {
         }
     }
 
-    * iter_configVars(schema: Schema, docMap: YAMLMap): Generator<[string, ConfigVar]> {
-        for (var prop in schema.config_vars) {
-            if (prop === "mqtt_id" && docMap.get("mqtt") === undefined) {
-                continue;
-            }
-            yield [prop, schema.config_vars[prop]];
-        }
-        if (schema.extends !== undefined) {
-            for (var extended of schema.extends) {
-                if (extended.startsWith("core.MQTT") && docMap.get("mqtt") === undefined) {
-                    continue;
-                }
-                const s = this.core_schema.getExtendedSchema(extended);
-                for (const pair of this.iter_configVars(s, docMap)) {
-                    yield pair;
-                }
-            }
-        }
-    }
-
-    findConfigVar(schema, prop, docMap: YAMLMap): ConfigVar {
-        for (const [p, config] of this.iter_configVars(schema, docMap)) {
-            if (p === prop) {
-                return config;
-            }
-        }
-        return undefined;
-    }
-
-
     addEnums(result: CompletionItem[], cv: ConfigVarEnum) {
         for (var value of cv.values) {
             result.push({
@@ -852,16 +653,20 @@ export class CompletionHandler {
     }
 
     addRegistry(result: CompletionItem[], configVar: ConfigVarRegistry) {
-        for (var value of this.core_schema.getRegistry(configVar.registry)) {
+        for (const [value, props] of this.coreSchema.getRegistry(configVar.registry)) {
             if (configVar.filter && !configVar.filter.includes(value)) {
                 continue;
             }
-            result.push({
+            const item: CompletionItem = {
                 label: value,
                 kind: CompletionItemKind.Keyword,
                 insertText: "- " + value + ": ",
                 // command: { title: 'chain', command: "editor.action.triggerSuggest" }
-            });
+            };
+            if (props.docs) {
+                item.documentation = { kind: "markdown", value: props.docs };
+            }
+            result.push(item);
         }
     }
 }

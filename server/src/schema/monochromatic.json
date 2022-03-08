@@ -1,0 +1,1 @@
+{"monochromatic.light": {"schemas": {"CONFIG_SCHEMA": {"extends": ["light.BRIGHTNESS_ONLY_LIGHT_SCHEMA"], "config_vars": {"output_id": {"key": "GeneratedID"}, "output": {"key": "Required"}}}}}}

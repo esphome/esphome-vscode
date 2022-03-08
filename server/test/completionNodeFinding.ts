@@ -5,6 +5,7 @@ import { TextDocument } from 'vscode-languageserver-textdocument';
 import { yamlDocumentsCache } from '../src/parser/yaml-documents';
 import { CompletionItem } from 'vscode-languageserver-types';
 import * as Docs from './sampleEsphomeYaml';
+import { CoreSchema } from '../src/CoreSchema';
 
 const testCompletionHaveLabels = (result: CompletionItem[], testSet) => {
   let count = 0;
@@ -27,7 +28,9 @@ const testCompletionDoesNotHaveLabels = (result: CompletionItem[], testSet) => {
   }
 };
 
-const x = new CompletionHandler(yamlDocumentsCache);
+const coreSchema = new CoreSchema;
+
+const x = new CompletionHandler(yamlDocumentsCache, coreSchema);
 
 describe('complete', () => {
   it('empty file lists esphome, wifi and others', () => {

@@ -1,1 +1,372 @@
-{"sensor": {"components": ["sim800l", "dallas", "template"], "schemas": {"SENSOR_SCHEMA": {"extends": ["core.ENTITY_BASE_SCHEMA", "core.MQTT_COMPONENT_SCHEMA"], "config_vars": {"mqtt_id": {"key": "Optional", "unknown": "<function declare_id.<locals>.validator at 0x0000029092224040>", "path": "sensor/SENSOR_SCHEMA/extR/mqtt_id"}, "id": {"key": "GeneratedID", "unknown": "<function declare_id.<locals>.validator at 0x00000290922241F0>", "path": "sensor/SENSOR_SCHEMA/extR/id"}, "unit_of_measurement": {"key": "Optional", "type": "string", "path": "sensor/SENSOR_SCHEMA/extR/unit_of_measurement"}, "accuracy_decimals": {"key": "Optional", "type": "integer", "path": "sensor/SENSOR_SCHEMA/extR/accuracy_decimals"}, "device_class": {"key": "Optional", "type": "enum", "values": ["", "aqi", "battery", "carbon_dioxide", "carbon_monoxide", "current", "energy", "gas", "humidity", "illuminance", "monetary", "nitrogen_dioxide", "nitrogen_monoxide", "nitrous_oxide", "ozone", "pm1", "pm10", "pm25", "power", "power_factor", "pressure", "signal_strength", "sulphur_dioxide", "temperature", "timestamp", "volatile_organic_compounds", "voltage"], "path": "sensor/SENSOR_SCHEMA/extR/device_class"}, "state_class": {"key": "Optional", "type": "enum", "values": ["", "measurement", "total_increasing"], "path": "sensor/SENSOR_SCHEMA/extR/state_class"}, "force_update": {"key": "Optional", "default": "False", "type": "boolean", "path": "sensor/SENSOR_SCHEMA/extR/force_update"}, "expire_after": {"key": "Optional", "unknown": "None", "path": "sensor/SENSOR_SCHEMA/extR/expire_after/val 2", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "filters": {"key": "Optional", "is_list": true, "path": "sensor/SENSOR_SCHEMA/extR/filters/list", "type": "registry", "registry": "sensor.filter"}, "on_value": {"key": "Optional", "type": "trigger", "path": "sensor/SENSOR_SCHEMA/extR/on_value"}, "on_raw_value": {"key": "Optional", "type": "trigger", "path": "sensor/SENSOR_SCHEMA/extR/on_raw_value"}, "on_value_range": {"key": "Optional", "type": "trigger", "schema": {"config_vars": {"above": {"key": "Optional", "unknown": "Coerce(float, msg=None)", "path": "sensor/SENSOR_SCHEMA/extR/on_value_range/extra/above"}, "below": {"key": "Optional", "unknown": "Coerce(float, msg=None)", "path": "sensor/SENSOR_SCHEMA/extR/on_value_range/extra/below"}, "then": {"type": "trigger"}}}, "has_required_var": true, "path": "sensor/SENSOR_SCHEMA/extR/on_value_range"}}}, "QUANTILE_SCHEMA": {"config_vars": {"window_size": {"key": "Optional", "default": "5", "type": "schema", "schema": {"extends": ["core.positive_not_null_int"]}}, "send_every": {"key": "Optional", "default": "5", "type": "schema", "schema": {"extends": ["core.positive_not_null_int"]}}, "send_first_at": {"key": "Optional", "default": "1", "type": "schema", "schema": {"extends": ["core.positive_not_null_int"]}}, "quantile": {"key": "Optional", "default": "0.9", "type": "schema", "schema": {"extends": ["core.zero_to_one_float"]}}}}, "MEDIAN_SCHEMA": {"config_vars": {"window_size": {"key": "Optional", "default": "5", "type": "schema", "schema": {"extends": ["core.positive_not_null_int"]}}, "send_every": {"key": "Optional", "default": "5", "type": "schema", "schema": {"extends": ["core.positive_not_null_int"]}}, "send_first_at": {"key": "Optional", "default": "1", "type": "schema", "schema": {"extends": ["core.positive_not_null_int"]}}}}, "MIN_SCHEMA": {"config_vars": {"window_size": {"key": "Optional", "default": "5", "type": "schema", "schema": {"extends": ["core.positive_not_null_int"]}}, "send_every": {"key": "Optional", "default": "5", "type": "schema", "schema": {"extends": ["core.positive_not_null_int"]}}, "send_first_at": {"key": "Optional", "default": "1", "type": "schema", "schema": {"extends": ["core.positive_not_null_int"]}}}}, "MAX_SCHEMA": {"config_vars": {"window_size": {"key": "Optional", "default": "5", "type": "schema", "schema": {"extends": ["core.positive_not_null_int"]}}, "send_every": {"key": "Optional", "default": "5", "type": "schema", "schema": {"extends": ["core.positive_not_null_int"]}}, "send_first_at": {"key": "Optional", "default": "1", "type": "schema", "schema": {"extends": ["core.positive_not_null_int"]}}}}, "SLIDING_AVERAGE_SCHEMA": {"config_vars": {"window_size": {"key": "Optional", "default": "15", "type": "schema", "schema": {"extends": ["core.positive_not_null_int"]}}, "send_every": {"key": "Optional", "default": "15", "type": "schema", "schema": {"extends": ["core.positive_not_null_int"]}}, "send_first_at": {"key": "Optional", "default": "1", "type": "schema", "schema": {"extends": ["core.positive_not_null_int"]}}}}, "SENSOR_IN_RANGE_CONDITION_SCHEMA": {"config_vars": {"id": {"key": "Required", "unknown": "<function use_id.<locals>.validator at 0x00000290922433A0>", "path": "sensor/SENSOR_IN_RANGE_CONDITION_SCHEMA/val 1/id"}, "above": {"key": "Optional", "unknown": "Coerce(float, msg=None)", "path": "sensor/SENSOR_IN_RANGE_CONDITION_SCHEMA/val 1/above"}, "below": {"key": "Optional", "unknown": "Coerce(float, msg=None)", "path": "sensor/SENSOR_IN_RANGE_CONDITION_SCHEMA/val 1/below"}}}}, "action": {"template.publish": {"type": "schema", "schema": {"config_vars": {"id": {"key": "Required", "unknown": "<function use_id.<locals>.validator at 0x000002909242DA60>", "path": "sensor/action/template.publish/all/all/id"}, "state": {"key": "Required", "templatable": true, "unknown": "Coerce(float, msg=None)", "path": "sensor/action/template.publish/all/all/state"}}}}}, "condition": {"in_range": {"type": "schema", "schema": {"extends": ["sensor.SENSOR_IN_RANGE_CONDITION_SCHEMA"]}}}, "filter": {"offset": {"unknown": "Coerce(float, msg=None)", "path": "sensor/filter/offset/all"}, "multiply": {"unknown": "Coerce(float, msg=None)", "path": "sensor/filter/multiply/all"}, "filter_out": {"unknown": "Coerce(float, msg=None)", "path": "sensor/filter/filter_out/all"}, "quantile": {"type": "schema", "schema": {"extends": ["sensor.QUANTILE_SCHEMA"]}}, "median": {"type": "schema", "schema": {"extends": ["sensor.MEDIAN_SCHEMA"]}}, "min": {"type": "schema", "schema": {"extends": ["sensor.MIN_SCHEMA"]}}, "max": {"type": "schema", "schema": {"extends": ["sensor.MAX_SCHEMA"]}}, "sliding_window_moving_average": {"type": "schema", "schema": {"extends": ["sensor.SLIDING_AVERAGE_SCHEMA"]}}, "exponential_moving_average": {"type": "schema", "schema": {"config_vars": {"alpha": {"key": "Optional", "default": "0.1", "type": "schema", "schema": {"extends": ["core.positive_float"]}}, "send_every": {"key": "Optional", "default": "15", "type": "schema", "schema": {"extends": ["core.positive_not_null_int"]}}}}}, "throttle_average": {"type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "lambda": {"unknown": "<function returning_lambda at 0x000002909209DE50>", "path": "sensor/filter/lambda/all"}, "delta": {"unknown": "Coerce(float, msg=None)", "path": "sensor/filter/delta/all"}, "or": {"is_list": true, "path": "sensor/filter/or/all/list", "type": "registry", "registry": "sensor.filter"}, "throttle": {"type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "heartbeat": {"type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "debounce": {"type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "calibrate_linear": {"is_list": true, "unknown": "<function validate_not_all_from_same at 0x000002909223F1F0>", "path": "sensor/filter/calibrate_linear/all/val 3"}, "calibrate_polynomial": {"type": "schema", "schema": {"config_vars": {"datapoints": {"key": "Required", "is_list": true, "unknown": "Length(min=1, max=None)", "path": "sensor/filter/calibrate_polynomial/all/val 1/all/datapoints/val 2"}, "degree": {"key": "Required", "type": "schema", "schema": {"extends": ["core.positive_int"]}}}}, "path": "sensor/filter/calibrate_polynomial/all/val 2"}}}}
+{
+  "sensor": {
+    "components": {
+      "template": {
+        "docs": "The `template` sensor platform allows you to create a sensor with templated values using [lambdas](https://esphome.io/guides/automations.html#config-lambda).\n\n*See also: [Template Sensor](https://esphome.io/components/sensor/template.html#template-sensor)*"
+      },
+      "sim800l": {},
+      "dallas": {}
+    },
+    "schemas": {
+      "SENSOR_SCHEMA": {
+        "extends": ["core.ENTITY_BASE_SCHEMA", "core.MQTT_COMPONENT_SCHEMA"],
+        "config_vars": {
+          "mqtt_id": { "key": "Optional" },
+          "id": {
+            "key": "GeneratedID",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Template Sensor](https://esphome.io/components/sensor/template.html#configuration-variables)*"
+          },
+          "unit_of_measurement": {
+            "key": "Optional",
+            "type": "string",
+            "docs": "**string**: Manually set the unit of measurement the sensor should advertise its values with. This does not actually do any maths (conversion between units).\n\n\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
+          },
+          "accuracy_decimals": {
+            "key": "Optional",
+            "type": "integer",
+            "docs": "**int**: Manually set the accuracy of decimals to use when reporting values.\n\n\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
+          },
+          "device_class": {
+            "key": "Optional",
+            "type": "enum",
+            "values": [
+              "",
+              "aqi",
+              "battery",
+              "carbon_dioxide",
+              "carbon_monoxide",
+              "current",
+              "energy",
+              "gas",
+              "humidity",
+              "illuminance",
+              "monetary",
+              "nitrogen_dioxide",
+              "nitrogen_monoxide",
+              "nitrous_oxide",
+              "ozone",
+              "pm1",
+              "pm10",
+              "pm25",
+              "power",
+              "power_factor",
+              "pressure",
+              "signal_strength",
+              "sulphur_dioxide",
+              "temperature",
+              "timestamp",
+              "volatile_organic_compounds",
+              "voltage"
+            ],
+            "docs": "**string**: The device class for the sensor. See [https://developers.home-assistant.io/docs/core/entity/sensor/#available-device-classes](https://developers.home-assistant.io/docs/core/entity/sensor/#available-device-classes) for a list of available options. Set to `\"\"` to remove the default device class of a sensor.\n\n\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
+          },
+          "state_class": {
+            "key": "Optional",
+            "type": "enum",
+            "values": ["", "measurement", "total_increasing"],
+            "docs": "**string**: The state class for the sensor. See [https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes](https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes) for a list of available options. Set to `\"\"` to remove the default state class of a sensor.\n\n\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
+          },
+          "force_update": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean",
+            "docs": "**boolean**: If true, this option will force the frontend (usually Home Assistant) to create a state changed event when the sensor updates even if the value stayed the same. Some applications like Grafana require this when working with Home Assistant, but beware it can significantly increase the database size. Defaults to `false`.\n\n\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
+          },
+          "expire_after": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": { "extends": ["core.positive_time_period_milliseconds"] },
+            "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Manually set the time in which the sensor values should be marked as \u201cexpired\u201d/\u201cunknown\u201d. Not providing any value means no expiry.\n\n\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
+          },
+          "filters": {
+            "key": "Optional",
+            "is_list": true,
+            "type": "registry",
+            "registry": "sensor.filter",
+            "docs": "Specify filters to use for some basic transforming of values. See [Sensor Filters](https://esphome.io/components/sensor/index.html#sensor-filters) for more information.\n\n\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
+          },
+          "on_value": {
+            "key": "Optional",
+            "type": "trigger",
+            "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a new value is published. See [on_value](https://esphome.io/components/sensor/index.html#sensor-on-value).\n\n\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
+          },
+          "on_raw_value": {
+            "key": "Optional",
+            "type": "trigger",
+            "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a raw value is received that hasn\u2019t passed through any filters. See [on_raw_value](https://esphome.io/components/sensor/index.html#sensor-on-raw-value).\n\n\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
+          },
+          "on_value_range": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "above": {
+                  "key": "Optional",
+                  "docs": "**float**: The minimum for the trigger.\n\n\n\n*See also: [lambda](https://esphome.io/components/sensor/index.html#on-value-range)*"
+                },
+                "below": {
+                  "key": "Optional",
+                  "docs": "**float**: The maximum for the trigger.\n\n\n\n*See also: [lambda](https://esphome.io/components/sensor/index.html#on-value-range)*"
+                },
+                "then": { "type": "trigger" }
+              }
+            },
+            "has_required_var": true,
+            "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a published value transition from outside to a range to inside. See [on_value_range](https://esphome.io/components/sensor/index.html#sensor-on-value-range).\n\n\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
+          }
+        }
+      },
+      "QUANTILE_SCHEMA": {
+        "config_vars": {
+          "window_size": {
+            "key": "Optional",
+            "default": "5",
+            "type": "integer",
+            "docs": "**int**: The number of values over which to calculate the quantile when pushing out a value. Defaults to `5`.\n\n\n\n*See also: [quantile](https://esphome.io/components/sensor/index.html#quantile)*"
+          },
+          "send_every": {
+            "key": "Optional",
+            "default": "5",
+            "type": "integer",
+            "docs": "**int**: How often a sensor value should be pushed out. For example, in above configuration the quantile is calculated after every 4th received sensor value, over the last 7 received values. Defaults to `5`.\n\n\n\n*See also: [quantile](https://esphome.io/components/sensor/index.html#quantile)*"
+          },
+          "send_first_at": {
+            "key": "Optional",
+            "default": "1",
+            "type": "integer",
+            "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Must be smaller than or equal to `send_every` Defaults to `1`.\n\n\n\n*See also: [quantile](https://esphome.io/components/sensor/index.html#quantile)*"
+          },
+          "quantile": {
+            "key": "Optional",
+            "default": "0.9",
+            "type": "schema",
+            "schema": { "extends": ["core.zero_to_one_float"] },
+            "docs": "**float**: value from 0 to 1 to determine which quantile to pick. Defaults to `.9`.\n\n\n\n*See also: [quantile](https://esphome.io/components/sensor/index.html#quantile)*"
+          }
+        }
+      },
+      "MEDIAN_SCHEMA": {
+        "config_vars": {
+          "window_size": {
+            "key": "Optional",
+            "default": "5",
+            "type": "integer",
+            "docs": "**int**: The number of values over which to calculate the median when pushing out a value. This number should be odd if you want an actual received value pushed out. Defaults to `5`.\n\n\n\n*See also: [median](https://esphome.io/components/sensor/index.html#median)*"
+          },
+          "send_every": {
+            "key": "Optional",
+            "default": "5",
+            "type": "integer",
+            "docs": "**int**: How often a sensor value should be pushed out. For example, in above configuration the median is calculated after every 4th received sensor value, over the last 7 received values. Defaults to `5`.\n\n\n\n*See also: [median](https://esphome.io/components/sensor/index.html#median)*"
+          },
+          "send_first_at": {
+            "key": "Optional",
+            "default": "1",
+            "type": "integer",
+            "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Must be smaller than or equal to `send_every` Defaults to `1`.\n\n\n\n*See also: [median](https://esphome.io/components/sensor/index.html#median)*"
+          }
+        }
+      },
+      "MIN_SCHEMA": {
+        "config_vars": {
+          "window_size": {
+            "key": "Optional",
+            "default": "5",
+            "type": "integer",
+            "docs": "**int**: The number of values over which to calculate the min/max when pushing out a value. Defaults to `5`.\n\n\n\n*See also: [min](https://esphome.io/components/sensor/index.html#min)*"
+          },
+          "send_every": {
+            "key": "Optional",
+            "default": "5",
+            "type": "integer",
+            "docs": "**int**: How often a sensor value should be pushed out. For example, in above configuration the min is calculated after every 4th received sensor value, over the last 7 received values. Defaults to `5`.\n\n\n\n*See also: [min](https://esphome.io/components/sensor/index.html#min)*"
+          },
+          "send_first_at": {
+            "key": "Optional",
+            "default": "1",
+            "type": "integer",
+            "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Must be smaller than or equal to `send_every` Defaults to `1`.\n\n\n\n*See also: [min](https://esphome.io/components/sensor/index.html#min)*"
+          }
+        }
+      },
+      "MAX_SCHEMA": {
+        "config_vars": {
+          "window_size": {
+            "key": "Optional",
+            "default": "5",
+            "type": "integer",
+            "docs": "**int**: The number of values over which to calculate the min/max when pushing out a value. Defaults to `5`.\n\n\n\n*See also: [max](https://esphome.io/components/sensor/index.html#max)*"
+          },
+          "send_every": {
+            "key": "Optional",
+            "default": "5",
+            "type": "integer",
+            "docs": "**int**: How often a sensor value should be pushed out. For example, in above configuration the min is calculated after every 4th received sensor value, over the last 7 received values. Defaults to `5`.\n\n\n\n*See also: [max](https://esphome.io/components/sensor/index.html#max)*"
+          },
+          "send_first_at": {
+            "key": "Optional",
+            "default": "1",
+            "type": "integer",
+            "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Must be smaller than or equal to `send_every` Defaults to `1`.\n\n\n\n*See also: [max](https://esphome.io/components/sensor/index.html#max)*"
+          }
+        }
+      },
+      "SLIDING_AVERAGE_SCHEMA": {
+        "config_vars": {
+          "window_size": {
+            "key": "Optional",
+            "default": "15",
+            "type": "integer",
+            "docs": "**int**: The number of values over which to perform an average when pushing out a value.\n\n\n\n*See also: [sliding_window_moving_average](https://esphome.io/components/sensor/index.html#sliding-window-moving-average)*"
+          },
+          "send_every": {
+            "key": "Optional",
+            "default": "15",
+            "type": "integer",
+            "docs": "**int**: How often a sensor value should be pushed out. For example, in above configuration the weighted average is only pushed out on every 15th received sensor value.\n\n\n\n*See also: [sliding_window_moving_average](https://esphome.io/components/sensor/index.html#sliding-window-moving-average)*"
+          },
+          "send_first_at": {
+            "key": "Optional",
+            "default": "1",
+            "type": "integer",
+            "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Defaults to `1`.\n\n\n\n*See also: [sliding_window_moving_average](https://esphome.io/components/sensor/index.html#sliding-window-moving-average)*"
+          }
+        }
+      },
+      "EXPONENTIAL_AVERAGE_SCHEMA": {
+        "config_vars": {
+          "alpha": {
+            "key": "Optional",
+            "default": "0.1",
+            "type": "schema",
+            "schema": { "extends": ["core.positive_float"] },
+            "docs": "**float**: The forget factor/alpha value of the filter. Defaults to `0.1`.\n\n\n\n*See also: [exponential_moving_average](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
+          },
+          "send_every": {
+            "key": "Optional",
+            "default": "15",
+            "type": "integer",
+            "docs": "**int**: How often a sensor value should be pushed out. Defaults to `15`.\n\n\n\n*See also: [exponential_moving_average](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
+          },
+          "send_first_at": {
+            "key": "Optional",
+            "default": "1",
+            "type": "integer",
+            "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Defaults to `1`.\n\n\n\n*See also: [exponential_moving_average](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
+          }
+        }
+      },
+      "SENSOR_IN_RANGE_CONDITION_SCHEMA": {
+        "config_vars": {
+          "id": { "key": "Required" },
+          "above": {
+            "key": "Optional",
+            "docs": "**float**: The minimum for the condition.\n\n\n\n*See also: [lambda](https://esphome.io/components/sensor/index.html#sensor-in-range-condition)*"
+          },
+          "below": {
+            "key": "Optional",
+            "docs": "**float**: The maximum for the condition.\n\n\n\n*See also: [lambda](https://esphome.io/components/sensor/index.html#sensor-in-range-condition)*"
+          }
+        }
+      }
+    },
+    "condition": {
+      "in_range": {
+        "type": "schema",
+        "schema": { "extends": ["sensor.SENSOR_IN_RANGE_CONDITION_SCHEMA"] },
+        "docs": "This condition passes if the state of the given sensor is inside a range.\n\n*See also: [lambda](https://esphome.io/components/sensor/index.html#sensor-in-range-condition)*"
+      }
+    },
+    "filter": {
+      "offset": {
+        "docs": "Adds a constant value to each sensor value.\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#offset)*"
+      },
+      "multiply": {
+        "docs": "Multiplies each value by a constant value.\n\n*See also: [offset](https://esphome.io/components/sensor/index.html#multiply)*"
+      },
+      "filter_out": {
+        "docs": "**number**: Filter out specific values to be displayed. For example to filter out the value `85.0`\n\n*See also: [calibrate_polynomial](https://esphome.io/components/sensor/index.html#filter-out)*"
+      },
+      "quantile": {
+        "type": "schema",
+        "schema": { "extends": ["sensor.QUANTILE_SCHEMA"] },
+        "docs": "A [simple moving quantile](https://en.wikipedia.org/wiki/Quantile) over the last few values. This can be used to filter outliers from the received sensor data. A large window size will make the filter slow to react to input changes.\n\n*See also: [filter_out](https://esphome.io/components/sensor/index.html#quantile)*"
+      },
+      "median": {
+        "type": "schema",
+        "schema": { "extends": ["sensor.MEDIAN_SCHEMA"] },
+        "docs": "A [simple moving median](https://en.wikipedia.org/wiki/Median_filter#Worked_1D_example) over the last few values. This can be used to filter outliers from the received sensor data. A large window size will make the filter slow to react to input changes.\n\n*See also: [quantile](https://esphome.io/components/sensor/index.html#median)*"
+      },
+      "min": {
+        "type": "schema",
+        "schema": { "extends": ["sensor.MIN_SCHEMA"] },
+        "docs": "A moving minimum over the last few values. A large window size will make the filter slow to react to input changes.\n\n*See also: [median](https://esphome.io/components/sensor/index.html#min)*"
+      },
+      "max": {
+        "type": "schema",
+        "schema": { "extends": ["sensor.MAX_SCHEMA"] },
+        "docs": "A moving maximum over the last few values. A large window size will make the filter slow to react to input changes.\n\n*See also: [min](https://esphome.io/components/sensor/index.html#max)*"
+      },
+      "sliding_window_moving_average": {
+        "type": "schema",
+        "schema": { "extends": ["sensor.SLIDING_AVERAGE_SCHEMA"] },
+        "docs": "A [simple moving average](https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average) over the last few values. It can be used to have a short update interval on the sensor but only push out an average on a specific interval (thus increasing resolution).\n\n*See also: [max](https://esphome.io/components/sensor/index.html#sliding-window-moving-average)*"
+      },
+      "exponential_moving_average": {
+        "type": "schema",
+        "schema": { "extends": ["sensor.EXPONENTIAL_AVERAGE_SCHEMA"] },
+        "docs": "A simple [exponential moving average](https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average) over the last few values. It can be used to have a short update interval on the sensor but only push out an average on a specific interval (thus increasing resolution).\n\n*See also: [sliding_window_moving_average](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
+      },
+      "throttle_average": {
+        "type": "schema",
+        "schema": { "extends": ["core.positive_time_period_milliseconds"] },
+        "docs": "An average over the `specified time period`, potentially throttling incoming values. When this filter gets incoming values, it sums up all values and pushes out the average after the `specified time period` passed. There are two edge cases to consider within the `specified time period`:\n\n*See also: [throttle](https://esphome.io/components/sensor/index.html#throttle-average)*"
+      },
+      "lambda": {
+        "docs": "Perform a simple mathematical operation over the sensor values. The input value is `x` and the result of the lambda is used as the output (use `return`).\n\n*See also: [or](https://esphome.io/components/sensor/index.html#lambda)*"
+      },
+      "delta": {
+        "docs": "This filter stores the last value passed through this filter and only passes incoming values through if the absolute difference is greater than the configured value. For example if a value of 1.0 first comes in, it\u2019s passed on. If the delta filter is configured with a value of 5, it will now not pass on an incoming value of 2.0, only values that are at least 6.0 big or -4.0.\n\n*See also: [debounce](https://esphome.io/components/sensor/index.html#delta)*"
+      },
+      "or": {
+        "is_list": true,
+        "type": "registry",
+        "registry": "sensor.filter",
+        "docs": "Pass forward a value with the first child filter that returns. Above example will only pass forward values that are *either* at least 1s old or are if the absolute difference is at least 5.0.\n\n*See also: [delta](https://esphome.io/components/sensor/index.html#or)*"
+      },
+      "throttle": {
+        "type": "schema",
+        "schema": { "extends": ["core.positive_time_period_milliseconds"] },
+        "docs": "Throttle the incoming values. When this filter gets an incoming value, it checks if the last incoming value is at least `specified time period` old. If it is not older than the configured value, the value is not passed forward.\n\n*See also: [exponential_moving_average](https://esphome.io/components/sensor/index.html#throttle)*"
+      },
+      "heartbeat": {
+        "type": "schema",
+        "schema": { "extends": ["core.positive_time_period_milliseconds"] },
+        "docs": "Send the value periodically with the specified time interval. If the sensor value changes during the interval the interval will not reset. The last value of the sensor will be sent.\n\n*See also: [throttle_average](https://esphome.io/components/sensor/index.html#heartbeat)*"
+      },
+      "debounce": {
+        "type": "schema",
+        "schema": { "extends": ["core.positive_time_period_milliseconds"] },
+        "docs": "Only send values if the last incoming value is at least `specified time period` old. For example if two values come in at almost the same time, this filter will only output the last value and only after the specified time period has passed without any new incoming values.\n\n*See also: [heartbeat](https://esphome.io/components/sensor/index.html#debounce)*"
+      },
+      "calibrate_linear": {
+        "is_list": true,
+        "docs": "Calibrate your sensor values by using values you measured with an accurate \u201ctruth\u201d source.\n\n*See also: [multiply](https://esphome.io/components/sensor/index.html#calibrate-linear)*"
+      },
+      "calibrate_polynomial": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "datapoints": { "key": "Required", "is_list": true },
+            "degree": {
+              "key": "Required",
+              "type": "schema",
+              "schema": { "extends": ["core.positive_int"] }
+            }
+          }
+        },
+        "docs": "Calibrate your sensor values by fitting them to a polynomial functions. This is similar to the `calibrate_linear` filter, but also allows for higher-order functions like quadratic polynomials.\n\n*See also: [calibrate_linear](https://esphome.io/components/sensor/index.html#calibrate-polynomial)*"
+      }
+    }
+  }
+}
