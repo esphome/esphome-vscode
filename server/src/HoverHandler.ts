@@ -123,6 +123,19 @@ export class HoverHandler {
             let schema: Schema;
             let cv: ConfigVar;
 
+            if (path.length === 1) {
+                const rootComponents = this.coreSchema.getComponentList();
+                if (path[0] in rootComponents) {
+                    return resolve(createHover(rootComponents[path[0]].docs));
+                }
+                const platformComponents = this.coreSchema.getPlatformList();
+                if (path[0] in platformComponents) {
+                    return resolve(createHover(platformComponents[path[0]].docs));
+                }
+
+                return resolve(null);
+            }
+
             while (index < path.length) {
                 if (isString(path[index]) && isMap(docNode)) {
                     docNode = docNode.get(path[index], true);
