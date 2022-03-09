@@ -1,1 +1,225 @@
-{"wifi": {"schemas": {"CONFIG_SCHEMA": {"config_vars": {"id": {"key": "GeneratedID"}, "networks": {"key": "Optional", "is_list": true, "type": "schema", "schema": {"extends": ["wifi.WIFI_NETWORK_STA"]}}, "ssid": {"key": "Optional"}, "password": {"key": "Optional"}, "manual_ip": {"key": "Optional", "type": "schema", "schema": {"extends": ["wifi.STA_MANUAL_IP_SCHEMA"]}}, "eap": {"key": "Optional", "type": "schema", "schema": {"extends": ["wifi.EAP_AUTH_SCHEMA"]}}, "ap": {"key": "Optional", "type": "schema", "schema": {"extends": ["wifi.WIFI_NETWORK_AP"]}}, "domain": {"key": "Optional", "default": ".local"}, "reboot_timeout": {"key": "Optional", "default": "15min", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "power_save_mode": {"key": "Optional", "default": "none", "type": "enum", "values": ["NONE", "LIGHT", "HIGH"]}, "fast_connect": {"key": "Optional", "default": "False", "type": "boolean"}, "use_address": {"key": "Optional", "type": "string"}, "output_power": {"key": "Optional", "default": "20.0"}}}, "AP_MANUAL_IP_SCHEMA": {"config_vars": {"static_ip": {"key": "Required"}, "gateway": {"key": "Required"}, "subnet": {"key": "Required"}}}, "STA_MANUAL_IP_SCHEMA": {"extends": ["wifi.AP_MANUAL_IP_SCHEMA"], "config_vars": {"dns1": {"key": "Optional", "default": "0.0.0.0"}, "dns2": {"key": "Optional", "default": "0.0.0.0"}}}, "EAP_AUTH_SCHEMA": {"config_vars": {"identity": {"key": "Optional", "type": "string"}, "username": {"key": "Optional", "type": "string"}, "password": {"key": "Optional", "type": "string"}, "certificate_authority": {"key": "Optional"}, "certificate": {"key": "Optional"}, "key": {"key": "Optional"}}}, "WIFI_NETWORK_BASE": {"config_vars": {"id": {"key": "GeneratedID"}, "ssid": {"key": "Optional"}, "password": {"key": "Optional"}, "channel": {"key": "Optional"}, "manual_ip": {"key": "Optional", "type": "schema", "schema": {"extends": ["wifi.STA_MANUAL_IP_SCHEMA"]}}}}, "WIFI_NETWORK_AP": {"extends": ["wifi.WIFI_NETWORK_BASE"], "config_vars": {"ap_timeout": {"key": "Optional", "default": "1min", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}}}, "WIFI_NETWORK_STA": {"extends": ["wifi.WIFI_NETWORK_BASE"], "config_vars": {"bssid": {"key": "Optional"}, "hidden": {"key": "Optional", "type": "boolean"}, "priority": {"key": "Optional", "default": "0.0"}, "eap": {"key": "Optional", "type": "schema", "schema": {"extends": ["wifi.EAP_AUTH_SCHEMA"]}}}}, "FINAL_VALIDATE_SCHEMA": {"config_vars": {"power_save_mode": {"key": "Optional"}}}}, "condition": {"connected": {}}}}
+{
+  "wifi": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "networks": {
+            "key": "Optional",
+            "is_list": true,
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "wifi.WIFI_NETWORK_STA"
+              ]
+            }
+          },
+          "ssid": {
+            "key": "Optional"
+          },
+          "password": {
+            "key": "Optional"
+          },
+          "manual_ip": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "wifi.STA_MANUAL_IP_SCHEMA"
+              ]
+            }
+          },
+          "eap": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "wifi.EAP_AUTH_SCHEMA"
+              ]
+            }
+          },
+          "ap": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "wifi.WIFI_NETWORK_AP"
+              ]
+            }
+          },
+          "domain": {
+            "key": "Optional",
+            "default": ".local"
+          },
+          "reboot_timeout": {
+            "key": "Optional",
+            "default": "15min",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_milliseconds"
+              ]
+            }
+          },
+          "power_save_mode": {
+            "key": "Optional",
+            "default": "none",
+            "type": "enum",
+            "values": [
+              "NONE",
+              "LIGHT",
+              "HIGH"
+            ]
+          },
+          "fast_connect": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "use_address": {
+            "key": "Optional",
+            "type": "string"
+          },
+          "output_power": {
+            "key": "Optional",
+            "default": "20.0"
+          }
+        }
+      },
+      "AP_MANUAL_IP_SCHEMA": {
+        "config_vars": {
+          "static_ip": {
+            "key": "Required"
+          },
+          "gateway": {
+            "key": "Required"
+          },
+          "subnet": {
+            "key": "Required"
+          }
+        }
+      },
+      "STA_MANUAL_IP_SCHEMA": {
+        "extends": [
+          "wifi.AP_MANUAL_IP_SCHEMA"
+        ],
+        "config_vars": {
+          "dns1": {
+            "key": "Optional",
+            "default": "0.0.0.0"
+          },
+          "dns2": {
+            "key": "Optional",
+            "default": "0.0.0.0"
+          }
+        }
+      },
+      "EAP_AUTH_SCHEMA": {
+        "config_vars": {
+          "identity": {
+            "key": "Optional",
+            "type": "string"
+          },
+          "username": {
+            "key": "Optional",
+            "type": "string"
+          },
+          "password": {
+            "key": "Optional",
+            "type": "string"
+          },
+          "certificate_authority": {
+            "key": "Optional"
+          },
+          "certificate": {
+            "key": "Optional"
+          },
+          "key": {
+            "key": "Optional"
+          }
+        }
+      },
+      "WIFI_NETWORK_BASE": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "ssid": {
+            "key": "Optional"
+          },
+          "password": {
+            "key": "Optional"
+          },
+          "channel": {
+            "key": "Optional"
+          },
+          "manual_ip": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "wifi.STA_MANUAL_IP_SCHEMA"
+              ]
+            }
+          }
+        }
+      },
+      "WIFI_NETWORK_AP": {
+        "extends": [
+          "wifi.WIFI_NETWORK_BASE"
+        ],
+        "config_vars": {
+          "ap_timeout": {
+            "key": "Optional",
+            "default": "1min",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_milliseconds"
+              ]
+            }
+          }
+        }
+      },
+      "WIFI_NETWORK_STA": {
+        "extends": [
+          "wifi.WIFI_NETWORK_BASE"
+        ],
+        "config_vars": {
+          "bssid": {
+            "key": "Optional"
+          },
+          "hidden": {
+            "key": "Optional",
+            "type": "boolean"
+          },
+          "priority": {
+            "key": "Optional",
+            "default": "0.0"
+          },
+          "eap": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "wifi.EAP_AUTH_SCHEMA"
+              ]
+            }
+          }
+        }
+      },
+      "FINAL_VALIDATE_SCHEMA": {
+        "config_vars": {
+          "power_save_mode": {
+            "key": "Optional"
+          }
+        }
+      }
+    },
+    "condition": {
+      "connected": {}
+    }
+  }
+}

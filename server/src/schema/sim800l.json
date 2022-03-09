@@ -1,1 +1,133 @@
-{"sim800l": {"schemas": {"CONFIG_SCHEMA": {"config_vars": {"id": {"key": "GeneratedID"}, "on_sms_received": {"key": "Optional", "type": "trigger"}, "update_interval": {"key": "Optional", "default": "60s"}, "uart_id": {"key": "GeneratedID"}}, "extends": ["core.COMPONENT_SCHEMA"]}, "FINAL_VALIDATE_SCHEMA": {"config_vars": {"uart_id": {"key": "Required"}}}, "SIM800L_SEND_SMS_SCHEMA": {"config_vars": {"id": {"key": "GeneratedID"}, "recipient": {"key": "Required", "templatable": true, "type": "string"}, "message": {"key": "Required", "templatable": true, "type": "string"}}}, "SIM800L_DIAL_SCHEMA": {"config_vars": {"id": {"key": "GeneratedID"}, "recipient": {"key": "Required", "templatable": true, "type": "string"}}}}, "action": {"send_sms": {"type": "schema", "schema": {"extends": ["sim800l.SIM800L_SEND_SMS_SCHEMA"]}}, "dial": {"type": "schema", "schema": {"extends": ["sim800l.SIM800L_DIAL_SCHEMA"]}}}}, "sim800l.sensor": {"schemas": {"CONFIG_SCHEMA": {"config_vars": {"sim800l_id": {"key": "GeneratedID"}, "rssi": {"key": "Optional", "type": "schema", "schema": {"extends": ["sensor.SENSOR_SCHEMA"], "config_vars": {"entity_category": {"key": "Optional", "default": "diagnostic"}}}}}}}}, "sim800l.binary_sensor": {"schemas": {"CONFIG_SCHEMA": {"config_vars": {"sim800l_id": {"key": "GeneratedID"}, "registered": {"key": "Optional", "type": "schema", "schema": {"extends": ["binary_sensor.BINARY_SENSOR_SCHEMA"], "config_vars": {"entity_category": {"key": "Optional", "default": "diagnostic"}}}}}}}}}
+{
+  "sim800l": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "on_sms_received": {
+            "key": "Optional",
+            "type": "trigger"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "60s"
+          },
+          "uart_id": {
+            "key": "GeneratedID"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      },
+      "FINAL_VALIDATE_SCHEMA": {
+        "config_vars": {
+          "uart_id": {
+            "key": "Required"
+          }
+        }
+      },
+      "SIM800L_SEND_SMS_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "recipient": {
+            "key": "Required",
+            "templatable": true,
+            "type": "string"
+          },
+          "message": {
+            "key": "Required",
+            "templatable": true,
+            "type": "string"
+          }
+        }
+      },
+      "SIM800L_DIAL_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "recipient": {
+            "key": "Required",
+            "templatable": true,
+            "type": "string"
+          }
+        }
+      }
+    },
+    "action": {
+      "send_sms": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "sim800l.SIM800L_SEND_SMS_SCHEMA"
+          ]
+        }
+      },
+      "dial": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "sim800l.SIM800L_DIAL_SCHEMA"
+          ]
+        }
+      }
+    }
+  },
+  "sim800l.sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "sim800l_id": {
+            "key": "GeneratedID"
+          },
+          "rssi": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "entity_category": {
+                  "key": "Optional",
+                  "default": "diagnostic"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "sim800l.binary_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "sim800l_id": {
+            "key": "GeneratedID"
+          },
+          "registered": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "binary_sensor.BINARY_SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "entity_category": {
+                  "key": "Optional",
+                  "default": "diagnostic"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

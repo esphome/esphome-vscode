@@ -1,1 +1,22 @@
-{"gpio.binary_sensor": {"schemas": {"CONFIG_SCHEMA": {"extends": ["binary_sensor.BINARY_SENSOR_SCHEMA", "core.COMPONENT_SCHEMA"], "config_vars": {"pin": {"key": "Required", "schema": true, "modes": ["input"], "type": "pin"}}}}}}
+{
+  "gpio.binary_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "binary_sensor.BINARY_SENSOR_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "pin": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "input"
+            ],
+            "type": "pin"
+          }
+        }
+      }
+    }
+  }
+}

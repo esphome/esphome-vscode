@@ -1,1 +1,38 @@
-{"homeassistant": {"action": {"service": {"type": "schema", "schema": {"extends": ["api.HOMEASSISTANT_SERVICE_ACTION_SCHEMA"]}}, "event": {"type": "schema", "schema": {"extends": ["api.HOMEASSISTANT_EVENT_ACTION_SCHEMA"]}}, "tag_scanned": {"is_list": true, "type": "schema", "schema": {"config_vars": {"id": {"key": "GeneratedID"}, "tag": {"key": "Required", "templatable": true, "type": "string"}}}}}}}
+{
+  "homeassistant": {
+    "action": {
+      "service": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "api.HOMEASSISTANT_SERVICE_ACTION_SCHEMA"
+          ]
+        }
+      },
+      "event": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "api.HOMEASSISTANT_EVENT_ACTION_SCHEMA"
+          ]
+        }
+      },
+      "tag_scanned": {
+        "is_list": true,
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            },
+            "tag": {
+              "key": "Required",
+              "templatable": true,
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

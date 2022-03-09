@@ -1,1 +1,960 @@
-{"light": {"components": {"binary": {}, "monochromatic": {}}, "schemas": {"LIGHT_SCHEMA": {"extends": ["core.ENTITY_BASE_SCHEMA", "core.MQTT_COMMAND_COMPONENT_SCHEMA"], "config_vars": {"id": {"key": "GeneratedID"}, "mqtt_id": {"key": "Optional"}, "restore_mode": {"key": "Optional", "default": "restore_default_off", "type": "enum", "values": ["RESTORE_DEFAULT_OFF", "RESTORE_DEFAULT_ON", "ALWAYS_OFF", "ALWAYS_ON", "RESTORE_INVERTED_DEFAULT_OFF", "RESTORE_INVERTED_DEFAULT_ON", "RESTORE_AND_OFF", "RESTORE_AND_ON"]}, "on_turn_on": {"key": "Optional", "type": "trigger"}, "on_turn_off": {"key": "Optional", "type": "trigger"}, "on_state": {"key": "Optional", "type": "trigger"}}}, "BINARY_LIGHT_SCHEMA": {"extends": ["light.LIGHT_SCHEMA"], "config_vars": {"effects": {"key": "Optional", "type": "registry", "registry": "light.effects", "filter": ["lambda", "automation", "strobe"]}}}, "BRIGHTNESS_ONLY_LIGHT_SCHEMA": {"extends": ["light.LIGHT_SCHEMA"], "config_vars": {"gamma_correct": {"key": "Optional", "default": "2.8", "type": "schema", "schema": {"extends": ["core.positive_float"]}}, "default_transition_length": {"key": "Optional", "default": "1s", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "flash_transition_length": {"key": "Optional", "default": "0s", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "effects": {"key": "Optional", "type": "registry", "registry": "light.effects", "filter": ["lambda", "automation", "pulse", "random", "strobe", "flicker"]}}}, "RGB_LIGHT_SCHEMA": {"extends": ["light.BRIGHTNESS_ONLY_LIGHT_SCHEMA"]}, "ADDRESSABLE_LIGHT_SCHEMA": {"extends": ["light.RGB_LIGHT_SCHEMA"], "config_vars": {"id": {"key": "GeneratedID"}, "effects": {"key": "Optional", "type": "registry", "registry": "light.effects", "filter": ["lambda", "automation", "pulse", "random", "strobe", "flicker", "addressable_lambda", "addressable_rainbow", "addressable_color_wipe", "addressable_scan", "addressable_twinkle", "addressable_random_twinkle", "addressable_fireworks", "addressable_flicker"]}, "color_correct": {"key": "Optional"}, "power_supply": {"key": "Optional"}}}}, "action": {"toggle": {"type": "maybe", "schema": {"config_vars": {"id": {"key": "Required"}, "transition_length": {"key": "Optional", "templatable": true, "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}}}}, "control": {"type": "schema", "schema": {"config_vars": {"id": {"key": "Required"}, "color_mode": {"key": "Optional", "type": "enum", "values": ["ON_OFF", "BRIGHTNESS", "WHITE", "COLOR_TEMPERATURE", "COLD_WARM_WHITE", "RGB", "RGB_WHITE", "RGB_COLOR_TEMPERATURE", "RGB_COLD_WARM_WHITE"]}, "state": {"key": "Optional", "templatable": true, "type": "boolean"}, "transition_length": {"key": "Optional", "templatable": true, "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "flash_length": {"key": "Optional", "templatable": true, "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "effect": {"key": "Optional", "templatable": true, "type": "string"}, "brightness": {"key": "Optional", "templatable": true}, "color_brightness": {"key": "Optional", "templatable": true}, "red": {"key": "Optional", "templatable": true}, "green": {"key": "Optional", "templatable": true}, "blue": {"key": "Optional", "templatable": true}, "white": {"key": "Optional", "templatable": true}, "color_temperature": {"key": "Optional", "templatable": true}, "cold_white": {"key": "Optional", "templatable": true}, "warm_white": {"key": "Optional", "templatable": true}}}}, "turn_on": {"type": "maybe", "schema": {"config_vars": {"id": {"key": "Required"}, "color_mode": {"key": "Optional", "type": "enum", "values": ["ON_OFF", "BRIGHTNESS", "WHITE", "COLOR_TEMPERATURE", "COLD_WARM_WHITE", "RGB", "RGB_WHITE", "RGB_COLOR_TEMPERATURE", "RGB_COLD_WARM_WHITE"]}, "state": {"key": "Optional", "default": "True"}, "transition_length": {"key": "Optional", "templatable": true, "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "flash_length": {"key": "Optional", "templatable": true, "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "effect": {"key": "Optional", "templatable": true, "type": "string"}, "brightness": {"key": "Optional", "templatable": true}, "color_brightness": {"key": "Optional", "templatable": true}, "red": {"key": "Optional", "templatable": true}, "green": {"key": "Optional", "templatable": true}, "blue": {"key": "Optional", "templatable": true}, "white": {"key": "Optional", "templatable": true}, "color_temperature": {"key": "Optional", "templatable": true}, "cold_white": {"key": "Optional", "templatable": true}, "warm_white": {"key": "Optional", "templatable": true}}}}, "turn_off": {"type": "maybe", "schema": {"config_vars": {"id": {"key": "Required"}, "transition_length": {"key": "Optional", "templatable": true, "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "state": {"key": "Optional", "default": "False"}}}}, "dim_relative": {"type": "schema", "schema": {"config_vars": {"id": {"key": "Required"}, "relative_brightness": {"key": "Required", "templatable": true}, "transition_length": {"key": "Optional", "templatable": true, "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}}}}, "addressable_set": {"type": "schema", "schema": {"config_vars": {"id": {"key": "Required"}, "range_from": {"key": "Optional", "templatable": true, "type": "schema", "schema": {"extends": ["core.positive_int"]}}, "range_to": {"key": "Optional", "templatable": true, "type": "schema", "schema": {"extends": ["core.positive_int"]}}, "color_brightness": {"key": "Optional", "templatable": true}, "red": {"key": "Optional", "templatable": true}, "green": {"key": "Optional", "templatable": true}, "blue": {"key": "Optional", "templatable": true}, "white": {"key": "Optional", "templatable": true}}}}}, "condition": {"is_off": {"type": "maybe", "schema": {"config_vars": {"id": {"key": "Required"}}}}, "is_on": {"type": "maybe", "schema": {"config_vars": {"id": {"key": "Required"}}}}}, "effects": {"lambda": {"type": "schema", "schema": {"config_vars": {"lambda": {"key": "Required"}, "update_interval": {"key": "Optional", "default": "0ms"}, "name": {"key": "Optional", "default": "Lambda", "type": "string"}}}}, "automation": {"type": "schema", "schema": {"config_vars": {"sequence": {"key": "Required", "type": "trigger"}, "name": {"key": "Optional", "default": "Automation", "type": "string"}}}}, "pulse": {"type": "schema", "schema": {"config_vars": {"transition_length": {"key": "Optional", "default": "7.5s", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "update_interval": {"key": "Optional", "default": "10s", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "name": {"key": "Optional", "default": "Random", "type": "string"}}}}, "random": {"type": "schema", "schema": {"config_vars": {"transition_length": {"key": "Optional", "default": "7.5s", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "update_interval": {"key": "Optional", "default": "10s", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "name": {"key": "Optional", "default": "Random", "type": "string"}}}}, "strobe": {"type": "schema", "schema": {"config_vars": {"colors": {"key": "Optional", "default": "[{'state': True, 'duration': '0.5s'}, {'state': False, 'duration': '0.5s'}]", "is_list": true, "type": "schema", "schema": {"config_vars": {"state": {"key": "Optional", "default": "True", "type": "boolean"}, "brightness": {"key": "Optional", "default": "1.0"}, "color_mode": {"key": "Optional", "type": "enum", "values": ["ON_OFF", "BRIGHTNESS", "WHITE", "COLOR_TEMPERATURE", "COLD_WARM_WHITE", "RGB", "RGB_WHITE", "RGB_COLOR_TEMPERATURE", "RGB_COLD_WARM_WHITE"]}, "color_brightness": {"key": "Optional", "default": "1.0"}, "red": {"key": "Optional", "default": "1.0"}, "green": {"key": "Optional", "default": "1.0"}, "blue": {"key": "Optional", "default": "1.0"}, "white": {"key": "Optional", "default": "1.0"}, "color_temperature": {"key": "Optional"}, "cold_white": {"key": "Optional", "default": "1.0"}, "warm_white": {"key": "Optional", "default": "1.0"}, "duration": {"key": "Required", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}}}}, "name": {"key": "Optional", "default": "Strobe", "type": "string"}}}}, "flicker": {"type": "schema", "schema": {"config_vars": {"alpha": {"key": "Optional", "default": "0.95"}, "intensity": {"key": "Optional", "default": "0.015"}, "name": {"key": "Optional", "default": "Flicker", "type": "string"}}}}, "addressable_lambda": {"type": "schema", "schema": {"config_vars": {"lambda": {"key": "Required"}, "update_interval": {"key": "Optional", "default": "0ms", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "name": {"key": "Optional", "default": "Addressable Lambda", "type": "string"}}}}, "addressable_rainbow": {"type": "schema", "schema": {"config_vars": {"speed": {"key": "Optional", "default": "10", "type": "schema", "schema": {"extends": ["core.uint32_t"]}}, "width": {"key": "Optional", "default": "50", "type": "schema", "schema": {"extends": ["core.uint32_t"]}}, "name": {"key": "Optional", "default": "Rainbow", "type": "string"}}}}, "addressable_color_wipe": {"type": "schema", "schema": {"config_vars": {"colors": {"key": "Optional", "default": "[{'num_leds': 1, 'random': True}]", "is_list": true, "type": "schema", "schema": {"config_vars": {"red": {"key": "Optional", "default": "1.0"}, "green": {"key": "Optional", "default": "1.0"}, "blue": {"key": "Optional", "default": "1.0"}, "white": {"key": "Optional", "default": "1.0"}, "random": {"key": "Optional", "default": "False", "type": "boolean"}, "num_leds": {"key": "Required", "type": "schema", "schema": {"extends": ["core.uint32_t"]}}}}}, "add_led_interval": {"key": "Optional", "default": "0.1s", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "reverse": {"key": "Optional", "default": "False", "type": "boolean"}, "name": {"key": "Optional", "default": "Color Wipe", "type": "string"}}}}, "addressable_scan": {"type": "schema", "schema": {"config_vars": {"move_interval": {"key": "Optional", "default": "0.1s", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "scan_width": {"key": "Optional", "default": "1", "type": "integer"}, "name": {"key": "Optional", "default": "Scan", "type": "string"}}}}, "addressable_twinkle": {"type": "schema", "schema": {"config_vars": {"twinkle_probability": {"key": "Optional", "default": "5%"}, "progress_interval": {"key": "Optional", "default": "32ms", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "name": {"key": "Optional", "default": "Random Twinkle", "type": "string"}}}}, "addressable_random_twinkle": {"type": "schema", "schema": {"config_vars": {"twinkle_probability": {"key": "Optional", "default": "5%"}, "progress_interval": {"key": "Optional", "default": "32ms", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "name": {"key": "Optional", "default": "Random Twinkle", "type": "string"}}}}, "addressable_fireworks": {"type": "schema", "schema": {"config_vars": {"update_interval": {"key": "Optional", "default": "32ms", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "spark_probability": {"key": "Optional", "default": "10%"}, "use_random_color": {"key": "Optional", "default": "False", "type": "boolean"}, "fade_out_rate": {"key": "Optional", "default": "120", "type": "schema", "schema": {"extends": ["core.uint8_t"]}}, "name": {"key": "Optional", "default": "Fireworks", "type": "string"}}}}, "addressable_flicker": {"type": "schema", "schema": {"config_vars": {"update_interval": {"key": "Optional", "default": "16ms", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "intensity": {"key": "Optional", "default": "5%"}, "name": {"key": "Optional", "default": "Addressable Flicker", "type": "string"}}}}}}}
+{
+  "light": {
+    "components": {
+      "binary": {},
+      "monochromatic": {}
+    },
+    "schemas": {
+      "LIGHT_SCHEMA": {
+        "extends": [
+          "core.ENTITY_BASE_SCHEMA",
+          "core.MQTT_COMMAND_COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "mqtt_id": {
+            "key": "Optional"
+          },
+          "restore_mode": {
+            "key": "Optional",
+            "default": "restore_default_off",
+            "type": "enum",
+            "values": [
+              "RESTORE_DEFAULT_OFF",
+              "RESTORE_DEFAULT_ON",
+              "ALWAYS_OFF",
+              "ALWAYS_ON",
+              "RESTORE_INVERTED_DEFAULT_OFF",
+              "RESTORE_INVERTED_DEFAULT_ON",
+              "RESTORE_AND_OFF",
+              "RESTORE_AND_ON"
+            ]
+          },
+          "on_turn_on": {
+            "key": "Optional",
+            "type": "trigger"
+          },
+          "on_turn_off": {
+            "key": "Optional",
+            "type": "trigger"
+          },
+          "on_state": {
+            "key": "Optional",
+            "type": "trigger"
+          }
+        }
+      },
+      "BINARY_LIGHT_SCHEMA": {
+        "extends": [
+          "light.LIGHT_SCHEMA"
+        ],
+        "config_vars": {
+          "effects": {
+            "key": "Optional",
+            "type": "registry",
+            "registry": "light.effects",
+            "filter": [
+              "lambda",
+              "automation",
+              "strobe"
+            ]
+          }
+        }
+      },
+      "BRIGHTNESS_ONLY_LIGHT_SCHEMA": {
+        "extends": [
+          "light.LIGHT_SCHEMA"
+        ],
+        "config_vars": {
+          "gamma_correct": {
+            "key": "Optional",
+            "default": "2.8",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_float"
+              ]
+            }
+          },
+          "default_transition_length": {
+            "key": "Optional",
+            "default": "1s",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_milliseconds"
+              ]
+            }
+          },
+          "flash_transition_length": {
+            "key": "Optional",
+            "default": "0s",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_milliseconds"
+              ]
+            }
+          },
+          "effects": {
+            "key": "Optional",
+            "type": "registry",
+            "registry": "light.effects",
+            "filter": [
+              "lambda",
+              "automation",
+              "pulse",
+              "random",
+              "strobe",
+              "flicker"
+            ]
+          }
+        }
+      },
+      "RGB_LIGHT_SCHEMA": {
+        "extends": [
+          "light.BRIGHTNESS_ONLY_LIGHT_SCHEMA"
+        ]
+      },
+      "ADDRESSABLE_LIGHT_SCHEMA": {
+        "extends": [
+          "light.RGB_LIGHT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "effects": {
+            "key": "Optional",
+            "type": "registry",
+            "registry": "light.effects",
+            "filter": [
+              "lambda",
+              "automation",
+              "pulse",
+              "random",
+              "strobe",
+              "flicker",
+              "addressable_lambda",
+              "addressable_rainbow",
+              "addressable_color_wipe",
+              "addressable_scan",
+              "addressable_twinkle",
+              "addressable_random_twinkle",
+              "addressable_fireworks",
+              "addressable_flicker"
+            ]
+          },
+          "color_correct": {
+            "key": "Optional"
+          },
+          "power_supply": {
+            "key": "Optional"
+          }
+        }
+      }
+    },
+    "action": {
+      "toggle": {
+        "type": "maybe",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            },
+            "transition_length": {
+              "key": "Optional",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "control": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            },
+            "color_mode": {
+              "key": "Optional",
+              "type": "enum",
+              "values": [
+                "ON_OFF",
+                "BRIGHTNESS",
+                "WHITE",
+                "COLOR_TEMPERATURE",
+                "COLD_WARM_WHITE",
+                "RGB",
+                "RGB_WHITE",
+                "RGB_COLOR_TEMPERATURE",
+                "RGB_COLD_WARM_WHITE"
+              ]
+            },
+            "state": {
+              "key": "Optional",
+              "templatable": true,
+              "type": "boolean"
+            },
+            "transition_length": {
+              "key": "Optional",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "flash_length": {
+              "key": "Optional",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "effect": {
+              "key": "Optional",
+              "templatable": true,
+              "type": "string"
+            },
+            "brightness": {
+              "key": "Optional",
+              "templatable": true
+            },
+            "color_brightness": {
+              "key": "Optional",
+              "templatable": true
+            },
+            "red": {
+              "key": "Optional",
+              "templatable": true
+            },
+            "green": {
+              "key": "Optional",
+              "templatable": true
+            },
+            "blue": {
+              "key": "Optional",
+              "templatable": true
+            },
+            "white": {
+              "key": "Optional",
+              "templatable": true
+            },
+            "color_temperature": {
+              "key": "Optional",
+              "templatable": true
+            },
+            "cold_white": {
+              "key": "Optional",
+              "templatable": true
+            },
+            "warm_white": {
+              "key": "Optional",
+              "templatable": true
+            }
+          }
+        }
+      },
+      "turn_on": {
+        "type": "maybe",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            },
+            "color_mode": {
+              "key": "Optional",
+              "type": "enum",
+              "values": [
+                "ON_OFF",
+                "BRIGHTNESS",
+                "WHITE",
+                "COLOR_TEMPERATURE",
+                "COLD_WARM_WHITE",
+                "RGB",
+                "RGB_WHITE",
+                "RGB_COLOR_TEMPERATURE",
+                "RGB_COLD_WARM_WHITE"
+              ]
+            },
+            "state": {
+              "key": "Optional",
+              "default": "True"
+            },
+            "transition_length": {
+              "key": "Optional",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "flash_length": {
+              "key": "Optional",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "effect": {
+              "key": "Optional",
+              "templatable": true,
+              "type": "string"
+            },
+            "brightness": {
+              "key": "Optional",
+              "templatable": true
+            },
+            "color_brightness": {
+              "key": "Optional",
+              "templatable": true
+            },
+            "red": {
+              "key": "Optional",
+              "templatable": true
+            },
+            "green": {
+              "key": "Optional",
+              "templatable": true
+            },
+            "blue": {
+              "key": "Optional",
+              "templatable": true
+            },
+            "white": {
+              "key": "Optional",
+              "templatable": true
+            },
+            "color_temperature": {
+              "key": "Optional",
+              "templatable": true
+            },
+            "cold_white": {
+              "key": "Optional",
+              "templatable": true
+            },
+            "warm_white": {
+              "key": "Optional",
+              "templatable": true
+            }
+          }
+        }
+      },
+      "turn_off": {
+        "type": "maybe",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            },
+            "transition_length": {
+              "key": "Optional",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "state": {
+              "key": "Optional",
+              "default": "False"
+            }
+          }
+        }
+      },
+      "dim_relative": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            },
+            "relative_brightness": {
+              "key": "Required",
+              "templatable": true
+            },
+            "transition_length": {
+              "key": "Optional",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "addressable_set": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            },
+            "range_from": {
+              "key": "Optional",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_int"
+                ]
+              }
+            },
+            "range_to": {
+              "key": "Optional",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_int"
+                ]
+              }
+            },
+            "color_brightness": {
+              "key": "Optional",
+              "templatable": true
+            },
+            "red": {
+              "key": "Optional",
+              "templatable": true
+            },
+            "green": {
+              "key": "Optional",
+              "templatable": true
+            },
+            "blue": {
+              "key": "Optional",
+              "templatable": true
+            },
+            "white": {
+              "key": "Optional",
+              "templatable": true
+            }
+          }
+        }
+      }
+    },
+    "condition": {
+      "is_off": {
+        "type": "maybe",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            }
+          }
+        }
+      },
+      "is_on": {
+        "type": "maybe",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            }
+          }
+        }
+      }
+    },
+    "effects": {
+      "lambda": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "lambda": {
+              "key": "Required"
+            },
+            "update_interval": {
+              "key": "Optional",
+              "default": "0ms"
+            },
+            "name": {
+              "key": "Optional",
+              "default": "Lambda",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "automation": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "sequence": {
+              "key": "Required",
+              "type": "trigger"
+            },
+            "name": {
+              "key": "Optional",
+              "default": "Automation",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "pulse": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "transition_length": {
+              "key": "Optional",
+              "default": "7.5s",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "update_interval": {
+              "key": "Optional",
+              "default": "10s",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "name": {
+              "key": "Optional",
+              "default": "Random",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "random": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "transition_length": {
+              "key": "Optional",
+              "default": "7.5s",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "update_interval": {
+              "key": "Optional",
+              "default": "10s",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "name": {
+              "key": "Optional",
+              "default": "Random",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "strobe": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "colors": {
+              "key": "Optional",
+              "default": "[{'state': True, 'duration': '0.5s'}, {'state': False, 'duration': '0.5s'}]",
+              "is_list": true,
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "state": {
+                    "key": "Optional",
+                    "default": "True",
+                    "type": "boolean"
+                  },
+                  "brightness": {
+                    "key": "Optional",
+                    "default": "1.0"
+                  },
+                  "color_mode": {
+                    "key": "Optional",
+                    "type": "enum",
+                    "values": [
+                      "ON_OFF",
+                      "BRIGHTNESS",
+                      "WHITE",
+                      "COLOR_TEMPERATURE",
+                      "COLD_WARM_WHITE",
+                      "RGB",
+                      "RGB_WHITE",
+                      "RGB_COLOR_TEMPERATURE",
+                      "RGB_COLD_WARM_WHITE"
+                    ]
+                  },
+                  "color_brightness": {
+                    "key": "Optional",
+                    "default": "1.0"
+                  },
+                  "red": {
+                    "key": "Optional",
+                    "default": "1.0"
+                  },
+                  "green": {
+                    "key": "Optional",
+                    "default": "1.0"
+                  },
+                  "blue": {
+                    "key": "Optional",
+                    "default": "1.0"
+                  },
+                  "white": {
+                    "key": "Optional",
+                    "default": "1.0"
+                  },
+                  "color_temperature": {
+                    "key": "Optional"
+                  },
+                  "cold_white": {
+                    "key": "Optional",
+                    "default": "1.0"
+                  },
+                  "warm_white": {
+                    "key": "Optional",
+                    "default": "1.0"
+                  },
+                  "duration": {
+                    "key": "Required",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "core.positive_time_period_milliseconds"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "name": {
+              "key": "Optional",
+              "default": "Strobe",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "flicker": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "alpha": {
+              "key": "Optional",
+              "default": "0.95"
+            },
+            "intensity": {
+              "key": "Optional",
+              "default": "0.015"
+            },
+            "name": {
+              "key": "Optional",
+              "default": "Flicker",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "addressable_lambda": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "lambda": {
+              "key": "Required"
+            },
+            "update_interval": {
+              "key": "Optional",
+              "default": "0ms",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "name": {
+              "key": "Optional",
+              "default": "Addressable Lambda",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "addressable_rainbow": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "speed": {
+              "key": "Optional",
+              "default": "10",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint32_t"
+                ]
+              }
+            },
+            "width": {
+              "key": "Optional",
+              "default": "50",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint32_t"
+                ]
+              }
+            },
+            "name": {
+              "key": "Optional",
+              "default": "Rainbow",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "addressable_color_wipe": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "colors": {
+              "key": "Optional",
+              "default": "[{'num_leds': 1, 'random': True}]",
+              "is_list": true,
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "red": {
+                    "key": "Optional",
+                    "default": "1.0"
+                  },
+                  "green": {
+                    "key": "Optional",
+                    "default": "1.0"
+                  },
+                  "blue": {
+                    "key": "Optional",
+                    "default": "1.0"
+                  },
+                  "white": {
+                    "key": "Optional",
+                    "default": "1.0"
+                  },
+                  "random": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean"
+                  },
+                  "num_leds": {
+                    "key": "Required",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "core.uint32_t"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "add_led_interval": {
+              "key": "Optional",
+              "default": "0.1s",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "reverse": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean"
+            },
+            "name": {
+              "key": "Optional",
+              "default": "Color Wipe",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "addressable_scan": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "move_interval": {
+              "key": "Optional",
+              "default": "0.1s",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "scan_width": {
+              "key": "Optional",
+              "default": "1",
+              "type": "integer"
+            },
+            "name": {
+              "key": "Optional",
+              "default": "Scan",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "addressable_twinkle": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "twinkle_probability": {
+              "key": "Optional",
+              "default": "5%"
+            },
+            "progress_interval": {
+              "key": "Optional",
+              "default": "32ms",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "name": {
+              "key": "Optional",
+              "default": "Random Twinkle",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "addressable_random_twinkle": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "twinkle_probability": {
+              "key": "Optional",
+              "default": "5%"
+            },
+            "progress_interval": {
+              "key": "Optional",
+              "default": "32ms",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "name": {
+              "key": "Optional",
+              "default": "Random Twinkle",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "addressable_fireworks": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "update_interval": {
+              "key": "Optional",
+              "default": "32ms",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "spark_probability": {
+              "key": "Optional",
+              "default": "10%"
+            },
+            "use_random_color": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean"
+            },
+            "fade_out_rate": {
+              "key": "Optional",
+              "default": "120",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              }
+            },
+            "name": {
+              "key": "Optional",
+              "default": "Fireworks",
+              "type": "string"
+            }
+          }
+        }
+      },
+      "addressable_flicker": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "update_interval": {
+              "key": "Optional",
+              "default": "16ms",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "intensity": {
+              "key": "Optional",
+              "default": "5%"
+            },
+            "name": {
+              "key": "Optional",
+              "default": "Addressable Flicker",
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

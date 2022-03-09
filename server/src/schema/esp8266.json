@@ -1,1 +1,156 @@
-{"esp8266": {"schemas": {"CONFIG_SCHEMA": {"config_vars": {"board": {"key": "Required", "type": "enum", "values": ["d1", "d1_mini", "d1_mini_lite", "d1_mini_pro", "esp01", "esp01_1m", "esp07", "esp12e", "esp210", "esp8285", "esp_wroom_02", "espduino", "espectro", "espino", "espinotee", "espmxdevkit", "espresso_lite_v1", "espresso_lite_v2", "gen4iod", "heltec_wifi_kit_8", "huzzah", "inventone", "modwifi", "nodemcu", "nodemcuv2", "oak", "phoenix_v1", "phoenix_v2", "sonoff_basic", "sonoff_s20", "sonoff_sv", "sonoff_th", "sparkfunBlynk", "thing", "thingdev", "wifi_slot", "wifiduino", "wifinfo", "wio_link", "wio_node", "xinabox_cw01"]}, "framework": {"key": "Optional", "default": "{}", "type": "schema", "schema": {"extends": ["esp8266.ARDUINO_FRAMEWORK_SCHEMA"]}}, "restore_from_flash": {"key": "Optional", "default": "False", "type": "boolean"}, "board_flash_mode": {"key": "Optional", "default": "dout", "type": "enum", "values": ["qio", "qout", "dio", "dout"]}}}, "ARDUINO_FRAMEWORK_SCHEMA": {"config_vars": {"version": {"key": "Optional", "default": "recommended", "type": "string"}, "source": {"key": "Optional", "type": "string"}, "platform_version": {"key": "Optional"}}}}, "pin": {"type": "schema", "schema": {"config_vars": {"id": {"key": "GeneratedID"}, "number": {"key": "Required"}, "mode": {"key": "Optional", "default": "{}", "type": "schema", "schema": {"config_vars": {"analog": {"key": "Optional", "default": "False", "type": "boolean"}, "input": {"key": "Optional", "default": "False", "type": "boolean"}, "output": {"key": "Optional", "default": "False", "type": "boolean"}, "open_drain": {"key": "Optional", "default": "False", "type": "boolean"}, "pullup": {"key": "Optional", "default": "False", "type": "boolean"}, "pulldown": {"key": "Optional", "default": "False", "type": "boolean"}}}}, "inverted": {"key": "Optional", "default": "False", "type": "boolean"}}}}}}
+{
+  "esp8266": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "board": {
+            "key": "Required",
+            "type": "enum",
+            "values": [
+              "d1",
+              "d1_mini",
+              "d1_mini_lite",
+              "d1_mini_pro",
+              "esp01",
+              "esp01_1m",
+              "esp07",
+              "esp12e",
+              "esp210",
+              "esp8285",
+              "esp_wroom_02",
+              "espduino",
+              "espectro",
+              "espino",
+              "espinotee",
+              "espmxdevkit",
+              "espresso_lite_v1",
+              "espresso_lite_v2",
+              "gen4iod",
+              "heltec_wifi_kit_8",
+              "huzzah",
+              "inventone",
+              "modwifi",
+              "nodemcu",
+              "nodemcuv2",
+              "oak",
+              "phoenix_v1",
+              "phoenix_v2",
+              "sonoff_basic",
+              "sonoff_s20",
+              "sonoff_sv",
+              "sonoff_th",
+              "sparkfunBlynk",
+              "thing",
+              "thingdev",
+              "wifi_slot",
+              "wifiduino",
+              "wifinfo",
+              "wio_link",
+              "wio_node",
+              "xinabox_cw01"
+            ]
+          },
+          "framework": {
+            "key": "Optional",
+            "default": "{}",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "esp8266.ARDUINO_FRAMEWORK_SCHEMA"
+              ]
+            }
+          },
+          "restore_from_flash": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "board_flash_mode": {
+            "key": "Optional",
+            "default": "dout",
+            "type": "enum",
+            "values": [
+              "qio",
+              "qout",
+              "dio",
+              "dout"
+            ]
+          }
+        }
+      },
+      "ARDUINO_FRAMEWORK_SCHEMA": {
+        "config_vars": {
+          "version": {
+            "key": "Optional",
+            "default": "recommended",
+            "type": "string"
+          },
+          "source": {
+            "key": "Optional",
+            "type": "string"
+          },
+          "platform_version": {
+            "key": "Optional"
+          }
+        }
+      }
+    },
+    "pin": {
+      "type": "schema",
+      "schema": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "number": {
+            "key": "Required"
+          },
+          "mode": {
+            "key": "Optional",
+            "default": "{}",
+            "type": "schema",
+            "schema": {
+              "config_vars": {
+                "analog": {
+                  "key": "Optional",
+                  "default": "False",
+                  "type": "boolean"
+                },
+                "input": {
+                  "key": "Optional",
+                  "default": "False",
+                  "type": "boolean"
+                },
+                "output": {
+                  "key": "Optional",
+                  "default": "False",
+                  "type": "boolean"
+                },
+                "open_drain": {
+                  "key": "Optional",
+                  "default": "False",
+                  "type": "boolean"
+                },
+                "pullup": {
+                  "key": "Optional",
+                  "default": "False",
+                  "type": "boolean"
+                },
+                "pulldown": {
+                  "key": "Optional",
+                  "default": "False",
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "inverted": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

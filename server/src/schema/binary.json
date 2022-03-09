@@ -1,1 +1,19 @@
-{"binary.light": {"schemas": {"CONFIG_SCHEMA": {"extends": ["light.BINARY_LIGHT_SCHEMA"], "config_vars": {"output_id": {"key": "GeneratedID"}, "output": {"key": "Required"}}}}}}
+{
+  "binary.light": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "light.BINARY_LIGHT_SCHEMA"
+        ],
+        "config_vars": {
+          "output_id": {
+            "key": "GeneratedID"
+          },
+          "output": {
+            "key": "Required"
+          }
+        }
+      }
+    }
+  }
+}

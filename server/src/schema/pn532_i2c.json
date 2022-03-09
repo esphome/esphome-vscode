@@ -1,1 +1,26 @@
-{"pn532_i2c": {"schemas": {"CONFIG_SCHEMA": {"extends": ["pn532.PN532_SCHEMA"], "config_vars": {"i2c_id": {"key": "GeneratedID"}, "address": {"key": "Optional", "default": "36", "type": "schema", "schema": {"extends": ["core.i2c_address"]}}}}}}}
+{
+  "pn532_i2c": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "pn532.PN532_SCHEMA"
+        ],
+        "config_vars": {
+          "i2c_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Optional",
+            "default": "36",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.i2c_address"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

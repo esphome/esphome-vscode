@@ -1,1 +1,54 @@
-{"i2c": {"schemas": {"CONFIG_SCHEMA": {"config_vars": {"id": {"key": "GeneratedID"}, "sda": {"key": "Optional", "default": "SDA", "type": "schema", "schema": {"extends": ["i2c.pin_with_input_and_output_support"]}}, "sda_pullup_enabled": {"key": "Optional", "type": "boolean"}, "scl": {"key": "Optional", "default": "SCL", "type": "schema", "schema": {"extends": ["i2c.pin_with_input_and_output_support"]}}, "scl_pullup_enabled": {"key": "Optional", "type": "boolean"}, "frequency": {"key": "Optional", "default": "50kHz"}, "scan": {"key": "Optional", "default": "True", "type": "boolean"}}, "extends": ["core.COMPONENT_SCHEMA"]}, "pin_with_input_and_output_support": {}}}}
+{
+  "i2c": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "sda": {
+            "key": "Optional",
+            "default": "SDA",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "i2c.pin_with_input_and_output_support"
+              ]
+            }
+          },
+          "sda_pullup_enabled": {
+            "key": "Optional",
+            "type": "boolean"
+          },
+          "scl": {
+            "key": "Optional",
+            "default": "SCL",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "i2c.pin_with_input_and_output_support"
+              ]
+            }
+          },
+          "scl_pullup_enabled": {
+            "key": "Optional",
+            "type": "boolean"
+          },
+          "frequency": {
+            "key": "Optional",
+            "default": "50kHz"
+          },
+          "scan": {
+            "key": "Optional",
+            "default": "True",
+            "type": "boolean"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      },
+      "pin_with_input_and_output_support": {}
+    }
+  }
+}

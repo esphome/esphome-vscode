@@ -1,1 +1,55 @@
-{"dallas": {"schemas": {"CONFIG_SCHEMA": {"config_vars": {"id": {"key": "GeneratedID"}, "pin": {"key": "Required", "schema": true, "internal": true, "modes": ["output"], "type": "pin"}, "update_interval": {"key": "Optional", "default": "60s"}}, "extends": ["core.COMPONENT_SCHEMA"]}}}, "dallas.sensor": {"schemas": {"CONFIG_SCHEMA": {"extends": ["sensor.SENSOR_SCHEMA"], "config_vars": {"dallas_id": {"key": "GeneratedID"}, "address": {"key": "Optional"}, "index": {"key": "Optional", "type": "integer"}, "resolution": {"key": "Optional", "default": "12", "type": "integer"}}}}}}
+{
+  "dallas": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "pin": {
+            "key": "Required",
+            "schema": true,
+            "internal": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "60s"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  },
+  "dallas.sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "sensor.SENSOR_SCHEMA"
+        ],
+        "config_vars": {
+          "dallas_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Optional"
+          },
+          "index": {
+            "key": "Optional",
+            "type": "integer"
+          },
+          "resolution": {
+            "key": "Optional",
+            "default": "12",
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

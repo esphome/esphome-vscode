@@ -1,1 +1,21 @@
-{"uart": {"action": {"write": {"is_list": true, "type": "schema", "schema": {"config_vars": {"id": {"key": "GeneratedID"}, "data": {"key": "Required", "templatable": true}}}}}}}
+{
+  "uart": {
+    "action": {
+      "write": {
+        "is_list": true,
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            },
+            "data": {
+              "key": "Required",
+              "templatable": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

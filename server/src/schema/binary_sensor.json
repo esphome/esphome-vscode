@@ -1,1 +1,285 @@
-{"binary_sensor": {"components": {"template": {}, "sim800l": {}, "gpio": {}, "pn532": {}}, "schemas": {"MULTI_CLICK_TIMING_SCHEMA": {"config_vars": {"state": {"key": "Optional", "type": "boolean"}, "min_length": {"key": "Optional", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "max_length": {"key": "Optional", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}}}, "BINARY_SENSOR_SCHEMA": {"extends": ["core.ENTITY_BASE_SCHEMA", "core.MQTT_COMPONENT_SCHEMA"], "config_vars": {"id": {"key": "GeneratedID"}, "mqtt_id": {"key": "Optional"}, "device_class": {"key": "Optional", "type": "enum", "values": ["", "battery", "battery_charging", "cold", "connectivity", "door", "garage_door", "gas", "heat", "light", "lock", "moisture", "motion", "moving", "occupancy", "opening", "plug", "power", "presence", "problem", "running", "safety", "smoke", "sound", "tamper", "update", "vibration", "window"]}, "filters": {"key": "Optional", "is_list": true, "type": "registry", "registry": "binary_sensor.filter"}, "on_press": {"key": "Optional", "type": "trigger"}, "on_release": {"key": "Optional", "type": "trigger"}, "on_click": {"key": "Optional", "type": "trigger", "schema": {"config_vars": {"min_length": {"key": "Optional", "default": "50ms", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "max_length": {"key": "Optional", "default": "350ms", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "then": {"type": "trigger"}}}}, "on_double_click": {"key": "Optional", "type": "trigger", "schema": {"config_vars": {"min_length": {"key": "Optional", "default": "50ms", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "max_length": {"key": "Optional", "default": "350ms", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "then": {"type": "trigger"}}}}, "on_multi_click": {"key": "Optional", "type": "trigger", "schema": {"config_vars": {"timing": {"key": "Required"}, "invalid_cooldown": {"key": "Optional", "default": "1s", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "then": {"type": "trigger"}}}, "has_required_var": true}, "on_state": {"key": "Optional", "type": "trigger"}}}}, "condition": {"is_on": {"type": "maybe", "schema": {"config_vars": {"id": {"key": "Required"}}}}, "is_off": {"type": "maybe", "schema": {"config_vars": {"id": {"key": "Required"}}}}}, "filter": {"invert": {}, "delayed_on_off": {"type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "delayed_on": {"type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "delayed_off": {"type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "autorepeat": {"is_list": true, "type": "schema", "schema": {"config_vars": {"delay": {"key": "Optional", "default": "1s", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "time_off": {"key": "Optional", "default": "100ms", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}, "time_on": {"key": "Optional", "default": "900ms", "type": "schema", "schema": {"extends": ["core.positive_time_period_milliseconds"]}}}}}, "lambda": {}}}}
+{
+  "binary_sensor": {
+    "components": {
+      "template": {},
+      "sim800l": {},
+      "gpio": {},
+      "pn532": {}
+    },
+    "schemas": {
+      "MULTI_CLICK_TIMING_SCHEMA": {
+        "config_vars": {
+          "state": {
+            "key": "Optional",
+            "type": "boolean"
+          },
+          "min_length": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_milliseconds"
+              ]
+            }
+          },
+          "max_length": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_milliseconds"
+              ]
+            }
+          }
+        }
+      },
+      "validate_device_class": {
+        "type": "enum",
+        "values": [
+          "",
+          "battery",
+          "battery_charging",
+          "cold",
+          "connectivity",
+          "door",
+          "garage_door",
+          "gas",
+          "heat",
+          "light",
+          "lock",
+          "moisture",
+          "motion",
+          "moving",
+          "occupancy",
+          "opening",
+          "plug",
+          "power",
+          "presence",
+          "problem",
+          "running",
+          "safety",
+          "smoke",
+          "sound",
+          "tamper",
+          "update",
+          "vibration",
+          "window"
+        ]
+      },
+      "BINARY_SENSOR_SCHEMA": {
+        "extends": [
+          "core.ENTITY_BASE_SCHEMA",
+          "core.MQTT_COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "mqtt_id": {
+            "key": "Optional"
+          },
+          "device_class": {
+            "key": "Optional",
+            "type": "enum"
+          },
+          "filters": {
+            "key": "Optional",
+            "is_list": true,
+            "type": "registry",
+            "registry": "binary_sensor.filter"
+          },
+          "on_press": {
+            "key": "Optional",
+            "type": "trigger"
+          },
+          "on_release": {
+            "key": "Optional",
+            "type": "trigger"
+          },
+          "on_click": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "min_length": {
+                  "key": "Optional",
+                  "default": "50ms",
+                  "type": "schema",
+                  "schema": {
+                    "extends": [
+                      "core.positive_time_period_milliseconds"
+                    ]
+                  }
+                },
+                "max_length": {
+                  "key": "Optional",
+                  "default": "350ms",
+                  "type": "schema",
+                  "schema": {
+                    "extends": [
+                      "core.positive_time_period_milliseconds"
+                    ]
+                  }
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            }
+          },
+          "on_double_click": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "min_length": {
+                  "key": "Optional",
+                  "default": "50ms",
+                  "type": "schema",
+                  "schema": {
+                    "extends": [
+                      "core.positive_time_period_milliseconds"
+                    ]
+                  }
+                },
+                "max_length": {
+                  "key": "Optional",
+                  "default": "350ms",
+                  "type": "schema",
+                  "schema": {
+                    "extends": [
+                      "core.positive_time_period_milliseconds"
+                    ]
+                  }
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            }
+          },
+          "on_multi_click": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "timing": {
+                  "key": "Required"
+                },
+                "invalid_cooldown": {
+                  "key": "Optional",
+                  "default": "1s",
+                  "type": "schema",
+                  "schema": {
+                    "extends": [
+                      "core.positive_time_period_milliseconds"
+                    ]
+                  }
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            },
+            "has_required_var": true
+          },
+          "on_state": {
+            "key": "Optional",
+            "type": "trigger"
+          }
+        }
+      },
+      "BINARY_SENSOR_CONDITION_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "Required"
+          }
+        }
+      }
+    },
+    "condition": {
+      "is_on": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "binary_sensor.BINARY_SENSOR_CONDITION_SCHEMA"
+          ]
+        }
+      },
+      "is_off": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "binary_sensor.BINARY_SENSOR_CONDITION_SCHEMA"
+          ]
+        }
+      }
+    },
+    "filter": {
+      "invert": {},
+      "delayed_on_off": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "core.positive_time_period_milliseconds"
+          ]
+        }
+      },
+      "delayed_on": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "core.positive_time_period_milliseconds"
+          ]
+        }
+      },
+      "delayed_off": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "core.positive_time_period_milliseconds"
+          ]
+        }
+      },
+      "autorepeat": {
+        "is_list": true,
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "delay": {
+              "key": "Optional",
+              "default": "1s",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "time_off": {
+              "key": "Optional",
+              "default": "100ms",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "time_on": {
+              "key": "Optional",
+              "default": "900ms",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "lambda": {}
+    }
+  }
+}
