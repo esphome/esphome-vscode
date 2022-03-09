@@ -420,7 +420,7 @@ export class CompletionHandler {
     resolveRegistryInner(result: CompletionItem[], path: any[], pathIndex: number, inner: YamlNode, cv: ConfigVarRegistry, node: YamlNode, docMap: YAMLMap<unknown, unknown>) {
         const final = pathIndex + 1 === path.length;
         if (final && inner === null) {
-            return this.addRegistry(result, cv);
+            return this.addRegistry(result, cv, docMap);
         }
         const registryCv = this.coreSchema.getRegistryConfigVar(cv.registry, path[pathIndex + 1]);
         return this.resolveConfigVar(result, path, pathIndex + 1, registryCv, isMap(inner) ? inner : null, node, docMap);
@@ -447,7 +447,7 @@ export class CompletionHandler {
                 return this.addConfigVars(result, cv.schema, null, docMap);
             }
             if (inner === null) {
-                return this.addRegistry(result, { type: "registry", "registry": "action", "key": null });
+                return this.addRegistry(result, { type: "registry", "registry": "action", "key": null }, docMap);
             }
         }
 
@@ -652,8 +652,8 @@ export class CompletionHandler {
         }
     }
 
-    addRegistry(result: CompletionItem[], configVar: ConfigVarRegistry) {
-        for (const [value, props] of this.coreSchema.getRegistry(configVar.registry)) {
+    addRegistry(result: CompletionItem[], configVar: ConfigVarRegistry, docMap: YAMLMap) {
+        for (const [value, props] of this.coreSchema.getRegistry(configVar.registry, docMap)) {
             if (configVar.filter && !configVar.filter.includes(value)) {
                 continue;
             }
@@ -661,6 +661,7 @@ export class CompletionHandler {
                 label: value,
                 kind: CompletionItemKind.Keyword,
                 insertText: "- " + value + ": ",
+                sortText: value.includes(".") ? ("z" + value) : value,
                 // command: { title: 'chain', command: "editor.action.triggerSuggest" }
             };
             if (props.docs) {

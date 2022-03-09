@@ -1,6 +1,6 @@
 import * as fs from "fs";
 import path = require("path");
-import { YAMLMap } from "yaml";
+import { isMap, isPair, isScalar, isSeq, YAMLMap } from "yaml";
 
 export interface SchemaSet {
     [name: string]: Component;
@@ -145,26 +145,72 @@ export class CoreSchema {
         return (name in this.schema.core.platforms);
     }
 
-    *getRegistry(registry: string): Generator<[string, ConfigVar]> {
+    *getDocComponents(docMap: YAMLMap): Generator<[string, Component]> {
+        for (const k of docMap.items) {
+            if (isPair(k) && isScalar(k.key)) {
+                const componentName = k.key.value as string;
+                if (componentName in this.schema.core.components || this.isPlatform(componentName)) {
+                    const component = this.getComponent(componentName);
+                    yield [componentName, component];
+
+                    if (this.isPlatform(componentName)) {
+                        // iterate elements and lookup platform to load components
+                        const platList = docMap.get(componentName);
+                        if (isSeq(platList)) {
+                            for (const plat of platList.items) {
+                                if (isMap(plat)) {
+                                    const platCompName = plat.get("platform") as string;
+                                    if (platCompName in component.components) {
+                                        yield [platCompName + '.' + componentName, this.getComponent(platCompName, componentName)];
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        yield ["core", this.schema.core];
+    }
+
+    *getRegistry(registry: string, docMap: YAMLMap): Generator<[string, ConfigVar]> {
         if (registry.includes(".")) {
+            // e.g. sensor.filter only items from one component
             const [domain, registryName] = registry.split('.');
             for (const name in this.schema[domain][registryName]) {
                 yield [name, this.schema[domain][registryName][name]];
             }
         }
         else {
-            for (const c in this.schema) {
-                if (this.schema[c][registry] !== undefined) {
-                    for (const name in this.schema[c][registry]) {
-                        if (c === "core") {
-                            yield [name, this.schema[c][registry][name]];
+            // e.g. action, condition: search in all domains
+            for (const [componentName, component] of this.getDocComponents(docMap)) {
+                if (component[registry] !== undefined) {
+                    for (const name in component[registry]) {
+                        if (componentName === "core") {
+                            yield [name, component[registry][name]];
                         }
                         else {
-                            yield [c.split('.').reverse().join('.') + '.' + name, this.schema[c][registry][name]];
+                            yield [componentName.split('.').reverse().join('.') + '.' + name, component[registry][name]];
                         }
                     }
                 }
             }
+
+            // else invalid
+
+
+            // for (const c in this.schema) {
+            //     if (this.schema[c][registry] !== undefined) {
+            //         for (const name in this.schema[c][registry]) {
+            //             if (c === "core") {
+            //                 yield [name, this.schema[c][registry][name]];
+            //             }
+            //             else {
+            //                 yield [c.split('.').reverse().join('.') + '.' + name, this.schema[c][registry][name]];
+            //             }
+            //         }
+            //     }
+            // }
         }
     }
 
