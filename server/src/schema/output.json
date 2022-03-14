@@ -1,24 +1,113 @@
 {
   "output": {
-    "action": {
-      "turn_on": {
-        "type": "maybe",
-        "schema": {
-          "config_vars": {
-            "id": {
-              "key": "Required"
-            }
+    "components": {
+      "ac_dimmer": {
+        "docs": "This component has not been fully tested yet, if you are testing this component please share your experience with the dimmer hardware and light model and configuration here [https://github.com/esphome/feature-requests/issues/278](https://github.com/esphome/feature-requests/issues/278)\n\n*See also: [AC Dimmer Component](https://esphome.io/components/output/ac_dimmer.html#ac-dimmer-component)*"
+      },
+      "ble_client": {
+        "docs": "The `ble_client` component is a output that can write a binary value to service characteristics of BLE devices.\n\n*See also: [BLE Client Binary Output](https://esphome.io/components/output/ble_client.html#ble-client-binary-output)*"
+      },
+      "custom": {},
+      "esp32_dac": {
+        "docs": "The ESP32 DAC platform allows you to output analog voltages using the 8-bit digital-to-analog converter of the ESP32. Unlike the [ESP32 LEDC Output](https://esphome.io/components/output/ledc.html), which can simulate an analog signal by using a fast switching frequency, the hardware DAC can output a *real* analog signal with no need for additional filtering.\n\n*See also: [ESP32 DAC](https://esphome.io/components/output/esp32_dac.html#esp32-dac)*"
+      },
+      "esp8266_pwm": {
+        "docs": "The ESP8266 Software PWM platform allows you to use a software PWM on the pins GPIO0-GPIO16 on your ESP8266. Note that this is a software PWM, so there can be some flickering during periods of high WiFi activity. Hardware PWMs like the one on the ESP32 (see [ESP32 LEDC Output](https://esphome.io/components/output/ledc.html)) are preferred.\n\n*See also: [ESP8266 Software PWM Output](https://esphome.io/components/output/esp8266_pwm.html#esp8266-software-pwm-output)*"
+      },
+      "gpio": {
+        "docs": "The GPIO output component is quite simple: It exposes a single GPIO pin as an output component. Note that output components are **not** switches and will not show up in Home Assistant. See [GPIO Switch](https://esphome.io/components/switch/gpio.html).\n\n*See also: [GPIO Output](https://esphome.io/components/output/gpio.html#gpio-output)*"
+      },
+      "ledc": {
+        "docs": "The LEDC output component exposes a [LEDC PWM channel](https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html) of the ESP32 as an output component.\n\n*See also: [ESP32 LEDC Output](https://esphome.io/components/output/ledc.html#esp32-ledc-output)*"
+      },
+      "mcp4725": {
+        "docs": "The MCP4725 output component allows to use [12bit external DAC](https://learn.sparkfun.com/tutorials/mcp4725-digital-to-analog-converter-hookup-guide/all) in order to have analog output(s) on any board by using I2C. Devices default address is `0x60` and configurable alternative is `0x61`.\n\n*See also: [MCP4725 Output](https://esphome.io/components/output/mcp4725.html#mcp4725-output)*"
+      },
+      "mcp4728": {
+        "docs": "The MCP4728 output component allows to use [12bit external quad DAC](https://www.adafruit.com/product/4470) in order to have analog outputs on any board by using [I\u00b2C](https://esphome.io/components/i2c.html#i2c). Devices default address is `0x60`.\n\n*See also: [MCP4728 Output](https://esphome.io/components/output/mcp4728.html#mcp4728-output)*"
+      },
+      "mcp47a1": {
+        "docs": "The `mcp47a1` output component allows to use [6bit external DAC](https://www.microchip.com/en-us/product/MCP47A1) in order to have analog output(s) on any board by using I\u00b2C. Devices default address is `0x2E` and configurable alternative is `0x3E`.\n\n*See also: [MCP47A1 Output](https://esphome.io/components/output/mcp47a1.html#mcp47a1-output)*"
+      },
+      "modbus_controller": {},
+      "my9231": {
+        "docs": "The MY9231/MY9291 component represents a MY9231/MY9291 LED diver chain ([MY9231 description](http://www.my-semi.com.tw/file/MY9231_BF_0.91.pdf), [MY9291 description](http://www.my-semi.com.tw/file/MY9291_BF_0.91.pdf)) in ESPHome. Communication is done with two GPIO pins (DI and DCKI) and multiple driver chips can be chained. There are two models with different number of output channels (MY9291 with 4 channels and MY9231 with 3 channels). They are popular driver chips used in smart light bulbs:\n\n*See also: [MY9231/MY9291 LED driver](https://esphome.io/components/output/my9231.html#my9231-my9291-led-driver)*"
+      },
+      "pca9685": {
+        "docs": "The PCA9685 component represents a PCA9685 12-bit PWM driver ([datasheet](https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html#configure-channel), [adafruit](https://www.adafruit.com/product/815)) in ESPHome. It uses [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) for communication.\n\n*See also: [PCA9685](https://esphome.io/components/output/pca9685.html#pca9685)*"
+      },
+      "pipsolar": {},
+      "slow_pwm": {
+        "docs": "Similar to PWM, the Slow PWM Output platform allows you to control GPIO pins by pulsing them on/off over a longer time period. It could be used to control a heating element through a relay where a fast PWM update cycle would not be appropriate.\n\n*See also: [Slow PWM Output](https://esphome.io/components/output/slow_pwm.html#slow-pwm-output)*"
+      },
+      "sm16716": {
+        "docs": "The SM16716 component represents a SM16716 LED diver chain ([SM16716 description](https://github.com/sowbug/sm16716/blob/master/SM16716%20Datasheet%20%5BChinese%5D.pdf), [SM16716 description](https://github.com/sowbug/sm16716/blob/master/SM16716%20Datasheet%20%5BChinese%5D.pdf)) in ESPHome. Communication is done with two GPIO pins (MOSI and SCLK) and multiple driver chips can be chained. It is used in some smart light bulbs:\n\n*See also: [SM16716 LED driver](https://esphome.io/components/output/sm16716.html#sm16716-led-driver)*"
+      },
+      "sm2135": {
+        "docs": "The SM2135 component represents a SM2135 LED diver chain ([SM2135 description](https://github.com/arendst/Sonoff-Tasmota/files/3656603/SM2135E_zh-CN_en-US_translated.pdf), [SM2135 description](https://github.com/arendst/Sonoff-Tasmota/files/3656603/SM2135E_zh-CN_en-US_translated.pdf)) in ESPHome. Communication is done with two GPIO pins (MOSI and SCLK). It is used in some smart light bulbs:\n\n*See also: [SM2135 LED driver](https://esphome.io/components/output/sm2135.html#sm2135-led-driver)*"
+      },
+      "sx1509": {},
+      "template": {},
+      "tlc59208f": {
+        "docs": "The TLC59208F component represents a Texas Instruments TLC59208F 8-bit PWM driver ([datasheet](http://www.ti.com/lit/gpn/tlc59208f), [hw example](https://faboplatform.github.io/ArduinoDocs/03.I2C%20Brick/211_brick_i2c_7seg/)) in ESPHome. It uses [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) for communication.\n\n*See also: [TLC59208F](https://esphome.io/components/output/tlc59208f.html#tlc59208f)*"
+      },
+      "tlc5947": {
+        "docs": "This component represents a chain of [TLC5947 24-Channel, 12-Bit PWM LED Drivers](https://www.ti.com/lit/ds/symlink/tlc5947.pdf), which is used e.g. on this [board from Adafruit](https://www.adafruit.com/product/1429).\n\n*See also: [TLC5947 LED driver](https://esphome.io/components/output/tlc5947.html#tlc5947-led-driver)*"
+      }
+    },
+    "schemas": {
+      "BINARY_OUTPUT_SCHEMA": {
+        "config_vars": {
+          "power_supply": {
+            "key": "Optional"
+          },
+          "inverted": {
+            "key": "Optional",
+            "type": "boolean"
           }
         }
       },
-      "turn_off": {
-        "type": "maybe",
-        "schema": {
-          "config_vars": {
-            "id": {
-              "key": "Required"
-            }
+      "FLOAT_OUTPUT_SCHEMA": {
+        "extends": [
+          "output.BINARY_OUTPUT_SCHEMA"
+        ],
+        "config_vars": {
+          "max_power": {
+            "key": "Optional"
+          },
+          "min_power": {
+            "key": "Optional"
+          },
+          "zero_means_zero": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
           }
+        }
+      },
+      "BINARY_OUTPUT_ACTION_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "Required"
+          }
+        }
+      }
+    },
+    "action": {
+      "turn_on": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "output.BINARY_OUTPUT_ACTION_SCHEMA"
+          ]
+        }
+      },
+      "turn_off": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "output.BINARY_OUTPUT_ACTION_SCHEMA"
+          ]
         }
       },
       "set_level": {

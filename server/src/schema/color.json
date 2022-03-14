@@ -1,0 +1,44 @@
+{
+  "color": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "Required"
+          },
+          "red": {
+            "key": "Optional"
+          },
+          "red_int": {
+            "key": "Optional",
+            "type": "integer"
+          },
+          "green": {
+            "key": "Optional"
+          },
+          "green_int": {
+            "key": "Optional",
+            "type": "integer"
+          },
+          "blue": {
+            "key": "Optional"
+          },
+          "blue_int": {
+            "key": "Optional",
+            "type": "integer"
+          },
+          "white": {
+            "key": "Optional"
+          },
+          "white_int": {
+            "key": "Optional",
+            "type": "integer"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "max9611.sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "shunt_resistance": {
+            "key": "Required"
+          },
+          "gain": {
+            "key": "Required",
+            "type": "enum",
+            "values": [
+              "8X",
+              "4X",
+              "1X"
+            ]
+          },
+          "voltage": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "V"
+                },
+                "accuracy_decimals": {
+                  "default": "2"
+                },
+                "device_class": {
+                  "default": "voltage"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "current": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "A"
+                },
+                "accuracy_decimals": {
+                  "default": "2"
+                },
+                "device_class": {
+                  "default": "current"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "power": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "W"
+                },
+                "accuracy_decimals": {
+                  "default": "2"
+                },
+                "device_class": {
+                  "default": "power"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "temperature": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "\u00b0C"
+                },
+                "accuracy_decimals": {
+                  "default": "2"
+                },
+                "device_class": {
+                  "default": "temperature"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "60s"
+          },
+          "i2c_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Optional",
+            "default": "112",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            }
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  }
+}

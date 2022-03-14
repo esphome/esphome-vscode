@@ -1,0 +1,98 @@
+{
+  "ssd1306_base": {
+    "schemas": {
+      "SSD1306_MODEL": {
+        "type": "enum",
+        "values": [
+          "SSD1306_128X32",
+          "SSD1306_128X64",
+          "SSD1306_96X16",
+          "SSD1306_64X48",
+          "SSD1306_64X32",
+          "SH1106_128X32",
+          "SH1106_128X64",
+          "SH1106_96X16",
+          "SH1106_64X48",
+          "SH1107_128X64",
+          "SSD1305_128X32",
+          "SSD1305_128X64"
+        ]
+      },
+      "SSD1306_SCHEMA": {
+        "extends": [
+          "display.FULL_DISPLAY_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "model": {
+            "key": "Required",
+            "type": "enum",
+            "values": [
+              "SSD1306_128X32",
+              "SSD1306_128X64",
+              "SSD1306_96X16",
+              "SSD1306_64X48",
+              "SSD1306_64X32",
+              "SH1106_128X32",
+              "SH1106_128X64",
+              "SH1106_96X16",
+              "SH1106_64X48",
+              "SH1107_128X64",
+              "SSD1305_128X32",
+              "SSD1305_128X64"
+            ]
+          },
+          "reset_pin": {
+            "key": "Optional",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "brightness": {
+            "key": "Optional",
+            "default": "1.0"
+          },
+          "contrast": {
+            "key": "Optional",
+            "default": "1.0"
+          },
+          "external_vcc": {
+            "key": "Optional",
+            "type": "boolean"
+          },
+          "flip_x": {
+            "key": "Optional",
+            "default": "True",
+            "type": "boolean"
+          },
+          "flip_y": {
+            "key": "Optional",
+            "default": "True",
+            "type": "boolean"
+          },
+          "offset_x": {
+            "key": "Optional",
+            "default": "0",
+            "type": "integer"
+          },
+          "offset_y": {
+            "key": "Optional",
+            "default": "0",
+            "type": "integer"
+          },
+          "invert": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "1s"
+          }
+        }
+      }
+    }
+  }
+}

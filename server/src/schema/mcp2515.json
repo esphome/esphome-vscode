@@ -1,0 +1,45 @@
+{
+  "mcp2515.canbus": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "canbus.CANBUS_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "clock": {
+            "key": "Optional",
+            "default": "8MHZ",
+            "type": "enum",
+            "values": [
+              "8MHZ",
+              "16MHZ",
+              "20MHZ"
+            ]
+          },
+          "mode": {
+            "key": "Optional",
+            "default": "NORMAL",
+            "type": "enum",
+            "values": [
+              "NORMAL",
+              "LOOPBACK",
+              "LISTENONLY"
+            ]
+          },
+          "spi_id": {
+            "key": "GeneratedID"
+          },
+          "cs_pin": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          }
+        }
+      }
+    }
+  }
+}

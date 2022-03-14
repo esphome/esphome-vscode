@@ -1,0 +1,26 @@
+{
+  "ds1307": {
+    "action": {
+      "write_time": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            }
+          }
+        }
+      },
+      "read_time": {
+        "type": "maybe",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            }
+          }
+        }
+      }
+    }
+  }
+}

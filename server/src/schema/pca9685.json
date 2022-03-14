@@ -1,0 +1,53 @@
+{
+  "pca9685": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "frequency": {
+            "key": "Required"
+          },
+          "i2c_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Optional",
+            "default": "64",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            }
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  },
+  "pca9685.output": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "output.FLOAT_OUTPUT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "Required"
+          },
+          "pca9685_id": {
+            "key": "GeneratedID"
+          },
+          "channel": {
+            "key": "Required",
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

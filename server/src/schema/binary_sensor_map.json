@@ -1,0 +1,16 @@
+{
+  "binary_sensor_map.sensor": {
+    "schemas": {
+      "entry": {
+        "config_vars": {
+          "binary_sensor": {
+            "key": "Required"
+          },
+          "value": {
+            "key": "Required"
+          }
+        }
+      }
+    }
+  }
+}

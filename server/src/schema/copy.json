@@ -1,0 +1,178 @@
+{
+  "copy.sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "sensor.SENSOR_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "source_id": {
+            "key": "Required"
+          }
+        }
+      },
+      "FINAL_VALIDATE_SCHEMA": {}
+    }
+  },
+  "copy.binary_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "binary_sensor.BINARY_SENSOR_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "source_id": {
+            "key": "Required"
+          }
+        }
+      },
+      "FINAL_VALIDATE_SCHEMA": {}
+    }
+  },
+  "copy.button": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "button.BUTTON_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "source_id": {
+            "key": "Required"
+          }
+        }
+      },
+      "FINAL_VALIDATE_SCHEMA": {}
+    }
+  },
+  "copy.cover": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "cover.COVER_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "source_id": {
+            "key": "Required"
+          }
+        }
+      },
+      "FINAL_VALIDATE_SCHEMA": {}
+    }
+  },
+  "copy.fan": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "fan.FAN_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "source_id": {
+            "key": "Required"
+          }
+        }
+      },
+      "FINAL_VALIDATE_SCHEMA": {}
+    }
+  },
+  "copy.lock": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "lock.LOCK_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "source_id": {
+            "key": "Required"
+          }
+        }
+      },
+      "FINAL_VALIDATE_SCHEMA": {}
+    }
+  },
+  "copy.number": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "number.NUMBER_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "source_id": {
+            "key": "Required"
+          }
+        }
+      },
+      "FINAL_VALIDATE_SCHEMA": {}
+    }
+  },
+  "copy.select": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "select.SELECT_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "source_id": {
+            "key": "Required"
+          }
+        }
+      },
+      "FINAL_VALIDATE_SCHEMA": {}
+    }
+  },
+  "copy.switch": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "switch.SWITCH_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "source_id": {
+            "key": "Required"
+          }
+        }
+      },
+      "FINAL_VALIDATE_SCHEMA": {}
+    }
+  },
+  "copy.text_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "text_sensor.TEXT_SENSOR_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "source_id": {
+            "key": "Required"
+          }
+        }
+      },
+      "FINAL_VALIDATE_SCHEMA": {}
+    }
+  }
+}

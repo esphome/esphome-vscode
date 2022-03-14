@@ -1,0 +1,18 @@
+{
+  "ble_scanner.text_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "text_sensor.TEXT_SENSOR_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "esp32_ble_id": {
+            "key": "GeneratedID"
+          }
+        }
+      }
+    }
+  }
+}

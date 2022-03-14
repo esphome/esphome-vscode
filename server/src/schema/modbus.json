@@ -1,0 +1,37 @@
+{
+  "modbus": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "flow_control_pin": {
+            "key": "Optional",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "send_wait_time": {
+            "key": "Optional",
+            "default": "250ms",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_milliseconds"
+              ]
+            }
+          },
+          "uart_id": {
+            "key": "GeneratedID"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  }
+}

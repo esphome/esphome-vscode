@@ -1,0 +1,64 @@
+{
+  "uln2003.stepper": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "stepper.STEPPER_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "Required"
+          },
+          "pin_a": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "pin_b": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "pin_c": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "pin_d": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "sleep_when_done": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "step_mode": {
+            "key": "Optional",
+            "default": "FULL_STEP",
+            "type": "enum",
+            "values": [
+              "FULL_STEP",
+              "HALF_STEP",
+              "WAVE_DRIVE"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

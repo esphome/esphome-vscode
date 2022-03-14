@@ -1,0 +1,49 @@
+{
+  "esp32_improv": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "ble_server_id": {
+            "key": "GeneratedID"
+          },
+          "authorizer": {
+            "key": "Required",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: A [binary sensor](https://esphome.io/components/binary_sensor/index.html) to authorize with. Also accepts `none`/`false` to skip authorization.\n\n\n\n*See also: [Improv via BLE](https://esphome.io/components/esp32_improv.html#configuration-variables)*"
+          },
+          "status_indicator": {
+            "key": "Optional",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: An [output](https://esphome.io/components/output/index.html) to display feedback to the user.\n\n\n\n*See also: [Improv via BLE](https://esphome.io/components/esp32_improv.html#configuration-variables)*"
+          },
+          "identify_duration": {
+            "key": "Optional",
+            "default": "10s",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_milliseconds"
+              ]
+            },
+            "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The amount of time to identify for. Defaults to `10s`.\n\n\n\n*See also: [Improv via BLE](https://esphome.io/components/esp32_improv.html#configuration-variables)*"
+          },
+          "authorized_duration": {
+            "key": "Optional",
+            "default": "1min",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_milliseconds"
+              ]
+            },
+            "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The amount of time until authorization times out and needs to be re-authorized. Defaults to `1min`.\n\n\n\n*See also: [Improv via BLE](https://esphome.io/components/esp32_improv.html#configuration-variables)*"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  }
+}

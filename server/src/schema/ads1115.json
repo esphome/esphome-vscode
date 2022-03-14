@@ -1,0 +1,83 @@
+{
+  "ads1115": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "continuous_mode": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "i2c_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Required",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            }
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  },
+  "ads1115.sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "sensor.SENSOR_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "unit_of_measurement": {
+            "default": "V"
+          },
+          "accuracy_decimals": {
+            "default": "3"
+          },
+          "device_class": {
+            "default": "voltage"
+          },
+          "state_class": {
+            "default": "measurement"
+          },
+          "ads1115_id": {
+            "key": "GeneratedID"
+          },
+          "multiplexer": {
+            "key": "Required",
+            "type": "enum",
+            "values": [
+              "A0_A1",
+              "A0_A3",
+              "A1_A3",
+              "A2_A3",
+              "A0_GND",
+              "A1_GND",
+              "A2_GND",
+              "A3_GND"
+            ]
+          },
+          "gain": {
+            "key": "Required"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "60s"
+          }
+        },
+        "docs": "The `ads1115` domain creates a global hub so that you can later create individual sensors using the [ADS1115 Sensor Platform](https://esphome.io/components/sensor/ads1115.html#id1). To use this hub, first setup the [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) and connect the sensor to the pins specified there.\n\n*See also: [ADS1115 Sensor](https://esphome.io/components/sensor/ads1115.html#ads1115-sensor)*"
+      }
+    }
+  }
+}

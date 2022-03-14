@@ -1,0 +1,24 @@
+{
+  "status.binary_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "binary_sensor.BINARY_SENSOR_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Status Binary Sensor](https://esphome.io/components/binary_sensor/status.html#configuration-variables)*"
+          },
+          "entity_category": {
+            "default": "diagnostic"
+          },
+          "device_class": {
+            "default": "connectivity"
+          }
+        },
+        "docs": "The Status Binary Sensor exposes the node state (if it\u2019s connected to via MQTT/native API) for Home Assistant.\n\n*See also: [Status Binary Sensor](https://esphome.io/components/binary_sensor/status.html#status-binary-sensor)*"
+      }
+    }
+  }
+}

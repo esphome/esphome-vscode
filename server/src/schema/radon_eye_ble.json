@@ -1,0 +1,16 @@
+{
+  "radon_eye_ble": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          }
+        },
+        "extends": [
+          "esp32_ble_tracker.ESP_BLE_DEVICE_SCHEMA"
+        ]
+      }
+    }
+  }
+}

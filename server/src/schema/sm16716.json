@@ -1,0 +1,64 @@
+{
+  "sm16716": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "data_pin": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "clock_pin": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "num_channels": {
+            "key": "Optional",
+            "default": "3",
+            "type": "integer"
+          },
+          "num_chips": {
+            "key": "Optional",
+            "default": "1",
+            "type": "integer"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  },
+  "sm16716.output": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "output.FLOAT_OUTPUT_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "sm16716_id": {
+            "key": "GeneratedID"
+          },
+          "id": {
+            "key": "Required"
+          },
+          "channel": {
+            "key": "Required",
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

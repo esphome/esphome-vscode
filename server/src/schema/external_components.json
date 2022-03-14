@@ -1,0 +1,32 @@
+{
+  "external_components": {
+    "schemas": {
+      "CONFIG_SCHEMA": {},
+      "GIT_SCHEMA": {
+        "config_vars": {
+          "url": {
+            "key": "Required"
+          },
+          "ref": {
+            "key": "Optional"
+          },
+          "username": {
+            "key": "Optional",
+            "type": "string"
+          },
+          "password": {
+            "key": "Optional",
+            "type": "string"
+          }
+        }
+      },
+      "LOCAL_SCHEMA": {
+        "config_vars": {
+          "path": {
+            "key": "Required"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "rc522_spi": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "rc522.RC522_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "spi_id": {
+            "key": "GeneratedID"
+          },
+          "cs_pin": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          }
+        }
+      },
+      "FINAL_VALIDATE_SCHEMA": {
+        "config_vars": {
+          "spi_id": {
+            "key": "Required"
+          }
+        }
+      }
+    }
+  },
+  "rc522_spi.binary_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "rc522.binary_sensor.CONFIG_SCHEMA"
+        ]
+      }
+    }
+  }
+}

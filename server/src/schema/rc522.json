@@ -1,0 +1,50 @@
+{
+  "rc522": {
+    "schemas": {
+      "RC522_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "reset_pin": {
+            "key": "Optional",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "on_tag": {
+            "key": "Optional",
+            "type": "trigger"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "1s"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  },
+  "rc522.binary_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "binary_sensor.BINARY_SENSOR_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "rc522_id": {
+            "key": "GeneratedID"
+          },
+          "uid": {
+            "key": "Required"
+          }
+        }
+      }
+    }
+  }
+}

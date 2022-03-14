@@ -1,0 +1,22 @@
+{
+  "sntp.time": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "time.TIME_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "servers": {
+            "key": "Optional",
+            "default": "['0.pool.ntp.org', '1.pool.ntp.org', '2.pool.ntp.org']",
+            "is_list": true
+          }
+        }
+      }
+    }
+  }
+}

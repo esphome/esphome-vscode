@@ -1,0 +1,118 @@
+{
+  "xpt2046": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "irq_pin": {
+            "key": "Optional",
+            "schema": true,
+            "modes": [
+              "input"
+            ],
+            "type": "pin"
+          },
+          "calibration_x_min": {
+            "key": "Optional",
+            "default": "0",
+            "type": "integer"
+          },
+          "calibration_x_max": {
+            "key": "Optional",
+            "default": "4095",
+            "type": "integer"
+          },
+          "calibration_y_min": {
+            "key": "Optional",
+            "default": "0",
+            "type": "integer"
+          },
+          "calibration_y_max": {
+            "key": "Optional",
+            "default": "4095",
+            "type": "integer"
+          },
+          "dimension_x": {
+            "key": "Optional",
+            "default": "100",
+            "type": "integer"
+          },
+          "dimension_y": {
+            "key": "Optional",
+            "default": "100",
+            "type": "integer"
+          },
+          "threshold": {
+            "key": "Optional",
+            "default": "400",
+            "type": "integer"
+          },
+          "report_interval": {
+            "key": "Optional",
+            "default": "never"
+          },
+          "swap_x_y": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "on_state": {
+            "key": "Optional",
+            "type": "trigger"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "50ms"
+          },
+          "spi_id": {
+            "key": "GeneratedID"
+          },
+          "cs_pin": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  },
+  "xpt2046.binary_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "binary_sensor.BINARY_SENSOR_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "xpt2046_id": {
+            "key": "GeneratedID"
+          },
+          "x_min": {
+            "key": "Required",
+            "type": "integer"
+          },
+          "x_max": {
+            "key": "Required",
+            "type": "integer"
+          },
+          "y_min": {
+            "key": "Required",
+            "type": "integer"
+          },
+          "y_max": {
+            "key": "Required",
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

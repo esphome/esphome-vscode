@@ -1,0 +1,30 @@
+{
+  "version.text_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "text_sensor.TEXT_SENSOR_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "icon": {
+            "default": "mdi:new-box"
+          },
+          "entity_category": {
+            "default": "diagnostic"
+          },
+          "id": {
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Version Text Sensor](https://esphome.io/components/text_sensor/version.html#configuration-variables)*"
+          },
+          "hide_timestamp": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean",
+            "docs": "**boolean**: Allows you to hide the compilation timestamp from the version string. Defaults to `false`.\n\n\n\n*See also: [Version Text Sensor](https://esphome.io/components/text_sensor/version.html#configuration-variables)*"
+          }
+        },
+        "docs": "The `version` text sensor platform exposes the ESPHome version the firmware was compiled against as a text sensor.\n\n*See also: [Version Text Sensor](https://esphome.io/components/text_sensor/version.html#version-text-sensor)*"
+      }
+    }
+  }
+}

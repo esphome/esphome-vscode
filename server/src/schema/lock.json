@@ -1,0 +1,87 @@
+{
+  "lock": {
+    "components": {
+      "copy": {},
+      "template": {
+        "docs": "The `template` lock platform allows you to create simple locks out of just actions and an optional value lambda. Once defined, it will automatically appear in Home Assistant as a lock and can be controlled through the frontend.\n\n*See also: [Template Lock](https://esphome.io/components/lock/template.html#template-lock)*"
+      }
+    },
+    "schemas": {
+      "LOCK_SCHEMA": {
+        "extends": [
+          "core.ENTITY_BASE_SCHEMA",
+          "core.MQTT_COMMAND_COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "mqtt_id": {
+            "key": "Optional"
+          },
+          "on_lock": {
+            "key": "Optional",
+            "type": "trigger",
+            "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: An automation to perform when the lock is locked. See [lock.on_lock / lock.on_unlock Trigger](https://esphome.io/components/lock/index.html#lock-on-lock-unlock-trigger).\n\n\n\n*See also: [Lock Component](https://esphome.io/components/lock/index.html#base-lock-configuration)*"
+          },
+          "on_unlock": {
+            "key": "Optional",
+            "type": "trigger",
+            "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: An automation to perform when the lock is unlocked. See [lock.on_lock / lock.on_unlock Trigger](https://esphome.io/components/lock/index.html#lock-on-lock-unlock-trigger)..\n\n\n\n*See also: [Lock Component](https://esphome.io/components/lock/index.html#base-lock-configuration)*"
+          }
+        }
+      },
+      "LOCK_ACTION_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "Required"
+          }
+        }
+      }
+    },
+    "action": {
+      "open": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "lock.LOCK_ACTION_SCHEMA"
+          ]
+        },
+        "docs": "This action opens (e.g. unlatch) a lock with the given ID off when executed.\n\n*See also: [Lock Component](https://esphome.io/components/lock/index.html#lock-open-action)*"
+      },
+      "lock": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "lock.LOCK_ACTION_SCHEMA"
+          ]
+        },
+        "docs": "This action locks a lock with the given ID on when executed.\n\n*See also: [Lock Component](https://esphome.io/components/lock/index.html#lock-lock-action)*"
+      },
+      "unlock": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "lock.LOCK_ACTION_SCHEMA"
+          ]
+        },
+        "docs": "This action unlocks a lock with the given ID off when executed.\n\n*See also: [Lock Component](https://esphome.io/components/lock/index.html#lock-unlock-action)*"
+      }
+    },
+    "condition": {
+      "is_locked": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "lock.LOCK_ACTION_SCHEMA"
+          ]
+        }
+      },
+      "is_unlocked": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "lock.LOCK_ACTION_SCHEMA"
+          ]
+        }
+      }
+    }
+  }
+}

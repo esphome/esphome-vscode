@@ -1,0 +1,46 @@
+{
+  "senseair": {
+    "action": {
+      "abc_get_period": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "senseair.sensor.CALIBRATION_ACTION_SCHEMA"
+          ]
+        }
+      },
+      "abc_disable": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "senseair.sensor.CALIBRATION_ACTION_SCHEMA"
+          ]
+        }
+      },
+      "abc_enable": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "senseair.sensor.CALIBRATION_ACTION_SCHEMA"
+          ]
+        }
+      },
+      "background_calibration_result": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "senseair.sensor.CALIBRATION_ACTION_SCHEMA"
+          ]
+        }
+      },
+      "background_calibration": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "senseair.sensor.CALIBRATION_ACTION_SCHEMA"
+          ]
+        }
+      }
+    }
+  }
+}

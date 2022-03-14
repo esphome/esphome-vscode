@@ -1,0 +1,102 @@
+{
+  "stepper": {
+    "components": {
+      "a4988": {},
+      "uln2003": {}
+    },
+    "schemas": {
+      "STEPPER_SCHEMA": {
+        "config_vars": {
+          "max_speed": {
+            "key": "Required",
+            "docs": "**float**: The maximum speed in `steps/s` (steps per seconds) to drive the stepper at. Note most steppers can\u2019t step properly with speeds higher than 250 steps/s.\n\n\n\n*See also: [Stepper Component](https://esphome.io/components/stepper/index.html#base-stepper-configuration)*"
+          },
+          "acceleration": {
+            "key": "Optional",
+            "default": "inf",
+            "docs": "**float**: The acceleration in `steps/s^2` (steps per seconds squared) to use when starting to move. The default is `inf` which means infinite acceleration, so the stepper will try to drive with the full speed immediately. This value is helpful if that first motion of the motor is too jerky for what it\u2019s moving.  If you make this a small number, it will take the motor a moment to get up  to speed.\n\n\n\n*See also: [Stepper Component](https://esphome.io/components/stepper/index.html#base-stepper-configuration)*"
+          },
+          "deceleration": {
+            "key": "Optional",
+            "default": "inf",
+            "docs": "**float**: The same as `acceleration`, but for when the motor is decelerating shortly before reaching the set position. Defaults to `inf` (immediate deceleration).\n\n\n\n*See also: [Stepper Component](https://esphome.io/components/stepper/index.html#base-stepper-configuration)*"
+          }
+        }
+      }
+    },
+    "action": {
+      "set_target": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            },
+            "target": {
+              "key": "Required",
+              "templatable": true,
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "report_position": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            },
+            "position": {
+              "key": "Required",
+              "templatable": true,
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "set_speed": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            },
+            "speed": {
+              "key": "Required",
+              "templatable": true
+            }
+          }
+        }
+      },
+      "set_acceleration": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            },
+            "acceleration": {
+              "key": "Required",
+              "templatable": true
+            }
+          }
+        }
+      },
+      "set_deceleration": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            },
+            "deceleration": {
+              "key": "Required",
+              "templatable": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

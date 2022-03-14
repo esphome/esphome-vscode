@@ -1,0 +1,13 @@
+{
+  "dashboard_import": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "package_import_url": {
+            "key": "Required"
+          }
+        }
+      }
+    }
+  }
+}

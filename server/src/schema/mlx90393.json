@@ -1,0 +1,202 @@
+{
+  "mlx90393.sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "gain": {
+            "key": "Optional",
+            "default": "2_5X",
+            "type": "enum",
+            "values": [
+              "1X",
+              "1_33X",
+              "1_67X",
+              "2X",
+              "2_5X",
+              "3X",
+              "4X",
+              "5X"
+            ]
+          },
+          "drdy_pin": {
+            "key": "Optional",
+            "schema": true,
+            "modes": [
+              "input"
+            ],
+            "type": "pin"
+          },
+          "oversampling": {
+            "key": "Optional",
+            "default": "2",
+            "type": "integer"
+          },
+          "filter": {
+            "key": "Optional",
+            "default": "6",
+            "type": "integer"
+          },
+          "x_axis": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "\u00b5T"
+                },
+                "icon": {
+                  "default": "mdi:magnet"
+                },
+                "accuracy_decimals": {
+                  "default": "0"
+                },
+                "state_class": {
+                  "default": "measurement"
+                },
+                "resolution": {
+                  "key": "Optional",
+                  "default": "19BIT",
+                  "type": "enum",
+                  "values": [
+                    "16BIT",
+                    "17BIT",
+                    "18BIT",
+                    "19BIT"
+                  ],
+                  "docs": "**int**: Set resolution. Defaults to `19BIT`. Must be one of:\n  * `16BIT`\n  \n  * `17BIT`\n  \n  * `18BIT`\n  \n  * `19BIT`\n  \n  \n\n\n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
+                }
+              }
+            },
+            "docs": "The information for the x-axis.\n  * **name** (**Required**, string): The name for the x-axis sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * **resolution** (*Optional*, int): Set resolution. Defaults to `19BIT`. Must be one of:\n    * `16BIT`\n    \n    * `17BIT`\n    \n    * `18BIT`\n    \n    * `19BIT`\n    \n    \n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
+          },
+          "y_axis": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "\u00b5T"
+                },
+                "icon": {
+                  "default": "mdi:magnet"
+                },
+                "accuracy_decimals": {
+                  "default": "0"
+                },
+                "state_class": {
+                  "default": "measurement"
+                },
+                "resolution": {
+                  "key": "Optional",
+                  "default": "19BIT",
+                  "type": "enum",
+                  "values": [
+                    "16BIT",
+                    "17BIT",
+                    "18BIT",
+                    "19BIT"
+                  ],
+                  "docs": "**int**: Set resolution. Defaults to `19BIT`. Must be one of:\n  * `16BIT`\n  \n  * `17BIT`\n  \n  * `18BIT`\n  \n  * `19BIT`\n  \n  \n\n\n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
+                }
+              }
+            },
+            "docs": "The information for the y-axis.\n  * **name** (**Required**, string): The name for the y-axis sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * **resolution** (*Optional*, int): Set resolution. Defaults to `19BIT`. Must be one of:\n    * `16BIT`\n    \n    * `17BIT`\n    \n    * `18BIT`\n    \n    * `19BIT`\n    \n    \n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
+          },
+          "z_axis": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "\u00b5T"
+                },
+                "icon": {
+                  "default": "mdi:magnet"
+                },
+                "accuracy_decimals": {
+                  "default": "0"
+                },
+                "state_class": {
+                  "default": "measurement"
+                },
+                "resolution": {
+                  "key": "Optional",
+                  "default": "16BIT",
+                  "type": "enum",
+                  "values": [
+                    "16BIT",
+                    "17BIT",
+                    "18BIT",
+                    "19BIT"
+                  ],
+                  "docs": "**int**: Set resolution. Defaults to `16BIT`. Must be one of:\n  * `16BIT`\n  \n  * `17BIT`\n  \n  * `18BIT`\n  \n  * `19BIT`\n  \n  \n\n\n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
+                }
+              }
+            },
+            "docs": "The information for the z-axis.\n  * **name** (**Required**, string): The name for the z-axis sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * **resolution** (*Optional*, int): Set resolution. Defaults to `16BIT`. Must be one of:\n    * `16BIT`\n    \n    * `17BIT`\n    \n    * `18BIT`\n    \n    * `19BIT`\n    \n    \n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
+          },
+          "temperature": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "\u00b0C"
+                },
+                "icon": {
+                  "default": "mdi:thermometer"
+                },
+                "accuracy_decimals": {
+                  "default": "1"
+                },
+                "state_class": {
+                  "default": "measurement"
+                },
+                "oversampling": {
+                  "key": "Optional",
+                  "default": "0",
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "60s"
+          },
+          "i2c_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Optional",
+            "default": "12",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            }
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  }
+}

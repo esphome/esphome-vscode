@@ -1,0 +1,206 @@
+{
+  "rf_bridge": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [RF Bridge Component](https://esphome.io/components/rf_bridge.html#configuration-variables)*"
+          },
+          "on_code_received": {
+            "key": "Optional",
+            "type": "trigger",
+            "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when a code is received. See [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-on-code-received).\n\n\n\n*See also: [RF Bridge Component](https://esphome.io/components/rf_bridge.html#configuration-variables)*"
+          },
+          "on_advanced_code_received": {
+            "key": "Optional",
+            "type": "trigger"
+          },
+          "uart_id": {
+            "key": "GeneratedID",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the UART hub.\n\n\n\n*See also: [RF Bridge Component](https://esphome.io/components/rf_bridge.html#configuration-variables)*"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      },
+      "RFBRIDGE_SEND_CODE_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "sync": {
+            "key": "Required",
+            "templatable": true,
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint16_t"
+              ]
+            }
+          },
+          "low": {
+            "key": "Required",
+            "templatable": true,
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint16_t"
+              ]
+            }
+          },
+          "high": {
+            "key": "Required",
+            "templatable": true,
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint16_t"
+              ]
+            }
+          },
+          "code": {
+            "key": "Required",
+            "templatable": true,
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint32_t"
+              ]
+            }
+          }
+        }
+      },
+      "RFBRIDGE_ID_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          }
+        }
+      },
+      "RFBRIDGE_SEND_ADVANCED_CODE_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "length": {
+            "key": "Required",
+            "templatable": true,
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            }
+          },
+          "protocol": {
+            "key": "Required",
+            "templatable": true,
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            }
+          },
+          "code": {
+            "key": "Required",
+            "templatable": true,
+            "type": "string"
+          }
+        }
+      },
+      "RFBRIDGE_SEND_RAW_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "raw": {
+            "key": "Required",
+            "templatable": true,
+            "type": "string"
+          }
+        }
+      },
+      "RFBRIDGE_BEEP_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "duration": {
+            "key": "Required",
+            "templatable": true,
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "action": {
+      "send_code": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "rf_bridge.RFBRIDGE_SEND_CODE_SCHEMA"
+          ]
+        }
+      },
+      "learn": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "rf_bridge.RFBRIDGE_ID_SCHEMA"
+          ]
+        }
+      },
+      "start_advanced_sniffing": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "rf_bridge.RFBRIDGE_ID_SCHEMA"
+          ]
+        }
+      },
+      "stop_advanced_sniffing": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "rf_bridge.RFBRIDGE_ID_SCHEMA"
+          ]
+        }
+      },
+      "start_bucket_sniffing": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "rf_bridge.RFBRIDGE_ID_SCHEMA"
+          ]
+        }
+      },
+      "send_advanced_code": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "rf_bridge.RFBRIDGE_SEND_ADVANCED_CODE_SCHEMA"
+          ]
+        }
+      },
+      "send_raw": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "rf_bridge.RFBRIDGE_SEND_RAW_SCHEMA"
+          ]
+        }
+      },
+      "beep": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "rf_bridge.RFBRIDGE_BEEP_SCHEMA"
+          ]
+        }
+      }
+    }
+  }
+}

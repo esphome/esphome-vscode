@@ -1,0 +1,59 @@
+{
+  "tm1637.display": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "display.BASIC_DISPLAY_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [TM1637 7-Segment Display](https://esphome.io/components/display/tm1637.html#configuration-variables)*"
+          },
+          "intensity": {
+            "key": "Optional",
+            "default": "7",
+            "type": "integer",
+            "docs": "**int**: The intensity with which the TM1637 should drive the outputs. Range is from 0 (least intense) to 7 (the default).\n\n\n\n*See also: [TM1637 7-Segment Display](https://esphome.io/components/display/tm1637.html#configuration-variables)*"
+          },
+          "inverted": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean",
+            "docs": "**bool**: Invert character rendering to the TM1637 so you can physically flip the display around.\n\n\n\n*See also: [TM1637 7-Segment Display](https://esphome.io/components/display/tm1637.html#configuration-variables)*"
+          },
+          "length": {
+            "key": "Optional",
+            "default": "6",
+            "type": "integer",
+            "docs": "**int**: The amount of digits your TM1637 is driving. Only used when `inverted: true` Range is from 1 to 6 (the default).\n\n\n\n*See also: [TM1637 7-Segment Display](https://esphome.io/components/display/tm1637.html#configuration-variables)*"
+          },
+          "clk_pin": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin",
+            "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin you have the CLK line hooked up to.\n\n\n\n*See also: [TM1637 7-Segment Display](https://esphome.io/components/display/tm1637.html#configuration-variables)*"
+          },
+          "dio_pin": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin",
+            "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin you have the DIO line hooked up to.\n\n\n\n*See also: [TM1637 7-Segment Display](https://esphome.io/components/display/tm1637.html#configuration-variables)*"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "1s",
+            "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to re-draw the screen. Defaults to `1s`.\n\n\n\n*See also: [TM1637 7-Segment Display](https://esphome.io/components/display/tm1637.html#configuration-variables)*"
+          }
+        }
+      }
+    }
+  }
+}

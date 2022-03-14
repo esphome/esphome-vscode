@@ -1,0 +1,308 @@
+{
+  "bme680_bsec": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "temperature_offset": {
+            "key": "Optional",
+            "default": "0"
+          },
+          "iaq_mode": {
+            "key": "Optional",
+            "default": "STATIC",
+            "type": "enum",
+            "values": [
+              "STATIC",
+              "MOBILE"
+            ]
+          },
+          "sample_rate": {
+            "key": "Optional",
+            "default": "LP",
+            "type": "enum",
+            "values": [
+              "LP",
+              "ULP"
+            ]
+          },
+          "state_save_interval": {
+            "key": "Optional",
+            "default": "6hours",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_minutes"
+              ]
+            }
+          },
+          "i2c_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Optional",
+            "default": "118",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "bme680_bsec.sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "bme680_bsec_id": {
+            "key": "GeneratedID"
+          },
+          "temperature": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "\u00b0C"
+                },
+                "icon": {
+                  "default": "mdi:thermometer"
+                },
+                "accuracy_decimals": {
+                  "default": "1"
+                },
+                "device_class": {
+                  "default": "temperature"
+                },
+                "state_class": {
+                  "default": "measurement"
+                },
+                "sample_rate": {
+                  "key": "Optional",
+                  "type": "enum",
+                  "values": [
+                    "LP",
+                    "ULP"
+                  ]
+                }
+              }
+            }
+          },
+          "pressure": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "hPa"
+                },
+                "icon": {
+                  "default": "mdi:gauge"
+                },
+                "accuracy_decimals": {
+                  "default": "1"
+                },
+                "device_class": {
+                  "default": "pressure"
+                },
+                "state_class": {
+                  "default": "measurement"
+                },
+                "sample_rate": {
+                  "key": "Optional",
+                  "type": "enum",
+                  "values": [
+                    "LP",
+                    "ULP"
+                  ]
+                }
+              }
+            }
+          },
+          "humidity": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "%"
+                },
+                "icon": {
+                  "default": "mdi:water-percent"
+                },
+                "accuracy_decimals": {
+                  "default": "1"
+                },
+                "device_class": {
+                  "default": "humidity"
+                },
+                "state_class": {
+                  "default": "measurement"
+                },
+                "sample_rate": {
+                  "key": "Optional",
+                  "type": "enum",
+                  "values": [
+                    "LP",
+                    "ULP"
+                  ]
+                }
+              }
+            }
+          },
+          "gas_resistance": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "\u03a9"
+                },
+                "icon": {
+                  "default": "mdi:gas-cylinder"
+                },
+                "accuracy_decimals": {
+                  "default": "0"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "iaq": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "IAQ"
+                },
+                "icon": {
+                  "default": "mdi:gauge"
+                },
+                "accuracy_decimals": {
+                  "default": "0"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "iaq_accuracy": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "icon": {
+                  "default": "mdi:checkbox-marked-circle-outline"
+                },
+                "accuracy_decimals": {
+                  "default": "0"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "co2_equivalent": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "ppm"
+                },
+                "icon": {
+                  "default": "mdi:test-tube"
+                },
+                "accuracy_decimals": {
+                  "default": "1"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "breath_voc_equivalent": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "ppm"
+                },
+                "icon": {
+                  "default": "mdi:test-tube"
+                },
+                "accuracy_decimals": {
+                  "default": "1"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "bme680_bsec.text_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "bme680_bsec_id": {
+            "key": "GeneratedID"
+          },
+          "iaq_accuracy": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "text_sensor.TEXT_SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "icon": {
+                  "default": "mdi:checkbox-marked-circle-outline"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

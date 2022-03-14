@@ -1,0 +1,30 @@
+{
+  "ssd1306_i2c.display": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "ssd1306_base.SSD1306_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "i2c_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Optional",
+            "default": "60",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

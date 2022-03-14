@@ -1,0 +1,24 @@
+{
+  "toshiba.climate": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "climate_ir.CLIMATE_IR_WITH_RECEIVER_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "model": {
+            "key": "Optional",
+            "default": "generic",
+            "type": "enum",
+            "values": [
+              "GENERIC",
+              "RAC-PT1411HWRU-C",
+              "RAC-PT1411HWRU-F"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,184 @@
+{
+  "graph": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "graph.GRAPH_SCHEMA"
+        ]
+      },
+      "GRAPH_TRACE_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "sensor": {
+            "key": "Required"
+          },
+          "name": {
+            "key": "Optional",
+            "type": "string"
+          },
+          "line_thickness": {
+            "key": "Optional",
+            "type": "integer"
+          },
+          "line_type": {
+            "key": "Optional",
+            "type": "enum",
+            "values": [
+              "SOLID",
+              "DOTTED",
+              "DASHED"
+            ]
+          },
+          "color": {
+            "key": "Optional"
+          }
+        }
+      },
+      "GRAPH_LEGEND_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "name_font": {
+            "key": "Required"
+          },
+          "value_font": {
+            "key": "Optional"
+          },
+          "width": {
+            "key": "Optional",
+            "type": "integer"
+          },
+          "height": {
+            "key": "Optional",
+            "type": "integer"
+          },
+          "border": {
+            "key": "Optional",
+            "type": "boolean"
+          },
+          "show_lines": {
+            "key": "Optional",
+            "type": "boolean"
+          },
+          "show_values": {
+            "key": "Optional",
+            "type": "enum",
+            "values": [
+              "NONE",
+              "AUTO",
+              "BESIDE",
+              "BELOW"
+            ]
+          },
+          "show_units": {
+            "key": "Optional",
+            "type": "boolean"
+          },
+          "direction": {
+            "key": "Optional",
+            "type": "enum",
+            "values": [
+              "AUTO",
+              "HORIZONTAL",
+              "VERTICAL"
+            ]
+          }
+        }
+      },
+      "GRAPH_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "Required"
+          },
+          "duration": {
+            "key": "Required",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_seconds"
+              ]
+            }
+          },
+          "width": {
+            "key": "Required",
+            "type": "integer"
+          },
+          "height": {
+            "key": "Required",
+            "type": "integer"
+          },
+          "x_grid": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_seconds"
+              ]
+            }
+          },
+          "y_grid": {
+            "key": "Optional"
+          },
+          "border": {
+            "key": "Optional",
+            "type": "boolean"
+          },
+          "sensor": {
+            "key": "Optional"
+          },
+          "line_thickness": {
+            "key": "Optional",
+            "type": "integer"
+          },
+          "line_type": {
+            "key": "Optional",
+            "type": "enum",
+            "values": [
+              "SOLID",
+              "DOTTED",
+              "DASHED"
+            ]
+          },
+          "color": {
+            "key": "Optional"
+          },
+          "min_value": {
+            "key": "Optional"
+          },
+          "max_value": {
+            "key": "Optional"
+          },
+          "min_range": {
+            "key": "Optional"
+          },
+          "max_range": {
+            "key": "Optional"
+          },
+          "traces": {
+            "key": "Optional",
+            "is_list": true,
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "graph.GRAPH_TRACE_SCHEMA"
+              ]
+            }
+          },
+          "legend": {
+            "key": "Optional",
+            "is_list": true,
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "graph.GRAPH_LEGEND_SCHEMA"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

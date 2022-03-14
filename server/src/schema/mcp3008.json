@@ -1,0 +1,52 @@
+{
+  "mcp3008": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "spi_id": {
+            "key": "GeneratedID"
+          },
+          "cs_pin": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          }
+        }
+      }
+    }
+  },
+  "mcp3008.sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "sensor.SENSOR_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "mcp3008_id": {
+            "key": "GeneratedID"
+          },
+          "number": {
+            "key": "Required",
+            "type": "integer"
+          },
+          "reference_voltage": {
+            "key": "Optional",
+            "default": "3.3V"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "1s"
+          }
+        }
+      }
+    }
+  }
+}

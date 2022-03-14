@@ -1,0 +1,40 @@
+{
+  "esp32_can.canbus": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "canbus.CANBUS_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "bit_rate": {
+            "values": [
+              "50KBPS",
+              "100KBPS",
+              "125KBPS",
+              "250KBPS",
+              "500KBPS",
+              "1000KBPS"
+            ]
+          },
+          "rx_pin": {
+            "key": "Required",
+            "internal": true,
+            "modes": [
+              "input"
+            ],
+            "type": "pin"
+          },
+          "tx_pin": {
+            "key": "Required",
+            "internal": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          }
+        }
+      }
+    }
+  }
+}

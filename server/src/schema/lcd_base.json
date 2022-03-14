@@ -1,0 +1,21 @@
+{
+  "lcd_base": {
+    "schemas": {
+      "LCD_SCHEMA": {
+        "extends": [
+          "display.BASIC_DISPLAY_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "dimensions": {
+            "key": "Required"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "1s"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "hbridge.fan": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "fan.FAN_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "pin_a": {
+            "key": "Required"
+          },
+          "pin_b": {
+            "key": "Required"
+          },
+          "decay_mode": {
+            "key": "Optional",
+            "default": "SLOW",
+            "type": "enum",
+            "values": [
+              "SLOW",
+              "FAST"
+            ]
+          },
+          "speed_count": {
+            "key": "Optional",
+            "default": "100",
+            "type": "integer"
+          },
+          "enable_pin": {
+            "key": "Optional"
+          }
+        }
+      }
+    },
+    "action": {
+      "brake": {
+        "type": "maybe",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            }
+          }
+        }
+      }
+    }
+  },
+  "hbridge.light": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "light.RGB_LIGHT_SCHEMA"
+        ],
+        "config_vars": {
+          "output_id": {
+            "key": "GeneratedID"
+          },
+          "pin_a": {
+            "key": "Required",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the first float [Output Component](https://esphome.io/components/output/index.html#output) to use for this light.\n\n\n\n*See also: [H-bridge Light](https://esphome.io/components/light/hbridge.html#configuration-variables)*"
+          },
+          "pin_b": {
+            "key": "Required",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the second float [Output Component](https://esphome.io/components/output/index.html#output) to use for this light.\n\n\n\n*See also: [H-bridge Light](https://esphome.io/components/light/hbridge.html#configuration-variables)*"
+          }
+        }
+      }
+    }
+  }
+}

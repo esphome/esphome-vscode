@@ -1,0 +1,28 @@
+{
+  "as3935_i2c": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "as3935.AS3935_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "i2c_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Optional",
+            "default": "3",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

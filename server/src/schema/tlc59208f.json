@@ -1,0 +1,54 @@
+{
+  "tlc59208f": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "i2c_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Optional",
+            "default": "32",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            }
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  },
+  "tlc59208f.output": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "output.FLOAT_OUTPUT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "Required",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this tlc59208f component. Use this if you have multiple TLC59208Fs connected at the same time\n\n\n\n*See also: [Component](https://esphome.io/components/output/tlc59208f.html#configuration-variables)*"
+          },
+          "tlc59208f_id": {
+            "key": "GeneratedID"
+          },
+          "channel": {
+            "key": "Required",
+            "type": "integer"
+          },
+          "address": {
+            "docs": "**int**: The I\u00b2C address of the driver. Defaults to `0x20`.\n\n\n\n*See also: [Component](https://esphome.io/components/output/tlc59208f.html#configuration-variables)*"
+          }
+        }
+      }
+    }
+  }
+}

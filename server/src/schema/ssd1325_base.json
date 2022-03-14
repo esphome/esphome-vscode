@@ -1,0 +1,55 @@
+{
+  "ssd1325_base": {
+    "schemas": {
+      "SSD1325_MODEL": {
+        "type": "enum",
+        "values": [
+          "SSD1325_128X32",
+          "SSD1325_128X64",
+          "SSD1325_96X16",
+          "SSD1325_64X48",
+          "SSD1327_128X128"
+        ]
+      },
+      "SSD1325_SCHEMA": {
+        "extends": [
+          "display.FULL_DISPLAY_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "model": {
+            "key": "Required",
+            "type": "enum",
+            "values": [
+              "SSD1325_128X32",
+              "SSD1325_128X64",
+              "SSD1325_96X16",
+              "SSD1325_64X48",
+              "SSD1327_128X128"
+            ]
+          },
+          "reset_pin": {
+            "key": "Optional",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "brightness": {
+            "key": "Optional",
+            "default": "1.0"
+          },
+          "external_vcc": {
+            "key": "Optional",
+            "type": "boolean"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "1s"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "image": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "image.IMAGE_SCHEMA"
+        ]
+      },
+      "IMAGE_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "Required"
+          },
+          "file": {
+            "key": "Required"
+          },
+          "resize": {
+            "key": "Optional"
+          },
+          "type": {
+            "key": "Optional",
+            "default": "BINARY",
+            "type": "enum",
+            "values": [
+              "BINARY",
+              "GRAYSCALE",
+              "RGB24",
+              "TRANSPARENT_BINARY"
+            ]
+          },
+          "dither": {
+            "key": "Optional",
+            "default": "NONE",
+            "type": "enum",
+            "values": [
+              "NONE",
+              "FLOYDSTEINBERG"
+            ]
+          },
+          "raw_data_id": {
+            "key": "GeneratedID"
+          }
+        }
+      }
+    }
+  }
+}

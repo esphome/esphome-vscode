@@ -1,0 +1,42 @@
+{
+  "fastled_base": {
+    "schemas": {
+      "BASE_SCHEMA": {
+        "extends": [
+          "light.ADDRESSABLE_LIGHT_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "output_id": {
+            "key": "GeneratedID"
+          },
+          "num_leds": {
+            "key": "Required",
+            "type": "integer"
+          },
+          "rgb_order": {
+            "key": "Optional",
+            "type": "enum",
+            "values": [
+              "RGB",
+              "RBG",
+              "GRB",
+              "GBR",
+              "BRG",
+              "BGR"
+            ]
+          },
+          "max_refresh_rate": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_microseconds"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

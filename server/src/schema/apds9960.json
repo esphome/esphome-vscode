@@ -1,0 +1,98 @@
+{
+  "apds9960": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "60s"
+          },
+          "i2c_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Optional",
+            "default": "57",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            }
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  },
+  "apds9960.sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "sensor.SENSOR_SCHEMA"
+        ],
+        "config_vars": {
+          "unit_of_measurement": {
+            "default": "%"
+          },
+          "icon": {
+            "default": "mdi:lightbulb"
+          },
+          "accuracy_decimals": {
+            "default": "1"
+          },
+          "state_class": {
+            "default": "measurement"
+          },
+          "type": {
+            "key": "Required",
+            "type": "enum",
+            "values": [
+              "CLEAR",
+              "RED",
+              "GREEN",
+              "BLUE",
+              "PROXIMITY"
+            ]
+          },
+          "apds9960_id": {
+            "key": "GeneratedID"
+          }
+        },
+        "docs": "The `apds9960` sensor platform allows you to use your APDS9960 RGB and gesture sensors ([datasheet](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/apds9960.pdf), [SparkFun](https://www.sparkfun.com/products/12787)) with ESPHome. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [APDS9960 Sensor](https://esphome.io/components/sensor/apds9960.html#apds9960-sensor)*"
+      }
+    }
+  },
+  "apds9960.binary_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "binary_sensor.BINARY_SENSOR_SCHEMA"
+        ],
+        "config_vars": {
+          "device_class": {
+            "default": "moving"
+          },
+          "apds9960_id": {
+            "key": "GeneratedID"
+          },
+          "direction": {
+            "key": "Required",
+            "type": "enum",
+            "values": [
+              "UP",
+              "DOWN",
+              "LEFT",
+              "RIGHT"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

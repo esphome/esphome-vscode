@@ -1,0 +1,327 @@
+{
+  "remote_receiver": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation. Use this if you have multiple remote receivers.\n\n\n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#configuration-variables)*"
+          },
+          "pin": {
+            "key": "Required",
+            "schema": true,
+            "internal": true,
+            "modes": [
+              "input"
+            ],
+            "type": "pin",
+            "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: The pin to receive the remote signal on.\n\n\n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#configuration-variables)*"
+          },
+          "dump": {
+            "key": "Optional",
+            "default": "[]",
+            "docs": "**list**: Decode and dump these remote codes in the logs (at log.level=DEBUG). Set to `all` to dump all available codecs:\n  * **coolix**: Decode and dump Coolix infrared codes.\n  \n  * **dish**: Decode and dump Dish infrared codes.\n  \n  * **jvc**: Decode and dump JVC infrared codes.\n  \n  * **lg**: Decode and dump LG infrared codes.\n  \n  * **magiquest**: Decode and dump MagiQuest wand infrared codes.\n  \n  * **midea**: Decode and dump Midea infrared codes.\n  \n  * **nec**: Decode and dump NEC infrared codes.\n  \n  * **nexa**: Decode and dump Nexa (RF) codes.\n  \n  * **panasonic**: Decode and dump Panasonic infrared codes.\n  \n  * **pioneer**: Decode and dump Pioneer infrared codes.\n  \n  * **raw**: Print all remote codes in their raw form. Useful for using arbitrary protocols.\n  \n  * **rc5**: Decode and dump RC5 IR codes.\n  \n  * **rc_switch**: Decode and dump RCSwitch RF codes.\n  \n  * **samsung**: Decode and dump Samsung infrared codes.\n  \n  * **samsung36**: Decode and dump Samsung36 infrared codes.\n  \n  * **sony**: Decode and dump Sony infrared codes.\n  \n  * **toshiba_ac**: Decode and dump Toshiba AC infrared codes.\n  \n  \n\n\n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#configuration-variables)*"
+          },
+          "tolerance": {
+            "key": "Optional",
+            "default": "25",
+            "docs": "**int**: The percentage that the remote signal lengths can deviate in the decoding process. Defaults to `25%`.\n\n\n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#configuration-variables)*"
+          },
+          "buffer_size": {
+            "key": "Optional",
+            "default": "1000b",
+            "docs": "**int**: The size of the internal buffer for storing the remote codes. Defaults to `10kB` on the ESP32 and `1kB` on the ESP8266.\n\n\n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#configuration-variables)*"
+          },
+          "filter": {
+            "key": "Optional",
+            "default": "50us",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_microseconds"
+              ]
+            },
+            "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Filter any pulses that are shorter than this. Useful for removing glitches from noisy signals. Defaults to `50us`.\n\n\n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#configuration-variables)*"
+          },
+          "idle": {
+            "key": "Optional",
+            "default": "10ms",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_microseconds"
+              ]
+            },
+            "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The amount of time that a signal should remain stable (i.e. not change) for it to be considered complete. Defaults to `10ms`.\n\n\n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#configuration-variables)*"
+          },
+          "memory_blocks": {
+            "key": "Optional",
+            "default": "3",
+            "docs": "**int**: The number of RMT memory blocks used. Only used on ESP32 platform. Defaults to `3`.\n\n\n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#configuration-variables)*"
+          },
+          "on_coolix": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "receiver_id": {
+                  "key": "GeneratedID"
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            },
+            "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a Coolix remote code has been decoded. A variable `x` of type [remote_base::CoolixData](https://esphome.io/api/classesphome_1_1remote__base_1_1_coolix_data.html) is passed to the automation for use in lambdas.\n\n\n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#configuration-variables)*"
+          },
+          "on_dish": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "receiver_id": {
+                  "key": "GeneratedID"
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            },
+            "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a dish network remote code has been decoded. A variable `x` of type [remote_base::DishData](https://esphome.io/api/structesphome_1_1remote__base_1_1_dish_data.html) is passed to the automation for use in lambdas. Beware that Dish remotes use a different carrier frequency (57.6kHz) that many receiver hardware don\u2019t decode.\n\n\n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#configuration-variables)*"
+          },
+          "on_jvc": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "receiver_id": {
+                  "key": "GeneratedID"
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            },
+            "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a JVC remote code has been decoded. A variable `x` of type [remote_base::JVCData](https://esphome.io/api/structesphome_1_1remote__base_1_1_j_v_c_data.html) is passed to the automation for use in lambdas.\n\n\n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#configuration-variables)*"
+          },
+          "on_lg": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "receiver_id": {
+                  "key": "GeneratedID"
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            },
+            "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a LG remote code has been decoded. A variable `x` of type [remote_base::LGData](https://esphome.io/api/structesphome_1_1remote__base_1_1_l_g_data.html) is passed to the automation for use in lambdas.\n\n\n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#configuration-variables)*"
+          },
+          "on_magiquest": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "receiver_id": {
+                  "key": "GeneratedID"
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            },
+            "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a MagiQuest wand remote code has been decoded. A variable `x` of type [remote_base::MagiQuestData](https://esphome.io/api/classesphome_1_1remote__base_1_1_magi_quest_data.html) is passed to the automation for use in lambdas.\n\n\n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#configuration-variables)*"
+          },
+          "on_nec": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "receiver_id": {
+                  "key": "GeneratedID"
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            }
+          },
+          "on_pioneer": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "receiver_id": {
+                  "key": "GeneratedID"
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            }
+          },
+          "on_pronto": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "receiver_id": {
+                  "key": "GeneratedID"
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            }
+          },
+          "on_sony": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "receiver_id": {
+                  "key": "GeneratedID"
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            }
+          },
+          "on_raw": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "receiver_id": {
+                  "key": "GeneratedID"
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            }
+          },
+          "on_rc5": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "receiver_id": {
+                  "key": "GeneratedID"
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            }
+          },
+          "on_rc_switch": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "receiver_id": {
+                  "key": "GeneratedID"
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            }
+          },
+          "on_samsung": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "receiver_id": {
+                  "key": "GeneratedID"
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            }
+          },
+          "on_samsung36": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "receiver_id": {
+                  "key": "GeneratedID"
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            }
+          },
+          "on_toshiba_ac": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "receiver_id": {
+                  "key": "GeneratedID"
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            }
+          },
+          "on_panasonic": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "receiver_id": {
+                  "key": "GeneratedID"
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            }
+          },
+          "on_nexa": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "receiver_id": {
+                  "key": "GeneratedID"
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            }
+          },
+          "on_midea": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "receiver_id": {
+                  "key": "GeneratedID"
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            },
+            "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a Midea remote code has been decoded. A variable `x` of type [remote_base::MideaData](https://esphome.io/api/classesphome_1_1remote__base_1_1_midea_data.html) is passed to the automation for use in lambdas.\n\n\n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#configuration-variables)*"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  }
+}

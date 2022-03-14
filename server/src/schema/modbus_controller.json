@@ -1,0 +1,423 @@
+{
+  "modbus_controller": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "command_throttle": {
+            "key": "Optional",
+            "default": "0ms",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_milliseconds"
+              ]
+            },
+            "docs": "**int**: minimum time in milliseconds between 2 requests to the device. Default is 0ms Because some modbus devices limit the rate of requests the interval between sending requests to the device can be modified.\n\n\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#configuration-variables)*"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "60s"
+          },
+          "modbus_id": {
+            "key": "GeneratedID",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the modbus hub.\n\n\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#configuration-variables)*"
+          },
+          "address": {
+            "key": "Optional",
+            "default": "1",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            },
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The modbus address of the device Specify the modbus device address of the.\n\n\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#configuration-variables)*"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      },
+      "ModbusItemBaseSchema": {
+        "config_vars": {
+          "modbus_controller_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Optional",
+            "type": "integer"
+          },
+          "custom_command": {
+            "key": "Optional",
+            "is_list": true,
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            }
+          },
+          "offset": {
+            "key": "Optional",
+            "type": "integer"
+          },
+          "byte_offset": {
+            "key": "Optional",
+            "type": "integer"
+          },
+          "bitmask": {
+            "key": "Optional",
+            "default": "4294967295",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint32_t"
+              ]
+            }
+          },
+          "skip_updates": {
+            "key": "Optional",
+            "default": "0",
+            "type": "integer"
+          },
+          "force_new_range": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "lambda": {
+            "key": "Optional"
+          },
+          "response_size": {
+            "key": "Optional",
+            "default": "0",
+            "type": "integer"
+          }
+        }
+      }
+    }
+  },
+  "modbus_controller.sensor": {
+    "schemas": {
+      "ModbusItemBaseSchema": {
+        "extends": [
+          "modbus_controller.ModbusItemBaseSchema"
+        ]
+      },
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "sensor.SENSOR_SCHEMA",
+          "core.COMPONENT_SCHEMA",
+          "modbus_controller.ModbusItemBaseSchema"
+        ],
+        "config_vars": {
+          "id": {},
+          "register_type": {
+            "key": "Optional",
+            "type": "enum",
+            "values": [
+              "custom",
+              "coil",
+              "holding",
+              "discrete_input",
+              "read"
+            ]
+          },
+          "value_type": {
+            "key": "Optional",
+            "default": "U_WORD",
+            "type": "enum",
+            "values": [
+              "RAW",
+              "U_WORD",
+              "S_WORD",
+              "U_DWORD",
+              "U_DWORD_R",
+              "S_DWORD",
+              "S_DWORD_R",
+              "U_QWORD",
+              "U_QWORDU_R",
+              "S_QWORD",
+              "U_QWORD_R",
+              "FP32",
+              "FP32_R"
+            ]
+          },
+          "register_count": {
+            "key": "Optional",
+            "default": "0",
+            "type": "integer"
+          }
+        }
+      }
+    }
+  },
+  "modbus_controller.binary_sensor": {
+    "schemas": {
+      "ModbusItemBaseSchema": {
+        "extends": [
+          "modbus_controller.ModbusItemBaseSchema"
+        ]
+      },
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "binary_sensor.BINARY_SENSOR_SCHEMA",
+          "core.COMPONENT_SCHEMA",
+          "modbus_controller.ModbusItemBaseSchema"
+        ],
+        "config_vars": {
+          "id": {},
+          "register_type": {
+            "key": "Optional",
+            "type": "enum",
+            "values": [
+              "custom",
+              "coil",
+              "holding",
+              "discrete_input",
+              "read"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "modbus_controller.number": {
+    "schemas": {
+      "ModbusItemBaseSchema": {
+        "extends": [
+          "modbus_controller.ModbusItemBaseSchema"
+        ]
+      },
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "number.NUMBER_SCHEMA",
+          "modbus_controller.ModbusItemBaseSchema"
+        ],
+        "config_vars": {
+          "id": {
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Modbus Controller Number](https://esphome.io/components/number/modbus_controller.html#configuration-variables)*"
+          },
+          "value_type": {
+            "key": "Optional",
+            "default": "U_WORD",
+            "type": "enum",
+            "values": [
+              "RAW",
+              "U_WORD",
+              "S_WORD",
+              "U_DWORD",
+              "U_DWORD_R",
+              "S_DWORD",
+              "S_DWORD_R",
+              "U_QWORD",
+              "U_QWORDU_R",
+              "S_QWORD",
+              "U_QWORD_R",
+              "FP32",
+              "FP32_R"
+            ]
+          },
+          "write_lambda": {
+            "key": "Optional"
+          },
+          "max_value": {
+            "key": "Optional",
+            "default": "16777215.0"
+          },
+          "min_value": {
+            "key": "Optional",
+            "default": "-16777215.0"
+          },
+          "step": {
+            "key": "Optional",
+            "default": "1",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_float"
+              ]
+            }
+          },
+          "multiply": {
+            "key": "Optional",
+            "default": "1.0"
+          },
+          "use_write_multiple": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  },
+  "modbus_controller.output": {
+    "schemas": {
+      "ModbusItemBaseSchema": {
+        "extends": [
+          "modbus_controller.ModbusItemBaseSchema"
+        ]
+      }
+    }
+  },
+  "modbus_controller.select": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "select.SELECT_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "modbus_controller_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Required",
+            "type": "integer"
+          },
+          "value_type": {
+            "key": "Optional",
+            "default": "U_WORD",
+            "type": "enum",
+            "values": [
+              "RAW",
+              "U_WORD",
+              "S_WORD",
+              "U_DWORD",
+              "U_DWORD_R",
+              "S_DWORD",
+              "S_DWORD_R",
+              "U_QWORD",
+              "U_QWORDU_R",
+              "S_QWORD",
+              "U_QWORD_R"
+            ]
+          },
+          "register_count": {
+            "key": "Optional",
+            "type": "integer"
+          },
+          "skip_updates": {
+            "key": "Optional",
+            "default": "0",
+            "type": "integer"
+          },
+          "force_new_range": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "optionsmap": {
+            "key": "Required"
+          },
+          "use_write_multiple": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "lambda": {
+            "key": "Optional"
+          },
+          "write_lambda": {
+            "key": "Optional"
+          }
+        }
+      }
+    }
+  },
+  "modbus_controller.switch": {
+    "schemas": {
+      "ModbusItemBaseSchema": {
+        "extends": [
+          "modbus_controller.ModbusItemBaseSchema"
+        ]
+      },
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "switch.SWITCH_SCHEMA",
+          "core.COMPONENT_SCHEMA",
+          "modbus_controller.ModbusItemBaseSchema"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Modbus Switch](https://esphome.io/components/switch/modbus_controller.html#configuration-variables)*"
+          },
+          "register_type": {
+            "key": "Optional",
+            "type": "enum",
+            "values": [
+              "custom",
+              "coil",
+              "holding",
+              "discrete_input",
+              "read"
+            ],
+            "docs": "type of the modbus register.\n\n\n\n*See also: [Modbus Switch](https://esphome.io/components/switch/modbus_controller.html#configuration-variables)*"
+          },
+          "use_write_multiple": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "write_lambda": {
+            "key": "Optional"
+          }
+        }
+      }
+    }
+  },
+  "modbus_controller.text_sensor": {
+    "schemas": {
+      "ModbusItemBaseSchema": {
+        "extends": [
+          "modbus_controller.ModbusItemBaseSchema"
+        ]
+      },
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "text_sensor.TEXT_SENSOR_SCHEMA",
+          "core.COMPONENT_SCHEMA",
+          "modbus_controller.ModbusItemBaseSchema"
+        ],
+        "config_vars": {
+          "id": {},
+          "register_type": {
+            "key": "Optional",
+            "type": "enum",
+            "values": [
+              "custom",
+              "coil",
+              "holding",
+              "discrete_input",
+              "read"
+            ]
+          },
+          "register_count": {
+            "key": "Optional",
+            "default": "0",
+            "type": "integer"
+          },
+          "response_size": {
+            "default": "2"
+          },
+          "raw_encode": {
+            "key": "Optional",
+            "default": "NONE",
+            "type": "enum",
+            "values": [
+              "NONE",
+              "HEXBYTES",
+              "COMMA"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

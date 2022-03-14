@@ -1,0 +1,14 @@
+{
+  "mitsubishi.climate": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "climate_ir.CLIMATE_IR_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {}
+        }
+      }
+    }
+  }
+}

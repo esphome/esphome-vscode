@@ -16,14 +16,14 @@
             },
             "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to execute the action with.\n\n\n\n*See also: [interval Component](https://esphome.io/guides/automations.html#interval-component)*"
           },
+          "setup_priority": {
+            "key": "Optional"
+          },
           "then": {
             "type": "trigger",
             "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: The action to perform.\n\n\n\n*See also: [interval Component](https://esphome.io/guides/automations.html#interval-component)*"
           }
-        },
-        "extends": [
-          "core.COMPONENT_SCHEMA"
-        ]
+        }
       }
     }
   }

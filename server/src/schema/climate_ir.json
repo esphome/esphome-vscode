@@ -1,0 +1,40 @@
+{
+  "climate_ir": {
+    "schemas": {
+      "CLIMATE_IR_SCHEMA": {
+        "extends": [
+          "climate.CLIMATE_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "transmitter_id": {
+            "key": "GeneratedID"
+          },
+          "supports_cool": {
+            "key": "Optional",
+            "default": "True",
+            "type": "boolean"
+          },
+          "supports_heat": {
+            "key": "Optional",
+            "default": "True",
+            "type": "boolean"
+          },
+          "sensor": {
+            "key": "Optional"
+          }
+        }
+      },
+      "CLIMATE_IR_WITH_RECEIVER_SCHEMA": {
+        "extends": [
+          "climate_ir.CLIMATE_IR_SCHEMA"
+        ],
+        "config_vars": {
+          "receiver_id": {
+            "key": "Optional"
+          }
+        }
+      }
+    }
+  }
+}

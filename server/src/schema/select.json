@@ -1,0 +1,54 @@
+{
+  "select": {
+    "components": {
+      "copy": {},
+      "modbus_controller": {
+        "docs": "The `modbus_controller` Select platform allows you to create a Select from modbus registers.\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#modbus-controller-select)*"
+      },
+      "template": {
+        "docs": "The `template` Select platform allows you to create a Select with templated values using [lambdas](https://esphome.io/guides/automations.html#config-lambda).\n\n*See also: [Template Select](https://esphome.io/components/select/template.html#template-select)*"
+      }
+    },
+    "schemas": {
+      "SELECT_SCHEMA": {
+        "extends": [
+          "core.ENTITY_BASE_SCHEMA",
+          "core.MQTT_COMMAND_COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "mqtt_id": {
+            "key": "Optional"
+          },
+          "id": {
+            "key": "GeneratedID"
+          },
+          "on_value": {
+            "key": "Optional",
+            "type": "trigger",
+            "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a new value is published. See [on_value](https://esphome.io/components/select/index.html#select-on-value).\n\n\n\n*See also: [Select Component](https://esphome.io/components/select/index.html#base-select-configuration)*"
+          }
+        }
+      }
+    },
+    "action": {
+      "set": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the select to set.\n\n\n\n*See also: [Select Component](https://esphome.io/components/select/index.html#select-set-action)*"
+            },
+            "option": {
+              "key": "Required",
+              "templatable": true,
+              "type": "string",
+              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The option to set the select to.\n\n\n\n*See also: [Select Component](https://esphome.io/components/select/index.html#select-set-action)*"
+            }
+          }
+        },
+        "docs": "You can also set an option for the template select from elsewhere in your YAML file with the [select.set Action](https://esphome.io/components/select/index.html#select-set-action).\n\n*See also: [Template Select](https://esphome.io/components/select/template.html#select-set-action)*"
+      }
+    }
+  }
+}

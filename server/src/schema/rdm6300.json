@@ -1,0 +1,42 @@
+{
+  "rdm6300": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "on_tag": {
+            "key": "Optional",
+            "type": "trigger"
+          },
+          "uart_id": {
+            "key": "GeneratedID"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  },
+  "rdm6300.binary_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "binary_sensor.BINARY_SENSOR_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "rdm6300_id": {
+            "key": "GeneratedID"
+          },
+          "uid": {
+            "key": "Required",
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

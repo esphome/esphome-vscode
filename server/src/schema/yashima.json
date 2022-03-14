@@ -1,0 +1,31 @@
+{
+  "yashima.climate": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "climate.CLIMATE_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "transmitter_id": {
+            "key": "GeneratedID"
+          },
+          "supports_cool": {
+            "key": "Optional",
+            "default": "True",
+            "type": "boolean"
+          },
+          "supports_heat": {
+            "key": "Optional",
+            "default": "True",
+            "type": "boolean"
+          },
+          "sensor": {
+            "key": "Optional"
+          }
+        }
+      }
+    }
+  }
+}

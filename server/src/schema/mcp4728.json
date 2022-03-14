@@ -1,0 +1,95 @@
+{
+  "mcp4728": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "store_in_eeprom": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "i2c_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Optional",
+            "default": "96",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            }
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  },
+  "mcp4728.output": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "output.FLOAT_OUTPUT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "Required",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n\n\n*See also: [MCP4728 Output](https://esphome.io/components/output/mcp4728.html#configuration-variables)*"
+          },
+          "mcp4728_id": {
+            "key": "GeneratedID"
+          },
+          "channel": {
+            "key": "Required",
+            "type": "enum",
+            "values": [
+              "A",
+              "B",
+              "C",
+              "D"
+            ]
+          },
+          "vref": {
+            "key": "Optional",
+            "default": "vdd",
+            "type": "enum",
+            "values": [
+              "vdd",
+              "internal"
+            ]
+          },
+          "power_down": {
+            "key": "Optional",
+            "default": "normal",
+            "type": "enum",
+            "values": [
+              "normal",
+              "gnd_1k",
+              "gnd_100k",
+              "gnd_500k"
+            ]
+          },
+          "gain": {
+            "key": "Optional",
+            "default": "X1",
+            "type": "enum",
+            "values": [
+              "X1",
+              "X2"
+            ]
+          },
+          "address": {
+            "docs": "**int**: Manually specify the I2C address of the DAC. Defaults to `0x60`.\n\n\n\n*See also: [MCP4728 Output](https://esphome.io/components/output/mcp4728.html#configuration-variables)*"
+          }
+        },
+        "docs": "The MCP4728 output component allows to use [12bit external quad DAC](https://www.adafruit.com/product/4470) in order to have analog outputs on any board by using [I\u00b2C](https://esphome.io/components/i2c.html#i2c). Devices default address is `0x60`.\n\n*See also: [MCP4728 Output](https://esphome.io/components/output/mcp4728.html#mcp4728-output)*"
+      }
+    }
+  }
+}

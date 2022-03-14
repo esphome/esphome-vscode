@@ -1,0 +1,38 @@
+{
+  "mcp23s17": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "Required"
+          },
+          "deviceaddress": {
+            "key": "Optional",
+            "default": "0",
+            "type": "integer"
+          },
+          "open_drain_interrupt": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "spi_id": {
+            "key": "GeneratedID"
+          },
+          "cs_pin": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    },
+    "pin": {}
+  }
+}

@@ -6,6 +6,7 @@
           "pn532.PN532_SCHEMA"
         ],
         "config_vars": {
+          "id": {},
           "i2c_id": {
             "key": "GeneratedID"
           },
@@ -15,7 +16,7 @@
             "type": "schema",
             "schema": {
               "extends": [
-                "core.i2c_address"
+                "core.hex_uint8_t"
               ]
             }
           }

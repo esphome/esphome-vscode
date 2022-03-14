@@ -1,0 +1,52 @@
+{
+  "mcp3204": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "reference_voltage": {
+            "key": "Optional",
+            "default": "3.3V"
+          },
+          "spi_id": {
+            "key": "GeneratedID"
+          },
+          "cs_pin": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          }
+        }
+      }
+    }
+  },
+  "mcp3204.sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "sensor.SENSOR_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "mcp3204_id": {
+            "key": "GeneratedID"
+          },
+          "number": {
+            "key": "Required",
+            "type": "integer"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "60s"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "substitutions": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "<function validate_substitution_key at 0x0000020F2106F5E0>": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

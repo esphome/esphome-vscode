@@ -1,0 +1,602 @@
+{
+  "daly_bms": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "uart_id": {
+            "key": "GeneratedID"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "30s"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  },
+  "daly_bms.sensor": {
+    "schemas": {
+      "CELL_VOLTAGE_SCHEMA": {
+        "extends": [
+          "sensor.SENSOR_SCHEMA"
+        ],
+        "config_vars": {
+          "unit_of_measurement": {
+            "default": "V"
+          },
+          "device_class": {
+            "default": "voltage"
+          },
+          "state_class": {
+            "default": "measurement"
+          }
+        }
+      },
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "bms_daly_id": {
+            "key": "GeneratedID"
+          },
+          "voltage": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "V"
+                },
+                "icon": {
+                  "default": "mdi:flash"
+                },
+                "accuracy_decimals": {
+                  "default": "1"
+                },
+                "device_class": {
+                  "default": "voltage"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "current": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "A"
+                },
+                "icon": {
+                  "default": "mdi:current-dc"
+                },
+                "accuracy_decimals": {
+                  "default": "1"
+                },
+                "device_class": {
+                  "default": "current"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "battery_level": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "%"
+                },
+                "icon": {
+                  "default": "mdi:percent"
+                },
+                "accuracy_decimals": {
+                  "default": "1"
+                },
+                "device_class": {
+                  "default": "battery"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "max_cell_voltage": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "V"
+                },
+                "icon": {
+                  "default": "mdi:flash"
+                },
+                "accuracy_decimals": {
+                  "default": "2"
+                },
+                "device_class": {
+                  "default": "voltage"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "max_cell_voltage_number": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "icon": {
+                  "default": "mdi:counter"
+                },
+                "accuracy_decimals": {
+                  "default": "0"
+                }
+              }
+            }
+          },
+          "min_cell_voltage": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "V"
+                },
+                "icon": {
+                  "default": "mdi:flash"
+                },
+                "accuracy_decimals": {
+                  "default": "2"
+                },
+                "device_class": {
+                  "default": "voltage"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "min_cell_voltage_number": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "icon": {
+                  "default": "mdi:counter"
+                },
+                "accuracy_decimals": {
+                  "default": "0"
+                }
+              }
+            }
+          },
+          "max_temperature": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "\u00b0C"
+                },
+                "icon": {
+                  "default": "mdi:thermometer-chevron-up"
+                },
+                "accuracy_decimals": {
+                  "default": "0"
+                },
+                "device_class": {
+                  "default": "temperature"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "max_temperature_probe_number": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "icon": {
+                  "default": "mdi:counter"
+                },
+                "accuracy_decimals": {
+                  "default": "0"
+                }
+              }
+            }
+          },
+          "min_temperature": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "\u00b0C"
+                },
+                "icon": {
+                  "default": "mdi:thermometer-chevron-down"
+                },
+                "accuracy_decimals": {
+                  "default": "0"
+                },
+                "device_class": {
+                  "default": "temperature"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "min_temperature_probe_number": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "icon": {
+                  "default": "mdi:counter"
+                },
+                "accuracy_decimals": {
+                  "default": "0"
+                }
+              }
+            }
+          },
+          "remaining_capacity": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "Ah"
+                },
+                "icon": {
+                  "default": "mdi:gauge"
+                },
+                "accuracy_decimals": {
+                  "default": "2"
+                },
+                "device_class": {
+                  "default": "voltage"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "cells_number": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "icon": {
+                  "default": "mdi:counter"
+                },
+                "accuracy_decimals": {
+                  "default": "0"
+                }
+              }
+            }
+          },
+          "temperature_1": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "\u00b0C"
+                },
+                "icon": {
+                  "default": "mdi:thermometer"
+                },
+                "accuracy_decimals": {
+                  "default": "0"
+                },
+                "device_class": {
+                  "default": "temperature"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "temperature_2": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "\u00b0C"
+                },
+                "icon": {
+                  "default": "mdi:thermometer"
+                },
+                "accuracy_decimals": {
+                  "default": "0"
+                },
+                "device_class": {
+                  "default": "temperature"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "cell_1_voltage": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "daly_bms.sensor.CELL_VOLTAGE_SCHEMA"
+              ]
+            }
+          },
+          "cell_2_voltage": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "daly_bms.sensor.CELL_VOLTAGE_SCHEMA"
+              ]
+            }
+          },
+          "cell_3_voltage": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "daly_bms.sensor.CELL_VOLTAGE_SCHEMA"
+              ]
+            }
+          },
+          "cell_4_voltage": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "daly_bms.sensor.CELL_VOLTAGE_SCHEMA"
+              ]
+            }
+          },
+          "cell_5_voltage": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "daly_bms.sensor.CELL_VOLTAGE_SCHEMA"
+              ]
+            }
+          },
+          "cell_6_voltage": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "daly_bms.sensor.CELL_VOLTAGE_SCHEMA"
+              ]
+            }
+          },
+          "cell_7_voltage": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "daly_bms.sensor.CELL_VOLTAGE_SCHEMA"
+              ]
+            }
+          },
+          "cell_8_voltage": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "daly_bms.sensor.CELL_VOLTAGE_SCHEMA"
+              ]
+            }
+          },
+          "cell_9_voltage": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "daly_bms.sensor.CELL_VOLTAGE_SCHEMA"
+              ]
+            }
+          },
+          "cell_10_voltage": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "daly_bms.sensor.CELL_VOLTAGE_SCHEMA"
+              ]
+            }
+          },
+          "cell_11_voltage": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "daly_bms.sensor.CELL_VOLTAGE_SCHEMA"
+              ]
+            }
+          },
+          "cell_12_voltage": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "daly_bms.sensor.CELL_VOLTAGE_SCHEMA"
+              ]
+            }
+          },
+          "cell_13_voltage": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "daly_bms.sensor.CELL_VOLTAGE_SCHEMA"
+              ]
+            }
+          },
+          "cell_14_voltage": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "daly_bms.sensor.CELL_VOLTAGE_SCHEMA"
+              ]
+            }
+          },
+          "cell_15_voltage": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "daly_bms.sensor.CELL_VOLTAGE_SCHEMA"
+              ]
+            }
+          },
+          "cell_16_voltage": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "daly_bms.sensor.CELL_VOLTAGE_SCHEMA"
+              ]
+            }
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  },
+  "daly_bms.binary_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "bms_daly_id": {
+            "key": "GeneratedID"
+          },
+          "charging_mos_enabled": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "binary_sensor.BINARY_SENSOR_SCHEMA"
+              ]
+            }
+          },
+          "discharging_mos_enabled": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "binary_sensor.BINARY_SENSOR_SCHEMA"
+              ]
+            }
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  },
+  "daly_bms.text_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "bms_daly_id": {
+            "key": "GeneratedID"
+          },
+          "status": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "text_sensor.TEXT_SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "icon": {
+                  "default": "mdi:car-battery"
+                }
+              }
+            }
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  }
+}

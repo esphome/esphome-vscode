@@ -7,7 +7,8 @@
           "extends": [
             "api.HOMEASSISTANT_SERVICE_ACTION_SCHEMA"
           ]
-        }
+        },
+        "docs": "When using the native API with Home Assistant, you can create Home Assistant service calls straight from ESPHome [Automations](https://esphome.io/guides/automations.html#automation).\n\n*See also: [Native API Component](https://esphome.io/components/api.html#homeassistant-service-action)*"
       },
       "event": {
         "type": "schema",
@@ -15,7 +16,8 @@
           "extends": [
             "api.HOMEASSISTANT_EVENT_ACTION_SCHEMA"
           ]
-        }
+        },
+        "docs": "When using the native API with Home Assistant, you can create events in the Home Assistant event bus straight from ESPHome [Automations](https://esphome.io/guides/automations.html#automation).\n\n*See also: [Native API Component](https://esphome.io/components/api.html#homeassistant-event-action)*"
       },
       "tag_scanned": {
         "is_list": true,
@@ -28,10 +30,12 @@
             "tag": {
               "key": "Required",
               "templatable": true,
-              "type": "string"
+              "type": "string",
+              "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), string**: The id of the scanned tag\n\n\n\n*See also: [Native API Component](https://esphome.io/components/api.html#homeassistant-tag-scanned-action)*"
             }
           }
-        }
+        },
+        "docs": "When using the native API with Home Assistant, you can push tag_scanned to Home Assistant straight from ESPHome [Automations](https://esphome.io/guides/automations.html#automation).\n\n*See also: [Native API Component](https://esphome.io/components/api.html#homeassistant-tag-scanned-action)*"
       }
     }
   }

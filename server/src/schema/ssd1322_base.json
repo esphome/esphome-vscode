@@ -1,0 +1,47 @@
+{
+  "ssd1322_base": {
+    "schemas": {
+      "SSD1322_MODEL": {
+        "type": "enum",
+        "values": [
+          "SSD1322_256X64"
+        ]
+      },
+      "SSD1322_SCHEMA": {
+        "extends": [
+          "display.FULL_DISPLAY_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "model": {
+            "key": "Required",
+            "type": "enum",
+            "values": [
+              "SSD1322_256X64"
+            ]
+          },
+          "reset_pin": {
+            "key": "Optional",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "brightness": {
+            "key": "Optional",
+            "default": "1.0"
+          },
+          "external_vcc": {
+            "key": "Optional",
+            "type": "boolean"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "1s"
+          }
+        }
+      }
+    }
+  }
+}

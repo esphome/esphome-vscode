@@ -1,0 +1,1047 @@
+{
+  "dsmr": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "decryption_key": {
+            "key": "Optional"
+          },
+          "crc_check": {
+            "key": "Optional",
+            "default": "True",
+            "type": "boolean"
+          },
+          "gas_mbus_id": {
+            "key": "Optional",
+            "default": "1",
+            "type": "integer"
+          },
+          "max_telegram_length": {
+            "key": "Optional",
+            "default": "1500",
+            "type": "integer"
+          },
+          "request_pin": {
+            "key": "Optional",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "request_interval": {
+            "key": "Optional",
+            "default": "0ms",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_milliseconds"
+              ]
+            }
+          },
+          "receive_timeout": {
+            "key": "Optional",
+            "default": "200ms",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_milliseconds"
+              ]
+            }
+          },
+          "uart_id": {
+            "key": "GeneratedID"
+          }
+        }
+      }
+    }
+  },
+  "dsmr.sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "dsmr_id": {
+            "key": "GeneratedID"
+          },
+          "energy_delivered_lux": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kWh"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "device_class": {
+                  "default": "energy"
+                },
+                "state_class": {
+                  "default": "total_increasing"
+                }
+              }
+            }
+          },
+          "energy_delivered_tariff1": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kWh"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "device_class": {
+                  "default": "energy"
+                },
+                "state_class": {
+                  "default": "total_increasing"
+                }
+              }
+            }
+          },
+          "energy_delivered_tariff2": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kWh"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "device_class": {
+                  "default": "energy"
+                },
+                "state_class": {
+                  "default": "total_increasing"
+                }
+              }
+            }
+          },
+          "energy_returned_lux": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kWh"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "device_class": {
+                  "default": "energy"
+                },
+                "state_class": {
+                  "default": "total_increasing"
+                }
+              }
+            }
+          },
+          "energy_returned_tariff1": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kWh"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "device_class": {
+                  "default": "energy"
+                },
+                "state_class": {
+                  "default": "total_increasing"
+                }
+              }
+            }
+          },
+          "energy_returned_tariff2": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kWh"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "device_class": {
+                  "default": "energy"
+                },
+                "state_class": {
+                  "default": "total_increasing"
+                }
+              }
+            }
+          },
+          "total_imported_energy": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kVArh"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                }
+              }
+            }
+          },
+          "total_exported_energy": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kVArh"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                }
+              }
+            }
+          },
+          "power_delivered": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kW"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "device_class": {
+                  "default": "power"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "power_returned": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kW"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "device_class": {
+                  "default": "power"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "reactive_power_delivered": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kVAr"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "reactive_power_returned": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kVAr"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "electricity_threshold": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "accuracy_decimals": {
+                  "default": "3"
+                }
+              }
+            }
+          },
+          "electricity_switch_position": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "accuracy_decimals": {
+                  "default": "3"
+                }
+              }
+            }
+          },
+          "electricity_failures": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "accuracy_decimals": {
+                  "default": "0"
+                }
+              }
+            }
+          },
+          "electricity_long_failures": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "accuracy_decimals": {
+                  "default": "0"
+                }
+              }
+            }
+          },
+          "electricity_sags_l1": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "accuracy_decimals": {
+                  "default": "0"
+                }
+              }
+            }
+          },
+          "electricity_sags_l2": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "accuracy_decimals": {
+                  "default": "0"
+                }
+              }
+            }
+          },
+          "electricity_sags_l3": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "accuracy_decimals": {
+                  "default": "0"
+                }
+              }
+            }
+          },
+          "electricity_swells_l1": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "accuracy_decimals": {
+                  "default": "0"
+                }
+              }
+            }
+          },
+          "electricity_swells_l2": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "accuracy_decimals": {
+                  "default": "0"
+                }
+              }
+            }
+          },
+          "electricity_swells_l3": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "accuracy_decimals": {
+                  "default": "0"
+                }
+              }
+            }
+          },
+          "current_l1": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "A"
+                },
+                "accuracy_decimals": {
+                  "default": "1"
+                },
+                "device_class": {
+                  "default": "current"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "current_l2": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "A"
+                },
+                "accuracy_decimals": {
+                  "default": "1"
+                },
+                "device_class": {
+                  "default": "current"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "current_l3": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "A"
+                },
+                "accuracy_decimals": {
+                  "default": "1"
+                },
+                "device_class": {
+                  "default": "current"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "power_delivered_l1": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kW"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "device_class": {
+                  "default": "current"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "power_delivered_l2": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kW"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "device_class": {
+                  "default": "current"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "power_delivered_l3": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kW"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "device_class": {
+                  "default": "current"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "power_returned_l1": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kW"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "device_class": {
+                  "default": "current"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "power_returned_l2": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kW"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "device_class": {
+                  "default": "current"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "power_returned_l3": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kW"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "device_class": {
+                  "default": "current"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "reactive_power_delivered_l1": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kVAr"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "reactive_power_delivered_l2": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kVAr"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "reactive_power_delivered_l3": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kVAr"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "reactive_power_returned_l1": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kVAr"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "reactive_power_returned_l2": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kVAr"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "reactive_power_returned_l3": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "kVAr"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "voltage_l1": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "V"
+                },
+                "accuracy_decimals": {
+                  "default": "1"
+                },
+                "device_class": {
+                  "default": "voltage"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "voltage_l2": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "V"
+                },
+                "accuracy_decimals": {
+                  "default": "1"
+                },
+                "device_class": {
+                  "default": "voltage"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "voltage_l3": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "V"
+                },
+                "accuracy_decimals": {
+                  "default": "1"
+                },
+                "device_class": {
+                  "default": "voltage"
+                },
+                "state_class": {
+                  "default": "measurement"
+                }
+              }
+            }
+          },
+          "gas_delivered": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "m\u00b3"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "device_class": {
+                  "default": "gas"
+                },
+                "state_class": {
+                  "default": "total_increasing"
+                }
+              }
+            }
+          },
+          "gas_delivered_be": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "unit_of_measurement": {
+                  "default": "m\u00b3"
+                },
+                "accuracy_decimals": {
+                  "default": "3"
+                },
+                "device_class": {
+                  "default": "gas"
+                },
+                "state_class": {
+                  "default": "total_increasing"
+                }
+              }
+            }
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  },
+  "dsmr.text_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "dsmr_id": {
+            "key": "GeneratedID"
+          },
+          "identification": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "text_sensor.TEXT_SENSOR_SCHEMA"
+              ]
+            }
+          },
+          "p1_version": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "text_sensor.TEXT_SENSOR_SCHEMA"
+              ]
+            }
+          },
+          "p1_version_be": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "text_sensor.TEXT_SENSOR_SCHEMA"
+              ]
+            }
+          },
+          "timestamp": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "text_sensor.TEXT_SENSOR_SCHEMA"
+              ]
+            }
+          },
+          "electricity_tariff": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "text_sensor.TEXT_SENSOR_SCHEMA"
+              ]
+            }
+          },
+          "electricity_failure_log": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "text_sensor.TEXT_SENSOR_SCHEMA"
+              ]
+            }
+          },
+          "message_short": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "text_sensor.TEXT_SENSOR_SCHEMA"
+              ]
+            }
+          },
+          "message_long": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "text_sensor.TEXT_SENSOR_SCHEMA"
+              ]
+            }
+          },
+          "gas_equipment_id": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "text_sensor.TEXT_SENSOR_SCHEMA"
+              ]
+            }
+          },
+          "thermal_equipment_id": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "text_sensor.TEXT_SENSOR_SCHEMA"
+              ]
+            }
+          },
+          "water_equipment_id": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "text_sensor.TEXT_SENSOR_SCHEMA"
+              ]
+            }
+          },
+          "sub_equipment_id": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "text_sensor.TEXT_SENSOR_SCHEMA"
+              ]
+            }
+          },
+          "gas_delivered_text": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "text_sensor.TEXT_SENSOR_SCHEMA"
+              ]
+            }
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  }
+}

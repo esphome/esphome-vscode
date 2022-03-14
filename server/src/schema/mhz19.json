@@ -1,0 +1,30 @@
+{
+  "mhz19": {
+    "action": {
+      "abc_disable": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "mhz19.sensor.CALIBRATION_ACTION_SCHEMA"
+          ]
+        }
+      },
+      "abc_enable": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "mhz19.sensor.CALIBRATION_ACTION_SCHEMA"
+          ]
+        }
+      },
+      "calibrate_zero": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "mhz19.sensor.CALIBRATION_ACTION_SCHEMA"
+          ]
+        }
+      }
+    }
+  }
+}

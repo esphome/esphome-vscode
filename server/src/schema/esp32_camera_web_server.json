@@ -1,0 +1,30 @@
+{
+  "esp32_camera_web_server": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "port": {
+            "key": "Required",
+            "type": "integer",
+            "docs": "**string**: The serving port.\n\n\n\n*See also: [ESP32 Camera Web Server Component](https://esphome.io/components/esp32_camera_web_server.html#configuration-variables)*"
+          },
+          "mode": {
+            "key": "Required",
+            "type": "enum",
+            "values": [
+              "STREAM",
+              "SNAPSHOT"
+            ],
+            "docs": "**string**: The operation mode. One of these values:\n  * `snapshot`\n  \n  * `stream`\n  \n  \n\n\n\n*See also: [ESP32 Camera Web Server Component](https://esphome.io/components/esp32_camera_web_server.html#configuration-variables)*"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  }
+}

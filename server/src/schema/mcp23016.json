@@ -1,0 +1,75 @@
+{
+  "mcp23016": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "Required"
+          },
+          "i2c_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Optional",
+            "default": "32",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            }
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      },
+      "MCP23016_PIN_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "mcp23016": {
+            "key": "Required"
+          },
+          "number": {
+            "key": "Required",
+            "type": "integer"
+          },
+          "mode": {
+            "key": "Optional",
+            "default": "{}",
+            "type": "schema",
+            "schema": {
+              "config_vars": {
+                "input": {
+                  "key": "Optional",
+                  "default": "False",
+                  "type": "boolean"
+                },
+                "output": {
+                  "key": "Optional",
+                  "default": "False",
+                  "type": "boolean"
+                }
+              }
+            }
+          },
+          "inverted": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "pin": {
+      "type": "schema",
+      "schema": {
+        "extends": [
+          "mcp23016.MCP23016_PIN_SCHEMA"
+        ]
+      }
+    }
+  }
+}

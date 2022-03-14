@@ -1,0 +1,41 @@
+{
+  "a4988.stepper": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "stepper.STEPPER_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "Required"
+          },
+          "step_pin": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "dir_pin": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "sleep_pin": {
+            "key": "Optional",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          }
+        }
+      }
+    }
+  }
+}

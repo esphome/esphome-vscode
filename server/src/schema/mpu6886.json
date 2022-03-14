@@ -1,0 +1,163 @@
+{
+  "mpu6886.sensor": {
+    "schemas": {
+      "accel_schema": {
+        "extends": [
+          "sensor.SENSOR_SCHEMA"
+        ],
+        "config_vars": {
+          "unit_of_measurement": {
+            "default": "m/s\u00b2"
+          },
+          "icon": {
+            "default": "mdi:briefcase-download"
+          },
+          "accuracy_decimals": {
+            "default": "2"
+          },
+          "state_class": {
+            "default": "measurement"
+          }
+        }
+      },
+      "gyro_schema": {
+        "extends": [
+          "sensor.SENSOR_SCHEMA"
+        ],
+        "config_vars": {
+          "unit_of_measurement": {
+            "default": "\u00b0/s"
+          },
+          "icon": {
+            "default": "mdi:screen-rotation"
+          },
+          "accuracy_decimals": {
+            "default": "2"
+          },
+          "state_class": {
+            "default": "measurement"
+          }
+        }
+      },
+      "temperature_schema": {
+        "extends": [
+          "sensor.SENSOR_SCHEMA"
+        ],
+        "config_vars": {
+          "unit_of_measurement": {
+            "default": "\u00b0C"
+          },
+          "accuracy_decimals": {
+            "default": "1"
+          },
+          "device_class": {
+            "default": "temperature"
+          },
+          "state_class": {
+            "default": "measurement"
+          }
+        }
+      },
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [MPU6886 Accelerometer/Gyroscope Sensor](https://esphome.io/components/sensor/mpu6886.html#configuration-variables)*"
+          },
+          "accel_x": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "mpu6886.sensor.accel_schema"
+              ]
+            },
+            "docs": "Use the X-Axis of the Accelerometer. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [MPU6886 Accelerometer/Gyroscope Sensor](https://esphome.io/components/sensor/mpu6886.html#configuration-variables)*"
+          },
+          "accel_y": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "mpu6886.sensor.accel_schema"
+              ]
+            },
+            "docs": "Use the Y-Axis of the Accelerometer. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [MPU6886 Accelerometer/Gyroscope Sensor](https://esphome.io/components/sensor/mpu6886.html#configuration-variables)*"
+          },
+          "accel_z": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "mpu6886.sensor.accel_schema"
+              ]
+            },
+            "docs": "Use the Z-Axis of the Accelerometer. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [MPU6886 Accelerometer/Gyroscope Sensor](https://esphome.io/components/sensor/mpu6886.html#configuration-variables)*"
+          },
+          "gyro_x": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "mpu6886.sensor.gyro_schema"
+              ]
+            },
+            "docs": "Use the X-Axis of the Gyroscope. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [MPU6886 Accelerometer/Gyroscope Sensor](https://esphome.io/components/sensor/mpu6886.html#configuration-variables)*"
+          },
+          "gyro_y": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "mpu6886.sensor.gyro_schema"
+              ]
+            },
+            "docs": "Use the Y-Axis of the Gyroscope. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [MPU6886 Accelerometer/Gyroscope Sensor](https://esphome.io/components/sensor/mpu6886.html#configuration-variables)*"
+          },
+          "gyro_z": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "mpu6886.sensor.gyro_schema"
+              ]
+            },
+            "docs": "Use the Z-Axis of the Gyroscope. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [MPU6886 Accelerometer/Gyroscope Sensor](https://esphome.io/components/sensor/mpu6886.html#configuration-variables)*"
+          },
+          "temperature": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "mpu6886.sensor.temperature_schema"
+              ]
+            },
+            "docs": "Use the internal temperature of the sensor. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [MPU6886 Accelerometer/Gyroscope Sensor](https://esphome.io/components/sensor/mpu6886.html#configuration-variables)*"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "60s",
+            "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n\n\n*See also: [MPU6886 Accelerometer/Gyroscope Sensor](https://esphome.io/components/sensor/mpu6886.html#configuration-variables)*"
+          },
+          "i2c_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Optional",
+            "default": "104",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            },
+            "docs": "**int**: Manually specify the i^2c address of the sensor. Defaults to `0x68`.\n\n\n\n*See also: [MPU6886 Accelerometer/Gyroscope Sensor](https://esphome.io/components/sensor/mpu6886.html#configuration-variables)*"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  }
+}

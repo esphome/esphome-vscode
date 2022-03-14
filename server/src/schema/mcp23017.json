@@ -1,0 +1,35 @@
+{
+  "mcp23017": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "Required"
+          },
+          "open_drain_interrupt": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "i2c_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Optional",
+            "default": "32",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            }
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    },
+    "pin": {}
+  }
+}

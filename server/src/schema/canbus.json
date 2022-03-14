@@ -1,0 +1,104 @@
+{
+  "canbus": {
+    "components": {
+      "esp32_can": {},
+      "mcp2515": {}
+    },
+    "schemas": {
+      "CANBUS_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "can_id": {
+            "key": "Required",
+            "type": "integer"
+          },
+          "bit_rate": {
+            "key": "Optional",
+            "default": "125KBPS",
+            "type": "enum",
+            "values": [
+              "5KBPS",
+              "10KBPS",
+              "20KBPS",
+              "31K25BPS",
+              "33KBPS",
+              "40KBPS",
+              "50KBPS",
+              "80KBPS",
+              "83K3BPS",
+              "95KBPS",
+              "100KBPS",
+              "125KBPS",
+              "200KBPS",
+              "250KBPS",
+              "500KBPS",
+              "1000KBPS"
+            ]
+          },
+          "use_extended_id": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "on_frame": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "can_id": {
+                  "key": "Required",
+                  "type": "integer"
+                },
+                "can_id_mask": {
+                  "key": "Optional",
+                  "default": "536870911",
+                  "type": "integer"
+                },
+                "use_extended_id": {
+                  "key": "Optional",
+                  "default": "False",
+                  "type": "boolean"
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            },
+            "has_required_var": true
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    },
+    "action": {
+      "send": {
+        "is_list": true,
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "canbus_id": {
+              "key": "GeneratedID"
+            },
+            "can_id": {
+              "key": "Optional",
+              "type": "integer"
+            },
+            "use_extended_id": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean"
+            },
+            "data": {
+              "key": "Required",
+              "templatable": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

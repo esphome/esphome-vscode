@@ -1,0 +1,46 @@
+{
+  "shutdown.button": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "button.BUTTON_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "icon": {
+            "default": "mdi:power"
+          },
+          "entity_category": {
+            "default": "config"
+          },
+          "id": {
+            "key": "GeneratedID",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Shutdown Button](https://esphome.io/components/button/shutdown.html#configuration-variables)*"
+          }
+        }
+      }
+    }
+  },
+  "shutdown.switch": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "switch.SWITCH_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Shutdown Switch](https://esphome.io/components/switch/shutdown.html#configuration-variables)*"
+          },
+          "icon": {
+            "default": "mdi:power"
+          },
+          "entity_category": {
+            "default": "config"
+          }
+        }
+      }
+    }
+  }
+}

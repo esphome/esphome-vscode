@@ -1,0 +1,16 @@
+{
+  "pzemac": {
+    "action": {
+      "reset_energy": {
+        "type": "maybe",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            }
+          }
+        }
+      }
+    }
+  }
+}

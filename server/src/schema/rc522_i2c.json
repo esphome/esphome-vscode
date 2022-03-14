@@ -1,0 +1,27 @@
+{
+  "rc522_i2c": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "rc522.RC522_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "i2c_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Optional",
+            "default": "44",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

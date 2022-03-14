@@ -1,0 +1,66 @@
+{
+  "cap1188": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "reset_pin": {
+            "key": "Optional",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "touch_threshold": {
+            "key": "Optional",
+            "default": "32",
+            "type": "integer"
+          },
+          "allow_multiple_touches": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "i2c_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Optional",
+            "default": "41",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            }
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  },
+  "cap1188.binary_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "binary_sensor.BINARY_SENSOR_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "cap1188_id": {
+            "key": "GeneratedID"
+          },
+          "channel": {
+            "key": "Required",
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

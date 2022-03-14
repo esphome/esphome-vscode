@@ -1,0 +1,13 @@
+{
+  "psram": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          }
+        }
+      }
+    }
+  }
+}

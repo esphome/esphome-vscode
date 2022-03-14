@@ -1,0 +1,25 @@
+{
+  "pn532_spi": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "pn532.PN532_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "spi_id": {
+            "key": "GeneratedID"
+          },
+          "cs_pin": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          }
+        }
+      }
+    }
+  }
+}

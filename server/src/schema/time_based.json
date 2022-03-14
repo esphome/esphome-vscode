@@ -1,0 +1,55 @@
+{
+  "time_based.cover": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "cover.COVER_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "stop_action": {
+            "key": "Required",
+            "type": "trigger"
+          },
+          "open_action": {
+            "key": "Required",
+            "type": "trigger"
+          },
+          "open_duration": {
+            "key": "Required",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_milliseconds"
+              ]
+            }
+          },
+          "close_action": {
+            "key": "Required",
+            "type": "trigger"
+          },
+          "close_duration": {
+            "key": "Required",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_milliseconds"
+              ]
+            }
+          },
+          "has_built_in_endstop": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "assumed_state": {
+            "key": "Optional",
+            "default": "True",
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

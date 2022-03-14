@@ -1,0 +1,38 @@
+{
+  "animation": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "animation.ANIMATION_SCHEMA"
+        ]
+      },
+      "ANIMATION_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "Required"
+          },
+          "file": {
+            "key": "Required"
+          },
+          "resize": {
+            "key": "Optional"
+          },
+          "type": {
+            "key": "Optional",
+            "default": "BINARY",
+            "type": "enum",
+            "values": [
+              "BINARY",
+              "GRAYSCALE",
+              "RGB24",
+              "TRANSPARENT_BINARY"
+            ]
+          },
+          "raw_data_id": {
+            "key": "GeneratedID"
+          }
+        }
+      }
+    }
+  }
+}

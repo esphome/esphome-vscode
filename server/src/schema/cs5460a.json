@@ -1,0 +1,16 @@
+{
+  "cs5460a": {
+    "action": {
+      "restart": {
+        "type": "maybe",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            }
+          }
+        }
+      }
+    }
+  }
+}

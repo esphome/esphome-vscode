@@ -1,0 +1,43 @@
+{
+  "lcd_gpio.display": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "lcd_base.LCD_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "data_pins": {
+            "key": "Required"
+          },
+          "enable_pin": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "rs_pin": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "rw_pin": {
+            "key": "Optional",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "st7735.display": {
+    "schemas": {
+      "ST7735_MODEL": {
+        "type": "enum",
+        "values": [
+          "INITR_GREENTAB",
+          "INITR_REDTAB",
+          "INITR_BLACKTAB",
+          "INITR_MINI160X80",
+          "INITR_18BLACKTAB",
+          "INITR_18REDTAB"
+        ]
+      },
+      "ST7735_SCHEMA": {
+        "extends": [
+          "display.FULL_DISPLAY_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "model": {
+            "key": "Required",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "st7735.display.ST7735_MODEL"
+              ]
+            }
+          },
+          "reset_pin": {
+            "key": "Optional",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "1s"
+          }
+        }
+      },
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "st7735.display.ST7735_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "dc_pin": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "device_width": {
+            "key": "Required",
+            "type": "integer"
+          },
+          "device_height": {
+            "key": "Required",
+            "type": "integer"
+          },
+          "col_start": {
+            "key": "Required",
+            "type": "integer"
+          },
+          "row_start": {
+            "key": "Required",
+            "type": "integer"
+          },
+          "eight_bit_color": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "use_bgr": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "invert_colors": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "spi_id": {
+            "key": "GeneratedID"
+          },
+          "cs_pin": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          }
+        }
+      }
+    }
+  }
+}

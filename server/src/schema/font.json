@@ -1,0 +1,36 @@
+{
+  "font": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "font.FONT_SCHEMA"
+        ]
+      },
+      "FONT_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "Required"
+          },
+          "file": {
+            "key": "Required"
+          },
+          "glyphs": {
+            "key": "Optional",
+            "default": " !\"%()+=,-.:/0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz\u00b0"
+          },
+          "size": {
+            "key": "Optional",
+            "default": "20",
+            "type": "integer"
+          },
+          "raw_data_id": {
+            "key": "GeneratedID"
+          },
+          "raw_glyph_id": {
+            "key": "GeneratedID"
+          }
+        }
+      }
+    }
+  }
+}

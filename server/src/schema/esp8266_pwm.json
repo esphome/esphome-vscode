@@ -1,0 +1,65 @@
+{
+  "esp8266_pwm.output": {
+    "schemas": {
+      "validate_frequency": {},
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "output.FLOAT_OUTPUT_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "Required",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n\n\n*See also: [ESP8266 Software PWM Output](https://esphome.io/components/output/esp8266_pwm.html#configuration-variables)*"
+          },
+          "pin": {
+            "key": "Required",
+            "schema": true,
+            "internal": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin",
+            "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin to use PWM on.\n\n\n\n*See also: [ESP8266 Software PWM Output](https://esphome.io/components/output/esp8266_pwm.html#configuration-variables)*"
+          },
+          "frequency": {
+            "key": "Optional",
+            "default": "1kHz",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "esp8266_pwm.output.validate_frequency"
+              ]
+            },
+            "docs": "**frequency**: The frequency to run the PWM with. Lower frequencies have more visual artifacts, but can represent much more colors. Defaults to `1000 Hz`.\n\n\n\n*See also: [ESP8266 Software PWM Output](https://esphome.io/components/output/esp8266_pwm.html#configuration-variables)*"
+          }
+        }
+      }
+    },
+    "action": {
+      "set_frequency": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the PWM output to change.\n\n\n\n*See also: [ESP8266 Software PWM Output](https://esphome.io/components/output/esp8266_pwm.html#output-esp8266-pwm-set-frequency-action)*"
+            },
+            "frequency": {
+              "key": "Required",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "esp8266_pwm.output.validate_frequency"
+                ]
+              },
+              "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), float**: The frequency to set in hertz.\n\n\n\n*See also: [ESP8266 Software PWM Output](https://esphome.io/components/output/esp8266_pwm.html#output-esp8266-pwm-set-frequency-action)*"
+            }
+          }
+        },
+        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to manually change the frequency of an ESP8266 PWM channel at runtime. Use cases include controlling a passive buzzer (for pitch control).\n\n*See also: [ESP8266 Software PWM Output](https://esphome.io/components/output/esp8266_pwm.html#output-esp8266-pwm-set-frequency-action)*"
+      }
+    }
+  }
+}

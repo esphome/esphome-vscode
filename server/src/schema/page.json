@@ -1,0 +1,39 @@
+{
+  "page.display": {
+    "action": {
+      "show": {
+        "type": "maybe",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "templatable": true
+            }
+          }
+        }
+      },
+      "show_next": {
+        "type": "maybe",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "templatable": true
+            }
+          }
+        }
+      },
+      "show_previous": {
+        "type": "maybe",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "templatable": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

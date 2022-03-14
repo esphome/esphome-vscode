@@ -1,0 +1,79 @@
+{
+  "time": {
+    "components": {
+      "ds1307": {},
+      "gps": {},
+      "homeassistant": {},
+      "sntp": {}
+    },
+    "schemas": {
+      "TIME_SCHEMA": {
+        "config_vars": {
+          "timezone": {
+            "key": "Optional",
+            "default": "<-03>3"
+          },
+          "on_time": {
+            "key": "Optional",
+            "type": "trigger",
+            "schema": {
+              "config_vars": {
+                "seconds": {
+                  "key": "Optional"
+                },
+                "minutes": {
+                  "key": "Optional"
+                },
+                "hours": {
+                  "key": "Optional"
+                },
+                "days_of_month": {
+                  "key": "Optional"
+                },
+                "months": {
+                  "key": "Optional"
+                },
+                "days_of_week": {
+                  "key": "Optional"
+                },
+                "cron": {
+                  "key": "Optional"
+                },
+                "at": {
+                  "key": "Optional"
+                },
+                "then": {
+                  "type": "trigger"
+                }
+              }
+            },
+            "has_required_var": true
+          },
+          "on_time_sync": {
+            "key": "Optional",
+            "type": "trigger"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "15min"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    },
+    "condition": {
+      "has_time": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "tcl112.climate": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "climate_ir.CLIMATE_IR_WITH_RECEIVER_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {}
+        }
+      }
+    }
+  }
+}

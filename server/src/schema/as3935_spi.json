@@ -1,0 +1,26 @@
+{
+  "as3935_spi": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "as3935.AS3935_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "spi_id": {
+            "key": "GeneratedID"
+          },
+          "cs_pin": {
+            "key": "Required",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          }
+        }
+      }
+    }
+  }
+}

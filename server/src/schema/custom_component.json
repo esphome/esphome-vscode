@@ -1,0 +1,31 @@
+{
+  "custom_component": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "lambda": {
+            "key": "Required"
+          },
+          "components": {
+            "key": "Optional",
+            "is_list": true,
+            "type": "schema",
+            "schema": {
+              "config_vars": {
+                "id": {
+                  "key": "GeneratedID"
+                }
+              },
+              "extends": [
+                "core.COMPONENT_SCHEMA"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

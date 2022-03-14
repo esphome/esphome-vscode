@@ -21,7 +21,7 @@
           },
           "update_interval": {
             "key": "Optional",
-            "default": "60s"
+            "default": "1s"
           }
         },
         "extends": [
@@ -49,6 +49,7 @@
           "binary_sensor.BINARY_SENSOR_SCHEMA"
         ],
         "config_vars": {
+          "id": {},
           "pn532_id": {
             "key": "GeneratedID"
           },

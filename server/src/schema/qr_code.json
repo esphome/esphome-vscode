@@ -1,0 +1,28 @@
+{
+  "qr_code": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "Required"
+          },
+          "value": {
+            "key": "Required",
+            "type": "string"
+          },
+          "ecc": {
+            "key": "Optional",
+            "default": "LOW",
+            "type": "enum",
+            "values": [
+              "LOW",
+              "MEDIUM",
+              "QUARTILE",
+              "HIGH"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

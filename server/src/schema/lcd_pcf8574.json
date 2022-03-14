@@ -1,0 +1,29 @@
+{
+  "lcd_pcf8574.display": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "lcd_base.LCD_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "i2c_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Optional",
+            "default": "63",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

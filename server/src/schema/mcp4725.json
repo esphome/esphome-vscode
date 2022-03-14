@@ -1,0 +1,33 @@
+{
+  "mcp4725.output": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "output.FLOAT_OUTPUT_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "Required",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n\n\n*See also: [MCP4725 Output](https://esphome.io/components/output/mcp4725.html#configuration-variables)*"
+          },
+          "i2c_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Optional",
+            "default": "96",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            },
+            "docs": "**int**: Manually specify the I2C address of the DAC. Defaults to `0x60`.\n\n\n\n*See also: [MCP4725 Output](https://esphome.io/components/output/mcp4725.html#configuration-variables)*"
+          }
+        },
+        "docs": "The MCP4725 output component allows to use [12bit external DAC](https://learn.sparkfun.com/tutorials/mcp4725-digital-to-analog-converter-hookup-guide/all) in order to have analog output(s) on any board by using I2C. Devices default address is `0x60` and configurable alternative is `0x61`.\n\n*See also: [MCP4725 Output](https://esphome.io/components/output/mcp4725.html#mcp4725-output)*"
+      }
+    }
+  }
+}

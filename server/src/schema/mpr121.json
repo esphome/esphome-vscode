@@ -1,0 +1,76 @@
+{
+  "mpr121": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "release_debounce": {
+            "key": "Optional",
+            "default": "0",
+            "type": "integer"
+          },
+          "touch_debounce": {
+            "key": "Optional",
+            "default": "0",
+            "type": "integer"
+          },
+          "touch_threshold": {
+            "key": "Optional",
+            "default": "11",
+            "type": "integer"
+          },
+          "release_threshold": {
+            "key": "Optional",
+            "default": "6",
+            "type": "integer"
+          },
+          "i2c_id": {
+            "key": "GeneratedID"
+          },
+          "address": {
+            "key": "Optional",
+            "default": "90",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.hex_uint8_t"
+              ]
+            }
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  },
+  "mpr121.binary_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "binary_sensor.BINARY_SENSOR_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "mpr121_id": {
+            "key": "GeneratedID"
+          },
+          "channel": {
+            "key": "Required",
+            "type": "integer"
+          },
+          "touch_threshold": {
+            "key": "Optional",
+            "type": "integer"
+          },
+          "release_threshold": {
+            "key": "Optional",
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

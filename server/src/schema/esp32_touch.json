@@ -1,0 +1,90 @@
+{
+  "esp32_touch": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "setup_mode": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "iir_filter": {
+            "key": "Optional",
+            "default": "0ms",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.positive_time_period_milliseconds"
+              ]
+            }
+          },
+          "sleep_duration": {
+            "key": "Optional",
+            "default": "27306us",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.time_period_dict"
+              ]
+            }
+          },
+          "measurement_duration": {
+            "key": "Optional",
+            "default": "8192us",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "core.time_period_dict"
+              ]
+            }
+          },
+          "low_voltage_reference": {
+            "key": "Optional",
+            "default": "0.5V"
+          },
+          "high_voltage_reference": {
+            "key": "Optional",
+            "default": "2.7V"
+          },
+          "voltage_attenuation": {
+            "key": "Optional",
+            "default": "0V"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      }
+    }
+  },
+  "esp32_touch.binary_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "binary_sensor.BINARY_SENSOR_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "esp32_touch_id": {
+            "key": "GeneratedID"
+          },
+          "pin": {
+            "key": "Required"
+          },
+          "threshold": {
+            "key": "Required",
+            "type": "integer"
+          },
+          "wakeup_threshold": {
+            "key": "Optional",
+            "default": "0",
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}

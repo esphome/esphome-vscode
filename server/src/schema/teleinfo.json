@@ -1,0 +1,84 @@
+{
+  "teleinfo": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "historical_mode": {
+            "key": "Optional",
+            "default": "False",
+            "type": "boolean"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "60s"
+          },
+          "uart_id": {
+            "key": "GeneratedID"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      },
+      "TELEINFO_LISTENER_SCHEMA": {
+        "config_vars": {
+          "teleinfo_id": {
+            "key": "GeneratedID"
+          },
+          "tag_name": {
+            "key": "Required",
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "teleinfo.sensor": {
+    "schemas": {
+      "TELEINFO_LISTENER_SCHEMA": {
+        "extends": [
+          "teleinfo.TELEINFO_LISTENER_SCHEMA"
+        ]
+      },
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "sensor.SENSOR_SCHEMA",
+          "teleinfo.TELEINFO_LISTENER_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "unit_of_measurement": {
+            "default": "Wh"
+          },
+          "icon": {
+            "default": "mdi:flash"
+          },
+          "accuracy_decimals": {
+            "default": "0"
+          }
+        }
+      }
+    }
+  },
+  "teleinfo.text_sensor": {
+    "schemas": {
+      "TELEINFO_LISTENER_SCHEMA": {
+        "extends": [
+          "teleinfo.TELEINFO_LISTENER_SCHEMA"
+        ]
+      },
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "text_sensor.TEXT_SENSOR_SCHEMA",
+          "teleinfo.TELEINFO_LISTENER_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {}
+        }
+      }
+    }
+  }
+}

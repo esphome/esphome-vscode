@@ -1,0 +1,269 @@
+{
+  "nextion.sensor": {
+    "schemas": {
+      "CONFIG_SENSOR_COMPONENT_SCHEMA": {
+        "config_vars": {
+          "nextion_id": {
+            "key": "GeneratedID"
+          },
+          "background_color": {
+            "key": "Optional"
+          },
+          "foreground_color": {
+            "key": "Optional"
+          },
+          "visible": {
+            "key": "Optional",
+            "default": "True",
+            "type": "boolean"
+          },
+          "component_name": {
+            "key": "Optional"
+          },
+          "variable_name": {
+            "key": "Optional"
+          },
+          "font_id": {
+            "key": "Optional",
+            "type": "integer"
+          }
+        }
+      },
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "sensor.SENSOR_SCHEMA",
+          "nextion.sensor.CONFIG_SENSOR_COMPONENT_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "accuracy_decimals": {
+            "default": "2"
+          },
+          "precision": {
+            "key": "Optional",
+            "default": "0",
+            "type": "integer"
+          },
+          "wave_channel_id": {
+            "key": "Optional"
+          },
+          "component_id": {
+            "key": "Optional",
+            "type": "integer"
+          },
+          "wave_max_length": {
+            "key": "Optional",
+            "default": "255",
+            "type": "integer"
+          },
+          "wave_max_value": {
+            "key": "Optional",
+            "default": "100",
+            "type": "integer"
+          },
+          "waveform_send_last_value": {
+            "key": "Optional",
+            "default": "True",
+            "type": "boolean"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "never"
+          }
+        }
+      }
+    }
+  },
+  "nextion.binary_sensor": {
+    "schemas": {
+      "CONFIG_BINARY_SENSOR_SCHEMA": {
+        "config_vars": {
+          "nextion_id": {
+            "key": "GeneratedID"
+          },
+          "background_color": {
+            "key": "Optional"
+          },
+          "foreground_color": {
+            "key": "Optional"
+          },
+          "visible": {
+            "key": "Optional",
+            "default": "True",
+            "type": "boolean"
+          },
+          "component_name": {
+            "key": "Optional"
+          },
+          "variable_name": {
+            "key": "Optional"
+          }
+        }
+      },
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "binary_sensor.BINARY_SENSOR_SCHEMA",
+          "nextion.binary_sensor.CONFIG_BINARY_SENSOR_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "page_id": {
+            "key": "Optional",
+            "type": "integer"
+          },
+          "component_id": {
+            "key": "Optional",
+            "type": "integer"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "never"
+          }
+        }
+      }
+    }
+  },
+  "nextion.display": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "display.BASIC_DISPLAY_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+          },
+          "tft_url": {
+            "key": "Optional",
+            "type": "string",
+            "docs": "**string**: The URL to download the TFT file from for updates. See [Nextion Upload](https://esphome.io/components/display/nextion.html#nextion-upload-tft).\n\n\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+          },
+          "brightness": {
+            "key": "Optional",
+            "default": "1.0",
+            "docs": "**percentage**: Set display brightness in %. Defaults to `100%`\n\n\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+          },
+          "on_setup": {
+            "key": "Optional",
+            "type": "trigger"
+          },
+          "on_sleep": {
+            "key": "Optional",
+            "type": "trigger",
+            "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: An automation to perform when the Nextion goes to sleep.\n\n\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+          },
+          "on_wake": {
+            "key": "Optional",
+            "type": "trigger",
+            "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: An automation to perform when the Nextion wakes up.\n\n\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+          },
+          "touch_sleep_timeout": {
+            "key": "Optional",
+            "type": "integer",
+            "docs": "**int**: Sets internal No-touch-then-sleep timer in seconds.\n\n\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+          },
+          "wake_up_page": {
+            "key": "Optional",
+            "type": "integer",
+            "docs": "**int**: Sets the page to display after waking up\n\n\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+          },
+          "auto_wake_on_touch": {
+            "key": "Optional",
+            "default": "True",
+            "type": "boolean",
+            "docs": "**boolean**: Sets if Nextion should auto-wake from sleep when touch press occurs.\n\n\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "5s",
+            "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to call the lambda to update the display. Defaults to `5s`.\n\n\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+          },
+          "uart_id": {
+            "key": "GeneratedID",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the [UART bus](https://esphome.io/components/uart.html#uart) you wish to use for this display. Use this if you want to use multiple UART buses at once.\n\n\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+          }
+        }
+      }
+    }
+  },
+  "nextion.switch": {
+    "schemas": {
+      "CONFIG_SWITCH_COMPONENT_SCHEMA": {
+        "extends": [
+          "nextion.sensor.CONFIG_SENSOR_COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "foreground_pressed_color": {
+            "key": "Optional"
+          },
+          "background_pressed_color": {
+            "key": "Optional"
+          }
+        }
+      },
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "switch.SWITCH_SCHEMA",
+          "nextion.switch.CONFIG_SWITCH_COMPONENT_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "never"
+          }
+        }
+      }
+    }
+  },
+  "nextion.text_sensor": {
+    "schemas": {
+      "CONFIG_TEXT_COMPONENT_SCHEMA": {
+        "config_vars": {
+          "nextion_id": {
+            "key": "GeneratedID"
+          },
+          "background_color": {
+            "key": "Optional"
+          },
+          "foreground_color": {
+            "key": "Optional"
+          },
+          "visible": {
+            "key": "Optional",
+            "default": "True",
+            "type": "boolean"
+          },
+          "component_name": {
+            "key": "Required"
+          },
+          "font_id": {
+            "key": "Optional",
+            "type": "integer"
+          }
+        }
+      },
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "text_sensor.TEXT_SENSOR_SCHEMA",
+          "nextion.text_sensor.CONFIG_TEXT_COMPONENT_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "id": {},
+          "update_interval": {
+            "key": "Optional",
+            "default": "never"
+          }
+        }
+      }
+    }
+  }
+}

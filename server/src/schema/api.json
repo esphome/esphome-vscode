@@ -4,17 +4,20 @@
       "CONFIG_SCHEMA": {
         "config_vars": {
           "id": {
-            "key": "GeneratedID"
+            "key": "GeneratedID",
+            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Native API Component](https://esphome.io/components/api.html#configuration-variables)*"
           },
           "port": {
             "key": "Optional",
             "default": "6053",
-            "type": "integer"
+            "type": "integer",
+            "docs": "**int**: The port to run the API Server on. Defaults to `6053`.\n\n\n\n*See also: [Native API Component](https://esphome.io/components/api.html#configuration-variables)*"
           },
           "password": {
             "key": "Optional",
             "default": "",
-            "type": "string"
+            "type": "string",
+            "docs": "**string**: The password to protect the API Server with. Defaults to no password.\n\n\n\n*See also: [Native API Component](https://esphome.io/components/api.html#configuration-variables)*"
           },
           "reboot_timeout": {
             "key": "Optional",
@@ -24,7 +27,8 @@
               "extends": [
                 "core.positive_time_period_milliseconds"
               ]
-            }
+            },
+            "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The amount of time to wait before rebooting when no client connects to the API. This is needed because sometimes the low level ESP functions report that the ESP is connected to the network, when in fact it is not - only a full reboot fixes it. Can be disabled by setting this to `0s`. Defaults to `15min`.\n\n\n\n*See also: [Native API Component](https://esphome.io/components/api.html#configuration-variables)*"
           },
           "services": {
             "key": "Optional",
@@ -38,11 +42,11 @@
                 "variables": {
                   "key": "String",
                   "default": "{}",
-                  "key_dump": "<function validate_id_name at 0x000001993F6DCCA0>",
+                  "key_dump": "<function validate_id_name at 0x0000020F207DDB80>",
                   "type": "schema",
                   "schema": {
                     "config_vars": {
-                      "<function validate_id_name at 0x000001993F6DCCA0>": {
+                      "<function validate_id_name at 0x0000020F207DDB80>": {
                         "type": "enum",
                         "values": [
                           "bool",
@@ -63,7 +67,8 @@
                 }
               }
             },
-            "has_required_var": true
+            "has_required_var": true,
+            "docs": "**list**: A list of user-defined services. See [User-defined Services](https://esphome.io/components/api.html#api-services).\n\n\n\n*See also: [Native API Component](https://esphome.io/components/api.html#configuration-variables)*"
           },
           "encryption": {
             "key": "Optional",
@@ -71,10 +76,12 @@
             "schema": {
               "config_vars": {
                 "key": {
-                  "key": "Required"
+                  "key": "Required",
+                  "docs": "**string**: The pre-shared key for the encryption. This is a 32-byte base64 encoded string. Below you can copy a key randomly generated in your browser:<input type=\"text\" id=\"api-key\" onclick=\"this.focus();this.select()\" style=\"width: 240px;\" readonly=\"readonly\"> <script>   // https://stackoverflow.com/a/62362724   function bytesArrToBase64(arr) {     const abc = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"; // base64 alphabet     const bin = n => n.toString(2).padStart(8,0); // convert num to 8-bit binary string     const l = arr.length     let result = '';      for(let i=0; i<=(l-1)/3; i++) {       let c1 = i*3+1>=l; // case when \"=\" is on end       let c2 = i*3+2>=l; // case when \"=\" is on end       let chunk = bin(arr[3*i]) + bin(c1? 0:arr[3*i+1]) + bin(c2? 0:arr[3*i+2]);       let r = chunk.match(/.{1,6}/g).map((x,j)=> j==3&&c2 ? '=' :(j==2&&c1 ? '=':abc[+('0b'+x)]));       result += r.join('');     }      return result;   }    let array = new Uint8Array(32);   window.crypto.getRandomValues(array);   document.getElementById(\"api-key\").value = bytesArrToBase64(array); </script>\n\n\n\n*See also: [Native API Component](https://esphome.io/components/api.html#configuration-variables)*"
                 }
               }
-            }
+            },
+            "docs": "Enable transport encryption of the API layer.\n  * **key** (**Required**, string): The pre-shared key for the encryption. This is a 32-byte base64 encoded string. Below you can copy a key randomly generated in your browser:<input type=\"text\" id=\"api-key\" onclick=\"this.focus();this.select()\" style=\"width: 240px;\" readonly=\"readonly\"> <script>   // https://stackoverflow.com/a/62362724   function bytesArrToBase64(arr) {     const abc = \"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/\"; // base64 alphabet     const bin = n => n.toString(2).padStart(8,0); // convert num to 8-bit binary string     const l = arr.length     let result = '';      for(let i=0; i<=(l-1)/3; i++) {       let c1 = i*3+1>=l; // case when \"=\" is on end       let c2 = i*3+2>=l; // case when \"=\" is on end       let chunk = bin(arr[3*i]) + bin(c1? 0:arr[3*i+1]) + bin(c2? 0:arr[3*i+2]);       let r = chunk.match(/.{1,6}/g).map((x,j)=> j==3&&c2 ? '=' :(j==2&&c1 ? '=':abc[+('0b'+x)]));       result += r.join('');     }      return result;   }    let array = new Uint8Array(32);   window.crypto.getRandomValues(array);   document.getElementById(\"api-key\").value = bytesArrToBase64(array); </script>\n  \n  \n\n\n\n*See also: [Native API Component](https://esphome.io/components/api.html#configuration-variables)*"
           }
         },
         "extends": [
@@ -83,7 +90,7 @@
       },
       "KEY_VALUE_SCHEMA": {
         "config_vars": {
-          "<function string at 0x000001993F6DC670>": {
+          "<function string at 0x0000020F207DD550>": {
             "templatable": true,
             "type": "string"
           }
@@ -97,7 +104,8 @@
           "service": {
             "key": "Required",
             "templatable": true,
-            "type": "string"
+            "type": "string",
+            "docs": "**string**: The Home Assistant [Service](https://www.home-assistant.io/docs/scripts/service-calls/) to call.\n\n\n\n*See also: [Native API Component](https://esphome.io/components/api.html#homeassistant-service-action)*"
           },
           "data": {
             "key": "Optional",
@@ -107,7 +115,8 @@
               "extends": [
                 "api.KEY_VALUE_SCHEMA"
               ]
-            }
+            },
+            "docs": "**mapping**: Optional *static* data to pass along with the service call.\n\n\n\n*See also: [Native API Component](https://esphome.io/components/api.html#homeassistant-service-action)*"
           },
           "data_template": {
             "key": "Optional",
@@ -117,18 +126,20 @@
               "extends": [
                 "api.KEY_VALUE_SCHEMA"
               ]
-            }
+            },
+            "docs": "**mapping**: Optional template data to pass along with the service call. This is evaluated on the Home Assistant side with Home Assistant\u2019s templating engine.\n\n\n\n*See also: [Native API Component](https://esphome.io/components/api.html#homeassistant-service-action)*"
           },
           "variables": {
             "key": "String",
             "default": "{}",
-            "key_dump": "<function string at 0x000001993F6DC670>",
+            "key_dump": "<function string at 0x0000020F207DD550>",
             "type": "schema",
             "schema": {
               "config_vars": {
-                "<function string at 0x000001993F6DC670>": {}
+                "<function string at 0x0000020F207DD550>": {}
               }
-            }
+            },
+            "docs": "**mapping**: Optional variables that can be used in the `data_template`. Values are [lambdas](https://esphome.io/guides/automations.html#config-lambda) and will be evaluated before sending the request.\n\n\n\n*See also: [Native API Component](https://esphome.io/components/api.html#homeassistant-service-action)*"
           }
         }
       },
@@ -138,7 +149,8 @@
             "key": "GeneratedID"
           },
           "event": {
-            "key": "Required"
+            "key": "Required",
+            "docs": "**string**: The event to create - must begin with `esphome.`\n\n\n\n*See also: [Native API Component](https://esphome.io/components/api.html#homeassistant-event-action)*"
           },
           "data": {
             "key": "Optional",
@@ -148,7 +160,8 @@
               "extends": [
                 "api.KEY_VALUE_SCHEMA"
               ]
-            }
+            },
+            "docs": "**mapping**: Optional *static* data to pass along with the event.\n\n\n\n*See also: [Native API Component](https://esphome.io/components/api.html#homeassistant-event-action)*"
           },
           "data_template": {
             "key": "Optional",
@@ -158,7 +171,8 @@
               "extends": [
                 "api.KEY_VALUE_SCHEMA"
               ]
-            }
+            },
+            "docs": "**mapping**: Optional template data to pass along with the event. This is evaluated on the Home Assistant side with Home Assistant\u2019s templating engine.\n\n\n\n*See also: [Native API Component](https://esphome.io/components/api.html#homeassistant-event-action)*"
           },
           "variables": {
             "key": "Optional",
@@ -168,13 +182,16 @@
               "extends": [
                 "api.KEY_VALUE_SCHEMA"
               ]
-            }
+            },
+            "docs": "**mapping**: Optional variables that can be used in the `data_template`. Values are [lambdas](https://esphome.io/guides/automations.html#config-lambda) and will be evaluated before sending the request.\n\n\n\n*See also: [Native API Component](https://esphome.io/components/api.html#homeassistant-event-action)*"
           }
         }
       }
     },
     "condition": {
-      "connected": {}
+      "connected": {
+        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) checks if at least one client is connected to the ESPHome native API. Please note client not only includes Home Assistant, but also ESPHome\u2019s OTA log output if logs are shown remotely.\n\n*See also: [Native API Component](https://esphome.io/components/api.html#api-connected-condition)*"
+      }
     }
   }
 }

@@ -1,0 +1,367 @@
+{
+  "fingerprint_grow": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "id": {
+            "key": "GeneratedID"
+          },
+          "sensing_pin": {
+            "key": "Optional",
+            "schema": true,
+            "modes": [
+              "input"
+            ],
+            "type": "pin"
+          },
+          "password": {
+            "key": "Optional",
+            "type": "integer"
+          },
+          "new_password": {
+            "key": "Optional",
+            "type": "integer"
+          },
+          "on_finger_scan_matched": {
+            "key": "Optional",
+            "type": "trigger"
+          },
+          "on_finger_scan_unmatched": {
+            "key": "Optional",
+            "type": "trigger"
+          },
+          "on_enrollment_scan": {
+            "key": "Optional",
+            "type": "trigger"
+          },
+          "on_enrollment_done": {
+            "key": "Optional",
+            "type": "trigger"
+          },
+          "on_enrollment_failed": {
+            "key": "Optional",
+            "type": "trigger"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "500ms"
+          },
+          "uart_id": {
+            "key": "GeneratedID"
+          }
+        },
+        "extends": [
+          "core.COMPONENT_SCHEMA"
+        ]
+      },
+      "validate_aura_led_states": {
+        "type": "enum",
+        "values": [
+          "BREATHING",
+          "FLASHING",
+          "ALWAYS_ON",
+          "ALWAYS_OFF",
+          "GRADUAL_ON",
+          "GRADUAL_OFF"
+        ]
+      },
+      "validate_aura_led_colors": {
+        "type": "enum",
+        "values": [
+          "RED",
+          "BLUE",
+          "PURPLE",
+          "GREEN",
+          "YELLOW",
+          "CYAN",
+          "WHITE"
+        ]
+      }
+    },
+    "action": {
+      "enroll": {
+        "is_list": true,
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            },
+            "finger_id": {
+              "key": "Required",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint16_t"
+                ]
+              }
+            },
+            "num_scans": {
+              "key": "Optional",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "cancel_enroll": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            }
+          }
+        }
+      },
+      "delete": {
+        "is_list": true,
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            },
+            "finger_id": {
+              "key": "Required",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint16_t"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "delete_all": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            }
+          }
+        }
+      },
+      "led_control": {
+        "is_list": true,
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            },
+            "state": {
+              "key": "Required",
+              "templatable": true,
+              "type": "boolean"
+            }
+          }
+        }
+      },
+      "aura_led_control": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            },
+            "state": {
+              "key": "Required",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "fingerprint_grow.validate_aura_led_states"
+                ]
+              }
+            },
+            "speed": {
+              "key": "Required",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              }
+            },
+            "color": {
+              "key": "Required",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "fingerprint_grow.validate_aura_led_colors"
+                ]
+              }
+            },
+            "count": {
+              "key": "Required",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "fingerprint_grow.sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "config_vars": {
+          "fingerprint_grow_id": {
+            "key": "GeneratedID"
+          },
+          "fingerprint_count": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "icon": {
+                  "default": "mdi:fingerprint"
+                },
+                "accuracy_decimals": {
+                  "default": "0"
+                },
+                "entity_category": {
+                  "default": "diagnostic"
+                }
+              }
+            }
+          },
+          "status": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "accuracy_decimals": {
+                  "default": "0"
+                },
+                "entity_category": {
+                  "default": "diagnostic"
+                }
+              }
+            }
+          },
+          "capacity": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "icon": {
+                  "default": "mdi:database"
+                },
+                "accuracy_decimals": {
+                  "default": "0"
+                },
+                "entity_category": {
+                  "default": "diagnostic"
+                }
+              }
+            }
+          },
+          "security_level": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "icon": {
+                  "default": "mdi:security"
+                },
+                "accuracy_decimals": {
+                  "default": "0"
+                },
+                "entity_category": {
+                  "default": "diagnostic"
+                }
+              }
+            }
+          },
+          "last_finger_id": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "icon": {
+                  "default": "mdi:account"
+                },
+                "accuracy_decimals": {
+                  "default": "0"
+                },
+                "entity_category": {
+                  "default": "diagnostic"
+                }
+              }
+            }
+          },
+          "last_confidence": {
+            "key": "Optional",
+            "type": "schema",
+            "schema": {
+              "extends": [
+                "sensor.SENSOR_SCHEMA"
+              ],
+              "config_vars": {
+                "icon": {
+                  "default": "mdi:account-check"
+                },
+                "accuracy_decimals": {
+                  "default": "0"
+                },
+                "entity_category": {
+                  "default": "diagnostic"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "fingerprint_grow.binary_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "extends": [
+          "binary_sensor.BINARY_SENSOR_SCHEMA"
+        ],
+        "config_vars": {
+          "fingerprint_grow_id": {
+            "key": "GeneratedID"
+          },
+          "icon": {
+            "default": "mdi:key-plus"
+          }
+        }
+      }
+    }
+  }
+}

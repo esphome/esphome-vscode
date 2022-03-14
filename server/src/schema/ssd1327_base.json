@@ -1,0 +1,43 @@
+{
+  "ssd1327_base": {
+    "schemas": {
+      "SSD1327_MODEL": {
+        "type": "enum",
+        "values": [
+          "SSD1327_128X128"
+        ]
+      },
+      "SSD1327_SCHEMA": {
+        "extends": [
+          "display.FULL_DISPLAY_SCHEMA",
+          "core.COMPONENT_SCHEMA"
+        ],
+        "config_vars": {
+          "model": {
+            "key": "Required",
+            "type": "enum",
+            "values": [
+              "SSD1327_128X128"
+            ]
+          },
+          "reset_pin": {
+            "key": "Optional",
+            "schema": true,
+            "modes": [
+              "output"
+            ],
+            "type": "pin"
+          },
+          "brightness": {
+            "key": "Optional",
+            "default": "1.0"
+          },
+          "update_interval": {
+            "key": "Optional",
+            "default": "1s"
+          }
+        }
+      }
+    }
+  }
+}
