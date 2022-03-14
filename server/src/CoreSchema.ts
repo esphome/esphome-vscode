@@ -195,34 +195,23 @@ export class CoreSchema {
                     }
                 }
             }
-
-            // else invalid
-
-
-            // for (const c in this.schema) {
-            //     if (this.schema[c][registry] !== undefined) {
-            //         for (const name in this.schema[c][registry]) {
-            //             if (c === "core") {
-            //                 yield [name, this.schema[c][registry][name]];
-            //             }
-            //             else {
-            //                 yield [c.split('.').reverse().join('.') + '.' + name, this.schema[c][registry][name]];
-            //             }
-            //         }
-            //     }
-            // }
         }
     }
 
     getRegistryConfigVar(registry: string, entry: string): ConfigVar {
         if (registry.includes(".")) {
             const [domain, registryName] = registry.split('.');
-            return this.schema[domain][registryName][entry];
+            return this.getComponent(domain)[registryName][entry];
         }
         else {
+            if (entry.includes(".")) {
+                const [domain, actionName] = entry.split(".");
+                return this.getComponent(domain)[registry][actionName];
+            }
             for (const c in this.schema) {
-                if (this.schema[c][registry] !== undefined && this.schema[c][registry][entry] !== undefined) {
-                    return this.schema[c][registry][entry];
+                const schema = this.getComponent(c);
+                if (schema[registry] !== undefined && schema[c][registry][entry] !== undefined) {
+                    return schema[c][registry][entry];
                 }
             }
         }
@@ -237,14 +226,42 @@ export class CoreSchema {
         return this.schema.core.pins;
     }
 
-    * iter_configVars(schema: Schema, docMap: YAMLMap): Generator<[string, ConfigVar]> {
+    getConfigVarComplete(schema: Schema, key: string): ConfigVar {
+        var cv = { ...schema.config_vars[key] };
+
+        const appendCvs = (s: Schema, c: ConfigVar) => {
+            if (s.extends !== undefined) {
+                for (const extended of s.extends) {
+                    const s_ex = this.getExtendedSchema(extended);
+                    if (key in s_ex.config_vars) {
+                        c = {
+                            ...s_ex.config_vars[key],
+                            ...c
+                        };
+                    }
+                }
+            }
+            return c;
+        };
+
+        cv = appendCvs(schema, cv);
+
+        return cv;
+    }
+
+
+    * iter_configVars(schema: Schema, docMap: YAMLMap, yielded = []): Generator<[string, ConfigVar]> {
         for (var prop in schema.config_vars) {
             if (schema.extends?.includes("core.MQTT_COMPONENT_SCHEMA") &&
                 (prop === "mqtt_id" || prop === "expire_after") && docMap.get("mqtt") === undefined) {
                 // filter mqtt props if mqtt is not used
                 continue;
             }
-            yield [prop, schema.config_vars[prop]];
+            if (yielded.includes(prop)) {
+                continue;
+            }
+            yielded.push(prop);
+            yield [prop, this.getConfigVarComplete(schema, prop)];
         }
         if (schema.extends !== undefined) {
             for (var extended of schema.extends) {
@@ -252,7 +269,7 @@ export class CoreSchema {
                     continue;
                 }
                 const s = this.getExtendedSchema(extended);
-                for (const pair of this.iter_configVars(s, docMap)) {
+                for (const pair of this.iter_configVars(s, docMap, yielded)) {
                     yield pair;
                 }
             }

@@ -262,7 +262,7 @@ export class CompletionHandler {
             return result;
 
         } catch (error) {
-            console.log("ERROR:" + JSON.stringify(error));
+            console.log("ERROR:" + error);
         }
 
         return result;
@@ -575,31 +575,42 @@ export class CompletionHandler {
 
     private addConfigVars(result: CompletionItem[], schema: Schema, node: YAMLMap, docMap: YAMLMap, isList = false) {
         let preselected = false;
+        const ret: { [name: string]: CompletionItem } = {};
+
         for (const [prop, config] of this.coreSchema.iter_configVars(schema, docMap)) {
             // Skip existent properties
             if (node !== null && this.mapHasScalarKey(node, prop)) {
                 continue;
             }
-            let triggerSuggest = false;
             const item: CompletionItem = {
                 label: prop,
                 insertText: prop + ': ',
-
             };
+            result.push(item);
+
+            if (isList) {
+                item.insertText = "- " + item.insertText;
+            }
+
+            let triggerSuggest = false;
             if (config.docs) {
                 item.documentation = {
                     kind: 'markdown',
                     value: config.docs,
                 };
             }
-            if (isList) {
-                item.insertText = "- " + item.insertText;
-            }
             if (config.detail) {
-                item.detail = config.detail;
+                item.detail = "D" + config.detail;
             }
             else {
-                item.detail = config.key;
+                if (config.key === "Required") {
+                    item.sortText = "00" + prop;
+                    item.detail = "Required";
+                }
+                else {
+                    const d = config["default"];
+                    item.detail = d;
+                }
             }
 
             switch (config.type) {
@@ -629,15 +640,10 @@ export class CompletionHandler {
                     item.kind = CompletionItemKind.Property;
                     break;
             }
-            if (config.key === "Required" && !preselected) {
-                item.preselect = true;
-                preselected = true;
-            }
 
             if (triggerSuggest) {
                 item.command = { title: 'chain', command: "editor.action.triggerSuggest" };
             }
-            result.push(item);
         }
     }
 
