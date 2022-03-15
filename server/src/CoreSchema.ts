@@ -210,8 +210,8 @@ export class CoreSchema {
             }
             for (const c in this.schema) {
                 const schema = this.getComponent(c);
-                if (schema[registry] !== undefined && schema[c][registry][entry] !== undefined) {
-                    return schema[c][registry][entry];
+                if (schema[registry] !== undefined && schema[registry][entry] !== undefined) {
+                    return schema[registry][entry];
                 }
             }
         }
