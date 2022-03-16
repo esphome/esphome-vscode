@@ -140,7 +140,7 @@ export class HoverHandler {
                 if (isString(path[index]) && isMap(docNode)) {
                     docNode = docNode.get(path[index], true);
                     if (schema === undefined) {
-                        schema = this.coreSchema.getComponent(path[index]).schemas.CONFIG_SCHEMA;
+                        cv = this.coreSchema.getComponent(path[index]).schemas.CONFIG_SCHEMA;
                     }
                     else {
                         if (cv === undefined) {

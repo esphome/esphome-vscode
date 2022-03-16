@@ -7,11 +7,6 @@ export const getTextDoc = (str: string) => {
   return TextDocument.create('x' + docNumber++, 'x', 0, str.trimStart());
 };
 
-export const esphomeDoc2 = getTextDoc(`
-esphome:
-  project:
-    `);
-
 export const esphomeDoc4 = getTextDoc(`
 esphome:
   project:

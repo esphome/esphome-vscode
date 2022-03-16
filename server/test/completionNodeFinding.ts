@@ -49,7 +49,10 @@ esphome:
   });
 
   it('esphome props, not empty esphome dict', () => {
-    const d = Docs.esphomeDoc2;
+    const d = Docs.getTextDoc(`
+esphome:
+  project:
+    `);
     const result = x.onCompletion(d, { line: 2, character: 2 });
     testCompletionHaveLabels(result, ["name", "on_boot"]);
     testCompletionDoesNotHaveLabels(result, ["project"]);
@@ -140,7 +143,7 @@ esphome:
   it('trigger with an action as prop', () => {
     const result = x.onCompletion(Docs.getTextDoc(`
 esphome:
-  on_loop:
+  on_loop:>
     if:
     `), { line: 3, character: 4 });
     assert(result.length === 0, "expected 0 results");
@@ -195,11 +198,11 @@ esphome:
 
   it('action registry (not a normal trigger)', () => {
     const result = x.onCompletion(Docs.getTextDoc(`
-  esphome:
-    on_loop:
-      if:
-        then:
-          `), { line: 4, character: 10 });
+esphome:
+  on_loop:
+    if:
+      then:
+        `), { line: 4, character: 8 });
     testCompletionHaveLabels(result, ["delay", "if"]);
   });
 
@@ -259,7 +262,30 @@ esp32:
     testCompletionHaveLabels(result, ["version"]);
   });
 
-  it('sensor device enum', () => {
+  it('sensor props no list', () => {
+    const result = x.onCompletion(Docs.getTextDoc(`
+sensor:
+  platform: dallas
+  `), { line: 2, character: 2 });
+    testCompletionHaveLabels(result, ["dallas_id", "device_class"]);
+  });
+
+  it('sensor props in list', () => {
+    const result = x.onCompletion(Docs.getTextDoc(`
+sensor:
+  - platform: dallas
+    `), { line: 2, character: 4 });
+    testCompletionHaveLabels(result, ["dallas_id", "device_class"]);
+  });
+
+  it('sensor device enum no list', () => {
+    const result = x.onCompletion(Docs.getTextDoc(`
+sensor:
+  platform: dallas
+  device_class: `), { line: 2, character: 16 });
+    testCompletionHaveLabels(result, ["aqi", "power"]);
+  });
+  it('sensor device enum list', () => {
     const result = x.onCompletion(Docs.getTextDoc(`
 sensor:
   - platform: dallas
@@ -346,5 +372,18 @@ sensor:
     expect(result).to.be.lengthOf(2);
   });
 
+
+  it('resolve typed platforms', () => {
+    const result = x.onCompletion(Docs.getTextDoc(`
+esphome:
+  name: arduino
+esp8266:
+  board: d1
+output:
+  - platform: template
+    `), { line: 6, character: 4 });
+    testCompletionHaveLabels(result, ["type"]);
+    expect(result).to.be.lengthOf(1);
+  });
 });
 

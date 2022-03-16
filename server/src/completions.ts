@@ -204,9 +204,10 @@ export class CompletionHandler {
 
             let pathElement;
             // First get the root component
-            let schema: Schema;
+            let cv: ConfigVar;
             let pathIndex = 0;
             if (path.length) {
+                pathIndex = 1;
                 pathElement = docMap.get(path[0]);
                 if (this.coreSchema.isPlatform(path[0])) {
                     if (path.length > 1) {
@@ -216,7 +217,7 @@ export class CompletionHandler {
                             const index = path[1];
                             if (isSeq(pathElement)) {
                                 pathElement = pathElement.get(index);
-                                pathIndex++;
+                                pathIndex += 1;
                             }
                         }
                     }
@@ -225,12 +226,10 @@ export class CompletionHandler {
                     if (isMap(pathElement)) {
                         const domain = pathElement.get("platform");
                         if (isString(domain)) {
-                            // this.resolvePlatformComponent(result, path[0], domain, rootComponentMap);
-                            schema = this.coreSchema.getComponentPlatformSchema(domain, path[0]);
-                            // return result;
+                            cv = this.coreSchema.getComponentPlatformSchema(domain, path[0]);
                         }
                     }
-                    if (!schema) {
+                    if (!cv) {
                         result.push({
                             label: "platform",
                             kind: CompletionItemKind.EnumMember,
@@ -241,7 +240,8 @@ export class CompletionHandler {
                     }
                 }
                 else {
-                    schema = this.coreSchema.getComponentSchema(path[0]);
+                    pathElement = docMap.get(path[0]);
+                    cv = this.coreSchema.getComponentSchema(path[0]);
                 }
             }
 
@@ -249,17 +249,18 @@ export class CompletionHandler {
                 this.addCoreComponents(result, docMap);
             }
             else {
-                // schema should be ok at this level
-                if (pathIndex + 1 === path.length) {
-                    // this case might be if a component has any child yet
-                    this.addConfigVars(result, schema, pathElement, docMap);
-                    return result;
-                }
+                // const cv = schema as any as ConfigVar;
+                this.resolveConfigVar(result, path, pathIndex, cv, pathElement, node, docMap);
+                // // schema should be ok at this level
+                // if (pathIndex + 1 === path.length) {
+                //     // this case might be if a component has any child yet
+                //     this.addConfigVars(result, schema, pathElement, docMap);
+                //     return result;
+                // }
 
-                // Now that a component is known, revolve completions recursively
-                this.resolveComponent(result, path, pathIndex, schema, pathElement, node, docMap);
+                // // Now that a component is known, revolve completions recursively
+                // this.resolveComponent(result, path, pathIndex, schema, pathElement, node, docMap);
             }
-            return result;
 
         } catch (error) {
             console.log("ERROR:" + error);
@@ -268,52 +269,79 @@ export class CompletionHandler {
         return result;
     }
 
-    private resolveComponent(result: CompletionItem[], path: any[], pathIndex: number, schema: Schema, pathElement: YAMLMap, node: YamlNode, docMap: YAMLMap) {
+    private resolveSchema(result: CompletionItem[], path: any[], pathIndex: number, schema: Schema, pathElement: YAMLMap, node: YamlNode, docMap: YAMLMap) {
         console.log("component: " + path[pathIndex]);
+        const cv = this.coreSchema.findConfigVar(schema, path[pathIndex], docMap);
+        const innerNode = pathElement.get(path[pathIndex]) as YAMLMap;
         pathIndex++;
-        this.resolveConfigVar(result, path, pathIndex, this.coreSchema.findConfigVar(schema, path[pathIndex], docMap), pathElement, node, docMap);
+        this.resolveConfigVar(result, path, pathIndex, cv, innerNode, node, docMap);
     }
 
-    private resolveConfigVar(result: CompletionItem[], path: any[], pathIndex: number, cv: ConfigVar, pathElement: YAMLMap, node: YamlNode, docMap: YAMLMap) {
-
-        if (isMap(pathElement) && isString(path[pathIndex])) {
-            if (cv.type === "schema") {
-                const innerElement = pathElement.get(path[pathIndex]);
-                if (isMap(innerElement)) {
-                    if (pathIndex + 1 === path.length) {
-                        return this.addConfigVars(result, cv.schema, innerElement, docMap);
+    private resolveConfigVar(result: CompletionItem[], path: any[], pathIndex: number, cv: ConfigVar, pathNode: YAMLMap, cursorNode: YamlNode, docMap: YAMLMap) {
+        if (cv.type === "schema") {
+            if (isMap(pathNode)) {
+                if (pathIndex === path.length) {
+                    return this.addConfigVars(result, cv.schema, pathNode, docMap);
+                }
+                return this.resolveSchema(result, path, pathIndex, cv.schema, pathNode, cursorNode, docMap);
+            }
+            else {
+                if (pathIndex === path.length) {
+                    return this.addConfigVars(result, cv.schema, null, docMap, cv.is_list);
+                }
+                throw new Error("Expected map not found in " + pathIndex);
+            }
+        }
+        else if (cv.type === "enum") {
+            return this.addEnums(result, cv);
+        }
+        else if (cv.type === "trigger") {
+            return this.resolveTrigger(result, path, pathIndex, pathNode, cv, cursorNode, docMap);
+        }
+        else if (cv.type === "registry") {
+            let elem: any = pathNode;
+            if (isSeq(elem) && elem.items.length) {
+                elem = elem.items[path[pathIndex]];
+                if (isNode(elem)) {
+                    return this.resolveRegistryInner(result, path, pathIndex + 1, isMap(elem) ? elem : null, cv, cursorNode, docMap);
+                }
+            }
+            if (isMap(elem)) {
+                return this.resolveRegistryInner(result, path, pathIndex, elem, cv, cursorNode, docMap);
+            }
+            return this.resolveRegistryInner(result, path, pathIndex, isMap(elem) ? elem : null, cv, cursorNode, docMap);
+        }
+        else if (cv.type === "typed") {
+            if (pathNode === null) {
+                result.push({
+                    label: "type",
+                    kind: CompletionItemKind.Enum,
+                    insertText: 'type: ',
+                    command: { title: 'chain', command: "editor.action.triggerSuggest" }
+                });
+                return result;
+            }
+            else if (pathIndex + 1 >= path.length && path[pathIndex] === "type") {
+                for (const schema_type in cv.types) {
+                    result.push({
+                        label: schema_type,
+                        kind: CompletionItemKind.Enum,
+                        insertText: schema_type + '\n',
+                        command: { title: 'chain', command: "editor.action.triggerSuggest" }
+                    });
+                }
+                return result;
+            }
+            else {
+                if (pathNode !== null && isMap(pathNode)) {
+                    const type = pathNode.get('type');
+                    if (type !== null && isString(type)) {
+                        if (pathIndex === path.length) {
+                            return this.addConfigVars(result, cv.types[type], pathNode, docMap);
+                        }
+                        return this.resolveSchema(result, path, pathIndex, cv.types[type], pathNode, cursorNode, docMap);
                     }
-                    return this.resolveComponent(result, path, pathIndex, cv.schema, innerElement, node, docMap);
-                }
-                else {
-                    if (pathIndex + 1 === path.length) {
-                        return this.addConfigVars(result, cv.schema, null, docMap, cv.is_list);
-                    }
-                    throw new Error("Expected map not found in " + pathIndex);
-                }
-            }
-            else if (cv.type === "enum") {
-                return this.addEnums(result, cv);
-            }
-            else if (cv.type === "trigger") {
-                return this.resolveTrigger(result, path, pathIndex, pathElement, cv, node, docMap);
-            }
-            else if (cv.type === "registry") {
-                let inner = pathElement.get(path[pathIndex]);
-                if (isSeq(inner) && inner.items.length) {
-                    inner = inner.items[path[pathIndex + 1]];
-                    if (isNode(inner)) {
-                        return this.resolveRegistryInner(result, path, pathIndex + 1, inner, cv, node, docMap);
-                    }
-                }
-                if (isMap(inner)) {
-                    return this.resolveRegistryInner(result, path, pathIndex, inner, cv, node, docMap);
-                }
-                return this.resolveRegistryInner(result, path, pathIndex, isMap(inner) ? inner : null, cv, node, docMap);
-            }
-            else if (cv.type === "typed") {
-                const innerElement = pathElement.get(path[pathIndex]);
-                if (innerElement === null) {
+                    // there are other options but still not `type`
                     result.push({
                         label: "type",
                         kind: CompletionItemKind.Enum,
@@ -322,107 +350,86 @@ export class CompletionHandler {
                     });
                     return result;
                 }
-                else if (pathIndex + 2 >= path.length && path[pathIndex + 1] === "type") {
-                    for (const schema_type in cv.types) {
-                        result.push({
-                            label: schema_type,
-                            kind: CompletionItemKind.Enum,
-                            insertText: schema_type + '\n',
-                            command: { title: 'chain', command: "editor.action.triggerSuggest" }
-                        });
-                    }
-                    return result;
-                }
-                else {
-                    if (innerElement !== null && isMap(innerElement)) {
-                        const type = innerElement.get('type');
-                        if (type !== null && isString(type)) {
-                            if (pathIndex + 1 === path.length) {
-                                return this.addConfigVars(result, cv.types[type], innerElement, docMap);
-                            }
-                            return this.resolveComponent(result, path, pathIndex, cv.types[type], innerElement, node, docMap);
-                        }
-                    }
-                }
             }
-            else if (cv.type === "string") {
+        }
+        else if (cv.type === "string") {
+            return result;
+        }
+
+        else if (cv.type === "pin") {
+            //if (parentElement.items.length > 0 && isScalar(node) && node === parentElement.items[0].value) {
+            // cursor is in the value of the pair
+            //    return this.resolvePinNumbers(result, cv);
+            //}
+            if (!cv.schema) {
+                // This pin does not accept schema, e.g. i2c
                 return result;
             }
 
-            else if (cv.type === "pin") {
-                if (pathElement.items.length > 0 && isScalar(node) && node === pathElement.items[0].value) {
-                    // cursor is in the value of the pair
-                    return this.resolvePinNumbers(result, cv);
-                }
-                if (!cv.schema) {
-                    // This pin does not accept schema, e.g. i2c
-                    return result;
-                }
 
-                const innerElement = pathElement.get(path[pathIndex]);
 
-                let schema: Schema;
+            let schema: Schema;
 
-                if (isMap(innerElement)) {
-                    // Check if it is using a port expander
-                    for (const expander of this.coreSchema.getPins()) {
-                        if (expander !== "esp32" && expander !== "esp8266" && docMap.get(expander)) {
-                            if (innerElement.get(expander)) {
-                                schema = this.coreSchema.getPinSchema(expander);
-                                break;
-                            }
+            if (isMap(pathNode)) {
+                // Check if it is using a port expander
+                for (const expander of this.coreSchema.getPins()) {
+                    if (expander !== "esp32" && expander !== "esp8266" && docMap.get(expander)) {
+                        if (pathNode.get(expander)) {
+                            schema = this.coreSchema.getPinSchema(expander);
+                            break;
                         }
                     }
                 }
-
-                if (schema === undefined) {
-                    if (docMap.get("esp32")) { // TODO: Support old esphome / board
-                        schema = this.coreSchema.getPinSchema("esp32");
-                    }
-                    else if (docMap.get("esp8266")) {
-                        schema = this.coreSchema.getPinSchema("esp8266");
-                    }
-                }
-
-                if (schema !== undefined && innerElement === null && !cv.internal) {
-                    // suggest all expanders
-                    for (const expander of this.coreSchema.getPins()) {
-                        if (expander !== "esp32" && expander !== "esp8266" && docMap.get(expander)) {
-                            schema.config_vars[expander] = { key: "Optional", "type": "string" };
-                        }
-                    }
-                }
-
-                return this.resolveConfigVar(result, path, pathIndex, {
-                    type: "schema",
-                    key: "Optional",
-                    schema: schema,
-                }, pathElement, node, docMap);
             }
-            else if (cv.type === "boolean") {
-                for (var value of ["True", "False"]) {
-                    const item: CompletionItem = {
-                        label: value,
-                        kind: CompletionItemKind.Constant,
-                        insertText: value,
-                        // command: { title: 'chain', command: "editor.action.triggerSuggest" }
-                    };
-                    item.preselect = (cv.default === value);
-                    result.push(item);
+
+            if (schema === undefined) {
+                if (docMap.get("esp32")) { // TODO: Support old esphome / board
+                    schema = this.coreSchema.getPinSchema("esp32");
                 }
-                return result;
+                else if (docMap.get("esp8266")) {
+                    schema = this.coreSchema.getPinSchema("esp8266");
+                }
             }
+
+            if (schema !== undefined && pathNode === null && !cv.internal) {
+                // suggest all expanders
+                for (const expander of this.coreSchema.getPins()) {
+                    if (expander !== "esp32" && expander !== "esp8266" && docMap.get(expander)) {
+                        schema.config_vars[expander] = { key: "Optional", "type": "string" };
+                    }
+                }
+            }
+
+            return this.resolveConfigVar(result, path, pathIndex, {
+                type: "schema",
+                key: "Optional",
+                schema: schema,
+            }, pathNode, cursorNode, docMap);
+        }
+        else if (cv.type === "boolean") {
+            for (var value of ["True", "False"]) {
+                const item: CompletionItem = {
+                    label: value,
+                    kind: CompletionItemKind.Constant,
+                    insertText: value,
+                    // command: { title: 'chain', command: "editor.action.triggerSuggest" }
+                };
+                item.preselect = (cv.default === value);
+                result.push(item);
+            }
+            return result;
         }
 
         throw new Error("Unexpected path traverse.");
     }
 
-    resolveRegistryInner(result: CompletionItem[], path: any[], pathIndex: number, inner: YamlNode, cv: ConfigVarRegistry, node: YamlNode, docMap: YAMLMap<unknown, unknown>) {
-        const final = pathIndex + 1 === path.length;
-        if (final && inner === null) {
+    resolveRegistryInner(result: CompletionItem[], path: any[], pathIndex: number, pathNode: YAMLMap, cv: ConfigVarRegistry, node: YamlNode, docMap: YAMLMap<unknown, unknown>) {
+        const final = pathIndex === path.length;
+        if (final && pathNode === null) {
             return this.addRegistry(result, cv, docMap);
         }
-        const registryCv = this.coreSchema.getRegistryConfigVar(cv.registry, path[pathIndex + 1]);
+        const registryCv = this.coreSchema.getRegistryConfigVar(cv.registry, path[pathIndex]);
+        const inner = pathNode.get(path[pathIndex]);
         return this.resolveConfigVar(result, path, pathIndex + 1, registryCv, isMap(inner) ? inner : null, node, docMap);
     }
 
@@ -436,9 +443,9 @@ export class CompletionHandler {
         });
     }
 
-    resolveTriggerInner(result: CompletionItem[], path: any[], pathIndex: number, inner: YamlNode, cv: ConfigVarTrigger, node: YamlNode, docMap: YAMLMap) {
-        console.log("resolve inner: " + inner?.toString() + ' - cv: ' + cv.type);
-        const final = pathIndex + 1 === path.length;
+    resolveTriggerInner(result: CompletionItem[], path: any[], pathIndex: number, pathNode: YamlNode, cv: ConfigVarTrigger, node: YamlNode, docMap: YAMLMap) {
+        console.log("resolve inner: " + pathNode?.toString() + ' - cv: ' + cv.type);
+        const final = pathIndex === path.length;
         if (final) {
             // If this has a schema, use it, these are suggestions so user will see the trigger parameters even when they are optional
             // However if the only option is 'then:' we should avoid it for readability
@@ -446,50 +453,44 @@ export class CompletionHandler {
                 // TODO: suggest in seq mode
                 return this.addConfigVars(result, cv.schema, null, docMap);
             }
-            if (inner === null) {
-                return this.addRegistry(result, { type: "registry", "registry": "action", "key": null }, docMap);
-            }
+            return this.addRegistry(result, { type: "registry", "registry": "action", "key": null }, docMap);
         }
 
-        if (path[pathIndex + 1] === "then") {
+        if (path[pathIndex] === "then") {
             // all triggers support then, even when they do not have a schema
             // then is a trigger without schema so...
-            return this.resolveTrigger(result, path, pathIndex + 1, isMap(inner) ? inner : null, { type: 'trigger', key: 'Optional', schema: undefined, has_required_var: false }, node, docMap);
+            return this.resolveTrigger(result, path, pathIndex + 1, isMap(pathNode) ? pathNode : null, { type: 'trigger', key: 'Optional', schema: undefined, has_required_var: false }, node, docMap);
         }
 
         // navigate into the prop
         // this can be an action or a prop of this trigger
         if (cv.schema !== undefined) {
-            const innerProp = this.coreSchema.findConfigVar(cv.schema, path[pathIndex + 1], docMap);
+            const innerProp = this.coreSchema.findConfigVar(cv.schema, path[pathIndex], docMap);
             if (innerProp !== undefined) {
-                return this.resolveComponent(result, path, pathIndex, cv.schema, isMap(inner) ? inner : null, node, docMap);
+                return this.resolveSchema(result, path, pathIndex, cv.schema, isMap(pathNode) ? pathNode : null, node, docMap);
             }
         }
         // is this an action?
-        const action = this.coreSchema.getActionConfigVar(path[pathIndex + 1]);
+        const action = this.coreSchema.getActionConfigVar(path[pathIndex]);
         if (action !== undefined) {
-            if (pathIndex + 2 === path.length && isMap(inner)) {
-                const props = inner.get(path[pathIndex + 1]);
+            if (pathIndex + 1 === path.length && isMap(pathNode)) {
+                const props = pathNode.get(path[pathIndex]);
                 return this.addConfigVars(result, action.schema, isMap(props) ? props : null, docMap);
             }
-            return this.resolveComponent(result, path, pathIndex + 1, action.schema, isMap(inner) ? inner : null, node, docMap);
+            return this.resolveSchema(result, path, pathIndex + 1, action.schema, isMap(pathNode) ? pathNode : null, node, docMap);
         }
     }
 
-    resolveTrigger(result: CompletionItem[], path: any[], pathIndex: number, pathElement: YAMLMap<unknown, unknown>, cv: ConfigVarTrigger, node: YamlNode, docMap: YAMLMap) {
+    resolveTrigger(result: CompletionItem[], path: any[], pathIndex: number, pathNode: YAMLMap, cv: ConfigVarTrigger, node: YamlNode, docMap: YAMLMap) {
         console.log("trigger: " + path[pathIndex]);
         // trigger can be a single item on a map or otherwise a seq.
-        let inner = pathElement.get(path[pathIndex]);
-        if (isSeq(inner) && inner.items.length) {
-            inner = inner.items[path[pathIndex + 1]];
-            if (isNode(inner)) {
-                return this.resolveTriggerInner(result, path, pathIndex + 1, inner, cv, node, docMap);
+        if (isSeq(pathNode) && pathNode.items.length) {
+            const innerNode = pathNode.items[path[pathIndex]];
+            if (isNode(innerNode)) {
+                return this.resolveTriggerInner(result, path, pathIndex + 1, innerNode, cv, node, docMap);
             }
         }
-        if (isMap(inner)) {
-            return this.resolveTriggerInner(result, path, pathIndex, inner, cv, node, docMap);
-        }
-        return this.resolveTriggerInner(result, path, pathIndex, isMap(inner) ? inner : null, cv, node, docMap);
+        return this.resolveTriggerInner(result, path, pathIndex, isMap(pathNode) ? pathNode : null, cv, node, docMap);
     }
 
 

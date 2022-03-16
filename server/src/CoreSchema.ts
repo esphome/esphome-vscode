@@ -68,8 +68,8 @@ export interface Schema {
 
 interface Component {
     schemas: {
-        [name: string]: Schema;
-        CONFIG_SCHEMA: Schema;
+        [name: string]: ConfigVar;
+        CONFIG_SCHEMA: ConfigVar;
     };
     // These are the components e.g. of sensor, binary_sensor
     components: { docs?: string };
@@ -119,11 +119,11 @@ export class CoreSchema {
         return this.schema[domain];
     }
 
-    getComponentSchema(domain: string) {
+    getComponentSchema(domain: string): ConfigVar {
         const component = this.getComponent(domain);
         return component.schemas.CONFIG_SCHEMA;
     }
-    getComponentPlatformSchema(domain: string, platform: string): Schema {
+    getComponentPlatformSchema(domain: string, platform: string): ConfigVar {
         const component = this.getComponent(domain, platform);
         return component.schemas.CONFIG_SCHEMA;
     }
@@ -135,7 +135,7 @@ export class CoreSchema {
     }
 
 
-    getExtendedSchema(name: string) {
+    getExtendedConfigVar(name: string): ConfigVar {
         const parts = name.split('.');
         const c = this.getComponent(parts[0]);
         return c.schemas[parts[1]];
@@ -232,10 +232,11 @@ export class CoreSchema {
         const appendCvs = (s: Schema, c: ConfigVar) => {
             if (s.extends !== undefined) {
                 for (const extended of s.extends) {
-                    const s_ex = this.getExtendedSchema(extended);
-                    if (key in s_ex.config_vars) {
+                    const s_cv = this.getExtendedConfigVar(extended);
+                    if (s_cv.type === "schema" &&
+                        key in s_cv.schema.config_vars) {
                         c = {
-                            ...s_ex.config_vars[key],
+                            ...s_cv.schema.config_vars[key],
                             ...c
                         };
                     }
@@ -268,9 +269,11 @@ export class CoreSchema {
                 if (extended.startsWith("core.MQTT") && docMap.get("mqtt") === undefined) {
                     continue;
                 }
-                const s = this.getExtendedSchema(extended);
-                for (const pair of this.iter_configVars(s, docMap, yielded)) {
-                    yield pair;
+                const s = this.getExtendedConfigVar(extended);
+                if (s.type === "schema") {
+                    for (const pair of this.iter_configVars(s.schema, docMap, yielded)) {
+                        yield pair;
+                    }
                 }
             }
         }
