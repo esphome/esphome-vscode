@@ -10,13 +10,10 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [MQTT Subscribe Sensor](https://esphome.io/components/sensor/mqtt_subscribe.html#configuration-variables)*"
             },
             "accuracy_decimals": {
-              "key": "Optional",
-              "default": "1",
-              "type": "integer"
+              "default": "1"
             },
             "mqtt_parent_id": {
               "key": "GeneratedID"
@@ -46,7 +43,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [MQTT Subscribe Text Sensor](https://esphome.io/components/text_sensor/mqtt_subscribe.html#configuration-variables)*"
             },
             "mqtt_parent_id": {

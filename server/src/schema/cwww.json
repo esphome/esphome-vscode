@@ -32,6 +32,9 @@
               "default": "False",
               "type": "boolean",
               "docs": "**boolean**: When enabled, this will keep the overall brightness of the cold and warm white channels constant by limiting the combined output to 100% of a single channel. This reduces the possible overall brightness but is necessary for some power supplies that are not able to run both channels at full brightness at once. Defaults to `false`.\n\n\n\n*See also: [Cold White + Warm White Light](https://esphome.io/components/light/cwww.html#configuration-variables)*"
+            },
+            "effects": {
+              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n\n\n*See also: [Cold White + Warm White Light](https://esphome.io/components/light/cwww.html#configuration-variables)*"
             }
           }
         }

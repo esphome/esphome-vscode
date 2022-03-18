@@ -10,7 +10,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Time Based Cover](https://esphome.io/components/cover/time_based.html#configuration-variables)*"
             },
             "stop_action": {

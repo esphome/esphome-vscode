@@ -74,7 +74,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Tuya Sensor](https://esphome.io/components/sensor/tuya.html#configuration-variables)*"
             },
             "tuya_id": {
@@ -101,7 +100,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Tuya Binary Sensor](https://esphome.io/components/binary_sensor/tuya.html#configuration-variables)*"
             },
             "tuya_id": {
@@ -128,7 +126,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Tuya Climate](https://esphome.io/components/climate/tuya.html#configuration-variables)*"
             },
             "tuya_id": {
@@ -436,24 +433,10 @@
               "docs": "**float**: The color temperature (in [mireds](https://en.wikipedia.org/wiki/Mired) or Kelvin) of the warm white channel.\n\n\n\n*See also: [Tuya Dimmer](https://esphome.io/components/light/tuya.html#configuration-variables)*"
             },
             "gamma_correct": {
-              "key": "Optional",
-              "default": "1.0",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_float"
-                ]
-              }
+              "default": "1.0"
             },
             "default_transition_length": {
-              "key": "Optional",
-              "default": "0s",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.time_period_dict"
-                ]
-              }
+              "default": "0s"
             }
           }
         }
@@ -471,7 +454,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Tuya Number](https://esphome.io/components/number/tuya.html#configuration-variables)*"
             },
             "tuya_id": {
@@ -543,7 +525,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Tuya Text Sensor](https://esphome.io/components/text_sensor/tuya.html#configuration-variables)*"
             },
             "tuya_id": {

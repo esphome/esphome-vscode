@@ -27,52 +27,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "\u00b5g/m\u00b3",
-                    "type": "string"
+                    "default": "\u00b5g/m\u00b3"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:chemical-weapon"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "device_class": {
-                    "key": "Optional",
-                    "default": "pm1",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "aqi",
-                      "battery",
-                      "carbon_dioxide",
-                      "carbon_monoxide",
-                      "current",
-                      "energy",
-                      "gas",
-                      "humidity",
-                      "illuminance",
-                      "monetary",
-                      "nitrogen_dioxide",
-                      "nitrogen_monoxide",
-                      "nitrous_oxide",
-                      "ozone",
-                      "pm1",
-                      "pm10",
-                      "pm25",
-                      "power",
-                      "power_factor",
-                      "pressure",
-                      "signal_strength",
-                      "sulphur_dioxide",
-                      "temperature",
-                      "timestamp",
-                      "volatile_organic_compounds",
-                      "voltage"
-                    ]
+                    "default": "pm1"
                   }
                 }
               },
@@ -87,52 +51,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "\u00b5g/m\u00b3",
-                    "type": "string"
+                    "default": "\u00b5g/m\u00b3"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:chemical-weapon"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "device_class": {
-                    "key": "Optional",
-                    "default": "pm25",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "aqi",
-                      "battery",
-                      "carbon_dioxide",
-                      "carbon_monoxide",
-                      "current",
-                      "energy",
-                      "gas",
-                      "humidity",
-                      "illuminance",
-                      "monetary",
-                      "nitrogen_dioxide",
-                      "nitrogen_monoxide",
-                      "nitrous_oxide",
-                      "ozone",
-                      "pm1",
-                      "pm10",
-                      "pm25",
-                      "power",
-                      "power_factor",
-                      "pressure",
-                      "signal_strength",
-                      "sulphur_dioxide",
-                      "temperature",
-                      "timestamp",
-                      "volatile_organic_compounds",
-                      "voltage"
-                    ]
+                    "default": "pm25"
                   }
                 }
               },
@@ -147,52 +75,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "\u00b5g/m\u00b3",
-                    "type": "string"
+                    "default": "\u00b5g/m\u00b3"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:chemical-weapon"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "device_class": {
-                    "key": "Optional",
-                    "default": "pm10",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "aqi",
-                      "battery",
-                      "carbon_dioxide",
-                      "carbon_monoxide",
-                      "current",
-                      "energy",
-                      "gas",
-                      "humidity",
-                      "illuminance",
-                      "monetary",
-                      "nitrogen_dioxide",
-                      "nitrogen_monoxide",
-                      "nitrous_oxide",
-                      "ozone",
-                      "pm1",
-                      "pm10",
-                      "pm25",
-                      "power",
-                      "power_factor",
-                      "pressure",
-                      "signal_strength",
-                      "sulphur_dioxide",
-                      "temperature",
-                      "timestamp",
-                      "volatile_organic_compounds",
-                      "voltage"
-                    ]
+                    "default": "pm10"
                   }
                 }
               },
@@ -207,28 +99,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "\u00b5g/m\u00b3",
-                    "type": "string"
+                    "default": "\u00b5g/m\u00b3"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:chemical-weapon"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               },
@@ -243,28 +123,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "\u00b5g/m\u00b3",
-                    "type": "string"
+                    "default": "\u00b5g/m\u00b3"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:chemical-weapon"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               },
@@ -279,28 +147,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "\u00b5g/m\u00b3",
-                    "type": "string"
+                    "default": "\u00b5g/m\u00b3"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:chemical-weapon"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               },
@@ -315,18 +171,13 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "/dL",
-                    "type": "string"
+                    "default": "/dL"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:chemical-weapon"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   }
                 }
               },
@@ -341,18 +192,13 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "/dL",
-                    "type": "string"
+                    "default": "/dL"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:chemical-weapon"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   }
                 }
               },
@@ -367,18 +213,13 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "/dL",
-                    "type": "string"
+                    "default": "/dL"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:chemical-weapon"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   }
                 }
               },
@@ -393,18 +234,13 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "/dL",
-                    "type": "string"
+                    "default": "/dL"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:chemical-weapon"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   }
                 }
               },
@@ -419,18 +255,13 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "/dL",
-                    "type": "string"
+                    "default": "/dL"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:chemical-weapon"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   }
                 }
               },
@@ -445,18 +276,13 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "/dL",
-                    "type": "string"
+                    "default": "/dL"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:chemical-weapon"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   }
                 }
               },
@@ -471,58 +297,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "\u00b0C",
-                    "type": "string"
+                    "default": "\u00b0C"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "1",
-                    "type": "integer"
+                    "default": "1"
                   },
                   "device_class": {
-                    "key": "Optional",
-                    "default": "temperature",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "aqi",
-                      "battery",
-                      "carbon_dioxide",
-                      "carbon_monoxide",
-                      "current",
-                      "energy",
-                      "gas",
-                      "humidity",
-                      "illuminance",
-                      "monetary",
-                      "nitrogen_dioxide",
-                      "nitrogen_monoxide",
-                      "nitrous_oxide",
-                      "ozone",
-                      "pm1",
-                      "pm10",
-                      "pm25",
-                      "power",
-                      "power_factor",
-                      "pressure",
-                      "signal_strength",
-                      "sulphur_dioxide",
-                      "temperature",
-                      "timestamp",
-                      "volatile_organic_compounds",
-                      "voltage"
-                    ]
+                    "default": "temperature"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               },
@@ -537,58 +321,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "%",
-                    "type": "string"
+                    "default": "%"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "1",
-                    "type": "integer"
+                    "default": "1"
                   },
                   "device_class": {
-                    "key": "Optional",
-                    "default": "humidity",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "aqi",
-                      "battery",
-                      "carbon_dioxide",
-                      "carbon_monoxide",
-                      "current",
-                      "energy",
-                      "gas",
-                      "humidity",
-                      "illuminance",
-                      "monetary",
-                      "nitrogen_dioxide",
-                      "nitrogen_monoxide",
-                      "nitrous_oxide",
-                      "ozone",
-                      "pm1",
-                      "pm10",
-                      "pm25",
-                      "power",
-                      "power_factor",
-                      "pressure",
-                      "signal_strength",
-                      "sulphur_dioxide",
-                      "temperature",
-                      "timestamp",
-                      "volatile_organic_compounds",
-                      "voltage"
-                    ]
+                    "default": "humidity"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               },
@@ -603,28 +345,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "\u00b5g/m\u00b3",
-                    "type": "string"
+                    "default": "\u00b5g/m\u00b3"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:chemical-weapon"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               },

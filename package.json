@@ -2,7 +2,7 @@
   "name": "esphome-vscode",
   "displayName": "ESPHome",
   "description": "Provide instant validation of ESPHome configuration files",
-  "version": "0.17.0",
+  "version": "2.0.0",
   "engines": {
     "vscode": "^1.33.0"
   },
@@ -74,8 +74,8 @@
     "watch": "tsc -b -w",
     "postinstall": "cd server && npm install && cd ../client && npm install && cd ..",
     "test": "npm run compile && node ./node_modules/vscode/bin/test",
-    "webpack": "npm run clean && npm run compile && webpack --mode production --config ./client/webpack.config.js",
-    "webpack:dev": "npm run clean && npm run compile && webpack --mode none --config ./client/webpack.config.js",
+    "webpack": "npm run clean && npm run compile && webpack --mode production --config ./client/webpack.config.js && webpack --mode production --config ./server/webpack.config.js",
+    "webpack:dev": "npm run clean && npm run compile && webpack --mode none --config ./client/webpack.config.js && webpack --mode production --config ./server/webpack.config.js",
     "clean": "rimraf client/out && rimraf server/out",
     "test-compile": "tsc -p ./"
   },

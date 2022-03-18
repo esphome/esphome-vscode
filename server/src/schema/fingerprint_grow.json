@@ -272,16 +272,12 @@
                 ],
                 "config_vars": {
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:fingerprint"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "entity_category": {
-                    "key": "Optional",
                     "default": "diagnostic"
                   }
                 }
@@ -296,12 +292,9 @@
                 ],
                 "config_vars": {
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "entity_category": {
-                    "key": "Optional",
                     "default": "diagnostic"
                   }
                 }
@@ -316,16 +309,12 @@
                 ],
                 "config_vars": {
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:database"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "entity_category": {
-                    "key": "Optional",
                     "default": "diagnostic"
                   }
                 }
@@ -340,16 +329,12 @@
                 ],
                 "config_vars": {
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:security"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "entity_category": {
-                    "key": "Optional",
                     "default": "diagnostic"
                   }
                 }
@@ -364,16 +349,12 @@
                 ],
                 "config_vars": {
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:account"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "entity_category": {
-                    "key": "Optional",
                     "default": "diagnostic"
                   }
                 }
@@ -388,16 +369,12 @@
                 ],
                 "config_vars": {
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:account-check"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "entity_category": {
-                    "key": "Optional",
                     "default": "diagnostic"
                   }
                 }
@@ -421,7 +398,6 @@
               "key": "GeneratedID"
             },
             "icon": {
-              "key": "Optional",
               "default": "mdi:key-plus"
             }
           }

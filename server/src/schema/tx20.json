@@ -17,28 +17,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "km/h",
-                    "type": "string"
+                    "default": "km/h"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:weather-windy"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "1",
-                    "type": "integer"
+                    "default": "1"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               },
@@ -53,18 +41,13 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "\u00b0",
-                    "type": "string"
+                    "default": "\u00b0"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:sign-direction"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "1",
-                    "type": "integer"
+                    "default": "1"
                   }
                 }
               },

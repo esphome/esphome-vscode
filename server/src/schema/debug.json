@@ -38,21 +38,15 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "B",
-                    "type": "string"
+                    "default": "B"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:counter"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "entity_category": {
-                    "key": "Optional",
                     "default": "diagnostic"
                   }
                 }
@@ -68,21 +62,15 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "B",
-                    "type": "string"
+                    "default": "B"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:counter"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "entity_category": {
-                    "key": "Optional",
                     "default": "diagnostic"
                   }
                 }
@@ -98,21 +86,15 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "%",
-                    "type": "string"
+                    "default": "%"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:counter"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "1",
-                    "type": "integer"
+                    "default": "1"
                   },
                   "entity_category": {
-                    "key": "Optional",
                     "default": "diagnostic"
                   }
                 }
@@ -128,21 +110,15 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "ms",
-                    "type": "string"
+                    "default": "ms"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:timer-outline"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "entity_category": {
-                    "key": "Optional",
                     "default": "diagnostic"
                   }
                 }
@@ -172,7 +148,6 @@
                 ],
                 "config_vars": {
                   "entity_category": {
-                    "key": "Optional",
                     "default": "diagnostic"
                   }
                 }

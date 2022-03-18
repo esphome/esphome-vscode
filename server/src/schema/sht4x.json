@@ -17,62 +17,19 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "\u00b0C",
-                    "type": "string"
+                    "default": "\u00b0C"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:thermometer"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "2",
-                    "type": "integer"
+                    "default": "2"
                   },
                   "device_class": {
-                    "key": "Optional",
-                    "default": "temperature",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "aqi",
-                      "battery",
-                      "carbon_dioxide",
-                      "carbon_monoxide",
-                      "current",
-                      "energy",
-                      "gas",
-                      "humidity",
-                      "illuminance",
-                      "monetary",
-                      "nitrogen_dioxide",
-                      "nitrogen_monoxide",
-                      "nitrous_oxide",
-                      "ozone",
-                      "pm1",
-                      "pm10",
-                      "pm25",
-                      "power",
-                      "power_factor",
-                      "pressure",
-                      "signal_strength",
-                      "sulphur_dioxide",
-                      "temperature",
-                      "timestamp",
-                      "volatile_organic_compounds",
-                      "voltage"
-                    ]
+                    "default": "temperature"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               },
@@ -87,62 +44,19 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "%",
-                    "type": "string"
+                    "default": "%"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:water-percent"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "2",
-                    "type": "integer"
+                    "default": "2"
                   },
                   "device_class": {
-                    "key": "Optional",
-                    "default": "humidity",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "aqi",
-                      "battery",
-                      "carbon_dioxide",
-                      "carbon_monoxide",
-                      "current",
-                      "energy",
-                      "gas",
-                      "humidity",
-                      "illuminance",
-                      "monetary",
-                      "nitrogen_dioxide",
-                      "nitrogen_monoxide",
-                      "nitrous_oxide",
-                      "ozone",
-                      "pm1",
-                      "pm10",
-                      "pm25",
-                      "power",
-                      "power_factor",
-                      "pressure",
-                      "signal_strength",
-                      "sulphur_dioxide",
-                      "temperature",
-                      "timestamp",
-                      "volatile_organic_compounds",
-                      "voltage"
-                    ]
+                    "default": "humidity"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               },

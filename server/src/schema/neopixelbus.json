@@ -82,6 +82,9 @@
               "key": "Required",
               "type": "integer",
               "docs": "**int**: The number of LEDs attached.\n\n\n\n*See also: [NeoPixelBus Light](https://esphome.io/components/light/neopixelbus.html#configuration-variables)*"
+            },
+            "id": {
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [NeoPixelBus Light](https://esphome.io/components/light/neopixelbus.html#configuration-variables)*"
             }
           }
         }

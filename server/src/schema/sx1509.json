@@ -159,9 +159,7 @@
             "binary_sensor.BINARY_SENSOR_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
+            "id": {},
             "sx1509_id": {
               "key": "GeneratedID"
             },

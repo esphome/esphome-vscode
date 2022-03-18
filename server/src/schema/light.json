@@ -224,20 +224,7 @@
             "light.BRIGHTNESS_ONLY_LIGHT_SCHEMA"
           ],
           "config_vars": {
-            "effects": {
-              "key": "Optional",
-              "type": "registry",
-              "registry": "light.effects",
-              "filter": [
-                "lambda",
-                "automation",
-                "pulse",
-                "random",
-                "strobe",
-                "flicker"
-              ],
-              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n\n\n*See also: [RGBWW Light](https://esphome.io/components/light/rgbww.html#configuration-variables)*"
-            }
+            "effects": {}
           }
         }
       },
@@ -248,14 +235,8 @@
             "light.RGB_LIGHT_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Light Partition](https://esphome.io/components/light/partition.html#configuration-variables)*"
-            },
+            "id": {},
             "effects": {
-              "key": "Optional",
-              "type": "registry",
-              "registry": "light.effects",
               "filter": [
                 "lambda",
                 "automation",

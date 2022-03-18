@@ -10,32 +10,19 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [ESP32 Hall Sensor](https://esphome.io/components/sensor/esp32_hall.html#configuration-variables)*"
             },
             "unit_of_measurement": {
-              "key": "Optional",
-              "default": "\u00b5T",
-              "type": "string"
+              "default": "\u00b5T"
             },
             "icon": {
-              "key": "Optional",
               "default": "mdi:magnet"
             },
             "accuracy_decimals": {
-              "key": "Optional",
-              "default": "1",
-              "type": "integer"
+              "default": "1"
             },
             "state_class": {
-              "key": "Optional",
-              "default": "measurement",
-              "type": "enum",
-              "values": [
-                "",
-                "measurement",
-                "total_increasing"
-              ]
+              "default": "measurement"
             },
             "update_interval": {
               "key": "Optional",

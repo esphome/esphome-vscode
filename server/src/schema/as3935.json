@@ -101,18 +101,13 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "km",
-                    "type": "string"
+                    "default": "km"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:signal"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "1",
-                    "type": "integer"
+                    "default": "1"
                   }
                 }
               },
@@ -127,13 +122,10 @@
                 ],
                 "config_vars": {
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:flash"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "1",
-                    "type": "integer"
+                    "default": "1"
                   }
                 }
               },

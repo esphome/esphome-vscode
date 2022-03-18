@@ -10,13 +10,10 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Template Sensor](https://esphome.io/components/sensor/template.html#configuration-variables)*"
             },
             "accuracy_decimals": {
-              "key": "Optional",
-              "default": "1",
-              "type": "integer"
+              "default": "1"
             },
             "lambda": {
               "key": "Optional",
@@ -62,7 +59,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Template Binary Sensor](https://esphome.io/components/binary_sensor/template.html#configuration-variables)*"
             },
             "lambda": {
@@ -124,7 +120,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Template Cover](https://esphome.io/components/cover/template.html#configuration-variables)*"
             },
             "lambda": {
@@ -346,7 +341,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Template Number](https://esphome.io/components/number/template.html#configuration-variables)*"
             },
             "max_value": {
@@ -453,7 +447,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Template Select](https://esphome.io/components/select/template.html#configuration-variables)*"
             },
             "options": {
@@ -579,7 +572,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Template Text Sensor](https://esphome.io/components/text_sensor/template.html#configuration-variables)*"
             },
             "lambda": {

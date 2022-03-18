@@ -8,13 +8,8 @@
             "canbus.CANBUS_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
+            "id": {},
             "bit_rate": {
-              "key": "Optional",
-              "default": "125KBPS",
-              "type": "enum",
               "values": [
                 "50KBPS",
                 "100KBPS",

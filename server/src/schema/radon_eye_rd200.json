@@ -17,28 +17,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "Bq/m\u00b3",
-                    "type": "string"
+                    "default": "Bq/m\u00b3"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:radioactive"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               }
@@ -52,28 +40,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "Bq/m\u00b3",
-                    "type": "string"
+                    "default": "Bq/m\u00b3"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:radioactive"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               }

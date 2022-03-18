@@ -27,28 +27,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "kg",
-                    "type": "string"
+                    "default": "kg"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:scale-bathroom"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "2",
-                    "type": "integer"
+                    "default": "2"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               },
@@ -63,28 +51,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "\u03a9",
-                    "type": "string"
+                    "default": "\u03a9"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:omega"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               },

@@ -45,28 +45,16 @@
           ],
           "config_vars": {
             "unit_of_measurement": {
-              "key": "Optional",
-              "default": "%",
-              "type": "string"
+              "default": "%"
             },
             "icon": {
-              "key": "Optional",
               "default": "mdi:lightbulb"
             },
             "accuracy_decimals": {
-              "key": "Optional",
-              "default": "1",
-              "type": "integer"
+              "default": "1"
             },
             "state_class": {
-              "key": "Optional",
-              "default": "measurement",
-              "type": "enum",
-              "values": [
-                "",
-                "measurement",
-                "total_increasing"
-              ]
+              "default": "measurement"
             },
             "type": {
               "key": "Required",
@@ -98,39 +86,7 @@
           ],
           "config_vars": {
             "device_class": {
-              "key": "Optional",
-              "default": "moving",
-              "type": "enum",
-              "values": [
-                "",
-                "battery",
-                "battery_charging",
-                "cold",
-                "connectivity",
-                "door",
-                "garage_door",
-                "gas",
-                "heat",
-                "light",
-                "lock",
-                "moisture",
-                "motion",
-                "moving",
-                "occupancy",
-                "opening",
-                "plug",
-                "power",
-                "presence",
-                "problem",
-                "running",
-                "safety",
-                "smoke",
-                "sound",
-                "tamper",
-                "update",
-                "vibration",
-                "window"
-              ]
+              "default": "moving"
             },
             "apds9960_id": {
               "key": "GeneratedID"

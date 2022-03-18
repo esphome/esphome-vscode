@@ -9,9 +9,7 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
+            "id": {},
             "i2c_id": {
               "key": "GeneratedID"
             },

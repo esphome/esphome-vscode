@@ -54,28 +54,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "\u00b5T",
-                    "type": "string"
+                    "default": "\u00b5T"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:magnet"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   },
                   "resolution": {
                     "key": "Optional",
@@ -102,28 +90,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "\u00b5T",
-                    "type": "string"
+                    "default": "\u00b5T"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:magnet"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   },
                   "resolution": {
                     "key": "Optional",
@@ -150,28 +126,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "\u00b5T",
-                    "type": "string"
+                    "default": "\u00b5T"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:magnet"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   },
                   "resolution": {
                     "key": "Optional",
@@ -198,28 +162,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "\u00b0C",
-                    "type": "string"
+                    "default": "\u00b0C"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:thermometer"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "1",
-                    "type": "integer"
+                    "default": "1"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   },
                   "oversampling": {
                     "key": "Optional",

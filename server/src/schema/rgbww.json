@@ -50,6 +50,9 @@
               "default": "False",
               "type": "boolean",
               "docs": "**boolean**: When enabled, this will prevent white leds being on at the same time as RGB leds. See [Color Interlock](https://esphome.io/components/light/rgbw.html#rgbw-color-interlock) for more information. Defaults to `false`.\n\n\n\n*See also: [RGBWW Light](https://esphome.io/components/light/rgbww.html#configuration-variables)*"
+            },
+            "effects": {
+              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n\n\n*See also: [RGBWW Light](https://esphome.io/components/light/rgbww.html#configuration-variables)*"
             }
           }
         }

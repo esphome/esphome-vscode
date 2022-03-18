@@ -8,32 +8,18 @@
             "sensor.SENSOR_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
+            "id": {},
             "unit_of_measurement": {
-              "key": "Optional",
-              "default": "pulses/min",
-              "type": "string"
+              "default": "pulses/min"
             },
             "icon": {
-              "key": "Optional",
               "default": "mdi:pulse"
             },
             "accuracy_decimals": {
-              "key": "Optional",
-              "default": "2",
-              "type": "integer"
+              "default": "2"
             },
             "state_class": {
-              "key": "Optional",
-              "default": "measurement",
-              "type": "enum",
-              "values": [
-                "",
-                "measurement",
-                "total_increasing"
-              ]
+              "default": "measurement"
             },
             "pin": {
               "key": "Required",
@@ -58,28 +44,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "pulses",
-                    "type": "string"
+                    "default": "pulses"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:pulse"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "total_increasing",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "total_increasing"
                   }
                 }
               },

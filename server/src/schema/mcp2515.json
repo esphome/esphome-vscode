@@ -8,9 +8,7 @@
             "canbus.CANBUS_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
+            "id": {},
             "clock": {
               "key": "Optional",
               "default": "8MHZ",

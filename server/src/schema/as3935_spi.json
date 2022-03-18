@@ -9,9 +9,7 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
+            "id": {},
             "spi_id": {
               "key": "GeneratedID"
             },

@@ -9,7 +9,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for this component.\n\n\n\n*See also: [rc522 Over SPI](https://esphome.io/components/binary_sensor/rc522.html#configuration-variables)*"
             },
             "spi_id": {

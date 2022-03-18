@@ -10,61 +10,18 @@
           ],
           "config_vars": {
             "unit_of_measurement": {
-              "key": "Optional",
-              "default": "lx",
-              "type": "string"
+              "default": "lx"
             },
             "accuracy_decimals": {
-              "key": "Optional",
-              "default": "3",
-              "type": "integer"
+              "default": "3"
             },
             "device_class": {
-              "key": "Optional",
-              "default": "illuminance",
-              "type": "enum",
-              "values": [
-                "",
-                "aqi",
-                "battery",
-                "carbon_dioxide",
-                "carbon_monoxide",
-                "current",
-                "energy",
-                "gas",
-                "humidity",
-                "illuminance",
-                "monetary",
-                "nitrogen_dioxide",
-                "nitrogen_monoxide",
-                "nitrous_oxide",
-                "ozone",
-                "pm1",
-                "pm10",
-                "pm25",
-                "power",
-                "power_factor",
-                "pressure",
-                "signal_strength",
-                "sulphur_dioxide",
-                "temperature",
-                "timestamp",
-                "volatile_organic_compounds",
-                "voltage"
-              ]
+              "default": "illuminance"
             },
             "state_class": {
-              "key": "Optional",
-              "default": "measurement",
-              "type": "enum",
-              "values": [
-                "",
-                "measurement",
-                "total_increasing"
-              ]
+              "default": "measurement"
             },
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [MAX44009 Ambient Light Sensor](https://esphome.io/components/sensor/max44009.html#configuration-variables)*"
             },
             "mode": {

@@ -44,11 +44,11 @@
                   "variables": {
                     "key": "String",
                     "default": "{}",
-                    "key_dump": "<function validate_id_name at 0x0000010A392E2C10>",
+                    "key_dump": "<function validate_id_name at 0x000001F12BC80CA0>",
                     "type": "schema",
                     "schema": {
                       "config_vars": {
-                        "<function validate_id_name at 0x0000010A392E2C10>": {
+                        "<function validate_id_name at 0x000001F12BC80CA0>": {
                           "type": "enum",
                           "values": [
                             "bool",
@@ -93,11 +93,11 @@
       },
       "KEY_VALUE_SCHEMA": {
         "key": "String",
-        "key_dump": "<function string at 0x0000010A392E25E0>",
+        "key_dump": "<function string at 0x000001F12BC80670>",
         "type": "schema",
         "schema": {
           "config_vars": {
-            "<function string at 0x0000010A392E25E0>": {
+            "<function string at 0x000001F12BC80670>": {
               "templatable": true,
               "type": "string"
             }
@@ -121,10 +121,10 @@
               "key": "String",
               "default": "{}",
               "type": "schema",
-              "key_dump": "<function string at 0x0000010A392E25E0>",
+              "key_dump": "<function string at 0x000001F12BC80670>",
               "schema": {
                 "config_vars": {
-                  "<function string at 0x0000010A392E25E0>": {
+                  "<function string at 0x000001F12BC80670>": {
                     "templatable": true,
                     "type": "string"
                   }
@@ -136,10 +136,10 @@
               "key": "String",
               "default": "{}",
               "type": "schema",
-              "key_dump": "<function string at 0x0000010A392E25E0>",
+              "key_dump": "<function string at 0x000001F12BC80670>",
               "schema": {
                 "config_vars": {
-                  "<function string at 0x0000010A392E25E0>": {
+                  "<function string at 0x000001F12BC80670>": {
                     "templatable": true,
                     "type": "string"
                   }
@@ -150,11 +150,11 @@
             "variables": {
               "key": "String",
               "default": "{}",
-              "key_dump": "<function string at 0x0000010A392E25E0>",
+              "key_dump": "<function string at 0x000001F12BC80670>",
               "type": "schema",
               "schema": {
                 "config_vars": {
-                  "<function string at 0x0000010A392E25E0>": {}
+                  "<function string at 0x000001F12BC80670>": {}
                 }
               },
               "docs": "**mapping**: Optional variables that can be used in the `data_template`. Values are [lambdas](https://esphome.io/guides/automations.html#config-lambda) and will be evaluated before sending the request.\n\n\n\n*See also: [Native API Component](https://esphome.io/components/api.html#homeassistant-service-action)*"
@@ -177,10 +177,10 @@
               "key": "String",
               "default": "{}",
               "type": "schema",
-              "key_dump": "<function string at 0x0000010A392E25E0>",
+              "key_dump": "<function string at 0x000001F12BC80670>",
               "schema": {
                 "config_vars": {
-                  "<function string at 0x0000010A392E25E0>": {
+                  "<function string at 0x000001F12BC80670>": {
                     "templatable": true,
                     "type": "string"
                   }
@@ -192,10 +192,10 @@
               "key": "String",
               "default": "{}",
               "type": "schema",
-              "key_dump": "<function string at 0x0000010A392E25E0>",
+              "key_dump": "<function string at 0x000001F12BC80670>",
               "schema": {
                 "config_vars": {
-                  "<function string at 0x0000010A392E25E0>": {
+                  "<function string at 0x000001F12BC80670>": {
                     "templatable": true,
                     "type": "string"
                   }
@@ -207,10 +207,10 @@
               "key": "String",
               "default": "{}",
               "type": "schema",
-              "key_dump": "<function string at 0x0000010A392E25E0>",
+              "key_dump": "<function string at 0x000001F12BC80670>",
               "schema": {
                 "config_vars": {
-                  "<function string at 0x0000010A392E25E0>": {
+                  "<function string at 0x000001F12BC80670>": {
                     "templatable": true,
                     "type": "string"
                   }

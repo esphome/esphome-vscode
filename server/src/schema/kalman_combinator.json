@@ -9,9 +9,7 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
+            "id": {},
             "process_std_dev": {
               "key": "Required",
               "type": "schema",

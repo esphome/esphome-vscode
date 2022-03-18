@@ -17,14 +17,10 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "\u00b0",
-                    "type": "string"
+                    "default": "\u00b0"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "6",
-                    "type": "integer"
+                    "default": "6"
                   }
                 }
               },
@@ -39,14 +35,10 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "\u00b0",
-                    "type": "string"
+                    "default": "\u00b0"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "6",
-                    "type": "integer"
+                    "default": "6"
                   }
                 }
               },
@@ -61,14 +53,10 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "km/h",
-                    "type": "string"
+                    "default": "km/h"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "6",
-                    "type": "integer"
+                    "default": "6"
                   }
                 }
               },
@@ -83,14 +71,10 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "\u00b0",
-                    "type": "string"
+                    "default": "\u00b0"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "2",
-                    "type": "integer"
+                    "default": "2"
                   }
                 }
               },
@@ -105,14 +89,10 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "m",
-                    "type": "string"
+                    "default": "m"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "1",
-                    "type": "integer"
+                    "default": "1"
                   }
                 }
               },
@@ -127,19 +107,10 @@
                 ],
                 "config_vars": {
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               },
@@ -187,7 +158,6 @@
               "key": "GeneratedID"
             },
             "update_interval": {
-              "key": "Optional",
               "default": "5min"
             }
           }

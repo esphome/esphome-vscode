@@ -14,11 +14,8 @@
                   "core.COMPONENT_SCHEMA"
                 ],
                 "config_vars": {
-                  "id": {
-                    "key": "GeneratedID"
-                  },
+                  "id": {},
                   "entity_category": {
-                    "key": "Optional",
                     "default": "diagnostic"
                   },
                   "update_interval": {
@@ -38,11 +35,8 @@
                   "core.COMPONENT_SCHEMA"
                 ],
                 "config_vars": {
-                  "id": {
-                    "key": "GeneratedID"
-                  },
+                  "id": {},
                   "entity_category": {
-                    "key": "Optional",
                     "default": "diagnostic"
                   },
                   "update_interval": {
@@ -62,11 +56,8 @@
                   "core.COMPONENT_SCHEMA"
                 ],
                 "config_vars": {
-                  "id": {
-                    "key": "GeneratedID"
-                  },
+                  "id": {},
                   "entity_category": {
-                    "key": "Optional",
                     "default": "diagnostic"
                   },
                   "update_interval": {
@@ -86,11 +77,8 @@
                   "core.COMPONENT_SCHEMA"
                 ],
                 "config_vars": {
-                  "id": {
-                    "key": "GeneratedID"
-                  },
+                  "id": {},
                   "entity_category": {
-                    "key": "Optional",
                     "default": "diagnostic"
                   },
                   "update_interval": {
@@ -109,11 +97,8 @@
                   "text_sensor.TEXT_SENSOR_SCHEMA"
                 ],
                 "config_vars": {
-                  "id": {
-                    "key": "GeneratedID"
-                  },
+                  "id": {},
                   "entity_category": {
-                    "key": "Optional",
                     "default": "diagnostic"
                   }
                 }

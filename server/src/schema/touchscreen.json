@@ -38,7 +38,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id1)*"
             },
             "touchscreen_id": {

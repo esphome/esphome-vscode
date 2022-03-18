@@ -63,22 +63,15 @@
             "teleinfo.TELEINFO_LISTENER_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
+            "id": {},
             "unit_of_measurement": {
-              "key": "Optional",
-              "default": "Wh",
-              "type": "string"
+              "default": "Wh"
             },
             "icon": {
-              "key": "Optional",
               "default": "mdi:flash"
             },
             "accuracy_decimals": {
-              "key": "Optional",
-              "default": "0",
-              "type": "integer"
+              "default": "0"
             }
           }
         }
@@ -103,9 +96,7 @@
             "teleinfo.TELEINFO_LISTENER_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            }
+            "id": {}
           }
         }
       }

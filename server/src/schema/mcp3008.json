@@ -35,7 +35,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the parent MCP3008 component.\n\n\n\n*See also: [mcp3008 Sensor](https://esphome.io/components/sensor/mcp3008.html#sensor)*"
             },
             "mcp3008_id": {

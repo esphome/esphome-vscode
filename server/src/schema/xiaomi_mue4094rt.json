@@ -10,43 +10,9 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
+            "id": {},
             "device_class": {
-              "key": "Optional",
-              "default": "motion",
-              "type": "enum",
-              "values": [
-                "",
-                "battery",
-                "battery_charging",
-                "cold",
-                "connectivity",
-                "door",
-                "garage_door",
-                "gas",
-                "heat",
-                "light",
-                "lock",
-                "moisture",
-                "motion",
-                "moving",
-                "occupancy",
-                "opening",
-                "plug",
-                "power",
-                "presence",
-                "problem",
-                "running",
-                "safety",
-                "smoke",
-                "sound",
-                "tamper",
-                "update",
-                "vibration",
-                "window"
-              ]
+              "default": "motion"
             },
             "mac_address": {
               "key": "Required"

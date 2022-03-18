@@ -10,11 +10,9 @@
           ],
           "config_vars": {
             "icon": {
-              "key": "Optional",
               "default": "mdi:power"
             },
             "entity_category": {
-              "key": "Optional",
               "default": "config"
             },
             "id": {
@@ -41,11 +39,9 @@
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Shutdown Switch](https://esphome.io/components/switch/shutdown.html#configuration-variables)*"
             },
             "icon": {
-              "key": "Optional",
               "default": "mdi:power"
             },
             "entity_category": {
-              "key": "Optional",
               "default": "config"
             }
           }

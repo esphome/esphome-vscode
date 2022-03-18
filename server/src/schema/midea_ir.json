@@ -8,9 +8,7 @@
             "climate_ir.CLIMATE_IR_WITH_RECEIVER_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
+            "id": {},
             "use_fahrenheit": {
               "key": "Optional",
               "default": "False",

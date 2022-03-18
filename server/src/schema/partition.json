@@ -68,6 +68,9 @@
                 ]
               },
               "docs": "**list**: A list of segments included in this partition.*For addressable segments:*\n  * **id** (**Required**, [ID](https://esphome.io/guides/configuration-types.html#config-id)): The ID of the addressable light to be controlled by this segment.\n  \n  * **from** (**Required**, int): The index of the first LED to address in the segment. Counting starts with 0, so first LED is 0.\n  \n  * **to** (**Required**, int): The index of the last LED to address in this segment.\n  \n  * **reversed** (*Optional*, boolean): Whether to reverse the order of LEDs in this segment. Defaults to `false`.\n  \n  *For single light segments:*\n  * **single_light_id** (**Required**, [ID](https://esphome.io/guides/configuration-types.html#config-id)): The ID of a single addressable or non-addressable light. If an addressable light is specified, it will be treated as a single light in the partition.\n  \n  \n\n\n\n*See also: [Light Partition](https://esphome.io/components/light/partition.html#configuration-variables)*"
+            },
+            "id": {
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Light Partition](https://esphome.io/components/light/partition.html#configuration-variables)*"
             }
           }
         }

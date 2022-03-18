@@ -21,58 +21,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "\u00b0C",
-                    "type": "string"
+                    "default": "\u00b0C"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "2",
-                    "type": "integer"
+                    "default": "2"
                   },
                   "device_class": {
-                    "key": "Optional",
-                    "default": "temperature",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "aqi",
-                      "battery",
-                      "carbon_dioxide",
-                      "carbon_monoxide",
-                      "current",
-                      "energy",
-                      "gas",
-                      "humidity",
-                      "illuminance",
-                      "monetary",
-                      "nitrogen_dioxide",
-                      "nitrogen_monoxide",
-                      "nitrous_oxide",
-                      "ozone",
-                      "pm1",
-                      "pm10",
-                      "pm25",
-                      "power",
-                      "power_factor",
-                      "pressure",
-                      "signal_strength",
-                      "sulphur_dioxide",
-                      "temperature",
-                      "timestamp",
-                      "volatile_organic_compounds",
-                      "voltage"
-                    ]
+                    "default": "temperature"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               },
@@ -87,58 +45,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "%",
-                    "type": "string"
+                    "default": "%"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "2",
-                    "type": "integer"
+                    "default": "2"
                   },
                   "device_class": {
-                    "key": "Optional",
-                    "default": "humidity",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "aqi",
-                      "battery",
-                      "carbon_dioxide",
-                      "carbon_monoxide",
-                      "current",
-                      "energy",
-                      "gas",
-                      "humidity",
-                      "illuminance",
-                      "monetary",
-                      "nitrogen_dioxide",
-                      "nitrogen_monoxide",
-                      "nitrous_oxide",
-                      "ozone",
-                      "pm1",
-                      "pm10",
-                      "pm25",
-                      "power",
-                      "power_factor",
-                      "pressure",
-                      "signal_strength",
-                      "sulphur_dioxide",
-                      "temperature",
-                      "timestamp",
-                      "volatile_organic_compounds",
-                      "voltage"
-                    ]
+                    "default": "humidity"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               },
@@ -153,58 +69,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "hPa",
-                    "type": "string"
+                    "default": "hPa"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "2",
-                    "type": "integer"
+                    "default": "2"
                   },
                   "device_class": {
-                    "key": "Optional",
-                    "default": "pressure",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "aqi",
-                      "battery",
-                      "carbon_dioxide",
-                      "carbon_monoxide",
-                      "current",
-                      "energy",
-                      "gas",
-                      "humidity",
-                      "illuminance",
-                      "monetary",
-                      "nitrogen_dioxide",
-                      "nitrogen_monoxide",
-                      "nitrous_oxide",
-                      "ozone",
-                      "pm1",
-                      "pm10",
-                      "pm25",
-                      "power",
-                      "power_factor",
-                      "pressure",
-                      "signal_strength",
-                      "sulphur_dioxide",
-                      "temperature",
-                      "timestamp",
-                      "volatile_organic_compounds",
-                      "voltage"
-                    ]
+                    "default": "pressure"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               },
@@ -219,28 +93,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "G",
-                    "type": "string"
+                    "default": "G"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:axis-arrow"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "3",
-                    "type": "integer"
+                    "default": "3"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               },
@@ -255,28 +117,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "G",
-                    "type": "string"
+                    "default": "G"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:axis-x-arrow"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "3",
-                    "type": "integer"
+                    "default": "3"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               },
@@ -291,28 +141,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "G",
-                    "type": "string"
+                    "default": "G"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:axis-y-arrow"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "3",
-                    "type": "integer"
+                    "default": "3"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               },
@@ -327,28 +165,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "G",
-                    "type": "string"
+                    "default": "G"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:axis-z-arrow"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "3",
-                    "type": "integer"
+                    "default": "3"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   }
                 }
               },
@@ -363,61 +189,18 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "V",
-                    "type": "string"
+                    "default": "V"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "3",
-                    "type": "integer"
+                    "default": "3"
                   },
                   "device_class": {
-                    "key": "Optional",
-                    "default": "voltage",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "aqi",
-                      "battery",
-                      "carbon_dioxide",
-                      "carbon_monoxide",
-                      "current",
-                      "energy",
-                      "gas",
-                      "humidity",
-                      "illuminance",
-                      "monetary",
-                      "nitrogen_dioxide",
-                      "nitrogen_monoxide",
-                      "nitrous_oxide",
-                      "ozone",
-                      "pm1",
-                      "pm10",
-                      "pm25",
-                      "power",
-                      "power_factor",
-                      "pressure",
-                      "signal_strength",
-                      "sulphur_dioxide",
-                      "temperature",
-                      "timestamp",
-                      "volatile_organic_compounds",
-                      "voltage"
-                    ]
+                    "default": "voltage"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   },
                   "entity_category": {
-                    "key": "Optional",
                     "default": "diagnostic"
                   }
                 }
@@ -433,61 +216,18 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "dBm",
-                    "type": "string"
+                    "default": "dBm"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "device_class": {
-                    "key": "Optional",
-                    "default": "signal_strength",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "aqi",
-                      "battery",
-                      "carbon_dioxide",
-                      "carbon_monoxide",
-                      "current",
-                      "energy",
-                      "gas",
-                      "humidity",
-                      "illuminance",
-                      "monetary",
-                      "nitrogen_dioxide",
-                      "nitrogen_monoxide",
-                      "nitrous_oxide",
-                      "ozone",
-                      "pm1",
-                      "pm10",
-                      "pm25",
-                      "power",
-                      "power_factor",
-                      "pressure",
-                      "signal_strength",
-                      "sulphur_dioxide",
-                      "temperature",
-                      "timestamp",
-                      "volatile_organic_compounds",
-                      "voltage"
-                    ]
+                    "default": "signal_strength"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "measurement",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "measurement"
                   },
                   "entity_category": {
-                    "key": "Optional",
                     "default": "diagnostic"
                   }
                 }
@@ -503,16 +243,12 @@
                 ],
                 "config_vars": {
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:gauge"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "entity_category": {
-                    "key": "Optional",
                     "default": "diagnostic"
                   }
                 }
@@ -528,16 +264,12 @@
                 ],
                 "config_vars": {
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:gauge"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "entity_category": {
-                    "key": "Optional",
                     "default": "diagnostic"
                   }
                 }

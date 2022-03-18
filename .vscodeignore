@@ -14,5 +14,7 @@ script/**
 client/**
 !client/out/extension.js
 
-# server does not
-server/src/**
+# server uses webpack
+server/**
+!server/out/server.js
+!server/out/schema/**

@@ -21,9 +21,7 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
+            "id": {},
             "sensor": {
               "key": "Required"
             },

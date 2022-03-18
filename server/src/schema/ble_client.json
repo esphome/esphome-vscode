@@ -61,13 +61,10 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID to use for code generation, and for reference by dependent components.\n\n\n\n*See also: [BLE Client Sensor](https://esphome.io/components/sensor/ble_client.html#configuration-variables)*"
             },
             "accuracy_decimals": {
-              "key": "Optional",
-              "default": "0",
-              "type": "integer"
+              "default": "0"
             },
             "service_uuid": {
               "key": "Required",
@@ -156,7 +153,6 @@
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID to use for code generation, and for reference by dependent components.\n\n\n\n*See also: [BLE Client Switch](https://esphome.io/components/switch/ble_client.html#configuration-variables)*"
             },
             "icon": {
-              "key": "Optional",
               "default": "mdi:bluetooth"
             }
           }
@@ -176,7 +172,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID to use for code generation, and for reference by dependent components.\n\n\n\n*See also: [BLE Client Text Sensor](https://esphome.io/components/text_sensor/ble_client.html#configuration-variables)*"
             },
             "service_uuid": {

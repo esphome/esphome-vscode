@@ -9,32 +9,18 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
+            "id": {},
             "unit_of_measurement": {
-              "key": "Optional",
-              "default": "%",
-              "type": "string"
+              "default": "%"
             },
             "icon": {
-              "key": "Optional",
               "default": "mdi:gauge"
             },
             "accuracy_decimals": {
-              "key": "Optional",
-              "default": "1",
-              "type": "integer"
+              "default": "1"
             },
             "state_class": {
-              "key": "Optional",
-              "default": "measurement",
-              "type": "enum",
-              "values": [
-                "",
-                "measurement",
-                "total_increasing"
-              ]
+              "default": "measurement"
             },
             "climate_id": {
               "key": "GeneratedID",
@@ -71,9 +57,7 @@
             "climate.CLIMATE_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
+            "id": {},
             "sensor": {
               "key": "Required",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The sensor that is used to measure the current temperature.\n\n\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"

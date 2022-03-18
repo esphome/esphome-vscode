@@ -26,6 +26,9 @@
             "warm_white_color_temperature": {
               "key": "Required",
               "docs": "**float**: The warmest color temperature supported by this light. This is the highest value when expressed in [mireds](https://en.wikipedia.org/wiki/Mired), or the lowest value when expressed in Kelvin.\n\n\n\n*See also: [Color Temperature Light](https://esphome.io/components/light/color_temperature.html#configuration-variables)*"
+            },
+            "effects": {
+              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n\n\n*See also: [Color Temperature Light](https://esphome.io/components/light/color_temperature.html#configuration-variables)*"
             }
           }
         }

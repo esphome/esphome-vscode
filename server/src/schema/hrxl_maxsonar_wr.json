@@ -8,32 +8,18 @@
             "sensor.SENSOR_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
+            "id": {},
             "unit_of_measurement": {
-              "key": "Optional",
-              "default": "m",
-              "type": "string"
+              "default": "m"
             },
             "icon": {
-              "key": "Optional",
               "default": "mdi:arrow-expand-vertical"
             },
             "accuracy_decimals": {
-              "key": "Optional",
-              "default": "3",
-              "type": "integer"
+              "default": "3"
             },
             "state_class": {
-              "key": "Optional",
-              "default": "measurement",
-              "type": "enum",
-              "values": [
-                "",
-                "measurement",
-                "total_increasing"
-              ]
+              "default": "measurement"
             },
             "uart_id": {
               "key": "GeneratedID",

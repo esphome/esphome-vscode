@@ -22,17 +22,12 @@
               "sensor.SENSOR_SCHEMA"
             ],
             "config_vars": {
-              "id": {
-                "key": "GeneratedID"
-              },
+              "id": {},
               "icon": {
-                "key": "Optional",
                 "default": "mdi:check-circle-outline"
               },
               "accuracy_decimals": {
-                "key": "Optional",
-                "default": "0",
-                "type": "integer"
+                "default": "0"
               },
               "channels": {
                 "key": "Required",

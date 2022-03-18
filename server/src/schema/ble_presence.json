@@ -10,7 +10,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [ESP32 Bluetooth Low Energy Device](https://esphome.io/components/binary_sensor/ble_presence.html#configuration-variables)*"
             },
             "mac_address": {

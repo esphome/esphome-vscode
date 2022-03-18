@@ -18,32 +18,19 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Pulse Counter Sensor](https://esphome.io/components/sensor/pulse_counter.html#configuration-variables)*"
             },
             "unit_of_measurement": {
-              "key": "Optional",
-              "default": "pulses/min",
-              "type": "string"
+              "default": "pulses/min"
             },
             "icon": {
-              "key": "Optional",
               "default": "mdi:pulse"
             },
             "accuracy_decimals": {
-              "key": "Optional",
-              "default": "2",
-              "type": "integer"
+              "default": "2"
             },
             "state_class": {
-              "key": "Optional",
-              "default": "measurement",
-              "type": "enum",
-              "values": [
-                "",
-                "measurement",
-                "total_increasing"
-              ]
+              "default": "measurement"
             },
             "pin": {
               "key": "Required",
@@ -93,28 +80,16 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "key": "Optional",
-                    "default": "pulses",
-                    "type": "string"
+                    "default": "pulses"
                   },
                   "icon": {
-                    "key": "Optional",
                     "default": "mdi:pulse"
                   },
                   "accuracy_decimals": {
-                    "key": "Optional",
-                    "default": "0",
-                    "type": "integer"
+                    "default": "0"
                   },
                   "state_class": {
-                    "key": "Optional",
-                    "default": "total_increasing",
-                    "type": "enum",
-                    "values": [
-                      "",
-                      "measurement",
-                      "total_increasing"
-                    ]
+                    "default": "total_increasing"
                   }
                 }
               },

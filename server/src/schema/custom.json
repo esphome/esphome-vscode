@@ -515,13 +515,8 @@
                   "light.RGB_LIGHT_SCHEMA"
                 ],
                 "config_vars": {
-                  "id": {
-                    "key": "GeneratedID"
-                  },
+                  "id": {},
                   "effects": {
-                    "key": "Optional",
-                    "type": "registry",
-                    "registry": "light.effects",
                     "filter": [
                       "lambda",
                       "automation",

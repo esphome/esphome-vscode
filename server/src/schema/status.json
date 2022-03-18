@@ -10,47 +10,13 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Status Binary Sensor](https://esphome.io/components/binary_sensor/status.html#configuration-variables)*"
             },
             "entity_category": {
-              "key": "Optional",
               "default": "diagnostic"
             },
             "device_class": {
-              "key": "Optional",
-              "default": "connectivity",
-              "type": "enum",
-              "values": [
-                "",
-                "battery",
-                "battery_charging",
-                "cold",
-                "connectivity",
-                "door",
-                "garage_door",
-                "gas",
-                "heat",
-                "light",
-                "lock",
-                "moisture",
-                "motion",
-                "moving",
-                "occupancy",
-                "opening",
-                "plug",
-                "power",
-                "presence",
-                "problem",
-                "running",
-                "safety",
-                "smoke",
-                "sound",
-                "tamper",
-                "update",
-                "vibration",
-                "window"
-              ]
+              "default": "connectivity"
             }
           }
         }

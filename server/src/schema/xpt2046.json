@@ -110,9 +110,7 @@
             "binary_sensor.BINARY_SENSOR_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
+            "id": {},
             "xpt2046_id": {
               "key": "GeneratedID"
             },

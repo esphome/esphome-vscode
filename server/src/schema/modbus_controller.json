@@ -134,7 +134,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Modbus Controller Sensor](https://esphome.io/components/sensor/modbus_controller.html#configuration-variables)*"
             },
             "register_type": {
@@ -201,7 +200,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Modbus Controller Binary Sensor](https://esphome.io/components/binary_sensor/modbus_controller.html#configuration-variables)*"
             },
             "register_type": {
@@ -240,7 +238,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Modbus Controller Number](https://esphome.io/components/number/modbus_controller.html#configuration-variables)*"
             },
             "value_type": {
@@ -409,7 +406,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#configuration-variables)*"
             },
             "modbus_controller_id": {
@@ -549,7 +545,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
             },
             "register_type": {
@@ -571,9 +566,7 @@
               "docs": "The number of registers this data point spans. Default is 1\n\n\n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
             },
             "response_size": {
-              "key": "Optional",
               "default": "2",
-              "type": "integer",
               "docs": "Number of bytes of the response\n\n\n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
             },
             "raw_encode": {

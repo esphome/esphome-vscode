@@ -102,22 +102,16 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [sun Sensor](https://esphome.io/components/sun.html#sun-sensor)*"
             },
             "unit_of_measurement": {
-              "key": "Optional",
-              "default": "\u00b0",
-              "type": "string"
+              "default": "\u00b0"
             },
             "icon": {
-              "key": "Optional",
               "default": "mdi:weather-sunset"
             },
             "accuracy_decimals": {
-              "key": "Optional",
-              "default": "1",
-              "type": "integer"
+              "default": "1"
             },
             "sun_id": {
               "key": "GeneratedID"
@@ -151,7 +145,6 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [sun Text Sensor](https://esphome.io/components/sun.html#sun-text-sensor)*"
             },
             "sun_id": {

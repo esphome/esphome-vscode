@@ -10,21 +10,13 @@
           ],
           "config_vars": {
             "icon": {
-              "key": "Optional",
               "default": "mdi:restart-alert"
             },
             "entity_category": {
-              "key": "Optional",
               "default": "config"
             },
             "device_class": {
-              "key": "Optional",
-              "default": "restart",
-              "type": "enum",
-              "values": [
-                "restart",
-                "update"
-              ]
+              "default": "restart"
             },
             "id": {
               "key": "GeneratedID",
@@ -56,11 +48,9 @@
               "key": "GeneratedID"
             },
             "icon": {
-              "key": "Optional",
               "default": "mdi:restart-alert"
             },
             "entity_category": {
-              "key": "Optional",
               "default": "config"
             }
           }

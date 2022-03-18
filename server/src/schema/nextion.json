@@ -47,13 +47,9 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
+            "id": {},
             "accuracy_decimals": {
-              "key": "Optional",
-              "default": "2",
-              "type": "integer"
+              "default": "2"
             },
             "precision": {
               "key": "Optional",
@@ -137,9 +133,7 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
+            "id": {},
             "page_id": {
               "key": "Optional",
               "type": "integer",
@@ -315,9 +309,7 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
+            "id": {},
             "update_interval": {
               "key": "Optional",
               "default": "never",
