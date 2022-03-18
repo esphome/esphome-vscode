@@ -4,7 +4,9 @@
       "ble_client": {
         "docs": "The `ble_client` component is a switch platform that is used to enable and disable a `ble_client`. This has several uses, such as minimizing battery usage or for allowing other clients (Eg phone apps) to connect to the device.\n\n*See also: [BLE Client Switch](https://esphome.io/components/switch/ble_client.html#ble-client-switch)*"
       },
-      "copy": {},
+      "copy": {
+        "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The switch that should be mirrored.\n\n*See also: [Copy Switch](https://esphome.io/components/copy.html#copy-switch)*"
+      },
       "custom": {
         "docs": "This integration can be used to create custom switches in ESPHome using the C++ (Arduino) API.\n\n*See also: [Custom Switch](https://esphome.io/components/switch/custom.html#custom-switch)*"
       },
@@ -12,12 +14,17 @@
         "docs": "The `gpio` switch platform allows you to use any pin on your node as a switch. You can for example hook up a relay to a GPIO pin and use it through this platform.\n\n*See also: [GPIO Switch](https://esphome.io/components/switch/gpio.html#gpio-switch)*"
       },
       "modbus_controller": {
-        "docs": "The `modbus_controller` sensor platform creates a sensor from a modbus_controller component and requires [Modbus Controller](https://esphome.io/components/modbus_controller.html) to be configured.\n\n*See also: [Modbus Switch](https://esphome.io/components/switch/modbus_controller.html#modbus-switch)*"
+        "docs": "The `modbus_controller` sensor platform creates a sensor from a modbus_controller component and requires [Modbus Controller](https://esphome.io/components/modbus_controller.html) to be configured.\n\n*See also: [Modbus Controller Switch](https://esphome.io/components/switch/modbus_controller.html#modbus-controller-switch)*"
       },
       "nextion": {
         "docs": "The `nextion` switch platform supports the many switched components in the Nextion as well as integer variables. It can be a component or variable in the Nextion display. It is best to set the components vscope to global in the Nextion Editor. This way the component will be available if the page is shown or not.\n\n*See also: [Nextion Switch Component](https://esphome.io/components/switch/nextion.html#nextion-switch-component)*"
       },
-      "pipsolar": {},
+      "output": {
+        "docs": "The `output` switch platform allows you to use any output component as a switch.\n\n*See also: [Generic Output Switch](https://esphome.io/components/switch/output.html#generic-output-switch)*"
+      },
+      "pipsolar": {
+        "docs": "Not all possible switches are exposed as they lead to the possibility to make serious damage. They should only be set at the physical device itself.\n\n*See also: [pipsolar Switch](https://esphome.io/components/pipsolar.html#switch)*"
+      },
       "restart": {
         "docs": "The `restart` switch platform allows you to restart your node remotely through Home Assistant.\n\n*See also: [Restart Switch](https://esphome.io/components/switch/restart.html#restart-switch)*"
       },
@@ -39,45 +46,51 @@
     },
     "schemas": {
       "SWITCH_SCHEMA": {
-        "extends": [
-          "core.ENTITY_BASE_SCHEMA",
-          "core.MQTT_COMMAND_COMPONENT_SCHEMA"
-        ],
-        "config_vars": {
-          "mqtt_id": {
-            "key": "Optional"
-          },
-          "inverted": {
-            "key": "Optional",
-            "type": "boolean",
-            "docs": "**boolean**: Whether to invert the binary state, i.e.\u00a0report ON states as OFF and vice versa. Defaults to `false`.\n\n\n\n*See also: [Switch Component](https://esphome.io/components/switch/index.html#base-switch-configuration)*"
-          },
-          "on_turn_on": {
-            "key": "Optional",
-            "type": "trigger",
-            "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: An automation to perform when the switch is turned on. See [switch.on_turn_on / switch.on_turn_off Trigger](https://esphome.io/components/switch/index.html#switch-on-turn-on-off-trigger).\n\n\n\n*See also: [Switch Component](https://esphome.io/components/switch/index.html#base-switch-configuration)*"
-          },
-          "on_turn_off": {
-            "key": "Optional",
-            "type": "trigger",
-            "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: An automation to perform when the switch is turned off. See [switch.on_turn_on / switch.on_turn_off Trigger](https://esphome.io/components/switch/index.html#switch-on-turn-on-off-trigger).\n\n\n\n*See also: [Switch Component](https://esphome.io/components/switch/index.html#base-switch-configuration)*"
-          },
-          "device_class": {
-            "key": "Optional",
-            "type": "enum",
-            "values": [
-              "",
-              "outlet",
-              "switch"
-            ],
-            "docs": "**string**: The device class for the switch. See [https://developers.home-assistant.io/docs/core/entity/switch/#available-device-classes](https://developers.home-assistant.io/docs/core/entity/switch/#available-device-classes) for a list of available options. Requires Home Assistant 2022.3 or newer.\n\n\n\n*See also: [Switch Component](https://esphome.io/components/switch/index.html#base-switch-configuration)*"
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "core.ENTITY_BASE_SCHEMA",
+            "core.MQTT_COMMAND_COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "mqtt_id": {
+              "key": "Optional"
+            },
+            "inverted": {
+              "key": "Optional",
+              "type": "boolean",
+              "docs": "**boolean**: Whether to invert the binary state, i.e.\u00a0report ON states as OFF and vice versa. Defaults to `false`.\n\n\n\n*See also: [Switch Component](https://esphome.io/components/switch/index.html#base-switch-configuration)*"
+            },
+            "on_turn_on": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: An automation to perform when the switch is turned on. See [switch.on_turn_on / switch.on_turn_off Trigger](https://esphome.io/components/switch/index.html#switch-on-turn-on-off-trigger).\n\n\n\n*See also: [Switch Component](https://esphome.io/components/switch/index.html#base-switch-configuration)*"
+            },
+            "on_turn_off": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: An automation to perform when the switch is turned off. See [switch.on_turn_on / switch.on_turn_off Trigger](https://esphome.io/components/switch/index.html#switch-on-turn-on-off-trigger).\n\n\n\n*See also: [Switch Component](https://esphome.io/components/switch/index.html#base-switch-configuration)*"
+            },
+            "device_class": {
+              "key": "Optional",
+              "type": "enum",
+              "values": [
+                "",
+                "outlet",
+                "switch"
+              ],
+              "docs": "**string**: The device class for the switch. See [https://developers.home-assistant.io/docs/core/entity/switch/#available-device-classes](https://developers.home-assistant.io/docs/core/entity/switch/#available-device-classes) for a list of available options. Requires Home Assistant 2022.3 or newer.\n\n\n\n*See also: [Switch Component](https://esphome.io/components/switch/index.html#base-switch-configuration)*"
+            }
           }
         }
       },
       "SWITCH_ACTION_SCHEMA": {
-        "config_vars": {
-          "id": {
-            "key": "Required"
+        "type": "maybe",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            }
           }
         }
       }

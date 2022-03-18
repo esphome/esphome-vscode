@@ -1,7 +1,9 @@
 {
   "select": {
     "components": {
-      "copy": {},
+      "copy": {
+        "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The select that should be mirrored.\n\n*See also: [Copy Select](https://esphome.io/components/copy.html#copy-select)*"
+      },
       "modbus_controller": {
         "docs": "The `modbus_controller` Select platform allows you to create a Select from modbus registers.\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#modbus-controller-select)*"
       },
@@ -11,21 +13,24 @@
     },
     "schemas": {
       "SELECT_SCHEMA": {
-        "extends": [
-          "core.ENTITY_BASE_SCHEMA",
-          "core.MQTT_COMMAND_COMPONENT_SCHEMA"
-        ],
-        "config_vars": {
-          "mqtt_id": {
-            "key": "Optional"
-          },
-          "id": {
-            "key": "GeneratedID"
-          },
-          "on_value": {
-            "key": "Optional",
-            "type": "trigger",
-            "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a new value is published. See [on_value](https://esphome.io/components/select/index.html#select-on-value).\n\n\n\n*See also: [Select Component](https://esphome.io/components/select/index.html#base-select-configuration)*"
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "core.ENTITY_BASE_SCHEMA",
+            "core.MQTT_COMMAND_COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "mqtt_id": {
+              "key": "Optional"
+            },
+            "id": {
+              "key": "GeneratedID"
+            },
+            "on_value": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a new value is published. See [on_value](https://esphome.io/components/select/index.html#select-on-value).\n\n\n\n*See also: [Select Component](https://esphome.io/components/select/index.html#base-select-configuration)*"
+            }
           }
         }
       }

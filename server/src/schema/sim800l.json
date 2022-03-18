@@ -2,68 +2,79 @@
   "sim800l": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "config_vars": {
-          "id": {
-            "key": "GeneratedID",
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [sim800l Component/Hub](https://esphome.io/components/sim800l.html#component-hub)*"
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [sim800l Component/Hub](https://esphome.io/components/sim800l.html#component-hub)*"
+            },
+            "on_sms_received": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when an SMS is received. See [on_sms_received Trigger](https://esphome.io/components/sim800l.html#sim800l-on-sms-received).\n\n\n\n*See also: [sim800l Component/Hub](https://esphome.io/components/sim800l.html#component-hub)*"
+            },
+            "update_interval": {
+              "key": "Optional",
+              "default": "5s"
+            },
+            "uart_id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the UART hub.\n\n\n\n*See also: [sim800l Component/Hub](https://esphome.io/components/sim800l.html#component-hub)*"
+            }
           },
-          "on_sms_received": {
-            "key": "Optional",
-            "type": "trigger",
-            "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when an SMS is received. See [on_sms_received Trigger](https://esphome.io/components/sim800l.html#sim800l-on-sms-received).\n\n\n\n*See also: [sim800l Component/Hub](https://esphome.io/components/sim800l.html#component-hub)*"
-          },
-          "update_interval": {
-            "key": "Optional",
-            "default": "5s"
-          },
-          "uart_id": {
-            "key": "GeneratedID",
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the UART hub.\n\n\n\n*See also: [sim800l Component/Hub](https://esphome.io/components/sim800l.html#component-hub)*"
-          }
-        },
-        "extends": [
-          "core.COMPONENT_SCHEMA"
-        ],
-        "docs": "The `SIM800L` Component provides the ability to dial, send and receive SMS text messages. The device must be connected via a [UART bus](https://esphome.io/components/uart.html) supporting both receiving and transmitting line. The UART bus must be configured at the same speed of the module which is by default 9600bps. The required connection wires are `+VCC`, `GND`, `RX` and `TX`.\n\n*See also: [sim800l Component/Hub](https://esphome.io/components/sim800l.html#component-hub)*"
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
+        }
       },
       "FINAL_VALIDATE_SCHEMA": {
-        "config_vars": {
-          "uart_id": {
-            "key": "Required"
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "uart_id": {
+              "key": "Required"
+            }
           }
         }
       },
       "SIM800L_SEND_SMS_SCHEMA": {
-        "config_vars": {
-          "id": {
-            "key": "GeneratedID",
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the SIM800L if you have multiple components.\n\n\n\n*See also: [on_sms_received Trigger](https://esphome.io/components/sim800l.html#sim800l-send-sms-action)*"
-          },
-          "recipient": {
-            "key": "Required",
-            "templatable": true,
-            "type": "string",
-            "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The message recipient. number.\n\n\n\n*See also: [on_sms_received Trigger](https://esphome.io/components/sim800l.html#sim800l-send-sms-action)*"
-          },
-          "message": {
-            "key": "Required",
-            "templatable": true,
-            "type": "string",
-            "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The message content.\n\n\n\n*See also: [on_sms_received Trigger](https://esphome.io/components/sim800l.html#sim800l-send-sms-action)*"
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the SIM800L if you have multiple components.\n\n\n\n*See also: [on_sms_received Trigger](https://esphome.io/components/sim800l.html#sim800l-send-sms-action)*"
+            },
+            "recipient": {
+              "key": "Required",
+              "templatable": true,
+              "type": "string",
+              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The message recipient. number.\n\n\n\n*See also: [on_sms_received Trigger](https://esphome.io/components/sim800l.html#sim800l-send-sms-action)*"
+            },
+            "message": {
+              "key": "Required",
+              "templatable": true,
+              "type": "string",
+              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The message content.\n\n\n\n*See also: [on_sms_received Trigger](https://esphome.io/components/sim800l.html#sim800l-send-sms-action)*"
+            }
           }
         }
       },
       "SIM800L_DIAL_SCHEMA": {
-        "config_vars": {
-          "id": {
-            "key": "GeneratedID",
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the SIM800L if you have multiple components.\n\n\n\n*See also: [on_sms_received Trigger](https://esphome.io/components/sim800l.html#sim800l-dial-action)*"
-          },
-          "recipient": {
-            "key": "Required",
-            "templatable": true,
-            "type": "string",
-            "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The number to dial.\n\n\n\n*See also: [on_sms_received Trigger](https://esphome.io/components/sim800l.html#sim800l-dial-action)*"
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the SIM800L if you have multiple components.\n\n\n\n*See also: [on_sms_received Trigger](https://esphome.io/components/sim800l.html#sim800l-dial-action)*"
+            },
+            "recipient": {
+              "key": "Required",
+              "templatable": true,
+              "type": "string",
+              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The number to dial.\n\n\n\n*See also: [on_sms_received Trigger](https://esphome.io/components/sim800l.html#sim800l-dial-action)*"
+            }
           }
         }
       }
@@ -92,69 +103,149 @@
   "sim800l.sensor": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "config_vars": {
-          "sim800l_id": {
-            "key": "GeneratedID"
-          },
-          "rssi": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "dBm"
-                },
-                "accuracy_decimals": {
-                  "default": "0"
-                },
-                "device_class": {
-                  "default": "signal_strength"
-                },
-                "state_class": {
-                  "default": "measurement"
-                },
-                "entity_category": {
-                  "default": "diagnostic"
-                }
-              }
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "sim800l_id": {
+              "key": "GeneratedID"
             },
-            "docs": "The informed Received signal strength indication (RSSI) in dBm.\n  * **name** (**Required**, string): The name for the rssi sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [sim800l Sensor](https://esphome.io/components/sim800l.html#sensor)*"
+            "rssi": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "dBm",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "0",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "signal_strength",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  },
+                  "entity_category": {
+                    "key": "Optional",
+                    "default": "diagnostic"
+                  }
+                }
+              },
+              "docs": "The informed Received signal strength indication (RSSI) in dBm.\n  * **name** (**Required**, string): The name for the rssi sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [sim800l Sensor](https://esphome.io/components/sim800l.html#sensor)*"
+            }
           }
-        },
-        "docs": "Configuration variables:\n\n*See also: [sim800l Sensor](https://esphome.io/components/sim800l.html#sensor)*"
+        }
       }
     }
   },
   "sim800l.binary_sensor": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "config_vars": {
-          "sim800l_id": {
-            "key": "GeneratedID"
-          },
-          "registered": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "binary_sensor.BINARY_SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "entity_category": {
-                  "default": "diagnostic"
-                },
-                "device_class": {
-                  "default": "connectivity"
-                }
-              }
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "sim800l_id": {
+              "key": "GeneratedID"
             },
-            "docs": "Indicates if the SIM800L has successfully registered in the cellular network.\n  * **name** (**Required**, string): The name for the registered binary sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Binary Sensor](https://esphome.io/components/binary_sensor/index.html#config-binary-sensor).\n  \n  \n\n\n\n*See also: [sim800l Binary Sensor](https://esphome.io/components/sim800l.html#binary-sensor)*"
+            "registered": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "binary_sensor.BINARY_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "entity_category": {
+                    "key": "Optional",
+                    "default": "diagnostic"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "connectivity",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "battery",
+                      "battery_charging",
+                      "cold",
+                      "connectivity",
+                      "door",
+                      "garage_door",
+                      "gas",
+                      "heat",
+                      "light",
+                      "lock",
+                      "moisture",
+                      "motion",
+                      "moving",
+                      "occupancy",
+                      "opening",
+                      "plug",
+                      "power",
+                      "presence",
+                      "problem",
+                      "running",
+                      "safety",
+                      "smoke",
+                      "sound",
+                      "tamper",
+                      "update",
+                      "vibration",
+                      "window"
+                    ]
+                  }
+                }
+              },
+              "docs": "Indicates if the SIM800L has successfully registered in the cellular network.\n  * **name** (**Required**, string): The name for the registered binary sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Binary Sensor](https://esphome.io/components/binary_sensor/index.html#config-binary-sensor).\n  \n  \n\n\n\n*See also: [sim800l Binary Sensor](https://esphome.io/components/sim800l.html#binary-sensor)*"
+            }
           }
-        },
-        "docs": "Configuration variables:\n\n*See also: [sim800l Binary Sensor](https://esphome.io/components/sim800l.html#binary-sensor)*"
+        }
       }
     }
   }

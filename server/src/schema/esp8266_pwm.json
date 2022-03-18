@@ -3,35 +3,38 @@
     "schemas": {
       "validate_frequency": {},
       "CONFIG_SCHEMA": {
-        "extends": [
-          "output.FLOAT_OUTPUT_SCHEMA",
-          "core.COMPONENT_SCHEMA"
-        ],
-        "config_vars": {
-          "id": {
-            "key": "Required",
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n\n\n*See also: [ESP8266 Software PWM Output](https://esphome.io/components/output/esp8266_pwm.html#configuration-variables)*"
-          },
-          "pin": {
-            "key": "Required",
-            "schema": true,
-            "internal": true,
-            "modes": [
-              "output"
-            ],
-            "type": "pin",
-            "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin to use PWM on.\n\n\n\n*See also: [ESP8266 Software PWM Output](https://esphome.io/components/output/esp8266_pwm.html#configuration-variables)*"
-          },
-          "frequency": {
-            "key": "Optional",
-            "default": "1kHz",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "esp8266_pwm.output.validate_frequency"
-              ]
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "output.FLOAT_OUTPUT_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n\n\n*See also: [ESP8266 Software PWM Output](https://esphome.io/components/output/esp8266_pwm.html#configuration-variables)*"
             },
-            "docs": "**frequency**: The frequency to run the PWM with. Lower frequencies have more visual artifacts, but can represent much more colors. Defaults to `1000 Hz`.\n\n\n\n*See also: [ESP8266 Software PWM Output](https://esphome.io/components/output/esp8266_pwm.html#configuration-variables)*"
+            "pin": {
+              "key": "Required",
+              "schema": true,
+              "internal": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin",
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin to use PWM on.\n\n\n\n*See also: [ESP8266 Software PWM Output](https://esphome.io/components/output/esp8266_pwm.html#configuration-variables)*"
+            },
+            "frequency": {
+              "key": "Optional",
+              "default": "1kHz",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "esp8266_pwm.output.validate_frequency"
+                ]
+              },
+              "docs": "**frequency**: The frequency to run the PWM with. Lower frequencies have more visual artifacts, but can represent much more colors. Defaults to `1000 Hz`.\n\n\n\n*See also: [ESP8266 Software PWM Output](https://esphome.io/components/output/esp8266_pwm.html#configuration-variables)*"
+            }
           }
         }
       }

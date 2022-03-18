@@ -72,7 +72,6 @@ export class HoverHandler {
 
             if (range[0] <= positionOffset && range[1] >= positionOffset) {
                 closestNode = node;
-                console.log("finding node: " + node.toString());
             } else {
                 return visit.SKIP;
             }
@@ -111,15 +110,15 @@ export class HoverHandler {
             return result;
         };
 
-        let docNode;
-        docNode = doc.root.internalNode;
+        const docNode = doc.root.internalNode as any;
+        let pathNode;
+        pathNode = docNode;
 
         return new Promise<Hover>((resolve, reject) => {
 
 
             var path = this.getPath(node, doc);
 
-            let index = 0;
             let schema: Schema;
             let cv: ConfigVar;
 
@@ -136,19 +135,54 @@ export class HoverHandler {
                 return resolve(null);
             }
 
-            while (index < path.length) {
-                if (isString(path[index]) && isMap(docNode)) {
-                    docNode = docNode.get(path[index], true);
-                    if (schema === undefined) {
-                        cv = this.coreSchema.getComponent(path[index]).schemas.CONFIG_SCHEMA;
+            for (let index = 0; index < path.length; index++) {
+                if (isString(path[index]) && isMap(pathNode)) {
+                    if (cv === undefined && index <= 2 && pathNode.get("platform")) {
+                        const componentName = pathNode.get("platform");
+                        if (isString(componentName)) {
+                            const platformComponents = this.coreSchema.getPlatformList();
+                            if (path[0] in platformComponents) {
+                                const c = this.coreSchema.getComponent(path[0]);
+                                if (c.components !== undefined && componentName in c.components) {
+                                    cv = this.coreSchema.getComponentPlatformSchema(componentName, path[0]);
+                                }
+                            }
+                        }
+                    }
+
+                    pathNode = pathNode.get(path[index], true);
+                    if (cv === undefined) {
+                        const rootComponents = this.coreSchema.getComponentList();
+                        if (path[0] in rootComponents) {
+                            cv = this.coreSchema.getComponent(path[0]).schemas.CONFIG_SCHEMA;
+                        }
                     }
                     else {
-                        if (cv === undefined) {
-                            cv = this.coreSchema.findConfigVar(schema, path[index], docNode);
+                        if (cv.type === "schema" || cv.type === "trigger") {
+                            if (cv.schema !== undefined) {
+                                const schema_cv = this.coreSchema.findConfigVar(cv.schema, path[index], docNode);
+                                if (schema_cv !== undefined) {
+                                    cv = schema_cv;
+                                    continue;
+                                }
+                            }
+
+                            if (cv.type === "trigger") {
+                                const action = this.coreSchema.getActionConfigVar(path[index]);
+                                if (action !== undefined) {
+                                    cv = action;
+                                    continue;
+                                }
+                            }
+                        }
+                        if (cv.type === "registry") {
+                            cv = this.coreSchema.getRegistryConfigVar(cv.registry, path[index]);
                         }
                     }
                 }
-                index++;
+                else if (isNumber(path[index]) && isSeq(pathNode)) {
+                    pathNode = pathNode.get(path[index], true);
+                }
             }
 
             let content: string;

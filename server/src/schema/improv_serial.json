@@ -2,14 +2,17 @@
   "improv_serial": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "config_vars": {
-          "id": {
-            "key": "GeneratedID"
-          }
-        },
-        "extends": [
-          "core.COMPONENT_SCHEMA"
-        ]
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            }
+          },
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
+        }
       }
     }
   }

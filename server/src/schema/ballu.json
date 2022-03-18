@@ -2,31 +2,40 @@
   "ballu.climate": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "extends": [
-          "climate.CLIMATE_SCHEMA",
-          "core.COMPONENT_SCHEMA"
-        ],
-        "config_vars": {
-          "transmitter_id": {
-            "key": "GeneratedID"
-          },
-          "supports_cool": {
-            "key": "Optional",
-            "default": "True",
-            "type": "boolean"
-          },
-          "supports_heat": {
-            "key": "Optional",
-            "default": "True",
-            "type": "boolean"
-          },
-          "sensor": {
-            "key": "Optional"
-          },
-          "receiver_id": {
-            "key": "Optional"
-          },
-          "id": {}
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "climate.CLIMATE_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "transmitter_id": {
+              "key": "GeneratedID"
+            },
+            "supports_cool": {
+              "key": "Optional",
+              "default": "True",
+              "type": "boolean",
+              "docs": "**boolean**: Enables setting cooling mode for this climate device. Defaults to `true`.\n\n\n\n*See also: [None](https://esphome.io/components/climate/climate_ir.html#configuration-variables)*"
+            },
+            "supports_heat": {
+              "key": "Optional",
+              "default": "True",
+              "type": "boolean",
+              "docs": "**boolean**: Enables setting heating mode for this climate device. Defaults to `true`.\n\n\n\n*See also: [None](https://esphome.io/components/climate/climate_ir.html#configuration-variables)*"
+            },
+            "sensor": {
+              "key": "Optional",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The sensor that is used to measure the ambient temperature. This is only for reporting the current temperature in the frontend.\n\n\n\n*See also: [None](https://esphome.io/components/climate/climate_ir.html#configuration-variables)*"
+            },
+            "receiver_id": {
+              "key": "Optional",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the remote_receiver if this platform supports receiver. see: [Using a Receiver](https://esphome.io/components/climate/climate_ir.html#ir-receiver-id).\n\n\n\n*See also: [None](https://esphome.io/components/climate/climate_ir.html#configuration-variables)*"
+            },
+            "id": {
+              "key": "GeneratedID"
+            }
+          }
         }
       }
     }

@@ -2,28 +2,32 @@
   "interval": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "config_vars": {
-          "id": {
-            "key": "GeneratedID"
-          },
-          "interval": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.positive_time_period_milliseconds"
-              ]
+        "type": "trigger",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
             },
-            "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to execute the action with.\n\n\n\n*See also: [interval Component](https://esphome.io/guides/automations.html#interval-component)*"
-          },
-          "setup_priority": {
-            "key": "Optional"
-          },
-          "then": {
-            "type": "trigger",
-            "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: The action to perform.\n\n\n\n*See also: [interval Component](https://esphome.io/guides/automations.html#interval-component)*"
+            "interval": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              },
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to execute the action with.\n\n\n\n*See also: [interval Component](https://esphome.io/guides/automations.html#interval-component)*"
+            },
+            "setup_priority": {
+              "key": "Optional"
+            },
+            "then": {
+              "type": "trigger",
+              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: The action to perform.\n\n\n\n*See also: [interval Component](https://esphome.io/guides/automations.html#interval-component)*"
+            }
           }
-        }
+        },
+        "has_required_var": true
       }
     }
   }

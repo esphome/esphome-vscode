@@ -385,5 +385,32 @@ output:
     testCompletionHaveLabels(result, ["type"]);
     expect(result).to.be.lengthOf(1);
   });
+
+  it('resolve pin esp8266', () => {
+    const result = x.onCompletion(Docs.getTextDoc(`
+esphome:
+  name: arduino
+esp8266:
+  board: d1
+output:
+  - platform: gpio
+    pin:
+      `), { line: 7, character: 6 });
+    testCompletionHaveLabels(result, ["number", "mode"]);
+    testCompletionDoesNotHaveLabels(result, ["drive_strength"]);
+  });
+
+  it('resolve pin esp32', () => {
+    const result = x.onCompletion(Docs.getTextDoc(`
+esphome:
+  name: arduino
+esp32:
+  board: d1
+output:
+  - platform: gpio
+    pin:
+      `), { line: 7, character: 6 });
+    testCompletionHaveLabels(result, ["number", "mode", "drive_strength"]);
+  });
 });
 

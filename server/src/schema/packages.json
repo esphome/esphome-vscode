@@ -2,44 +2,77 @@
   "packages": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "config_vars": {
-          "<class 'str'>": {
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "packages.BASE_SCHEMA"
-              ]
+        "key": "String",
+        "key_dump": "<class 'str'>",
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "<class 'str'>": {
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "url": {
+                    "key": "Required"
+                  },
+                  "username": {
+                    "key": "Optional",
+                    "type": "string"
+                  },
+                  "password": {
+                    "key": "Optional",
+                    "type": "string"
+                  },
+                  "file": {
+                    "key": "Optional"
+                  },
+                  "files": {
+                    "key": "Optional",
+                    "is_list": true
+                  },
+                  "ref": {
+                    "key": "Optional"
+                  },
+                  "refresh": {
+                    "key": "Optional",
+                    "default": "1d",
+                    "type": "string"
+                  }
+                }
+              }
             }
           }
         }
       },
       "BASE_SCHEMA": {
-        "config_vars": {
-          "url": {
-            "key": "Required"
-          },
-          "username": {
-            "key": "Optional",
-            "type": "string"
-          },
-          "password": {
-            "key": "Optional",
-            "type": "string"
-          },
-          "file": {
-            "key": "Optional"
-          },
-          "files": {
-            "key": "Optional",
-            "is_list": true
-          },
-          "ref": {
-            "key": "Optional"
-          },
-          "refresh": {
-            "key": "Optional",
-            "default": "1d",
-            "type": "string"
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "url": {
+              "key": "Required"
+            },
+            "username": {
+              "key": "Optional",
+              "type": "string"
+            },
+            "password": {
+              "key": "Optional",
+              "type": "string"
+            },
+            "file": {
+              "key": "Optional"
+            },
+            "files": {
+              "key": "Optional",
+              "is_list": true
+            },
+            "ref": {
+              "key": "Optional"
+            },
+            "refresh": {
+              "key": "Optional",
+              "default": "1d",
+              "type": "string"
+            }
           }
         }
       }

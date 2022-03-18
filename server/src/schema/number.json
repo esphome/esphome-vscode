@@ -1,7 +1,9 @@
 {
   "number": {
     "components": {
-      "copy": {},
+      "copy": {
+        "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The number that should be mirrored.\n\n*See also: [Copy Number](https://esphome.io/components/copy.html#copy-number)*"
+      },
       "modbus_controller": {
         "docs": "The `modbus_controller` platform creates a Number from a modbus_controller. When the Number is updated a modbus write command is created sent to the device.\n\n*See also: [Modbus Controller Number](https://esphome.io/components/number/modbus_controller.html#modbus-controller-number)*"
       },
@@ -14,73 +16,79 @@
     },
     "schemas": {
       "NUMBER_SCHEMA": {
-        "extends": [
-          "core.ENTITY_BASE_SCHEMA",
-          "core.MQTT_COMMAND_COMPONENT_SCHEMA"
-        ],
-        "config_vars": {
-          "mqtt_id": {
-            "key": "Optional"
-          },
-          "id": {
-            "key": "GeneratedID"
-          },
-          "on_value": {
-            "key": "Optional",
-            "type": "trigger",
-            "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a new value is published. See [on_value](https://esphome.io/components/number/index.html#number-on-value).\n\n\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#base-number-configuration)*"
-          },
-          "on_value_range": {
-            "key": "Optional",
-            "type": "trigger",
-            "schema": {
-              "config_vars": {
-                "above": {
-                  "key": "Optional",
-                  "docs": "**float**: The minimum for the trigger.\n\n\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#on-value-range)*"
-                },
-                "below": {
-                  "key": "Optional",
-                  "docs": "**float**: The maximum for the trigger.\n\n\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#on-value-range)*"
-                },
-                "then": {
-                  "type": "trigger"
-                }
-              }
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "core.ENTITY_BASE_SCHEMA",
+            "core.MQTT_COMMAND_COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "mqtt_id": {
+              "key": "Optional"
             },
-            "has_required_var": true,
-            "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a published value transition from outside to a range to inside. See [on_value_range](https://esphome.io/components/number/index.html#number-on-value-range).\n\n\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#base-number-configuration)*"
-          },
-          "unit_of_measurement": {
-            "key": "Optional",
-            "type": "string",
-            "docs": "**string**: Manually set the unit of measurement for the number. Requires Home Assistant Core 2021.12 or newer.\n\n\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#base-number-configuration)*"
-          },
-          "mode": {
-            "key": "Optional",
-            "default": "AUTO",
-            "type": "enum",
-            "values": [
-              "AUTO",
-              "BOX",
-              "SLIDER"
-            ],
-            "docs": "**string**: Defines how the number should be displayed in the frontend. See [https://developers.home-assistant.io/docs/core/entity/number/#properties](https://developers.home-assistant.io/docs/core/entity/number/#properties) for a list of available options. Requires Home Assistant Core 2021.12 or newer. Defaults to `\"auto\"`.\n\n\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#base-number-configuration)*"
+            "id": {
+              "key": "GeneratedID"
+            },
+            "on_value": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a new value is published. See [on_value](https://esphome.io/components/number/index.html#number-on-value).\n\n\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#base-number-configuration)*"
+            },
+            "on_value_range": {
+              "key": "Optional",
+              "type": "trigger",
+              "schema": {
+                "config_vars": {
+                  "above": {
+                    "key": "Optional",
+                    "docs": "**float**: The minimum for the trigger.\n\n\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#on-value-range)*"
+                  },
+                  "below": {
+                    "key": "Optional",
+                    "docs": "**float**: The maximum for the trigger.\n\n\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#on-value-range)*"
+                  },
+                  "then": {
+                    "type": "trigger"
+                  }
+                }
+              },
+              "has_required_var": true,
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a published value transition from outside to a range to inside. See [on_value_range](https://esphome.io/components/number/index.html#number-on-value-range).\n\n\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#base-number-configuration)*"
+            },
+            "unit_of_measurement": {
+              "key": "Optional",
+              "type": "string",
+              "docs": "**string**: Manually set the unit of measurement for the number. Requires Home Assistant Core 2021.12 or newer.\n\n\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#base-number-configuration)*"
+            },
+            "mode": {
+              "key": "Optional",
+              "default": "AUTO",
+              "type": "enum",
+              "values": [
+                "AUTO",
+                "BOX",
+                "SLIDER"
+              ],
+              "docs": "**string**: Defines how the number should be displayed in the frontend. See [https://developers.home-assistant.io/docs/core/entity/number/#properties](https://developers.home-assistant.io/docs/core/entity/number/#properties) for a list of available options. Requires Home Assistant Core 2021.12 or newer. Defaults to `\"auto\"`.\n\n\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#base-number-configuration)*"
+            }
           }
         }
       },
       "NUMBER_IN_RANGE_CONDITION_SCHEMA": {
-        "config_vars": {
-          "id": {
-            "key": "Required"
-          },
-          "above": {
-            "key": "Optional",
-            "docs": "**float**: The minimum for the condition.\n\n\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-in-range-condition)*"
-          },
-          "below": {
-            "key": "Optional",
-            "docs": "**float**: The maximum for the condition.\n\n\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-in-range-condition)*"
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            },
+            "above": {
+              "key": "Optional",
+              "docs": "**float**: The minimum for the condition.\n\n\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-in-range-condition)*"
+            },
+            "below": {
+              "key": "Optional",
+              "docs": "**float**: The maximum for the condition.\n\n\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-in-range-condition)*"
+            }
           }
         }
       }

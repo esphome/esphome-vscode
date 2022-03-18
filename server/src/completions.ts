@@ -1,7 +1,8 @@
+import { stringify } from "querystring";
 import { Position } from "vscode-languageserver-textdocument";
 import { CompletionItem, CompletionItemKind, MarkupContent, Range, TextDocument } from "vscode-languageserver/node";
 import { isPair, isMap, isScalar, isSeq, YAMLMap, Node, Scalar, isNode } from "yaml";
-import { ConfigVar, CoreSchema, Schema, ConfigVarTrigger, ConfigVarRegistry, ConfigVarPin, ConfigVarEnum } from "./CoreSchema";
+import { ConfigVar, CoreSchema, Schema, ConfigVarTrigger, ConfigVarRegistry, ConfigVarPin, ConfigVarEnum, ConfigVarSchema } from "./CoreSchema";
 import { YamlNode } from "./jsonASTTypes";
 import { SingleYAMLDocument, YamlDocuments } from "./parser/yaml-documents";
 import { matchOffsetToDocument } from "./utils/arrUtils";
@@ -368,43 +369,39 @@ export class CompletionHandler {
 
 
 
-            let schema: Schema;
+            let pinCv: ConfigVar;
 
             if (isMap(pathNode)) {
                 // Check if it is using a port expander
                 for (const expander of this.coreSchema.getPins()) {
                     if (expander !== "esp32" && expander !== "esp8266" && docMap.get(expander)) {
                         if (pathNode.get(expander)) {
-                            schema = this.coreSchema.getPinSchema(expander);
+                            pinCv = this.coreSchema.getPinConfigVar(expander);
                             break;
                         }
                     }
                 }
             }
 
-            if (schema === undefined) {
+            if (pinCv === undefined) {
                 if (docMap.get("esp32")) { // TODO: Support old esphome / board
-                    schema = this.coreSchema.getPinSchema("esp32");
+                    pinCv = this.coreSchema.getPinConfigVar("esp32");
                 }
                 else if (docMap.get("esp8266")) {
-                    schema = this.coreSchema.getPinSchema("esp8266");
+                    pinCv = this.coreSchema.getPinConfigVar("esp8266");
                 }
             }
 
-            if (schema !== undefined && pathNode === null && !cv.internal) {
+            if (pinCv !== undefined && pinCv.type === "schema" && pathNode === null && !cv.internal) {
                 // suggest all expanders
                 for (const expander of this.coreSchema.getPins()) {
                     if (expander !== "esp32" && expander !== "esp8266" && docMap.get(expander)) {
-                        schema.config_vars[expander] = { key: "Optional", "type": "string" };
+                        pinCv.schema.config_vars[expander] = { key: "Optional", "type": "string" };
                     }
                 }
             }
 
-            return this.resolveConfigVar(result, path, pathIndex, {
-                type: "schema",
-                key: "Optional",
-                schema: schema,
-            }, pathNode, cursorNode, docMap);
+            return this.resolveConfigVar(result, path, pathIndex, pinCv, pathNode, cursorNode, docMap);
         }
         else if (cv.type === "boolean") {
             for (var value of ["True", "False"]) {
@@ -609,8 +606,7 @@ export class CompletionHandler {
                     item.detail = "Required";
                 }
                 else {
-                    const d = config["default"];
-                    item.detail = d;
+                    item.detail = config["default"];
                 }
             }
 

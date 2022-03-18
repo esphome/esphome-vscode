@@ -7,7 +7,9 @@
       "ble_client": {
         "docs": "The `ble_client` component is a output that can write a binary value to service characteristics of BLE devices.\n\n*See also: [BLE Client Binary Output](https://esphome.io/components/output/ble_client.html#ble-client-binary-output)*"
       },
-      "custom": {},
+      "custom": {
+        "docs": "This integration can be used to create custom binary and float [outputs](https://esphome.io/components/output/index.html) in ESPHome using the C++ (Arduino) API.\n\n*See also: [Custom Output](https://esphome.io/components/output/custom.html#custom-output)*"
+      },
       "esp32_dac": {
         "docs": "The ESP32 DAC platform allows you to output analog voltages using the 8-bit digital-to-analog converter of the ESP32. Unlike the [ESP32 LEDC Output](https://esphome.io/components/output/ledc.html), which can simulate an analog signal by using a fast switching frequency, the hardware DAC can output a *real* analog signal with no need for additional filtering.\n\n*See also: [ESP32 DAC](https://esphome.io/components/output/esp32_dac.html#esp32-dac)*"
       },
@@ -24,71 +26,94 @@
         "docs": "The MCP4725 output component allows to use [12bit external DAC](https://learn.sparkfun.com/tutorials/mcp4725-digital-to-analog-converter-hookup-guide/all) in order to have analog output(s) on any board by using I2C. Devices default address is `0x60` and configurable alternative is `0x61`.\n\n*See also: [MCP4725 Output](https://esphome.io/components/output/mcp4725.html#mcp4725-output)*"
       },
       "mcp4728": {
-        "docs": "The MCP4728 output component allows to use [12bit external quad DAC](https://www.adafruit.com/product/4470) in order to have analog outputs on any board by using [I\u00b2C](https://esphome.io/components/i2c.html#i2c). Devices default address is `0x60`.\n\n*See also: [MCP4728 Output](https://esphome.io/components/output/mcp4728.html#mcp4728-output)*"
+        "docs": "The MCP4728 output component exposes 4 MCP4728 channels of a global [MCP4728](https://esphome.io/components/output/mcp4728.html#id1) as float outputs.\n\n*See also: [MCP4728 Output](https://esphome.io/components/output/mcp4728.html#mcp4728-output)*"
       },
       "mcp47a1": {
         "docs": "The `mcp47a1` output component allows to use [6bit external DAC](https://www.microchip.com/en-us/product/MCP47A1) in order to have analog output(s) on any board by using I\u00b2C. Devices default address is `0x2E` and configurable alternative is `0x3E`.\n\n*See also: [MCP47A1 Output](https://esphome.io/components/output/mcp47a1.html#mcp47a1-output)*"
       },
-      "modbus_controller": {},
+      "modbus_controller": {
+        "docs": "The `modbus_controller` platform creates a output from a modbus_controller.\n\n*See also: [Modbus Controller Output](https://esphome.io/components/output/modbus_controller.html#modbus-controller-output)*"
+      },
       "my9231": {
-        "docs": "The MY9231/MY9291 component represents a MY9231/MY9291 LED diver chain ([MY9231 description](http://www.my-semi.com.tw/file/MY9231_BF_0.91.pdf), [MY9291 description](http://www.my-semi.com.tw/file/MY9291_BF_0.91.pdf)) in ESPHome. Communication is done with two GPIO pins (DI and DCKI) and multiple driver chips can be chained. There are two models with different number of output channels (MY9291 with 4 channels and MY9231 with 3 channels). They are popular driver chips used in smart light bulbs:\n\n*See also: [MY9231/MY9291 LED driver](https://esphome.io/components/output/my9231.html#my9231-my9291-led-driver)*"
+        "docs": "The MY931/MY9291 output component exposes a MY931/MY9291 channel of a global [Component/Hub](https://esphome.io/components/output/my9231.html#my9231-component) as a float output.\n\n*See also: [my9231 Output](https://esphome.io/components/output/my9231.html#output)*"
       },
       "pca9685": {
-        "docs": "The PCA9685 component represents a PCA9685 12-bit PWM driver ([datasheet](https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html#configure-channel), [adafruit](https://www.adafruit.com/product/815)) in ESPHome. It uses [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) for communication.\n\n*See also: [PCA9685](https://esphome.io/components/output/pca9685.html#pca9685)*"
+        "docs": "The PCA9685 output component exposes a PCA9685 PWM channel of a global [PCA9685 hub](https://esphome.io/components/output/pca9685.html#pca9685-component) as a float output.\n\n*See also: [PCA9685 Output](https://esphome.io/components/output/pca9685.html#pca9685-output)*"
       },
-      "pipsolar": {},
+      "pipsolar": {
+        "docs": "Not all possible outputs are exposed as they lead to the possibility to make serious damage. They should only be set at the physical device itself.\n\n*See also: [pipsolar Output](https://esphome.io/components/pipsolar.html#output)*"
+      },
       "slow_pwm": {
         "docs": "Similar to PWM, the Slow PWM Output platform allows you to control GPIO pins by pulsing them on/off over a longer time period. It could be used to control a heating element through a relay where a fast PWM update cycle would not be appropriate.\n\n*See also: [Slow PWM Output](https://esphome.io/components/output/slow_pwm.html#slow-pwm-output)*"
       },
       "sm16716": {
-        "docs": "The SM16716 component represents a SM16716 LED diver chain ([SM16716 description](https://github.com/sowbug/sm16716/blob/master/SM16716%20Datasheet%20%5BChinese%5D.pdf), [SM16716 description](https://github.com/sowbug/sm16716/blob/master/SM16716%20Datasheet%20%5BChinese%5D.pdf)) in ESPHome. Communication is done with two GPIO pins (MOSI and SCLK) and multiple driver chips can be chained. It is used in some smart light bulbs:\n\n*See also: [SM16716 LED driver](https://esphome.io/components/output/sm16716.html#sm16716-led-driver)*"
+        "docs": "The SM16716 output component exposes a SM16716 channel of a global [Component/Hub](https://esphome.io/components/output/sm16716.html#sm16716-component) as a float output.\n\n*See also: [sm16716 Output](https://esphome.io/components/output/sm16716.html#output)*"
       },
       "sm2135": {
-        "docs": "The SM2135 component represents a SM2135 LED diver chain ([SM2135 description](https://github.com/arendst/Sonoff-Tasmota/files/3656603/SM2135E_zh-CN_en-US_translated.pdf), [SM2135 description](https://github.com/arendst/Sonoff-Tasmota/files/3656603/SM2135E_zh-CN_en-US_translated.pdf)) in ESPHome. Communication is done with two GPIO pins (MOSI and SCLK). It is used in some smart light bulbs:\n\n*See also: [SM2135 LED driver](https://esphome.io/components/output/sm2135.html#sm2135-led-driver)*"
+        "docs": "The SM2135 output component exposes a SM2135 channel of a global [Component/Hub](https://esphome.io/components/output/sm2135.html#sm2135-component) as a float output.\n\n*See also: [sm2135 Output](https://esphome.io/components/output/sm2135.html#output)*"
       },
       "sx1509": {},
-      "template": {},
+      "template": {
+        "docs": "The `template` output component can be used to create templated binary and float outputs in ESPHome.\n\n*See also: [Template Output](https://esphome.io/components/output/template.html#template-output)*"
+      },
       "tlc59208f": {
-        "docs": "The TLC59208F component represents a Texas Instruments TLC59208F 8-bit PWM driver ([datasheet](http://www.ti.com/lit/gpn/tlc59208f), [hw example](https://faboplatform.github.io/ArduinoDocs/03.I2C%20Brick/211_brick_i2c_7seg/)) in ESPHome. It uses [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) for communication.\n\n*See also: [TLC59208F](https://esphome.io/components/output/tlc59208f.html#tlc59208f)*"
+        "docs": "The TLC59208F output component exposes a TLC59208F PWM channel of a global [TLC59208F chip](https://esphome.io/components/output/tlc59208f.html#tlc59208f-component) as a float output.\n\n*See also: [TLC59208F Output](https://esphome.io/components/output/tlc59208f.html#tlc59208f-output)*"
       },
       "tlc5947": {
-        "docs": "This component represents a chain of [TLC5947 24-Channel, 12-Bit PWM LED Drivers](https://www.ti.com/lit/ds/symlink/tlc5947.pdf), which is used e.g. on this [board from Adafruit](https://www.adafruit.com/product/1429).\n\n*See also: [TLC5947 LED driver](https://esphome.io/components/output/tlc5947.html#tlc5947-led-driver)*"
+        "docs": "The tlc5947 output component exposes a tlc5947 channel of a global [Component/Hub](https://esphome.io/components/output/tlc5947.html#tlc5947-component) as a float output.\n\n*See also: [tlc5947 Output](https://esphome.io/components/output/tlc5947.html#output)*"
       }
     },
     "schemas": {
       "BINARY_OUTPUT_SCHEMA": {
-        "config_vars": {
-          "power_supply": {
-            "key": "Optional"
-          },
-          "inverted": {
-            "key": "Optional",
-            "type": "boolean"
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "power_supply": {
+              "key": "Optional",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The [power supply](https://esphome.io/components/power_supply.html) to connect to this output. When the output is enabled, the power supply will automatically be switched on too.\n\n\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
+            },
+            "inverted": {
+              "key": "Optional",
+              "type": "boolean",
+              "docs": "**boolean**: If the output should be treated as inverted. Defaults to `false`.\n\n\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
+            }
           }
         }
       },
       "FLOAT_OUTPUT_SCHEMA": {
-        "extends": [
-          "output.BINARY_OUTPUT_SCHEMA"
-        ],
-        "config_vars": {
-          "max_power": {
-            "key": "Optional"
-          },
-          "min_power": {
-            "key": "Optional"
-          },
-          "zero_means_zero": {
-            "key": "Optional",
-            "default": "False",
-            "type": "boolean"
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "output.BINARY_OUTPUT_SCHEMA"
+          ],
+          "config_vars": {
+            "max_power": {
+              "key": "Optional",
+              "docs": "**float**: Sets the maximum output value of this output platform. Must be in range from min_power to 1. Defaults to `1`.\n\n\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
+            },
+            "min_power": {
+              "key": "Optional",
+              "docs": "**float**: Sets the minimum output value of this output platform. Must be in range from 0 to max_power. Defaults to `0`.\n\n\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
+            },
+            "zero_means_zero": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean",
+              "docs": "**boolean**: Sets the output to use actual 0 instead of `min_power`. Defaults to `false`.\n\n\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
+            },
+            "id": {
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
+            }
           }
         }
       },
       "BINARY_OUTPUT_ACTION_SCHEMA": {
-        "config_vars": {
-          "id": {
-            "key": "Required"
+        "type": "maybe",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            }
           }
         }
       }
@@ -100,7 +125,8 @@
           "extends": [
             "output.BINARY_OUTPUT_ACTION_SCHEMA"
           ]
-        }
+        },
+        "docs": "This action turns the output with the given ID on when executed.\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#output-turn-on-action)*"
       },
       "turn_off": {
         "type": "schema",
@@ -108,7 +134,8 @@
           "extends": [
             "output.BINARY_OUTPUT_ACTION_SCHEMA"
           ]
-        }
+        },
+        "docs": "This action turns the output with the given ID off when executed.\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#output-turn-off-action)*"
       },
       "set_level": {
         "type": "schema",
@@ -120,6 +147,100 @@
             "level": {
               "key": "Required",
               "templatable": true
+            }
+          }
+        },
+        "docs": "This action sets the float output to the given level when executed. Note: This only works with floating point outputs like ESP8266 PWM or LEDC.\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#output-set-level-action)*"
+      }
+    }
+  },
+  "output.button": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "button.BUTTON_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Generic Output Button](https://esphome.io/components/button/output.html#configuration-variables)*"
+            },
+            "output": {
+              "key": "Required",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the output component to use.\n\n\n\n*See also: [Generic Output Button](https://esphome.io/components/button/output.html#configuration-variables)*"
+            },
+            "duration": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.time_period_dict"
+                ]
+              },
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: How long the output should be set when the button is pressed.\n\n\n\n*See also: [Generic Output Button](https://esphome.io/components/button/output.html#configuration-variables)*"
+            }
+          }
+        }
+      }
+    }
+  },
+  "output.lock": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "lock.LOCK_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Generic Output Lock](https://esphome.io/components/lock/output.html#configuration-variables)*"
+            },
+            "output": {
+              "key": "Required",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the output component to use.\n\n\n\n*See also: [Generic Output Lock](https://esphome.io/components/lock/output.html#configuration-variables)*"
+            }
+          }
+        }
+      }
+    }
+  },
+  "output.switch": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "switch.SWITCH_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Generic Output Switch](https://esphome.io/components/switch/output.html#configuration-variables)*"
+            },
+            "output": {
+              "key": "Required",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the output component to use.\n\n\n\n*See also: [Generic Output Switch](https://esphome.io/components/switch/output.html#configuration-variables)*"
+            },
+            "restore_mode": {
+              "key": "Optional",
+              "default": "RESTORE_DEFAULT_OFF",
+              "type": "enum",
+              "values": [
+                "RESTORE_DEFAULT_OFF",
+                "RESTORE_DEFAULT_ON",
+                "ALWAYS_OFF",
+                "ALWAYS_ON",
+                "RESTORE_INVERTED_DEFAULT_OFF",
+                "RESTORE_INVERTED_DEFAULT_ON"
+              ],
+              "docs": "Control how the switch attempts to restore state on bootup. For restoring on ESP8266s, also see `esp8266_restore_from_flash` in the [esphome section](https://esphome.io/components/esphome.html).\n  * `RESTORE_DEFAULT_OFF` (Default) - Attempt to restore state and default to OFF if not possible to restore.\n  \n  * `RESTORE_DEFAULT_ON` - Attempt to restore state and default to ON.\n  \n  * `RESTORE_INVERTED_DEFAULT_OFF` - Attempt to restore state inverted from the previous state and default to OFF.\n  \n  * `RESTORE_INVERTED_DEFAULT_ON` - Attempt to restore state inverted from the previous state and default to ON.\n  \n  * `ALWAYS_OFF` - Always initialize the pin as OFF on bootup.\n  \n  * `ALWAYS_ON` - Always initialize the pin as ON on bootup.\n  \n  \n\n\n\n*See also: [Generic Output Switch](https://esphome.io/components/switch/output.html#configuration-variables)*"
             }
           }
         }

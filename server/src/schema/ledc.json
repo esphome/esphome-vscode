@@ -2,34 +2,37 @@
   "ledc.output": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "extends": [
-          "output.FLOAT_OUTPUT_SCHEMA",
-          "core.COMPONENT_SCHEMA"
-        ],
-        "config_vars": {
-          "id": {
-            "key": "Required",
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n\n\n*See also: [ESP32 LEDC Output](https://esphome.io/components/output/ledc.html#configuration-variables)*"
-          },
-          "pin": {
-            "key": "Required",
-            "schema": true,
-            "internal": true,
-            "modes": [
-              "output"
-            ],
-            "type": "pin",
-            "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: The pin to use LEDC on. Can only be GPIO0-GPIO33.\n\n\n\n*See also: [ESP32 LEDC Output](https://esphome.io/components/output/ledc.html#configuration-variables)*"
-          },
-          "frequency": {
-            "key": "Optional",
-            "default": "1kHz",
-            "docs": "**float**: At which frequency to run the LEDC channel\u2019s timer. Defaults to 1000Hz.\n\n\n\n*See also: [ESP32 LEDC Output](https://esphome.io/components/output/ledc.html#configuration-variables)*"
-          },
-          "channel": {
-            "key": "Optional",
-            "type": "integer",
-            "docs": "**int**: Manually set the [LEDC channel](https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html#configure-channel) to use. Two adjacent channels share the same timer. Defaults to an automatic selection.\n\n\n\n*See also: [ESP32 LEDC Output](https://esphome.io/components/output/ledc.html#configuration-variables)*"
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "output.FLOAT_OUTPUT_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n\n\n*See also: [ESP32 LEDC Output](https://esphome.io/components/output/ledc.html#configuration-variables)*"
+            },
+            "pin": {
+              "key": "Required",
+              "schema": true,
+              "internal": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin",
+              "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: The pin to use LEDC on. Can only be GPIO0-GPIO33.\n\n\n\n*See also: [ESP32 LEDC Output](https://esphome.io/components/output/ledc.html#configuration-variables)*"
+            },
+            "frequency": {
+              "key": "Optional",
+              "default": "1kHz",
+              "docs": "**float**: At which frequency to run the LEDC channel\u2019s timer. Defaults to 1000Hz.\n\n\n\n*See also: [ESP32 LEDC Output](https://esphome.io/components/output/ledc.html#configuration-variables)*"
+            },
+            "channel": {
+              "key": "Optional",
+              "type": "integer",
+              "docs": "**int**: Manually set the [LEDC channel](https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html#configure-channel) to use. Two adjacent channels share the same timer. Defaults to an automatic selection.\n\n\n\n*See also: [ESP32 LEDC Output](https://esphome.io/components/output/ledc.html#configuration-variables)*"
+            }
           }
         }
       }

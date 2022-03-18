@@ -2,52 +2,98 @@
   "adc.sensor": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "extends": [
-          "sensor.SENSOR_SCHEMA",
-          "core.COMPONENT_SCHEMA"
-        ],
-        "config_vars": {
-          "id": {
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Analog To Digital Sensor](https://esphome.io/components/sensor/adc.html#configuration-variables)*"
-          },
-          "unit_of_measurement": {
-            "default": "V"
-          },
-          "accuracy_decimals": {
-            "default": "2"
-          },
-          "device_class": {
-            "default": "voltage"
-          },
-          "state_class": {
-            "default": "measurement"
-          },
-          "pin": {
-            "key": "Required",
-            "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: The pin to measure the voltage on. Or on the ESP8266 alternatively also `VCC`, see [ESP8266 Measuring VCC](https://esphome.io/components/sensor/adc.html#adc-esp8266-vcc).\n\n\n\n*See also: [Analog To Digital Sensor](https://esphome.io/components/sensor/adc.html#configuration-variables)*"
-          },
-          "raw": {
-            "key": "Optional",
-            "default": "False",
-            "type": "boolean",
-            "docs": "Allows to read the raw ADC output without any conversion or calibration. See [Different ESP32-ADC behavior since 2021.11](https://esphome.io/components/sensor/adc.html#adc-raw). Defaults to `false`.\n\n\n\n*See also: [Analog To Digital Sensor](https://esphome.io/components/sensor/adc.html#configuration-variables)*"
-          },
-          "attenuation": {
-            "key": "Optional",
-            "type": "enum",
-            "values": [
-              "0db",
-              "2.5db",
-              "6db",
-              "11db",
-              "auto"
-            ],
-            "docs": "Only on ESP32. Specify the ADC attenuation to use. See [ESP32 Attenuation](https://esphome.io/components/sensor/adc.html#adc-esp32-attenuation). Defaults to `0db`.\n\n\n\n*See also: [Analog To Digital Sensor](https://esphome.io/components/sensor/adc.html#configuration-variables)*"
-          },
-          "update_interval": {
-            "key": "Optional",
-            "default": "60s",
-            "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n\n\n*See also: [Analog To Digital Sensor](https://esphome.io/components/sensor/adc.html#configuration-variables)*"
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "sensor.SENSOR_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            },
+            "unit_of_measurement": {
+              "key": "Optional",
+              "default": "V",
+              "type": "string"
+            },
+            "accuracy_decimals": {
+              "key": "Optional",
+              "default": "2",
+              "type": "integer"
+            },
+            "device_class": {
+              "key": "Optional",
+              "default": "voltage",
+              "type": "enum",
+              "values": [
+                "",
+                "aqi",
+                "battery",
+                "carbon_dioxide",
+                "carbon_monoxide",
+                "current",
+                "energy",
+                "gas",
+                "humidity",
+                "illuminance",
+                "monetary",
+                "nitrogen_dioxide",
+                "nitrogen_monoxide",
+                "nitrous_oxide",
+                "ozone",
+                "pm1",
+                "pm10",
+                "pm25",
+                "power",
+                "power_factor",
+                "pressure",
+                "signal_strength",
+                "sulphur_dioxide",
+                "temperature",
+                "timestamp",
+                "volatile_organic_compounds",
+                "voltage"
+              ]
+            },
+            "state_class": {
+              "key": "Optional",
+              "default": "measurement",
+              "type": "enum",
+              "values": [
+                "",
+                "measurement",
+                "total_increasing"
+              ]
+            },
+            "pin": {
+              "key": "Required",
+              "internal": true,
+              "modes": [
+                "input"
+              ],
+              "type": "pin"
+            },
+            "raw": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean"
+            },
+            "attenuation": {
+              "key": "Optional",
+              "type": "enum",
+              "values": [
+                "0db",
+                "2.5db",
+                "6db",
+                "11db",
+                "auto"
+              ]
+            },
+            "update_interval": {
+              "key": "Optional",
+              "default": "60s"
+            }
           }
         }
       }

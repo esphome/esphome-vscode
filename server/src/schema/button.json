@@ -1,7 +1,12 @@
 {
   "button": {
     "components": {
-      "copy": {},
+      "copy": {
+        "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The button that should be mirrored.\n\n*See also: [Copy Button](https://esphome.io/components/copy.html#copy-button)*"
+      },
+      "output": {
+        "docs": "The `output` button platform allows you to use any output component as a button. This can for example be used to momentarily set a GPIO pin using a button.\n\n*See also: [Generic Output Button](https://esphome.io/components/button/output.html#generic-output-button)*"
+      },
       "restart": {
         "docs": "The `restart` button platform allows you to restart your node remotely through Home Assistant.\n\n*See also: [Restart Button](https://esphome.io/components/button/restart.html#restart-button)*"
       },
@@ -27,35 +32,41 @@
         ]
       },
       "BUTTON_SCHEMA": {
-        "extends": [
-          "core.ENTITY_BASE_SCHEMA",
-          "core.MQTT_COMMAND_COMPONENT_SCHEMA"
-        ],
-        "config_vars": {
-          "mqtt_id": {
-            "key": "Optional"
-          },
-          "device_class": {
-            "key": "Optional",
-            "type": "enum",
-            "values": [
-              "restart",
-              "update"
-            ],
-            "docs": "**string**: The device class for the button. See [https://developers.home-assistant.io/docs/core/entity/button/#available-device-classes](https://developers.home-assistant.io/docs/core/entity/button/#available-device-classes) for a list of available options.\n\n\n\n*See also: [Button Component](https://esphome.io/components/button/index.html#base-button-configuration)*"
-          },
-          "on_press": {
-            "key": "Optional",
-            "type": "trigger",
-            "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the button is pressed. See [on_press](https://esphome.io/components/button/index.html#button-on-press).\n\n\n\n*See also: [Button Component](https://esphome.io/components/button/index.html#base-button-configuration)*"
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "core.ENTITY_BASE_SCHEMA",
+            "core.MQTT_COMMAND_COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "mqtt_id": {
+              "key": "Optional"
+            },
+            "device_class": {
+              "key": "Optional",
+              "type": "enum",
+              "values": [
+                "restart",
+                "update"
+              ],
+              "docs": "**string**: The device class for the button. See [https://developers.home-assistant.io/docs/core/entity/button/#available-device-classes](https://developers.home-assistant.io/docs/core/entity/button/#available-device-classes) for a list of available options.\n\n\n\n*See also: [Button Component](https://esphome.io/components/button/index.html#base-button-configuration)*"
+            },
+            "on_press": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the button is pressed. See [on_press](https://esphome.io/components/button/index.html#button-on-press).\n\n\n\n*See also: [Button Component](https://esphome.io/components/button/index.html#base-button-configuration)*"
+            }
           }
         }
       },
       "BUTTON_PRESS_SCHEMA": {
-        "config_vars": {
-          "id": {
-            "key": "Required",
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the button to set.\n\n\n\n*See also: [Button Component](https://esphome.io/components/button/index.html#button-press-action)*"
+        "type": "maybe",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the button to set.\n\n\n\n*See also: [Button Component](https://esphome.io/components/button/index.html#button-press-action)*"
+            }
           }
         }
       }

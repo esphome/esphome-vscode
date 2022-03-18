@@ -1,31 +1,5 @@
 {
   "remote_transmitter": {
-    "schemas": {
-      "CONFIG_SCHEMA": {
-        "config_vars": {
-          "id": {
-            "key": "GeneratedID",
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation. Use this if you have multiple remote transmitters.\n\n\n\n*See also: [Remote Transmitter](https://esphome.io/components/remote_transmitter.html#configuration-variables)*"
-          },
-          "pin": {
-            "key": "Required",
-            "schema": true,
-            "modes": [
-              "output"
-            ],
-            "type": "pin",
-            "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: The pin to transmit the remote signal on.\n\n\n\n*See also: [Remote Transmitter](https://esphome.io/components/remote_transmitter.html#configuration-variables)*"
-          },
-          "carrier_duty_percent": {
-            "key": "Required",
-            "docs": "**int**: How much of the time the remote is on. For example, infrared protocols modulate the signal using a carrier signal. Set this is `50%` if you\u2019re working with IR LEDs and to `100%` if working with other things like 433MHz transmitters.\n\n\n\n*See also: [Remote Transmitter](https://esphome.io/components/remote_transmitter.html#configuration-variables)*"
-          }
-        },
-        "extends": [
-          "core.COMPONENT_SCHEMA"
-        ]
-      }
-    },
     "action": {
       "transmit_coolix": {
         "type": "schema",
@@ -40,11 +14,14 @@
                   "core.hex_uint32_t"
                 ]
               }
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
+            },
+            "repeat": {
+              "key": "Optional"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_dish": {
@@ -61,11 +38,14 @@
               "key": "Required",
               "templatable": true,
               "type": "integer"
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
+            },
+            "repeat": {
+              "key": "Optional"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_jvc": {
@@ -81,11 +61,14 @@
                   "core.hex_uint32_t"
                 ]
               }
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
+            },
+            "repeat": {
+              "key": "Optional"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_lg": {
@@ -111,11 +94,14 @@
                 28,
                 32
               ]
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
+            },
+            "repeat": {
+              "key": "Optional"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_magiquest": {
@@ -142,11 +128,14 @@
                   "core.hex_uint16_t"
                 ]
               }
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
+            },
+            "repeat": {
+              "key": "Optional"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_nec": {
@@ -172,11 +161,14 @@
                   "core.hex_uint16_t"
                 ]
               }
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
+            },
+            "repeat": {
+              "key": "Optional"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_pioneer": {
@@ -203,11 +195,14 @@
                   "core.hex_uint16_t"
                 ]
               }
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
+            },
+            "repeat": {
+              "key": "Optional"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_pronto": {
@@ -218,11 +213,14 @@
               "key": "Required",
               "templatable": true,
               "type": "string"
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
+            },
+            "repeat": {
+              "key": "Optional"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_sony": {
@@ -249,11 +247,14 @@
                 15,
                 20
               ]
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
+            },
+            "repeat": {
+              "key": "Optional"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_raw": {
@@ -273,11 +274,14 @@
               "default": "0Hz",
               "templatable": true,
               "type": "integer"
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
+            },
+            "repeat": {
+              "key": "Optional"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_rc5": {
@@ -291,11 +295,14 @@
             "command": {
               "key": "Required",
               "templatable": true
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
+            },
+            "repeat": {
+              "key": "Optional"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_rc_switch_raw": {
@@ -324,33 +331,15 @@
                   },
                   "sync": {
                     "key": "Optional",
-                    "default": "[1, 31]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "default": "[1, 31]"
                   },
                   "zero": {
                     "key": "Optional",
-                    "default": "[1, 3]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "default": "[1, 3]"
                   },
                   "one": {
                     "key": "Optional",
-                    "default": "[3, 1]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "default": "[3, 1]"
                   },
                   "inverted": {
                     "key": "Optional",
@@ -361,40 +350,12 @@
               }
             },
             "repeat": {
-              "key": "Optional",
-              "default": "{'times': 5}",
-              "templatable": true,
-              "type": "schema",
-              "schema": {
-                "config_vars": {
-                  "times": {
-                    "key": "Required",
-                    "templatable": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_int"
-                      ]
-                    }
-                  },
-                  "wait_time": {
-                    "key": "Optional",
-                    "default": "0us",
-                    "templatable": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_time_period_microseconds"
-                      ]
-                    }
-                  }
-                }
-              }
+              "key": "Optional"
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_rc_switch_type_a": {
@@ -432,33 +393,15 @@
                   },
                   "sync": {
                     "key": "Optional",
-                    "default": "[1, 31]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "default": "[1, 31]"
                   },
                   "zero": {
                     "key": "Optional",
-                    "default": "[1, 3]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "default": "[1, 3]"
                   },
                   "one": {
                     "key": "Optional",
-                    "default": "[3, 1]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "default": "[3, 1]"
                   },
                   "inverted": {
                     "key": "Optional",
@@ -469,40 +412,12 @@
               }
             },
             "repeat": {
-              "key": "Optional",
-              "default": "{'times': 5}",
-              "templatable": true,
-              "type": "schema",
-              "schema": {
-                "config_vars": {
-                  "times": {
-                    "key": "Required",
-                    "templatable": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_int"
-                      ]
-                    }
-                  },
-                  "wait_time": {
-                    "key": "Optional",
-                    "default": "0us",
-                    "templatable": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_time_period_microseconds"
-                      ]
-                    }
-                  }
-                }
-              }
+              "key": "Optional"
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_rc_switch_type_b": {
@@ -542,33 +457,15 @@
                   },
                   "sync": {
                     "key": "Optional",
-                    "default": "[1, 31]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "default": "[1, 31]"
                   },
                   "zero": {
                     "key": "Optional",
-                    "default": "[1, 3]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "default": "[1, 3]"
                   },
                   "one": {
                     "key": "Optional",
-                    "default": "[3, 1]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "default": "[3, 1]"
                   },
                   "inverted": {
                     "key": "Optional",
@@ -579,40 +476,12 @@
               }
             },
             "repeat": {
-              "key": "Optional",
-              "default": "{'times': 5}",
-              "templatable": true,
-              "type": "schema",
-              "schema": {
-                "config_vars": {
-                  "times": {
-                    "key": "Required",
-                    "templatable": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_int"
-                      ]
-                    }
-                  },
-                  "wait_time": {
-                    "key": "Optional",
-                    "default": "0us",
-                    "templatable": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_time_period_microseconds"
-                      ]
-                    }
-                  }
-                }
-              }
+              "key": "Optional"
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_rc_switch_type_c": {
@@ -675,33 +544,15 @@
                   },
                   "sync": {
                     "key": "Optional",
-                    "default": "[1, 31]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "default": "[1, 31]"
                   },
                   "zero": {
                     "key": "Optional",
-                    "default": "[1, 3]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "default": "[1, 3]"
                   },
                   "one": {
                     "key": "Optional",
-                    "default": "[3, 1]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "default": "[3, 1]"
                   },
                   "inverted": {
                     "key": "Optional",
@@ -712,40 +563,12 @@
               }
             },
             "repeat": {
-              "key": "Optional",
-              "default": "{'times': 5}",
-              "templatable": true,
-              "type": "schema",
-              "schema": {
-                "config_vars": {
-                  "times": {
-                    "key": "Required",
-                    "templatable": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_int"
-                      ]
-                    }
-                  },
-                  "wait_time": {
-                    "key": "Optional",
-                    "default": "0us",
-                    "templatable": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_time_period_microseconds"
-                      ]
-                    }
-                  }
-                }
-              }
+              "key": "Optional"
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_rc_switch_type_d": {
@@ -791,33 +614,15 @@
                   },
                   "sync": {
                     "key": "Optional",
-                    "default": "[1, 31]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "default": "[1, 31]"
                   },
                   "zero": {
                     "key": "Optional",
-                    "default": "[1, 3]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "default": "[1, 3]"
                   },
                   "one": {
                     "key": "Optional",
-                    "default": "[3, 1]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "default": "[3, 1]"
                   },
                   "inverted": {
                     "key": "Optional",
@@ -828,40 +633,12 @@
               }
             },
             "repeat": {
-              "key": "Optional",
-              "default": "{'times': 5}",
-              "templatable": true,
-              "type": "schema",
-              "schema": {
-                "config_vars": {
-                  "times": {
-                    "key": "Required",
-                    "templatable": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_int"
-                      ]
-                    }
-                  },
-                  "wait_time": {
-                    "key": "Optional",
-                    "default": "0us",
-                    "templatable": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_time_period_microseconds"
-                      ]
-                    }
-                  }
-                }
-              }
+              "key": "Optional"
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_samsung": {
@@ -883,11 +660,14 @@
               "default": "32",
               "templatable": true,
               "type": "integer"
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
+            },
+            "repeat": {
+              "key": "Optional"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_samsung36": {
@@ -913,11 +693,14 @@
                   "core.hex_uint32_t"
                 ]
               }
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
+            },
+            "repeat": {
+              "key": "Optional"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_toshiba_ac": {
@@ -944,11 +727,14 @@
                   "core.hex_uint64_t"
                 ]
               }
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
+            },
+            "repeat": {
+              "key": "Optional"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_panasonic": {
@@ -974,11 +760,14 @@
                   "core.hex_uint32_t"
                 ]
               }
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
+            },
+            "repeat": {
+              "key": "Optional"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_nexa": {
@@ -1034,11 +823,14 @@
                   "core.hex_uint8_t"
                 ]
               }
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
+            },
+            "repeat": {
+              "key": "Optional"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       },
       "transmit_midea": {
@@ -1048,11 +840,14 @@
             "code": {
               "key": "Required",
               "templatable": true
+            },
+            "transmitter_id": {
+              "key": "GeneratedID"
+            },
+            "repeat": {
+              "key": "Optional"
             }
-          },
-          "extends": [
-            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
-          ]
+          }
         }
       }
     }

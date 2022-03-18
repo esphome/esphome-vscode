@@ -2,84 +2,198 @@
   "xiaomi_cgpr1.binary_sensor": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "extends": [
-          "binary_sensor.BINARY_SENSOR_SCHEMA",
-          "esp32_ble_tracker.ESP_BLE_DEVICE_SCHEMA",
-          "core.COMPONENT_SCHEMA"
-        ],
-        "config_vars": {
-          "id": {},
-          "device_class": {
-            "default": "motion"
-          },
-          "bindkey": {
-            "key": "Required"
-          },
-          "mac_address": {
-            "key": "Required"
-          },
-          "battery_level": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "%"
-                },
-                "accuracy_decimals": {
-                  "default": "0"
-                },
-                "device_class": {
-                  "default": "battery"
-                },
-                "entity_category": {
-                  "default": "diagnostic"
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "binary_sensor.BINARY_SENSOR_SCHEMA",
+            "esp32_ble_tracker.ESP_BLE_DEVICE_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            },
+            "device_class": {
+              "key": "Optional",
+              "default": "motion",
+              "type": "enum",
+              "values": [
+                "",
+                "battery",
+                "battery_charging",
+                "cold",
+                "connectivity",
+                "door",
+                "garage_door",
+                "gas",
+                "heat",
+                "light",
+                "lock",
+                "moisture",
+                "motion",
+                "moving",
+                "occupancy",
+                "opening",
+                "plug",
+                "power",
+                "presence",
+                "problem",
+                "running",
+                "safety",
+                "smoke",
+                "sound",
+                "tamper",
+                "update",
+                "vibration",
+                "window"
+              ]
+            },
+            "bindkey": {
+              "key": "Required"
+            },
+            "mac_address": {
+              "key": "Required"
+            },
+            "battery_level": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "%",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "0",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "battery",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "entity_category": {
+                    "key": "Optional",
+                    "default": "diagnostic"
+                  }
                 }
               }
-            }
-          },
-          "idle_time": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "min"
-                },
-                "icon": {
-                  "default": "mdi:timelapse"
-                },
-                "accuracy_decimals": {
-                  "default": "0"
-                },
-                "entity_category": {
-                  "default": "diagnostic"
+            },
+            "idle_time": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "min",
+                    "type": "string"
+                  },
+                  "icon": {
+                    "key": "Optional",
+                    "default": "mdi:timelapse"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "0",
+                    "type": "integer"
+                  },
+                  "entity_category": {
+                    "key": "Optional",
+                    "default": "diagnostic"
+                  }
                 }
               }
-            }
-          },
-          "illuminance": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "lx"
-                },
-                "accuracy_decimals": {
-                  "default": "0"
-                },
-                "device_class": {
-                  "default": "illuminance"
+            },
+            "illuminance": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "lx",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "0",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "illuminance",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  }
                 }
               }
             }

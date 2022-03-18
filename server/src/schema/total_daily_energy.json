@@ -2,75 +2,120 @@
   "total_daily_energy.sensor": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "extends": [
-          "sensor.SENSOR_SCHEMA",
-          "core.COMPONENT_SCHEMA"
-        ],
-        "config_vars": {
-          "id": {
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Total Daily Energy Sensor](https://esphome.io/components/sensor/total_daily_energy.html#configuration-variables)*"
-          },
-          "device_class": {
-            "default": "energy"
-          },
-          "state_class": {
-            "default": "total_increasing"
-          },
-          "time_id": {
-            "key": "GeneratedID"
-          },
-          "power_id": {
-            "key": "Required",
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the power sensor to integrate over time.\n\n\n\n*See also: [Total Daily Energy Sensor](https://esphome.io/components/sensor/total_daily_energy.html#configuration-variables)*"
-          },
-          "restore": {
-            "key": "Optional",
-            "default": "True",
-            "type": "boolean",
-            "docs": "**boolean**: Whether to store the intermediate result on the device so that the value can be restored upon power cycle or reboot. Defaults to `true`.\n\n\n\n*See also: [Total Daily Energy Sensor](https://esphome.io/components/sensor/total_daily_energy.html#configuration-variables)*"
-          },
-          "min_save_interval": {
-            "key": "Optional",
-            "default": "0s",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.positive_time_period_milliseconds"
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "sensor.SENSOR_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Total Daily Energy Sensor](https://esphome.io/components/sensor/total_daily_energy.html#configuration-variables)*"
+            },
+            "device_class": {
+              "key": "Optional",
+              "default": "energy",
+              "type": "enum",
+              "values": [
+                "",
+                "aqi",
+                "battery",
+                "carbon_dioxide",
+                "carbon_monoxide",
+                "current",
+                "energy",
+                "gas",
+                "humidity",
+                "illuminance",
+                "monetary",
+                "nitrogen_dioxide",
+                "nitrogen_monoxide",
+                "nitrous_oxide",
+                "ozone",
+                "pm1",
+                "pm10",
+                "pm25",
+                "power",
+                "power_factor",
+                "pressure",
+                "signal_strength",
+                "sulphur_dioxide",
+                "temperature",
+                "timestamp",
+                "volatile_organic_compounds",
+                "voltage"
               ]
             },
-            "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The minimum time span between saving updated values to storage. This is to keep wearout of memory low. Defaults to `0s`.\n\n\n\n*See also: [Total Daily Energy Sensor](https://esphome.io/components/sensor/total_daily_energy.html#configuration-variables)*"
-          },
-          "method": {
-            "key": "Optional",
-            "default": "right",
-            "type": "enum",
-            "values": [
-              "trapezoid",
-              "left",
-              "right"
-            ],
-            "docs": "**string**: The method to use for calculating the total daily energy. One of `trapezoid`, `left` or `right`. Defaults to `right`.\n\n\n\n*See also: [Total Daily Energy Sensor](https://esphome.io/components/sensor/total_daily_energy.html#configuration-variables)*"
+            "state_class": {
+              "key": "Optional",
+              "default": "total_increasing",
+              "type": "enum",
+              "values": [
+                "",
+                "measurement",
+                "total_increasing"
+              ]
+            },
+            "time_id": {
+              "key": "GeneratedID"
+            },
+            "power_id": {
+              "key": "Required",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the power sensor to integrate over time.\n\n\n\n*See also: [Total Daily Energy Sensor](https://esphome.io/components/sensor/total_daily_energy.html#configuration-variables)*"
+            },
+            "restore": {
+              "key": "Optional",
+              "default": "True",
+              "type": "boolean",
+              "docs": "**boolean**: Whether to store the intermediate result on the device so that the value can be restored upon power cycle or reboot. Defaults to `true`.\n\n\n\n*See also: [Total Daily Energy Sensor](https://esphome.io/components/sensor/total_daily_energy.html#configuration-variables)*"
+            },
+            "min_save_interval": {
+              "key": "Optional",
+              "default": "0s",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.time_period_dict"
+                ]
+              },
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The minimum time span between saving updated values to storage. This is to keep wearout of memory low. Defaults to `0s`.\n\n\n\n*See also: [Total Daily Energy Sensor](https://esphome.io/components/sensor/total_daily_energy.html#configuration-variables)*"
+            },
+            "method": {
+              "key": "Optional",
+              "default": "right",
+              "type": "enum",
+              "values": [
+                "trapezoid",
+                "left",
+                "right"
+              ],
+              "docs": "**string**: The method to use for calculating the total daily energy. One of `trapezoid`, `left` or `right`. Defaults to `right`.\n\n\n\n*See also: [Total Daily Energy Sensor](https://esphome.io/components/sensor/total_daily_energy.html#configuration-variables)*"
+            }
           }
         }
       },
       "FINAL_VALIDATE_SCHEMA": {
-        "config_vars": {
-          "id": {
-            "key": "Required"
-          },
-          "icon": {
-            "key": "Optional"
-          },
-          "unit_of_measurement": {
-            "key": "Optional",
-            "type": "string"
-          },
-          "accuracy_decimals": {
-            "key": "Optional",
-            "type": "integer"
-          },
-          "power_id": {
-            "key": "Required"
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            },
+            "icon": {
+              "key": "Optional"
+            },
+            "unit_of_measurement": {
+              "key": "Optional",
+              "type": "string"
+            },
+            "accuracy_decimals": {
+              "key": "Optional",
+              "type": "integer"
+            },
+            "power_id": {
+              "key": "Required"
+            }
           }
         }
       }

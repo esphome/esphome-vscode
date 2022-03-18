@@ -2,139 +2,310 @@
   "ina226.sensor": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "config_vars": {
-          "id": {
-            "key": "GeneratedID"
-          },
-          "bus_voltage": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "V"
-                },
-                "accuracy_decimals": {
-                  "default": "2"
-                },
-                "device_class": {
-                  "default": "voltage"
-                },
-                "state_class": {
-                  "default": "measurement"
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            },
+            "bus_voltage": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "V",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "2",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "voltage",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
                 }
-              }
+              },
+              "docs": "Use the bus voltage (voltage of the high side contact) value of the sensor in V. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [INA226 DC current and power sensor](https://esphome.io/components/sensor/ina226.html#configuration-variables)*"
             },
-            "docs": "Use the bus voltage (voltage of the high side contact) value of the sensor in V. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [INA226 DC current and power sensor](https://esphome.io/components/sensor/ina226.html#configuration-variables)*"
-          },
-          "shunt_voltage": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "V"
-                },
-                "accuracy_decimals": {
-                  "default": "2"
-                },
-                "device_class": {
-                  "default": "voltage"
-                },
-                "state_class": {
-                  "default": "measurement"
+            "shunt_voltage": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "V",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "2",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "voltage",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
                 }
-              }
+              },
+              "docs": "Use the shunt voltage (voltage across the shunt resistor) value of the sensor in V. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [INA226 DC current and power sensor](https://esphome.io/components/sensor/ina226.html#configuration-variables)*"
             },
-            "docs": "Use the shunt voltage (voltage across the shunt resistor) value of the sensor in V. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [INA226 DC current and power sensor](https://esphome.io/components/sensor/ina226.html#configuration-variables)*"
-          },
-          "current": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "A"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "device_class": {
-                  "default": "current"
-                },
-                "state_class": {
-                  "default": "measurement"
+            "current": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "A",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "current",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
                 }
-              }
+              },
+              "docs": "Use the current value of the sensor in amperes. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [INA226 DC current and power sensor](https://esphome.io/components/sensor/ina226.html#configuration-variables)*"
             },
-            "docs": "Use the current value of the sensor in amperes. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [INA226 DC current and power sensor](https://esphome.io/components/sensor/ina226.html#configuration-variables)*"
-          },
-          "power": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "W"
-                },
-                "accuracy_decimals": {
-                  "default": "2"
-                },
-                "device_class": {
-                  "default": "power"
-                },
-                "state_class": {
-                  "default": "measurement"
+            "power": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "W",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "2",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "power",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
                 }
-              }
+              },
+              "docs": "Use the power value of the sensor in watts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [INA226 DC current and power sensor](https://esphome.io/components/sensor/ina226.html#configuration-variables)*"
             },
-            "docs": "Use the power value of the sensor in watts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [INA226 DC current and power sensor](https://esphome.io/components/sensor/ina226.html#configuration-variables)*"
-          },
-          "shunt_resistance": {
-            "key": "Optional",
-            "default": "0.1",
-            "docs": "**float**: The value of the shunt resistor on the board for current calculation. Defaults to `0.1 ohm`.\n\n\n\n*See also: [INA226 DC current and power sensor](https://esphome.io/components/sensor/ina226.html#configuration-variables)*"
-          },
-          "max_current": {
-            "key": "Optional",
-            "default": "3.2",
-            "docs": "**float**: The maximum current you are expecting. ESPHome will use this to configure the sensor optimally. Defaults to `3.2A`.\n\n\n\n*See also: [INA226 DC current and power sensor](https://esphome.io/components/sensor/ina226.html#configuration-variables)*"
-          },
-          "update_interval": {
-            "key": "Optional",
-            "default": "60s",
-            "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n\n\n*See also: [INA226 DC current and power sensor](https://esphome.io/components/sensor/ina226.html#configuration-variables)*"
-          },
-          "i2c_id": {
-            "key": "GeneratedID"
-          },
-          "address": {
-            "key": "Optional",
-            "default": "64",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint8_t"
-              ]
+            "shunt_resistance": {
+              "key": "Optional",
+              "default": "0.1",
+              "docs": "**float**: The value of the shunt resistor on the board for current calculation. Defaults to `0.1 ohm`.\n\n\n\n*See also: [INA226 DC current and power sensor](https://esphome.io/components/sensor/ina226.html#configuration-variables)*"
             },
-            "docs": "**int**: Manually specify the I\u00b2C address of the sensor. Defaults to `0x40`.\n\n\n\n*See also: [INA226 DC current and power sensor](https://esphome.io/components/sensor/ina226.html#configuration-variables)*"
-          }
-        },
-        "extends": [
-          "core.COMPONENT_SCHEMA"
-        ]
+            "max_current": {
+              "key": "Optional",
+              "default": "3.2",
+              "docs": "**float**: The maximum current you are expecting. ESPHome will use this to configure the sensor optimally. Defaults to `3.2A`.\n\n\n\n*See also: [INA226 DC current and power sensor](https://esphome.io/components/sensor/ina226.html#configuration-variables)*"
+            },
+            "update_interval": {
+              "key": "Optional",
+              "default": "60s",
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n\n\n*See also: [INA226 DC current and power sensor](https://esphome.io/components/sensor/ina226.html#configuration-variables)*"
+            },
+            "i2c_id": {
+              "key": "GeneratedID"
+            },
+            "address": {
+              "key": "Optional",
+              "default": "64",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint8_t"
+                ]
+              },
+              "docs": "**int**: Manually specify the I\u00b2C address of the sensor. Defaults to `0x40`.\n\n\n\n*See also: [INA226 DC current and power sensor](https://esphome.io/components/sensor/ina226.html#configuration-variables)*"
+            }
+          },
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
+        }
       }
     }
   }

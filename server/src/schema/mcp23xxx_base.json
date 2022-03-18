@@ -2,68 +2,74 @@
   "mcp23xxx_base": {
     "schemas": {
       "MCP23XXX_CONFIG_SCHEMA": {
-        "config_vars": {
-          "open_drain_interrupt": {
-            "key": "Optional",
-            "default": "False",
-            "type": "boolean"
-          }
-        },
-        "extends": [
-          "core.COMPONENT_SCHEMA"
-        ]
-      },
-      "MCP23XXX_PIN_SCHEMA": {
-        "config_vars": {
-          "id": {
-            "key": "GeneratedID"
-          },
-          "mcp23xxx": {
-            "key": "Required"
-          },
-          "number": {
-            "key": "Required",
-            "type": "integer"
-          },
-          "mode": {
-            "key": "Optional",
-            "default": "{}",
-            "type": "schema",
-            "schema": {
-              "config_vars": {
-                "input": {
-                  "key": "Optional",
-                  "default": "False",
-                  "type": "boolean"
-                },
-                "pullup": {
-                  "key": "Optional",
-                  "default": "False",
-                  "type": "boolean"
-                },
-                "output": {
-                  "key": "Optional",
-                  "default": "False",
-                  "type": "boolean"
-                }
-              }
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "open_drain_interrupt": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean"
             }
           },
-          "inverted": {
-            "key": "Optional",
-            "default": "False",
-            "type": "boolean"
-          },
-          "interrupt": {
-            "key": "Optional",
-            "default": "NO_INTERRUPT",
-            "type": "enum",
-            "values": [
-              "NO_INTERRUPT",
-              "CHANGE",
-              "RISING",
-              "FALLING"
-            ]
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
+        }
+      },
+      "MCP23XXX_PIN_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            },
+            "mcp23xxx": {
+              "key": "Required"
+            },
+            "number": {
+              "key": "Required",
+              "type": "integer"
+            },
+            "mode": {
+              "key": "Optional",
+              "default": "{}",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "input": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean"
+                  },
+                  "pullup": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean"
+                  },
+                  "output": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "inverted": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean"
+            },
+            "interrupt": {
+              "key": "Optional",
+              "default": "NO_INTERRUPT",
+              "type": "enum",
+              "values": [
+                "NO_INTERRUPT",
+                "CHANGE",
+                "RISING",
+                "FALLING"
+              ]
+            }
           }
         }
       }

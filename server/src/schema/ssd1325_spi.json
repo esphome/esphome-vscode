@@ -2,32 +2,38 @@
   "ssd1325_spi.display": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "extends": [
-          "ssd1325_base.SSD1325_SCHEMA",
-          "core.COMPONENT_SCHEMA"
-        ],
-        "config_vars": {
-          "id": {
-            "key": "GeneratedID"
-          },
-          "dc_pin": {
-            "key": "Required",
-            "schema": true,
-            "modes": [
-              "output"
-            ],
-            "type": "pin"
-          },
-          "spi_id": {
-            "key": "GeneratedID"
-          },
-          "cs_pin": {
-            "key": "Optional",
-            "schema": true,
-            "modes": [
-              "output"
-            ],
-            "type": "pin"
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "ssd1325_base.SSD1325_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [ssd1325_spi Component](https://esphome.io/components/display/ssd1325.html#configuration-variables)*"
+            },
+            "dc_pin": {
+              "key": "Required",
+              "schema": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin",
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The DC pin.\n\n\n\n*See also: [ssd1325_spi Component](https://esphome.io/components/display/ssd1325.html#configuration-variables)*"
+            },
+            "spi_id": {
+              "key": "GeneratedID"
+            },
+            "cs_pin": {
+              "key": "Optional",
+              "schema": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin",
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin on the ESP that that the CS line is connected to. The CS line can be connected to GND if this is the only device on the SPI bus.\n\n\n\n*See also: [ssd1325_spi Component](https://esphome.io/components/display/ssd1325.html#configuration-variables)*"
+            }
           }
         }
       }

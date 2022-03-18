@@ -2,31 +2,33 @@
   "mcp47a1.output": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "extends": [
-          "output.FLOAT_OUTPUT_SCHEMA",
-          "core.COMPONENT_SCHEMA"
-        ],
-        "config_vars": {
-          "id": {
-            "key": "Required",
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n\n\n*See also: [MCP47A1 Output](https://esphome.io/components/output/mcp47a1.html#configuration-variables)*"
-          },
-          "i2c_id": {
-            "key": "GeneratedID"
-          },
-          "address": {
-            "key": "Optional",
-            "default": "46",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint8_t"
-              ]
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "output.FLOAT_OUTPUT_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n\n\n*See also: [MCP47A1 Output](https://esphome.io/components/output/mcp47a1.html#configuration-variables)*"
             },
-            "docs": "**int**: Manually specify the I\u00b2C address of the DAC. Defaults to `0x2E`.\n\n\n\n*See also: [MCP47A1 Output](https://esphome.io/components/output/mcp47a1.html#configuration-variables)*"
+            "i2c_id": {
+              "key": "GeneratedID"
+            },
+            "address": {
+              "key": "Optional",
+              "default": "46",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint8_t"
+                ]
+              },
+              "docs": "**int**: Manually specify the I\u00b2C address of the DAC. Defaults to `0x2E`.\n\n\n\n*See also: [MCP47A1 Output](https://esphome.io/components/output/mcp47a1.html#configuration-variables)*"
+            }
           }
-        },
-        "docs": "The `mcp47a1` output component allows to use [6bit external DAC](https://www.microchip.com/en-us/product/MCP47A1) in order to have analog output(s) on any board by using I\u00b2C. Devices default address is `0x2E` and configurable alternative is `0x3E`.\n\n*See also: [MCP47A1 Output](https://esphome.io/components/output/mcp47a1.html#mcp47a1-output)*"
+        }
       }
     }
   }

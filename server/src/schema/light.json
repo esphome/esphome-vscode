@@ -13,8 +13,12 @@
       "cwww": {
         "docs": "The `cwww` light platform creates a cold white + warm white light from 2 [float output components](https://esphome.io/components/output/index.html#output) (one for each channel). The two channels can be controlled individually or together.\n\n*See also: [Cold White + Warm White Light](https://esphome.io/components/light/cwww.html#cold-white-warm-white-light)*"
       },
-      "fastled_clockless": {},
-      "fastled_spi": {},
+      "fastled_clockless": {
+        "docs": "The `fastled_clockless` light platform allows you to create RGB lights in ESPHome for a [number of supported chipsets](https://esphome.io/components/light/fastled.html#fastled-clockless-chipsets).\n\n*See also: [FastLED Light](https://esphome.io/components/light/fastled.html#clockless)*"
+      },
+      "fastled_spi": {
+        "docs": "The `fastled_spi` light platform allows you to create RGB lights in ESPHome for a [number of supported chipsets](https://esphome.io/components/light/fastled.html#fastled-spi-chipsets).\n\n*See also: [Clockless](https://esphome.io/components/light/fastled.html#spi)*"
+      },
       "hbridge": {
         "docs": "The `hbridge` light platform creates a dual color brightness controlled light from two [float output component](https://esphome.io/components/output/index.html#output).\n\n*See also: [H-bridge Light](https://esphome.io/components/light/hbridge.html#h-bridge-light)*"
       },
@@ -48,205 +52,239 @@
     },
     "schemas": {
       "LIGHT_SCHEMA": {
-        "extends": [
-          "core.ENTITY_BASE_SCHEMA",
-          "core.MQTT_COMMAND_COMPONENT_SCHEMA"
-        ],
-        "config_vars": {
-          "id": {
-            "key": "GeneratedID",
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Tuya Dimmer](https://esphome.io/components/light/tuya.html#configuration-variables)*"
-          },
-          "mqtt_id": {
-            "key": "Optional"
-          },
-          "restore_mode": {
-            "key": "Optional",
-            "default": "restore_default_off",
-            "type": "enum",
-            "values": [
-              "RESTORE_DEFAULT_OFF",
-              "RESTORE_DEFAULT_ON",
-              "ALWAYS_OFF",
-              "ALWAYS_ON",
-              "RESTORE_INVERTED_DEFAULT_OFF",
-              "RESTORE_INVERTED_DEFAULT_ON",
-              "RESTORE_AND_OFF",
-              "RESTORE_AND_ON"
-            ],
-            "docs": "Control how the light attempts to restore state on bootup. For restoring on ESP8266s, also see `esp8266_restore_from_flash` in the [esphome section](https://esphome.io/components/esphome.html).\n  * `RESTORE_DEFAULT_OFF` (Default) - Attempt to restore state and default to OFF if not possible to restore.\n  \n  * `RESTORE_DEFAULT_ON` - Attempt to restore state and default to ON.\n  \n  * `RESTORE_INVERTED_DEFAULT_OFF` - Attempt to restore state inverted from the previous state and default to OFF.\n  \n  * `RESTORE_INVERTED_DEFAULT_ON` - Attempt to restore state inverted from the previous state and default to ON.\n  \n  * `RESTORE_AND_OFF` - Attempt to restore state but initialize the light as OFF.\n  \n  * `RESTORE_AND_ON` - Attempt to restore state but initialize the light as ON.\n  \n  * `ALWAYS_OFF` - Always initialize the light as OFF on bootup.\n  \n  * `ALWAYS_ON` - Always initialize the light as ON on bootup.\n  \n  \n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
-          },
-          "on_turn_on": {
-            "key": "Optional",
-            "type": "trigger",
-            "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: An automation to perform when the light is turned on. See [light.on_turn_on / light.on_turn_off Trigger](https://esphome.io/components/light/index.html#light-on-turn-on-off-trigger).\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
-          },
-          "on_turn_off": {
-            "key": "Optional",
-            "type": "trigger",
-            "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: An automation to perform when the light is turned off. See [light.on_turn_on / light.on_turn_off Trigger](https://esphome.io/components/light/index.html#light-on-turn-on-off-trigger).\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
-          },
-          "on_state": {
-            "key": "Optional",
-            "type": "trigger",
-            "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: An automation to perform when the light\u2019s set state is changed. See [light.on_state Trigger](https://esphome.io/components/light/index.html#light-on-state-trigger).\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
-          },
-          "effects": {
-            "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
-          },
-          "gamma_correct": {
-            "docs": "**float**: Apply a [gamma correction factor](https://en.wikipedia.org/wiki/Gamma_correction) to the light channels. Defaults to `2.8`.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
-          },
-          "default_transition_length": {
-            "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The default transition length to use when no transition length is set in the light call. Defaults to `1s`.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
-          },
-          "flash_transition_length": {
-            "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The transition length to use when flash is called. Defaults to `0s`.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
-          },
-          "color_correct": {
-            "docs": "**list of float**: Apply a color correction to each color channel. This defines the maximum brightness of each channel. For example `[100%, 50%, 100%]` would set the green channel to be at most at 50% brightness.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
-          },
-          "power_supply": {
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The [Power Supply Component](https://esphome.io/components/power_supply.html) to connect to this light. When the light is turned on, the power supply will automatically be switched on too.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "core.ENTITY_BASE_SCHEMA",
+            "core.MQTT_COMMAND_COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Tuya Dimmer](https://esphome.io/components/light/tuya.html#configuration-variables)*"
+            },
+            "mqtt_id": {
+              "key": "Optional"
+            },
+            "restore_mode": {
+              "key": "Optional",
+              "default": "restore_default_off",
+              "type": "enum",
+              "values": [
+                "RESTORE_DEFAULT_OFF",
+                "RESTORE_DEFAULT_ON",
+                "ALWAYS_OFF",
+                "ALWAYS_ON",
+                "RESTORE_INVERTED_DEFAULT_OFF",
+                "RESTORE_INVERTED_DEFAULT_ON",
+                "RESTORE_AND_OFF",
+                "RESTORE_AND_ON"
+              ],
+              "docs": "Control how the light attempts to restore state on bootup. For restoring on ESP8266s, also see `esp8266_restore_from_flash` in the [esphome section](https://esphome.io/components/esphome.html).\n  * `RESTORE_DEFAULT_OFF` (Default) - Attempt to restore state and default to OFF if not possible to restore.\n  \n  * `RESTORE_DEFAULT_ON` - Attempt to restore state and default to ON.\n  \n  * `RESTORE_INVERTED_DEFAULT_OFF` - Attempt to restore state inverted from the previous state and default to OFF.\n  \n  * `RESTORE_INVERTED_DEFAULT_ON` - Attempt to restore state inverted from the previous state and default to ON.\n  \n  * `RESTORE_AND_OFF` - Attempt to restore state but initialize the light as OFF.\n  \n  * `RESTORE_AND_ON` - Attempt to restore state but initialize the light as ON.\n  \n  * `ALWAYS_OFF` - Always initialize the light as OFF on bootup.\n  \n  * `ALWAYS_ON` - Always initialize the light as ON on bootup.\n  \n  \n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+            },
+            "on_turn_on": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: An automation to perform when the light is turned on. See [light.on_turn_on / light.on_turn_off Trigger](https://esphome.io/components/light/index.html#light-on-turn-on-off-trigger).\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+            },
+            "on_turn_off": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: An automation to perform when the light is turned off. See [light.on_turn_on / light.on_turn_off Trigger](https://esphome.io/components/light/index.html#light-on-turn-on-off-trigger).\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+            },
+            "on_state": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: An automation to perform when the light\u2019s set state is changed. See [light.on_state Trigger](https://esphome.io/components/light/index.html#light-on-state-trigger).\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+            },
+            "effects": {
+              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+            },
+            "gamma_correct": {
+              "docs": "**float**: Apply a [gamma correction factor](https://en.wikipedia.org/wiki/Gamma_correction) to the light channels. Defaults to `2.8`.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+            },
+            "default_transition_length": {
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The default transition length to use when no transition length is set in the light call. Defaults to `1s`.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+            },
+            "flash_transition_length": {
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The transition length to use when flash is called. Defaults to `0s`.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+            },
+            "color_correct": {
+              "docs": "**list of float**: Apply a color correction to each color channel. This defines the maximum brightness of each channel. For example `[100%, 50%, 100%]` would set the green channel to be at most at 50% brightness.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+            },
+            "power_supply": {
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The [Power Supply Component](https://esphome.io/components/power_supply.html) to connect to this light. When the light is turned on, the power supply will automatically be switched on too.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+            }
           }
         }
       },
       "BINARY_LIGHT_SCHEMA": {
-        "extends": [
-          "light.LIGHT_SCHEMA"
-        ],
-        "config_vars": {
-          "effects": {
-            "key": "Optional",
-            "type": "registry",
-            "registry": "light.effects",
-            "filter": [
-              "lambda",
-              "automation",
-              "strobe"
-            ],
-            "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light, though binary lights only support very few of them.\n\n\n\n*See also: [Status LED Light](https://esphome.io/components/light/status_led.html#configuration-variables)*"
-          },
-          "gamma_correct": {
-            "docs": "**float**: Apply a [gamma correction factor](https://en.wikipedia.org/wiki/Gamma_correction) to the light channels. Defaults to `2.8`.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
-          },
-          "default_transition_length": {
-            "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The default transition length to use when no transition length is set in the light call. Defaults to `1s`.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
-          },
-          "flash_transition_length": {
-            "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The transition length to use when flash is called. Defaults to `0s`.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
-          },
-          "color_correct": {
-            "docs": "**list of float**: Apply a color correction to each color channel. This defines the maximum brightness of each channel. For example `[100%, 50%, 100%]` would set the green channel to be at most at 50% brightness.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
-          },
-          "power_supply": {
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The [Power Supply Component](https://esphome.io/components/power_supply.html) to connect to this light. When the light is turned on, the power supply will automatically be switched on too.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "light.LIGHT_SCHEMA"
+          ],
+          "config_vars": {
+            "effects": {
+              "key": "Optional",
+              "type": "registry",
+              "registry": "light.effects",
+              "filter": [
+                "lambda",
+                "automation",
+                "strobe"
+              ],
+              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light, though binary lights only support very few of them.\n\n\n\n*See also: [Status LED Light](https://esphome.io/components/light/status_led.html#configuration-variables)*"
+            },
+            "gamma_correct": {
+              "docs": "**float**: Apply a [gamma correction factor](https://en.wikipedia.org/wiki/Gamma_correction) to the light channels. Defaults to `2.8`.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+            },
+            "default_transition_length": {
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The default transition length to use when no transition length is set in the light call. Defaults to `1s`.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+            },
+            "flash_transition_length": {
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The transition length to use when flash is called. Defaults to `0s`.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+            },
+            "color_correct": {
+              "docs": "**list of float**: Apply a color correction to each color channel. This defines the maximum brightness of each channel. For example `[100%, 50%, 100%]` would set the green channel to be at most at 50% brightness.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+            },
+            "power_supply": {
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The [Power Supply Component](https://esphome.io/components/power_supply.html) to connect to this light. When the light is turned on, the power supply will automatically be switched on too.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+            }
           }
         }
       },
       "BRIGHTNESS_ONLY_LIGHT_SCHEMA": {
-        "extends": [
-          "light.LIGHT_SCHEMA"
-        ],
-        "config_vars": {
-          "gamma_correct": {
-            "key": "Optional",
-            "default": "2.8",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.positive_float"
-              ]
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "light.LIGHT_SCHEMA"
+          ],
+          "config_vars": {
+            "gamma_correct": {
+              "key": "Optional",
+              "default": "2.8",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_float"
+                ]
+              },
+              "docs": "**float**: Apply a [gamma correction factor](https://en.wikipedia.org/wiki/Gamma_correction) to the light channels. Defaults to `2.8`.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
             },
-            "docs": "**float**: Apply a [gamma correction factor](https://en.wikipedia.org/wiki/Gamma_correction) to the light channels. Defaults to `2.8`.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
-          },
-          "default_transition_length": {
-            "key": "Optional",
-            "default": "1s",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.positive_time_period_milliseconds"
-              ]
+            "default_transition_length": {
+              "key": "Optional",
+              "default": "1s",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.time_period_dict"
+                ]
+              },
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The default transition length to use when no transition length is set in the light call. Defaults to `1s`.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
             },
-            "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The default transition length to use when no transition length is set in the light call. Defaults to `1s`.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
-          },
-          "flash_transition_length": {
-            "key": "Optional",
-            "default": "0s",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.positive_time_period_milliseconds"
-              ]
+            "flash_transition_length": {
+              "key": "Optional",
+              "default": "0s",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.time_period_dict"
+                ]
+              },
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The transition length to use when flash is called. Defaults to `0s`.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
             },
-            "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The transition length to use when flash is called. Defaults to `0s`.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
-          },
-          "effects": {
-            "key": "Optional",
-            "type": "registry",
-            "registry": "light.effects",
-            "filter": [
-              "lambda",
-              "automation",
-              "pulse",
-              "random",
-              "strobe",
-              "flicker"
-            ],
-            "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n\n\n*See also: [Monochromatic Light](https://esphome.io/components/light/monochromatic.html#configuration-variables)*"
-          },
-          "color_correct": {
-            "docs": "**list of float**: Apply a color correction to each color channel. This defines the maximum brightness of each channel. For example `[100%, 50%, 100%]` would set the green channel to be at most at 50% brightness.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
-          },
-          "power_supply": {
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The [Power Supply Component](https://esphome.io/components/power_supply.html) to connect to this light. When the light is turned on, the power supply will automatically be switched on too.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+            "effects": {
+              "key": "Optional",
+              "type": "registry",
+              "registry": "light.effects",
+              "filter": [
+                "lambda",
+                "automation",
+                "pulse",
+                "random",
+                "strobe",
+                "flicker"
+              ],
+              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n\n\n*See also: [Monochromatic Light](https://esphome.io/components/light/monochromatic.html#configuration-variables)*"
+            },
+            "color_correct": {
+              "docs": "**list of float**: Apply a color correction to each color channel. This defines the maximum brightness of each channel. For example `[100%, 50%, 100%]` would set the green channel to be at most at 50% brightness.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+            },
+            "power_supply": {
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The [Power Supply Component](https://esphome.io/components/power_supply.html) to connect to this light. When the light is turned on, the power supply will automatically be switched on too.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+            }
           }
         }
       },
       "RGB_LIGHT_SCHEMA": {
-        "extends": [
-          "light.BRIGHTNESS_ONLY_LIGHT_SCHEMA"
-        ],
-        "config_vars": {
-          "effects": {}
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "light.BRIGHTNESS_ONLY_LIGHT_SCHEMA"
+          ],
+          "config_vars": {
+            "effects": {
+              "key": "Optional",
+              "type": "registry",
+              "registry": "light.effects",
+              "filter": [
+                "lambda",
+                "automation",
+                "pulse",
+                "random",
+                "strobe",
+                "flicker"
+              ],
+              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n\n\n*See also: [RGBWW Light](https://esphome.io/components/light/rgbww.html#configuration-variables)*"
+            }
+          }
         }
       },
       "ADDRESSABLE_LIGHT_SCHEMA": {
-        "extends": [
-          "light.RGB_LIGHT_SCHEMA"
-        ],
-        "config_vars": {
-          "id": {},
-          "effects": {
-            "filter": [
-              "lambda",
-              "automation",
-              "pulse",
-              "random",
-              "strobe",
-              "flicker",
-              "addressable_lambda",
-              "addressable_rainbow",
-              "addressable_color_wipe",
-              "addressable_scan",
-              "addressable_twinkle",
-              "addressable_random_twinkle",
-              "addressable_fireworks",
-              "addressable_flicker",
-              "adalight",
-              "e131",
-              "wled"
-            ],
-            "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n\n\n*See also: [Light Partition](https://esphome.io/components/light/partition.html#configuration-variables)*"
-          },
-          "color_correct": {
-            "key": "Optional",
-            "docs": "**list of float**: Apply a color correction to each color channel. This defines the maximum brightness of each channel. For example `[100%, 50%, 100%]` would set the green channel to be at most at 50% brightness.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
-          },
-          "power_supply": {
-            "key": "Optional",
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The [Power Supply Component](https://esphome.io/components/power_supply.html) to connect to this light. When the light is turned on, the power supply will automatically be switched on too.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "light.RGB_LIGHT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Light Partition](https://esphome.io/components/light/partition.html#configuration-variables)*"
+            },
+            "effects": {
+              "key": "Optional",
+              "type": "registry",
+              "registry": "light.effects",
+              "filter": [
+                "lambda",
+                "automation",
+                "pulse",
+                "random",
+                "strobe",
+                "flicker",
+                "addressable_lambda",
+                "addressable_rainbow",
+                "addressable_color_wipe",
+                "addressable_scan",
+                "addressable_twinkle",
+                "addressable_random_twinkle",
+                "addressable_fireworks",
+                "addressable_flicker",
+                "adalight",
+                "e131",
+                "wled"
+              ],
+              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n\n\n*See also: [Light Partition](https://esphome.io/components/light/partition.html#configuration-variables)*"
+            },
+            "color_correct": {
+              "key": "Optional",
+              "docs": "**list of float**: Apply a color correction to each color channel. This defines the maximum brightness of each channel. For example `[100%, 50%, 100%]` would set the green channel to be at most at 50% brightness.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+            },
+            "power_supply": {
+              "key": "Optional",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The [Power Supply Component](https://esphome.io/components/power_supply.html) to connect to this light. When the light is turned on, the power supply will automatically be switched on too.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+            }
           }
         }
       }

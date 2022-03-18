@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "vscode-languageclient": "^7.0.0",
-    "child-process": "1.0.2"
+    "child-process": "1.0.2",
+    "yaml-language-server": "next"
   },
   "devDependencies": {
     "@types/vscode": "^1.52.0",

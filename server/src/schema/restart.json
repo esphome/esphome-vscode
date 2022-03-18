@@ -2,20 +2,30 @@
   "restart.button": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "extends": [
-          "button.BUTTON_SCHEMA",
-          "core.COMPONENT_SCHEMA"
-        ],
-        "config_vars": {
-          "entity_category": {
-            "default": "config"
-          },
-          "device_class": {
-            "default": "restart"
-          },
-          "id": {
-            "key": "GeneratedID",
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Restart Button](https://esphome.io/components/button/restart.html#configuration-variables)*"
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "button.BUTTON_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "entity_category": {
+              "key": "Optional",
+              "default": "config"
+            },
+            "device_class": {
+              "key": "Optional",
+              "default": "restart",
+              "type": "enum",
+              "values": [
+                "restart",
+                "update"
+              ]
+            },
+            "id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Restart Button](https://esphome.io/components/button/restart.html#configuration-variables)*"
+            }
           }
         }
       }
@@ -24,20 +34,25 @@
   "restart.switch": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "extends": [
-          "switch.SWITCH_SCHEMA",
-          "core.COMPONENT_SCHEMA"
-        ],
-        "config_vars": {
-          "id": {
-            "key": "GeneratedID",
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Restart Switch](https://esphome.io/components/switch/restart.html#configuration-variables)*"
-          },
-          "icon": {
-            "default": "mdi:restart"
-          },
-          "entity_category": {
-            "default": "config"
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "switch.SWITCH_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Restart Switch](https://esphome.io/components/switch/restart.html#configuration-variables)*"
+            },
+            "icon": {
+              "key": "Optional",
+              "default": "mdi:restart"
+            },
+            "entity_category": {
+              "key": "Optional",
+              "default": "config"
+            }
           }
         }
       }

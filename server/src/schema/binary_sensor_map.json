@@ -2,12 +2,49 @@
   "binary_sensor_map.sensor": {
     "schemas": {
       "entry": {
-        "config_vars": {
-          "binary_sensor": {
-            "key": "Required"
-          },
-          "value": {
-            "key": "Required"
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "binary_sensor": {
+              "key": "Required"
+            },
+            "value": {
+              "key": "Required"
+            }
+          }
+        }
+      },
+      "CONFIG_SCHEMA": {
+        "type": "typed",
+        "types": {
+          "group": {
+            "extends": [
+              "sensor.SENSOR_SCHEMA"
+            ],
+            "config_vars": {
+              "id": {
+                "key": "GeneratedID"
+              },
+              "icon": {
+                "key": "Optional",
+                "default": "mdi:check-circle-outline"
+              },
+              "accuracy_decimals": {
+                "key": "Optional",
+                "default": "0",
+                "type": "integer"
+              },
+              "channels": {
+                "key": "Required",
+                "is_list": true,
+                "type": "schema",
+                "schema": {
+                  "extends": [
+                    "binary_sensor_map.sensor.entry"
+                  ]
+                }
+              }
+            }
           }
         }
       }

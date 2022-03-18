@@ -2,27 +2,64 @@
   "xiaomi_mue4094rt.binary_sensor": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "extends": [
-          "binary_sensor.BINARY_SENSOR_SCHEMA",
-          "esp32_ble_tracker.ESP_BLE_DEVICE_SCHEMA",
-          "core.COMPONENT_SCHEMA"
-        ],
-        "config_vars": {
-          "id": {},
-          "device_class": {
-            "default": "motion"
-          },
-          "mac_address": {
-            "key": "Required"
-          },
-          "timeout": {
-            "key": "Optional",
-            "default": "5s",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.positive_time_period_milliseconds"
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "binary_sensor.BINARY_SENSOR_SCHEMA",
+            "esp32_ble_tracker.ESP_BLE_DEVICE_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            },
+            "device_class": {
+              "key": "Optional",
+              "default": "motion",
+              "type": "enum",
+              "values": [
+                "",
+                "battery",
+                "battery_charging",
+                "cold",
+                "connectivity",
+                "door",
+                "garage_door",
+                "gas",
+                "heat",
+                "light",
+                "lock",
+                "moisture",
+                "motion",
+                "moving",
+                "occupancy",
+                "opening",
+                "plug",
+                "power",
+                "presence",
+                "problem",
+                "running",
+                "safety",
+                "smoke",
+                "sound",
+                "tamper",
+                "update",
+                "vibration",
+                "window"
               ]
+            },
+            "mac_address": {
+              "key": "Required"
+            },
+            "timeout": {
+              "key": "Optional",
+              "default": "5s",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.time_period_dict"
+                ]
+              }
             }
           }
         }

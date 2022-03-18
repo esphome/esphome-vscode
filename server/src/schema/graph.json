@@ -2,179 +2,275 @@
   "graph": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "extends": [
-          "graph.GRAPH_SCHEMA"
-        ]
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "graph.GRAPH_SCHEMA"
+          ]
+        }
       },
       "GRAPH_TRACE_SCHEMA": {
-        "config_vars": {
-          "id": {
-            "key": "GeneratedID"
-          },
-          "sensor": {
-            "key": "Required"
-          },
-          "name": {
-            "key": "Optional",
-            "type": "string"
-          },
-          "line_thickness": {
-            "key": "Optional",
-            "type": "integer"
-          },
-          "line_type": {
-            "key": "Optional",
-            "type": "enum",
-            "values": [
-              "SOLID",
-              "DOTTED",
-              "DASHED"
-            ]
-          },
-          "color": {
-            "key": "Optional"
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            },
+            "sensor": {
+              "key": "Required"
+            },
+            "name": {
+              "key": "Optional",
+              "type": "string"
+            },
+            "line_thickness": {
+              "key": "Optional",
+              "type": "integer"
+            },
+            "line_type": {
+              "key": "Optional",
+              "type": "enum",
+              "values": [
+                "SOLID",
+                "DOTTED",
+                "DASHED"
+              ]
+            },
+            "color": {
+              "key": "Optional"
+            }
           }
         }
       },
       "GRAPH_LEGEND_SCHEMA": {
-        "config_vars": {
-          "id": {
-            "key": "GeneratedID"
-          },
-          "name_font": {
-            "key": "Required"
-          },
-          "value_font": {
-            "key": "Optional"
-          },
-          "width": {
-            "key": "Optional",
-            "type": "integer"
-          },
-          "height": {
-            "key": "Optional",
-            "type": "integer"
-          },
-          "border": {
-            "key": "Optional",
-            "type": "boolean"
-          },
-          "show_lines": {
-            "key": "Optional",
-            "type": "boolean"
-          },
-          "show_values": {
-            "key": "Optional",
-            "type": "enum",
-            "values": [
-              "NONE",
-              "AUTO",
-              "BESIDE",
-              "BELOW"
-            ]
-          },
-          "show_units": {
-            "key": "Optional",
-            "type": "boolean"
-          },
-          "direction": {
-            "key": "Optional",
-            "type": "enum",
-            "values": [
-              "AUTO",
-              "HORIZONTAL",
-              "VERTICAL"
-            ]
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            },
+            "name_font": {
+              "key": "Required"
+            },
+            "value_font": {
+              "key": "Optional"
+            },
+            "width": {
+              "key": "Optional",
+              "type": "integer"
+            },
+            "height": {
+              "key": "Optional",
+              "type": "integer"
+            },
+            "border": {
+              "key": "Optional",
+              "type": "boolean"
+            },
+            "show_lines": {
+              "key": "Optional",
+              "type": "boolean"
+            },
+            "show_values": {
+              "key": "Optional",
+              "type": "enum",
+              "values": [
+                "NONE",
+                "AUTO",
+                "BESIDE",
+                "BELOW"
+              ]
+            },
+            "show_units": {
+              "key": "Optional",
+              "type": "boolean"
+            },
+            "direction": {
+              "key": "Optional",
+              "type": "enum",
+              "values": [
+                "AUTO",
+                "HORIZONTAL",
+                "VERTICAL"
+              ]
+            }
           }
         }
       },
       "GRAPH_SCHEMA": {
-        "config_vars": {
-          "id": {
-            "key": "Required"
-          },
-          "duration": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.positive_time_period_seconds"
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID with which you will be able to reference the graph later in your display code.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+            },
+            "duration": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.time_period_dict"
+                ]
+              },
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The total graph history duration.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+            },
+            "width": {
+              "key": "Required",
+              "type": "integer",
+              "docs": "**int**: The graph width in pixels\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+            },
+            "height": {
+              "key": "Required",
+              "type": "integer",
+              "docs": "**int**: The graph height in pixels\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+            },
+            "x_grid": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.time_period_dict"
+                ]
+              },
+              "docs": "Specifies the time per division. If not specified, no vertical grid will be drawn.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+            },
+            "y_grid": {
+              "key": "Optional",
+              "docs": "**float**: Specifies the number of units per division. If not specified, no horizontal grid will be drawn.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+            },
+            "border": {
+              "key": "Optional",
+              "type": "boolean",
+              "docs": "**boolean**: Specifies if a border will be drawn around the graph. Default is True.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+            },
+            "sensor": {
+              "key": "Optional"
+            },
+            "line_thickness": {
+              "key": "Optional",
+              "type": "integer"
+            },
+            "line_type": {
+              "key": "Optional",
+              "type": "enum",
+              "values": [
+                "SOLID",
+                "DOTTED",
+                "DASHED"
               ]
-            }
-          },
-          "width": {
-            "key": "Required",
-            "type": "integer"
-          },
-          "height": {
-            "key": "Required",
-            "type": "integer"
-          },
-          "x_grid": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.positive_time_period_seconds"
-              ]
-            }
-          },
-          "y_grid": {
-            "key": "Optional"
-          },
-          "border": {
-            "key": "Optional",
-            "type": "boolean"
-          },
-          "sensor": {
-            "key": "Optional"
-          },
-          "line_thickness": {
-            "key": "Optional",
-            "type": "integer"
-          },
-          "line_type": {
-            "key": "Optional",
-            "type": "enum",
-            "values": [
-              "SOLID",
-              "DOTTED",
-              "DASHED"
-            ]
-          },
-          "color": {
-            "key": "Optional"
-          },
-          "min_value": {
-            "key": "Optional"
-          },
-          "max_value": {
-            "key": "Optional"
-          },
-          "min_range": {
-            "key": "Optional"
-          },
-          "max_range": {
-            "key": "Optional"
-          },
-          "traces": {
-            "key": "Optional",
-            "is_list": true,
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "graph.GRAPH_TRACE_SCHEMA"
-              ]
-            }
-          },
-          "legend": {
-            "key": "Optional",
-            "is_list": true,
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "graph.GRAPH_LEGEND_SCHEMA"
-              ]
+            },
+            "color": {
+              "key": "Optional"
+            },
+            "min_value": {
+              "key": "Optional",
+              "docs": "Specifies the minimum Y-axis value.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+            },
+            "max_value": {
+              "key": "Optional",
+              "docs": "Specifies the maximum Y-axis value.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+            },
+            "min_range": {
+              "key": "Optional",
+              "docs": "Specifies the minimum Y-axis range.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+            },
+            "max_range": {
+              "key": "Optional",
+              "docs": "Specifies the maximum Y-axis range.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+            },
+            "traces": {
+              "key": "Optional",
+              "is_list": true,
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID"
+                  },
+                  "sensor": {
+                    "key": "Required"
+                  },
+                  "name": {
+                    "key": "Optional",
+                    "type": "string"
+                  },
+                  "line_thickness": {
+                    "key": "Optional",
+                    "type": "integer"
+                  },
+                  "line_type": {
+                    "key": "Optional",
+                    "type": "enum",
+                    "values": [
+                      "SOLID",
+                      "DOTTED",
+                      "DASHED"
+                    ]
+                  },
+                  "color": {
+                    "key": "Optional"
+                  }
+                }
+              },
+              "docs": "Use this to specify more than a single trace.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+            },
+            "legend": {
+              "key": "Optional",
+              "is_list": true,
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID"
+                  },
+                  "name_font": {
+                    "key": "Required"
+                  },
+                  "value_font": {
+                    "key": "Optional"
+                  },
+                  "width": {
+                    "key": "Optional",
+                    "type": "integer"
+                  },
+                  "height": {
+                    "key": "Optional",
+                    "type": "integer"
+                  },
+                  "border": {
+                    "key": "Optional",
+                    "type": "boolean"
+                  },
+                  "show_lines": {
+                    "key": "Optional",
+                    "type": "boolean"
+                  },
+                  "show_values": {
+                    "key": "Optional",
+                    "type": "enum",
+                    "values": [
+                      "NONE",
+                      "AUTO",
+                      "BESIDE",
+                      "BELOW"
+                    ]
+                  },
+                  "show_units": {
+                    "key": "Optional",
+                    "type": "boolean"
+                  },
+                  "direction": {
+                    "key": "Optional",
+                    "type": "enum",
+                    "values": [
+                      "AUTO",
+                      "HORIZONTAL",
+                      "VERTICAL"
+                    ]
+                  }
+                }
+              }
             }
           }
         }

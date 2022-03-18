@@ -2,36 +2,46 @@
   "esp32_can.canbus": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "extends": [
-          "canbus.CANBUS_SCHEMA"
-        ],
-        "config_vars": {
-          "id": {},
-          "bit_rate": {
-            "values": [
-              "50KBPS",
-              "100KBPS",
-              "125KBPS",
-              "250KBPS",
-              "500KBPS",
-              "1000KBPS"
-            ]
-          },
-          "rx_pin": {
-            "key": "Required",
-            "internal": true,
-            "modes": [
-              "input"
-            ],
-            "type": "pin"
-          },
-          "tx_pin": {
-            "key": "Required",
-            "internal": true,
-            "modes": [
-              "output"
-            ],
-            "type": "pin"
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "canbus.CANBUS_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            },
+            "bit_rate": {
+              "key": "Optional",
+              "default": "125KBPS",
+              "type": "enum",
+              "values": [
+                "50KBPS",
+                "100KBPS",
+                "125KBPS",
+                "250KBPS",
+                "500KBPS",
+                "1000KBPS"
+              ]
+            },
+            "rx_pin": {
+              "key": "Required",
+              "internal": true,
+              "modes": [
+                "input"
+              ],
+              "type": "pin",
+              "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: Receive pin.\n\n\n\n*See also: [ESP32 CAN Component](https://esphome.io/components/canbus.html#id1)*"
+            },
+            "tx_pin": {
+              "key": "Required",
+              "internal": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin",
+              "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: Transmit pin.\n\n\n\n*See also: [ESP32 CAN Component](https://esphome.io/components/canbus.html#id1)*"
+            }
           }
         }
       }

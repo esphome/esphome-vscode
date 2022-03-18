@@ -2,44 +2,60 @@
   "tof10120.sensor": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "extends": [
-          "sensor.SENSOR_SCHEMA",
-          "core.COMPONENT_SCHEMA"
-        ],
-        "config_vars": {
-          "id": {
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [TOF10120 Time Of Flight Distance Sensor](https://esphome.io/components/sensor/tof10120.html#configuration-variables)*"
-          },
-          "unit_of_measurement": {
-            "default": "m"
-          },
-          "icon": {
-            "default": "mdi:arrow-expand-vertical"
-          },
-          "accuracy_decimals": {
-            "default": "3"
-          },
-          "state_class": {
-            "default": "measurement"
-          },
-          "update_interval": {
-            "key": "Optional",
-            "default": "60s",
-            "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n\n\n*See also: [TOF10120 Time Of Flight Distance Sensor](https://esphome.io/components/sensor/tof10120.html#configuration-variables)*"
-          },
-          "i2c_id": {
-            "key": "GeneratedID"
-          },
-          "address": {
-            "key": "Optional",
-            "default": "82",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint8_t"
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "sensor.SENSOR_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [TOF10120 Time Of Flight Distance Sensor](https://esphome.io/components/sensor/tof10120.html#configuration-variables)*"
+            },
+            "unit_of_measurement": {
+              "key": "Optional",
+              "default": "m",
+              "type": "string"
+            },
+            "icon": {
+              "key": "Optional",
+              "default": "mdi:arrow-expand-vertical"
+            },
+            "accuracy_decimals": {
+              "key": "Optional",
+              "default": "3",
+              "type": "integer"
+            },
+            "state_class": {
+              "key": "Optional",
+              "default": "measurement",
+              "type": "enum",
+              "values": [
+                "",
+                "measurement",
+                "total_increasing"
               ]
             },
-            "docs": "**int**: Manually specify the I^2C address of the sensor. Defaults to `0x52`.\n\n\n\n*See also: [TOF10120 Time Of Flight Distance Sensor](https://esphome.io/components/sensor/tof10120.html#configuration-variables)*"
+            "update_interval": {
+              "key": "Optional",
+              "default": "60s",
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n\n\n*See also: [TOF10120 Time Of Flight Distance Sensor](https://esphome.io/components/sensor/tof10120.html#configuration-variables)*"
+            },
+            "i2c_id": {
+              "key": "GeneratedID"
+            },
+            "address": {
+              "key": "Optional",
+              "default": "82",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint8_t"
+                ]
+              },
+              "docs": "**int**: Manually specify the I^2C address of the sensor. Defaults to `0x52`.\n\n\n\n*See also: [TOF10120 Time Of Flight Distance Sensor](https://esphome.io/components/sensor/tof10120.html#configuration-variables)*"
+            }
           }
         }
       }

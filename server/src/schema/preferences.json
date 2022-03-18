@@ -2,24 +2,27 @@
   "preferences": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "config_vars": {
-          "id": {
-            "key": "GeneratedID"
-          },
-          "flash_write_interval": {
-            "key": "Optional",
-            "default": "60s",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.positive_time_period_milliseconds"
-              ]
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            },
+            "flash_write_interval": {
+              "key": "Optional",
+              "default": "60s",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.time_period_dict"
+                ]
+              }
             }
-          }
-        },
-        "extends": [
-          "core.COMPONENT_SCHEMA"
-        ]
+          },
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
+        }
       }
     }
   }

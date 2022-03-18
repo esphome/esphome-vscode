@@ -31,7 +31,7 @@ export interface ConfigVarEnum extends ConfigVarBase {
     values: string[];
 }
 
-interface ConfigVarSchema extends ConfigVarBase {
+export interface ConfigVarSchema extends ConfigVarBase {
     type: 'schema';
     schema: Schema;
 }
@@ -219,7 +219,7 @@ export class CoreSchema {
     getActionConfigVar(entry: string): ConfigVarTrigger {
         return this.getRegistryConfigVar("action", entry) as ConfigVarTrigger;
     }
-    getPinSchema(component: string): Schema {
+    getPinConfigVar(component: string): ConfigVar {
         return this.getComponent(component)["pin"];
     }
     getPins(): string[] {

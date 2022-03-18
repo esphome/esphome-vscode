@@ -2,102 +2,112 @@
   "esp8266": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "config_vars": {
-          "board": {
-            "key": "Required",
-            "type": "enum",
-            "values": [
-              "d1",
-              "d1_mini",
-              "d1_mini_lite",
-              "d1_mini_pro",
-              "esp01",
-              "esp01_1m",
-              "esp07",
-              "esp12e",
-              "esp210",
-              "esp8285",
-              "esp_wroom_02",
-              "espduino",
-              "espectro",
-              "espino",
-              "espinotee",
-              "espmxdevkit",
-              "espresso_lite_v1",
-              "espresso_lite_v2",
-              "gen4iod",
-              "heltec_wifi_kit_8",
-              "huzzah",
-              "inventone",
-              "modwifi",
-              "nodemcu",
-              "nodemcuv2",
-              "oak",
-              "phoenix_v1",
-              "phoenix_v2",
-              "sonoff_basic",
-              "sonoff_s20",
-              "sonoff_sv",
-              "sonoff_th",
-              "sparkfunBlynk",
-              "thing",
-              "thingdev",
-              "wifi_slot",
-              "wifiduino",
-              "wifinfo",
-              "wio_link",
-              "wio_node",
-              "xinabox_cw01"
-            ],
-            "docs": "**string**: The PlatformIO board ID that should be used. Choose the appropriate board from [this list](https://registry.platformio.org/platforms/platformio/espressif8266/boards) (the icon next to the name can be used to copy the board ID). *This only affects pin aliases, flash size and some internal settings*, if unsure choose a generic board from Espressif such as `esp01_1m`.\n\n\n\n*See also: [ESP8266 Platform](https://esphome.io/components/esp8266.html#configuration-variables)*"
-          },
-          "framework": {
-            "key": "Optional",
-            "default": "{}",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "esp8266.ARDUINO_FRAMEWORK_SCHEMA"
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "board": {
+              "key": "Required",
+              "type": "enum",
+              "values": [
+                "d1",
+                "d1_mini",
+                "d1_mini_lite",
+                "d1_mini_pro",
+                "esp01",
+                "esp01_1m",
+                "esp07",
+                "esp12e",
+                "esp210",
+                "esp8285",
+                "esp_wroom_02",
+                "espduino",
+                "espectro",
+                "espino",
+                "espinotee",
+                "espmxdevkit",
+                "espresso_lite_v1",
+                "espresso_lite_v2",
+                "gen4iod",
+                "heltec_wifi_kit_8",
+                "huzzah",
+                "inventone",
+                "modwifi",
+                "nodemcu",
+                "nodemcuv2",
+                "oak",
+                "phoenix_v1",
+                "phoenix_v2",
+                "sonoff_basic",
+                "sonoff_s20",
+                "sonoff_sv",
+                "sonoff_th",
+                "sparkfunBlynk",
+                "thing",
+                "thingdev",
+                "wifi_slot",
+                "wifiduino",
+                "wifinfo",
+                "wio_link",
+                "wio_node",
+                "xinabox_cw01"
               ]
             },
-            "docs": "Options for the underlying framework used by ESPHome.\n  * **version** (*Optional*, string): The base framework version number to use, from [esp8266 arduino releases](https://github.com/esp8266/Arduino/releases). Defaults to `recommended`. Additional values\n    * `dev`: Use the latest commit from [https://github.com/esp8266/Arduino](https://github.com/esp8266/Arduino), note this may break at any time\n    \n    * `latest`: Use the latest *release* from [https://github.com/esp8266/Arduino/releases](https://github.com/esp8266/Arduino/releases), even if it hasn\u2019t been recommended yet.\n    \n    * `recommended`: Use the recommended framework version.\n    \n    \n  \n  * **source** (*Optional*, string): The PlatformIO package or repository to use for the framework. This can be used to use a custom or patched version of the framework.\n  \n  * **platform_version** (*Optional*, string): The version of the [platformio/espressif8266](https://github.com/platformio/platform-espressif8266/releases/) package to use.\n  \n  \n\n\n\n*See also: [ESP8266 Platform](https://esphome.io/components/esp8266.html#configuration-variables)*"
-          },
-          "restore_from_flash": {
-            "key": "Optional",
-            "default": "False",
-            "type": "boolean",
-            "docs": "**boolean**: Whether to store some persistent preferences in flash memory. Defaults to `false`.\n\n\n\n*See also: [ESP8266 Platform](https://esphome.io/components/esp8266.html#configuration-variables)*"
-          },
-          "board_flash_mode": {
-            "key": "Optional",
-            "default": "dout",
-            "type": "enum",
-            "values": [
-              "qio",
-              "qout",
-              "dio",
-              "dout"
-            ],
-            "docs": "**string**: The SPI mode of the flash chip. One of `qio`, `qout`, `dio` and `dout`. Defaults to `dout` for compatibility with all chips. Note: on the next OTA update the actual flash mode is automatically detected and changed to the appropriate one.\n\n\n\n*See also: [ESP8266 Platform](https://esphome.io/components/esp8266.html#configuration-variables)*"
+            "framework": {
+              "key": "Optional",
+              "default": "{}",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "version": {
+                    "key": "Optional",
+                    "default": "recommended",
+                    "type": "string"
+                  },
+                  "source": {
+                    "key": "Optional",
+                    "type": "string"
+                  },
+                  "platform_version": {
+                    "key": "Optional"
+                  }
+                }
+              }
+            },
+            "restore_from_flash": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean"
+            },
+            "board_flash_mode": {
+              "key": "Optional",
+              "default": "dout",
+              "type": "enum",
+              "values": [
+                "qio",
+                "qout",
+                "dio",
+                "dout"
+              ]
+            }
           }
         }
       },
       "ARDUINO_FRAMEWORK_SCHEMA": {
-        "config_vars": {
-          "version": {
-            "key": "Optional",
-            "default": "recommended",
-            "type": "string",
-            "docs": "**string**: The base framework version number to use, from [esp8266 arduino releases](https://github.com/esp8266/Arduino/releases). Defaults to `recommended`. Additional values\n  * `dev`: Use the latest commit from [https://github.com/esp8266/Arduino](https://github.com/esp8266/Arduino), note this may break at any time\n  \n  * `latest`: Use the latest *release* from [https://github.com/esp8266/Arduino/releases](https://github.com/esp8266/Arduino/releases), even if it hasn\u2019t been recommended yet.\n  \n  * `recommended`: Use the recommended framework version.\n  \n  \n\n\n\n*See also: [ESP8266 Platform](https://esphome.io/components/esp8266.html#configuration-variables)*"
-          },
-          "source": {
-            "key": "Optional",
-            "type": "string",
-            "docs": "**string**: The PlatformIO package or repository to use for the framework. This can be used to use a custom or patched version of the framework.\n\n\n\n*See also: [ESP8266 Platform](https://esphome.io/components/esp8266.html#configuration-variables)*"
-          },
-          "platform_version": {
-            "key": "Optional",
-            "docs": "**string**: The version of the [platformio/espressif8266](https://github.com/platformio/platform-espressif8266/releases/) package to use.\n\n\n\n*See also: [ESP8266 Platform](https://esphome.io/components/esp8266.html#configuration-variables)*"
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "version": {
+              "key": "Optional",
+              "default": "recommended",
+              "type": "string"
+            },
+            "source": {
+              "key": "Optional",
+              "type": "string"
+            },
+            "platform_version": {
+              "key": "Optional"
+            }
           }
         }
       }

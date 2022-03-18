@@ -2,36 +2,81 @@
   "ntc.sensor": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "extends": [
-          "sensor.SENSOR_SCHEMA",
-          "core.COMPONENT_SCHEMA"
-        ],
-        "config_vars": {
-          "id": {
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [NTC Sensor](https://esphome.io/components/sensor/ntc.html#configuration-variables)*"
-          },
-          "unit_of_measurement": {
-            "default": "\u00b0C"
-          },
-          "accuracy_decimals": {
-            "default": "1"
-          },
-          "device_class": {
-            "default": "temperature"
-          },
-          "state_class": {
-            "default": "measurement"
-          },
-          "sensor": {
-            "key": "Required",
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The sensor to read the resistance values from to convert to temperature readings.\n\n\n\n*See also: [NTC Sensor](https://esphome.io/components/sensor/ntc.html#configuration-variables)*"
-          },
-          "calibration": {
-            "key": "Required",
-            "docs": "**float**: The calibration parameters of the sensor - see above for more details.\n\n\n\n*See also: [NTC Sensor](https://esphome.io/components/sensor/ntc.html#configuration-variables)*"
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "sensor.SENSOR_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [NTC Sensor](https://esphome.io/components/sensor/ntc.html#configuration-variables)*"
+            },
+            "unit_of_measurement": {
+              "key": "Optional",
+              "default": "\u00b0C",
+              "type": "string"
+            },
+            "accuracy_decimals": {
+              "key": "Optional",
+              "default": "1",
+              "type": "integer"
+            },
+            "device_class": {
+              "key": "Optional",
+              "default": "temperature",
+              "type": "enum",
+              "values": [
+                "",
+                "aqi",
+                "battery",
+                "carbon_dioxide",
+                "carbon_monoxide",
+                "current",
+                "energy",
+                "gas",
+                "humidity",
+                "illuminance",
+                "monetary",
+                "nitrogen_dioxide",
+                "nitrogen_monoxide",
+                "nitrous_oxide",
+                "ozone",
+                "pm1",
+                "pm10",
+                "pm25",
+                "power",
+                "power_factor",
+                "pressure",
+                "signal_strength",
+                "sulphur_dioxide",
+                "temperature",
+                "timestamp",
+                "volatile_organic_compounds",
+                "voltage"
+              ]
+            },
+            "state_class": {
+              "key": "Optional",
+              "default": "measurement",
+              "type": "enum",
+              "values": [
+                "",
+                "measurement",
+                "total_increasing"
+              ]
+            },
+            "sensor": {
+              "key": "Required",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The sensor to read the resistance values from to convert to temperature readings.\n\n\n\n*See also: [NTC Sensor](https://esphome.io/components/sensor/ntc.html#configuration-variables)*"
+            },
+            "calibration": {
+              "key": "Required",
+              "docs": "**float**: The calibration parameters of the sensor - see above for more details.\n\n\n\n*See also: [NTC Sensor](https://esphome.io/components/sensor/ntc.html#configuration-variables)*"
+            }
           }
-        },
-        "docs": "The `ntc` platform is a helper sensor that allows you to convert resistance readings from a NTC thermistor to temperature readings.\n\n*See also: [NTC Sensor](https://esphome.io/components/sensor/ntc.html#ntc-sensor)*"
+        }
       }
     }
   }

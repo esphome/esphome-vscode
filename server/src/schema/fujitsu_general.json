@@ -2,11 +2,16 @@
   "fujitsu_general.climate": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "extends": [
-          "climate_ir.CLIMATE_IR_WITH_RECEIVER_SCHEMA"
-        ],
-        "config_vars": {
-          "id": {}
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "climate_ir.CLIMATE_IR_WITH_RECEIVER_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            }
+          }
         }
       }
     }

@@ -2,50 +2,65 @@
   "resistance.sensor": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "extends": [
-          "sensor.SENSOR_SCHEMA",
-          "core.COMPONENT_SCHEMA"
-        ],
-        "config_vars": {
-          "id": {
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [Resistance Sensor](https://esphome.io/components/sensor/resistance.html#configuration-variables)*"
-          },
-          "unit_of_measurement": {
-            "default": "\u03a9"
-          },
-          "icon": {
-            "default": "mdi:flash"
-          },
-          "accuracy_decimals": {
-            "default": "1"
-          },
-          "state_class": {
-            "default": "measurement"
-          },
-          "sensor": {
-            "key": "Required",
-            "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The sensor to read the voltage values from to convert to resistance readings.\n\n\n\n*See also: [Resistance Sensor](https://esphome.io/components/sensor/resistance.html#configuration-variables)*"
-          },
-          "configuration": {
-            "key": "Required",
-            "type": "enum",
-            "values": [
-              "DOWNSTREAM",
-              "UPSTREAM"
-            ],
-            "docs": "**string**: The type of circuit, one of `DOWNSTREAM` or `UPSTREAM`.\n\n\n\n*See also: [Resistance Sensor](https://esphome.io/components/sensor/resistance.html#configuration-variables)*"
-          },
-          "resistor": {
-            "key": "Required",
-            "docs": "**float**: The value of the resistor with a constant value.\n\n\n\n*See also: [Resistance Sensor](https://esphome.io/components/sensor/resistance.html#configuration-variables)*"
-          },
-          "reference_voltage": {
-            "key": "Optional",
-            "default": "3.3V",
-            "docs": "**float**: The reference voltage. Defaults to `3.3V`.\n\n\n\n*See also: [Resistance Sensor](https://esphome.io/components/sensor/resistance.html#configuration-variables)*"
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "sensor.SENSOR_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [Resistance Sensor](https://esphome.io/components/sensor/resistance.html#configuration-variables)*"
+            },
+            "unit_of_measurement": {
+              "key": "Optional",
+              "default": "\u03a9",
+              "type": "string"
+            },
+            "icon": {
+              "key": "Optional",
+              "default": "mdi:flash"
+            },
+            "accuracy_decimals": {
+              "key": "Optional",
+              "default": "1",
+              "type": "integer"
+            },
+            "state_class": {
+              "key": "Optional",
+              "default": "measurement",
+              "type": "enum",
+              "values": [
+                "",
+                "measurement",
+                "total_increasing"
+              ]
+            },
+            "sensor": {
+              "key": "Required",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The sensor to read the voltage values from to convert to resistance readings.\n\n\n\n*See also: [Resistance Sensor](https://esphome.io/components/sensor/resistance.html#configuration-variables)*"
+            },
+            "configuration": {
+              "key": "Required",
+              "type": "enum",
+              "values": [
+                "DOWNSTREAM",
+                "UPSTREAM"
+              ],
+              "docs": "**string**: The type of circuit, one of `DOWNSTREAM` or `UPSTREAM`.\n\n\n\n*See also: [Resistance Sensor](https://esphome.io/components/sensor/resistance.html#configuration-variables)*"
+            },
+            "resistor": {
+              "key": "Required",
+              "docs": "**float**: The value of the resistor with a constant value.\n\n\n\n*See also: [Resistance Sensor](https://esphome.io/components/sensor/resistance.html#configuration-variables)*"
+            },
+            "reference_voltage": {
+              "key": "Optional",
+              "default": "3.3V",
+              "docs": "**float**: The reference voltage. Defaults to `3.3V`.\n\n\n\n*See also: [Resistance Sensor](https://esphome.io/components/sensor/resistance.html#configuration-variables)*"
+            }
           }
-        },
-        "docs": "The `resistance` platform is a helper sensor that allows you to convert readings from a voltage sensor (such as the [ADC Sensor](https://esphome.io/components/sensor/adc.html)) into resistance readings in \u2126 (ohm).\n\n*See also: [Resistance Sensor](https://esphome.io/components/sensor/resistance.html#resistance-sensor)*"
+        }
       }
     }
   }

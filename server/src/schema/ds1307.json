@@ -1,4 +1,35 @@
 {
+  "ds1307.time": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "time.TIME_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            },
+            "i2c_id": {
+              "key": "GeneratedID"
+            },
+            "address": {
+              "key": "Optional",
+              "default": "104",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint8_t"
+                ]
+              },
+              "docs": "**int**: Manually specify the I\u00b2C address of the RTC. Defaults to `0x68`.\n\n\n\n*See also: [DS1307 Time Source](https://esphome.io/components/time.html#ds1307-time-source)*"
+            }
+          }
+        }
+      }
+    }
+  },
   "ds1307": {
     "action": {
       "write_time": {
@@ -9,7 +40,8 @@
               "key": "GeneratedID"
             }
           }
-        }
+        },
+        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) triggers a synchronization of the current system time to the RTC hardware.\n\n*See also: [DS1307 Time Source](https://esphome.io/components/time.html#ds1307-write-time-action)*"
       },
       "read_time": {
         "type": "maybe",
@@ -19,7 +51,8 @@
               "key": "GeneratedID"
             }
           }
-        }
+        },
+        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) triggers a synchronization of the current system time from the RTC hardware.\n\n*See also: [DS1307 Time Source](https://esphome.io/components/time.html#ds1307-read-time-action)*"
       }
     }
   }

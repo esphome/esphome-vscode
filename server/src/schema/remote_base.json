@@ -1,881 +1,663 @@
 {
   "remote_base": {
-    "schemas": {
-      "BASE_REMOTE_TRANSMITTER_SCHEMA": {
-        "config_vars": {
-          "transmitter_id": {
-            "key": "GeneratedID"
-          },
-          "repeat": {
-            "key": "Optional"
-          }
-        }
-      },
-      "COOLIX_SCHEMA": {
-        "config_vars": {
-          "data": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint32_t"
-              ]
-            }
-          }
-        }
-      },
-      "DISH_SCHEMA": {
-        "config_vars": {
-          "address": {
-            "key": "Optional",
-            "default": "1",
-            "type": "integer"
-          },
-          "command": {
-            "key": "Required",
-            "type": "integer"
-          }
-        }
-      },
-      "JVC_SCHEMA": {
-        "config_vars": {
-          "data": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint32_t"
-              ]
-            }
-          }
-        }
-      },
-      "LG_SCHEMA": {
-        "config_vars": {
-          "data": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint32_t"
-              ]
-            }
-          },
-          "nbits": {
-            "key": "Optional",
-            "default": "28",
-            "type": "enum",
-            "values": [
-              28,
-              32
-            ]
-          }
-        }
-      },
-      "MAGIQUEST_SCHEMA": {
-        "config_vars": {
-          "wand_id": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint32_t"
-              ]
-            }
-          },
-          "magnitude": {
-            "key": "Optional",
-            "default": "65535",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint16_t"
-              ]
-            }
-          }
-        }
-      },
-      "NEC_SCHEMA": {
-        "config_vars": {
-          "address": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint16_t"
-              ]
-            }
-          },
-          "command": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint16_t"
-              ]
-            }
-          }
-        }
-      },
-      "PIONEER_SCHEMA": {
-        "config_vars": {
-          "rc_code_1": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint16_t"
-              ]
-            }
-          },
-          "rc_code_2": {
-            "key": "Optional",
-            "default": "0",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint16_t"
-              ]
-            }
-          }
-        }
-      },
-      "PRONTO_SCHEMA": {
-        "config_vars": {
-          "data": {
-            "key": "Required",
-            "type": "string"
-          }
-        }
-      },
-      "SONY_SCHEMA": {
-        "config_vars": {
-          "data": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint32_t"
-              ]
-            }
-          },
-          "nbits": {
-            "key": "Optional",
-            "default": "12",
-            "type": "enum",
-            "values": [
-              12,
-              15,
-              20
-            ]
-          }
-        }
-      },
-      "RAW_SCHEMA": {
-        "config_vars": {
-          "code": {
-            "key": "Required"
-          },
-          "code_storage_id": {
-            "key": "GeneratedID"
-          }
-        }
-      },
-      "RC5_SCHEMA": {
-        "config_vars": {
-          "address": {
-            "key": "Required"
-          },
-          "command": {
-            "key": "Required"
-          }
-        }
-      },
-      "RC_SWITCH_TIMING_SCHEMA": {},
-      "RC_SWITCH_RAW_SCHEMA": {
-        "config_vars": {
-          "code": {
-            "key": "Required"
-          },
-          "protocol": {
-            "key": "Optional",
-            "default": "1",
-            "type": "schema",
-            "schema": {
-              "config_vars": {
-                "pulse_length": {
-                  "key": "Required",
-                  "type": "integer"
-                },
-                "sync": {
-                  "key": "Optional",
-                  "default": "[1, 31]",
-                  "type": "schema",
-                  "schema": {
-                    "extends": [
-                      "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                    ]
-                  }
-                },
-                "zero": {
-                  "key": "Optional",
-                  "default": "[1, 3]",
-                  "type": "schema",
-                  "schema": {
-                    "extends": [
-                      "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                    ]
-                  }
-                },
-                "one": {
-                  "key": "Optional",
-                  "default": "[3, 1]",
-                  "type": "schema",
-                  "schema": {
-                    "extends": [
-                      "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                    ]
-                  }
-                },
-                "inverted": {
-                  "key": "Optional",
-                  "default": "False",
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        }
-      },
-      "RC_SWITCH_TYPE_A_SCHEMA": {
-        "config_vars": {
-          "group": {
-            "key": "Required"
-          },
-          "device": {
-            "key": "Required"
-          },
-          "state": {
-            "key": "Required",
-            "type": "boolean"
-          },
-          "protocol": {
-            "key": "Optional",
-            "default": "1",
-            "type": "schema",
-            "schema": {
-              "config_vars": {
-                "pulse_length": {
-                  "key": "Required",
-                  "type": "integer"
-                },
-                "sync": {
-                  "key": "Optional",
-                  "default": "[1, 31]",
-                  "type": "schema",
-                  "schema": {
-                    "extends": [
-                      "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                    ]
-                  }
-                },
-                "zero": {
-                  "key": "Optional",
-                  "default": "[1, 3]",
-                  "type": "schema",
-                  "schema": {
-                    "extends": [
-                      "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                    ]
-                  }
-                },
-                "one": {
-                  "key": "Optional",
-                  "default": "[3, 1]",
-                  "type": "schema",
-                  "schema": {
-                    "extends": [
-                      "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                    ]
-                  }
-                },
-                "inverted": {
-                  "key": "Optional",
-                  "default": "False",
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        }
-      },
-      "RC_SWITCH_TYPE_B_SCHEMA": {
-        "config_vars": {
-          "address": {
-            "key": "Required",
-            "type": "integer"
-          },
-          "channel": {
-            "key": "Required",
-            "type": "integer"
-          },
-          "state": {
-            "key": "Required",
-            "type": "boolean"
-          },
-          "protocol": {
-            "key": "Optional",
-            "default": "1",
-            "type": "schema",
-            "schema": {
-              "config_vars": {
-                "pulse_length": {
-                  "key": "Required",
-                  "type": "integer"
-                },
-                "sync": {
-                  "key": "Optional",
-                  "default": "[1, 31]",
-                  "type": "schema",
-                  "schema": {
-                    "extends": [
-                      "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                    ]
-                  }
-                },
-                "zero": {
-                  "key": "Optional",
-                  "default": "[1, 3]",
-                  "type": "schema",
-                  "schema": {
-                    "extends": [
-                      "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                    ]
-                  }
-                },
-                "one": {
-                  "key": "Optional",
-                  "default": "[3, 1]",
-                  "type": "schema",
-                  "schema": {
-                    "extends": [
-                      "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                    ]
-                  }
-                },
-                "inverted": {
-                  "key": "Optional",
-                  "default": "False",
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        }
-      },
-      "RC_SWITCH_TYPE_C_SCHEMA": {
-        "config_vars": {
-          "family": {
-            "key": "Required",
-            "type": "enum",
-            "values": [
-              "a",
-              "b",
-              "c",
-              "d",
-              "e",
-              "f",
-              "g",
-              "h",
-              "i",
-              "j",
-              "k",
-              "l",
-              "m",
-              "n",
-              "o",
-              "p"
-            ]
-          },
-          "group": {
-            "key": "Required",
-            "type": "integer"
-          },
-          "device": {
-            "key": "Required",
-            "type": "integer"
-          },
-          "state": {
-            "key": "Required",
-            "type": "boolean"
-          },
-          "protocol": {
-            "key": "Optional",
-            "default": "1",
-            "type": "schema",
-            "schema": {
-              "config_vars": {
-                "pulse_length": {
-                  "key": "Required",
-                  "type": "integer"
-                },
-                "sync": {
-                  "key": "Optional",
-                  "default": "[1, 31]",
-                  "type": "schema",
-                  "schema": {
-                    "extends": [
-                      "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                    ]
-                  }
-                },
-                "zero": {
-                  "key": "Optional",
-                  "default": "[1, 3]",
-                  "type": "schema",
-                  "schema": {
-                    "extends": [
-                      "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                    ]
-                  }
-                },
-                "one": {
-                  "key": "Optional",
-                  "default": "[3, 1]",
-                  "type": "schema",
-                  "schema": {
-                    "extends": [
-                      "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                    ]
-                  }
-                },
-                "inverted": {
-                  "key": "Optional",
-                  "default": "False",
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        }
-      },
-      "RC_SWITCH_TYPE_D_SCHEMA": {
-        "config_vars": {
-          "group": {
-            "key": "Required",
-            "type": "enum",
-            "values": [
-              "a",
-              "b",
-              "c",
-              "d"
-            ]
-          },
-          "device": {
-            "key": "Required",
-            "type": "integer"
-          },
-          "state": {
-            "key": "Required",
-            "type": "boolean"
-          },
-          "protocol": {
-            "key": "Optional",
-            "default": "1",
-            "type": "schema",
-            "schema": {
-              "config_vars": {
-                "pulse_length": {
-                  "key": "Required",
-                  "type": "integer"
-                },
-                "sync": {
-                  "key": "Optional",
-                  "default": "[1, 31]",
-                  "type": "schema",
-                  "schema": {
-                    "extends": [
-                      "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                    ]
-                  }
-                },
-                "zero": {
-                  "key": "Optional",
-                  "default": "[1, 3]",
-                  "type": "schema",
-                  "schema": {
-                    "extends": [
-                      "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                    ]
-                  }
-                },
-                "one": {
-                  "key": "Optional",
-                  "default": "[3, 1]",
-                  "type": "schema",
-                  "schema": {
-                    "extends": [
-                      "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                    ]
-                  }
-                },
-                "inverted": {
-                  "key": "Optional",
-                  "default": "False",
-                  "type": "boolean"
-                }
-              }
-            }
-          }
-        }
-      },
-      "RC_SWITCH_TRANSMITTER": {
-        "config_vars": {
-          "repeat": {
-            "key": "Optional",
-            "default": "{'times': 5}",
-            "type": "schema",
-            "schema": {
-              "config_vars": {
-                "times": {
-                  "key": "Required",
-                  "templatable": true,
-                  "type": "integer"
-                },
-                "wait_time": {
-                  "key": "Optional",
-                  "default": "0us",
-                  "templatable": true,
-                  "type": "schema",
-                  "schema": {
-                    "extends": [
-                      "core.positive_time_period_microseconds"
-                    ]
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "SAMSUNG_SCHEMA": {
-        "config_vars": {
-          "data": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint64_t"
-              ]
-            }
-          },
-          "nbits": {
-            "key": "Optional",
-            "default": "32",
-            "type": "integer"
-          }
-        }
-      },
-      "SAMSUNG36_SCHEMA": {
-        "config_vars": {
-          "address": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint16_t"
-              ]
-            }
-          },
-          "command": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint32_t"
-              ]
-            }
-          }
-        }
-      },
-      "TOSHIBAAC_SCHEMA": {
-        "config_vars": {
-          "rc_code_1": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint64_t"
-              ]
-            }
-          },
-          "rc_code_2": {
-            "key": "Optional",
-            "default": "0",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint64_t"
-              ]
-            }
-          }
-        }
-      },
-      "PANASONIC_SCHEMA": {
-        "config_vars": {
-          "address": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint16_t"
-              ]
-            }
-          },
-          "command": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint32_t"
-              ]
-            }
-          }
-        }
-      },
-      "NEXA_SCHEMA": {
-        "config_vars": {
-          "device": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint32_t"
-              ]
-            }
-          },
-          "group": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint8_t"
-              ]
-            }
-          },
-          "state": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint8_t"
-              ]
-            }
-          },
-          "channel": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint8_t"
-              ]
-            }
-          },
-          "level": {
-            "key": "Required",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.hex_uint8_t"
-              ]
-            }
-          }
-        }
-      },
-      "MIDEA_SCHEMA": {
-        "config_vars": {
-          "code": {
-            "key": "Required"
-          }
-        }
-      }
-    },
     "binary": {
       "coolix": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.COOLIX_SCHEMA"
-          ]
+          "config_vars": {
+            "data": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint32_t"
+                ]
+              }
+            }
+          }
         }
       },
       "dish": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.DISH_SCHEMA"
-          ]
+          "config_vars": {
+            "address": {
+              "key": "Optional",
+              "default": "1",
+              "type": "integer"
+            },
+            "command": {
+              "key": "Required",
+              "type": "integer"
+            }
+          }
         }
       },
       "jvc": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.JVC_SCHEMA"
-          ]
+          "config_vars": {
+            "data": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint32_t"
+                ]
+              }
+            }
+          }
         }
       },
       "lg": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.LG_SCHEMA"
-          ]
+          "config_vars": {
+            "data": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint32_t"
+                ]
+              }
+            },
+            "nbits": {
+              "key": "Optional",
+              "default": "28",
+              "type": "enum",
+              "values": [
+                28,
+                32
+              ]
+            }
+          }
         }
       },
       "magiquest": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.MAGIQUEST_SCHEMA"
-          ]
+          "config_vars": {
+            "wand_id": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint32_t"
+                ]
+              }
+            },
+            "magnitude": {
+              "key": "Optional",
+              "default": "65535",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint16_t"
+                ]
+              }
+            }
+          }
         }
       },
       "nec": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.NEC_SCHEMA"
-          ]
+          "config_vars": {
+            "address": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint16_t"
+                ]
+              }
+            },
+            "command": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint16_t"
+                ]
+              }
+            }
+          }
         }
       },
       "pioneer": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.PIONEER_SCHEMA"
-          ]
+          "config_vars": {
+            "rc_code_1": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint16_t"
+                ]
+              }
+            },
+            "rc_code_2": {
+              "key": "Optional",
+              "default": "0",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint16_t"
+                ]
+              }
+            }
+          }
         }
       },
       "pronto": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.PRONTO_SCHEMA"
-          ]
+          "config_vars": {
+            "data": {
+              "key": "Required",
+              "type": "string"
+            }
+          }
         }
       },
       "sony": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.SONY_SCHEMA"
-          ]
+          "config_vars": {
+            "data": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint32_t"
+                ]
+              }
+            },
+            "nbits": {
+              "key": "Optional",
+              "default": "12",
+              "type": "enum",
+              "values": [
+                12,
+                15,
+                20
+              ]
+            }
+          }
         }
       },
       "raw": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.RAW_SCHEMA"
-          ]
+          "config_vars": {
+            "code": {
+              "key": "Required"
+            },
+            "code_storage_id": {
+              "key": "GeneratedID"
+            }
+          }
         }
       },
       "rc5": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.RC5_SCHEMA"
-          ]
+          "config_vars": {
+            "address": {
+              "key": "Required"
+            },
+            "command": {
+              "key": "Required"
+            }
+          }
         }
       },
       "rc_switch_raw": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.RC_SWITCH_RAW_SCHEMA"
-          ]
+          "config_vars": {
+            "code": {
+              "key": "Required"
+            },
+            "protocol": {
+              "key": "Optional",
+              "default": "1",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "pulse_length": {
+                    "key": "Required",
+                    "type": "integer"
+                  },
+                  "sync": {
+                    "key": "Optional",
+                    "default": "[1, 31]"
+                  },
+                  "zero": {
+                    "key": "Optional",
+                    "default": "[1, 3]"
+                  },
+                  "one": {
+                    "key": "Optional",
+                    "default": "[3, 1]"
+                  },
+                  "inverted": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "rc_switch_type_a": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.RC_SWITCH_TYPE_A_SCHEMA"
-          ]
+          "config_vars": {
+            "group": {
+              "key": "Required"
+            },
+            "device": {
+              "key": "Required"
+            },
+            "state": {
+              "key": "Required",
+              "type": "boolean"
+            },
+            "protocol": {
+              "key": "Optional",
+              "default": "1",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "pulse_length": {
+                    "key": "Required",
+                    "type": "integer"
+                  },
+                  "sync": {
+                    "key": "Optional",
+                    "default": "[1, 31]"
+                  },
+                  "zero": {
+                    "key": "Optional",
+                    "default": "[1, 3]"
+                  },
+                  "one": {
+                    "key": "Optional",
+                    "default": "[3, 1]"
+                  },
+                  "inverted": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "rc_switch_type_b": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.RC_SWITCH_TYPE_B_SCHEMA"
-          ]
+          "config_vars": {
+            "address": {
+              "key": "Required",
+              "type": "integer"
+            },
+            "channel": {
+              "key": "Required",
+              "type": "integer"
+            },
+            "state": {
+              "key": "Required",
+              "type": "boolean"
+            },
+            "protocol": {
+              "key": "Optional",
+              "default": "1",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "pulse_length": {
+                    "key": "Required",
+                    "type": "integer"
+                  },
+                  "sync": {
+                    "key": "Optional",
+                    "default": "[1, 31]"
+                  },
+                  "zero": {
+                    "key": "Optional",
+                    "default": "[1, 3]"
+                  },
+                  "one": {
+                    "key": "Optional",
+                    "default": "[3, 1]"
+                  },
+                  "inverted": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "rc_switch_type_c": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.RC_SWITCH_TYPE_C_SCHEMA"
-          ]
+          "config_vars": {
+            "family": {
+              "key": "Required",
+              "type": "enum",
+              "values": [
+                "a",
+                "b",
+                "c",
+                "d",
+                "e",
+                "f",
+                "g",
+                "h",
+                "i",
+                "j",
+                "k",
+                "l",
+                "m",
+                "n",
+                "o",
+                "p"
+              ]
+            },
+            "group": {
+              "key": "Required",
+              "type": "integer"
+            },
+            "device": {
+              "key": "Required",
+              "type": "integer"
+            },
+            "state": {
+              "key": "Required",
+              "type": "boolean"
+            },
+            "protocol": {
+              "key": "Optional",
+              "default": "1",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "pulse_length": {
+                    "key": "Required",
+                    "type": "integer"
+                  },
+                  "sync": {
+                    "key": "Optional",
+                    "default": "[1, 31]"
+                  },
+                  "zero": {
+                    "key": "Optional",
+                    "default": "[1, 3]"
+                  },
+                  "one": {
+                    "key": "Optional",
+                    "default": "[3, 1]"
+                  },
+                  "inverted": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "rc_switch_type_d": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.RC_SWITCH_TYPE_D_SCHEMA",
-            "remote_base.RC_SWITCH_TRANSMITTER"
-          ]
+          "config_vars": {
+            "group": {
+              "key": "Required",
+              "type": "enum",
+              "values": [
+                "a",
+                "b",
+                "c",
+                "d"
+              ]
+            },
+            "device": {
+              "key": "Required",
+              "type": "integer"
+            },
+            "state": {
+              "key": "Required",
+              "type": "boolean"
+            },
+            "protocol": {
+              "key": "Optional",
+              "default": "1",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "pulse_length": {
+                    "key": "Required",
+                    "type": "integer"
+                  },
+                  "sync": {
+                    "key": "Optional",
+                    "default": "[1, 31]"
+                  },
+                  "zero": {
+                    "key": "Optional",
+                    "default": "[1, 3]"
+                  },
+                  "one": {
+                    "key": "Optional",
+                    "default": "[3, 1]"
+                  },
+                  "inverted": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "repeat": {
+              "key": "Optional",
+              "default": "{'times': 5}",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "times": {
+                    "key": "Required",
+                    "templatable": true,
+                    "type": "integer"
+                  },
+                  "wait_time": {
+                    "key": "Optional",
+                    "default": "0us",
+                    "templatable": true,
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "core.time_period_dict"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "samsung": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.SAMSUNG_SCHEMA"
-          ]
+          "config_vars": {
+            "data": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint64_t"
+                ]
+              }
+            },
+            "nbits": {
+              "key": "Optional",
+              "default": "32",
+              "type": "integer"
+            }
+          }
         }
       },
       "samsung36": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.SAMSUNG36_SCHEMA"
-          ]
+          "config_vars": {
+            "address": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint16_t"
+                ]
+              }
+            },
+            "command": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint32_t"
+                ]
+              }
+            }
+          }
         }
       },
       "toshiba_ac": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.TOSHIBAAC_SCHEMA"
-          ]
+          "config_vars": {
+            "rc_code_1": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint64_t"
+                ]
+              }
+            },
+            "rc_code_2": {
+              "key": "Optional",
+              "default": "0",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint64_t"
+                ]
+              }
+            }
+          }
         }
       },
       "panasonic": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.PANASONIC_SCHEMA"
-          ]
+          "config_vars": {
+            "address": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint16_t"
+                ]
+              }
+            },
+            "command": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint32_t"
+                ]
+              }
+            }
+          }
         }
       },
       "nexa": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.NEXA_SCHEMA"
-          ]
+          "config_vars": {
+            "device": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint32_t"
+                ]
+              }
+            },
+            "group": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint8_t"
+                ]
+              }
+            },
+            "state": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint8_t"
+                ]
+              }
+            },
+            "channel": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint8_t"
+                ]
+              }
+            },
+            "level": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.hex_uint8_t"
+                ]
+              }
+            }
+          }
         }
       },
       "midea": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "remote_base.MIDEA_SCHEMA"
-          ]
+          "config_vars": {
+            "code": {
+              "key": "Required"
+            }
+          }
         }
       }
     },

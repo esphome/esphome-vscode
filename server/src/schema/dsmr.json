@@ -2,58 +2,70 @@
   "dsmr": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "config_vars": {
-          "id": {
-            "key": "GeneratedID"
-          },
-          "decryption_key": {
-            "key": "Optional"
-          },
-          "crc_check": {
-            "key": "Optional",
-            "default": "True",
-            "type": "boolean"
-          },
-          "gas_mbus_id": {
-            "key": "Optional",
-            "default": "1",
-            "type": "integer"
-          },
-          "max_telegram_length": {
-            "key": "Optional",
-            "default": "1500",
-            "type": "integer"
-          },
-          "request_pin": {
-            "key": "Optional",
-            "schema": true,
-            "modes": [
-              "output"
-            ],
-            "type": "pin"
-          },
-          "request_interval": {
-            "key": "Optional",
-            "default": "0ms",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.positive_time_period_milliseconds"
-              ]
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the DSMR if you have multiple components.\n\n\n\n*See also: [dsmr Component/Hub](https://esphome.io/components/sensor/dsmr.html#component-hub)*"
+            },
+            "decryption_key": {
+              "key": "Optional",
+              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable), 32 characters, case insensitive**: The key to decrypt the telegrams. Used in Lux only.\n\n\n\n*See also: [dsmr Component/Hub](https://esphome.io/components/sensor/dsmr.html#component-hub)*"
+            },
+            "crc_check": {
+              "key": "Optional",
+              "default": "True",
+              "type": "boolean",
+              "docs": "**boolean**: Specifies if the CRC check must be done. This is required to be set to false for older DSMR versions as they do not provide a CRC. Defaults to `true`.\n\n\n\n*See also: [dsmr Component/Hub](https://esphome.io/components/sensor/dsmr.html#component-hub)*"
+            },
+            "gas_mbus_id": {
+              "key": "Optional",
+              "default": "1",
+              "type": "integer",
+              "docs": "**int**: The id of the gas meter. Defaults to `1`.\n\n\n\n*See also: [dsmr Component/Hub](https://esphome.io/components/sensor/dsmr.html#component-hub)*"
+            },
+            "max_telegram_length": {
+              "key": "Optional",
+              "default": "1500",
+              "type": "integer",
+              "docs": "**integer**: The size of the buffer used for reading DSMR telegrams. Increase if you are reading from a smart meter that sends large telegrams. Defaults to `1500`.\n\n\n\n*See also: [dsmr Component/Hub](https://esphome.io/components/sensor/dsmr.html#component-hub)*"
+            },
+            "request_pin": {
+              "key": "Optional",
+              "schema": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin",
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin that can be used for controlling the P1 port\u2019s Data Request pin. Defaults to not using a Data Request pin. See [Using the P1 Data Request pin](https://esphome.io/components/sensor/dsmr.html#sensor-dsmr-request-pin).\n\n\n\n*See also: [dsmr Component/Hub](https://esphome.io/components/sensor/dsmr.html#component-hub)*"
+            },
+            "request_interval": {
+              "key": "Optional",
+              "default": "0ms",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.time_period_dict"
+                ]
+              },
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The minimum time between two telegram readings. Defaults to `0ms`, meaning that the pace at which the smart meter sends its data determines the update frequency. This works best in combination with a `request_pin`, but this option will work without one too.\n\n\n\n*See also: [dsmr Component/Hub](https://esphome.io/components/sensor/dsmr.html#component-hub)*"
+            },
+            "receive_timeout": {
+              "key": "Optional",
+              "default": "200ms",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.time_period_dict"
+                ]
+              },
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The timeout on incoming data while reading a telegram. When no new data arrive within the given timeout, the device will consider the current telegram a loss and starts looking for the header of the next telegram. Defaults to `200ms`.\n\n\n\n*See also: [dsmr Component/Hub](https://esphome.io/components/sensor/dsmr.html#component-hub)*"
+            },
+            "uart_id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the UART hub.\n\n\n\n*See also: [dsmr Component/Hub](https://esphome.io/components/sensor/dsmr.html#component-hub)*"
             }
-          },
-          "receive_timeout": {
-            "key": "Optional",
-            "default": "200ms",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "core.positive_time_period_milliseconds"
-              ]
-            }
-          },
-          "uart_id": {
-            "key": "GeneratedID"
           }
         }
       }
@@ -62,985 +74,2378 @@
   "dsmr.sensor": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "config_vars": {
-          "dsmr_id": {
-            "key": "GeneratedID"
-          },
-          "energy_delivered_lux": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kWh"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "device_class": {
-                  "default": "energy"
-                },
-                "state_class": {
-                  "default": "total_increasing"
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "dsmr_id": {
+              "key": "GeneratedID"
+            },
+            "energy_delivered_lux": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kWh",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "energy",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "total_increasing",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Energy Consumed Luxembourg\n  * **name** (**Required**, string): The name for the energy_delivered_lux sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "energy_delivered_tariff1": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kWh",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "energy",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "total_increasing",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Energy Consumed Tariff 1.\n  * **name** (**Required**, string): The name for the energy_delivered_tariff1 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "energy_delivered_tariff2": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kWh",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "energy",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "total_increasing",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Energy Consumed Tariff 2.\n  * **name** (**Required**, string): The name for the energy_delivered_tariff2 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "energy_returned_lux": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kWh",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "energy",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "total_increasing",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Energy Produced Luxembourg\n  * **name** (**Required**, string): The name for the energy_returned_lux sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "energy_returned_tariff1": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kWh",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "energy",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "total_increasing",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Energy Produced Tariff 1.\n  * **name** (**Required**, string): The name for the energy_returned_tariff1 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "energy_returned_tariff2": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kWh",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "energy",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "total_increasing",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Energy Produced Tariff 2.\n  * **name** (**Required**, string): The name for the energy_returned_tariff2 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "total_imported_energy": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kVArh",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  }
                 }
               }
-            }
-          },
-          "energy_delivered_tariff1": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kWh"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "device_class": {
-                  "default": "energy"
-                },
-                "state_class": {
-                  "default": "total_increasing"
+            },
+            "total_exported_energy": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kVArh",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  }
                 }
               }
-            }
-          },
-          "energy_delivered_tariff2": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kWh"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "device_class": {
-                  "default": "energy"
-                },
-                "state_class": {
-                  "default": "total_increasing"
+            },
+            "power_delivered": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kW",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "power",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Power Consumed.\n  * **name** (**Required**, string): The name for the power_delivered sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "power_returned": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kW",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "power",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Power Produced.\n  * **name** (**Required**, string): The name for the power_returned sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "reactive_power_delivered": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kVAr",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
                 }
               }
-            }
-          },
-          "energy_returned_lux": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kWh"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "device_class": {
-                  "default": "energy"
-                },
-                "state_class": {
-                  "default": "total_increasing"
+            },
+            "reactive_power_returned": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kVAr",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
                 }
               }
-            }
-          },
-          "energy_returned_tariff1": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kWh"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "device_class": {
-                  "default": "energy"
-                },
-                "state_class": {
-                  "default": "total_increasing"
+            },
+            "electricity_threshold": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  }
                 }
               }
-            }
-          },
-          "energy_returned_tariff2": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kWh"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "device_class": {
-                  "default": "energy"
-                },
-                "state_class": {
-                  "default": "total_increasing"
+            },
+            "electricity_switch_position": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  }
                 }
               }
-            }
-          },
-          "total_imported_energy": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kVArh"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
+            },
+            "electricity_failures": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "0",
+                    "type": "integer"
+                  }
+                }
+              },
+              "docs": "Electricity Failures.\n  * **name** (**Required**, string): The name for the electricity_failures sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "electricity_long_failures": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "0",
+                    "type": "integer"
+                  }
+                }
+              },
+              "docs": "Long Electricity Failures.\n  * **name** (**Required**, string): The name for the electricity_long_failures sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "electricity_sags_l1": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "0",
+                    "type": "integer"
+                  }
                 }
               }
-            }
-          },
-          "total_exported_energy": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kVArh"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
+            },
+            "electricity_sags_l2": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "0",
+                    "type": "integer"
+                  }
                 }
               }
-            }
-          },
-          "power_delivered": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kW"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "device_class": {
-                  "default": "power"
-                },
-                "state_class": {
-                  "default": "measurement"
+            },
+            "electricity_sags_l3": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "0",
+                    "type": "integer"
+                  }
                 }
               }
-            }
-          },
-          "power_returned": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kW"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "device_class": {
-                  "default": "power"
-                },
-                "state_class": {
-                  "default": "measurement"
+            },
+            "electricity_swells_l1": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "0",
+                    "type": "integer"
+                  }
                 }
               }
-            }
-          },
-          "reactive_power_delivered": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kVAr"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "state_class": {
-                  "default": "measurement"
+            },
+            "electricity_swells_l2": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "0",
+                    "type": "integer"
+                  }
                 }
               }
-            }
-          },
-          "reactive_power_returned": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kVAr"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "state_class": {
-                  "default": "measurement"
+            },
+            "electricity_swells_l3": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "0",
+                    "type": "integer"
+                  }
                 }
               }
-            }
-          },
-          "electricity_threshold": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "accuracy_decimals": {
-                  "default": "3"
+            },
+            "current_l1": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "A",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "1",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "current",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Current Phase 1.\n  * **name** (**Required**, string): The name for the current_l1 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "current_l2": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "A",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "1",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "current",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Current Phase 2.\n  * **name** (**Required**, string): The name for the current_l2 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "current_l3": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "A",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "1",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "current",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Current Phase 3.\n  * **name** (**Required**, string): The name for the current_l3 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "power_delivered_l1": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kW",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "current",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Power Consumed Phase 1.\n  * **name** (**Required**, string): The name for the power_delivered_l1 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "power_delivered_l2": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kW",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "current",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Power Consumed Phase 2.\n  * **name** (**Required**, string): The name for the power_delivered_l2 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "power_delivered_l3": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kW",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "current",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Power Consumed Phase 3.\n  * **name** (**Required**, string): The name for the power_delivered_l3 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "power_returned_l1": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kW",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "current",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Power Produced Phase 1.\n  * **name** (**Required**, string): The name for the power_returned_l1 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "power_returned_l2": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kW",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "current",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Power Produced Phase 2.\n  * **name** (**Required**, string): The name for the power_returned_l2 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "power_returned_l3": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kW",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "current",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Power Produced Phase 3.\n  * **name** (**Required**, string): The name for the power_returned_l3 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "reactive_power_delivered_l1": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kVAr",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
                 }
               }
-            }
-          },
-          "electricity_switch_position": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "accuracy_decimals": {
-                  "default": "3"
+            },
+            "reactive_power_delivered_l2": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kVAr",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
                 }
               }
-            }
-          },
-          "electricity_failures": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "accuracy_decimals": {
-                  "default": "0"
+            },
+            "reactive_power_delivered_l3": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kVAr",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
                 }
               }
-            }
-          },
-          "electricity_long_failures": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "accuracy_decimals": {
-                  "default": "0"
+            },
+            "reactive_power_returned_l1": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kVAr",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
                 }
               }
-            }
-          },
-          "electricity_sags_l1": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "accuracy_decimals": {
-                  "default": "0"
+            },
+            "reactive_power_returned_l2": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kVAr",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
                 }
               }
-            }
-          },
-          "electricity_sags_l2": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "accuracy_decimals": {
-                  "default": "0"
+            },
+            "reactive_power_returned_l3": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "kVAr",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
                 }
               }
+            },
+            "voltage_l1": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "V",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "1",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "voltage",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Voltage Phase 1.\n  * **name** (**Required**, string): The name for the voltage_l1 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "voltage_l2": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "V",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "1",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "voltage",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Voltage Phase 2.\n  * **name** (**Required**, string): The name for the voltage_l2 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "voltage_l3": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "V",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "1",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "voltage",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "measurement",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Voltage Phase 3.\n  * **name** (**Required**, string): The name for the voltage_l3 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "gas_delivered": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "m\u00b3",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "gas",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "total_increasing",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Gas Consumed.\n  * **name** (**Required**, string): The name for the gas_delivered sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+            },
+            "gas_delivered_be": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "key": "Optional",
+                    "default": "m\u00b3",
+                    "type": "string"
+                  },
+                  "accuracy_decimals": {
+                    "key": "Optional",
+                    "default": "3",
+                    "type": "integer"
+                  },
+                  "device_class": {
+                    "key": "Optional",
+                    "default": "gas",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "aqi",
+                      "battery",
+                      "carbon_dioxide",
+                      "carbon_monoxide",
+                      "current",
+                      "energy",
+                      "gas",
+                      "humidity",
+                      "illuminance",
+                      "monetary",
+                      "nitrogen_dioxide",
+                      "nitrogen_monoxide",
+                      "nitrous_oxide",
+                      "ozone",
+                      "pm1",
+                      "pm10",
+                      "pm25",
+                      "power",
+                      "power_factor",
+                      "pressure",
+                      "signal_strength",
+                      "sulphur_dioxide",
+                      "temperature",
+                      "timestamp",
+                      "volatile_organic_compounds",
+                      "voltage"
+                    ]
+                  },
+                  "state_class": {
+                    "key": "Optional",
+                    "default": "total_increasing",
+                    "type": "enum",
+                    "values": [
+                      "",
+                      "measurement",
+                      "total_increasing"
+                    ]
+                  }
+                }
+              },
+              "docs": "Gas Consumed Belgium.\n  * **name** (**Required**, string): The name for the gas_delivered_be sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             }
           },
-          "electricity_sags_l3": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "accuracy_decimals": {
-                  "default": "0"
-                }
-              }
-            }
-          },
-          "electricity_swells_l1": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "accuracy_decimals": {
-                  "default": "0"
-                }
-              }
-            }
-          },
-          "electricity_swells_l2": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "accuracy_decimals": {
-                  "default": "0"
-                }
-              }
-            }
-          },
-          "electricity_swells_l3": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "accuracy_decimals": {
-                  "default": "0"
-                }
-              }
-            }
-          },
-          "current_l1": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "A"
-                },
-                "accuracy_decimals": {
-                  "default": "1"
-                },
-                "device_class": {
-                  "default": "current"
-                },
-                "state_class": {
-                  "default": "measurement"
-                }
-              }
-            }
-          },
-          "current_l2": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "A"
-                },
-                "accuracy_decimals": {
-                  "default": "1"
-                },
-                "device_class": {
-                  "default": "current"
-                },
-                "state_class": {
-                  "default": "measurement"
-                }
-              }
-            }
-          },
-          "current_l3": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "A"
-                },
-                "accuracy_decimals": {
-                  "default": "1"
-                },
-                "device_class": {
-                  "default": "current"
-                },
-                "state_class": {
-                  "default": "measurement"
-                }
-              }
-            }
-          },
-          "power_delivered_l1": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kW"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "device_class": {
-                  "default": "current"
-                },
-                "state_class": {
-                  "default": "measurement"
-                }
-              }
-            }
-          },
-          "power_delivered_l2": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kW"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "device_class": {
-                  "default": "current"
-                },
-                "state_class": {
-                  "default": "measurement"
-                }
-              }
-            }
-          },
-          "power_delivered_l3": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kW"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "device_class": {
-                  "default": "current"
-                },
-                "state_class": {
-                  "default": "measurement"
-                }
-              }
-            }
-          },
-          "power_returned_l1": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kW"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "device_class": {
-                  "default": "current"
-                },
-                "state_class": {
-                  "default": "measurement"
-                }
-              }
-            }
-          },
-          "power_returned_l2": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kW"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "device_class": {
-                  "default": "current"
-                },
-                "state_class": {
-                  "default": "measurement"
-                }
-              }
-            }
-          },
-          "power_returned_l3": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kW"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "device_class": {
-                  "default": "current"
-                },
-                "state_class": {
-                  "default": "measurement"
-                }
-              }
-            }
-          },
-          "reactive_power_delivered_l1": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kVAr"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "state_class": {
-                  "default": "measurement"
-                }
-              }
-            }
-          },
-          "reactive_power_delivered_l2": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kVAr"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "state_class": {
-                  "default": "measurement"
-                }
-              }
-            }
-          },
-          "reactive_power_delivered_l3": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kVAr"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "state_class": {
-                  "default": "measurement"
-                }
-              }
-            }
-          },
-          "reactive_power_returned_l1": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kVAr"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "state_class": {
-                  "default": "measurement"
-                }
-              }
-            }
-          },
-          "reactive_power_returned_l2": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kVAr"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "state_class": {
-                  "default": "measurement"
-                }
-              }
-            }
-          },
-          "reactive_power_returned_l3": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "kVAr"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "state_class": {
-                  "default": "measurement"
-                }
-              }
-            }
-          },
-          "voltage_l1": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "V"
-                },
-                "accuracy_decimals": {
-                  "default": "1"
-                },
-                "device_class": {
-                  "default": "voltage"
-                },
-                "state_class": {
-                  "default": "measurement"
-                }
-              }
-            }
-          },
-          "voltage_l2": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "V"
-                },
-                "accuracy_decimals": {
-                  "default": "1"
-                },
-                "device_class": {
-                  "default": "voltage"
-                },
-                "state_class": {
-                  "default": "measurement"
-                }
-              }
-            }
-          },
-          "voltage_l3": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "V"
-                },
-                "accuracy_decimals": {
-                  "default": "1"
-                },
-                "device_class": {
-                  "default": "voltage"
-                },
-                "state_class": {
-                  "default": "measurement"
-                }
-              }
-            }
-          },
-          "gas_delivered": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "m\u00b3"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "device_class": {
-                  "default": "gas"
-                },
-                "state_class": {
-                  "default": "total_increasing"
-                }
-              }
-            }
-          },
-          "gas_delivered_be": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "sensor.SENSOR_SCHEMA"
-              ],
-              "config_vars": {
-                "unit_of_measurement": {
-                  "default": "m\u00b3"
-                },
-                "accuracy_decimals": {
-                  "default": "3"
-                },
-                "device_class": {
-                  "default": "gas"
-                },
-                "state_class": {
-                  "default": "total_increasing"
-                }
-              }
-            }
-          }
-        },
-        "extends": [
-          "core.COMPONENT_SCHEMA"
-        ]
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
+        }
       }
     }
   },
   "dsmr.text_sensor": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "config_vars": {
-          "dsmr_id": {
-            "key": "GeneratedID"
-          },
-          "identification": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "text_sensor.TEXT_SENSOR_SCHEMA"
-              ]
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "dsmr_id": {
+              "key": "GeneratedID"
+            },
+            "identification": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.ENTITY_BASE_SCHEMA",
+                  "core.MQTT_COMPONENT_SCHEMA"
+                ],
+                "config_vars": {
+                  "mqtt_id": {
+                    "key": "Optional"
+                  },
+                  "id": {
+                    "key": "GeneratedID",
+                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+                  },
+                  "filters": {
+                    "key": "Optional",
+                    "type": "registry",
+                    "is_list": true,
+                    "registry": "text_sensor.filter"
+                  },
+                  "on_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  },
+                  "on_raw_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  }
+                }
+              },
+              "docs": "DSMR Identification\n  * **name** (**Required**, string): The name for the identification text sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+            },
+            "p1_version": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.ENTITY_BASE_SCHEMA",
+                  "core.MQTT_COMPONENT_SCHEMA"
+                ],
+                "config_vars": {
+                  "mqtt_id": {
+                    "key": "Optional"
+                  },
+                  "id": {
+                    "key": "GeneratedID",
+                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+                  },
+                  "filters": {
+                    "key": "Optional",
+                    "type": "registry",
+                    "is_list": true,
+                    "registry": "text_sensor.filter"
+                  },
+                  "on_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  },
+                  "on_raw_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  }
+                }
+              },
+              "docs": "DSMR Version\n  * **name** (**Required**, string): The name for the p1_version text sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+            },
+            "p1_version_be": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.ENTITY_BASE_SCHEMA",
+                  "core.MQTT_COMPONENT_SCHEMA"
+                ],
+                "config_vars": {
+                  "mqtt_id": {
+                    "key": "Optional"
+                  },
+                  "id": {
+                    "key": "GeneratedID",
+                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+                  },
+                  "filters": {
+                    "key": "Optional",
+                    "type": "registry",
+                    "is_list": true,
+                    "registry": "text_sensor.filter"
+                  },
+                  "on_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  },
+                  "on_raw_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  }
+                }
+              },
+              "docs": "DSMR Version Belgium\n  * **name** (**Required**, string): The name for the p1_version_be text sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+            },
+            "timestamp": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.ENTITY_BASE_SCHEMA",
+                  "core.MQTT_COMPONENT_SCHEMA"
+                ],
+                "config_vars": {
+                  "mqtt_id": {
+                    "key": "Optional"
+                  },
+                  "id": {
+                    "key": "GeneratedID",
+                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+                  },
+                  "filters": {
+                    "key": "Optional",
+                    "type": "registry",
+                    "is_list": true,
+                    "registry": "text_sensor.filter"
+                  },
+                  "on_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  },
+                  "on_raw_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  }
+                }
+              },
+              "docs": "Timestamp\n  * **name** (**Required**, string): The name for the timestamp sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+            },
+            "electricity_tariff": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.ENTITY_BASE_SCHEMA",
+                  "core.MQTT_COMPONENT_SCHEMA"
+                ],
+                "config_vars": {
+                  "mqtt_id": {
+                    "key": "Optional"
+                  },
+                  "id": {
+                    "key": "GeneratedID",
+                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+                  },
+                  "filters": {
+                    "key": "Optional",
+                    "type": "registry",
+                    "is_list": true,
+                    "registry": "text_sensor.filter"
+                  },
+                  "on_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  },
+                  "on_raw_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  }
+                }
+              },
+              "docs": "The current tariff. According to the specs value \u20180001\u2019 means \u2018normal tariff\u2019 and value \u20180002\u2019 means \u2018low tariff\u2019. Your meter may report differently.\n  * **name** (**Required**, string): The name for the electricity_tariff sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+            },
+            "electricity_failure_log": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.ENTITY_BASE_SCHEMA",
+                  "core.MQTT_COMPONENT_SCHEMA"
+                ],
+                "config_vars": {
+                  "mqtt_id": {
+                    "key": "Optional"
+                  },
+                  "id": {
+                    "key": "GeneratedID",
+                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+                  },
+                  "filters": {
+                    "key": "Optional",
+                    "type": "registry",
+                    "is_list": true,
+                    "registry": "text_sensor.filter"
+                  },
+                  "on_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  },
+                  "on_raw_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  }
+                }
+              },
+              "docs": "Electricity Failure Log\n  * **name** (**Required**, string): The name for the electricity_failure_log sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+            },
+            "message_short": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.ENTITY_BASE_SCHEMA",
+                  "core.MQTT_COMPONENT_SCHEMA"
+                ],
+                "config_vars": {
+                  "mqtt_id": {
+                    "key": "Optional"
+                  },
+                  "id": {
+                    "key": "GeneratedID",
+                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+                  },
+                  "filters": {
+                    "key": "Optional",
+                    "type": "registry",
+                    "is_list": true,
+                    "registry": "text_sensor.filter"
+                  },
+                  "on_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  },
+                  "on_raw_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  }
+                }
+              },
+              "docs": "Message Short\n  * **name** (**Required**, string): The name for the message_short sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+            },
+            "message_long": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.ENTITY_BASE_SCHEMA",
+                  "core.MQTT_COMPONENT_SCHEMA"
+                ],
+                "config_vars": {
+                  "mqtt_id": {
+                    "key": "Optional"
+                  },
+                  "id": {
+                    "key": "GeneratedID",
+                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+                  },
+                  "filters": {
+                    "key": "Optional",
+                    "type": "registry",
+                    "is_list": true,
+                    "registry": "text_sensor.filter"
+                  },
+                  "on_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  },
+                  "on_raw_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  }
+                }
+              },
+              "docs": "Message Long\n  * **name** (**Required**, string): The name for the message_long sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+            },
+            "gas_equipment_id": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.ENTITY_BASE_SCHEMA",
+                  "core.MQTT_COMPONENT_SCHEMA"
+                ],
+                "config_vars": {
+                  "mqtt_id": {
+                    "key": "Optional"
+                  },
+                  "id": {
+                    "key": "GeneratedID",
+                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+                  },
+                  "filters": {
+                    "key": "Optional",
+                    "type": "registry",
+                    "is_list": true,
+                    "registry": "text_sensor.filter"
+                  },
+                  "on_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  },
+                  "on_raw_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  }
+                }
+              },
+              "docs": "Gas Equipment ID.\n  * **name** (**Required**, string): The name for the gas_equipment_id sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+            },
+            "thermal_equipment_id": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.ENTITY_BASE_SCHEMA",
+                  "core.MQTT_COMPONENT_SCHEMA"
+                ],
+                "config_vars": {
+                  "mqtt_id": {
+                    "key": "Optional"
+                  },
+                  "id": {
+                    "key": "GeneratedID"
+                  },
+                  "filters": {
+                    "key": "Optional",
+                    "type": "registry",
+                    "is_list": true,
+                    "registry": "text_sensor.filter"
+                  },
+                  "on_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  },
+                  "on_raw_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  }
+                }
+              }
+            },
+            "water_equipment_id": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.ENTITY_BASE_SCHEMA",
+                  "core.MQTT_COMPONENT_SCHEMA"
+                ],
+                "config_vars": {
+                  "mqtt_id": {
+                    "key": "Optional"
+                  },
+                  "id": {
+                    "key": "GeneratedID",
+                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+                  },
+                  "filters": {
+                    "key": "Optional",
+                    "type": "registry",
+                    "is_list": true,
+                    "registry": "text_sensor.filter"
+                  },
+                  "on_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  },
+                  "on_raw_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  }
+                }
+              },
+              "docs": "Water Equipment ID\n  * **name** (**Required**, string): The name for the water_equipment_id sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+            },
+            "sub_equipment_id": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.ENTITY_BASE_SCHEMA",
+                  "core.MQTT_COMPONENT_SCHEMA"
+                ],
+                "config_vars": {
+                  "mqtt_id": {
+                    "key": "Optional"
+                  },
+                  "id": {
+                    "key": "GeneratedID",
+                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+                  },
+                  "filters": {
+                    "key": "Optional",
+                    "type": "registry",
+                    "is_list": true,
+                    "registry": "text_sensor.filter"
+                  },
+                  "on_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  },
+                  "on_raw_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  }
+                }
+              },
+              "docs": "Sub Equipment ID\n  * **name** (**Required**, string): The name for the sub_equipment_id sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+            },
+            "gas_delivered_text": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.ENTITY_BASE_SCHEMA",
+                  "core.MQTT_COMPONENT_SCHEMA"
+                ],
+                "config_vars": {
+                  "mqtt_id": {
+                    "key": "Optional"
+                  },
+                  "id": {
+                    "key": "GeneratedID",
+                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+                  },
+                  "filters": {
+                    "key": "Optional",
+                    "type": "registry",
+                    "is_list": true,
+                    "registry": "text_sensor.filter"
+                  },
+                  "on_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  },
+                  "on_raw_value": {
+                    "key": "Optional",
+                    "type": "trigger"
+                  }
+                }
+              },
+              "docs": "A text sensor which unformatted gas data. You need to apply a custom parsing of this value depending on your meter format.\n  * **name** (**Required**, string): The name for the p1_version text sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             }
           },
-          "p1_version": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "text_sensor.TEXT_SENSOR_SCHEMA"
-              ]
-            }
-          },
-          "p1_version_be": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "text_sensor.TEXT_SENSOR_SCHEMA"
-              ]
-            }
-          },
-          "timestamp": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "text_sensor.TEXT_SENSOR_SCHEMA"
-              ]
-            }
-          },
-          "electricity_tariff": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "text_sensor.TEXT_SENSOR_SCHEMA"
-              ]
-            }
-          },
-          "electricity_failure_log": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "text_sensor.TEXT_SENSOR_SCHEMA"
-              ]
-            }
-          },
-          "message_short": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "text_sensor.TEXT_SENSOR_SCHEMA"
-              ]
-            }
-          },
-          "message_long": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "text_sensor.TEXT_SENSOR_SCHEMA"
-              ]
-            }
-          },
-          "gas_equipment_id": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "text_sensor.TEXT_SENSOR_SCHEMA"
-              ]
-            }
-          },
-          "thermal_equipment_id": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "text_sensor.TEXT_SENSOR_SCHEMA"
-              ]
-            }
-          },
-          "water_equipment_id": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "text_sensor.TEXT_SENSOR_SCHEMA"
-              ]
-            }
-          },
-          "sub_equipment_id": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "text_sensor.TEXT_SENSOR_SCHEMA"
-              ]
-            }
-          },
-          "gas_delivered_text": {
-            "key": "Optional",
-            "type": "schema",
-            "schema": {
-              "extends": [
-                "text_sensor.TEXT_SENSOR_SCHEMA"
-              ]
-            }
-          }
-        },
-        "extends": [
-          "core.COMPONENT_SCHEMA"
-        ]
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
+        }
       }
     }
   }
