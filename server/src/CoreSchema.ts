@@ -53,7 +53,8 @@ interface ConfigVarBoolean extends ConfigVarBase {
     default: string;
 }
 interface ConfigVarString extends ConfigVarBase {
-    type: 'string';
+    type: 'string' | 'integer';
+    default?: string;
 }
 
 export type ConfigVar = ConfigVarSchema | ConfigVarRegistry | ConfigVarEnum | ConfigVarTrigger | ConfigVarTyped | ConfigVarPin | ConfigVarBoolean | ConfigVarString;

@@ -412,5 +412,16 @@ output:
       `), { line: 7, character: 6 });
     testCompletionHaveLabels(result, ["number", "mode", "drive_strength"]);
   });
+
+  it('fill preselect default value', () => {
+    const result = x.onCompletion(Docs.getTextDoc(`
+esphome:
+  name: arduino
+esp32:
+  board: d1
+logger:
+  bau`), { line: 5, character: 5 });
+    expect(result.find(r => r.label === "baud_rate").insertText).to.be.string("baud_rate: ${0:115200}");
+  });
 });
 

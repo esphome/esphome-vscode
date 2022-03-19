@@ -1,6 +1,5 @@
-import { stringify } from "querystring";
 import { Position } from "vscode-languageserver-textdocument";
-import { CompletionItem, CompletionItemKind, MarkupContent, Range, TextDocument } from "vscode-languageserver/node";
+import { CompletionItem, CompletionItemKind, InsertTextFormat, Range, TextDocument } from "vscode-languageserver/node";
 import { isPair, isMap, isScalar, isSeq, YAMLMap, Node, Scalar, isNode } from "yaml";
 import { ConfigVar, CoreSchema, Schema, ConfigVarTrigger, ConfigVarRegistry, ConfigVarPin, ConfigVarEnum, ConfigVarSchema } from "./CoreSchema";
 import { YamlNode } from "./jsonASTTypes";
@@ -606,7 +605,12 @@ export class CompletionHandler {
                     item.detail = "Required";
                 }
                 else {
-                    item.detail = config["default"];
+                    if (config.type === "integer" || config.type === "string" || config.type === undefined) {
+                        if (config["default"] !== undefined) {
+                            item.insertTextFormat = InsertTextFormat.Snippet;
+                            item.insertText = prop + ': ${0:' + config["default"] + '}';
+                        }
+                    }
                 }
             }
 
@@ -646,12 +650,17 @@ export class CompletionHandler {
 
     addEnums(result: CompletionItem[], cv: ConfigVarEnum) {
         for (var value of cv.values) {
-            result.push({
+            let c: CompletionItem = {
                 label: value,
                 kind: CompletionItemKind.EnumMember,
                 insertText: value,
                 // command: { title: 'chain', command: "editor.action.triggerSuggest" }
-            });
+            };
+            if (cv["default"] === value) {
+                c.preselect = true;
+            }
+
+            result.push(c);
         }
     }
 
