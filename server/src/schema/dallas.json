@@ -28,7 +28,8 @@
           "extends": [
             "core.COMPONENT_SCHEMA"
           ]
-        }
+        },
+        "is_list": true
       }
     }
   },
@@ -66,7 +67,12 @@
             },
             "index": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_int"
+                ]
+              },
               "docs": "**int**: The index of the sensor starting with 0. So the first sensor will for example have index 0. [It\u2019s recommended to use address instead](https://esphome.io/components/sensor/dallas.html#dallas-getting-ids).\n\n\n\n*See also: [dallas Sensor](https://esphome.io/components/sensor/dallas.html#id1)*"
             },
             "resolution": {

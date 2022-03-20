@@ -165,7 +165,12 @@
             "change_mode_every": {
               "key": "Optional",
               "default": "8",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint32_t"
+                ]
+              },
               "docs": "**int**: After how many updates to cycle between the current/voltage measurement mode. Note that the first value after switching is discarded because it is often inaccurate. Defaults to `8`.\n\n\n\n*See also: [HLW8012 Power Sensor](https://esphome.io/components/sensor/hlw8012.html#configuration-variables)*"
             },
             "initial_mode": {

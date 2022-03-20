@@ -19,44 +19,28 @@
                 ],
                 "config_vars": {
                   "bssid": {
-                    "key": "Optional"
+                    "key": "Optional",
+                    "docs": "**string**: The connection\u2019s BSSID (MAC address). BSSIDs must consist of six two-digit hexadecimal values separated by colon characters (\u201d`:`\u201d). All letters must be in upper case.\n\n\n\n*See also: [Connecting to Multiple Networks](https://esphome.io/components/wifi.html#connecting-to-multiple-networks)*"
                   },
                   "hidden": {
                     "key": "Optional",
-                    "type": "boolean"
+                    "type": "boolean",
+                    "docs": "**boolean**: Whether this network is hidden. Defaults to false. If you add this option you also have to specify ssid.\n\n\n\n*See also: [Connecting to Multiple Networks](https://esphome.io/components/wifi.html#connecting-to-multiple-networks)*"
                   },
                   "priority": {
                     "key": "Optional",
-                    "default": "0.0"
+                    "default": "0.0",
+                    "docs": "**float**: The priority of this network. After each time, the network with the highest priority is chosen. If the connection fails, the priority is decreased by one. Defaults to `0`.\n\n\n\n*See also: [Connecting to Multiple Networks](https://esphome.io/components/wifi.html#connecting-to-multiple-networks)*"
                   },
                   "eap": {
                     "key": "Optional",
                     "type": "schema",
                     "schema": {
-                      "config_vars": {
-                        "identity": {
-                          "key": "Optional",
-                          "type": "string"
-                        },
-                        "username": {
-                          "key": "Optional",
-                          "type": "string"
-                        },
-                        "password": {
-                          "key": "Optional",
-                          "type": "string"
-                        },
-                        "certificate_authority": {
-                          "key": "Optional"
-                        },
-                        "certificate": {
-                          "key": "Optional"
-                        },
-                        "key": {
-                          "key": "Optional"
-                        }
-                      }
-                    }
+                      "extends": [
+                        "wifi.EAP_AUTH_SCHEMA"
+                      ]
+                    },
+                    "docs": "See [Enterprise Authentication](https://esphome.io/components/wifi.html#eap).\n\n\n\n*See also: [Connecting to Multiple Networks](https://esphome.io/components/wifi.html#connecting-to-multiple-networks)*"
                   }
                 }
               },
@@ -75,20 +59,8 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "wifi.AP_MANUAL_IP_SCHEMA"
-                ],
-                "config_vars": {
-                  "dns1": {
-                    "key": "Optional",
-                    "default": "0.0.0.0",
-                    "docs": "**IPv4 address**: The main DNS server to use.\n\n\n\n*See also: [WiFi Component](https://esphome.io/components/wifi.html#configuration-variables)*"
-                  },
-                  "dns2": {
-                    "key": "Optional",
-                    "default": "0.0.0.0",
-                    "docs": "**IPv4 address**: The backup DNS server to use.\n\n\n\n*See also: [WiFi Component](https://esphome.io/components/wifi.html#configuration-variables)*"
-                  }
-                }
+                  "wifi.STA_MANUAL_IP_SCHEMA"
+                ]
               },
               "docs": "Manually configure the static IP of the node.\n  * **static_ip** (**Required**, IPv4 address): The static IP of your node.\n  \n  * **gateway** (**Required**, IPv4 address): The gateway of the local network.\n  \n  * **subnet** (**Required**, IPv4 address): The subnet of the local network.\n  \n  * **dns1** (*Optional*, IPv4 address): The main DNS server to use.\n  \n  * **dns2** (*Optional*, IPv4 address): The backup DNS server to use.\n  \n  \n\n\n\n*See also: [WiFi Component](https://esphome.io/components/wifi.html#configuration-variables)*"
             },
@@ -96,29 +68,9 @@
               "key": "Optional",
               "type": "schema",
               "schema": {
-                "config_vars": {
-                  "identity": {
-                    "key": "Optional",
-                    "type": "string"
-                  },
-                  "username": {
-                    "key": "Optional",
-                    "type": "string"
-                  },
-                  "password": {
-                    "key": "Optional",
-                    "type": "string"
-                  },
-                  "certificate_authority": {
-                    "key": "Optional"
-                  },
-                  "certificate": {
-                    "key": "Optional"
-                  },
-                  "key": {
-                    "key": "Optional"
-                  }
-                }
+                "extends": [
+                  "wifi.EAP_AUTH_SCHEMA"
+                ]
               }
             },
             "ap": {
@@ -135,7 +87,7 @@
                     "type": "schema",
                     "schema": {
                       "extends": [
-                        "core.time_period_dict"
+                        "core.positive_time_period_milliseconds"
                       ]
                     },
                     "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time after which to enable the configured fallback hotspot. Defaults to `1min`.\n\n\n\n*See also: [WiFi Component](https://esphome.io/components/wifi.html#configuration-variables)*"
@@ -155,7 +107,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The amount of time to wait before rebooting when no WiFi connection exists. Can be disabled by setting this to `0s`, but note that the low level IP stack currently seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to `15min`.\n\n\n\n*See also: [WiFi Component](https://esphome.io/components/wifi.html#configuration-variables)*"
@@ -190,10 +142,20 @@
           }
         }
       },
-      "AP_MANUAL_IP_SCHEMA": {
+      "STA_MANUAL_IP_SCHEMA": {
         "type": "schema",
         "schema": {
           "config_vars": {
+            "dns1": {
+              "key": "Optional",
+              "default": "0.0.0.0",
+              "docs": "**IPv4 address**: The main DNS server to use.\n\n\n\n*See also: [Connecting to Multiple Networks](https://esphome.io/components/wifi.html#connecting-to-multiple-networks)*"
+            },
+            "dns2": {
+              "key": "Optional",
+              "default": "0.0.0.0",
+              "docs": "**IPv4 address**: The backup DNS server to use.\n\n\n\n*See also: [Connecting to Multiple Networks](https://esphome.io/components/wifi.html#connecting-to-multiple-networks)*"
+            },
             "static_ip": {
               "key": "Required",
               "docs": "**IPv4 address**: The static IP of your node.\n\n\n\n*See also: [Connecting to Multiple Networks](https://esphome.io/components/wifi.html#connecting-to-multiple-networks)*"
@@ -205,24 +167,6 @@
             "subnet": {
               "key": "Required",
               "docs": "**IPv4 address**: The subnet of the local network.\n\n\n\n*See also: [Connecting to Multiple Networks](https://esphome.io/components/wifi.html#connecting-to-multiple-networks)*"
-            }
-          }
-        }
-      },
-      "STA_MANUAL_IP_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "wifi.AP_MANUAL_IP_SCHEMA"
-          ],
-          "config_vars": {
-            "dns1": {
-              "key": "Optional",
-              "default": "0.0.0.0"
-            },
-            "dns2": {
-              "key": "Optional",
-              "default": "0.0.0.0"
             }
           }
         }
@@ -285,106 +229,10 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "wifi.AP_MANUAL_IP_SCHEMA"
-                ],
-                "config_vars": {
-                  "dns1": {
-                    "key": "Optional",
-                    "default": "0.0.0.0",
-                    "docs": "**IPv4 address**: The main DNS server to use.\n\n\n\n*See also: [Connecting to Multiple Networks](https://esphome.io/components/wifi.html#connecting-to-multiple-networks)*"
-                  },
-                  "dns2": {
-                    "key": "Optional",
-                    "default": "0.0.0.0",
-                    "docs": "**IPv4 address**: The backup DNS server to use.\n\n\n\n*See also: [Connecting to Multiple Networks](https://esphome.io/components/wifi.html#connecting-to-multiple-networks)*"
-                  }
-                }
+                  "wifi.STA_MANUAL_IP_SCHEMA"
+                ]
               },
               "docs": "Manually configure the static IP of the node when using this network. Note that when using different static IP addresses on each network, it is required to set `use_address`, as ESPHome cannot infer to which network the node is connected.\n  * **static_ip** (**Required**, IPv4 address): The static IP of your node.\n  \n  * **gateway** (**Required**, IPv4 address): The gateway of the local network.\n  \n  * **subnet** (**Required**, IPv4 address): The subnet of the local network.\n  \n  * **dns1** (*Optional*, IPv4 address): The main DNS server to use.\n  \n  * **dns2** (*Optional*, IPv4 address): The backup DNS server to use.\n  \n  \n\n\n\n*See also: [Connecting to Multiple Networks](https://esphome.io/components/wifi.html#connecting-to-multiple-networks)*"
-            }
-          }
-        }
-      },
-      "WIFI_NETWORK_AP": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "wifi.WIFI_NETWORK_BASE"
-          ],
-          "config_vars": {
-            "ap_timeout": {
-              "key": "Optional",
-              "default": "1min",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.time_period_dict"
-                ]
-              }
-            }
-          }
-        }
-      },
-      "WIFI_NETWORK_STA": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "wifi.WIFI_NETWORK_BASE"
-          ],
-          "config_vars": {
-            "bssid": {
-              "key": "Optional",
-              "docs": "**string**: The connection\u2019s BSSID (MAC address). BSSIDs must consist of six two-digit hexadecimal values separated by colon characters (\u201d`:`\u201d). All letters must be in upper case.\n\n\n\n*See also: [Connecting to Multiple Networks](https://esphome.io/components/wifi.html#connecting-to-multiple-networks)*"
-            },
-            "hidden": {
-              "key": "Optional",
-              "type": "boolean",
-              "docs": "**boolean**: Whether this network is hidden. Defaults to false. If you add this option you also have to specify ssid.\n\n\n\n*See also: [Connecting to Multiple Networks](https://esphome.io/components/wifi.html#connecting-to-multiple-networks)*"
-            },
-            "priority": {
-              "key": "Optional",
-              "default": "0.0",
-              "docs": "**float**: The priority of this network. After each time, the network with the highest priority is chosen. If the connection fails, the priority is decreased by one. Defaults to `0`.\n\n\n\n*See also: [Connecting to Multiple Networks](https://esphome.io/components/wifi.html#connecting-to-multiple-networks)*"
-            },
-            "eap": {
-              "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "config_vars": {
-                  "identity": {
-                    "key": "Optional",
-                    "type": "string"
-                  },
-                  "username": {
-                    "key": "Optional",
-                    "type": "string"
-                  },
-                  "password": {
-                    "key": "Optional",
-                    "type": "string"
-                  },
-                  "certificate_authority": {
-                    "key": "Optional"
-                  },
-                  "certificate": {
-                    "key": "Optional"
-                  },
-                  "key": {
-                    "key": "Optional"
-                  }
-                }
-              },
-              "docs": "See [Enterprise Authentication](https://esphome.io/components/wifi.html#eap).\n\n\n\n*See also: [Connecting to Multiple Networks](https://esphome.io/components/wifi.html#connecting-to-multiple-networks)*"
-            }
-          }
-        }
-      },
-      "FINAL_VALIDATE_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "power_save_mode": {
-              "key": "Optional"
             }
           }
         }

@@ -1,35 +1,5 @@
 {
   "ssd1331_base": {
-    "schemas": {
-      "SSD1331_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "display.FULL_DISPLAY_SCHEMA",
-            "core.COMPONENT_SCHEMA"
-          ],
-          "config_vars": {
-            "reset_pin": {
-              "key": "Optional",
-              "schema": true,
-              "modes": [
-                "output"
-              ],
-              "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The RESET pin.\n\n\n\n*See also: [SSD1331 OLED Display](https://esphome.io/components/display/ssd1331.html#configuration-variables)*"
-            },
-            "brightness": {
-              "key": "Optional",
-              "default": "1.0"
-            },
-            "update_interval": {
-              "key": "Optional",
-              "default": "1s",
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to re-draw the screen. Defaults to `5s`.\n\n\n\n*See also: [SSD1331 OLED Display](https://esphome.io/components/display/ssd1331.html#configuration-variables)*"
-            }
-          }
-        }
-      }
-    }
+    "schemas": {}
   }
 }

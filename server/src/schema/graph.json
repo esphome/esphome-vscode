@@ -4,102 +4,6 @@
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "graph.GRAPH_SCHEMA"
-          ]
-        }
-      },
-      "GRAPH_TRACE_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
-            "sensor": {
-              "key": "Required"
-            },
-            "name": {
-              "key": "Optional",
-              "type": "string"
-            },
-            "line_thickness": {
-              "key": "Optional",
-              "type": "integer"
-            },
-            "line_type": {
-              "key": "Optional",
-              "type": "enum",
-              "values": [
-                "SOLID",
-                "DOTTED",
-                "DASHED"
-              ]
-            },
-            "color": {
-              "key": "Optional"
-            }
-          }
-        }
-      },
-      "GRAPH_LEGEND_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
-            "name_font": {
-              "key": "Required"
-            },
-            "value_font": {
-              "key": "Optional"
-            },
-            "width": {
-              "key": "Optional",
-              "type": "integer"
-            },
-            "height": {
-              "key": "Optional",
-              "type": "integer"
-            },
-            "border": {
-              "key": "Optional",
-              "type": "boolean"
-            },
-            "show_lines": {
-              "key": "Optional",
-              "type": "boolean"
-            },
-            "show_values": {
-              "key": "Optional",
-              "type": "enum",
-              "values": [
-                "NONE",
-                "AUTO",
-                "BESIDE",
-                "BELOW"
-              ]
-            },
-            "show_units": {
-              "key": "Optional",
-              "type": "boolean"
-            },
-            "direction": {
-              "key": "Optional",
-              "type": "enum",
-              "values": [
-                "AUTO",
-                "HORIZONTAL",
-                "VERTICAL"
-              ]
-            }
-          }
-        }
-      },
-      "GRAPH_SCHEMA": {
-        "type": "schema",
-        "schema": {
           "config_vars": {
             "id": {
               "key": "Required",
@@ -110,19 +14,29 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_seconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The total graph history duration.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
             },
             "width": {
               "key": "Required",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
               "docs": "**int**: The graph width in pixels\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
             },
             "height": {
               "key": "Required",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
               "docs": "**int**: The graph height in pixels\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
             },
             "x_grid": {
@@ -130,7 +44,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_seconds"
                 ]
               },
               "docs": "Specifies the time per division. If not specified, no vertical grid will be drawn.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
@@ -149,7 +63,12 @@
             },
             "line_thickness": {
               "key": "Optional",
-              "type": "integer"
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_int"
+                ]
+              }
             },
             "line_type": {
               "key": "Optional",
@@ -197,7 +116,12 @@
                   },
                   "line_thickness": {
                     "key": "Optional",
-                    "type": "integer"
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "core.positive_int"
+                      ]
+                    }
                   },
                   "line_type": {
                     "key": "Optional",
@@ -232,11 +156,21 @@
                   },
                   "width": {
                     "key": "Optional",
-                    "type": "integer"
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "core.positive_not_null_int"
+                      ]
+                    }
                   },
                   "height": {
                     "key": "Optional",
-                    "type": "integer"
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "core.positive_not_null_int"
+                      ]
+                    }
                   },
                   "border": {
                     "key": "Optional",
@@ -273,7 +207,8 @@
               }
             }
           }
-        }
+        },
+        "is_list": true
       }
     }
   }

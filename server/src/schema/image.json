@@ -4,14 +4,6 @@
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "image.IMAGE_SCHEMA"
-          ]
-        }
-      },
-      "IMAGE_SCHEMA": {
-        "type": "schema",
-        "schema": {
           "config_vars": {
             "id": {
               "key": "Required",
@@ -51,7 +43,8 @@
               "key": "GeneratedID"
             }
           }
-        }
+        },
+        "is_list": true
       }
     }
   }

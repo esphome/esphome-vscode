@@ -1,7 +1,9 @@
 {
   "pn532": {
     "schemas": {
-      "CONFIG_SCHEMA": {},
+      "CONFIG_SCHEMA": {
+        "is_list": true
+      },
       "PN532_SCHEMA": {
         "type": "schema",
         "schema": {

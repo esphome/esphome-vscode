@@ -69,7 +69,12 @@
             },
             "full_update_every": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint32_t"
+                ]
+              },
               "docs": "**int**: E-Paper displays have two modes of switching to the next image: A partial update that only changes the pixels that have changed and a full update mode that first clears the entire display and then re-draws the image. The former is much quicker and nicer, but every so often a full update needs to happen because artifacts accumulate. On the `1.54in`, `1.54inv2`, `2.13in`, `2.90in` and `2.90inv2` models you have the option to switch only do a full-redraw every x-th time using this option. Defaults to `30` on the described models and a full update for all other models.\n\n\n\n*See also: [Waveshare E-Paper Display](https://esphome.io/components/display/waveshare_epaper.html#configuration-variables)*"
             },
             "reset_duration": {
@@ -77,7 +82,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Duration for the display reset operation. Defaults to `200ms`. Setting this value to `2ms` may resolve issues with newer e-Paper Driver modules (e.g. Rev 2.1).\n\n\n\n*See also: [Waveshare E-Paper Display](https://esphome.io/components/display/waveshare_epaper.html#configuration-variables)*"

@@ -95,73 +95,6 @@
       }
     },
     "schemas": {
-      "validate_filters": {
-        "is_list": true,
-        "type": "registry",
-        "registry": "binary_sensor.filter"
-      },
-      "MULTI_CLICK_TIMING_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "state": {
-              "key": "Optional",
-              "type": "boolean"
-            },
-            "min_length": {
-              "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.time_period_dict"
-                ]
-              }
-            },
-            "max_length": {
-              "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.time_period_dict"
-                ]
-              }
-            }
-          }
-        }
-      },
-      "validate_device_class": {
-        "type": "enum",
-        "values": [
-          "",
-          "battery",
-          "battery_charging",
-          "cold",
-          "connectivity",
-          "door",
-          "garage_door",
-          "gas",
-          "heat",
-          "light",
-          "lock",
-          "moisture",
-          "motion",
-          "moving",
-          "occupancy",
-          "opening",
-          "plug",
-          "power",
-          "presence",
-          "problem",
-          "running",
-          "safety",
-          "smoke",
-          "sound",
-          "tamper",
-          "update",
-          "vibration",
-          "window"
-        ]
-      },
       "BINARY_SENSOR_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -215,6 +148,7 @@
             "filters": {
               "key": "Optional",
               "type": "registry",
+              "schema": {},
               "is_list": true,
               "registry": "binary_sensor.filter",
               "docs": "**list**: A list of filters to apply on the binary sensor values such as inverting signals. See [Binary Sensor Filters](https://esphome.io/components/binary_sensor/index.html#binary-sensor-filters).\n\n\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#base-binary-sensor-configuration)*"
@@ -240,7 +174,7 @@
                     "type": "schema",
                     "schema": {
                       "extends": [
-                        "core.time_period_dict"
+                        "core.positive_time_period_milliseconds"
                       ]
                     },
                     "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The minimum duration the click should last. Defaults to `50ms`.\n\n\n\n*See also: [lambda](https://esphome.io/components/binary_sensor/index.html#on-click)*"
@@ -251,7 +185,7 @@
                     "type": "schema",
                     "schema": {
                       "extends": [
-                        "core.time_period_dict"
+                        "core.positive_time_period_milliseconds"
                       ]
                     },
                     "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The maximum duration the click should last. Defaults to `350ms`.\n\n\n\n*See also: [lambda](https://esphome.io/components/binary_sensor/index.html#on-click)*"
@@ -274,7 +208,7 @@
                     "type": "schema",
                     "schema": {
                       "extends": [
-                        "core.time_period_dict"
+                        "core.positive_time_period_milliseconds"
                       ]
                     },
                     "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The minimum duration the click should last. Defaults to `50ms`.\n\n\n\n*See also: [lambda](https://esphome.io/components/binary_sensor/index.html#on-double-click)*"
@@ -285,7 +219,7 @@
                     "type": "schema",
                     "schema": {
                       "extends": [
-                        "core.time_period_dict"
+                        "core.positive_time_period_milliseconds"
                       ]
                     },
                     "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The maximum duration the click should last. Defaults to `350ms`.\n\n\n\n*See also: [lambda](https://esphome.io/components/binary_sensor/index.html#on-double-click)*"
@@ -312,7 +246,7 @@
                     "type": "schema",
                     "schema": {
                       "extends": [
-                        "core.time_period_dict"
+                        "core.positive_time_period_milliseconds"
                       ]
                     },
                     "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: If a multi click is started, but the timing set in `timing` does not match, a \u201ccool down\u201d period will be activated during which no timing will be matched. Defaults to `1s`.\n\n\n\n*See also: [lambda](https://esphome.io/components/binary_sensor/index.html#on-multi-click)*"

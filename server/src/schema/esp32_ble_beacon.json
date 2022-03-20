@@ -24,13 +24,23 @@
             "major": {
               "key": "Optional",
               "default": "10167",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint16_t"
+                ]
+              },
               "docs": "**int**: The iBeacon major identifier of this beacon. Usually used to group beacons, for example for grouping all beacons in the same building, but has no effect if the BLE receiver doesn\u2019t use it. Defaults to `10167`.\n\n\n\n*See also: [ESP32 Bluetooth Low Energy Beacon](https://esphome.io/components/esp32_ble_beacon.html#configuration-variables)*"
             },
             "minor": {
               "key": "Optional",
               "default": "61958",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint16_t"
+                ]
+              },
               "docs": "**int**: The iBeacon minor identifier of this beacon. Usually used to identify beacons within an iBeacon group. Defaults to `61958`.\n\n\n\n*See also: [ESP32 Bluetooth Low Energy Beacon](https://esphome.io/components/esp32_ble_beacon.html#configuration-variables)*"
             }
           },

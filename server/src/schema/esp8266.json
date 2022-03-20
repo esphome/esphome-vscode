@@ -98,25 +98,6 @@
             }
           }
         }
-      },
-      "ARDUINO_FRAMEWORK_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "version": {
-              "key": "Optional",
-              "default": "recommended",
-              "type": "string"
-            },
-            "source": {
-              "key": "Optional",
-              "type": "string"
-            },
-            "platform_version": {
-              "key": "Optional"
-            }
-          }
-        }
       }
     },
     "pin": {

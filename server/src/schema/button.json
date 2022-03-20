@@ -24,13 +24,6 @@
       }
     },
     "schemas": {
-      "validate_device_class": {
-        "type": "enum",
-        "values": [
-          "restart",
-          "update"
-        ]
-      },
       "BUTTON_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -58,8 +51,10 @@
             }
           }
         }
-      },
-      "BUTTON_PRESS_SCHEMA": {
+      }
+    },
+    "action": {
+      "press": {
         "type": "maybe",
         "schema": {
           "config_vars": {
@@ -68,16 +63,6 @@
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the button to set.\n\n\n\n*See also: [Button Component](https://esphome.io/components/button/index.html#button-press-action)*"
             }
           }
-        }
-      }
-    },
-    "action": {
-      "press": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "button.BUTTON_PRESS_SCHEMA"
-          ]
         },
         "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) for pressing a button in an Automation.\n\n*See also: [Button Component](https://esphome.io/components/button/index.html#button-press-action)*"
       }

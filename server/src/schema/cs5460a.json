@@ -34,11 +34,7 @@
               "key": "Optional",
               "default": "0.001",
               "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.negative_one_to_one_float"
-                ]
-              },
+              "schema": {},
               "docs": "Set this to the ratio of the differential voltage at the current inputs (in Volts) vs. the actual line current to be calculated (in Amperes).  When using a shunt resistor as the current sensing element, this is going to simply equal the resistance since the differential voltage is the line current multiplied by the resistance.  When using a current transformer, the value is going to be the burden resistor\u2019s value divided by the number of turns of the transformer winding.  For a 2000 turn current transformer clamp and a 2 Ohm burden resistor this works out to 0.001 (the default if **current_gain** is not specified).\n\n\n\n*See also: [CS5460A Power Sensor](https://esphome.io/components/sensor/cs5460a.html#configuration-variables)*"
             },
             "voltage_gain": {

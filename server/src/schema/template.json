@@ -221,12 +221,12 @@
             "current_operation": {
               "key": "Optional",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "cover.validate_cover_operation"
-                ]
-              },
+              "type": "enum",
+              "values": [
+                "IDLE",
+                "OPENING",
+                "CLOSING"
+              ],
               "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), string**: The current operation mode to publish. One of `IDLE`, `OPENING` and `CLOSING`. If using a lambda, use `COVER_OPERATION_IDLE`, `COVER_OPERATION_OPENING`, and `COVER_OPERATION_CLOSING`.\n\n\n\n*See also: [Template Cover](https://esphome.io/components/cover/template.html#cover-template-publish-action)*"
             },
             "tilt": {
@@ -248,16 +248,6 @@
   },
   "template.lock": {
     "schemas": {
-      "validate_lock_state": {
-        "type": "enum",
-        "values": [
-          "LOCKED",
-          "UNLOCKED",
-          "JAMMED",
-          "LOCKING",
-          "UNLOCKING"
-        ]
-      },
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -316,12 +306,14 @@
             "state": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "template.lock.validate_lock_state"
-                ]
-              },
+              "type": "enum",
+              "values": [
+                "LOCKED",
+                "UNLOCKED",
+                "JAMMED",
+                "LOCKING",
+                "UNLOCKING"
+              ],
               "docs": "**boolean, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The state to publish.\n\n\n\n*See also: [Template Lock](https://esphome.io/components/lock/template.html#lock-template-publish-action)*"
             }
           }
@@ -432,7 +424,9 @@
               }
             }
           }
-        }
+        },
+        "typed_key": "type",
+        "docs": "**string**: The type of output. One of `binary` and `float`.\n\n\n\n*See also: [Template Output](https://esphome.io/components/output/template.html#configuration-variables)*"
       }
     }
   },

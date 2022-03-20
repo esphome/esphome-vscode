@@ -15,7 +15,12 @@
             "ignore_mcu_update_on_datapoints": {
               "key": "Optional",
               "is_list": true,
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**list**: A list of datapoints to ignore MCU updates for.  Useful for certain broken/erratic hardware and debugging.\n\n\n\n*See also: [Tuya MCU](https://esphome.io/components/tuya.html#configuration-variables)*"
             },
             "on_datapoint_update": {
@@ -25,7 +30,12 @@
                 "config_vars": {
                   "sensor_datapoint": {
                     "key": "Required",
-                    "type": "integer",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "core.uint8_t"
+                      ]
+                    },
                     "docs": "**int**: The datapoint id number of the sensor.\n\n\n\n*See also: [Tuya MCU](https://esphome.io/components/tuya.html#on-datapoint-update)*"
                   },
                   "datapoint_type": {
@@ -81,7 +91,12 @@
             },
             "sensor_datapoint": {
               "key": "Required",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the sensor.\n\n\n\n*See also: [Tuya Sensor](https://esphome.io/components/sensor/tuya.html#configuration-variables)*"
             }
           }
@@ -107,7 +122,12 @@
             },
             "sensor_datapoint": {
               "key": "Required",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the binary sensor.\n\n\n\n*See also: [Tuya Binary Sensor](https://esphome.io/components/binary_sensor/tuya.html#configuration-variables)*"
             }
           }
@@ -145,23 +165,43 @@
             },
             "switch_datapoint": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the climate switch (device on/off).\n\n\n\n*See also: [Tuya Climate](https://esphome.io/components/climate/tuya.html#configuration-variables)*"
             },
             "active_state_datapoint": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the active state - [see below](https://esphome.io/components/climate/tuya.html#active-state-detection).\n\n\n\n*See also: [Tuya Climate](https://esphome.io/components/climate/tuya.html#configuration-variables)*"
             },
             "active_state_heating_value": {
               "key": "Optional",
               "default": "1",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The active state datapoint value the device reports when heating. Defaults to `1` - [see below](https://esphome.io/components/climate/tuya.html#active-state-detection).\n\n\n\n*See also: [Tuya Climate](https://esphome.io/components/climate/tuya.html#configuration-variables)*"
             },
             "active_state_cooling_value": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The active state datapoint value the device reports when cooling - [see below](https://esphome.io/components/climate/tuya.html#active-state-detection).\n\n\n\n*See also: [Tuya Climate](https://esphome.io/components/climate/tuya.html#configuration-variables)*"
             },
             "heating_state_pin": {
@@ -184,12 +224,22 @@
             },
             "target_temperature_datapoint": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the target temperature.\n\n\n\n*See also: [Tuya Climate](https://esphome.io/components/climate/tuya.html#configuration-variables)*"
             },
             "current_temperature_datapoint": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the current temperature.\n\n\n\n*See also: [Tuya Climate](https://esphome.io/components/climate/tuya.html#configuration-variables)*"
             },
             "temperature_multiplier": {
@@ -224,7 +274,12 @@
             },
             "eco_datapoint": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the eco mode state.\n\n\n\n*See also: [Tuya Climate](https://esphome.io/components/climate/tuya.html#configuration-variables)*"
             },
             "eco_temperature": {
@@ -254,22 +309,42 @@
             },
             "control_datapoint": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number for sending control commands.\n\n\n\n*See also: [Tuya Cover](https://esphome.io/components/cover/tuya.html#configuration-variables)*"
             },
             "direction_datapoint": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number for setting the direction of travel.\n\n\n\n*See also: [Tuya Cover](https://esphome.io/components/cover/tuya.html#configuration-variables)*"
             },
             "position_datapoint": {
               "key": "Required",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the cover position value.\n\n\n\n*See also: [Tuya Cover](https://esphome.io/components/cover/tuya.html#configuration-variables)*"
             },
             "position_report_datapoint": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the cover position report value, if separate from position_datapoint.\n\n\n\n*See also: [Tuya Cover](https://esphome.io/components/cover/tuya.html#configuration-variables)*"
             },
             "min_value": {
@@ -323,22 +398,42 @@
             },
             "oscillation_datapoint": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the oscillation switch. Probably not supported on any Tuya controllers currently, but it\u2019s there if need be.\n\n\n\n*See also: [Tuya Fan](https://esphome.io/components/fan/tuya.html#configuration-variables)*"
             },
             "speed_datapoint": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the fan speed.\n\n\n\n*See also: [Tuya Fan](https://esphome.io/components/fan/tuya.html#configuration-variables)*"
             },
             "switch_datapoint": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the fan switch.\n\n\n\n*See also: [Tuya Fan](https://esphome.io/components/fan/tuya.html#configuration-variables)*"
             },
             "direction_datapoint": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the direction switch. Supported by some ceiling fans.\n\n\n\n*See also: [Tuya Fan](https://esphome.io/components/fan/tuya.html#configuration-variables)*"
             },
             "speed_count": {
@@ -370,27 +465,52 @@
             },
             "dimmer_datapoint": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the dimmer value.\n\n\n\n*See also: [Tuya Dimmer](https://esphome.io/components/light/tuya.html#configuration-variables)*"
             },
             "min_value_datapoint": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the MCU minimum value setting.  If this is set then ESPHome will sync the **min_value** to the MCU on startup.\n\n\n\n*See also: [Tuya Dimmer](https://esphome.io/components/light/tuya.html#configuration-variables)*"
             },
             "switch_datapoint": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the power switch.  My dimmer required this to be able to turn the light on and off.  Without this you would only be able to change the brightness and would have to toggle the light using the physical buttons.\n\n\n\n*See also: [Tuya Dimmer](https://esphome.io/components/light/tuya.html#configuration-variables)*"
             },
             "rgb_datapoint": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the RGB (red/green/blue) value. If this is set then ESPHome will set the color using a 6 digit hex RGB value.\n\n\n\n*See also: [Tuya Dimmer](https://esphome.io/components/light/tuya.html#configuration-variables)*"
             },
             "hsv_datapoint": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the HSV (hue/saturation/value) value. If this is set then ESPHome will set the color using a 12 digit hex HSV value.\n\n\n\n*See also: [Tuya Dimmer](https://esphome.io/components/light/tuya.html#configuration-variables)*"
             },
             "color_interlock": {
@@ -400,7 +520,12 @@
             },
             "color_temperature_datapoint": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the color temperature value.\n\n\n\n*See also: [Tuya Dimmer](https://esphome.io/components/light/tuya.html#configuration-variables)*"
             },
             "color_temperature_invert": {
@@ -461,7 +586,12 @@
             },
             "number_datapoint": {
               "key": "Required",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the number.\n\n\n\n*See also: [Tuya Number](https://esphome.io/components/number/tuya.html#configuration-variables)*"
             },
             "max_value": {
@@ -506,7 +636,12 @@
             },
             "switch_datapoint": {
               "key": "Required",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the switch.\n\n\n\n*See also: [Tuya Switch](https://esphome.io/components/switch/tuya.html#configuration-variables)*"
             }
           }
@@ -532,7 +667,12 @@
             },
             "sensor_datapoint": {
               "key": "Required",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              },
               "docs": "**int**: The datapoint id number of the sensor.\n\n\n\n*See also: [Tuya Text Sensor](https://esphome.io/components/text_sensor/tuya.html#configuration-variables)*"
             }
           }

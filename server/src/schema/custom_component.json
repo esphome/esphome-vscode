@@ -29,7 +29,8 @@
               "docs": "**list**: A list of components to initialize. The length here must equal the number of items in the `return` statement of the `lambda`. This is useful if you need to give an `id` to the component you created.\n\n\n\n*See also: [Generic Custom Component](https://esphome.io/custom/custom_component.html#generic-custom-component)*"
             }
           }
-        }
+        },
+        "is_list": true
       }
     }
   }

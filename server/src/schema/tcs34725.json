@@ -23,50 +23,6 @@
           }
         }
       },
-      "color_temperature_schema": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "sensor.SENSOR_SCHEMA"
-          ],
-          "config_vars": {
-            "unit_of_measurement": {
-              "default": "K"
-            },
-            "icon": {
-              "default": "mdi:thermometer"
-            },
-            "accuracy_decimals": {
-              "default": "1"
-            },
-            "state_class": {
-              "default": "measurement"
-            }
-          }
-        }
-      },
-      "illuminance_schema": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "sensor.SENSOR_SCHEMA"
-          ],
-          "config_vars": {
-            "unit_of_measurement": {
-              "default": "lx"
-            },
-            "accuracy_decimals": {
-              "default": "1"
-            },
-            "device_class": {
-              "default": "illuminance"
-            },
-            "state_class": {
-              "default": "measurement"
-            }
-          }
-        }
-      },
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -119,8 +75,22 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "tcs34725.sensor.illuminance_schema"
-                ]
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "lx"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  },
+                  "device_class": {
+                    "default": "illuminance"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  }
+                }
               },
               "docs": "Get the total illuminance of the sensor in lx.\n\n\n\n*See also: [TCS34725 RGB Color Sensor](https://esphome.io/components/sensor/tcs34725.html#configuration-variables)*"
             },
@@ -129,8 +99,22 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "tcs34725.sensor.color_temperature_schema"
-                ]
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "K"
+                  },
+                  "icon": {
+                    "default": "mdi:thermometer"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  }
+                }
               },
               "docs": "Get the calculated color temperature of the light in Kelvin.\n\n\n\n*See also: [TCS34725 RGB Color Sensor](https://esphome.io/components/sensor/tcs34725.html#configuration-variables)*"
             },

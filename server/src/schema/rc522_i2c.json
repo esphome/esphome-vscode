@@ -27,7 +27,8 @@
               "docs": "**int**: Manually specify the I\u00b2C address of the sensor. Defaults to `0x28`.\n\n\n\n*See also: [rc522 Over I\u00b2C](https://esphome.io/components/binary_sensor/rc522.html#id1)*"
             }
           }
-        }
+        },
+        "is_list": true
       }
     }
   }

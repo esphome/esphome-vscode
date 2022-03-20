@@ -1,53 +1,5 @@
 {
   "ssd1322_base": {
-    "schemas": {
-      "SSD1322_MODEL": {
-        "type": "enum",
-        "values": [
-          "SSD1322_256X64"
-        ]
-      },
-      "SSD1322_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "display.FULL_DISPLAY_SCHEMA",
-            "core.COMPONENT_SCHEMA"
-          ],
-          "config_vars": {
-            "model": {
-              "key": "Required",
-              "type": "enum",
-              "values": [
-                "SSD1322_256X64"
-              ],
-              "docs": "The model of the display. At present, only one option is available:\n  * `SSD1322 256x64`\n  \n  \n\n\n\n*See also: [ssd1322_spi Component](https://esphome.io/components/display/ssd1322.html#configuration-variables)*"
-            },
-            "reset_pin": {
-              "key": "Optional",
-              "schema": true,
-              "modes": [
-                "output"
-              ],
-              "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The RESET pin.\n\n\n\n*See also: [ssd1322_spi Component](https://esphome.io/components/display/ssd1322.html#configuration-variables)*"
-            },
-            "brightness": {
-              "key": "Optional",
-              "default": "1.0"
-            },
-            "external_vcc": {
-              "key": "Optional",
-              "type": "boolean"
-            },
-            "update_interval": {
-              "key": "Optional",
-              "default": "1s",
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to re-draw the screen. Defaults to `5s`.\n\n\n\n*See also: [ssd1322_spi Component](https://esphome.io/components/display/ssd1322.html#configuration-variables)*"
-            }
-          }
-        }
-      }
-    }
+    "schemas": {}
   }
 }

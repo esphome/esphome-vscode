@@ -406,50 +406,10 @@
       }
     },
     "schemas": {
-      "validate_state_class": {
-        "type": "enum",
-        "values": [
-          "",
-          "measurement",
-          "total_increasing"
-        ]
-      },
       "validate_filters": {
         "is_list": true,
         "type": "registry",
         "registry": "sensor.filter"
-      },
-      "validate_device_class": {
-        "type": "enum",
-        "values": [
-          "",
-          "aqi",
-          "battery",
-          "carbon_dioxide",
-          "carbon_monoxide",
-          "current",
-          "energy",
-          "gas",
-          "humidity",
-          "illuminance",
-          "monetary",
-          "nitrogen_dioxide",
-          "nitrogen_monoxide",
-          "nitrous_oxide",
-          "ozone",
-          "pm1",
-          "pm10",
-          "pm25",
-          "power",
-          "power_factor",
-          "pressure",
-          "signal_strength",
-          "sulphur_dioxide",
-          "temperature",
-          "timestamp",
-          "volatile_organic_compounds",
-          "voltage"
-        ]
       },
       "SENSOR_SCHEMA": {
         "type": "schema",
@@ -531,16 +491,19 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Manually set the time in which the sensor values should be marked as \u201cexpired\u201d/\u201cunknown\u201d. Not providing any value means no expiry.\n\n\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
             },
             "filters": {
               "key": "Optional",
-              "type": "registry",
-              "is_list": true,
-              "registry": "sensor.filter",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.validate_filters"
+                ]
+              },
               "docs": "Specify filters to use for some basic transforming of values. See [Sensor Filters](https://esphome.io/components/sensor/index.html#sensor-filters) for more information.\n\n\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
             },
             "on_value": {
@@ -576,174 +539,10 @@
             }
           }
         }
-      },
-      "QUANTILE_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "window_size": {
-              "key": "Optional",
-              "default": "5",
-              "type": "integer",
-              "docs": "**int**: The number of values over which to calculate the quantile when pushing out a value. Defaults to `5`.\n\n\n\n*See also: [quantile](https://esphome.io/components/sensor/index.html#quantile)*"
-            },
-            "send_every": {
-              "key": "Optional",
-              "default": "5",
-              "type": "integer",
-              "docs": "**int**: How often a sensor value should be pushed out. For example, in above configuration the quantile is calculated after every 4th received sensor value, over the last 7 received values. Defaults to `5`.\n\n\n\n*See also: [quantile](https://esphome.io/components/sensor/index.html#quantile)*"
-            },
-            "send_first_at": {
-              "key": "Optional",
-              "default": "1",
-              "type": "integer",
-              "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Must be smaller than or equal to `send_every` Defaults to `1`.\n\n\n\n*See also: [quantile](https://esphome.io/components/sensor/index.html#quantile)*"
-            },
-            "quantile": {
-              "key": "Optional",
-              "default": "0.9",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.zero_to_one_float"
-                ]
-              },
-              "docs": "**float**: value from 0 to 1 to determine which quantile to pick. Defaults to `.9`.\n\n\n\n*See also: [quantile](https://esphome.io/components/sensor/index.html#quantile)*"
-            }
-          }
-        }
-      },
-      "MEDIAN_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "window_size": {
-              "key": "Optional",
-              "default": "5",
-              "type": "integer",
-              "docs": "**int**: The number of values over which to calculate the median when pushing out a value. This number should be odd if you want an actual received value pushed out. Defaults to `5`.\n\n\n\n*See also: [median](https://esphome.io/components/sensor/index.html#median)*"
-            },
-            "send_every": {
-              "key": "Optional",
-              "default": "5",
-              "type": "integer",
-              "docs": "**int**: How often a sensor value should be pushed out. For example, in above configuration the median is calculated after every 4th received sensor value, over the last 7 received values. Defaults to `5`.\n\n\n\n*See also: [median](https://esphome.io/components/sensor/index.html#median)*"
-            },
-            "send_first_at": {
-              "key": "Optional",
-              "default": "1",
-              "type": "integer",
-              "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Must be smaller than or equal to `send_every` Defaults to `1`.\n\n\n\n*See also: [median](https://esphome.io/components/sensor/index.html#median)*"
-            }
-          }
-        }
-      },
-      "MIN_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "window_size": {
-              "key": "Optional",
-              "default": "5",
-              "type": "integer",
-              "docs": "**int**: The number of values over which to calculate the min/max when pushing out a value. Defaults to `5`.\n\n\n\n*See also: [min](https://esphome.io/components/sensor/index.html#min)*"
-            },
-            "send_every": {
-              "key": "Optional",
-              "default": "5",
-              "type": "integer",
-              "docs": "**int**: How often a sensor value should be pushed out. For example, in above configuration the min is calculated after every 4th received sensor value, over the last 7 received values. Defaults to `5`.\n\n\n\n*See also: [min](https://esphome.io/components/sensor/index.html#min)*"
-            },
-            "send_first_at": {
-              "key": "Optional",
-              "default": "1",
-              "type": "integer",
-              "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Must be smaller than or equal to `send_every` Defaults to `1`.\n\n\n\n*See also: [min](https://esphome.io/components/sensor/index.html#min)*"
-            }
-          }
-        }
-      },
-      "MAX_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "window_size": {
-              "key": "Optional",
-              "default": "5",
-              "type": "integer",
-              "docs": "**int**: The number of values over which to calculate the min/max when pushing out a value. Defaults to `5`.\n\n\n\n*See also: [max](https://esphome.io/components/sensor/index.html#max)*"
-            },
-            "send_every": {
-              "key": "Optional",
-              "default": "5",
-              "type": "integer",
-              "docs": "**int**: How often a sensor value should be pushed out. For example, in above configuration the min is calculated after every 4th received sensor value, over the last 7 received values. Defaults to `5`.\n\n\n\n*See also: [max](https://esphome.io/components/sensor/index.html#max)*"
-            },
-            "send_first_at": {
-              "key": "Optional",
-              "default": "1",
-              "type": "integer",
-              "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Must be smaller than or equal to `send_every` Defaults to `1`.\n\n\n\n*See also: [max](https://esphome.io/components/sensor/index.html#max)*"
-            }
-          }
-        }
-      },
-      "SLIDING_AVERAGE_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "window_size": {
-              "key": "Optional",
-              "default": "15",
-              "type": "integer",
-              "docs": "**int**: The number of values over which to perform an average when pushing out a value.\n\n\n\n*See also: [sliding_window_moving_average](https://esphome.io/components/sensor/index.html#sliding-window-moving-average)*"
-            },
-            "send_every": {
-              "key": "Optional",
-              "default": "15",
-              "type": "integer",
-              "docs": "**int**: How often a sensor value should be pushed out. For example, in above configuration the weighted average is only pushed out on every 15th received sensor value.\n\n\n\n*See also: [sliding_window_moving_average](https://esphome.io/components/sensor/index.html#sliding-window-moving-average)*"
-            },
-            "send_first_at": {
-              "key": "Optional",
-              "default": "1",
-              "type": "integer",
-              "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Defaults to `1`.\n\n\n\n*See also: [sliding_window_moving_average](https://esphome.io/components/sensor/index.html#sliding-window-moving-average)*"
-            }
-          }
-        }
-      },
-      "EXPONENTIAL_AVERAGE_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "alpha": {
-              "key": "Optional",
-              "default": "0.1",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_float"
-                ]
-              },
-              "docs": "**float**: The forget factor/alpha value of the filter. Defaults to `0.1`.\n\n\n\n*See also: [exponential_moving_average](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
-            },
-            "send_every": {
-              "key": "Optional",
-              "default": "15",
-              "type": "integer",
-              "docs": "**int**: How often a sensor value should be pushed out. Defaults to `15`.\n\n\n\n*See also: [exponential_moving_average](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
-            },
-            "send_first_at": {
-              "key": "Optional",
-              "default": "1",
-              "type": "integer",
-              "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Defaults to `1`.\n\n\n\n*See also: [exponential_moving_average](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
-            }
-          }
-        }
-      },
-      "SENSOR_IN_RANGE_CONDITION_SCHEMA": {
+      }
+    },
+    "condition": {
+      "in_range": {
         "type": "schema",
         "schema": {
           "config_vars": {
@@ -759,16 +558,6 @@
               "docs": "**float**: The maximum for the condition.\n\n\n\n*See also: [lambda](https://esphome.io/components/sensor/index.html#sensor-in-range-condition)*"
             }
           }
-        }
-      }
-    },
-    "condition": {
-      "in_range": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "sensor.SENSOR_IN_RANGE_CONDITION_SCHEMA"
-          ]
         },
         "docs": "This condition passes if the state of the given sensor is inside a range.\n\n*See also: [lambda](https://esphome.io/components/sensor/index.html#sensor-in-range-condition)*"
       }
@@ -786,54 +575,257 @@
       "quantile": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "sensor.QUANTILE_SCHEMA"
-          ]
+          "config_vars": {
+            "window_size": {
+              "key": "Optional",
+              "default": "5",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
+              "docs": "**int**: The number of values over which to calculate the quantile when pushing out a value. Defaults to `5`.\n\n\n\n*See also: [quantile](https://esphome.io/components/sensor/index.html#quantile)*"
+            },
+            "send_every": {
+              "key": "Optional",
+              "default": "5",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
+              "docs": "**int**: How often a sensor value should be pushed out. For example, in above configuration the quantile is calculated after every 4th received sensor value, over the last 7 received values. Defaults to `5`.\n\n\n\n*See also: [quantile](https://esphome.io/components/sensor/index.html#quantile)*"
+            },
+            "send_first_at": {
+              "key": "Optional",
+              "default": "1",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
+              "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Must be smaller than or equal to `send_every` Defaults to `1`.\n\n\n\n*See also: [quantile](https://esphome.io/components/sensor/index.html#quantile)*"
+            },
+            "quantile": {
+              "key": "Optional",
+              "default": "0.9",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.zero_to_one_float"
+                ]
+              },
+              "docs": "**float**: value from 0 to 1 to determine which quantile to pick. Defaults to `.9`.\n\n\n\n*See also: [quantile](https://esphome.io/components/sensor/index.html#quantile)*"
+            }
+          }
         },
         "docs": "A [simple moving quantile](https://en.wikipedia.org/wiki/Quantile) over the last few values. This can be used to filter outliers from the received sensor data. A large window size will make the filter slow to react to input changes.\n\n*See also: [filter_out](https://esphome.io/components/sensor/index.html#quantile)*"
       },
       "median": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "sensor.MEDIAN_SCHEMA"
-          ]
+          "config_vars": {
+            "window_size": {
+              "key": "Optional",
+              "default": "5",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
+              "docs": "**int**: The number of values over which to calculate the median when pushing out a value. This number should be odd if you want an actual received value pushed out. Defaults to `5`.\n\n\n\n*See also: [median](https://esphome.io/components/sensor/index.html#median)*"
+            },
+            "send_every": {
+              "key": "Optional",
+              "default": "5",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
+              "docs": "**int**: How often a sensor value should be pushed out. For example, in above configuration the median is calculated after every 4th received sensor value, over the last 7 received values. Defaults to `5`.\n\n\n\n*See also: [median](https://esphome.io/components/sensor/index.html#median)*"
+            },
+            "send_first_at": {
+              "key": "Optional",
+              "default": "1",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
+              "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Must be smaller than or equal to `send_every` Defaults to `1`.\n\n\n\n*See also: [median](https://esphome.io/components/sensor/index.html#median)*"
+            }
+          }
         },
         "docs": "A [simple moving median](https://en.wikipedia.org/wiki/Median_filter#Worked_1D_example) over the last few values. This can be used to filter outliers from the received sensor data. A large window size will make the filter slow to react to input changes.\n\n*See also: [quantile](https://esphome.io/components/sensor/index.html#median)*"
       },
       "min": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "sensor.MIN_SCHEMA"
-          ]
+          "config_vars": {
+            "window_size": {
+              "key": "Optional",
+              "default": "5",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
+              "docs": "**int**: The number of values over which to calculate the min/max when pushing out a value. Defaults to `5`.\n\n\n\n*See also: [min](https://esphome.io/components/sensor/index.html#min)*"
+            },
+            "send_every": {
+              "key": "Optional",
+              "default": "5",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
+              "docs": "**int**: How often a sensor value should be pushed out. For example, in above configuration the min is calculated after every 4th received sensor value, over the last 7 received values. Defaults to `5`.\n\n\n\n*See also: [min](https://esphome.io/components/sensor/index.html#min)*"
+            },
+            "send_first_at": {
+              "key": "Optional",
+              "default": "1",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
+              "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Must be smaller than or equal to `send_every` Defaults to `1`.\n\n\n\n*See also: [min](https://esphome.io/components/sensor/index.html#min)*"
+            }
+          }
         },
         "docs": "A moving minimum over the last few values. A large window size will make the filter slow to react to input changes.\n\n*See also: [median](https://esphome.io/components/sensor/index.html#min)*"
       },
       "max": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "sensor.MAX_SCHEMA"
-          ]
+          "config_vars": {
+            "window_size": {
+              "key": "Optional",
+              "default": "5",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
+              "docs": "**int**: The number of values over which to calculate the min/max when pushing out a value. Defaults to `5`.\n\n\n\n*See also: [max](https://esphome.io/components/sensor/index.html#max)*"
+            },
+            "send_every": {
+              "key": "Optional",
+              "default": "5",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
+              "docs": "**int**: How often a sensor value should be pushed out. For example, in above configuration the min is calculated after every 4th received sensor value, over the last 7 received values. Defaults to `5`.\n\n\n\n*See also: [max](https://esphome.io/components/sensor/index.html#max)*"
+            },
+            "send_first_at": {
+              "key": "Optional",
+              "default": "1",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
+              "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Must be smaller than or equal to `send_every` Defaults to `1`.\n\n\n\n*See also: [max](https://esphome.io/components/sensor/index.html#max)*"
+            }
+          }
         },
         "docs": "A moving maximum over the last few values. A large window size will make the filter slow to react to input changes.\n\n*See also: [min](https://esphome.io/components/sensor/index.html#max)*"
       },
       "sliding_window_moving_average": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "sensor.SLIDING_AVERAGE_SCHEMA"
-          ]
+          "config_vars": {
+            "window_size": {
+              "key": "Optional",
+              "default": "15",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
+              "docs": "**int**: The number of values over which to perform an average when pushing out a value.\n\n\n\n*See also: [sliding_window_moving_average](https://esphome.io/components/sensor/index.html#sliding-window-moving-average)*"
+            },
+            "send_every": {
+              "key": "Optional",
+              "default": "15",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
+              "docs": "**int**: How often a sensor value should be pushed out. For example, in above configuration the weighted average is only pushed out on every 15th received sensor value.\n\n\n\n*See also: [sliding_window_moving_average](https://esphome.io/components/sensor/index.html#sliding-window-moving-average)*"
+            },
+            "send_first_at": {
+              "key": "Optional",
+              "default": "1",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
+              "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Defaults to `1`.\n\n\n\n*See also: [sliding_window_moving_average](https://esphome.io/components/sensor/index.html#sliding-window-moving-average)*"
+            }
+          }
         },
         "docs": "A [simple moving average](https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average) over the last few values. It can be used to have a short update interval on the sensor but only push out an average on a specific interval (thus increasing resolution).\n\n*See also: [max](https://esphome.io/components/sensor/index.html#sliding-window-moving-average)*"
       },
       "exponential_moving_average": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "sensor.EXPONENTIAL_AVERAGE_SCHEMA"
-          ]
+          "config_vars": {
+            "alpha": {
+              "key": "Optional",
+              "default": "0.1",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_float"
+                ]
+              },
+              "docs": "**float**: The forget factor/alpha value of the filter. Defaults to `0.1`.\n\n\n\n*See also: [exponential_moving_average](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
+            },
+            "send_every": {
+              "key": "Optional",
+              "default": "15",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
+              "docs": "**int**: How often a sensor value should be pushed out. Defaults to `15`.\n\n\n\n*See also: [exponential_moving_average](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
+            },
+            "send_first_at": {
+              "key": "Optional",
+              "default": "1",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
+              "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Defaults to `1`.\n\n\n\n*See also: [exponential_moving_average](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
+            }
+          }
         },
         "docs": "A simple [exponential moving average](https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average) over the last few values. It can be used to have a short update interval on the sensor but only push out an average on a specific interval (thus increasing resolution).\n\n*See also: [sliding_window_moving_average](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
       },

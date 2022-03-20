@@ -4,14 +4,6 @@
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "animation.ANIMATION_SCHEMA"
-          ]
-        }
-      },
-      "ANIMATION_SCHEMA": {
-        "type": "schema",
-        "schema": {
           "config_vars": {
             "id": {
               "key": "Required",
@@ -41,7 +33,8 @@
               "key": "GeneratedID"
             }
           }
-        }
+        },
+        "is_list": true
       }
     }
   }

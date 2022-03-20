@@ -1,3 +1,5 @@
+import { createVerify } from "crypto";
+import { listenerCount } from "process";
 import { Position } from "vscode-languageserver-textdocument";
 import { CompletionItem, CompletionItemKind, InsertTextFormat, Range, TextDocument } from "vscode-languageserver/node";
 import { isPair, isMap, isScalar, isSeq, YAMLMap, Node, Scalar, isNode } from "yaml";
@@ -278,6 +280,12 @@ export class CompletionHandler {
     }
 
     private resolveConfigVar(result: CompletionItem[], path: any[], pathIndex: number, cv: ConfigVar, pathNode: YAMLMap, cursorNode: YamlNode, docMap: YAMLMap) {
+        if (cv.is_list && isNumber(path[pathIndex])) {
+            if (isSeq(pathNode)) {
+                pathNode = pathNode.get(path[pathIndex]) as any as YAMLMap;
+            }
+            pathIndex++;
+        }
         if (cv.type === "schema") {
             if (isMap(pathNode)) {
                 if (pathIndex === path.length) {
@@ -314,14 +322,14 @@ export class CompletionHandler {
         else if (cv.type === "typed") {
             if (pathNode === null) {
                 result.push({
-                    label: "type",
+                    label: cv.typed_key,
                     kind: CompletionItemKind.Enum,
-                    insertText: 'type: ',
+                    insertText: cv.typed_key + ': ',
                     command: { title: 'chain', command: "editor.action.triggerSuggest" }
                 });
                 return result;
             }
-            else if (pathIndex + 1 >= path.length && path[pathIndex] === "type") {
+            else if (pathIndex + 1 >= path.length && path[pathIndex] === cv.typed_key) {
                 for (const schema_type in cv.types) {
                     result.push({
                         label: schema_type,
@@ -334,7 +342,7 @@ export class CompletionHandler {
             }
             else {
                 if (pathNode !== null && isMap(pathNode)) {
-                    const type = pathNode.get('type');
+                    const type = pathNode.get(cv.typed_key);
                     if (type !== null && isString(type)) {
                         if (pathIndex === path.length) {
                             return this.addConfigVars(result, cv.types[type], pathNode, docMap);
@@ -343,9 +351,9 @@ export class CompletionHandler {
                     }
                     // there are other options but still not `type`
                     result.push({
-                        label: "type",
+                        label: cv.typed_key,
                         kind: CompletionItemKind.Enum,
-                        insertText: 'type: ',
+                        insertText: cv.typed_key + ': ',
                         command: { title: 'chain', command: "editor.action.triggerSuggest" }
                     });
                     return result;
@@ -383,10 +391,11 @@ export class CompletionHandler {
             }
 
             if (pinCv === undefined) {
-                if (docMap.get("esp32")) { // TODO: Support old esphome / board
+                const chipset = this.getChipset(docMap);
+                if (chipset === "esp32") {
                     pinCv = this.coreSchema.getPinConfigVar("esp32");
                 }
-                else if (docMap.get("esp8266")) {
+                else if (chipset === "esp8266") {
                     pinCv = this.coreSchema.getPinConfigVar("esp8266");
                 }
             }
@@ -419,6 +428,23 @@ export class CompletionHandler {
         throw new Error("Unexpected path traverse.");
     }
 
+    getChipset(docMap: YAMLMap): "esp8266" | "esp32" | undefined {
+        if (docMap.get("esp8266", true) !== undefined) {
+            return "esp8266";
+        }
+        if (docMap.get("esp32", true) !== undefined) {
+            return "esp32";
+        }
+        const esphome = docMap.get("esphome");
+        if (isMap(esphome)) {
+            const chipset = esphome.get("platform");
+            if (isString(chipset)) {
+                if (chipset.toLowerCase() === "esp32") { return "esp32" };
+                if (chipset.toLowerCase() === "esp8266") { return "esp8266" };
+            }
+        }
+    }
+
     resolveRegistryInner(result: CompletionItem[], path: any[], pathIndex: number, pathNode: YAMLMap, cv: ConfigVarRegistry, node: YamlNode, docMap: YAMLMap<unknown, unknown>) {
         const final = pathIndex === path.length;
         if (final && pathNode === null) {
@@ -446,8 +472,7 @@ export class CompletionHandler {
             // If this has a schema, use it, these are suggestions so user will see the trigger parameters even when they are optional
             // However if the only option is 'then:' we should avoid it for readability
             if (cv.schema !== undefined) {
-                // TODO: suggest in seq mode
-                return this.addConfigVars(result, cv.schema, null, docMap);
+                return this.addConfigVars(result, cv.schema, isMap(pathNode) ? pathNode : null, docMap);
             }
             return this.addRegistry(result, { type: "registry", "registry": "action", "key": null }, docMap);
         }
@@ -480,11 +505,18 @@ export class CompletionHandler {
     resolveTrigger(result: CompletionItem[], path: any[], pathIndex: number, pathNode: YAMLMap, cv: ConfigVarTrigger, node: YamlNode, docMap: YAMLMap) {
         console.log("trigger: " + path[pathIndex]);
         // trigger can be a single item on a map or otherwise a seq.
-        if (isSeq(pathNode) && pathNode.items.length) {
-            const innerNode = pathNode.items[path[pathIndex]];
-            if (isNode(innerNode)) {
+        if (isSeq(pathNode)) {
+            let innerNode: Node;
+            if (pathIndex < path.length) {
+                if (pathNode.items.length) { innerNode = pathNode.items[path[pathIndex]]; }
                 return this.resolveTriggerInner(result, path, pathIndex + 1, innerNode, cv, node, docMap);
             }
+            if (cv.schema && !cv.has_required_var) {
+                // if this has a schema, when inside the list we no longer can setup automation props
+                cv = cv.schema.config_vars.then as ConfigVarTrigger;
+            }
+            return this.resolveTriggerInner(result, path, pathIndex, innerNode, cv, node, docMap);
+
         }
         return this.resolveTriggerInner(result, path, pathIndex, isMap(pathNode) ? pathNode : null, cv, node, docMap);
     }
@@ -618,6 +650,11 @@ export class CompletionHandler {
                 case "schema":
                     item.kind = CompletionItemKind.Struct;
                     item.insertText += '\n  ';
+                    triggerSuggest = true;
+                    break;
+                case "typed":
+                    item.kind = CompletionItemKind.Struct;
+                    item.insertText += '\n  ' + config.typed_key + ': ';
                     triggerSuggest = true;
                     break;
                 case "enum":

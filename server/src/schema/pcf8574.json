@@ -33,52 +33,8 @@
           "extends": [
             "core.COMPONENT_SCHEMA"
           ]
-        }
-      },
-      "PCF8574_PIN_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
-            "pcf8574": {
-              "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the PCF8574 component of the pin.\n\n\n\n*See also: [PCF8574 I/O Expander](https://esphome.io/components/pcf8574.html#pin-configuration-variables)*"
-            },
-            "number": {
-              "key": "Required",
-              "type": "integer",
-              "docs": "**int**: The pin number.\n\n\n\n*See also: [PCF8574 I/O Expander](https://esphome.io/components/pcf8574.html#pin-configuration-variables)*"
-            },
-            "mode": {
-              "key": "Optional",
-              "default": "{}",
-              "type": "schema",
-              "schema": {
-                "config_vars": {
-                  "input": {
-                    "key": "Optional",
-                    "default": "False",
-                    "type": "boolean"
-                  },
-                  "output": {
-                    "key": "Optional",
-                    "default": "False",
-                    "type": "boolean"
-                  }
-                }
-              },
-              "docs": "**string**: A pin mode to set for the pin at. One of `INPUT` or `OUTPUT`.\n\n\n\n*See also: [PCF8574 I/O Expander](https://esphome.io/components/pcf8574.html#pin-configuration-variables)*"
-            },
-            "inverted": {
-              "key": "Optional",
-              "default": "False",
-              "type": "boolean",
-              "docs": "**boolean**: If all read and written values should be treated as inverted. Defaults to `false`.\n\n\n\n*See also: [PCF8574 I/O Expander](https://esphome.io/components/pcf8574.html#pin-configuration-variables)*"
-            }
-          }
-        }
+        },
+        "is_list": true
       }
     },
     "pin": {

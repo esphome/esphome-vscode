@@ -25,7 +25,8 @@
               "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin on the ESP that the chip select line is connected to.\n\n\n\n*See also: [pn532 Over SPI](https://esphome.io/components/binary_sensor/pn532.html#configuration-variables)*"
             }
           }
-        }
+        },
+        "is_list": true
       }
     }
   }

@@ -20,12 +20,22 @@
             },
             "password": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint32_t"
+                ]
+              },
               "docs": "**int**: Password to use for authentication. Defaults to `0x00`.\n\n\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
             },
             "new_password": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint32_t"
+                ]
+              },
               "docs": "**int**: Sets a new password to use for authentication. See [Setting a New Password](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-set-new-password) for more information.\n\n\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
             },
             "on_finger_scan_matched": {
@@ -65,47 +75,8 @@
           "extends": [
             "core.COMPONENT_SCHEMA"
           ]
-        }
-      },
-      "validate_aura_led_states": {
-        "type": "enum",
-        "values": [
-          "BREATHING",
-          "FLASHING",
-          "ALWAYS_ON",
-          "ALWAYS_OFF",
-          "GRADUAL_ON",
-          "GRADUAL_OFF"
-        ]
-      },
-      "validate_aura_led_colors": {
-        "type": "enum",
-        "values": [
-          "RED",
-          "BLUE",
-          "PURPLE",
-          "GREEN",
-          "YELLOW",
-          "CYAN",
-          "WHITE"
-        ]
-      },
-      "FINGERPRINT_GROW_LED_CONTROL_ACTION_SCHEMA": {
-        "is_list": true,
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
-            "state": {
-              "key": "Required",
-              "templatable": true,
-              "type": "boolean",
-              "docs": "**boolean, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The state to set the LED.\n\n\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-led-control-action)*"
-            }
-          }
-        }
+        },
+        "is_list": true
       }
     },
     "action": {
@@ -191,10 +162,19 @@
       "led_control": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "fingerprint_grow.FINGERPRINT_GROW_LED_CONTROL_ACTION_SCHEMA"
-          ]
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            },
+            "state": {
+              "key": "Required",
+              "templatable": true,
+              "type": "boolean",
+              "docs": "**boolean, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The state to set the LED.\n\n\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-led-control-action)*"
+            }
+          }
         },
+        "is_list": true,
         "docs": "Turns on or off the LED on the reader. Only available on select models. If you have the R503 or R503-RGB use [fingerprint_grow.aura_led_control Action](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-aura-led-control) instead.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-led-control-action)*"
       },
       "aura_led_control": {
@@ -207,12 +187,15 @@
             "state": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "fingerprint_grow.validate_aura_led_states"
-                ]
-              },
+              "type": "enum",
+              "values": [
+                "BREATHING",
+                "FLASHING",
+                "ALWAYS_ON",
+                "ALWAYS_OFF",
+                "GRADUAL_ON",
+                "GRADUAL_OFF"
+              ],
               "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The state to set the LED. One of `BREATHING`, `FLASHING`, `ALWAYS_ON`, `ALWAYS_OFF`, `GRADUAL_ON` and `GRADUAL_OFF`.\n\n\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-aura-led-control-action)*"
             },
             "speed": {
@@ -229,12 +212,16 @@
             "color": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "fingerprint_grow.validate_aura_led_colors"
-                ]
-              },
+              "type": "enum",
+              "values": [
+                "RED",
+                "BLUE",
+                "PURPLE",
+                "GREEN",
+                "YELLOW",
+                "CYAN",
+                "WHITE"
+              ],
               "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The LED color to activate. For R503, one of `RED`, `BLUE` and `PURPLE`.  For R503-RGB, one of `RED`, `BLUE`, `PURPLE`, `GREEN`, `YELLOW`, `CYAN` and `WHITE`.\n\n\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-aura-led-control-action)*"
             },
             "count": {

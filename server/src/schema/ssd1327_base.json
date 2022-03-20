@@ -1,12 +1,6 @@
 {
   "ssd1327_base": {
     "schemas": {
-      "SSD1327_MODEL": {
-        "type": "enum",
-        "values": [
-          "SSD1327_128X128"
-        ]
-      },
       "SSD1327_SCHEMA": {
         "type": "schema",
         "schema": {

@@ -21,7 +21,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Optionally set up an [Infinite Impulse Response](https://en.wikipedia.org/wiki/Infinite_impulse_response) filter should be applied to all touch pads. This can increase the accuracy of the touch pads a lot, but higher values decrease the response time. A good value to start with is `10ms`. Default is no IIR filter.\n\n\n\n*See also: [esp32_touch Component/Hub](https://esphome.io/components/binary_sensor/esp32_touch.html#configuration-variables)*"
@@ -31,26 +31,9 @@
               "default": "27306us",
               "type": "schema",
               "schema": {
-                "config_vars": {
-                  "days": {
-                    "key": "Optional"
-                  },
-                  "hours": {
-                    "key": "Optional"
-                  },
-                  "minutes": {
-                    "key": "Optional"
-                  },
-                  "seconds": {
-                    "key": "Optional"
-                  },
-                  "milliseconds": {
-                    "key": "Optional"
-                  },
-                  "microseconds": {
-                    "key": "Optional"
-                  }
-                }
+                "extends": [
+                  "core.time_period_dict"
+                ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Set a time period denoting the amount of time the touch peripheral should sleep between measurements. This can decrease power usage but make the sensor slower. Default is about 27 milliseconds.\n\n\n\n*See also: [esp32_touch Component/Hub](https://esphome.io/components/binary_sensor/esp32_touch.html#configuration-variables)*"
             },
@@ -59,26 +42,9 @@
               "default": "8192us",
               "type": "schema",
               "schema": {
-                "config_vars": {
-                  "days": {
-                    "key": "Optional"
-                  },
-                  "hours": {
-                    "key": "Optional"
-                  },
-                  "minutes": {
-                    "key": "Optional"
-                  },
-                  "seconds": {
-                    "key": "Optional"
-                  },
-                  "milliseconds": {
-                    "key": "Optional"
-                  },
-                  "microseconds": {
-                    "key": "Optional"
-                  }
-                }
+                "extends": [
+                  "core.time_period_dict"
+                ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Set the conversion time for all touch pads. A longer conversion time means that more charge/discharge cycles of the touch pad can be performed, therefore increasing accuracy. Default is about 8ms, the maximum amount.\n\n\n\n*See also: [esp32_touch Component/Hub](https://esphome.io/components/binary_sensor/esp32_touch.html#configuration-variables)*"
             },
@@ -126,13 +92,23 @@
             },
             "threshold": {
               "key": "Required",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint16_t"
+                ]
+              },
               "docs": "**int**: The threshold to use to detect touch events. Smaller values mean a higher probability that the pad is being touched.\n\n\n\n*See also: [esp32_touch Binary Sensor](https://esphome.io/components/binary_sensor/esp32_touch.html#id1)*"
             },
             "wakeup_threshold": {
               "key": "Optional",
               "default": "0",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint16_t"
+                ]
+              },
               "docs": "**int**: The threshold to use to detect touch events to wakeup from deep sleep. Smaller values mean a higher probability that the pad is being touched. All touch pad sensors that should trigger a wakeup from deep sleep must specify this value. The [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-component) must also be configured to enable a wakeup from a touch event. Note that no filter is active during deep sleep.\n\n\n\n*See also: [esp32_touch Binary Sensor](https://esphome.io/components/binary_sensor/esp32_touch.html#id1)*"
             }
           }

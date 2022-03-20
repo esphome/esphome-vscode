@@ -47,54 +47,6 @@
       "yashima": {}
     },
     "schemas": {
-      "validate_climate_mode": {
-        "type": "enum",
-        "values": [
-          "OFF",
-          "HEAT_COOL",
-          "COOL",
-          "HEAT",
-          "DRY",
-          "FAN_ONLY",
-          "AUTO"
-        ]
-      },
-      "validate_climate_fan_mode": {
-        "type": "enum",
-        "values": [
-          "ON",
-          "OFF",
-          "AUTO",
-          "LOW",
-          "MEDIUM",
-          "HIGH",
-          "MIDDLE",
-          "FOCUS",
-          "DIFFUSE"
-        ]
-      },
-      "validate_climate_preset": {
-        "type": "enum",
-        "values": [
-          "NONE",
-          "ECO",
-          "AWAY",
-          "BOOST",
-          "COMFORT",
-          "HOME",
-          "SLEEP",
-          "ACTIVITY"
-        ]
-      },
-      "validate_climate_swing_mode": {
-        "type": "enum",
-        "values": [
-          "OFF",
-          "BOTH",
-          "VERTICAL",
-          "HORIZONTAL"
-        ]
-      },
       "CLIMATE_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -201,8 +153,10 @@
             }
           }
         }
-      },
-      "CLIMATE_CONTROL_ACTION_SCHEMA": {
+      }
+    },
+    "action": {
+      "control": {
         "type": "schema",
         "schema": {
           "config_vars": {
@@ -302,16 +256,6 @@
               "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Set the swing mode of the climate device. One of `OFF`, `BOTH`, `VERTICAL`, `HORIZONTAL`.\n\n\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
             }
           }
-        }
-      }
-    },
-    "action": {
-      "control": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "climate.CLIMATE_CONTROL_ACTION_SCHEMA"
-          ]
         },
         "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) for setting parameters for climate devices.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
       }

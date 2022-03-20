@@ -14,7 +14,12 @@
             },
             "num_leds": {
               "key": "Required",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
               "docs": "**int**: The number of LEDs attached.\n\n\n\n*See also: [SPI](https://esphome.io/components/light/fastled.html#id1)*"
             },
             "rgb_order": {
@@ -35,7 +40,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_microseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: A time interval used to limit the number of commands a light can handle per second. For example 16ms will limit the light to a refresh rate of about 60Hz. Defaults to the default value for the used chipset.\n\n\n\n*See also: [SPI](https://esphome.io/components/light/fastled.html#id1)*"

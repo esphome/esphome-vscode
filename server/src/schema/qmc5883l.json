@@ -23,25 +23,6 @@
           }
         }
       },
-      "heading_schema": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "sensor.SENSOR_SCHEMA"
-          ],
-          "config_vars": {
-            "unit_of_measurement": {
-              "default": "\u00b0"
-            },
-            "icon": {
-              "default": "mdi:screen-rotation"
-            },
-            "accuracy_decimals": {
-              "default": "1"
-            }
-          }
-        }
-      },
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -106,8 +87,19 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "qmc5883l.sensor.heading_schema"
-                ]
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "\u00b0"
+                  },
+                  "icon": {
+                    "default": "mdi:screen-rotation"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  }
+                }
               },
               "docs": "The heading of the sensor in degrees. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
             },

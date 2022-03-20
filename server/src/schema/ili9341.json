@@ -1,13 +1,6 @@
 {
   "ili9341.display": {
     "schemas": {
-      "ILI9341_MODEL": {
-        "type": "enum",
-        "values": [
-          "M5STACK",
-          "TFT_2.4"
-        ]
-      },
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -22,12 +15,11 @@
             },
             "model": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "ili9341.display.ILI9341_MODEL"
-                ]
-              },
+              "type": "enum",
+              "values": [
+                "M5STACK",
+                "TFT_2.4"
+              ],
               "docs": "The model of the display. Options are:\n  * `M5STACK`\n  \n  * `TFT 2.4`\n  \n  \n\n\n\n*See also: [ILI9341 TFT LCD](https://esphome.io/components/display/ili9341.html#configuration-variables)*"
             },
             "dc_pin": {

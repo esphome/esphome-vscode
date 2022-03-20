@@ -14,7 +14,12 @@
             },
             "red_int": {
               "key": "Optional",
-              "type": "integer"
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              }
             },
             "green": {
               "key": "Optional",
@@ -22,7 +27,12 @@
             },
             "green_int": {
               "key": "Optional",
-              "type": "integer"
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              }
             },
             "blue": {
               "key": "Optional",
@@ -30,7 +40,12 @@
             },
             "blue_int": {
               "key": "Optional",
-              "type": "integer"
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              }
             },
             "white": {
               "key": "Optional",
@@ -38,13 +53,19 @@
             },
             "white_int": {
               "key": "Optional",
-              "type": "integer"
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint8_t"
+                ]
+              }
             }
           },
           "extends": [
             "core.COMPONENT_SCHEMA"
           ]
-        }
+        },
+        "is_list": true
       }
     }
   }

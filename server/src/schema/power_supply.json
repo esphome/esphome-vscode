@@ -24,7 +24,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time to that the power supply needs for startup. The output component will wait for this period of time after turning on the PSU and before switching the output on. Defaults to `20ms`.\n\n\n\n*See also: [Power Supply Component](https://esphome.io/components/power_supply.html#configuration-variables)*"
@@ -35,7 +35,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time the power supply should be kept enabled after the last output that used it has been switch off. Defaults to `10s`.\n\n\n\n*See also: [Power Supply Component](https://esphome.io/components/power_supply.html#configuration-variables)*"
@@ -44,7 +44,8 @@
           "extends": [
             "core.COMPONENT_SCHEMA"
           ]
-        }
+        },
+        "is_list": true
       }
     }
   }

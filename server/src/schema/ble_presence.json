@@ -22,12 +22,22 @@
             },
             "ibeacon_major": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint16_t"
+                ]
+              },
               "docs": "**int**: The iBeacon major identifier of the beacon that needs to be tracked. Usually used to group beacons, for example for grouping all beacons in the same building.\n\n\n\n*See also: [ESP32 Bluetooth Low Energy Device](https://esphome.io/components/binary_sensor/ble_presence.html#configuration-variables)*"
             },
             "ibeacon_minor": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint16_t"
+                ]
+              },
               "docs": "**int**: The iBeacon minor identifier of the beacon that needs to be tracked. Usually used to identify beacons within an iBeacon group.\n\n\n\n*See also: [ESP32 Bluetooth Low Energy Device](https://esphome.io/components/binary_sensor/ble_presence.html#configuration-variables)*"
             },
             "ibeacon_uuid": {

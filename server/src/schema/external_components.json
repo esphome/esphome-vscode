@@ -11,17 +11,38 @@
               "type": "typed",
               "types": {
                 "git": {
-                  "extends": [
-                    "external_components.GIT_SCHEMA"
-                  ]
+                  "config_vars": {
+                    "url": {
+                      "key": "Required",
+                      "docs": "**url**: HTTP git repository url. See [Git](https://esphome.io/components/external_components.html#external-components-git).\n\n\n\n*See also: [External Components](https://esphome.io/components/external_components.html#external-components)*"
+                    },
+                    "ref": {
+                      "key": "Optional",
+                      "docs": "**string**: Git ref (branch or tag). If not specified the default branch is used.\n\n\n\n*See also: [External Components](https://esphome.io/components/external_components.html#external-components)*"
+                    },
+                    "username": {
+                      "key": "Optional",
+                      "type": "string",
+                      "docs": "**string**: Username for the Git server, if one is required\n\n\n\n*See also: [External Components](https://esphome.io/components/external_components.html#external-components)*"
+                    },
+                    "password": {
+                      "key": "Optional",
+                      "type": "string",
+                      "docs": "**string**: Password for the Git server, if one is required\n\n\n\n*See also: [External Components](https://esphome.io/components/external_components.html#external-components)*"
+                    }
+                  }
                 },
                 "local": {
-                  "extends": [
-                    "external_components.LOCAL_SCHEMA"
-                  ]
+                  "config_vars": {
+                    "path": {
+                      "key": "Required",
+                      "docs": "Path to use when using local components. See [Local](https://esphome.io/components/external_components.html#external-components-local).\n\n\n\n*See also: [External Components](https://esphome.io/components/external_components.html#external-components)*"
+                    }
+                  }
                 }
               },
-              "docs": "The location of the components you want to retrieve. See [Local](https://esphome.io/components/external_components.html#external-components-local) and [Git](https://esphome.io/components/external_components.html#external-components-git).\n  * **type** (**Required**): Repository type. One of `local`, `git`.\n  \n  git options:\n  * **url** (**Required**, url): HTTP git repository url. See [Git](https://esphome.io/components/external_components.html#external-components-git).\n  \n  * **ref** (*Optional*, string): Git ref (branch or tag). If not specified the default branch is used.\n  \n  * **username** (*Optional*, string): Username for the Git server, if one is required\n  \n  * **password** (*Optional*, string): Password for the Git server, if one is required\n  \n  local options:\n  * **path** (**Required**):  Path to use when using local components. See [Local](https://esphome.io/components/external_components.html#external-components-local).\n  \n  \n\n\n\n*See also: [External Components](https://esphome.io/components/external_components.html#external-components)*"
+              "typed_key": "type",
+              "docs": "Repository type. One of `local`, `git`.\n\n\n\n*See also: [External Components](https://esphome.io/components/external_components.html#external-components)*"
             },
             "refresh": {
               "key": "Optional",
@@ -35,37 +56,6 @@
               "is_list": true,
               "type": "string",
               "docs": "**list**: The list of components to use from the external source. By default, all available components are used.\n\n\n\n*See also: [External Components](https://esphome.io/components/external_components.html#external-components)*"
-            }
-          }
-        }
-      },
-      "GIT_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "url": {
-              "key": "Required"
-            },
-            "ref": {
-              "key": "Optional"
-            },
-            "username": {
-              "key": "Optional",
-              "type": "string"
-            },
-            "password": {
-              "key": "Optional",
-              "type": "string"
-            }
-          }
-        }
-      },
-      "LOCAL_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "path": {
-              "key": "Required"
             }
           }
         }

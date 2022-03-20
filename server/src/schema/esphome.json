@@ -23,11 +23,11 @@
             "platformio_options": {
               "key": "String",
               "default": "{}",
-              "key_dump": "<function string_strict at 0x000001F12BC80700>",
+              "key_dump": "<function string_strict at 0x000001BB8E0AF700>",
               "type": "schema",
               "schema": {
                 "config_vars": {
-                  "<function string_strict at 0x000001F12BC80700>": {
+                  "<function string_strict at 0x000001BB8E0AF700>": {
                     "type": "string"
                   }
                 }
@@ -101,42 +101,6 @@
             }
           }
         }
-      },
-      "PRELOAD_CONFIG_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "name": {
-              "key": "Required",
-              "type": "string"
-            },
-            "build_path": {
-              "key": "Optional",
-              "type": "string"
-            },
-            "platform": {
-              "key": "Optional",
-              "type": "enum",
-              "values": [
-                "esp32",
-                "esp8266"
-              ]
-            },
-            "board": {
-              "key": "Optional",
-              "type": "string"
-            },
-            "esp8266_restore_from_flash": {
-              "key": "Optional"
-            },
-            "board_flash_mode": {
-              "key": "Optional"
-            },
-            "arduino_version": {
-              "key": "Optional"
-            }
-          }
-        }
       }
     }
   },
@@ -154,12 +118,8 @@
       "uint32_t": {
         "type": "integer"
       },
-      "uint64_t": {
-        "type": "integer"
-      },
       "positive_float": {},
       "zero_to_one_float": {},
-      "negative_one_to_one_float": {},
       "positive_int": {
         "type": "integer"
       },
@@ -215,23 +175,7 @@
           ]
         }
       },
-      "time_period_microseconds": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "core.time_period_dict"
-          ]
-        }
-      },
       "positive_time_period_microseconds": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "core.time_period_dict"
-          ]
-        }
-      },
-      "positive_not_null_time_period": {
         "type": "schema",
         "schema": {
           "extends": [
@@ -243,32 +187,6 @@
       "hex_uint16_t": {},
       "hex_uint32_t": {},
       "hex_uint64_t": {},
-      "i2c_address": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "core.hex_uint8_t"
-          ]
-        }
-      },
-      "MQTT_COMPONENT_AVAILABILITY_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "topic": {
-              "key": "Required"
-            },
-            "payload_available": {
-              "key": "Optional",
-              "default": "online"
-            },
-            "payload_not_available": {
-              "key": "Optional",
-              "default": "offline"
-            }
-          }
-        }
-      },
       "MQTT_COMPONENT_SCHEMA": {
         "type": "schema",
         "schema": {

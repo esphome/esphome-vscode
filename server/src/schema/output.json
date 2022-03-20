@@ -177,7 +177,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: How long the output should be set when the button is pressed.\n\n\n\n*See also: [Generic Output Button](https://esphome.io/components/button/output.html#configuration-variables)*"

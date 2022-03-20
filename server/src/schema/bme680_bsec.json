@@ -39,7 +39,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_minutes"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The minimum interval at which to save calibrated BSEC algorithm state to flash so that calibration doesn\u2019t have to start from zero on device restart. Defaults to `6h`.\n\n\n\n*See also: [bme680_bsec Component/Hub](https://esphome.io/components/sensor/bme680_bsec.html#component-hub)*"

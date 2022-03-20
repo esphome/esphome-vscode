@@ -13,10 +13,38 @@
               "key": "Optional",
               "type": "schema",
               "schema": {
-                "extends": [
-                  "deep_sleep.WAKEUP_CAUSES_SCHEMA",
-                  "core.positive_time_period_milliseconds"
-                ]
+                "config_vars": {
+                  "default": {
+                    "key": "Required",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "core.positive_time_period_milliseconds"
+                      ]
+                    },
+                    "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: default run duration for timer wakeup and any unspecified wakeup reason.\n\n\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#configuration-variables)*"
+                  },
+                  "touch_wakeup_reason": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "core.positive_time_period_milliseconds"
+                      ]
+                    },
+                    "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: run duration if woken up by touch.\n\n\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#configuration-variables)*"
+                  },
+                  "gpio_wakeup_reason": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "core.positive_time_period_milliseconds"
+                      ]
+                    },
+                    "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: run duration if woken up by GPIO.\n\n\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#configuration-variables)*"
+                  }
+                }
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time duration the node should be active, i.e. run code.Only on ESP32, instead of time, it is possible to specify run duration according to the wakeup reason from deep-sleep:\n  * **default** (**Required**, [Time](https://esphome.io/guides/configuration-types.html#config-time)): default run duration for timer wakeup and any unspecified wakeup reason.\n  \n  * **gpio_wakeup_reason** (*Optional*, [Time](https://esphome.io/guides/configuration-types.html#config-time)): run duration if woken up by GPIO.\n  \n  * **touch_wakeup_reason** (*Optional*, [Time](https://esphome.io/guides/configuration-types.html#config-time)): run duration if woken up by touch.\n  \n  \n\n\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#configuration-variables)*"
             },
@@ -25,7 +53,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time duration to stay in deep sleep mode.\n\n\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#configuration-variables)*"
@@ -89,45 +117,10 @@
             "core.COMPONENT_SCHEMA"
           ]
         }
-      },
-      "WAKEUP_CAUSES_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "default": {
-              "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.time_period_dict"
-                ]
-              },
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: default run duration for timer wakeup and any unspecified wakeup reason.\n\n\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#configuration-variables)*"
-            },
-            "touch_wakeup_reason": {
-              "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.time_period_dict"
-                ]
-              },
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: run duration if woken up by touch.\n\n\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#configuration-variables)*"
-            },
-            "gpio_wakeup_reason": {
-              "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.time_period_dict"
-                ]
-              },
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: run duration if woken up by GPIO.\n\n\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#configuration-variables)*"
-            }
-          }
-        }
-      },
-      "DEEP_SLEEP_ENTER_SCHEMA": {
+      }
+    },
+    "action": {
+      "enter": {
         "type": "maybe",
         "schema": {
           "config_vars": {
@@ -146,9 +139,10 @@
               "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), [Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time duration to stay in deep sleep mode.\n\n\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-enter-action)*"
             }
           }
-        }
+        },
+        "docs": "This action makes the given deep sleep component enter deep sleep immediately.\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-enter-action)*"
       },
-      "DEEP_SLEEP_PREVENT_SCHEMA": {
+      "prevent": {
         "type": "maybe",
         "schema": {
           "config_vars": {
@@ -156,25 +150,6 @@
               "key": "GeneratedID"
             }
           }
-        }
-      }
-    },
-    "action": {
-      "enter": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "deep_sleep.DEEP_SLEEP_ENTER_SCHEMA"
-          ]
-        },
-        "docs": "This action makes the given deep sleep component enter deep sleep immediately.\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-enter-action)*"
-      },
-      "prevent": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "deep_sleep.DEEP_SLEEP_PREVENT_SCHEMA"
-          ]
         },
         "docs": "This action prevents the given deep sleep component from entering deep sleep. Useful for keeping the ESP active during data transfer or OTA updating (See note below for more information).\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-prevent-action)*"
       }

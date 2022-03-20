@@ -47,14 +47,6 @@
   },
   "teleinfo.sensor": {
     "schemas": {
-      "TELEINFO_LISTENER_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "teleinfo.TELEINFO_LISTENER_SCHEMA"
-          ]
-        }
-      },
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -80,14 +72,6 @@
   },
   "teleinfo.text_sensor": {
     "schemas": {
-      "TELEINFO_LISTENER_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "teleinfo.TELEINFO_LISTENER_SCHEMA"
-          ]
-        }
-      },
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {

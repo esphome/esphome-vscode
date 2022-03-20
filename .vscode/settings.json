@@ -10,11 +10,13 @@
   "typescript.tsc.autoDetect": "off",
   "window.title": "ESPHome-VSCode",
   "cSpell.words": [
-    "Modeline",
-    "Prio",
+    "automations",
+    "chipset",
     "invalidref",
     "languageservice",
     "matchs",
+    "Modeline",
+    "Prio",
     "schema",
     "schemaservice"
   ],

@@ -73,7 +73,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_minutes"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor in minutes. This affects the working period of the SDS011 sensor. Defaults to `0min`.\n\n\n\n*See also: [SDS011 Particulate Matter Sensor](https://esphome.io/components/sensor/sds011.html#configuration-variables)*"

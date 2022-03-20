@@ -4,10 +4,6 @@
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "ssd1325_base.SSD1325_SCHEMA",
-            "core.COMPONENT_SCHEMA"
-          ],
           "config_vars": {
             "id": {
               "key": "GeneratedID",
@@ -33,8 +29,46 @@
               ],
               "type": "pin",
               "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin on the ESP that that the CS line is connected to. The CS line can be connected to GND if this is the only device on the SPI bus.\n\n\n\n*See also: [ssd1325_spi Component](https://esphome.io/components/display/ssd1325.html#configuration-variables)*"
+            },
+            "model": {
+              "key": "Required",
+              "type": "enum",
+              "values": [
+                "SSD1325_128X32",
+                "SSD1325_128X64",
+                "SSD1325_96X16",
+                "SSD1325_64X48",
+                "SSD1327_128X128"
+              ],
+              "docs": "The model of the display. Options are:\n  * `SSD1325 128x32` (SSD1325 with 128 columns and 32 rows)\n  \n  * `SSD1325 128x64`\n  \n  * `SSD1325 96x16`\n  \n  * `SSD1325 64x48`\n  \n  \n\n\n\n*See also: [ssd1325_spi Component](https://esphome.io/components/display/ssd1325.html#configuration-variables)*"
+            },
+            "reset_pin": {
+              "key": "Optional",
+              "schema": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin",
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The RESET pin.\n\n\n\n*See also: [ssd1325_spi Component](https://esphome.io/components/display/ssd1325.html#configuration-variables)*"
+            },
+            "brightness": {
+              "key": "Optional",
+              "default": "1.0"
+            },
+            "external_vcc": {
+              "key": "Optional",
+              "type": "boolean"
+            },
+            "update_interval": {
+              "key": "Optional",
+              "default": "1s",
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to re-draw the screen. Defaults to `5s`.\n\n\n\n*See also: [ssd1325_spi Component](https://esphome.io/components/display/ssd1325.html#configuration-variables)*"
             }
-          }
+          },
+          "extends": [
+            "display.FULL_DISPLAY_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ]
         }
       }
     }

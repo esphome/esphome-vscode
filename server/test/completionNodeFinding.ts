@@ -3,7 +3,7 @@ import { assert, expect } from 'chai';
 import { CompletionHandler } from '../src/completions';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { yamlDocumentsCache } from '../src/parser/yaml-documents';
-import { CompletionItem } from 'vscode-languageserver-types';
+import { CompletionItem, Position } from 'vscode-languageserver-types';
 import * as Docs from './sampleEsphomeYaml';
 import { CoreSchema } from '../src/CoreSchema';
 
@@ -31,6 +31,21 @@ const testCompletionDoesNotHaveLabels = (result: CompletionItem[], testSet) => {
 const coreSchema = new CoreSchema;
 
 const x = new CompletionHandler(yamlDocumentsCache, coreSchema);
+
+
+const getCompletionsFor = (yamlString: string, position: Position = null): CompletionItem[] => {
+  yamlString = yamlString.trimStart();
+  if (position === null) {
+    // default to end of doc
+    const lines = yamlString.split('\n');
+    position = {
+      line: lines.length - 1,
+      character: lines[lines.length - 1].length
+    };
+  }
+  console.log('position is ' + JSON.stringify(position));
+  return x.onCompletion(Docs.getTextDoc(yamlString), position);
+};
 
 describe('complete', () => {
   it('empty file lists esphome, wifi and others', () => {
@@ -414,14 +429,88 @@ output:
   });
 
   it('fill preselect default value', () => {
-    const result = x.onCompletion(Docs.getTextDoc(`
+    const result = getCompletionsFor(`
 esphome:
   name: arduino
 esp32:
   board: d1
 logger:
-  bau`), { line: 5, character: 5 });
+  bau`);
     expect(result.find(r => r.label === "baud_rate").insertText).to.be.string("baud_rate: ${0:115200}");
   });
+
+  it('interval suggests without list', () => {
+    const result = x.onCompletion(Docs.getTextDoc(`
+esphome:
+  name: arduino
+esp32:
+  board: d1
+interval:
+  interval: 1h
+  `), { line: 6, character: 2 });
+    testCompletionHaveLabels(result, ["then"]);
+    testCompletionDoesNotHaveLabels(result, ["interval"]);
+  });
+
+  it('interval suggests with list', () => {
+    const result = getCompletionsFor(`
+esphome:
+  name: arduino
+esp32:
+  board: d1
+interval:
+  - interval: 1h
+    then:
+      delay: 1s
+  - interval: 2h
+    `);
+    testCompletionHaveLabels(result, ["then"]);
+    testCompletionDoesNotHaveLabels(result, ["interval"]);
+  });
+
+  it('single ext component types', () => {
+    const result = getCompletionsFor(`
+esphome:
+  name: arduino
+esp32:
+  board: d1
+external_components:
+  source:
+    type: `);
+    testCompletionHaveLabels(result, ["git", "local"]);
+  });
+  it('list ext component types', () => {
+    const result = getCompletionsFor(`
+esphome:
+  name: arduino
+esp32:
+  board: d1
+external_components:
+  - source:
+      type: `);
+    testCompletionHaveLabels(result, ["git", "local"]);
+  });
+
+  it('list automations when schema and list has an automation', () => {
+    const result = getCompletionsFor(`
+esphome:
+  name: test-completions
+  on_boot:
+    - delay: 2s
+    `);
+    testCompletionHaveLabels(result, ["delay", "if"]);
+  });
+
+
+  it('root components marked list', () => {
+    const result = getCompletionsFor(`
+esphome:
+  name: test-completions
+i2c:
+  - id: d2
+    `);
+    testCompletionHaveLabels(result, ["frequency"]);
+  });
 });
+
 

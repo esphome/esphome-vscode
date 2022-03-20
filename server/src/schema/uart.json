@@ -68,78 +68,8 @@
           "extends": [
             "core.COMPONENT_SCHEMA"
           ]
-        }
-      },
-      "DEBUG_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "trigger_id": {
-              "key": "GeneratedID"
-            },
-            "direction": {
-              "key": "Optional",
-              "default": "BOTH",
-              "type": "enum",
-              "values": [
-                "RX",
-                "TX",
-                "BOTH"
-              ]
-            },
-            "after": {
-              "key": "Optional",
-              "default": "{'bytes': 150, 'timeout': '100ms'}",
-              "type": "schema",
-              "schema": {
-                "config_vars": {
-                  "bytes": {
-                    "key": "Optional",
-                    "default": "150"
-                  },
-                  "timeout": {
-                    "key": "Optional",
-                    "default": "100ms",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.time_period_dict"
-                      ]
-                    }
-                  },
-                  "delimiter": {
-                    "key": "Optional",
-                    "templatable": true
-                  }
-                }
-              }
-            },
-            "sequence": {
-              "key": "Optional",
-              "default": "[{'lambda': \"UARTDebug::log_hex(direction, bytes, ':');\"}]",
-              "type": "trigger"
-            },
-            "dummy_receiver": {
-              "key": "Optional",
-              "default": "False",
-              "type": "boolean"
-            },
-            "dummy_receiver_id": {
-              "key": "GeneratedID"
-            }
-          }
-        }
-      },
-      "UART_DEVICE_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "uart_id": {
-              "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the UART hub.\n\n\n\n*See also: [UART Switch](https://esphome.io/components/switch/uart.html#configuration-variables)*"
-            }
-          }
-        }
+        },
+        "is_list": true
       }
     },
     "action": {
@@ -166,11 +96,6 @@
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "switch.SWITCH_SCHEMA",
-            "uart.UART_DEVICE_SCHEMA",
-            "core.COMPONENT_SCHEMA"
-          ],
           "config_vars": {
             "id": {
               "key": "GeneratedID",
@@ -185,10 +110,17 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Sends recurring data instead of sending once.\n\n\n\n*See also: [UART Switch](https://esphome.io/components/switch/uart.html#configuration-variables)*"
+            },
+            "uart_id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the UART hub.\n\n\n\n*See also: [UART Switch](https://esphome.io/components/switch/uart.html#configuration-variables)*"
+            },
+            "name": {
+              "docs": "**string**: The name for the switch.\n\n\n\n*See also: [UART Switch](https://esphome.io/components/switch/uart.html#configuration-variables)*"
             }
           }
         }

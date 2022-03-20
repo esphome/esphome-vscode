@@ -45,28 +45,6 @@
           }
         }
       },
-      "temperature_schema": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "sensor.SENSOR_SCHEMA"
-          ],
-          "config_vars": {
-            "unit_of_measurement": {
-              "default": "\u00b0C"
-            },
-            "accuracy_decimals": {
-              "default": "1"
-            },
-            "device_class": {
-              "default": "temperature"
-            },
-            "state_class": {
-              "default": "measurement"
-            }
-          }
-        }
-      },
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -140,8 +118,22 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "mpu6886.sensor.temperature_schema"
-                ]
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "\u00b0C"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  },
+                  "device_class": {
+                    "default": "temperature"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  }
+                }
               },
               "docs": "Use the internal temperature of the sensor. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [MPU6886 Accelerometer/Gyroscope Sensor](https://esphome.io/components/sensor/mpu6886.html#configuration-variables)*"
             },

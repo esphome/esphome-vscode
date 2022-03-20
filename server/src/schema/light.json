@@ -178,7 +178,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The default transition length to use when no transition length is set in the light call. Defaults to `1s`.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
@@ -189,7 +189,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The transition length to use when flash is called. Defaults to `0s`.\n\n\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"

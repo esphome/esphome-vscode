@@ -80,7 +80,12 @@
             },
             "num_leds": {
               "key": "Required",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_not_null_int"
+                ]
+              },
               "docs": "**int**: The number of LEDs attached.\n\n\n\n*See also: [NeoPixelBus Light](https://esphome.io/components/light/neopixelbus.html#configuration-variables)*"
             },
             "id": {

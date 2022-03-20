@@ -14,7 +14,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**int**: minimum time in milliseconds between 2 requests to the device. Default is 0ms Because some modbus devices limit the rate of requests the interval between sending requests to the device can be modified.\n\n\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#configuration-variables)*"
@@ -42,7 +42,8 @@
           "extends": [
             "core.COMPONENT_SCHEMA"
           ]
-        }
+        },
+        "is_list": true
       },
       "ModbusItemBaseSchema": {
         "type": "schema",
@@ -53,7 +54,12 @@
             },
             "address": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_int"
+                ]
+              },
               "docs": "**int**: start address of the first register in a range\n\n\n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
             },
             "custom_command": {
@@ -69,12 +75,22 @@
             },
             "offset": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_int"
+                ]
+              },
               "docs": "**int**: not required in most cases offset from start address in bytes. If more than one register is read a modbus read registers command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type\n\n\n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
             },
             "byte_offset": {
               "key": "Optional",
-              "type": "integer"
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_int"
+                ]
+              }
             },
             "bitmask": {
               "key": "Optional",
@@ -90,7 +106,12 @@
             "skip_updates": {
               "key": "Optional",
               "default": "0",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_int"
+                ]
+              },
               "docs": "**int**: By default all sensors of a modbus_controller are updated together. For data points that don\u2019t change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle\n\n\n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
             },
             "force_new_range": {
@@ -106,7 +127,12 @@
             "response_size": {
               "key": "Optional",
               "default": "0",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_int"
+                ]
+              },
               "docs": "**int**: Size of the response for the register in bytes. Defaults to register_count*2.\n\n\n\n*See also: [Modbus Controller Sensor](https://esphome.io/components/sensor/modbus_controller.html#configuration-variables)*"
             }
           }
@@ -116,14 +142,6 @@
   },
   "modbus_controller.sensor": {
     "schemas": {
-      "ModbusItemBaseSchema": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "modbus_controller.ModbusItemBaseSchema"
-          ]
-        }
-      },
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -172,7 +190,12 @@
             "register_count": {
               "key": "Optional",
               "default": "0",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_int"
+                ]
+              },
               "docs": "only required for uncommon response encodings or to [optimize modbus communications](https://esphome.io/components/sensor/modbus_controller.html#modbus-register-count) The number of registers this data point spans. Overrides the defaults determined by `value_type`. If no value for `register_count` is provided, it is calculated based on the register type.The default size for 1 register is 16 bits (1 Word). Some devices are not adhering to this convention and have registers larger than 16 bits.  In this case `register_count` and  `response_size` must be set. For example, if your modbus device uses 1 registers for a FP32 value instead the default of two set `register_count: 1` and `response_size: 4`.\n\n\n\n*See also: [Modbus Controller Sensor](https://esphome.io/components/sensor/modbus_controller.html#configuration-variables)*"
             }
           }
@@ -182,14 +205,6 @@
   },
   "modbus_controller.binary_sensor": {
     "schemas": {
-      "ModbusItemBaseSchema": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "modbus_controller.ModbusItemBaseSchema"
-          ]
-        }
-      },
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -221,14 +236,6 @@
   },
   "modbus_controller.number": {
     "schemas": {
-      "ModbusItemBaseSchema": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "modbus_controller.ModbusItemBaseSchema"
-          ]
-        }
-      },
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -304,14 +311,6 @@
   },
   "modbus_controller.output": {
     "schemas": {
-      "ModbusItemBaseSchema": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "modbus_controller.ModbusItemBaseSchema"
-          ]
-        }
-      },
       "CONFIG_SCHEMA": {
         "type": "typed",
         "types": {
@@ -334,9 +333,6 @@
                 "default": "False",
                 "type": "boolean",
                 "docs": "**boolean**: By default the modbus command `Preset Single Registers` (function code 6) is used for setting the holding register if only 1 register is set. If your device only supports `Preset Multiple Registers` (function code 16) set this option to true.\n\n\n\n*See also: [Modbus Controller Output](https://esphome.io/components/output/modbus_controller.html#configuration-variables)*"
-              },
-              "name": {
-                "docs": "**string**: The name of the sensor.\n\n\n\n*See also: [Modbus Controller Output](https://esphome.io/components/output/modbus_controller.html#configuration-variables)*"
               }
             }
           },
@@ -385,13 +381,12 @@
                 "default": "False",
                 "type": "boolean",
                 "docs": "**boolean**: By default the modbus command `Preset Single Registers` (function code 6) is used for setting the holding register if only 1 register is set. If your device only supports `Preset Multiple Registers` (function code 16) set this option to true.\n\n\n\n*See also: [Modbus Controller Output](https://esphome.io/components/output/modbus_controller.html#configuration-variables)*"
-              },
-              "name": {
-                "docs": "**string**: The name of the sensor.\n\n\n\n*See also: [Modbus Controller Output](https://esphome.io/components/output/modbus_controller.html#configuration-variables)*"
               }
             }
           }
-        }
+        },
+        "typed_key": "register_type",
+        "docs": "`coil` to create a binary outout or `holding` to create a float output.\n\n\n\n*See also: [Modbus Controller Output](https://esphome.io/components/output/modbus_controller.html#configuration-variables)*"
       }
     }
   },
@@ -413,7 +408,12 @@
             },
             "address": {
               "key": "Required",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_int"
+                ]
+              },
               "docs": "**int**: The start address of the first or only register of the Select.\n\n\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#configuration-variables)*"
             },
             "value_type": {
@@ -437,13 +437,23 @@
             },
             "register_count": {
               "key": "Optional",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_int"
+                ]
+              },
               "docs": "The number of registers which are used for this Select. Only required for uncommon response encodings or to [optimize modbus communications](https://esphome.io/components/sensor/modbus_controller.html#modbus-register-count). Overrides the defaults determined by `value_type`.\n\n\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#configuration-variables)*"
             },
             "skip_updates": {
               "key": "Optional",
               "default": "0",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_int"
+                ]
+              },
               "docs": "**int**: By default all sensors of a modbus_controller are updated together. For data points that don\u2019t change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle. Defaults to `0`. Note: The modbus_controller merges several registers into groups which are updated together. For each group the smallest update cycle is used.\n\n\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#configuration-variables)*"
             },
             "force_new_range": {
@@ -477,14 +487,6 @@
   },
   "modbus_controller.switch": {
     "schemas": {
-      "ModbusItemBaseSchema": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "modbus_controller.ModbusItemBaseSchema"
-          ]
-        }
-      },
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -527,14 +529,6 @@
   },
   "modbus_controller.text_sensor": {
     "schemas": {
-      "ModbusItemBaseSchema": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "modbus_controller.ModbusItemBaseSchema"
-          ]
-        }
-      },
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -562,7 +556,12 @@
             "register_count": {
               "key": "Optional",
               "default": "0",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_int"
+                ]
+              },
               "docs": "The number of registers this data point spans. Default is 1\n\n\n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
             },
             "response_size": {

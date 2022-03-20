@@ -1,18 +1,6 @@
 {
   "thermostat.climate": {
     "schemas": {
-      "validate_climate_mode": {
-        "type": "enum",
-        "values": [
-          "OFF",
-          "HEAT_COOL",
-          "COOL",
-          "HEAT",
-          "DRY",
-          "FAN_ONLY",
-          "AUTO"
-        ]
-      },
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -137,12 +125,16 @@
               "key": "Optional",
               "default": "OFF",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "thermostat.climate.validate_climate_mode"
-                ]
-              }
+              "type": "enum",
+              "values": [
+                "OFF",
+                "HEAT_COOL",
+                "COOL",
+                "HEAT",
+                "DRY",
+                "FAN_ONLY",
+                "AUTO"
+              ]
             },
             "default_target_temperature_high": {
               "key": "Optional"
@@ -175,7 +167,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_seconds"
                 ]
               }
             },
@@ -184,7 +176,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_seconds"
                 ]
               }
             },
@@ -193,7 +185,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_seconds"
                 ]
               }
             },
@@ -202,7 +194,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_seconds"
                 ]
               }
             },
@@ -211,7 +203,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_seconds"
                 ]
               }
             },
@@ -220,7 +212,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_seconds"
                 ]
               }
             },
@@ -229,7 +221,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_seconds"
                 ]
               }
             },
@@ -238,7 +230,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_seconds"
                 ]
               }
             },
@@ -247,7 +239,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_seconds"
                 ]
               }
             },
@@ -256,7 +248,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_seconds"
                 ]
               }
             },

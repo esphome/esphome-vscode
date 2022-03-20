@@ -38,6 +38,7 @@ export interface ConfigVarSchema extends ConfigVarBase {
 
 export interface ConfigVarTyped extends ConfigVarBase {
     type: 'typed';
+    typed_key: string;
     types: {
         [name: string]: Schema;
     };

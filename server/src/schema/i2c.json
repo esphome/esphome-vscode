@@ -54,7 +54,8 @@
           "extends": [
             "core.COMPONENT_SCHEMA"
           ]
-        }
+        },
+        "is_list": true
       },
       "pin_with_input_and_output_support": {}
     }

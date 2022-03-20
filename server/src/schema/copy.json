@@ -16,8 +16,7 @@
             }
           }
         }
-      },
-      "FINAL_VALIDATE_SCHEMA": {}
+      }
     }
   },
   "copy.binary_sensor": {
@@ -37,8 +36,7 @@
             }
           }
         }
-      },
-      "FINAL_VALIDATE_SCHEMA": {}
+      }
     }
   },
   "copy.button": {
@@ -60,8 +58,7 @@
             }
           }
         }
-      },
-      "FINAL_VALIDATE_SCHEMA": {}
+      }
     }
   },
   "copy.cover": {
@@ -81,8 +78,7 @@
             }
           }
         }
-      },
-      "FINAL_VALIDATE_SCHEMA": {}
+      }
     }
   },
   "copy.fan": {
@@ -102,8 +98,7 @@
             }
           }
         }
-      },
-      "FINAL_VALIDATE_SCHEMA": {}
+      }
     }
   },
   "copy.lock": {
@@ -125,8 +120,7 @@
             }
           }
         }
-      },
-      "FINAL_VALIDATE_SCHEMA": {}
+      }
     }
   },
   "copy.number": {
@@ -146,8 +140,7 @@
             }
           }
         }
-      },
-      "FINAL_VALIDATE_SCHEMA": {}
+      }
     }
   },
   "copy.select": {
@@ -167,8 +160,7 @@
             }
           }
         }
-      },
-      "FINAL_VALIDATE_SCHEMA": {}
+      }
     }
   },
   "copy.switch": {
@@ -190,8 +182,7 @@
             }
           }
         }
-      },
-      "FINAL_VALIDATE_SCHEMA": {}
+      }
     }
   },
   "copy.text_sensor": {
@@ -211,8 +202,7 @@
             }
           }
         }
-      },
-      "FINAL_VALIDATE_SCHEMA": {}
+      }
     }
   }
 }

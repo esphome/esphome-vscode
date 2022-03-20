@@ -43,7 +43,12 @@
             },
             "uid": {
               "key": "Required",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint32_t"
+                ]
+              },
               "docs": "**int**: The unique ID of the NFC/RFID tag.\n\n\n\n*See also: [rdm6300 Binary Sensor](https://esphome.io/components/binary_sensor/rdm6300.html#id1)*"
             }
           }

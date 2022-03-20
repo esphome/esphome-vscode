@@ -27,7 +27,8 @@
               "docs": "**string**: The error correction code level you want to use. Defaults to `LOW`. You can use one of the following values:\n  * `LOW` - The QR Code can tolerate about 7% erroneous codewords\n  \n  * `MEDIUM` - The QR Code can tolerate about 15% erroneous codewords\n  \n  * `QUARTILE` - The QR Code can tolerate about 25% erroneous codewords\n  \n  * `HIGH` - The QR Code can tolerate about 30% erroneous codewords\n  \n  \n\n\n\n*See also: [QR Code Component](https://esphome.io/components/display/index.html#qr-code-component)*"
             }
           }
-        }
+        },
+        "is_list": true
       }
     }
   }

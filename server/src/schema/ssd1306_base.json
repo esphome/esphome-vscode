@@ -1,23 +1,6 @@
 {
   "ssd1306_base": {
     "schemas": {
-      "SSD1306_MODEL": {
-        "type": "enum",
-        "values": [
-          "SSD1306_128X32",
-          "SSD1306_128X64",
-          "SSD1306_96X16",
-          "SSD1306_64X48",
-          "SSD1306_64X32",
-          "SH1106_128X32",
-          "SH1106_128X64",
-          "SH1106_96X16",
-          "SH1106_64X48",
-          "SH1107_128X64",
-          "SSD1305_128X32",
-          "SSD1305_128X64"
-        ]
-      },
       "SSD1306_SCHEMA": {
         "type": "schema",
         "schema": {

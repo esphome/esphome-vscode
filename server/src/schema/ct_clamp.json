@@ -34,7 +34,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time duration to sample the current clamp with. Higher values can increase accuracy. Defaults to `200ms` which would be 10 whole cycles on a 50Hz system.\n\n\n\n*See also: [CT Clamp Current Sensor](https://esphome.io/components/sensor/ct_clamp.html#configuration-variables)*"

@@ -27,48 +27,8 @@
           "extends": [
             "core.COMPONENT_SCHEMA"
           ]
-        }
-      },
-      "MCP23016_PIN_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
-            "mcp23016": {
-              "key": "Required"
-            },
-            "number": {
-              "key": "Required",
-              "type": "integer"
-            },
-            "mode": {
-              "key": "Optional",
-              "default": "{}",
-              "type": "schema",
-              "schema": {
-                "config_vars": {
-                  "input": {
-                    "key": "Optional",
-                    "default": "False",
-                    "type": "boolean"
-                  },
-                  "output": {
-                    "key": "Optional",
-                    "default": "False",
-                    "type": "boolean"
-                  }
-                }
-              }
-            },
-            "inverted": {
-              "key": "Optional",
-              "default": "False",
-              "type": "boolean"
-            }
-          }
-        }
+        },
+        "is_list": true
       }
     },
     "pin": {

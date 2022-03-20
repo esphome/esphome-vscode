@@ -173,13 +173,23 @@
             "gain_voltage": {
               "key": "Optional",
               "default": "7305",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint16_t"
+                ]
+              },
               "docs": "**int**: Voltage gain to scale the low voltage AC power pack to household mains feed. Defaults to `7305`.\n\n\n\n*See also: [ATM90E32 Power Sensor](https://esphome.io/components/sensor/atm90e32.html#configuration-variables)*"
             },
             "gain_ct": {
               "key": "Optional",
               "default": "27961",
-              "type": "integer",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.uint16_t"
+                ]
+              },
               "docs": "**int**: CT clamp calibration for this phase. Defaults to `27961`.\n\n\n\n*See also: [ATM90E32 Power Sensor](https://esphome.io/components/sensor/atm90e32.html#configuration-variables)*"
             }
           }

@@ -26,19 +26,12 @@
           "extends": [
             "core.COMPONENT_SCHEMA"
           ]
-        }
-      },
-      "FINAL_VALIDATE_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "uart_id": {
-              "key": "Required"
-            }
-          }
-        }
-      },
-      "SIM800L_SEND_SMS_SCHEMA": {
+        },
+        "is_list": true
+      }
+    },
+    "action": {
+      "send_sms": {
         "type": "schema",
         "schema": {
           "config_vars": {
@@ -59,9 +52,10 @@
               "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The message content.\n\n\n\n*See also: [on_sms_received Trigger](https://esphome.io/components/sim800l.html#sim800l-send-sms-action)*"
             }
           }
-        }
+        },
+        "docs": "Send a SMS message to a phone recipient using this action in automations.\n\n*See also: [on_sms_received Trigger](https://esphome.io/components/sim800l.html#sim800l-send-sms-action)*"
       },
-      "SIM800L_DIAL_SCHEMA": {
+      "dial": {
         "type": "schema",
         "schema": {
           "config_vars": {
@@ -76,25 +70,6 @@
               "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The number to dial.\n\n\n\n*See also: [on_sms_received Trigger](https://esphome.io/components/sim800l.html#sim800l-dial-action)*"
             }
           }
-        }
-      }
-    },
-    "action": {
-      "send_sms": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "sim800l.SIM800L_SEND_SMS_SCHEMA"
-          ]
-        },
-        "docs": "Send a SMS message to a phone recipient using this action in automations.\n\n*See also: [on_sms_received Trigger](https://esphome.io/components/sim800l.html#sim800l-send-sms-action)*"
-      },
-      "dial": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "sim800l.SIM800L_DIAL_SCHEMA"
-          ]
         },
         "docs": "Dial to a phone recipient using this action in automations.\n\n*See also: [on_sms_received Trigger](https://esphome.io/components/sim800l.html#sim800l-dial-action)*"
       }

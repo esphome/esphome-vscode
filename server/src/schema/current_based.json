@@ -39,7 +39,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The amount of time it takes the cover to open up from the fully-closed state.\n\n\n\n*See also: [Current Based Cover](https://esphome.io/components/cover/current_based.html#configuration-variables)*"
@@ -66,7 +66,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The amount of time it takes the cover to close from the fully-open state.\n\n\n\n*See also: [Current Based Cover](https://esphome.io/components/cover/current_based.html#configuration-variables)*"
@@ -81,7 +81,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The maximum duration the cover should be opening or closing. Useful for protecting from dysfunctional motor integrated endstops.\n\n\n\n*See also: [Current Based Cover](https://esphome.io/components/cover/current_based.html#configuration-variables)*"
@@ -103,7 +103,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The amount of time the current sensing will be disabled when the movement starts. Motors can take some time before reaching their average consumption. Low values can cause an immediate stop because of the first current reading happening in the current-rising period. Defaults to `500ms`.\n\n\n\n*See also: [Current Based Cover](https://esphome.io/components/cover/current_based.html#configuration-variables)*"

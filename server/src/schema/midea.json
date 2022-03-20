@@ -11,45 +11,6 @@
           }
         }
       },
-      "validate_modes": {
-        "type": "enum",
-        "values": [
-          "HEAT_COOL",
-          "COOL",
-          "HEAT",
-          "DRY",
-          "FAN_ONLY"
-        ]
-      },
-      "validate_presets": {
-        "type": "enum",
-        "values": [
-          "ECO",
-          "BOOST",
-          "SLEEP"
-        ]
-      },
-      "validate_swing_modes": {
-        "type": "enum",
-        "values": [
-          "BOTH",
-          "VERTICAL",
-          "HORIZONTAL"
-        ]
-      },
-      "validate_custom_fan_modes": {
-        "type": "enum",
-        "values": [
-          "SILENT",
-          "TURBO"
-        ]
-      },
-      "validate_custom_presets": {
-        "type": "enum",
-        "values": [
-          "FREEZE_PROTECTION"
-        ]
-      },
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -66,26 +27,9 @@
               "default": "1s",
               "type": "schema",
               "schema": {
-                "config_vars": {
-                  "days": {
-                    "key": "Optional"
-                  },
-                  "hours": {
-                    "key": "Optional"
-                  },
-                  "minutes": {
-                    "key": "Optional"
-                  },
-                  "seconds": {
-                    "key": "Optional"
-                  },
-                  "milliseconds": {
-                    "key": "Optional"
-                  },
-                  "microseconds": {
-                    "key": "Optional"
-                  }
-                }
+                "extends": [
+                  "core.time_period_dict"
+                ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Minimal period between requests to the appliance. Defaults to `1s`.\n\n\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#configuration-variables)*"
             },
@@ -94,26 +38,9 @@
               "default": "2s",
               "type": "schema",
               "schema": {
-                "config_vars": {
-                  "days": {
-                    "key": "Optional"
-                  },
-                  "hours": {
-                    "key": "Optional"
-                  },
-                  "minutes": {
-                    "key": "Optional"
-                  },
-                  "seconds": {
-                    "key": "Optional"
-                  },
-                  "milliseconds": {
-                    "key": "Optional"
-                  },
-                  "microseconds": {
-                    "key": "Optional"
-                  }
-                }
+                "extends": [
+                  "core.time_period_dict"
+                ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Request response timeout until next request attempt. Defaults to `2s`.\n\n\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#configuration-variables)*"
             },
@@ -142,56 +69,55 @@
             "supported_modes": {
               "key": "Optional",
               "is_list": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "midea.climate.validate_modes"
-                ]
-              },
+              "type": "enum",
+              "values": [
+                "HEAT_COOL",
+                "COOL",
+                "HEAT",
+                "DRY",
+                "FAN_ONLY"
+              ],
               "docs": "**list**: List of supported modes. Possible values are: `HEAT_COOL`, `COOL`, `HEAT`, `DRY`, `FAN_ONLY`.\n\n\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#configuration-variables)*"
             },
             "supported_swing_modes": {
               "key": "Optional",
               "is_list": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "midea.climate.validate_swing_modes"
-                ]
-              },
+              "type": "enum",
+              "values": [
+                "BOTH",
+                "VERTICAL",
+                "HORIZONTAL"
+              ],
               "docs": "**list**: List of supported swing modes. Possible values are: `VERTICAL`, `HORIZONTAL`, `BOTH`.\n\n\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#configuration-variables)*"
             },
             "supported_presets": {
               "key": "Optional",
               "is_list": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "midea.climate.validate_presets"
-                ]
-              },
+              "type": "enum",
+              "values": [
+                "ECO",
+                "BOOST",
+                "SLEEP"
+              ],
               "docs": "**list**: List of supported presets. Possible values are: `ECO`, `BOOST`, `SLEEP`.\n\n\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#configuration-variables)*"
             },
             "custom_presets": {
               "key": "Optional",
               "is_list": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "midea.climate.validate_custom_presets"
-                ]
-              },
+              "type": "enum",
+              "values": [
+                "FREEZE_PROTECTION"
+              ],
               "docs": "**list**: List of supported custom presets. Possible values are: `FREEZE_PROTECTION`.\n\n\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#configuration-variables)*"
             },
             "custom_fan_modes": {
               "key": "Optional",
               "is_list": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "midea.climate.validate_custom_fan_modes"
-                ]
-              },
+              "type": "enum",
+              "values": [
+                "SILENT",
+                "TURBO"
+              ],
               "docs": "**list**: List of supported custom fan modes. Possible values are: `SILENT`, `TURBO`.\n\n\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#configuration-variables)*"
             },
             "outdoor_temperature": {
@@ -278,23 +204,6 @@
             "uart_id": {
               "key": "GeneratedID",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Bus](https://esphome.io/components/uart.html) if you want to use multiple UART buses.\n\n\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#configuration-variables)*"
-            }
-          }
-        }
-      },
-      "MIDEA_FOLLOW_ME_SCHEMA": {
-        "type": "schema",
-        "schema": {
-          "config_vars": {
-            "temperature": {
-              "key": "Required",
-              "templatable": true
-            },
-            "beeper": {
-              "key": "Optional",
-              "default": "False",
-              "templatable": true,
-              "type": "boolean"
             }
           }
         }

@@ -40,7 +40,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time after reaching the target value when the servo will be detached`, if set to zero, servo will not be detached. Defaults to `0s`.\n\n\n\n*See also: [Servo Component](https://esphome.io/components/servo.html#configuration-variables)*"
@@ -51,7 +51,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time needed for a full movement (-1.0 to 1.0). This will effectively limit the speed of the servo, the larger the value, the slowest the servo will move. Defaults to `` 0s`` This can slow down the servo to avoid loud noises or just make the movement not jerking.\n\n\n\n*See also: [Servo Component](https://esphome.io/components/servo.html#configuration-variables)*"
@@ -60,7 +60,8 @@
           "extends": [
             "core.COMPONENT_SCHEMA"
           ]
-        }
+        },
+        "is_list": true
       }
     },
     "action": {

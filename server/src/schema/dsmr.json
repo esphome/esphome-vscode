@@ -46,7 +46,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The minimum time between two telegram readings. Defaults to `0ms`, meaning that the pace at which the smart meter sends its data determines the update frequency. This works best in combination with a `request_pin`, but this option will work without one too.\n\n\n\n*See also: [dsmr Component/Hub](https://esphome.io/components/sensor/dsmr.html#component-hub)*"
@@ -57,7 +57,7 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.time_period_dict"
+                  "core.positive_time_period_milliseconds"
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The timeout on incoming data while reading a telegram. When no new data arrive within the given timeout, the device will consider the current telegram a loss and starts looking for the header of the next telegram. Defaults to `200ms`.\n\n\n\n*See also: [dsmr Component/Hub](https://esphome.io/components/sensor/dsmr.html#component-hub)*"
@@ -966,32 +966,8 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.ENTITY_BASE_SCHEMA",
-                  "core.MQTT_COMPONENT_SCHEMA"
-                ],
-                "config_vars": {
-                  "mqtt_id": {
-                    "key": "Optional"
-                  },
-                  "id": {
-                    "key": "GeneratedID",
-                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
-                  },
-                  "filters": {
-                    "key": "Optional",
-                    "type": "registry",
-                    "is_list": true,
-                    "registry": "text_sensor.filter"
-                  },
-                  "on_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  },
-                  "on_raw_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  }
-                }
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ]
               },
               "docs": "DSMR Identification\n  * **name** (**Required**, string): The name for the identification text sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
@@ -1000,32 +976,8 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.ENTITY_BASE_SCHEMA",
-                  "core.MQTT_COMPONENT_SCHEMA"
-                ],
-                "config_vars": {
-                  "mqtt_id": {
-                    "key": "Optional"
-                  },
-                  "id": {
-                    "key": "GeneratedID",
-                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
-                  },
-                  "filters": {
-                    "key": "Optional",
-                    "type": "registry",
-                    "is_list": true,
-                    "registry": "text_sensor.filter"
-                  },
-                  "on_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  },
-                  "on_raw_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  }
-                }
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ]
               },
               "docs": "DSMR Version\n  * **name** (**Required**, string): The name for the p1_version text sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
@@ -1034,32 +986,8 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.ENTITY_BASE_SCHEMA",
-                  "core.MQTT_COMPONENT_SCHEMA"
-                ],
-                "config_vars": {
-                  "mqtt_id": {
-                    "key": "Optional"
-                  },
-                  "id": {
-                    "key": "GeneratedID",
-                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
-                  },
-                  "filters": {
-                    "key": "Optional",
-                    "type": "registry",
-                    "is_list": true,
-                    "registry": "text_sensor.filter"
-                  },
-                  "on_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  },
-                  "on_raw_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  }
-                }
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ]
               },
               "docs": "DSMR Version Belgium\n  * **name** (**Required**, string): The name for the p1_version_be text sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
@@ -1068,32 +996,8 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.ENTITY_BASE_SCHEMA",
-                  "core.MQTT_COMPONENT_SCHEMA"
-                ],
-                "config_vars": {
-                  "mqtt_id": {
-                    "key": "Optional"
-                  },
-                  "id": {
-                    "key": "GeneratedID",
-                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
-                  },
-                  "filters": {
-                    "key": "Optional",
-                    "type": "registry",
-                    "is_list": true,
-                    "registry": "text_sensor.filter"
-                  },
-                  "on_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  },
-                  "on_raw_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  }
-                }
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ]
               },
               "docs": "Timestamp\n  * **name** (**Required**, string): The name for the timestamp sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
@@ -1102,32 +1006,8 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.ENTITY_BASE_SCHEMA",
-                  "core.MQTT_COMPONENT_SCHEMA"
-                ],
-                "config_vars": {
-                  "mqtt_id": {
-                    "key": "Optional"
-                  },
-                  "id": {
-                    "key": "GeneratedID",
-                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
-                  },
-                  "filters": {
-                    "key": "Optional",
-                    "type": "registry",
-                    "is_list": true,
-                    "registry": "text_sensor.filter"
-                  },
-                  "on_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  },
-                  "on_raw_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  }
-                }
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ]
               },
               "docs": "The current tariff. According to the specs value \u20180001\u2019 means \u2018normal tariff\u2019 and value \u20180002\u2019 means \u2018low tariff\u2019. Your meter may report differently.\n  * **name** (**Required**, string): The name for the electricity_tariff sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
@@ -1136,32 +1016,8 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.ENTITY_BASE_SCHEMA",
-                  "core.MQTT_COMPONENT_SCHEMA"
-                ],
-                "config_vars": {
-                  "mqtt_id": {
-                    "key": "Optional"
-                  },
-                  "id": {
-                    "key": "GeneratedID",
-                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
-                  },
-                  "filters": {
-                    "key": "Optional",
-                    "type": "registry",
-                    "is_list": true,
-                    "registry": "text_sensor.filter"
-                  },
-                  "on_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  },
-                  "on_raw_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  }
-                }
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ]
               },
               "docs": "Electricity Failure Log\n  * **name** (**Required**, string): The name for the electricity_failure_log sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
@@ -1170,32 +1026,8 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.ENTITY_BASE_SCHEMA",
-                  "core.MQTT_COMPONENT_SCHEMA"
-                ],
-                "config_vars": {
-                  "mqtt_id": {
-                    "key": "Optional"
-                  },
-                  "id": {
-                    "key": "GeneratedID",
-                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
-                  },
-                  "filters": {
-                    "key": "Optional",
-                    "type": "registry",
-                    "is_list": true,
-                    "registry": "text_sensor.filter"
-                  },
-                  "on_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  },
-                  "on_raw_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  }
-                }
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ]
               },
               "docs": "Message Short\n  * **name** (**Required**, string): The name for the message_short sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
@@ -1204,32 +1036,8 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.ENTITY_BASE_SCHEMA",
-                  "core.MQTT_COMPONENT_SCHEMA"
-                ],
-                "config_vars": {
-                  "mqtt_id": {
-                    "key": "Optional"
-                  },
-                  "id": {
-                    "key": "GeneratedID",
-                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
-                  },
-                  "filters": {
-                    "key": "Optional",
-                    "type": "registry",
-                    "is_list": true,
-                    "registry": "text_sensor.filter"
-                  },
-                  "on_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  },
-                  "on_raw_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  }
-                }
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ]
               },
               "docs": "Message Long\n  * **name** (**Required**, string): The name for the message_long sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
@@ -1238,32 +1046,8 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.ENTITY_BASE_SCHEMA",
-                  "core.MQTT_COMPONENT_SCHEMA"
-                ],
-                "config_vars": {
-                  "mqtt_id": {
-                    "key": "Optional"
-                  },
-                  "id": {
-                    "key": "GeneratedID",
-                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
-                  },
-                  "filters": {
-                    "key": "Optional",
-                    "type": "registry",
-                    "is_list": true,
-                    "registry": "text_sensor.filter"
-                  },
-                  "on_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  },
-                  "on_raw_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  }
-                }
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ]
               },
               "docs": "Gas Equipment ID.\n  * **name** (**Required**, string): The name for the gas_equipment_id sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
@@ -1272,31 +1056,8 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.ENTITY_BASE_SCHEMA",
-                  "core.MQTT_COMPONENT_SCHEMA"
-                ],
-                "config_vars": {
-                  "mqtt_id": {
-                    "key": "Optional"
-                  },
-                  "id": {
-                    "key": "GeneratedID"
-                  },
-                  "filters": {
-                    "key": "Optional",
-                    "type": "registry",
-                    "is_list": true,
-                    "registry": "text_sensor.filter"
-                  },
-                  "on_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  },
-                  "on_raw_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  }
-                }
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ]
               }
             },
             "water_equipment_id": {
@@ -1304,32 +1065,8 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.ENTITY_BASE_SCHEMA",
-                  "core.MQTT_COMPONENT_SCHEMA"
-                ],
-                "config_vars": {
-                  "mqtt_id": {
-                    "key": "Optional"
-                  },
-                  "id": {
-                    "key": "GeneratedID",
-                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
-                  },
-                  "filters": {
-                    "key": "Optional",
-                    "type": "registry",
-                    "is_list": true,
-                    "registry": "text_sensor.filter"
-                  },
-                  "on_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  },
-                  "on_raw_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  }
-                }
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ]
               },
               "docs": "Water Equipment ID\n  * **name** (**Required**, string): The name for the water_equipment_id sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
@@ -1338,32 +1075,8 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.ENTITY_BASE_SCHEMA",
-                  "core.MQTT_COMPONENT_SCHEMA"
-                ],
-                "config_vars": {
-                  "mqtt_id": {
-                    "key": "Optional"
-                  },
-                  "id": {
-                    "key": "GeneratedID",
-                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
-                  },
-                  "filters": {
-                    "key": "Optional",
-                    "type": "registry",
-                    "is_list": true,
-                    "registry": "text_sensor.filter"
-                  },
-                  "on_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  },
-                  "on_raw_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  }
-                }
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ]
               },
               "docs": "Sub Equipment ID\n  * **name** (**Required**, string): The name for the sub_equipment_id sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
@@ -1372,32 +1085,8 @@
               "type": "schema",
               "schema": {
                 "extends": [
-                  "core.ENTITY_BASE_SCHEMA",
-                  "core.MQTT_COMPONENT_SCHEMA"
-                ],
-                "config_vars": {
-                  "mqtt_id": {
-                    "key": "Optional"
-                  },
-                  "id": {
-                    "key": "GeneratedID",
-                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
-                  },
-                  "filters": {
-                    "key": "Optional",
-                    "type": "registry",
-                    "is_list": true,
-                    "registry": "text_sensor.filter"
-                  },
-                  "on_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  },
-                  "on_raw_value": {
-                    "key": "Optional",
-                    "type": "trigger"
-                  }
-                }
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ]
               },
               "docs": "A text sensor which unformatted gas data. You need to apply a custom parsing of this value depending on your meter format.\n  * **name** (**Required**, string): The name for the p1_version text sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             }
