@@ -70,12 +70,12 @@
           "config_vars": {
             "power_supply": {
               "key": "Optional",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The [power supply](https://esphome.io/components/power_supply.html) to connect to this output. When the output is enabled, the power supply will automatically be switched on too.\n\n\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The [power supply](https://esphome.io/components/power_supply.html) to connect to this output. When the output is enabled, the power supply will automatically be switched on too.\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
             },
             "inverted": {
               "key": "Optional",
               "type": "boolean",
-              "docs": "**boolean**: If the output should be treated as inverted. Defaults to `false`.\n\n\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
+              "docs": "**boolean**: If the output should be treated as inverted. Defaults to `false`.\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
             }
           }
         }
@@ -89,20 +89,20 @@
           "config_vars": {
             "max_power": {
               "key": "Optional",
-              "docs": "**float**: Sets the maximum output value of this output platform. Must be in range from min_power to 1. Defaults to `1`.\n\n\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
+              "docs": "**float**: Sets the maximum output value of this output platform. Must be in range from min_power to 1. Defaults to `1`.\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
             },
             "min_power": {
               "key": "Optional",
-              "docs": "**float**: Sets the minimum output value of this output platform. Must be in range from 0 to max_power. Defaults to `0`.\n\n\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
+              "docs": "**float**: Sets the minimum output value of this output platform. Must be in range from 0 to max_power. Defaults to `0`.\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
             },
             "zero_means_zero": {
               "key": "Optional",
               "default": "False",
               "type": "boolean",
-              "docs": "**boolean**: Sets the output to use actual 0 instead of `min_power`. Defaults to `false`.\n\n\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
+              "docs": "**boolean**: Sets the output to use actual 0 instead of `min_power`. Defaults to `false`.\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
             },
             "id": {
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
             }
           }
         }
@@ -166,11 +166,11 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Generic Output Button](https://esphome.io/components/button/output.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Generic Output Button](https://esphome.io/components/button/output.html#configuration-variables)*"
             },
             "output": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the output component to use.\n\n\n\n*See also: [Generic Output Button](https://esphome.io/components/button/output.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the output component to use.\n\n*See also: [Generic Output Button](https://esphome.io/components/button/output.html#configuration-variables)*"
             },
             "duration": {
               "key": "Required",
@@ -180,7 +180,7 @@
                   "core.positive_time_period_milliseconds"
                 ]
               },
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: How long the output should be set when the button is pressed.\n\n\n\n*See also: [Generic Output Button](https://esphome.io/components/button/output.html#configuration-variables)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: How long the output should be set when the button is pressed.\n\n*See also: [Generic Output Button](https://esphome.io/components/button/output.html#configuration-variables)*"
             }
           }
         }
@@ -199,11 +199,11 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Generic Output Lock](https://esphome.io/components/lock/output.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Generic Output Lock](https://esphome.io/components/lock/output.html#configuration-variables)*"
             },
             "output": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the output component to use.\n\n\n\n*See also: [Generic Output Lock](https://esphome.io/components/lock/output.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the output component to use.\n\n*See also: [Generic Output Lock](https://esphome.io/components/lock/output.html#configuration-variables)*"
             }
           }
         }
@@ -222,11 +222,11 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Generic Output Switch](https://esphome.io/components/switch/output.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Generic Output Switch](https://esphome.io/components/switch/output.html#configuration-variables)*"
             },
             "output": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the output component to use.\n\n\n\n*See also: [Generic Output Switch](https://esphome.io/components/switch/output.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the output component to use.\n\n*See also: [Generic Output Switch](https://esphome.io/components/switch/output.html#configuration-variables)*"
             },
             "restore_mode": {
               "key": "Optional",
@@ -240,7 +240,14 @@
                 "RESTORE_INVERTED_DEFAULT_OFF",
                 "RESTORE_INVERTED_DEFAULT_ON"
               ],
-              "docs": "Control how the switch attempts to restore state on bootup. For restoring on ESP8266s, also see `esp8266_restore_from_flash` in the [esphome section](https://esphome.io/components/esphome.html).\n  * `RESTORE_DEFAULT_OFF` (Default) - Attempt to restore state and default to OFF if not possible to restore.\n  \n  * `RESTORE_DEFAULT_ON` - Attempt to restore state and default to ON.\n  \n  * `RESTORE_INVERTED_DEFAULT_OFF` - Attempt to restore state inverted from the previous state and default to OFF.\n  \n  * `RESTORE_INVERTED_DEFAULT_ON` - Attempt to restore state inverted from the previous state and default to ON.\n  \n  * `ALWAYS_OFF` - Always initialize the pin as OFF on bootup.\n  \n  * `ALWAYS_ON` - Always initialize the pin as ON on bootup.\n  \n  \n\n\n\n*See also: [Generic Output Switch](https://esphome.io/components/switch/output.html#configuration-variables)*"
+              "docs": "Control how the switch attempts to restore state on bootup. For restoring on ESP8266s, also see `esp8266_restore_from_flash` in the [esphome section](https://esphome.io/components/esphome.html).\n  * `RESTORE_DEFAULT_OFF` (Default) - Attempt to restore state and default to OFF if not possible to restore.\n  \n  * `RESTORE_DEFAULT_ON` - Attempt to restore state and default to ON.\n  \n  * `RESTORE_INVERTED_DEFAULT_OFF` - Attempt to restore state inverted from the previous state and default to OFF.\n  \n  * `RESTORE_INVERTED_DEFAULT_ON` - Attempt to restore state inverted from the previous state and default to ON.\n  \n  * `ALWAYS_OFF` - Always initialize the pin as OFF on bootup.\n  \n  * `ALWAYS_ON` - Always initialize the pin as ON on bootup.\n  \n  \n\n*See also: [Generic Output Switch](https://esphome.io/components/switch/output.html#configuration-variables)*",
+              "values_docs": {
+                "RESTORE_DEFAULT_ON": "Attempt to restore state and default to ON.",
+                "RESTORE_INVERTED_DEFAULT_OFF": "Attempt to restore state inverted from the previous state and default to OFF.",
+                "RESTORE_INVERTED_DEFAULT_ON": "Attempt to restore state inverted from the previous state and default to ON.",
+                "ALWAYS_OFF": "Always initialize the pin as OFF on bootup.",
+                "ALWAYS_ON": "Always initialize the pin as ON on bootup."
+              }
             }
           }
         }

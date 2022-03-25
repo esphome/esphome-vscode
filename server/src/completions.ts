@@ -1,5 +1,3 @@
-import { createVerify } from "crypto";
-import { listenerCount } from "process";
 import { Position } from "vscode-languageserver-textdocument";
 import { CompletionItem, CompletionItemKind, InsertTextFormat, Range, TextDocument } from "vscode-languageserver/node";
 import { isPair, isMap, isScalar, isSeq, YAMLMap, Node, Scalar, isNode } from "yaml";
@@ -439,8 +437,8 @@ export class CompletionHandler {
         if (isMap(esphome)) {
             const chipset = esphome.get("platform");
             if (isString(chipset)) {
-                if (chipset.toLowerCase() === "esp32") { return "esp32" };
-                if (chipset.toLowerCase() === "esp8266") { return "esp8266" };
+                if (chipset.toLowerCase() === "esp32") { return "esp32"; };
+                if (chipset.toLowerCase() === "esp8266") { return "esp8266"; };
             }
         }
     }
@@ -687,6 +685,9 @@ export class CompletionHandler {
 
     addEnums(result: CompletionItem[], cv: ConfigVarEnum) {
         for (var value of cv.values) {
+            if (isNumber(value as any)) {
+                value = value.toString();
+            }
             let c: CompletionItem = {
                 label: value,
                 kind: CompletionItemKind.EnumMember,
@@ -695,6 +696,9 @@ export class CompletionHandler {
             };
             if (cv["default"] === value) {
                 c.preselect = true;
+            }
+            if (cv["values_docs"] !== undefined && cv["values_docs"][value] !== undefined) {
+                c.documentation = { kind: "markdown", value: cv["values_docs"][value] };
             }
 
             result.push(c);

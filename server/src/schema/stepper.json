@@ -15,17 +15,17 @@
           "config_vars": {
             "max_speed": {
               "key": "Required",
-              "docs": "**float**: The maximum speed in `steps/s` (steps per seconds) to drive the stepper at. Note most steppers can\u2019t step properly with speeds higher than 250 steps/s.\n\n\n\n*See also: [Stepper Component](https://esphome.io/components/stepper/index.html#base-stepper-configuration)*"
+              "docs": "**float**: The maximum speed in `steps/s` (steps per seconds) to drive the stepper at. Note most steppers can\u2019t step properly with speeds higher than 250 steps/s.\n\n*See also: [Stepper Component](https://esphome.io/components/stepper/index.html#base-stepper-configuration)*"
             },
             "acceleration": {
               "key": "Optional",
               "default": "inf",
-              "docs": "**float**: The acceleration in `steps/s^2` (steps per seconds squared) to use when starting to move. The default is `inf` which means infinite acceleration, so the stepper will try to drive with the full speed immediately. This value is helpful if that first motion of the motor is too jerky for what it\u2019s moving.  If you make this a small number, it will take the motor a moment to get up  to speed.\n\n\n\n*See also: [Stepper Component](https://esphome.io/components/stepper/index.html#base-stepper-configuration)*"
+              "docs": "**float**: The acceleration in `steps/s^2` (steps per seconds squared) to use when starting to move. The default is `inf` which means infinite acceleration, so the stepper will try to drive with the full speed immediately. This value is helpful if that first motion of the motor is too jerky for what it\u2019s moving.  If you make this a small number, it will take the motor a moment to get up  to speed.\n\n*See also: [Stepper Component](https://esphome.io/components/stepper/index.html#base-stepper-configuration)*"
             },
             "deceleration": {
               "key": "Optional",
               "default": "inf",
-              "docs": "**float**: The same as `acceleration`, but for when the motor is decelerating shortly before reaching the set position. Defaults to `inf` (immediate deceleration).\n\n\n\n*See also: [Stepper Component](https://esphome.io/components/stepper/index.html#base-stepper-configuration)*"
+              "docs": "**float**: The same as `acceleration`, but for when the motor is decelerating shortly before reaching the set position. Defaults to `inf` (immediate deceleration).\n\n*See also: [Stepper Component](https://esphome.io/components/stepper/index.html#base-stepper-configuration)*"
             }
           }
         }
@@ -38,13 +38,13 @@
           "config_vars": {
             "id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the stepper.\n\n\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-target-action)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the stepper.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-target-action)*"
             },
             "target": {
               "key": "Required",
               "templatable": true,
               "type": "integer",
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The target position in steps.\n\n\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-target-action)*"
+              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The target position in steps.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-target-action)*"
             }
           }
         },
@@ -56,13 +56,13 @@
           "config_vars": {
             "id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the stepper.\n\n\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-report-position-action)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the stepper.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-report-position-action)*"
             },
             "position": {
               "key": "Required",
               "templatable": true,
               "type": "integer",
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The position to report in steps.\n\n\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-report-position-action)*"
+              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The position to report in steps.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-report-position-action)*"
             }
           }
         },
@@ -74,12 +74,12 @@
           "config_vars": {
             "id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the stepper.\n\n\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-speed-action)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the stepper.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-speed-action)*"
             },
             "speed": {
               "key": "Required",
               "templatable": true,
-              "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), float**: The speed in `steps/s` (steps per seconds) to drive the stepper at.\n\n\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-speed-action)*"
+              "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), float**: The speed in `steps/s` (steps per seconds) to drive the stepper at.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-speed-action)*"
             }
           }
         },
@@ -91,12 +91,12 @@
           "config_vars": {
             "id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the stepper.\n\n\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-acceleration-action)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the stepper.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-acceleration-action)*"
             },
             "acceleration": {
               "key": "Required",
               "templatable": true,
-              "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), float**: The acceleration in `steps/s^2` (steps per seconds squared) to use when starting to move.\n\n\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-acceleration-action)*"
+              "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), float**: The acceleration in `steps/s^2` (steps per seconds squared) to use when starting to move.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-acceleration-action)*"
             }
           }
         },
@@ -108,12 +108,12 @@
           "config_vars": {
             "id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the stepper.\n\n\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-deceleration-action)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the stepper.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-deceleration-action)*"
             },
             "deceleration": {
               "key": "Required",
               "templatable": true,
-              "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), float**: The same as `acceleration`, but for when the motor is decelerating shortly before reaching the set position.\n\n\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-deceleration-action)*"
+              "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), float**: The same as `acceleration`, but for when the motor is decelerating shortly before reaching the set position.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-deceleration-action)*"
             }
           }
         },

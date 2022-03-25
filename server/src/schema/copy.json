@@ -12,7 +12,7 @@
             "id": {},
             "source_id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The sensor that should be mirrored.\n\n\n\n*See also: [Copy Sensor](https://esphome.io/components/copy.html#id7)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The sensor that should be mirrored.\n\n*See also: [Copy Sensor](https://esphome.io/components/copy.html#id7)*"
             }
           }
         }
@@ -32,7 +32,7 @@
             "id": {},
             "source_id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The binary sensor that should be mirrored.\n\n\n\n*See also: [Copy Binary Sensor](https://esphome.io/components/copy.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The binary sensor that should be mirrored.\n\n*See also: [Copy Binary Sensor](https://esphome.io/components/copy.html#configuration-variables)*"
             }
           }
         }
@@ -54,7 +54,7 @@
             },
             "source_id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The button that should be mirrored.\n\n\n\n*See also: [Copy Button](https://esphome.io/components/copy.html#id1)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The button that should be mirrored.\n\n*See also: [Copy Button](https://esphome.io/components/copy.html#id1)*"
             }
           }
         }
@@ -74,7 +74,7 @@
             "id": {},
             "source_id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The cover that should be mirrored.\n\n\n\n*See also: [Copy Cover](https://esphome.io/components/copy.html#id2)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The cover that should be mirrored.\n\n*See also: [Copy Cover](https://esphome.io/components/copy.html#id2)*"
             }
           }
         }
@@ -94,7 +94,7 @@
             "id": {},
             "source_id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The fan that should be mirrored.\n\n\n\n*See also: [Copy Fan](https://esphome.io/components/copy.html#id3)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The fan that should be mirrored.\n\n*See also: [Copy Fan](https://esphome.io/components/copy.html#id3)*"
             }
           }
         }
@@ -116,7 +116,7 @@
             },
             "source_id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The lock that should be mirrored.\n\n\n\n*See also: [Copy Lock](https://esphome.io/components/copy.html#id4)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The lock that should be mirrored.\n\n*See also: [Copy Lock](https://esphome.io/components/copy.html#id4)*"
             }
           }
         }
@@ -136,7 +136,7 @@
             "id": {},
             "source_id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The number that should be mirrored.\n\n\n\n*See also: [Copy Number](https://esphome.io/components/copy.html#id5)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The number that should be mirrored.\n\n*See also: [Copy Number](https://esphome.io/components/copy.html#id5)*"
             }
           }
         }
@@ -156,7 +156,7 @@
             "id": {},
             "source_id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The select that should be mirrored.\n\n\n\n*See also: [Copy Select](https://esphome.io/components/copy.html#id6)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The select that should be mirrored.\n\n*See also: [Copy Select](https://esphome.io/components/copy.html#id6)*"
             }
           }
         }
@@ -178,7 +178,7 @@
             },
             "source_id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The switch that should be mirrored.\n\n\n\n*See also: [Copy Switch](https://esphome.io/components/copy.html#id8)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The switch that should be mirrored.\n\n*See also: [Copy Switch](https://esphome.io/components/copy.html#id8)*"
             }
           }
         }
@@ -198,7 +198,7 @@
             "id": {},
             "source_id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The text sensor that should be mirrored.\n\n\n\n*See also: [Copy Text Sensor](https://esphome.io/components/copy.html#id9)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The text sensor that should be mirrored.\n\n*See also: [Copy Text Sensor](https://esphome.io/components/copy.html#id9)*"
             }
           }
         }

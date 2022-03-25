@@ -7,7 +7,7 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually set the ID of this sensor.\n\n\n\n*See also: [ttp229_lsf Component](https://esphome.io/components/binary_sensor/ttp229.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually set the ID of this sensor.\n\n*See also: [ttp229_lsf Component](https://esphome.io/components/binary_sensor/ttp229.html#configuration-variables)*"
             },
             "i2c_id": {
               "key": "GeneratedID"
@@ -41,7 +41,7 @@
           ],
           "config_vars": {
             "id": {
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [ttp229_lsf Binary Sensor](https://esphome.io/components/binary_sensor/ttp229.html#ttp229-lsf-binary-sensor)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [ttp229_lsf Binary Sensor](https://esphome.io/components/binary_sensor/ttp229.html#ttp229-lsf-binary-sensor)*"
             },
             "ttp229_id": {
               "key": "GeneratedID"
@@ -49,7 +49,7 @@
             "channel": {
               "key": "Required",
               "type": "integer",
-              "docs": "**int**: The channel number at the TTP229 the touchkey is connected to.\n\n\n\n*See also: [ttp229_lsf Binary Sensor](https://esphome.io/components/binary_sensor/ttp229.html#ttp229-lsf-binary-sensor)*"
+              "docs": "**int**: The channel number at the TTP229 the touchkey is connected to.\n\n*See also: [ttp229_lsf Binary Sensor](https://esphome.io/components/binary_sensor/ttp229.html#ttp229-lsf-binary-sensor)*"
             }
           }
         }

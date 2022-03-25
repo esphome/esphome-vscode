@@ -9,11 +9,11 @@
           ],
           "config_vars": {
             "id": {
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for this component.\n\n\n\n*See also: [pn532 Over SPI](https://esphome.io/components/binary_sensor/pn532.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for this component.\n\n*See also: [pn532 Over SPI](https://esphome.io/components/binary_sensor/pn532.html#configuration-variables)*"
             },
             "spi_id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [SPI Component](https://esphome.io/components/spi.html#spi) if you want to use multiple SPI buses.\n\n\n\n*See also: [pn532 Over SPI](https://esphome.io/components/binary_sensor/pn532.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [SPI Component](https://esphome.io/components/spi.html#spi) if you want to use multiple SPI buses.\n\n*See also: [pn532 Over SPI](https://esphome.io/components/binary_sensor/pn532.html#configuration-variables)*"
             },
             "cs_pin": {
               "key": "Required",
@@ -22,7 +22,7 @@
                 "output"
               ],
               "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin on the ESP that the chip select line is connected to.\n\n\n\n*See also: [pn532 Over SPI](https://esphome.io/components/binary_sensor/pn532.html#configuration-variables)*"
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin on the ESP that the chip select line is connected to.\n\n*See also: [pn532 Over SPI](https://esphome.io/components/binary_sensor/pn532.html#configuration-variables)*"
             }
           }
         },

@@ -73,7 +73,7 @@
             },
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
             "filters": {
               "key": "Optional",
@@ -85,12 +85,12 @@
             "on_value": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a new value is published. See [on_value](https://esphome.io/components/text_sensor/index.html#text-sensor-on-value).\n\n\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#base-text-sensor-configuration)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a new value is published. See [on_value](https://esphome.io/components/text_sensor/index.html#text-sensor-on-value).\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#base-text-sensor-configuration)*"
             },
             "on_raw_value": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a new value is received that hasn\u2019t passed through any filters. See [on_raw_value](https://esphome.io/components/text_sensor/index.html#text-sensor-on-raw-value).\n\n\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#base-text-sensor-configuration)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a new value is received that hasn\u2019t passed through any filters. See [on_raw_value](https://esphome.io/components/text_sensor/index.html#text-sensor-on-raw-value).\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#base-text-sensor-configuration)*"
             }
           }
         }
@@ -103,13 +103,13 @@
           "config_vars": {
             "id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The text sensor ID.\n\n\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#text-sensor-state-condition)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The text sensor ID.\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#text-sensor-state-condition)*"
             },
             "state": {
               "key": "Required",
               "templatable": true,
               "type": "string",
-              "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), string**: The state to compare to.\n\n\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#text-sensor-state-condition)*"
+              "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), string**: The state to compare to.\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#text-sensor-state-condition)*"
             }
           }
         },

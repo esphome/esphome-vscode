@@ -7,7 +7,7 @@
           "config_vars": {
             "id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this MCP23016 component.\n\n\n\n*See also: [MCP23016 Component](https://esphome.io/components/mcp230xx.html#id1)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this MCP23016 component.\n\n*See also: [MCP23016 Component](https://esphome.io/components/mcp230xx.html#id1)*"
             },
             "i2c_id": {
               "key": "GeneratedID"
@@ -21,7 +21,7 @@
                   "core.hex_uint8_t"
                 ]
               },
-              "docs": "**int**: The I\u00b2C address of the driver. Defaults to `0x20`.\n\n\n\n*See also: [MCP23016 Component](https://esphome.io/components/mcp230xx.html#id1)*"
+              "docs": "**int**: The I\u00b2C address of the driver. Defaults to `0x20`.\n\n*See also: [MCP23016 Component](https://esphome.io/components/mcp230xx.html#id1)*"
             }
           },
           "extends": [

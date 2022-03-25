@@ -12,7 +12,7 @@
               "key": "Optional",
               "default": "False",
               "type": "boolean",
-              "docs": "**boolean**: Set to true to disable mDNS usage. Defaults to false.\n\n\n\n*See also: [mDNS Component](https://esphome.io/components/mdns.html#configuration-variables)*"
+              "docs": "**boolean**: Set to true to disable mDNS usage. Defaults to false.\n\n*See also: [mDNS Component](https://esphome.io/components/mdns.html#configuration-variables)*"
             }
           }
         }

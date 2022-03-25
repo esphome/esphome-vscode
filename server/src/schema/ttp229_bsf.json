@@ -7,7 +7,7 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually set the ID of this component.\n\n\n\n*See also: [ttp229_bsf Component](https://esphome.io/components/binary_sensor/ttp229.html#id1)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually set the ID of this component.\n\n*See also: [ttp229_bsf Component](https://esphome.io/components/binary_sensor/ttp229.html#id1)*"
             },
             "sdo_pin": {
               "key": "Required",
@@ -17,7 +17,7 @@
                 "pullup"
               ],
               "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin the SDO pin is connected to.\n\n\n\n*See also: [ttp229_bsf Component](https://esphome.io/components/binary_sensor/ttp229.html#id1)*"
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin the SDO pin is connected to.\n\n*See also: [ttp229_bsf Component](https://esphome.io/components/binary_sensor/ttp229.html#id1)*"
             },
             "scl_pin": {
               "key": "Required",
@@ -26,7 +26,7 @@
                 "output"
               ],
               "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin the SCL pin is connected to.\n\n\n\n*See also: [ttp229_bsf Component](https://esphome.io/components/binary_sensor/ttp229.html#id1)*"
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin the SCL pin is connected to.\n\n*See also: [ttp229_bsf Component](https://esphome.io/components/binary_sensor/ttp229.html#id1)*"
             }
           },
           "extends": [
@@ -47,7 +47,7 @@
           ],
           "config_vars": {
             "id": {
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [ttp229_bsf Binary Sensor](https://esphome.io/components/binary_sensor/ttp229.html#ttp229-bsf-binary-sensor)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [ttp229_bsf Binary Sensor](https://esphome.io/components/binary_sensor/ttp229.html#ttp229-bsf-binary-sensor)*"
             },
             "ttp229_id": {
               "key": "GeneratedID"
@@ -55,7 +55,7 @@
             "channel": {
               "key": "Required",
               "type": "integer",
-              "docs": "**int**: The channel number at the TTP229 the touchkey is connected to.\n\n\n\n*See also: [ttp229_bsf Binary Sensor](https://esphome.io/components/binary_sensor/ttp229.html#ttp229-bsf-binary-sensor)*"
+              "docs": "**int**: The channel number at the TTP229 the touchkey is connected to.\n\n*See also: [ttp229_bsf Binary Sensor](https://esphome.io/components/binary_sensor/ttp229.html#ttp229-bsf-binary-sensor)*"
             }
           }
         }

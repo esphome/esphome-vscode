@@ -7,7 +7,7 @@
           "config_vars": {
             "id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID with which you will be able to reference the graph later in your display code.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID with which you will be able to reference the graph later in your display code.\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
             },
             "duration": {
               "key": "Required",
@@ -17,7 +17,7 @@
                   "core.positive_time_period_seconds"
                 ]
               },
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The total graph history duration.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The total graph history duration.\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
             },
             "width": {
               "key": "Required",
@@ -27,7 +27,7 @@
                   "core.positive_not_null_int"
                 ]
               },
-              "docs": "**int**: The graph width in pixels\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+              "docs": "**int**: The graph width in pixels\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
             },
             "height": {
               "key": "Required",
@@ -37,7 +37,7 @@
                   "core.positive_not_null_int"
                 ]
               },
-              "docs": "**int**: The graph height in pixels\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+              "docs": "**int**: The graph height in pixels\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
             },
             "x_grid": {
               "key": "Optional",
@@ -47,16 +47,16 @@
                   "core.positive_time_period_seconds"
                 ]
               },
-              "docs": "Specifies the time per division. If not specified, no vertical grid will be drawn.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+              "docs": "Specifies the time per division. If not specified, no vertical grid will be drawn.\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
             },
             "y_grid": {
               "key": "Optional",
-              "docs": "**float**: Specifies the number of units per division. If not specified, no horizontal grid will be drawn.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+              "docs": "**float**: Specifies the number of units per division. If not specified, no horizontal grid will be drawn.\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
             },
             "border": {
               "key": "Optional",
               "type": "boolean",
-              "docs": "**boolean**: Specifies if a border will be drawn around the graph. Default is True.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+              "docs": "**boolean**: Specifies if a border will be drawn around the graph. Default is True.\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
             },
             "sensor": {
               "key": "Optional"
@@ -84,19 +84,19 @@
             },
             "min_value": {
               "key": "Optional",
-              "docs": "Specifies the minimum Y-axis value.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+              "docs": "Specifies the minimum Y-axis value.\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
             },
             "max_value": {
               "key": "Optional",
-              "docs": "Specifies the maximum Y-axis value.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+              "docs": "Specifies the maximum Y-axis value.\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
             },
             "min_range": {
               "key": "Optional",
-              "docs": "Specifies the minimum Y-axis range.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+              "docs": "Specifies the minimum Y-axis range.\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
             },
             "max_range": {
               "key": "Optional",
-              "docs": "Specifies the maximum Y-axis range.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+              "docs": "Specifies the maximum Y-axis range.\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
             },
             "traces": {
               "key": "Optional",
@@ -137,7 +137,7 @@
                   }
                 }
               },
-              "docs": "Use this to specify more than a single trace.\n\n\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+              "docs": "Use this to specify more than a single trace.\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
             },
             "legend": {
               "key": "Optional",

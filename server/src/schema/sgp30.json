@@ -33,7 +33,7 @@
                   }
                 }
               },
-              "docs": "The information for the CO\u2082eq. sensor.\n  * **name** (**Required**, string): The name for the CO\u2082eq sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
+              "docs": "The information for the CO\u2082eq. sensor.\n  * **name** (**Required**, string): The name for the CO\u2082eq sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
             },
             "tvoc": {
               "key": "Required",
@@ -60,7 +60,7 @@
                   }
                 }
               },
-              "docs": "The information for the total Volatile Organic Compounds sensor.\n  * **name** (**Required**, string): The name for the humidity sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
+              "docs": "The information for the total Volatile Organic Compounds sensor.\n  * **name** (**Required**, string): The name for the humidity sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
             },
             "eco2_baseline": {
               "key": "Optional",
@@ -78,7 +78,7 @@
                   }
                 }
               },
-              "docs": "The information for the CO\u2082eq. sensor baseline value. Baseline value is published in decimals.\n  * **name** (**Required**, string): The name for the CO\u2082eq baseline value sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
+              "docs": "The information for the CO\u2082eq. sensor baseline value. Baseline value is published in decimals.\n  * **name** (**Required**, string): The name for the CO\u2082eq baseline value sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
             },
             "tvoc_baseline": {
               "key": "Optional",
@@ -96,13 +96,13 @@
                   }
                 }
               },
-              "docs": "The information for the TVOC baseline value sensor. Baseline value is published in in decimals.\n  * **name** (**Required**, string): The name for the TVOC baseline value sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
+              "docs": "The information for the TVOC baseline value sensor. Baseline value is published in in decimals.\n  * **name** (**Required**, string): The name for the TVOC baseline value sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
             },
             "store_baseline": {
               "key": "Optional",
               "default": "True",
               "type": "boolean",
-              "docs": "**boolean**: Store the sensor baselines persistently when calculated or updated. Defaults to yes.\n\n\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
+              "docs": "**boolean**: Store the sensor baselines persistently when calculated or updated. Defaults to yes.\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
             },
             "baseline": {
               "key": "Optional",
@@ -117,7 +117,7 @@
                         "core.hex_uint16_t"
                       ]
                     },
-                    "docs": "**int**: The eCO2 baseline for calibration purposes. After OTA, this value is used to calibrate the sensor.\n\n\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
+                    "docs": "**int**: The eCO2 baseline for calibration purposes. After OTA, this value is used to calibrate the sensor.\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
                   },
                   "tvoc_baseline": {
                     "key": "Required",
@@ -127,11 +127,11 @@
                         "core.hex_uint16_t"
                       ]
                     },
-                    "docs": "**int**: The TVOC baseline for calibration purposes. After OTA, this value is used to calibrate the sensor.\n\n\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
+                    "docs": "**int**: The TVOC baseline for calibration purposes. After OTA, this value is used to calibrate the sensor.\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
                   }
                 }
               },
-              "docs": "The block containing baselines for calibration purposes. See [Calibrating Baseline](https://esphome.io/components/sensor/sgp30.html#sgp30-calibrating) for more info.\n  * **eco2_baseline** (**Required**, int): The eCO2 baseline for calibration purposes. After OTA, this value is used to calibrate the sensor.\n  \n  * **tvoc_baseline** (**Required**, int): The TVOC baseline for calibration purposes. After OTA, this value is used to calibrate the sensor.\n  \n  \n\n\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
+              "docs": "The block containing baselines for calibration purposes. See [Calibrating Baseline](https://esphome.io/components/sensor/sgp30.html#sgp30-calibrating) for more info.\n  * **eco2_baseline** (**Required**, int): The eCO2 baseline for calibration purposes. After OTA, this value is used to calibrate the sensor.\n  \n  * **tvoc_baseline** (**Required**, int): The TVOC baseline for calibration purposes. After OTA, this value is used to calibrate the sensor.\n  \n  \n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
             },
             "compensation": {
               "key": "Optional",
@@ -140,20 +140,20 @@
                 "config_vars": {
                   "humidity_source": {
                     "key": "Required",
-                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Give an external humidity sensor ID here. This can improve the sensor\u2019s internal calculations.\n\n\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
+                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Give an external humidity sensor ID here. This can improve the sensor\u2019s internal calculations.\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
                   },
                   "temperature_source": {
                     "key": "Required",
-                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Give an external temperature sensor ID here. This can improve the sensor\u2019s internal calculations.\n\n\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
+                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Give an external temperature sensor ID here. This can improve the sensor\u2019s internal calculations.\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
                   }
                 }
               },
-              "docs": "The block containing sensors used for compensation.\n  * **temperature_source** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Give an external temperature sensor ID here. This can improve the sensor\u2019s internal calculations.\n  \n  * **humidity_source** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Give an external humidity sensor ID here. This can improve the sensor\u2019s internal calculations.\n  \n  \n\n\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
+              "docs": "The block containing sensors used for compensation.\n  * **temperature_source** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Give an external temperature sensor ID here. This can improve the sensor\u2019s internal calculations.\n  \n  * **humidity_source** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Give an external humidity sensor ID here. This can improve the sensor\u2019s internal calculations.\n  \n  \n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",
               "default": "1s",
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `1s`.\n\n\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `1s`.\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
             },
             "i2c_id": {
               "key": "GeneratedID"
@@ -167,7 +167,7 @@
                   "core.hex_uint8_t"
                 ]
               },
-              "docs": "**int**: Manually specify the I\u00b2C address of the sensor. Defaults to `0x58`.\n\n\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
+              "docs": "**int**: Manually specify the I\u00b2C address of the sensor. Defaults to `0x58`.\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
             }
           },
           "extends": [

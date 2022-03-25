@@ -18,7 +18,7 @@
                   "core.positive_float"
                 ]
               },
-              "docs": "**float**: The standard deviation of the measurement\u2019s change per second (e.g. `1/3600 = 0.000277` if the temperature usually changes at most by one Kelvin per hour). A low value here will place high importance on the current state and be slow to respond to changes in the measured samples. A high value will update faster, but also be more noisy.\n\n\n\n*See also: [Kalman filter-based sensor fusion](https://esphome.io/components/sensor/kalman_combinator.html#configuration-variables)*"
+              "docs": "**float**: The standard deviation of the measurement\u2019s change per second (e.g. `1/3600 = 0.000277` if the temperature usually changes at most by one Kelvin per hour). A low value here will place high importance on the current state and be slow to respond to changes in the measured samples. A high value will update faster, but also be more noisy.\n\n*See also: [Kalman filter-based sensor fusion](https://esphome.io/components/sensor/kalman_combinator.html#configuration-variables)*"
             },
             "sources": {
               "key": "Required",
@@ -28,7 +28,7 @@
                 "config_vars": {
                   "source": {
                     "key": "Required",
-                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id) of a [Sensor Component](https://esphome.io/components/sensor/index.html)**: The sensor that is used as sample source\n\n\n\n*See also: [Kalman filter-based sensor fusion](https://esphome.io/components/sensor/kalman_combinator.html#configuration-variables)*"
+                    "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id) of a [Sensor Component](https://esphome.io/components/sensor/index.html)**: The sensor that is used as sample source\n\n*See also: [Kalman filter-based sensor fusion](https://esphome.io/components/sensor/kalman_combinator.html#configuration-variables)*"
                   },
                   "error": {
                     "key": "Required",
@@ -39,11 +39,11 @@
                         "core.positive_float"
                       ]
                     },
-                    "docs": "**float, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The standard deviation of the sensor\u2019s measurements. If implemented as a template, the measurement is in parameter `x`.\n\n\n\n*See also: [Kalman filter-based sensor fusion](https://esphome.io/components/sensor/kalman_combinator.html#configuration-variables)*"
+                    "docs": "**float, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The standard deviation of the sensor\u2019s measurements. If implemented as a template, the measurement is in parameter `x`.\n\n*See also: [Kalman filter-based sensor fusion](https://esphome.io/components/sensor/kalman_combinator.html#configuration-variables)*"
                   }
                 }
               },
-              "docs": "**list**: A list of sensors to use as source. Each source must have either **error** or **error_function** set. These work like the **process_std_dev** parameter, with low values marking accurate data.\n  * **source** (**Required**, [ID](https://esphome.io/guides/configuration-types.html#config-id) of a [Sensor Component](https://esphome.io/components/sensor/index.html)): The sensor that is used as sample source\n  \n  * **error** (**Required**, float, [templatable](https://esphome.io/guides/automations.html#config-templatable)): The standard deviation of the sensor\u2019s measurements. If implemented as a template, the measurement is in parameter `x`.\n  \n  \n\n\n\n*See also: [Kalman filter-based sensor fusion](https://esphome.io/components/sensor/kalman_combinator.html#configuration-variables)*"
+              "docs": "**list**: A list of sensors to use as source. Each source must have either **error** or **error_function** set. These work like the **process_std_dev** parameter, with low values marking accurate data.\n  * **source** (**Required**, [ID](https://esphome.io/guides/configuration-types.html#config-id) of a [Sensor Component](https://esphome.io/components/sensor/index.html)): The sensor that is used as sample source\n  \n  * **error** (**Required**, float, [templatable](https://esphome.io/guides/automations.html#config-templatable)): The standard deviation of the sensor\u2019s measurements. If implemented as a template, the measurement is in parameter `x`.\n  \n  \n\n*See also: [Kalman filter-based sensor fusion](https://esphome.io/components/sensor/kalman_combinator.html#configuration-variables)*"
             },
             "std_dev": {
               "key": "Optional",
@@ -53,7 +53,7 @@
                   "sensor.SENSOR_SCHEMA"
                 ]
               },
-              "docs": "**[Sensor](https://esphome.io/components/sensor/index.html#config-sensor)**: A sensor that publishes the current standard deviation of the state with each update.\n\n\n\n*See also: [Kalman filter-based sensor fusion](https://esphome.io/components/sensor/kalman_combinator.html#configuration-variables)*"
+              "docs": "**[Sensor](https://esphome.io/components/sensor/index.html#config-sensor)**: A sensor that publishes the current standard deviation of the state with each update.\n\n*See also: [Kalman filter-based sensor fusion](https://esphome.io/components/sensor/kalman_combinator.html#configuration-variables)*"
             }
           }
         }

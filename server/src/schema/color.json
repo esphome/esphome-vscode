@@ -10,7 +10,7 @@
             },
             "red": {
               "key": "Optional",
-              "docs": "**percentage**: The percentage of the red component. Defaults to `100%`.\n\n\n\n*See also: [Color](https://esphome.io/components/display/index.html#color)*"
+              "docs": "**percentage**: The percentage of the red component. Defaults to `100%`.\n\n*See also: [Color](https://esphome.io/components/display/index.html#color)*"
             },
             "red_int": {
               "key": "Optional",
@@ -23,7 +23,7 @@
             },
             "green": {
               "key": "Optional",
-              "docs": "**percentage**: The percentage of the green component. Defaults to `100%`.\n\n\n\n*See also: [Color](https://esphome.io/components/display/index.html#color)*"
+              "docs": "**percentage**: The percentage of the green component. Defaults to `100%`.\n\n*See also: [Color](https://esphome.io/components/display/index.html#color)*"
             },
             "green_int": {
               "key": "Optional",
@@ -36,7 +36,7 @@
             },
             "blue": {
               "key": "Optional",
-              "docs": "**percentage**: The percentage of the blue component. Defaults to `100%`.\n\n\n\n*See also: [Color](https://esphome.io/components/display/index.html#color)*"
+              "docs": "**percentage**: The percentage of the blue component. Defaults to `100%`.\n\n*See also: [Color](https://esphome.io/components/display/index.html#color)*"
             },
             "blue_int": {
               "key": "Optional",
@@ -49,7 +49,7 @@
             },
             "white": {
               "key": "Optional",
-              "docs": "**percentage**: The percentage of the white component. Defaults to `100%`.\n\n\n\n*See also: [Color](https://esphome.io/components/display/index.html#color)*"
+              "docs": "**percentage**: The percentage of the white component. Defaults to `100%`.\n\n*See also: [Color](https://esphome.io/components/display/index.html#color)*"
             },
             "white_int": {
               "key": "Optional",

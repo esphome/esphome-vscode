@@ -8,7 +8,7 @@
             "id": {
               "key": "Required",
               "type": "string",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The [ID](https://esphome.io/guides/configuration-types.html#config-id) of the script. Use this to interact with the script using the script actions.\n\n\n\n*See also: [script Component](https://esphome.io/guides/automations.html#script-component)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The [ID](https://esphome.io/guides/configuration-types.html#config-id) of the script. Use this to interact with the script using the script actions.\n\n*See also: [script Component](https://esphome.io/guides/automations.html#script-component)*"
             },
             "mode": {
               "key": "Optional",
@@ -20,7 +20,13 @@
                 "queued",
                 "parallel"
               ],
-              "docs": "**string**: Controls what happens when a script is invoked while it is still running from one or more previous invocations. Default to `single`.\n  * `single`: Do not start a new run. Issue a warning.\n  \n  * `restart`: Start a new run after first stopping previous run.\n  \n  * `queued`: Start a new run after previous runs complete.\n  \n  * `parallel`: Start a new, independent run in parallel with previous runs.\n  \n  \n\n\n\n*See also: [script Component](https://esphome.io/guides/automations.html#script-component)*"
+              "docs": "**string**: Controls what happens when a script is invoked while it is still running from one or more previous invocations. Default to `single`.\n  * `single`: Do not start a new run. Issue a warning.\n  \n  * `restart`: Start a new run after first stopping previous run.\n  \n  * `queued`: Start a new run after previous runs complete.\n  \n  * `parallel`: Start a new, independent run in parallel with previous runs.\n  \n  \n\n*See also: [script Component](https://esphome.io/guides/automations.html#script-component)*",
+              "values_docs": {
+                "single": "Do not start a new run. Issue a warning.",
+                "restart": "Start a new run after first stopping previous run.",
+                "queued": "Start a new run after previous runs complete.",
+                "parallel": "Start a new, independent run in parallel with previous runs."
+              }
             },
             "max_runs": {
               "key": "Optional",
@@ -30,11 +36,11 @@
                   "core.positive_int"
                 ]
               },
-              "docs": "**int**: Allows limiting the maxiumun number of runs when using script modes `queued` and `parallel`, use value `0` for unlimited runs. Defaults to `0`.\n\n\n\n*See also: [script Component](https://esphome.io/guides/automations.html#script-component)*"
+              "docs": "**int**: Allows limiting the maxiumun number of runs when using script modes `queued` and `parallel`, use value `0` for unlimited runs. Defaults to `0`.\n\n*See also: [script Component](https://esphome.io/guides/automations.html#script-component)*"
             },
             "then": {
               "type": "trigger",
-              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: The action to perform.\n\n\n\n*See also: [script Component](https://esphome.io/guides/automations.html#script-component)*"
+              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: The action to perform.\n\n*See also: [script Component](https://esphome.io/guides/automations.html#script-component)*"
             }
           }
         },

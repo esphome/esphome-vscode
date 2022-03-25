@@ -10,7 +10,7 @@
           ],
           "config_vars": {
             "id": {
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [NTC Sensor](https://esphome.io/components/sensor/ntc.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n*See also: [NTC Sensor](https://esphome.io/components/sensor/ntc.html#configuration-variables)*"
             },
             "unit_of_measurement": {
               "default": "\u00b0C"
@@ -26,11 +26,11 @@
             },
             "sensor": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The sensor to read the resistance values from to convert to temperature readings.\n\n\n\n*See also: [NTC Sensor](https://esphome.io/components/sensor/ntc.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The sensor to read the resistance values from to convert to temperature readings.\n\n*See also: [NTC Sensor](https://esphome.io/components/sensor/ntc.html#configuration-variables)*"
             },
             "calibration": {
               "key": "Required",
-              "docs": "**float**: The calibration parameters of the sensor - see above for more details.\n\n\n\n*See also: [NTC Sensor](https://esphome.io/components/sensor/ntc.html#configuration-variables)*"
+              "docs": "**float**: The calibration parameters of the sensor - see above for more details.\n\n*See also: [NTC Sensor](https://esphome.io/components/sensor/ntc.html#configuration-variables)*"
             }
           }
         }

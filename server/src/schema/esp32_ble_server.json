@@ -15,12 +15,12 @@
               "key": "Optional",
               "default": "ESPHome",
               "type": "string",
-              "docs": "**string**: The name of the manufacturer/firmware creator. Defaults to `ESPHome`.\n\n\n\n*See also: [BLE Server](https://esphome.io/components/esp32_ble_server.html#configuration-variables)*"
+              "docs": "**string**: The name of the manufacturer/firmware creator. Defaults to `ESPHome`.\n\n*See also: [BLE Server](https://esphome.io/components/esp32_ble_server.html#configuration-variables)*"
             },
             "model": {
               "key": "Optional",
               "type": "string",
-              "docs": "**string**: The model name of the device. Defaults to the friendly name of the `board` chosen in the [core configuration](https://esphome.io/components/esphome.html#esphome-configuration-variables).\n\n\n\n*See also: [BLE Server](https://esphome.io/components/esp32_ble_server.html#configuration-variables)*"
+              "docs": "**string**: The model name of the device. Defaults to the friendly name of the `board` chosen in the [core configuration](https://esphome.io/components/esphome.html#esphome-configuration-variables).\n\n*See also: [BLE Server](https://esphome.io/components/esp32_ble_server.html#configuration-variables)*"
             }
           },
           "extends": [

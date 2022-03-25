@@ -10,7 +10,7 @@
           ],
           "config_vars": {
             "id": {
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [HX711 Load Cell Amplifier](https://esphome.io/components/sensor/hx711.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [HX711 Load Cell Amplifier](https://esphome.io/components/sensor/hx711.html#configuration-variables)*"
             },
             "icon": {
               "default": "mdi:scale"
@@ -28,7 +28,7 @@
                 "input"
               ],
               "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The DOUT (or DAT) pin.\n\n\n\n*See also: [HX711 Load Cell Amplifier](https://esphome.io/components/sensor/hx711.html#configuration-variables)*"
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The DOUT (or DAT) pin.\n\n*See also: [HX711 Load Cell Amplifier](https://esphome.io/components/sensor/hx711.html#configuration-variables)*"
             },
             "clk_pin": {
               "key": "Required",
@@ -37,7 +37,7 @@
                 "output"
               ],
               "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The CLK pin.\n\n\n\n*See also: [HX711 Load Cell Amplifier](https://esphome.io/components/sensor/hx711.html#configuration-variables)*"
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The CLK pin.\n\n*See also: [HX711 Load Cell Amplifier](https://esphome.io/components/sensor/hx711.html#configuration-variables)*"
             },
             "gain": {
               "key": "Optional",
@@ -52,7 +52,7 @@
             "update_interval": {
               "key": "Optional",
               "default": "60s",
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n\n\n*See also: [HX711 Load Cell Amplifier](https://esphome.io/components/sensor/hx711.html#configuration-variables)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n*See also: [HX711 Load Cell Amplifier](https://esphome.io/components/sensor/hx711.html#configuration-variables)*"
             }
           }
         }

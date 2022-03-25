@@ -38,7 +38,7 @@
                 "LPD1886_8BIT",
                 "SM16703"
               ],
-              "docs": "**string**: Set a chipset to use. See [Supported Chipsets](https://esphome.io/components/light/fastled.html#fastled-clockless-chipsets) for options.\n\n\n\n*See also: [Clockless](https://esphome.io/components/light/fastled.html#configuration-variables)*"
+              "docs": "**string**: Set a chipset to use. See [Supported Chipsets](https://esphome.io/components/light/fastled.html#fastled-clockless-chipsets) for options.\n\n*See also: [Clockless](https://esphome.io/components/light/fastled.html#configuration-variables)*"
             },
             "pin": {
               "key": "Required",
@@ -47,10 +47,10 @@
                 "output"
               ],
               "type": "pin",
-              "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: The pin for the data line of the FastLED light.\n\n\n\n*See also: [Clockless](https://esphome.io/components/light/fastled.html#configuration-variables)*"
+              "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: The pin for the data line of the FastLED light.\n\n*See also: [Clockless](https://esphome.io/components/light/fastled.html#configuration-variables)*"
             },
             "id": {
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Clockless](https://esphome.io/components/light/fastled.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Clockless](https://esphome.io/components/light/fastled.html#configuration-variables)*"
             }
           }
         }

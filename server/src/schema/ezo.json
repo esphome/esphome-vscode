@@ -10,12 +10,12 @@
           ],
           "config_vars": {
             "id": {
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [EZO sensor circuits](https://esphome.io/components/sensor/ezo.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n*See also: [EZO sensor circuits](https://esphome.io/components/sensor/ezo.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",
               "default": "60s",
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n\n\n*See also: [EZO sensor circuits](https://esphome.io/components/sensor/ezo.html#configuration-variables)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n*See also: [EZO sensor circuits](https://esphome.io/components/sensor/ezo.html#configuration-variables)*"
             },
             "i2c_id": {
               "key": "GeneratedID"
@@ -28,7 +28,7 @@
                   "core.hex_uint8_t"
                 ]
               },
-              "docs": "**int**: Specify the I\u00b2C address of the sensor.\n\n\n\n*See also: [EZO sensor circuits](https://esphome.io/components/sensor/ezo.html#configuration-variables)*"
+              "docs": "**int**: Specify the I\u00b2C address of the sensor.\n\n*See also: [EZO sensor circuits](https://esphome.io/components/sensor/ezo.html#configuration-variables)*"
             }
           }
         }

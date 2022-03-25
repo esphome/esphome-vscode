@@ -20,7 +20,7 @@
             },
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Safe Mode Button](https://esphome.io/components/button/safe_mode.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Safe Mode Button](https://esphome.io/components/button/safe_mode.html#configuration-variables)*"
             },
             "ota": {
               "key": "GeneratedID"
@@ -42,7 +42,7 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Safe Mode Switch](https://esphome.io/components/switch/safe_mode.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Safe Mode Switch](https://esphome.io/components/switch/safe_mode.html#configuration-variables)*"
             },
             "ota": {
               "key": "GeneratedID"

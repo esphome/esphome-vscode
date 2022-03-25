@@ -23,7 +23,7 @@
             },
             "uart_id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the [UART bus](https://esphome.io/components/uart.html#uart) you wish to use for this sensor. Use this if you want to use multiple UART buses at once.\n\n\n\n*See also: [HRXL MaxSonar WR Series](https://esphome.io/components/sensor/hrxl_maxsonar_wr.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the [UART bus](https://esphome.io/components/uart.html#uart) you wish to use for this sensor. Use this if you want to use multiple UART buses at once.\n\n*See also: [HRXL MaxSonar WR Series](https://esphome.io/components/sensor/hrxl_maxsonar_wr.html#configuration-variables)*"
             }
           }
         }

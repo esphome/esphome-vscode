@@ -7,7 +7,7 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
             },
             "sensing_pin": {
               "key": "Optional",
@@ -16,7 +16,7 @@
                 "input"
               ],
               "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: Pin connected to the reader\u2019s finger detection signal (WAKEUP) output.\n\n\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: Pin connected to the reader\u2019s finger detection signal (WAKEUP) output.\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
             },
             "password": {
               "key": "Optional",
@@ -26,7 +26,7 @@
                   "core.uint32_t"
                 ]
               },
-              "docs": "**int**: Password to use for authentication. Defaults to `0x00`.\n\n\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
+              "docs": "**int**: Password to use for authentication. Defaults to `0x00`.\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
             },
             "new_password": {
               "key": "Optional",
@@ -36,32 +36,32 @@
                   "core.uint32_t"
                 ]
               },
-              "docs": "**int**: Sets a new password to use for authentication. See [Setting a New Password](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-set-new-password) for more information.\n\n\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
+              "docs": "**int**: Sets a new password to use for authentication. See [Setting a New Password](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-set-new-password) for more information.\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
             },
             "on_finger_scan_matched": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when an enrolled fingerprint is scanned. See [on_finger_scan_matched Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-on-finger-scan-matched).\n\n\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when an enrolled fingerprint is scanned. See [on_finger_scan_matched Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-on-finger-scan-matched).\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
             },
             "on_finger_scan_unmatched": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when an unknown fingerprint is scanned. See [on_finger_scan_unmatched Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-on-finger-scan-unmatched).\n\n\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when an unknown fingerprint is scanned. See [on_finger_scan_unmatched Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-on-finger-scan-unmatched).\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
             },
             "on_enrollment_scan": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when a fingerprint is scanned during enrollment. See [on_enrollment_scan Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-on-enrollment-scan).\n\n\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when a fingerprint is scanned during enrollment. See [on_enrollment_scan Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-on-enrollment-scan).\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
             },
             "on_enrollment_done": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when a fingerprint is enrolled. See [on_enrollment_done Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-on-enrollment-done).\n\n\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when a fingerprint is enrolled. See [on_enrollment_done Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-on-enrollment-done).\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
             },
             "on_enrollment_failed": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when a fingerprint enrollment failed. See [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-on-enrollment-failed).\n\n\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when a fingerprint enrollment failed. See [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-on-enrollment-failed).\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
             },
             "update_interval": {
               "key": "Optional",
@@ -69,7 +69,7 @@
             },
             "uart_id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the UART hub.\n\n\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the UART hub.\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
             }
           },
           "extends": [
@@ -97,7 +97,7 @@
                   "core.uint16_t"
                 ]
               },
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The slot number to enroll the new fingerprint into. Limited to the fingerprint capacity available on the reader.\n\n\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-enroll-action)*"
+              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The slot number to enroll the new fingerprint into. Limited to the fingerprint capacity available on the reader.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-enroll-action)*"
             },
             "num_scans": {
               "key": "Optional",
@@ -108,7 +108,7 @@
                   "core.uint8_t"
                 ]
               },
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Number of times to scan the finger to be enrolled. Limited to the number of character buffers available on the reader. Defaults to 2.\n\n\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-enroll-action)*"
+              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Number of times to scan the finger to be enrolled. Limited to the number of character buffers available on the reader. Defaults to 2.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-enroll-action)*"
             }
           }
         },
@@ -142,7 +142,7 @@
                   "core.uint16_t"
                 ]
               },
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The slot number of the enrolled fingerprint to delete.\n\n\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-delete-action)*"
+              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The slot number of the enrolled fingerprint to delete.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-delete-action)*"
             }
           }
         },
@@ -170,7 +170,7 @@
               "key": "Required",
               "templatable": true,
               "type": "boolean",
-              "docs": "**boolean, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The state to set the LED.\n\n\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-led-control-action)*"
+              "docs": "**boolean, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The state to set the LED.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-led-control-action)*"
             }
           }
         },
@@ -196,7 +196,7 @@
                 "GRADUAL_ON",
                 "GRADUAL_OFF"
               ],
-              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The state to set the LED. One of `BREATHING`, `FLASHING`, `ALWAYS_ON`, `ALWAYS_OFF`, `GRADUAL_ON` and `GRADUAL_OFF`.\n\n\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-aura-led-control-action)*"
+              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The state to set the LED. One of `BREATHING`, `FLASHING`, `ALWAYS_ON`, `ALWAYS_OFF`, `GRADUAL_ON` and `GRADUAL_OFF`.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-aura-led-control-action)*"
             },
             "speed": {
               "key": "Required",
@@ -207,7 +207,7 @@
                   "core.uint8_t"
                 ]
               },
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The duration each cycle lasts, a factor of 10ms. Only relevant for `BREATHING`, `FLASHING`, `GRADUAL_ON` and `GRADUAL_OFF` states. The total duration is defined by 10ms * speed * count. Range is 0 to 255.\n\n\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-aura-led-control-action)*"
+              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The duration each cycle lasts, a factor of 10ms. Only relevant for `BREATHING`, `FLASHING`, `GRADUAL_ON` and `GRADUAL_OFF` states. The total duration is defined by 10ms * speed * count. Range is 0 to 255.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-aura-led-control-action)*"
             },
             "color": {
               "key": "Required",
@@ -222,7 +222,7 @@
                 "CYAN",
                 "WHITE"
               ],
-              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The LED color to activate. For R503, one of `RED`, `BLUE` and `PURPLE`.  For R503-RGB, one of `RED`, `BLUE`, `PURPLE`, `GREEN`, `YELLOW`, `CYAN` and `WHITE`.\n\n\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-aura-led-control-action)*"
+              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The LED color to activate. For R503, one of `RED`, `BLUE` and `PURPLE`.  For R503-RGB, one of `RED`, `BLUE`, `PURPLE`, `GREEN`, `YELLOW`, `CYAN` and `WHITE`.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-aura-led-control-action)*"
             },
             "count": {
               "key": "Required",
@@ -233,7 +233,7 @@
                   "core.uint8_t"
                 ]
               },
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: How many times to repeat the pattern. Only relevant for `BREATHING` and `FLASHING` states. 0 for infinite, or 1 to 255.\n\n\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-aura-led-control-action)*"
+              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: How many times to repeat the pattern. Only relevant for `BREATHING` and `FLASHING` states. 0 for infinite, or 1 to 255.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-aura-led-control-action)*"
             }
           }
         },

@@ -7,16 +7,16 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for this component.\n\n\n\n*See also: [rdm6300 Component/Hub](https://esphome.io/components/binary_sensor/rdm6300.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for this component.\n\n*See also: [rdm6300 Component/Hub](https://esphome.io/components/binary_sensor/rdm6300.html#configuration-variables)*"
             },
             "on_tag": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a tag is read. See [on_tag](https://esphome.io/components/binary_sensor/rdm6300.html#rdm6300-on-tag).\n\n\n\n*See also: [rdm6300 Component/Hub](https://esphome.io/components/binary_sensor/rdm6300.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a tag is read. See [on_tag](https://esphome.io/components/binary_sensor/rdm6300.html#rdm6300-on-tag).\n\n*See also: [rdm6300 Component/Hub](https://esphome.io/components/binary_sensor/rdm6300.html#configuration-variables)*"
             },
             "uart_id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Component](https://esphome.io/components/uart.html#uart) if you want to use multiple UART buses.\n\n\n\n*See also: [rdm6300 Component/Hub](https://esphome.io/components/binary_sensor/rdm6300.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Component](https://esphome.io/components/uart.html#uart) if you want to use multiple UART buses.\n\n*See also: [rdm6300 Component/Hub](https://esphome.io/components/binary_sensor/rdm6300.html#configuration-variables)*"
             }
           },
           "extends": [
@@ -36,7 +36,7 @@
           ],
           "config_vars": {
             "id": {
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [rdm6300 Binary Sensor](https://esphome.io/components/binary_sensor/rdm6300.html#id1)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [rdm6300 Binary Sensor](https://esphome.io/components/binary_sensor/rdm6300.html#id1)*"
             },
             "rdm6300_id": {
               "key": "GeneratedID"
@@ -49,7 +49,7 @@
                   "core.uint32_t"
                 ]
               },
-              "docs": "**int**: The unique ID of the NFC/RFID tag.\n\n\n\n*See also: [rdm6300 Binary Sensor](https://esphome.io/components/binary_sensor/rdm6300.html#id1)*"
+              "docs": "**int**: The unique ID of the NFC/RFID tag.\n\n*See also: [rdm6300 Binary Sensor](https://esphome.io/components/binary_sensor/rdm6300.html#id1)*"
             }
           }
         }

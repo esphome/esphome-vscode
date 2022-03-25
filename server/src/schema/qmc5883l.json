@@ -29,7 +29,7 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
             },
             "address": {
               "key": "Optional",
@@ -40,17 +40,17 @@
                   "core.hex_uint8_t"
                 ]
               },
-              "docs": "**int**: Manually specify the  I\u00b2c address of the sensor. Defaults to `0x1E`.\n\n\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
+              "docs": "**int**: Manually specify the  I\u00b2c address of the sensor. Defaults to `0x1E`.\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
             },
             "range": {
               "key": "Optional",
               "default": "200\u00b5T",
-              "docs": "The range parameter for the sensor.\n\n\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
+              "docs": "The range parameter for the sensor.\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
             },
             "oversampling": {
               "key": "Optional",
               "default": "512x",
-              "docs": "The oversampling parameter for the sensor.\n\n\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
+              "docs": "The oversampling parameter for the sensor.\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
             },
             "field_strength_x": {
               "key": "Optional",
@@ -60,7 +60,7 @@
                   "qmc5883l.sensor.field_strength_schema"
                 ]
               },
-              "docs": "The field strength in microtesla along the X-Axis. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
+              "docs": "The field strength in microtesla along the X-Axis. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
             },
             "field_strength_y": {
               "key": "Optional",
@@ -70,7 +70,7 @@
                   "qmc5883l.sensor.field_strength_schema"
                 ]
               },
-              "docs": "The field strength in microtesla along the Y-Axis. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
+              "docs": "The field strength in microtesla along the Y-Axis. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
             },
             "field_strength_z": {
               "key": "Optional",
@@ -80,7 +80,7 @@
                   "qmc5883l.sensor.field_strength_schema"
                 ]
               },
-              "docs": "The field strength in microtesla along the Z-Axis. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
+              "docs": "The field strength in microtesla along the Z-Axis. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
             },
             "heading": {
               "key": "Optional",
@@ -101,12 +101,12 @@
                   }
                 }
               },
-              "docs": "The heading of the sensor in degrees. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
+              "docs": "The heading of the sensor in degrees. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",
               "default": "60s",
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
             },
             "i2c_id": {
               "key": "GeneratedID"

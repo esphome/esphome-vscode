@@ -10,15 +10,15 @@
             },
             "mac_address": {
               "key": "Required",
-              "docs": "**MAC Address**: The MAC address of the Mopeka device.\n\n\n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
+              "docs": "**MAC Address**: The MAC address of the Mopeka device.\n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
             },
             "custom_distance_full": {
               "key": "Optional",
-              "docs": "distance sensor will read when it should be considered full (100%).  This is only used when tank_type = CUSTOM\n\n\n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
+              "docs": "distance sensor will read when it should be considered full (100%).  This is only used when tank_type = CUSTOM\n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
             },
             "custom_distance_empty": {
               "key": "Optional",
-              "docs": "distance sensor will read when it should be considered empty (0%).  This is only used when tank_type = CUSTOM\n\n\n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
+              "docs": "distance sensor will read when it should be considered empty (0%).  This is only used when tank_type = CUSTOM\n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
             },
             "tank_type": {
               "key": "Required",
@@ -29,7 +29,7 @@
                 "30LB_V",
                 "40LB_V"
               ],
-              "docs": "The tank type the sensor is measuring. See below.\n\n\n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
+              "docs": "The tank type the sensor is measuring. See below.\n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
             },
             "temperature": {
               "key": "Optional",
@@ -56,7 +56,7 @@
                   }
                 }
               },
-              "docs": "The information for the temperature sensor. This temperature is on the sensor and is not calibrated to ambient temperature.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
+              "docs": "The information for the temperature sensor. This temperature is on the sensor and is not calibrated to ambient temperature.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
             },
             "level": {
               "key": "Optional",
@@ -80,7 +80,7 @@
                   }
                 }
               },
-              "docs": "The percentage of full for the tank sensor\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
+              "docs": "The percentage of full for the tank sensor\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
             },
             "distance": {
               "key": "Optional",
@@ -104,7 +104,7 @@
                   }
                 }
               },
-              "docs": "The raw distance/depth of the liquid for the sensor in mm.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
+              "docs": "The raw distance/depth of the liquid for the sensor in mm.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
             },
             "battery_level": {
               "key": "Optional",
@@ -128,7 +128,7 @@
                   }
                 }
               },
-              "docs": "The information for the battery percentage sensor.  Sensor uses a standard CR2032 battery.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
+              "docs": "The information for the battery percentage sensor.  Sensor uses a standard CR2032 battery.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
             }
           },
           "extends": [

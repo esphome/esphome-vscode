@@ -67,7 +67,7 @@
           "config_vars": {
             "lambda": {
               "key": "Optional",
-              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to use for rendering the content on the display. See [Display Rendering Engine](https://esphome.io/components/display/index.html#display-engine) for more information.\n\n\n\n*See also: [Waveshare E-Paper Display](https://esphome.io/components/display/waveshare_epaper.html#configuration-variables)*"
+              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to use for rendering the content on the display. See [Display Rendering Engine](https://esphome.io/components/display/index.html#display-engine) for more information.\n\n*See also: [Waveshare E-Paper Display](https://esphome.io/components/display/waveshare_epaper.html#configuration-variables)*"
             }
           }
         }
@@ -81,7 +81,7 @@
           "config_vars": {
             "rotation": {
               "key": "Optional",
-              "docs": "Set the rotation of the display. Everything you draw in `lambda:` will be rotated by this option. One of `0\u00b0` (default), `90\u00b0`, `180\u00b0`, `270\u00b0`.\n\n\n\n*See also: [Waveshare E-Paper Display](https://esphome.io/components/display/waveshare_epaper.html#configuration-variables)*"
+              "docs": "Set the rotation of the display. Everything you draw in `lambda:` will be rotated by this option. One of `0\u00b0` (default), `90\u00b0`, `180\u00b0`, `270\u00b0`.\n\n*See also: [Waveshare E-Paper Display](https://esphome.io/components/display/waveshare_epaper.html#configuration-variables)*"
             },
             "pages": {
               "key": "Optional",
@@ -97,7 +97,7 @@
                   }
                 }
               },
-              "docs": "**list**: Show pages instead of a single lambda. See [Display Pages](https://esphome.io/components/display/index.html#display-pages).\n\n\n\n*See also: [Waveshare E-Paper Display](https://esphome.io/components/display/waveshare_epaper.html#configuration-variables)*"
+              "docs": "**list**: Show pages instead of a single lambda. See [Display Pages](https://esphome.io/components/display/index.html#display-pages).\n\n*See also: [Waveshare E-Paper Display](https://esphome.io/components/display/waveshare_epaper.html#configuration-variables)*"
             },
             "on_page_change": {
               "key": "Optional",
@@ -120,7 +120,7 @@
               "key": "Optional",
               "default": "True",
               "type": "boolean",
-              "docs": "**boolean**: Whether to automatically clear the display in each loop (\u2018\u2019true\u2019\u2019, default), or to keep the existing display content (must overwrite explicitly, e.g., only on data change).\n\n\n\n*See also: [ILI9341 TFT LCD](https://esphome.io/components/display/ili9341.html#configuration-variables)*"
+              "docs": "**boolean**: Whether to automatically clear the display in each loop (\u2018\u2019true\u2019\u2019, default), or to keep the existing display content (must overwrite explicitly, e.g., only on data change).\n\n*See also: [ILI9341 TFT LCD](https://esphome.io/components/display/ili9341.html#configuration-variables)*"
             }
           }
         }

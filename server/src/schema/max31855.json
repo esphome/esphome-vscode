@@ -10,7 +10,7 @@
           ],
           "config_vars": {
             "id": {
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [MAX31855 K-Type Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31855.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [MAX31855 K-Type Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31855.html#configuration-variables)*"
             },
             "unit_of_measurement": {
               "default": "\u00b0C"
@@ -43,16 +43,16 @@
                   }
                 }
               },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Access the internal temperature sensor of the MAX31855. Requires a **name** and/or **id**.\n\n\n\n*See also: [MAX31855 K-Type Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31855.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Access the internal temperature sensor of the MAX31855. Requires a **name** and/or **id**.\n\n*See also: [MAX31855 K-Type Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31855.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",
               "default": "60s",
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n\n\n*See also: [MAX31855 K-Type Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31855.html#configuration-variables)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n*See also: [MAX31855 K-Type Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31855.html#configuration-variables)*"
             },
             "spi_id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [SPI Component](https://esphome.io/components/spi.html#spi) if you want to use multiple SPI buses.\n\n\n\n*See also: [MAX31855 K-Type Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31855.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [SPI Component](https://esphome.io/components/spi.html#spi) if you want to use multiple SPI buses.\n\n*See also: [MAX31855 K-Type Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31855.html#configuration-variables)*"
             },
             "cs_pin": {
               "key": "Required",
@@ -61,7 +61,7 @@
                 "output"
               ],
               "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The Chip Select pin of the SPI interface.\n\n\n\n*See also: [MAX31855 K-Type Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31855.html#configuration-variables)*"
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The Chip Select pin of the SPI interface.\n\n*See also: [MAX31855 K-Type Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31855.html#configuration-variables)*"
             }
           }
         }

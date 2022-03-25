@@ -10,7 +10,7 @@
             },
             "lambda": {
               "key": "Required",
-              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to run for instantiating the sensor(s).\n\n\n\n*See also: [Custom Sensor Component](https://esphome.io/components/sensor/custom.html#configuration-variables)*"
+              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to run for instantiating the sensor(s).\n\n*See also: [Custom Sensor Component](https://esphome.io/components/sensor/custom.html#configuration-variables)*"
             },
             "sensors": {
               "key": "Required",
@@ -21,7 +21,7 @@
                   "sensor.SENSOR_SCHEMA"
                 ]
               },
-              "docs": "**list**: A list of sensors to initialize. The length here must equal the number of items in the `return` statement of the `lambda`.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [Custom Sensor Component](https://esphome.io/components/sensor/custom.html#configuration-variables)*"
+              "docs": "**list**: A list of sensors to initialize. The length here must equal the number of items in the `return` statement of the `lambda`.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Custom Sensor Component](https://esphome.io/components/sensor/custom.html#configuration-variables)*"
             }
           }
         }
@@ -39,7 +39,7 @@
             },
             "lambda": {
               "key": "Required",
-              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to run for instantiating the binary sensor(s).\n\n\n\n*See also: [Custom Binary Sensor](https://esphome.io/components/binary_sensor/custom.html#custom-binary-sensor)*"
+              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to run for instantiating the binary sensor(s).\n\n*See also: [Custom Binary Sensor](https://esphome.io/components/binary_sensor/custom.html#custom-binary-sensor)*"
             },
             "binary_sensors": {
               "key": "Required",
@@ -50,7 +50,7 @@
                   "binary_sensor.BINARY_SENSOR_SCHEMA"
                 ]
               },
-              "docs": "**list**: A list of binary sensors to initialize. The length here must equal the number of items in the `return` statement of the `lambda`.\n  * All options from [Binary Sensor](https://esphome.io/components/binary_sensor/index.html#config-binary-sensor).\n  \n  \n\n\n\n*See also: [Custom Binary Sensor](https://esphome.io/components/binary_sensor/custom.html#custom-binary-sensor)*"
+              "docs": "**list**: A list of binary sensors to initialize. The length here must equal the number of items in the `return` statement of the `lambda`.\n  * All options from [Binary Sensor](https://esphome.io/components/binary_sensor/index.html#config-binary-sensor).\n  \n  \n\n*See also: [Custom Binary Sensor](https://esphome.io/components/binary_sensor/custom.html#custom-binary-sensor)*"
             }
           }
         }
@@ -68,7 +68,7 @@
             },
             "lambda": {
               "key": "Required",
-              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to run for instantiating the climate(s).\n\n\n\n*See also: [Custom Climate](https://esphome.io/components/climate/custom.html#custom-climate)*"
+              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to run for instantiating the climate(s).\n\n*See also: [Custom Climate](https://esphome.io/components/climate/custom.html#custom-climate)*"
             },
             "climates": {
               "key": "Required",
@@ -79,7 +79,7 @@
                   "climate.CLIMATE_SCHEMA"
                 ]
               },
-              "docs": "**list**: A list of climates to initialize. The length here must equal the number of items in the `return` statement of the `lambda`.\n  * All options from [Climate](https://esphome.io/components/climate/index.html#config-climate).\n  \n  \n\n\n\n*See also: [Custom Climate](https://esphome.io/components/climate/custom.html#custom-climate)*"
+              "docs": "**list**: A list of climates to initialize. The length here must equal the number of items in the `return` statement of the `lambda`.\n  * All options from [Climate](https://esphome.io/components/climate/index.html#config-climate).\n  \n  \n\n*See also: [Custom Climate](https://esphome.io/components/climate/custom.html#custom-climate)*"
             }
           }
         }
@@ -97,7 +97,7 @@
             },
             "lambda": {
               "key": "Required",
-              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to run for instantiating the cover(s).\n\n\n\n*See also: [Custom Cover](https://esphome.io/components/cover/custom.html#custom-cover)*"
+              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to run for instantiating the cover(s).\n\n*See also: [Custom Cover](https://esphome.io/components/cover/custom.html#custom-cover)*"
             },
             "covers": {
               "key": "Required",
@@ -108,7 +108,7 @@
                   "cover.COVER_SCHEMA"
                 ]
               },
-              "docs": "**list**: A list of covers to initialize. The length here must equal the number of items in the `return` statement of the `lambda`.\n  * All options from [Cover](https://esphome.io/components/cover/index.html#config-cover).\n  \n  \n\n\n\n*See also: [Custom Cover](https://esphome.io/components/cover/custom.html#custom-cover)*"
+              "docs": "**list**: A list of covers to initialize. The length here must equal the number of items in the `return` statement of the `lambda`.\n  * All options from [Cover](https://esphome.io/components/cover/index.html#config-cover).\n  \n  \n\n*See also: [Custom Cover](https://esphome.io/components/cover/custom.html#custom-cover)*"
             }
           }
         }
@@ -126,7 +126,7 @@
             },
             "lambda": {
               "key": "Required",
-              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to run for instantiating the light output(s).\n\n\n\n*See also: [Custom Light Output](https://esphome.io/components/light/custom.html#custom-light-output)*"
+              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to run for instantiating the light output(s).\n\n*See also: [Custom Light Output](https://esphome.io/components/light/custom.html#custom-light-output)*"
             },
             "lights": {
               "key": "Required",
@@ -137,7 +137,7 @@
                   "light.ADDRESSABLE_LIGHT_SCHEMA"
                 ]
               },
-              "docs": "**list**: A list of lights to initialize. The length here must equal the number of items in the `return` statement of the `lambda`.\n  * All options from [Light](https://esphome.io/components/light/index.html#config-light).\n  \n  \n\n\n\n*See also: [Custom Light Output](https://esphome.io/components/light/custom.html#custom-light-output)*"
+              "docs": "**list**: A list of lights to initialize. The length here must equal the number of items in the `return` statement of the `lambda`.\n  * All options from [Light](https://esphome.io/components/light/index.html#config-light).\n  \n  \n\n*See also: [Custom Light Output](https://esphome.io/components/light/custom.html#custom-light-output)*"
             }
           }
         }
@@ -156,7 +156,7 @@
               },
               "lambda": {
                 "key": "Required",
-                "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to run for instantiating the output(s).\n\n\n\n*See also: [Custom Output](https://esphome.io/components/output/custom.html#custom-output)*"
+                "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to run for instantiating the output(s).\n\n*See also: [Custom Output](https://esphome.io/components/output/custom.html#custom-output)*"
               },
               "outputs": {
                 "key": "Required",
@@ -172,7 +172,7 @@
                     }
                   }
                 },
-                "docs": "**list**: A list of outputs to initialize. The length here must equal the number of items in the `return` statement of the `lambda`.\n  * All options from [Output](https://esphome.io/components/output/index.html#config-output).\n  \n  \n\n\n\n*See also: [Custom Output](https://esphome.io/components/output/custom.html#custom-output)*"
+                "docs": "**list**: A list of outputs to initialize. The length here must equal the number of items in the `return` statement of the `lambda`.\n  * All options from [Output](https://esphome.io/components/output/index.html#config-output).\n  \n  \n\n*See also: [Custom Output](https://esphome.io/components/output/custom.html#custom-output)*"
               }
             }
           },
@@ -183,7 +183,7 @@
               },
               "lambda": {
                 "key": "Required",
-                "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to run for instantiating the output(s).\n\n\n\n*See also: [Custom Output](https://esphome.io/components/output/custom.html#custom-output)*"
+                "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to run for instantiating the output(s).\n\n*See also: [Custom Output](https://esphome.io/components/output/custom.html#custom-output)*"
               },
               "outputs": {
                 "key": "Required",
@@ -199,13 +199,13 @@
                     }
                   }
                 },
-                "docs": "**list**: A list of outputs to initialize. The length here must equal the number of items in the `return` statement of the `lambda`.\n  * All options from [Output](https://esphome.io/components/output/index.html#config-output).\n  \n  \n\n\n\n*See also: [Custom Output](https://esphome.io/components/output/custom.html#custom-output)*"
+                "docs": "**list**: A list of outputs to initialize. The length here must equal the number of items in the `return` statement of the `lambda`.\n  * All options from [Output](https://esphome.io/components/output/index.html#config-output).\n  \n  \n\n*See also: [Custom Output](https://esphome.io/components/output/custom.html#custom-output)*"
               }
             }
           }
         },
         "typed_key": "type",
-        "docs": "**string**: The type of output. One of `binary` and `float`.\n\n\n\n*See also: [Custom Output](https://esphome.io/components/output/custom.html#custom-output)*"
+        "docs": "**string**: The type of output. One of `binary` and `float`.\n\n*See also: [Custom Output](https://esphome.io/components/output/custom.html#custom-output)*"
       }
     }
   },
@@ -220,7 +220,7 @@
             },
             "lambda": {
               "key": "Required",
-              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to run for instantiating the switch(es).\n\n\n\n*See also: [Custom Switch](https://esphome.io/components/switch/custom.html#custom-switch)*"
+              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to run for instantiating the switch(es).\n\n*See also: [Custom Switch](https://esphome.io/components/switch/custom.html#custom-switch)*"
             },
             "switches": {
               "key": "Required",
@@ -236,7 +236,7 @@
                   }
                 }
               },
-              "docs": "**list**: A list of switches to initialize. The length here must equal the number of items in the `return` statement of the `lambda`.\n  * All options from [Switch](https://esphome.io/components/switch/index.html#config-switch).\n  \n  \n\n\n\n*See also: [Custom Switch](https://esphome.io/components/switch/custom.html#custom-switch)*"
+              "docs": "**list**: A list of switches to initialize. The length here must equal the number of items in the `return` statement of the `lambda`.\n  * All options from [Switch](https://esphome.io/components/switch/index.html#config-switch).\n  \n  \n\n*See also: [Custom Switch](https://esphome.io/components/switch/custom.html#custom-switch)*"
             }
           }
         }
@@ -254,7 +254,7 @@
             },
             "lambda": {
               "key": "Required",
-              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to run for instantiating the text sensor(s).\n\n\n\n*See also: [Custom Text Sensor](https://esphome.io/components/text_sensor/custom.html#custom-text-sensor)*"
+              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to run for instantiating the text sensor(s).\n\n*See also: [Custom Text Sensor](https://esphome.io/components/text_sensor/custom.html#custom-text-sensor)*"
             },
             "text_sensors": {
               "key": "Required",
@@ -265,7 +265,7 @@
                   "text_sensor.TEXT_SENSOR_SCHEMA"
                 ]
               },
-              "docs": "**list**: A list of text sensors to initialize. The length here must equal the number of items in the `return` statement of the `lambda`.\n  * All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n\n\n*See also: [Custom Text Sensor](https://esphome.io/components/text_sensor/custom.html#custom-text-sensor)*"
+              "docs": "**list**: A list of text sensors to initialize. The length here must equal the number of items in the `return` statement of the `lambda`.\n  * All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [Custom Text Sensor](https://esphome.io/components/text_sensor/custom.html#custom-text-sensor)*"
             }
           }
         }

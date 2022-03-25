@@ -7,7 +7,7 @@
           "config_vars": {
             "id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this MCP23S17 component.\n\n\n\n*See also: [MCP23S17 Component](https://esphome.io/components/mcp23Sxx.html#id1)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this MCP23S17 component.\n\n*See also: [MCP23S17 Component](https://esphome.io/components/mcp23Sxx.html#id1)*"
             },
             "deviceaddress": {
               "key": "Optional",
@@ -18,13 +18,13 @@
                   "core.uint8_t"
                 ]
               },
-              "docs": "**int**: The address of the chip. Defaults to `0`.\n\n\n\n*See also: [MCP23S17 Component](https://esphome.io/components/mcp23Sxx.html#id1)*"
+              "docs": "**int**: The address of the chip. Defaults to `0`.\n\n*See also: [MCP23S17 Component](https://esphome.io/components/mcp23Sxx.html#id1)*"
             },
             "open_drain_interrupt": {
               "key": "Optional",
               "default": "False",
               "type": "boolean",
-              "docs": "**boolean**: Configure interrupt pins to open-drain mode. Useful when the MCP23S17\u2019s power supply is greater than 3.3 volts. Note that these pins will require pull-up resistors (to 3.3 volts) when this mode is enabled.\n\n\n\n*See also: [MCP23S17 Component](https://esphome.io/components/mcp23Sxx.html#id1)*"
+              "docs": "**boolean**: Configure interrupt pins to open-drain mode. Useful when the MCP23S17\u2019s power supply is greater than 3.3 volts. Note that these pins will require pull-up resistors (to 3.3 volts) when this mode is enabled.\n\n*See also: [MCP23S17 Component](https://esphome.io/components/mcp23Sxx.html#id1)*"
             },
             "spi_id": {
               "key": "GeneratedID"
@@ -36,7 +36,7 @@
                 "output"
               ],
               "type": "pin",
-              "docs": "**int**: The SPI chip select pin to use.\n\n\n\n*See also: [MCP23S17 Component](https://esphome.io/components/mcp23Sxx.html#id1)*"
+              "docs": "**int**: The SPI chip select pin to use.\n\n*See also: [MCP23S17 Component](https://esphome.io/components/mcp23Sxx.html#id1)*"
             }
           },
           "extends": [

@@ -7,16 +7,16 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#configuration-variables)*"
             },
             "on_finished_playback": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when playback is finished.\n\n\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when playback is finished.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#configuration-variables)*"
             },
             "uart_id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the UART hub.\n\n\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the UART hub.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#configuration-variables)*"
             }
           }
         },
@@ -58,13 +58,13 @@
               "key": "Required",
               "templatable": true,
               "type": "integer",
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The global track number (from all tracks in the device). If not specified plays the first track.\n\n\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-play-action)*"
+              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The global track number (from all tracks in the device). If not specified plays the first track.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-play-action)*"
             },
             "loop": {
               "key": "Optional",
               "templatable": true,
               "type": "boolean",
-              "docs": "**boolean, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Repeats playing the same track. Defaults to `false`.\n\n\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-play-action)*"
+              "docs": "**boolean, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Repeats playing the same track. Defaults to `false`.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-play-action)*"
             }
           }
         },
@@ -81,19 +81,19 @@
               "key": "Required",
               "templatable": true,
               "type": "integer",
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The folder number.\n\n\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-play-folder-action)*"
+              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The folder number.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-play-folder-action)*"
             },
             "file": {
               "key": "Optional",
               "templatable": true,
               "type": "integer",
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The file number inside the folder to play. Optional only if `loop` is not set.\n\n\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-play-folder-action)*"
+              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The file number inside the folder to play. Optional only if `loop` is not set.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-play-folder-action)*"
             },
             "loop": {
               "key": "Optional",
               "templatable": true,
               "type": "boolean",
-              "docs": "**boolean, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Repeats playing all files in the folder. Causes `file` to be ignored. Defaults to `false`.\n\n\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-play-folder-action)*"
+              "docs": "**boolean, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Repeats playing all files in the folder. Causes `file` to be ignored. Defaults to `false`.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-play-folder-action)*"
             }
           }
         },
@@ -131,7 +131,7 @@
               "key": "Required",
               "templatable": true,
               "type": "integer",
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The volume value. Valid values goes from `0` to `30`.\n\n\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-set-volume-action)*"
+              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The volume value. Valid values goes from `0` to `30`.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-set-volume-action)*"
             }
           }
         },
@@ -179,7 +179,7 @@
                 "CLASSIC",
                 "BASS"
               ],
-              "docs": "Eq Preset value. Valid values are `NORMAL`, `POP`, `ROCK`, `JAZZ`, `CLASSIC` and `BASS`.\n\n\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-set-eq-action)*"
+              "docs": "Eq Preset value. Valid values are `NORMAL`, `POP`, `ROCK`, `JAZZ`, `CLASSIC` and `BASS`.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-set-eq-action)*"
             }
           }
         },

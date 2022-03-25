@@ -33,7 +33,7 @@
                   }
                 }
               },
-              "docs": "Use the concentration of particulates of size less than 2.5\u00b5m in \u00b5g per cubic meter. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [SDS011 Particulate Matter Sensor](https://esphome.io/components/sensor/sds011.html#configuration-variables)*"
+              "docs": "Use the concentration of particulates of size less than 2.5\u00b5m in \u00b5g per cubic meter. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [SDS011 Particulate Matter Sensor](https://esphome.io/components/sensor/sds011.html#configuration-variables)*"
             },
             "pm_10_0": {
               "key": "Optional",
@@ -60,13 +60,13 @@
                   }
                 }
               },
-              "docs": "Use the concentration of particulates of size less than 10.0\u00b5m in \u00b5g per cubic meter. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [SDS011 Particulate Matter Sensor](https://esphome.io/components/sensor/sds011.html#configuration-variables)*"
+              "docs": "Use the concentration of particulates of size less than 10.0\u00b5m in \u00b5g per cubic meter. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [SDS011 Particulate Matter Sensor](https://esphome.io/components/sensor/sds011.html#configuration-variables)*"
             },
             "rx_only": {
               "key": "Optional",
               "default": "False",
               "type": "boolean",
-              "docs": "**boolean**: Whether the sensor is connected **only by RX pin** to the UART bus. Since the SDS011 can not be configured in RX-only mode, `update_interval` has no effect and the sensor must be configured separately. Defaults to `false`.\n\n\n\n*See also: [SDS011 Particulate Matter Sensor](https://esphome.io/components/sensor/sds011.html#configuration-variables)*"
+              "docs": "**boolean**: Whether the sensor is connected **only by RX pin** to the UART bus. Since the SDS011 can not be configured in RX-only mode, `update_interval` has no effect and the sensor must be configured separately. Defaults to `false`.\n\n*See also: [SDS011 Particulate Matter Sensor](https://esphome.io/components/sensor/sds011.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",
@@ -76,11 +76,11 @@
                   "core.positive_time_period_minutes"
                 ]
               },
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor in minutes. This affects the working period of the SDS011 sensor. Defaults to `0min`.\n\n\n\n*See also: [SDS011 Particulate Matter Sensor](https://esphome.io/components/sensor/sds011.html#configuration-variables)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor in minutes. This affects the working period of the SDS011 sensor. Defaults to `0min`.\n\n*See also: [SDS011 Particulate Matter Sensor](https://esphome.io/components/sensor/sds011.html#configuration-variables)*"
             },
             "uart_id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Component](https://esphome.io/components/uart.html#uart) if you want to use multiple UART buses.\n\n\n\n*See also: [SDS011 Particulate Matter Sensor](https://esphome.io/components/sensor/sds011.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Component](https://esphome.io/components/uart.html#uart) if you want to use multiple UART buses.\n\n*See also: [SDS011 Particulate Matter Sensor](https://esphome.io/components/sensor/sds011.html#configuration-variables)*"
             }
           },
           "extends": [

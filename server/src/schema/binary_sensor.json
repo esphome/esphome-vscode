@@ -105,7 +105,7 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n\n\n*See also: [sim800l Binary Sensor](https://esphome.io/components/sim800l.html#binary-sensor)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n*See also: [sim800l Binary Sensor](https://esphome.io/components/sim800l.html#binary-sensor)*"
             },
             "mqtt_id": {
               "key": "Optional"
@@ -143,7 +143,7 @@
                 "vibration",
                 "window"
               ],
-              "docs": "**string**: The device class for the sensor. See [https://developers.home-assistant.io/docs/core/entity/binary-sensor/#available-device-classes](https://developers.home-assistant.io/docs/core/entity/binary-sensor/#available-device-classes) for a list of available options.\n\n\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#base-binary-sensor-configuration)*"
+              "docs": "**string**: The device class for the sensor. See [https://developers.home-assistant.io/docs/core/entity/binary-sensor/#available-device-classes](https://developers.home-assistant.io/docs/core/entity/binary-sensor/#available-device-classes) for a list of available options.\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#base-binary-sensor-configuration)*"
             },
             "filters": {
               "key": "Optional",
@@ -151,17 +151,17 @@
               "schema": {},
               "is_list": true,
               "registry": "binary_sensor.filter",
-              "docs": "**list**: A list of filters to apply on the binary sensor values such as inverting signals. See [Binary Sensor Filters](https://esphome.io/components/binary_sensor/index.html#binary-sensor-filters).\n\n\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#base-binary-sensor-configuration)*"
+              "docs": "**list**: A list of filters to apply on the binary sensor values such as inverting signals. See [Binary Sensor Filters](https://esphome.io/components/binary_sensor/index.html#binary-sensor-filters).\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#base-binary-sensor-configuration)*"
             },
             "on_press": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the button is pressed. See [on_press](https://esphome.io/components/binary_sensor/index.html#binary-sensor-on-press).\n\n\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#base-binary-sensor-configuration)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the button is pressed. See [on_press](https://esphome.io/components/binary_sensor/index.html#binary-sensor-on-press).\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#base-binary-sensor-configuration)*"
             },
             "on_release": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the button is released. See [on_release](https://esphome.io/components/binary_sensor/index.html#binary-sensor-on-release).\n\n\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#base-binary-sensor-configuration)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the button is released. See [on_release](https://esphome.io/components/binary_sensor/index.html#binary-sensor-on-release).\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#base-binary-sensor-configuration)*"
             },
             "on_click": {
               "key": "Optional",
@@ -177,7 +177,7 @@
                         "core.positive_time_period_milliseconds"
                       ]
                     },
-                    "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The minimum duration the click should last. Defaults to `50ms`.\n\n\n\n*See also: [lambda](https://esphome.io/components/binary_sensor/index.html#on-click)*"
+                    "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The minimum duration the click should last. Defaults to `50ms`.\n\n*See also: [lambda](https://esphome.io/components/binary_sensor/index.html#on-click)*"
                   },
                   "max_length": {
                     "key": "Optional",
@@ -188,14 +188,14 @@
                         "core.positive_time_period_milliseconds"
                       ]
                     },
-                    "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The maximum duration the click should last. Defaults to `350ms`.\n\n\n\n*See also: [lambda](https://esphome.io/components/binary_sensor/index.html#on-click)*"
+                    "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The maximum duration the click should last. Defaults to `350ms`.\n\n*See also: [lambda](https://esphome.io/components/binary_sensor/index.html#on-click)*"
                   },
                   "then": {
                     "type": "trigger"
                   }
                 }
               },
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the button is held down for a specified period of time. See [on_click](https://esphome.io/components/binary_sensor/index.html#binary-sensor-on-click).\n\n\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#base-binary-sensor-configuration)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the button is held down for a specified period of time. See [on_click](https://esphome.io/components/binary_sensor/index.html#binary-sensor-on-click).\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#base-binary-sensor-configuration)*"
             },
             "on_double_click": {
               "key": "Optional",
@@ -211,7 +211,7 @@
                         "core.positive_time_period_milliseconds"
                       ]
                     },
-                    "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The minimum duration the click should last. Defaults to `50ms`.\n\n\n\n*See also: [lambda](https://esphome.io/components/binary_sensor/index.html#on-double-click)*"
+                    "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The minimum duration the click should last. Defaults to `50ms`.\n\n*See also: [lambda](https://esphome.io/components/binary_sensor/index.html#on-double-click)*"
                   },
                   "max_length": {
                     "key": "Optional",
@@ -222,14 +222,14 @@
                         "core.positive_time_period_milliseconds"
                       ]
                     },
-                    "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The maximum duration the click should last. Defaults to `350ms`.\n\n\n\n*See also: [lambda](https://esphome.io/components/binary_sensor/index.html#on-double-click)*"
+                    "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The maximum duration the click should last. Defaults to `350ms`.\n\n*See also: [lambda](https://esphome.io/components/binary_sensor/index.html#on-double-click)*"
                   },
                   "then": {
                     "type": "trigger"
                   }
                 }
               },
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the button is pressed twice for specified periods of time. See [on_double_click](https://esphome.io/components/binary_sensor/index.html#binary-sensor-on-double-click).\n\n\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#base-binary-sensor-configuration)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the button is pressed twice for specified periods of time. See [on_double_click](https://esphome.io/components/binary_sensor/index.html#binary-sensor-on-double-click).\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#base-binary-sensor-configuration)*"
             },
             "on_multi_click": {
               "key": "Optional",
@@ -238,7 +238,7 @@
                 "config_vars": {
                   "timing": {
                     "key": "Required",
-                    "docs": "The timing of the multi click. This uses a language-based grammar using these styles:\n  * `<ON/OFF> for <TIME> to <TIME>`\n  \n  * `<ON/OFF> for at least <TIME>`\n  \n  * `<ON/OFF> for at most <TIME>`\n  \n  \n\n\n\n*See also: [lambda](https://esphome.io/components/binary_sensor/index.html#on-multi-click)*"
+                    "docs": "The timing of the multi click. This uses a language-based grammar using these styles:\n  * `<ON/OFF> for <TIME> to <TIME>`\n  \n  * `<ON/OFF> for at least <TIME>`\n  \n  * `<ON/OFF> for at most <TIME>`\n  \n  \n\n*See also: [lambda](https://esphome.io/components/binary_sensor/index.html#on-multi-click)*"
                   },
                   "invalid_cooldown": {
                     "key": "Optional",
@@ -249,7 +249,7 @@
                         "core.positive_time_period_milliseconds"
                       ]
                     },
-                    "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: If a multi click is started, but the timing set in `timing` does not match, a \u201ccool down\u201d period will be activated during which no timing will be matched. Defaults to `1s`.\n\n\n\n*See also: [lambda](https://esphome.io/components/binary_sensor/index.html#on-multi-click)*"
+                    "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: If a multi click is started, but the timing set in `timing` does not match, a \u201ccool down\u201d period will be activated during which no timing will be matched. Defaults to `1s`.\n\n*See also: [lambda](https://esphome.io/components/binary_sensor/index.html#on-multi-click)*"
                   },
                   "then": {
                     "type": "trigger"
@@ -257,12 +257,12 @@
                 }
               },
               "has_required_var": true,
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the button is pressed in a specific sequence. See [on_multi_click](https://esphome.io/components/binary_sensor/index.html#binary-sensor-on-multi-click).\n\n\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#base-binary-sensor-configuration)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the button is pressed in a specific sequence. See [on_multi_click](https://esphome.io/components/binary_sensor/index.html#binary-sensor-on-multi-click).\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#base-binary-sensor-configuration)*"
             },
             "on_state": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a state is published. See [on_state](https://esphome.io/components/binary_sensor/index.html#binary-sensor-on-state).\n\n\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#base-binary-sensor-configuration)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a state is published. See [on_state](https://esphome.io/components/binary_sensor/index.html#binary-sensor-on-state).\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#base-binary-sensor-configuration)*"
             }
           }
         }
@@ -341,7 +341,7 @@
                   "core.positive_time_period_milliseconds"
                 ]
               },
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Delay to proceed to the next timing. Defaults to `1s`.\n\n\n\n*See also: [autorepeat](https://esphome.io/components/binary_sensor/index.html#autorepeat)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Delay to proceed to the next timing. Defaults to `1s`.\n\n*See also: [autorepeat](https://esphome.io/components/binary_sensor/index.html#autorepeat)*"
             },
             "time_off": {
               "key": "Optional",
@@ -352,7 +352,7 @@
                   "core.positive_time_period_milliseconds"
                 ]
               },
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Interval to hold the output at OFF. Defaults to `100ms`.\n\n\n\n*See also: [autorepeat](https://esphome.io/components/binary_sensor/index.html#autorepeat)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Interval to hold the output at OFF. Defaults to `100ms`.\n\n*See also: [autorepeat](https://esphome.io/components/binary_sensor/index.html#autorepeat)*"
             },
             "time_on": {
               "key": "Optional",
@@ -363,7 +363,7 @@
                   "core.positive_time_period_milliseconds"
                 ]
               },
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Interval to hold the output at ON. Defaults to `900ms`.\n\n\n\n*See also: [autorepeat](https://esphome.io/components/binary_sensor/index.html#autorepeat)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Interval to hold the output at ON. Defaults to `900ms`.\n\n*See also: [autorepeat](https://esphome.io/components/binary_sensor/index.html#autorepeat)*"
             }
           }
         },

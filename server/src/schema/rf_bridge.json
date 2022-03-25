@@ -7,12 +7,12 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [RF Bridge Component](https://esphome.io/components/rf_bridge.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [RF Bridge Component](https://esphome.io/components/rf_bridge.html#configuration-variables)*"
             },
             "on_code_received": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when a code is received. See [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-on-code-received).\n\n\n\n*See also: [RF Bridge Component](https://esphome.io/components/rf_bridge.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when a code is received. See [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-on-code-received).\n\n*See also: [RF Bridge Component](https://esphome.io/components/rf_bridge.html#configuration-variables)*"
             },
             "on_advanced_code_received": {
               "key": "Optional",
@@ -20,7 +20,7 @@
             },
             "uart_id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the UART hub.\n\n\n\n*See also: [RF Bridge Component](https://esphome.io/components/rf_bridge.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the UART hub.\n\n*See also: [RF Bridge Component](https://esphome.io/components/rf_bridge.html#configuration-variables)*"
             }
           },
           "extends": [
@@ -34,7 +34,7 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the RF Bridge if you have multiple components.\n\n\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-start-bucket-sniffing-action)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the RF Bridge if you have multiple components.\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-start-bucket-sniffing-action)*"
             }
           }
         }
@@ -47,7 +47,7 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the RF Bridge if you have multiple components.\n\n\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-code-action)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the RF Bridge if you have multiple components.\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-code-action)*"
             },
             "sync": {
               "key": "Required",
@@ -58,7 +58,7 @@
                   "core.hex_uint16_t"
                 ]
               },
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: RF Sync timing\n\n\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-code-action)*"
+              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: RF Sync timing\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-code-action)*"
             },
             "low": {
               "key": "Required",
@@ -69,7 +69,7 @@
                   "core.hex_uint16_t"
                 ]
               },
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: RF Low timing\n\n\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-code-action)*"
+              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: RF Low timing\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-code-action)*"
             },
             "high": {
               "key": "Required",
@@ -80,7 +80,7 @@
                   "core.hex_uint16_t"
                 ]
               },
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: RF high timing\n\n\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-code-action)*"
+              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: RF high timing\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-code-action)*"
             },
             "code": {
               "key": "Required",
@@ -91,7 +91,7 @@
                   "core.hex_uint32_t"
                 ]
               },
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: RF code\n\n\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-code-action)*"
+              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: RF code\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-code-action)*"
             }
           }
         },
@@ -139,7 +139,7 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the RF Bridge if you have multiple components.\n\n\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-advanced-code-action)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the RF Bridge if you have multiple components.\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-advanced-code-action)*"
             },
             "length": {
               "key": "Required",
@@ -150,7 +150,7 @@
                   "core.hex_uint8_t"
                 ]
               },
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Length of code plus protocol\n\n\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-advanced-code-action)*"
+              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Length of code plus protocol\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-advanced-code-action)*"
             },
             "protocol": {
               "key": "Required",
@@ -161,13 +161,13 @@
                   "core.hex_uint8_t"
                 ]
               },
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: RF Protocol\n\n\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-advanced-code-action)*"
+              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: RF Protocol\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-advanced-code-action)*"
             },
             "code": {
               "key": "Required",
               "templatable": true,
               "type": "string",
-              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: RF code\n\n\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-advanced-code-action)*"
+              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: RF code\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-advanced-code-action)*"
             }
           }
         },
@@ -179,13 +179,13 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the RF Bridge if you have multiple components.\n\n\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-raw-action)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the RF Bridge if you have multiple components.\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-raw-action)*"
             },
             "raw": {
               "key": "Required",
               "templatable": true,
               "type": "string",
-              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: RF raw string\n\n\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-raw-action)*"
+              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: RF raw string\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-raw-action)*"
             }
           }
         },
@@ -197,7 +197,7 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the RF Bridge if you have multiple components.\n\n\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-beep-action)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the RF Bridge if you have multiple components.\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-beep-action)*"
             },
             "duration": {
               "key": "Required",
@@ -208,7 +208,7 @@
                   "core.uint16_t"
                 ]
               },
-              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: beep duration in milliseconds.\n\n\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-beep-action)*"
+              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: beep duration in milliseconds.\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-beep-action)*"
             }
           }
         },

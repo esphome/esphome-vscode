@@ -24,7 +24,7 @@
                   }
                 }
               },
-              "docs": "Use the voltage value of the sensor in volts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the voltage value of the sensor in volts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "current": {
               "key": "Optional",
@@ -48,7 +48,7 @@
                   }
                 }
               },
-              "docs": "Use the current value of the sensor in amperes. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the current value of the sensor in amperes. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             }
           }
         }
@@ -76,7 +76,7 @@
                   }
                 }
               },
-              "docs": "Use the voltage value of the sensor in volts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the voltage value of the sensor in volts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "current": {
               "key": "Optional",
@@ -100,7 +100,7 @@
                   }
                 }
               },
-              "docs": "Use the current value of the sensor in amperes. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the current value of the sensor in amperes. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "active_power": {
               "key": "Optional",
@@ -124,7 +124,7 @@
                   }
                 }
               },
-              "docs": "Use the (active) power value of the sensor in watts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the (active) power value of the sensor in watts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "voltage_sampled_by_secondary_cpu": {
               "key": "Optional",
@@ -148,7 +148,7 @@
                   }
                 }
               },
-              "docs": "Use the photo voltiac\u2019s voltage sampled by slave CPU value of the sensor in volts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the photo voltiac\u2019s voltage sampled by slave CPU value of the sensor in volts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "insulation_of_p_to_ground": {
               "key": "Optional",
@@ -169,7 +169,7 @@
                   }
                 }
               },
-              "docs": "Use the insulation of photo voltiac\u2019s +ve terminal to ground value of the sensor in kilo ohms. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the insulation of photo voltiac\u2019s +ve terminal to ground value of the sensor in kilo ohms. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             }
           }
         }
@@ -189,7 +189,7 @@
                   "havells_solar.sensor.PHASE_SCHEMA"
                 ]
               },
-              "docs": "The group of exposed sensors for Phase A/1.\n  * **current** (*Optional*): Use the current value of the sensor in amperes. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **voltage** (*Optional*): Use the voltage value of the sensor in volts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "The group of exposed sensors for Phase A/1.\n  * **current** (*Optional*): Use the current value of the sensor in amperes. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **voltage** (*Optional*): Use the voltage value of the sensor in volts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "phase_b": {
               "key": "Optional",
@@ -199,7 +199,7 @@
                   "havells_solar.sensor.PHASE_SCHEMA"
                 ]
               },
-              "docs": "The group of exposed sensors for Phase B/2 on applicable inverters.\n  * All options from **phase_a**\n  \n  \n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "The group of exposed sensors for Phase B/2 on applicable inverters.\n  * All options from **phase_a**\n  \n  \n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "phase_c": {
               "key": "Optional",
@@ -209,7 +209,7 @@
                   "havells_solar.sensor.PHASE_SCHEMA"
                 ]
               },
-              "docs": "The group of exposed sensors for Phase C/3 on applicable inverters.\n  * All options from **phase_a**\n  \n  \n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "The group of exposed sensors for Phase C/3 on applicable inverters.\n  * All options from **phase_a**\n  \n  \n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "pv1": {
               "key": "Optional",
@@ -219,7 +219,7 @@
                   "havells_solar.sensor.PV_SCHEMA"
                 ]
               },
-              "docs": "The group of exposed sensors for Photo Voltaic 1.\n  * **current** (*Optional*): Use the current value of the sensor in amperes. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **voltage** (*Optional*): Use the voltage value of the sensor in volts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **active_power** (*Optional*): Use the (active) power value of the sensor in watts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **voltage_sampled_by_secondary_cpu** (*Optional*): Use the photo voltiac\u2019s voltage sampled by slave CPU value of the sensor in volts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **insulation_of_p_to_ground** (*Optional*): Use the insulation of photo voltiac\u2019s +ve terminal to ground value of the sensor in kilo ohms. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "The group of exposed sensors for Photo Voltaic 1.\n  * **current** (*Optional*): Use the current value of the sensor in amperes. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **voltage** (*Optional*): Use the voltage value of the sensor in volts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **active_power** (*Optional*): Use the (active) power value of the sensor in watts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **voltage_sampled_by_secondary_cpu** (*Optional*): Use the photo voltiac\u2019s voltage sampled by slave CPU value of the sensor in volts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **insulation_of_p_to_ground** (*Optional*): Use the insulation of photo voltiac\u2019s +ve terminal to ground value of the sensor in kilo ohms. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "pv2": {
               "key": "Optional",
@@ -229,7 +229,7 @@
                   "havells_solar.sensor.PV_SCHEMA"
                 ]
               },
-              "docs": "The group of exposed sensors for Photo Voltaic 2.\n  * All options from **pv1**\n  \n  \n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "The group of exposed sensors for Photo Voltaic 2.\n  * All options from **pv1**\n  \n  \n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "frequency": {
               "key": "Optional",
@@ -253,7 +253,7 @@
                   }
                 }
               },
-              "docs": "Use the frequency value of the sensor in hertz. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the frequency value of the sensor in hertz. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "active_power": {
               "key": "Optional",
@@ -277,7 +277,7 @@
                   }
                 }
               },
-              "docs": "Use the (active) power value of the sensor in watts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the (active) power value of the sensor in watts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "reactive_power": {
               "key": "Optional",
@@ -298,7 +298,7 @@
                   }
                 }
               },
-              "docs": "Use the reactive power value of the sensor in VAR. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the reactive power value of the sensor in VAR. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "energy_production_day": {
               "key": "Optional",
@@ -322,7 +322,7 @@
                   }
                 }
               },
-              "docs": "Use the export active energy value for same day of the sensor in kilo watt hours. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the export active energy value for same day of the sensor in kilo watt hours. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "total_energy_production": {
               "key": "Optional",
@@ -346,7 +346,7 @@
                   }
                 }
               },
-              "docs": "Use the total exported energy value of the sensor in kilo watt hours. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the total exported energy value of the sensor in kilo watt hours. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "total_generation_time": {
               "key": "Optional",
@@ -367,7 +367,7 @@
                   }
                 }
               },
-              "docs": "Use the total generation time value of the sensor in hours. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the total generation time value of the sensor in hours. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "today_generation_time": {
               "key": "Optional",
@@ -388,7 +388,7 @@
                   }
                 }
               },
-              "docs": "Use the day generation time value for same day of the sensor in minutes. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the day generation time value for same day of the sensor in minutes. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "inverter_module_temp": {
               "key": "Optional",
@@ -409,7 +409,7 @@
                   }
                 }
               },
-              "docs": "Use the inverter module temperature value of the sensor in degree celsius. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the inverter module temperature value of the sensor in degree celsius. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "inverter_inner_temp": {
               "key": "Optional",
@@ -430,7 +430,7 @@
                   }
                 }
               },
-              "docs": "Use the inverter inner temperature value of the sensor in degree celsius. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the inverter inner temperature value of the sensor in degree celsius. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "inverter_bus_voltage": {
               "key": "Optional",
@@ -451,7 +451,7 @@
                   }
                 }
               },
-              "docs": "Use the inverter bus voltage value of the sensor in volts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the inverter bus voltage value of the sensor in volts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "insulation_of_pv_n_to_ground": {
               "key": "Optional",
@@ -472,7 +472,7 @@
                   }
                 }
               },
-              "docs": "Use the insulation  of  photo  voltiacs\u2019s -ve terminal to ground value of the sensor in kilo ohms. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the insulation  of  photo  voltiacs\u2019s -ve terminal to ground value of the sensor in kilo ohms. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "gfci_value": {
               "key": "Optional",
@@ -493,7 +493,7 @@
                   }
                 }
               },
-              "docs": "Use the GFCI value of the sensor. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the GFCI value of the sensor. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "dci_of_r": {
               "key": "Optional",
@@ -514,7 +514,7 @@
                   }
                 }
               },
-              "docs": "Use the DCI of R value of the sensor. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the DCI of R value of the sensor. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "dci_of_s": {
               "key": "Optional",
@@ -535,7 +535,7 @@
                   }
                 }
               },
-              "docs": "Use the DCI of S value of the sensor. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the DCI of S value of the sensor. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "dci_of_t": {
               "key": "Optional",
@@ -556,12 +556,12 @@
                   }
                 }
               },
-              "docs": "Use the DCI of T value of the sensor. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "Use the DCI of T value of the sensor. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",
               "default": "10s",
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             },
             "modbus_id": {
               "key": "GeneratedID"
@@ -575,7 +575,7 @@
                   "core.hex_uint8_t"
                 ]
               },
-              "docs": "**int**: The address of the sensor if multiple sensors are attached to the same UART bus. You will need to set the address of each device manually. Defaults to `1`.\n\n\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
+              "docs": "**int**: The address of the sensor if multiple sensors are attached to the same UART bus. You will need to set the address of each device manually. Defaults to `1`.\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#configuration-variables)*"
             }
           },
           "extends": [

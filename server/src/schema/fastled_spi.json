@@ -21,7 +21,7 @@
                 "SK9822",
                 "DOTSTAR"
               ],
-              "docs": "**string**: Set a chipset to use. See [Supported Chipsets](https://esphome.io/components/light/fastled.html#fastled-spi-chipsets) for options.\n\n\n\n*See also: [SPI](https://esphome.io/components/light/fastled.html#id1)*"
+              "docs": "**string**: Set a chipset to use. See [Supported Chipsets](https://esphome.io/components/light/fastled.html#fastled-spi-chipsets) for options.\n\n*See also: [SPI](https://esphome.io/components/light/fastled.html#id1)*"
             },
             "data_pin": {
               "key": "Required",
@@ -30,7 +30,7 @@
                 "output"
               ],
               "type": "pin",
-              "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: The pin for the data line of the FastLED light.\n\n\n\n*See also: [SPI](https://esphome.io/components/light/fastled.html#id1)*"
+              "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: The pin for the data line of the FastLED light.\n\n*See also: [SPI](https://esphome.io/components/light/fastled.html#id1)*"
             },
             "clock_pin": {
               "key": "Required",
@@ -39,14 +39,14 @@
                 "output"
               ],
               "type": "pin",
-              "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: The pin for the clock line of the FastLED light.\n\n\n\n*See also: [SPI](https://esphome.io/components/light/fastled.html#id1)*"
+              "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: The pin for the clock line of the FastLED light.\n\n*See also: [SPI](https://esphome.io/components/light/fastled.html#id1)*"
             },
             "data_rate": {
               "key": "Optional",
-              "docs": "**frequency**: The data rate to use for shifting data to the light. Can help if you have long cables or slow level-shifters.\n\n\n\n*See also: [SPI](https://esphome.io/components/light/fastled.html#id1)*"
+              "docs": "**frequency**: The data rate to use for shifting data to the light. Can help if you have long cables or slow level-shifters.\n\n*See also: [SPI](https://esphome.io/components/light/fastled.html#id1)*"
             },
             "id": {
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [SPI](https://esphome.io/components/light/fastled.html#id1)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [SPI](https://esphome.io/components/light/fastled.html#id1)*"
             }
           }
         }

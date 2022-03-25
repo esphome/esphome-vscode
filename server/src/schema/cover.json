@@ -44,7 +44,7 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [Tuya Cover](https://esphome.io/components/cover/tuya.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Tuya Cover](https://esphome.io/components/cover/tuya.html#configuration-variables)*"
             },
             "mqtt_id": {
               "key": "Optional"
@@ -65,23 +65,23 @@
                 "shutter",
                 "window"
               ],
-              "docs": "**string**: The device class for the sensor. See [https://www.home-assistant.io/components/cover/](https://www.home-assistant.io/components/cover/) for a list of available options.\n\n\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#base-cover-configuration)*"
+              "docs": "**string**: The device class for the sensor. See [https://www.home-assistant.io/components/cover/](https://www.home-assistant.io/components/cover/) for a list of available options.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#base-cover-configuration)*"
             },
             "position_command_topic": {
               "key": "Optional",
-              "docs": "**string**: The topic to receive cover position commands on.\n\n\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#base-cover-configuration)*"
+              "docs": "**string**: The topic to receive cover position commands on.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#base-cover-configuration)*"
             },
             "position_state_topic": {
               "key": "Optional",
-              "docs": "**string**: The topic to publish cover position changes to.\n\n\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#base-cover-configuration)*"
+              "docs": "**string**: The topic to publish cover position changes to.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#base-cover-configuration)*"
             },
             "tilt_command_topic": {
               "key": "Optional",
-              "docs": "**string**: The topic to receive cover tilt commands on.\n\n\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#base-cover-configuration)*"
+              "docs": "**string**: The topic to receive cover tilt commands on.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#base-cover-configuration)*"
             },
             "tilt_state_topic": {
               "key": "Optional",
-              "docs": "**string**: The topic to publish cover cover tilt state changes to.\n\n\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#base-cover-configuration)*"
+              "docs": "**string**: The topic to publish cover cover tilt state changes to.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#base-cover-configuration)*"
             },
             "on_open": {
               "key": "Optional",
@@ -148,13 +148,13 @@
           "config_vars": {
             "id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The cover to control.\n\n\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#cover-control-action)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The cover to control.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#cover-control-action)*"
             },
             "stop": {
               "key": "Optional",
               "templatable": true,
               "type": "boolean",
-              "docs": "**boolean**: Whether to stop the cover.\n\n\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#cover-control-action)*"
+              "docs": "**boolean**: Whether to stop the cover.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#cover-control-action)*"
             },
             "state": {
               "key": "Optional",
@@ -165,17 +165,17 @@
                   "cover.validate_cover_state"
                 ]
               },
-              "docs": "**string**: The state to set the cover to - one of `OPEN` or `CLOSE`.\n\n\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#cover-control-action)*"
+              "docs": "**string**: The state to set the cover to - one of `OPEN` or `CLOSE`.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#cover-control-action)*"
             },
             "position": {
               "key": "Optional",
               "templatable": true,
-              "docs": "**float**: The cover position to set.\n  * `0.0` = `0%` = `CLOSED`\n  \n  * `1.0` = `100%` = `OPEN`\n  \n  \n\n\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#cover-control-action)*"
+              "docs": "**float**: The cover position to set.\n  * `0.0` = `0%` = `CLOSED`\n  \n  * `1.0` = `100%` = `OPEN`\n  \n  \n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#cover-control-action)*"
             },
             "tilt": {
               "key": "Optional",
               "templatable": true,
-              "docs": "**float**: The tilt position to set. In range 0% - 100%.\n\n\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#cover-control-action)*"
+              "docs": "**float**: The tilt position to set. In range 0% - 100%.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#cover-control-action)*"
             }
           }
         },

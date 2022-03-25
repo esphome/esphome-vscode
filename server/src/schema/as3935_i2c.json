@@ -22,7 +22,7 @@
                   "core.hex_uint8_t"
                 ]
               },
-              "docs": "**int**: Manually specify the I\u00b2C address of the sensor. Defaults to `0x03` (`A0` and `A1` pins pulled high). The address is made up using the state of `A0` as bit 1 and the state of `A1` as bit 2, so a total of four addresses is possible.\n\n\n\n*See also: [as3935 Over I\u00b2C](https://esphome.io/components/sensor/as3935.html#id1)*"
+              "docs": "**int**: Manually specify the I\u00b2C address of the sensor. Defaults to `0x03` (`A0` and `A1` pins pulled high). The address is made up using the state of `A0` as bit 1 and the state of `A1` as bit 2, so a total of four addresses is possible.\n\n*See also: [as3935 Over I\u00b2C](https://esphome.io/components/sensor/as3935.html#id1)*"
             }
           }
         }

@@ -11,12 +11,12 @@
           "config_vars": {
             "dimensions": {
               "key": "Required",
-              "docs": "**string**: The dimensions of the display with `COLUMNSxROWS`. If you\u2019re not sure, power the display up and just count them.\n\n\n\n*See also: [lcd_gpio Component](https://esphome.io/components/display/lcd_display.html#id1)*"
+              "docs": "**string**: The dimensions of the display with `COLUMNSxROWS`. If you\u2019re not sure, power the display up and just count them.\n\n*See also: [lcd_gpio Component](https://esphome.io/components/display/lcd_display.html#id1)*"
             },
             "update_interval": {
               "key": "Optional",
               "default": "1s",
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to re-draw the screen. Defaults to `1s`.\n\n\n\n*See also: [lcd_gpio Component](https://esphome.io/components/display/lcd_display.html#id1)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to re-draw the screen. Defaults to `1s`.\n\n*See also: [lcd_gpio Component](https://esphome.io/components/display/lcd_display.html#id1)*"
             }
           }
         }

@@ -42,12 +42,12 @@
                 "restart",
                 "update"
               ],
-              "docs": "**string**: The device class for the button. See [https://developers.home-assistant.io/docs/core/entity/button/#available-device-classes](https://developers.home-assistant.io/docs/core/entity/button/#available-device-classes) for a list of available options.\n\n\n\n*See also: [Button Component](https://esphome.io/components/button/index.html#base-button-configuration)*"
+              "docs": "**string**: The device class for the button. See [https://developers.home-assistant.io/docs/core/entity/button/#available-device-classes](https://developers.home-assistant.io/docs/core/entity/button/#available-device-classes) for a list of available options.\n\n*See also: [Button Component](https://esphome.io/components/button/index.html#base-button-configuration)*"
             },
             "on_press": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the button is pressed. See [on_press](https://esphome.io/components/button/index.html#button-on-press).\n\n\n\n*See also: [Button Component](https://esphome.io/components/button/index.html#base-button-configuration)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the button is pressed. See [on_press](https://esphome.io/components/button/index.html#button-on-press).\n\n*See also: [Button Component](https://esphome.io/components/button/index.html#base-button-configuration)*"
             }
           }
         }
@@ -60,7 +60,7 @@
           "config_vars": {
             "id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the button to set.\n\n\n\n*See also: [Button Component](https://esphome.io/components/button/index.html#button-press-action)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the button to set.\n\n*See also: [Button Component](https://esphome.io/components/button/index.html#button-press-action)*"
             }
           }
         },

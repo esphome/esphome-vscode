@@ -11,7 +11,7 @@
           "config_vars": {
             "id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Specify the ID of the stepper so that you can control it.\n\n\n\n*See also: [A4988 Component](https://esphome.io/components/stepper/index.html#a4988-component)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Specify the ID of the stepper so that you can control it.\n\n*See also: [A4988 Component](https://esphome.io/components/stepper/index.html#a4988-component)*"
             },
             "step_pin": {
               "key": "Required",
@@ -20,7 +20,7 @@
                 "output"
               ],
               "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The `STEP` pin of the A4988 stepper driver.\n\n\n\n*See also: [A4988 Component](https://esphome.io/components/stepper/index.html#a4988-component)*"
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The `STEP` pin of the A4988 stepper driver.\n\n*See also: [A4988 Component](https://esphome.io/components/stepper/index.html#a4988-component)*"
             },
             "dir_pin": {
               "key": "Required",
@@ -29,7 +29,7 @@
                 "output"
               ],
               "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The `DIRECTION` pin of the A4988 stepper driver.\n\n\n\n*See also: [A4988 Component](https://esphome.io/components/stepper/index.html#a4988-component)*"
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The `DIRECTION` pin of the A4988 stepper driver.\n\n*See also: [A4988 Component](https://esphome.io/components/stepper/index.html#a4988-component)*"
             },
             "sleep_pin": {
               "key": "Optional",
@@ -38,7 +38,7 @@
                 "output"
               ],
               "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: Optionally also use the `SLEEP` pin of the A4988 stepper driver. If specified, the driver will be put into sleep mode as soon as the stepper reaches the target steps.\n\n\n\n*See also: [A4988 Component](https://esphome.io/components/stepper/index.html#a4988-component)*"
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: Optionally also use the `SLEEP` pin of the A4988 stepper driver. If specified, the driver will be put into sleep mode as soon as the stepper reaches the target steps.\n\n*See also: [A4988 Component](https://esphome.io/components/stepper/index.html#a4988-component)*"
             }
           }
         }

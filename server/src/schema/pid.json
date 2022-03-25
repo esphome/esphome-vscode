@@ -24,7 +24,7 @@
             },
             "climate_id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the pid climate to get the values from.\n\n\n\n*See also: [pid Sensor](https://esphome.io/components/climate/pid.html#pid-sensor)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the pid climate to get the values from.\n\n*See also: [pid Sensor](https://esphome.io/components/climate/pid.html#pid-sensor)*"
             },
             "type": {
               "key": "Required",
@@ -41,7 +41,19 @@
                 "KI",
                 "KD"
               ],
-              "docs": "**string**: The value to monitor. One of\n  * `RESULT` - The resulting value (sum of P, I, and D terms).\n  \n  * `ERROR` - The calculated error (setpoint - process_variable)\n  \n  * `PROPORTIONAL` - The proportional term of the PID controller.\n  \n  * `INTEGRAL` - The integral term of the PID controller.\n  \n  * `DERIVATIVE` - The derivative term of the PID controller.\n  \n  * `HEAT` - The resulting heating power to the supplied to the `heat_output`.\n  \n  * `COOL` - The resulting cooling power to the supplied to the `cool_output`.\n  \n  * `KP` - The current factor for the proportional term of the PID controller.\n  \n  * `KI` - The current factor for the integral term of the PID controller.\n  \n  * `KD` - The current factor for the differential term of the PID controller.\n  \n  \n\n\n\n*See also: [pid Sensor](https://esphome.io/components/climate/pid.html#pid-sensor)*"
+              "docs": "**string**: The value to monitor. One of\n  * `RESULT` - The resulting value (sum of P, I, and D terms).\n  \n  * `ERROR` - The calculated error (setpoint - process_variable)\n  \n  * `PROPORTIONAL` - The proportional term of the PID controller.\n  \n  * `INTEGRAL` - The integral term of the PID controller.\n  \n  * `DERIVATIVE` - The derivative term of the PID controller.\n  \n  * `HEAT` - The resulting heating power to the supplied to the `heat_output`.\n  \n  * `COOL` - The resulting cooling power to the supplied to the `cool_output`.\n  \n  * `KP` - The current factor for the proportional term of the PID controller.\n  \n  * `KI` - The current factor for the integral term of the PID controller.\n  \n  * `KD` - The current factor for the differential term of the PID controller.\n  \n  \n\n*See also: [pid Sensor](https://esphome.io/components/climate/pid.html#pid-sensor)*",
+              "values_docs": {
+                "RESULT": "The resulting value (sum of P, I, and D terms).",
+                "ERROR": "The calculated error (setpoint - process_variable)",
+                "PROPORTIONAL": "The proportional term of the PID controller.",
+                "INTEGRAL": "The integral term of the PID controller.",
+                "DERIVATIVE": "The derivative term of the PID controller.",
+                "HEAT": "The resulting heating power to the supplied to the `heat_output`.",
+                "COOL": "The resulting cooling power to the supplied to the `cool_output`.",
+                "KP": "The current factor for the proportional term of the PID controller.",
+                "KI": "The current factor for the integral term of the PID controller.",
+                "KD": "The current factor for the differential term of the PID controller."
+              }
             }
           }
         }
@@ -60,19 +72,19 @@
             "id": {},
             "sensor": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The sensor that is used to measure the current temperature.\n\n\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The sensor that is used to measure the current temperature.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
             },
             "default_target_temperature": {
               "key": "Required",
-              "docs": "**float**: The default target temperature (setpoint) for the control algorithm. This can be dynamically set in the frontend later.\n\n\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
+              "docs": "**float**: The default target temperature (setpoint) for the control algorithm. This can be dynamically set in the frontend later.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
             },
             "cool_output": {
               "key": "Optional",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of a [float output](https://esphome.io/components/output/index.html#config-output) that decreases the current temperature. At least one of `heat_output` and `cool_output` must be specified.\n\n\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of a [float output](https://esphome.io/components/output/index.html#config-output) that decreases the current temperature. At least one of `heat_output` and `cool_output` must be specified.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
             },
             "heat_output": {
               "key": "Optional",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of a [float output](https://esphome.io/components/output/index.html#config-output) that increases the current temperature. At least one of `heat_output` and `cool_output` must be specified.\n\n\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of a [float output](https://esphome.io/components/output/index.html#config-output) that increases the current temperature. At least one of `heat_output` and `cool_output` must be specified.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
             },
             "control_parameters": {
               "key": "Required",
@@ -81,31 +93,31 @@
                 "config_vars": {
                   "kp": {
                     "key": "Required",
-                    "docs": "**float**: The factor for the proportional term of the PID controller.\n\n\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
+                    "docs": "**float**: The factor for the proportional term of the PID controller.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
                   },
                   "ki": {
                     "key": "Optional",
                     "default": "0.0",
-                    "docs": "**float**: The factor for the integral term of the PID controller. Defaults to `0`.\n\n\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
+                    "docs": "**float**: The factor for the integral term of the PID controller. Defaults to `0`.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
                   },
                   "kd": {
                     "key": "Optional",
                     "default": "0.0",
-                    "docs": "**float**: The factor for the derivative term of the PID controller. Defaults to `0`.\n\n\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
+                    "docs": "**float**: The factor for the derivative term of the PID controller. Defaults to `0`.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
                   },
                   "min_integral": {
                     "key": "Optional",
                     "default": "-1",
-                    "docs": "**float**: The maximum value of the integral term multiplied by `ki` to prevent windup. Defaults to `-1`.\n\n\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
+                    "docs": "**float**: The maximum value of the integral term multiplied by `ki` to prevent windup. Defaults to `-1`.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
                   },
                   "max_integral": {
                     "key": "Optional",
                     "default": "1",
-                    "docs": "**float**: The minimum value of the integral term multiplied by `ki` to prevent windup. Defaults to `1`.\n\n\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
+                    "docs": "**float**: The minimum value of the integral term multiplied by `ki` to prevent windup. Defaults to `1`.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
                   }
                 }
               },
-              "docs": "Control parameters of the PID controller.\n  * **kp** (**Required**, float): The factor for the proportional term of the PID controller.\n  \n  * **ki** (*Optional*, float): The factor for the integral term of the PID controller. Defaults to `0`.\n  \n  * **kd** (*Optional*, float): The factor for the derivative term of the PID controller. Defaults to `0`.\n  \n  * **min_integral** (*Optional*, float): The maximum value of the integral term multiplied by `ki` to prevent windup. Defaults to `-1`.\n  \n  * **max_integral** (*Optional*, float): The minimum value of the integral term multiplied by `ki` to prevent windup. Defaults to `1`.\n  \n  \n\n\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
+              "docs": "Control parameters of the PID controller.\n  * **kp** (**Required**, float): The factor for the proportional term of the PID controller.\n  \n  * **ki** (*Optional*, float): The factor for the integral term of the PID controller. Defaults to `0`.\n  \n  * **kd** (*Optional*, float): The factor for the derivative term of the PID controller. Defaults to `0`.\n  \n  * **min_integral** (*Optional*, float): The maximum value of the integral term multiplied by `ki` to prevent windup. Defaults to `-1`.\n  \n  * **max_integral** (*Optional*, float): The minimum value of the integral term multiplied by `ki` to prevent windup. Defaults to `1`.\n  \n  \n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
             }
           }
         }
@@ -118,7 +130,7 @@
           "config_vars": {
             "id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: ID of the PID Climate being reset.\n\n\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-reset-integral-term-action)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: ID of the PID Climate being reset.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-reset-integral-term-action)*"
             }
           }
         },
@@ -130,22 +142,22 @@
           "config_vars": {
             "id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: ID of the PID Climate to start autotuning for.\n\n\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-autotune-action)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: ID of the PID Climate to start autotuning for.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-autotune-action)*"
             },
             "noiseband": {
               "key": "Optional",
               "default": "0.25",
-              "docs": "**float**: The noiseband of the process (=sensor) variable. The value of the PID controller must be able to reach this value. Defaults to `0.25`.\n\n\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-autotune-action)*"
+              "docs": "**float**: The noiseband of the process (=sensor) variable. The value of the PID controller must be able to reach this value. Defaults to `0.25`.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-autotune-action)*"
             },
             "positive_output": {
               "key": "Optional",
               "default": "1.0",
-              "docs": "**float**: The positive output power to drive the heat output at. Defaults to `1.0`.\n\n\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-autotune-action)*"
+              "docs": "**float**: The positive output power to drive the heat output at. Defaults to `1.0`.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-autotune-action)*"
             },
             "negative_output": {
               "key": "Optional",
               "default": "-1.0",
-              "docs": "**float**: The positive output power to drive the cool output at. Defaults to `-1.0`.\n\n\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-autotune-action)*"
+              "docs": "**float**: The positive output power to drive the cool output at. Defaults to `-1.0`.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-autotune-action)*"
             }
           }
         },
@@ -157,24 +169,24 @@
           "config_vars": {
             "id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: ID of the PID Climate to start autotuning for.\n\n\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-set-control-parameters-action)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: ID of the PID Climate to start autotuning for.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-set-control-parameters-action)*"
             },
             "kp": {
               "key": "Required",
               "templatable": true,
-              "docs": "**float**: The factor for the proportional term of the PID controller.\n\n\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-set-control-parameters-action)*"
+              "docs": "**float**: The factor for the proportional term of the PID controller.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-set-control-parameters-action)*"
             },
             "ki": {
               "key": "Optional",
               "default": "0.0",
               "templatable": true,
-              "docs": "**float**: The factor for the integral term of the PID controller. Defaults to `0`.\n\n\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-set-control-parameters-action)*"
+              "docs": "**float**: The factor for the integral term of the PID controller. Defaults to `0`.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-set-control-parameters-action)*"
             },
             "kd": {
               "key": "Optional",
               "default": "0.0",
               "templatable": true,
-              "docs": "**float**: The factor for the derivative term of the PID controller. Defaults to `0`.\n\n\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-set-control-parameters-action)*"
+              "docs": "**float**: The factor for the derivative term of the PID controller. Defaults to `0`.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-set-control-parameters-action)*"
             }
           }
         },

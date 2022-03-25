@@ -12,16 +12,16 @@
               "key": "Optional",
               "default": "False",
               "type": "boolean",
-              "docs": "Whether to use historical mode or standard mode. With historical mode, baudrate of 1200 must be used whereas 9600 must be used in standard mode. Defaults to `false`.\n\n\n\n*See also: [teleinfo Component/Hub](https://esphome.io/components/sensor/teleinfo.html#configuration-variables)*"
+              "docs": "Whether to use historical mode or standard mode. With historical mode, baudrate of 1200 must be used whereas 9600 must be used in standard mode. Defaults to `false`.\n\n*See also: [teleinfo Component/Hub](https://esphome.io/components/sensor/teleinfo.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",
               "default": "60s",
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n\n\n*See also: [teleinfo Component/Hub](https://esphome.io/components/sensor/teleinfo.html#configuration-variables)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n*See also: [teleinfo Component/Hub](https://esphome.io/components/sensor/teleinfo.html#configuration-variables)*"
             },
             "uart_id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Component](https://esphome.io/components/uart.html#uart) if you want to use multiple UART buses.\n\n\n\n*See also: [teleinfo Component/Hub](https://esphome.io/components/sensor/teleinfo.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Component](https://esphome.io/components/uart.html#uart) if you want to use multiple UART buses.\n\n*See also: [teleinfo Component/Hub](https://esphome.io/components/sensor/teleinfo.html#configuration-variables)*"
             }
           },
           "extends": [

@@ -14,7 +14,7 @@
             "on_tag": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a tag is read. See [Over I\u00b2C](https://esphome.io/components/binary_sensor/pn532.html#pn532-on-tag).\n\n\n\n*See also: [pn532 Over I\u00b2C](https://esphome.io/components/binary_sensor/pn532.html#id1)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a tag is read. See [Over I\u00b2C](https://esphome.io/components/binary_sensor/pn532.html#pn532-on-tag).\n\n*See also: [pn532 Over I\u00b2C](https://esphome.io/components/binary_sensor/pn532.html#id1)*"
             },
             "on_finished_write": {
               "key": "Optional",
@@ -23,12 +23,12 @@
             "on_tag_removed": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a tag is removed. See [on_tag_removed](https://esphome.io/components/binary_sensor/pn532.html#pn532-on-tag-removed).\n\n\n\n*See also: [pn532 Over SPI](https://esphome.io/components/binary_sensor/pn532.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a tag is removed. See [on_tag_removed](https://esphome.io/components/binary_sensor/pn532.html#pn532-on-tag-removed).\n\n*See also: [pn532 Over SPI](https://esphome.io/components/binary_sensor/pn532.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",
               "default": "1s",
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The duration of each scan on the PN532. This affects the duration that the individual binary sensors stay active when they\u2019re found. If a device is not found within this time window, it will be marked as not present. Defaults to 1s.\n\n\n\n*See also: [pn532 Over I\u00b2C](https://esphome.io/components/binary_sensor/pn532.html#id1)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The duration of each scan on the PN532. This affects the duration that the individual binary sensors stay active when they\u2019re found. If a device is not found within this time window, it will be marked as not present. Defaults to 1s.\n\n*See also: [pn532 Over I\u00b2C](https://esphome.io/components/binary_sensor/pn532.html#id1)*"
             }
           },
           "extends": [
@@ -60,14 +60,14 @@
           ],
           "config_vars": {
             "id": {
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n\n\n*See also: [pn532 Binary Sensor](https://esphome.io/components/binary_sensor/pn532.html#id2)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [pn532 Binary Sensor](https://esphome.io/components/binary_sensor/pn532.html#id2)*"
             },
             "pn532_id": {
               "key": "GeneratedID"
             },
             "uid": {
               "key": "Required",
-              "docs": "**string**: The unique ID of the NFC/RFID tag. This is a hyphen-separated list of hexadecimal values. For example `74-10-37-94`.\n\n\n\n*See also: [pn532 Binary Sensor](https://esphome.io/components/binary_sensor/pn532.html#id2)*"
+              "docs": "**string**: The unique ID of the NFC/RFID tag. This is a hyphen-separated list of hexadecimal values. For example `74-10-37-94`.\n\n*See also: [pn532 Binary Sensor](https://esphome.io/components/binary_sensor/pn532.html#id2)*"
             }
           }
         }

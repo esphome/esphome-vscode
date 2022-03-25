@@ -8,31 +8,31 @@
             "name": {
               "key": "Required",
               "type": "string",
-              "docs": "**string**: This is the name of the node. It should always be unique in your ESPHome network. May only contain lowercase characters, digits and hyphens, and can be at most 31 characters long. See [Changing ESPHome Node Name](https://esphome.io/components/esphome.html#esphome-changing-node-name).\n\n\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              "docs": "**string**: This is the name of the node. It should always be unique in your ESPHome network. May only contain lowercase characters, digits and hyphens, and can be at most 31 characters long. See [Changing ESPHome Node Name](https://esphome.io/components/esphome.html#esphome-changing-node-name).\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
             },
             "comment": {
               "key": "Optional",
               "type": "string",
-              "docs": "**string**: Additional text information about this node. Only for display in UI.\n\n\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              "docs": "**string**: Additional text information about this node. Only for display in UI.\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
             },
             "build_path": {
               "key": "Required",
               "type": "string",
-              "docs": "**string**: Customize where ESPHome will store the build files for your node. By default, ESPHome puts the PlatformIO project it uses to build the firmware in the `.esphome/build/<NODE>` directory, but you can customize this behavior using this option.\n\n\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              "docs": "**string**: Customize where ESPHome will store the build files for your node. By default, ESPHome puts the PlatformIO project it uses to build the firmware in the `.esphome/build/<NODE>` directory, but you can customize this behavior using this option.\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
             },
             "platformio_options": {
               "key": "String",
               "default": "{}",
-              "key_dump": "<function string_strict at 0x000001BB8E0AF700>",
+              "key_dump": "<function string_strict at 0x000001BFB6C10700>",
               "type": "schema",
               "schema": {
                 "config_vars": {
-                  "<function string_strict at 0x000001BB8E0AF700>": {
+                  "<function string_strict at 0x000001BFB6C10700>": {
                     "type": "string"
                   }
                 }
               },
-              "docs": "**mapping**: Additional options to pass over to PlatformIO in the platformio.ini file. See [platformio_options](https://esphome.io/components/esphome.html#esphome-platformio-options).\n\n\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              "docs": "**mapping**: Additional options to pass over to PlatformIO in the platformio.ini file. See [platformio_options](https://esphome.io/components/esphome.html#esphome-platformio-options).\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
             },
             "on_boot": {
               "key": "Optional",
@@ -42,43 +42,43 @@
                   "priority": {
                     "key": "Optional",
                     "default": "600.0",
-                    "docs": "**float**: The priority to execute your custom initialization code. A higher value means a high priority and thus also your code being executed earlier. Please note this is an ESPHome-internal value and any change will not be marked as a breaking change. Defaults to `600`. Priorities (you can use any value between them too):\n  * `800.0`: This is where all hardware initialization of vital components is executed. For example setting switches to their initial state.\n  \n  * `600.0`: This is where most sensors are set up.\n  \n  * `250.0`: At this priority, WiFi is initialized.\n  \n  * `200.0`: Network connections like MQTT/native API are set up at this priority.\n  \n  * `-100.0`: At this priority, pretty much everything should already be initialized.\n  \n  \n\n\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#on-boot)*"
+                    "docs": "**float**: The priority to execute your custom initialization code. A higher value means a high priority and thus also your code being executed earlier. Please note this is an ESPHome-internal value and any change will not be marked as a breaking change. Defaults to `600`. Priorities (you can use any value between them too):\n  * `800.0`: This is where all hardware initialization of vital components is executed. For example setting switches to their initial state.\n  \n  * `600.0`: This is where most sensors are set up.\n  \n  * `250.0`: At this priority, WiFi is initialized.\n  \n  * `200.0`: Network connections like MQTT/native API are set up at this priority.\n  \n  * `-100.0`: At this priority, pretty much everything should already be initialized.\n  \n  \n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#on-boot)*"
                   },
                   "then": {
                     "type": "trigger"
                   }
                 }
               },
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the node starts. See [on_boot](https://esphome.io/components/esphome.html#esphome-on-boot).\n\n\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the node starts. See [on_boot](https://esphome.io/components/esphome.html#esphome-on-boot).\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
             },
             "on_shutdown": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform right before the node shuts down. See [on_shutdown](https://esphome.io/components/esphome.html#esphome-on-shutdown).\n\n\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform right before the node shuts down. See [on_shutdown](https://esphome.io/components/esphome.html#esphome-on-shutdown).\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
             },
             "on_loop": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform on each `loop()` iteration. See [on_loop](https://esphome.io/components/esphome.html#esphome-on-loop).\n\n\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform on each `loop()` iteration. See [on_loop](https://esphome.io/components/esphome.html#esphome-on-loop).\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
             },
             "includes": {
               "key": "Optional",
               "default": "[]",
               "is_list": true,
-              "docs": "**list of files**: A list of C/C++ files to include in the main (auto-generated) sketch file for custom components. The paths in this list are relative to the directory where the YAML configuration file is in. See [includes](https://esphome.io/components/esphome.html#esphome-includes).\n\n\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              "docs": "**list of files**: A list of C/C++ files to include in the main (auto-generated) sketch file for custom components. The paths in this list are relative to the directory where the YAML configuration file is in. See [includes](https://esphome.io/components/esphome.html#esphome-includes).\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
             },
             "libraries": {
               "key": "Optional",
               "default": "[]",
               "is_list": true,
               "type": "string",
-              "docs": "**list of libraries**: A list of libraries to include in the project. See [libraries](https://esphome.io/components/esphome.html#esphome-libraries).\n\n\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              "docs": "**list of libraries**: A list of libraries to include in the project. See [libraries](https://esphome.io/components/esphome.html#esphome-libraries).\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
             },
             "name_add_mac_suffix": {
               "key": "Optional",
               "default": "False",
               "type": "boolean",
-              "docs": "**boolean**: Appends the last 3 bytes of the mac address of the device to the name in the form `<name>-aabbcc`. Defaults to `false`. See [Adding the MAC address as a suffix to the device name](https://esphome.io/components/esphome.html#esphome-mac-suffix).\n\n\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              "docs": "**boolean**: Appends the last 3 bytes of the mac address of the device to the name in the form `<name>-aabbcc`. Defaults to `false`. See [Adding the MAC address as a suffix to the device name](https://esphome.io/components/esphome.html#esphome-mac-suffix).\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
             },
             "project": {
               "key": "Optional",
@@ -88,16 +88,16 @@
                   "name": {
                     "key": "Required",
                     "type": "string",
-                    "docs": "**string**: Name of the project\n\n\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+                    "docs": "**string**: Name of the project\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
                   },
                   "version": {
                     "key": "Required",
                     "type": "string",
-                    "docs": "**string**: Version of the project\n\n\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+                    "docs": "**string**: Version of the project\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
                   }
                 }
               },
-              "docs": "ESPHome Creator\u2019s Project information. See [Project information](https://esphome.io/components/esphome.html#esphome-creators-project).\n  * **name** (**Required**, string): Name of the project\n  \n  * **version** (**Required**, string): Version of the project\n  \n  \n\n\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              "docs": "ESPHome Creator\u2019s Project information. See [Project information](https://esphome.io/components/esphome.html#esphome-creators-project).\n  * **name** (**Required**, string): Name of the project\n  \n  * **version** (**Required**, string): Version of the project\n  \n  \n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
             }
           }
         }
@@ -194,16 +194,16 @@
             "retain": {
               "key": "Optional",
               "type": "boolean",
-              "docs": "**boolean**: If all MQTT state messages should be retained. Defaults to `true`.\n\n\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
+              "docs": "**boolean**: If all MQTT state messages should be retained. Defaults to `true`.\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
             },
             "discovery": {
               "key": "Optional",
               "type": "boolean",
-              "docs": "**boolean**: Manually enable/disable discovery for a component. Defaults to the global default.\n\n\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
+              "docs": "**boolean**: Manually enable/disable discovery for a component. Defaults to the global default.\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
             },
             "state_topic": {
               "key": "Optional",
-              "docs": "**string**: The topic to publish state updates to. Defaults to `<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/state`.\n\n\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
+              "docs": "**string**: The topic to publish state updates to. Defaults to `<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/state`.\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
             },
             "availability": {
               "key": "Optional",
@@ -223,7 +223,7 @@
                   }
                 }
               },
-              "docs": "Manually set what should be sent to Home Assistant for showing entity availability. Default derived from [global birth/last will message](https://esphome.io/components/mqtt.html#mqtt-last-will-birth).\n\n\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
+              "docs": "Manually set what should be sent to Home Assistant for showing entity availability. Default derived from [global birth/last will message](https://esphome.io/components/mqtt.html#mqtt-last-will-birth).\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
             }
           }
         }
@@ -247,15 +247,15 @@
           "config_vars": {
             "command_topic": {
               "key": "Optional",
-              "docs": "**string**: The topic to subscribe to for commands from the remote. Defaults to `<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/command`.\n\n\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
+              "docs": "**string**: The topic to subscribe to for commands from the remote. Defaults to `<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/command`.\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
             },
             "command_retain": {
               "key": "Optional",
               "type": "boolean",
-              "docs": "**boolean**: Whether MQTT command messages sent to the device should be retained or not. Default to `false`.\n\n\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
+              "docs": "**boolean**: Whether MQTT command messages sent to the device should be retained or not. Default to `false`.\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
             },
             "name": {
-              "docs": "**string**: The name to use for the MQTT Component.\n\n\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
+              "docs": "**string**: The name to use for the MQTT Component.\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
             }
           }
         }
@@ -267,26 +267,26 @@
             "name": {
               "key": "Optional",
               "type": "string",
-              "docs": "**string**: The name for the binary sensor.\n\n\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id1)*"
+              "docs": "**string**: The name for the binary sensor.\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id1)*"
             },
             "internal": {
               "key": "Optional",
               "type": "boolean",
-              "docs": "**boolean**: Mark this component as internal. Internal components will not be exposed to the frontend (like Home Assistant). Only specifying an `id` without a `name` will implicitly set this to true.\n\n\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#base-text-sensor-configuration)*"
+              "docs": "**boolean**: Mark this component as internal. Internal components will not be exposed to the frontend (like Home Assistant). Only specifying an `id` without a `name` will implicitly set this to true.\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#base-text-sensor-configuration)*"
             },
             "disabled_by_default": {
               "key": "Optional",
               "default": "False",
               "type": "boolean",
-              "docs": "**boolean**: If true, then this entity should not be added to any client\u2019s frontend, (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI). Requires Home Assistant 2021.9 or newer. Defaults to `false`.\n\n\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#base-text-sensor-configuration)*"
+              "docs": "**boolean**: If true, then this entity should not be added to any client\u2019s frontend, (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI). Requires Home Assistant 2021.9 or newer. Defaults to `false`.\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#base-text-sensor-configuration)*"
             },
             "icon": {
               "key": "Optional",
-              "docs": "**icon**: Manually set the icon to use for the sensor in the frontend.\n\n\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#base-text-sensor-configuration)*"
+              "docs": "**icon**: Manually set the icon to use for the sensor in the frontend.\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#base-text-sensor-configuration)*"
             },
             "entity_category": {
               "key": "Optional",
-              "docs": "**string**: The category of the entity. See [https://developers.home-assistant.io/docs/core/entity/#generic-properties](https://developers.home-assistant.io/docs/core/entity/#generic-properties) for a list of available options. Requires Home Assistant 2021.11 or newer. Set to `\"\"` to remove the default entity category.\n\n\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#base-text-sensor-configuration)*"
+              "docs": "**string**: The category of the entity. See [https://developers.home-assistant.io/docs/core/entity/#generic-properties](https://developers.home-assistant.io/docs/core/entity/#generic-properties) for a list of available options. Requires Home Assistant 2021.11 or newer. Set to `\"\"` to remove the default entity category.\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#base-text-sensor-configuration)*"
             }
           }
         }
@@ -681,21 +681,21 @@
               "key": "Required",
               "type": "registry",
               "registry": "condition",
-              "docs": "**[All Conditions](https://esphome.io/guides/automations.html#config-condition)**: The condition to check which branch to take. See [Conditions](https://esphome.io/guides/automations.html#config-condition).\n\n\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#if-action)*"
+              "docs": "**[All Conditions](https://esphome.io/guides/automations.html#config-condition)**: The condition to check which branch to take. See [Conditions](https://esphome.io/guides/automations.html#config-condition).\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#if-action)*"
             },
             "then": {
               "key": "Optional",
               "is_list": true,
               "type": "registry",
               "registry": "action",
-              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: The action to perform if the condition evaluates to true. Defaults to doing nothing.\n\n\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#if-action)*"
+              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: The action to perform if the condition evaluates to true. Defaults to doing nothing.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#if-action)*"
             },
             "else": {
               "key": "Optional",
               "is_list": true,
               "type": "registry",
               "registry": "action",
-              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: The action to perform if the condition evaluates to false. Defaults to doing nothing.\n\n\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#if-action)*"
+              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: The action to perform if the condition evaluates to false. Defaults to doing nothing.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#if-action)*"
             }
           }
         },
@@ -709,14 +709,14 @@
               "key": "Required",
               "type": "registry",
               "registry": "condition",
-              "docs": "The condition to check whether to execute. See [Conditions](https://esphome.io/guides/automations.html#config-condition).\n\n\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#while-action)*"
+              "docs": "The condition to check whether to execute. See [Conditions](https://esphome.io/guides/automations.html#config-condition).\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#while-action)*"
             },
             "then": {
               "key": "Required",
               "is_list": true,
               "type": "registry",
               "registry": "action",
-              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: The action to perform until the condition evaluates to false.\n\n\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#while-action)*"
+              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: The action to perform until the condition evaluates to false.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#while-action)*"
             }
           }
         },
@@ -735,14 +735,14 @@
                   "core.positive_not_null_int"
                 ]
               },
-              "docs": "**int**: The number of times the action should be repeated.\n\n\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#repeat-action)*"
+              "docs": "**int**: The number of times the action should be repeated.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#repeat-action)*"
             },
             "then": {
               "key": "Required",
               "is_list": true,
               "type": "registry",
               "registry": "action",
-              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: The action to repeat.\n\n\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#repeat-action)*"
+              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: The action to repeat.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#repeat-action)*"
             }
           }
         },
@@ -757,7 +757,7 @@
               "key": "Required",
               "type": "registry",
               "registry": "condition",
-              "docs": "The condition to wait to become true. See [Conditions](https://esphome.io/guides/automations.html#config-condition).\n\n\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#wait-until-action)*"
+              "docs": "The condition to wait to become true. See [Conditions](https://esphome.io/guides/automations.html#config-condition).\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#wait-until-action)*"
             },
             "timeout": {
               "key": "Optional",
@@ -768,7 +768,7 @@
                   "core.positive_time_period_milliseconds"
                 ]
               },
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Time to wait before timing out. Defaults to never timing out.\n\n\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#wait-until-action)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Time to wait before timing out. Defaults to never timing out.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#wait-until-action)*"
             }
           }
         },
@@ -810,13 +810,13 @@
                   "core.positive_time_period_milliseconds"
                 ]
               },
-              "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), [Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time for which the condition has to have been true.\n\n\n\n*See also: [script Component](https://esphome.io/guides/automations.html#for-condition)*"
+              "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), [Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time for which the condition has to have been true.\n\n*See also: [script Component](https://esphome.io/guides/automations.html#for-condition)*"
             },
             "condition": {
               "key": "Required",
               "type": "registry",
               "registry": "condition",
-              "docs": "**[Condition](https://esphome.io/guides/automations.html#config-condition)**: The condition to check.\n\n\n\n*See also: [script Component](https://esphome.io/guides/automations.html#for-condition)*"
+              "docs": "**[Condition](https://esphome.io/guides/automations.html#config-condition)**: The condition to check.\n\n*See also: [script Component](https://esphome.io/guides/automations.html#for-condition)*"
             }
           },
           "extends": [

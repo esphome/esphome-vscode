@@ -11,7 +11,7 @@
           "config_vars": {
             "id": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n\n\n*See also: [Slow PWM Output](https://esphome.io/components/output/slow_pwm.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n*See also: [Slow PWM Output](https://esphome.io/components/output/slow_pwm.html#configuration-variables)*"
             },
             "pin": {
               "key": "Optional",
@@ -20,22 +20,22 @@
                 "output"
               ],
               "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin to pulse.\n\n\n\n*See also: [Slow PWM Output](https://esphome.io/components/output/slow_pwm.html#configuration-variables)*"
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin to pulse.\n\n*See also: [Slow PWM Output](https://esphome.io/components/output/slow_pwm.html#configuration-variables)*"
             },
             "turn_on_action": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the load is turned on. Can be used to control for example a switch or output component.\n\n\n\n*See also: [Slow PWM Output](https://esphome.io/components/output/slow_pwm.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the load is turned on. Can be used to control for example a switch or output component.\n\n*See also: [Slow PWM Output](https://esphome.io/components/output/slow_pwm.html#configuration-variables)*"
             },
             "turn_off_action": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the load is turned off. `turn_on_action` and `turn_off_action` must be configured together.\n\n\n\n*See also: [Slow PWM Output](https://esphome.io/components/output/slow_pwm.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the load is turned off. `turn_on_action` and `turn_off_action` must be configured together.\n\n*See also: [Slow PWM Output](https://esphome.io/components/output/slow_pwm.html#configuration-variables)*"
             },
             "state_change_action": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the load is switched. If a lambda is used the boolean `state` parameter holds the new status.\n\n\n\n*See also: [Slow PWM Output](https://esphome.io/components/output/slow_pwm.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the load is switched. If a lambda is used the boolean `state` parameter holds the new status.\n\n*See also: [Slow PWM Output](https://esphome.io/components/output/slow_pwm.html#configuration-variables)*"
             },
             "period": {
               "key": "Required",
@@ -45,13 +45,13 @@
                   "core.positive_time_period_milliseconds"
                 ]
               },
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The duration of each cycle. (i.e. a 10s period at 50% duty would result in the pin being turned on for 5s, then off for 5s)\n\n\n\n*See also: [Slow PWM Output](https://esphome.io/components/output/slow_pwm.html#configuration-variables)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The duration of each cycle. (i.e. a 10s period at 50% duty would result in the pin being turned on for 5s, then off for 5s)\n\n*See also: [Slow PWM Output](https://esphome.io/components/output/slow_pwm.html#configuration-variables)*"
             },
             "restart_cycle_on_state_change": {
               "key": "Optional",
               "default": "False",
               "type": "boolean",
-              "docs": "**boolean**: Restart a timer of a cycle when new state is set. Defaults to `false`.\n\n\n\n*See also: [Slow PWM Output](https://esphome.io/components/output/slow_pwm.html#configuration-variables)*"
+              "docs": "**boolean**: Restart a timer of a cycle when new state is set. Defaults to `false`.\n\n*See also: [Slow PWM Output](https://esphome.io/components/output/slow_pwm.html#configuration-variables)*"
             }
           }
         }

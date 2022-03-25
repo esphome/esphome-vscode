@@ -14,15 +14,15 @@
             },
             "output": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the binary output component to use for this fan.\n\n\n\n*See also: [Binary Fan](https://esphome.io/components/fan/binary.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the binary output component to use for this fan.\n\n*See also: [Binary Fan](https://esphome.io/components/fan/binary.html#configuration-variables)*"
             },
             "direction_output": {
               "key": "Optional",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the [output](https://esphome.io/components/output/index.html#output) to use for the direction state of the fan. Default is empty.\n\n\n\n*See also: [Binary Fan](https://esphome.io/components/fan/binary.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the [output](https://esphome.io/components/output/index.html#output) to use for the direction state of the fan. Default is empty.\n\n*See also: [Binary Fan](https://esphome.io/components/fan/binary.html#configuration-variables)*"
             },
             "oscillation_output": {
               "key": "Optional",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the [output](https://esphome.io/components/output/index.html#output) to use for the oscillation state of this fan. Default is empty.\n\n\n\n*See also: [Binary Fan](https://esphome.io/components/fan/binary.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the [output](https://esphome.io/components/output/index.html#output) to use for the oscillation state of this fan. Default is empty.\n\n*See also: [Binary Fan](https://esphome.io/components/fan/binary.html#configuration-variables)*"
             }
           }
         }
@@ -43,7 +43,7 @@
             },
             "output": {
               "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the binary [Output Component](https://esphome.io/components/output/index.html#output) to use for this light.\n\n\n\n*See also: [Binary Light](https://esphome.io/components/light/binary.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the binary [Output Component](https://esphome.io/components/output/index.html#output) to use for this light.\n\n*See also: [Binary Light](https://esphome.io/components/light/binary.html#configuration-variables)*"
             }
           }
         }
