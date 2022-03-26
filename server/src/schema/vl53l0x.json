@@ -60,12 +60,7 @@
             "address": {
               "key": "Optional",
               "default": "41",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: Manually specify the i2c address of the sensor. Defaults to `0x29`. If an address other the `0x29` is specified, the sensor will be dynamically re-addressed at startup. A dynamic re-address of sensor requires the `enable_pin` configuration variable to be assigned. If more then one VL53L0X sensor is used on the same i2c bus, a unique address must be specified per sensor.\n\n*See also: [VL53L0X Time Of Flight Distance Sensor](https://esphome.io/components/sensor/vl53l0x.html#configuration-variables)*"
             }
           }

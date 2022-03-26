@@ -12,12 +12,8 @@
             "deviceaddress": {
               "key": "Optional",
               "default": "0",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint8_t"
-                ]
-              },
+              "type": "integer",
+              "data_type": "uint8_t",
               "docs": "**int**: The address of the chip. Defaults to `0`.\n\n*See also: [MCP23S08 Component](https://esphome.io/components/mcp23Sxx.html#configuration-variables)*"
             },
             "open_drain_interrupt": {

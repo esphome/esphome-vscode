@@ -173,12 +173,7 @@
             "gamma_correct": {
               "key": "Optional",
               "default": "2.8",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_float"
-                ]
-              },
+              "data_type": "positive_float",
               "docs": "**float**: Apply a [gamma correction factor](https://en.wikipedia.org/wiki/Gamma_correction) to the light channels. Defaults to `2.8`.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
             },
             "default_transition_length": {
@@ -579,23 +574,15 @@
             "range_from": {
               "key": "Optional",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_int",
               "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), int**: The beginning of the range of LEDs to control, inclusive, using zero-based indexing. Defaults to 0 (the beginning of the strip).\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#light-addressable-set-action)*"
             },
             "range_to": {
               "key": "Optional",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_int",
               "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), int**: The end of the range of LEDs to control, inclusive, using zero-based indexing. Defaults to the end of the strip (`num_leds` - 1).\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#light-addressable-set-action)*"
             },
             "color_brightness": {
@@ -923,23 +910,15 @@
             "speed": {
               "key": "Optional",
               "default": "10",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint32_t"
-                ]
-              },
+              "type": "integer",
+              "data_type": "uint32_t",
               "docs": "**int**: The speed of the effect, unitless. Defaults to `10`.\n\n*See also: [Addressable Rainbow Effect](https://esphome.io/components/light/index.html#addressable-rainbow-effect)*"
             },
             "width": {
               "key": "Optional",
               "default": "50",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint32_t"
-                ]
-              },
+              "type": "integer",
+              "data_type": "uint32_t",
               "docs": "**int**: The \u201cwidth\u201d of a full-scale rainbow, unitless. Defaults to `50`.\n\n*See also: [Addressable Rainbow Effect](https://esphome.io/components/light/index.html#addressable-rainbow-effect)*"
             },
             "name": {
@@ -990,12 +969,8 @@
                   },
                   "num_leds": {
                     "key": "Required",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.uint32_t"
-                      ]
-                    },
+                    "type": "integer",
+                    "data_type": "uint32_t",
                     "docs": "**int**: The number of leds of this type to have before moving on to the next color.\n\n*See also: [Addressable Color Wipe Effect](https://esphome.io/components/light/index.html#addressable-color-wipe-effect)*"
                   }
                 }
@@ -1149,12 +1124,8 @@
             "fade_out_rate": {
               "key": "Optional",
               "default": "120",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint8_t"
-                ]
-              },
+              "type": "integer",
+              "data_type": "uint8_t",
               "docs": "**int**: The rate with which to fade out the LED strip, unitless. Needs to be carefully chosen so that the whole strip doesn\u2019t light up forever if the fade out rate is too low or that the firework sparks do not propagate for a long time. Defaults to `120`.\n\n*See also: [Addressable Fireworks Effect](https://esphome.io/components/light/index.html#addressable-fireworks-effect)*"
             },
             "name": {
@@ -1253,12 +1224,8 @@
             "port": {
               "key": "Optional",
               "default": "21324",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.port"
-                ]
-              },
+              "type": "integer",
+              "data_type": "port",
               "docs": "**int**: The port to run the UDP server on. Defaults to `21324`.\n\n*See also: [WLED Effect](https://esphome.io/components/light/index.html#wled-effect)*"
             },
             "name": {

@@ -147,12 +147,7 @@
             "address": {
               "key": "Optional",
               "default": "83",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: Manually specify the I\u00b2C address of the sensor. Default is `0x53`.\n\n*See also: [LTR390 UV and Ambient Light Sensor](https://esphome.io/components/sensor/ltr390.html#configuration-variables)*"
             }
           },

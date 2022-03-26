@@ -38,12 +38,7 @@
             "data": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint32_t"
-                ]
-              },
+              "data_type": "hex_uint32_t",
               "docs": "**int**: The Coolix code to send, see dumper output for more info.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-coolix-action)*"
             }
           },
@@ -84,12 +79,7 @@
             "data": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint32_t"
-                ]
-              },
+              "data_type": "hex_uint32_t",
               "docs": "**int**: The JVC code to send, see dumper output for more info.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-jvc-action)*"
             }
           },
@@ -106,12 +96,7 @@
             "data": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint32_t"
-                ]
-              },
+              "data_type": "hex_uint32_t",
               "docs": "**int**: The LG code to send, see dumper output for more info.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-lg-action)*"
             },
             "nbits": {
@@ -139,24 +124,14 @@
             "wand_id": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint32_t"
-                ]
-              },
+              "data_type": "hex_uint32_t",
               "docs": "**int**: The wand ID to send, as a hex integer.  See the dumper output for your wand ID.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-magiquest-action)*"
             },
             "magnitude": {
               "key": "Optional",
               "default": "65535",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint16_t"
-                ]
-              },
+              "data_type": "hex_uint16_t",
               "docs": "**int**: The magnitude of swishes and swirls of the want to transmit.  See the dumper output for examples.  If omitted, sends 0xFFFF (which the real wand never uses).\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-magiquest-action)*"
             }
           },
@@ -173,23 +148,13 @@
             "address": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint16_t"
-                ]
-              },
+              "data_type": "hex_uint16_t",
               "docs": "**int**: The address to send, see dumper output for more details.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-nec-action)*"
             },
             "command": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint16_t"
-                ]
-              },
+              "data_type": "hex_uint16_t",
               "docs": "**int**: The NEC command to send.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-nec-action)*"
             }
           },
@@ -206,24 +171,14 @@
             "rc_code_1": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint16_t"
-                ]
-              },
+              "data_type": "hex_uint16_t",
               "docs": "**int**: The remote control code to send, see dumper output for more details.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-pioneer-action)*"
             },
             "rc_code_2": {
               "key": "Optional",
               "default": "0",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint16_t"
-                ]
-              },
+              "data_type": "hex_uint16_t",
               "docs": "**int**: The secondary remote control code to send; some codes are sent in two parts.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-pioneer-action)*"
             }
           },
@@ -257,12 +212,7 @@
             "data": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint32_t"
-                ]
-              },
+              "data_type": "hex_uint32_t",
               "docs": "**int**: The Sony code to send, see dumper output for more info.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-sony-action)*"
             },
             "nbits": {
@@ -350,42 +300,23 @@
                 "config_vars": {
                   "pulse_length": {
                     "key": "Required",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.uint32_t"
-                      ]
-                    }
+                    "type": "integer",
+                    "data_type": "uint32_t"
                   },
                   "sync": {
                     "key": "Optional",
                     "default": "[1, 31]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "zero": {
                     "key": "Optional",
                     "default": "[1, 3]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "one": {
                     "key": "Optional",
                     "default": "[3, 1]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "inverted": {
                     "key": "Optional",
@@ -406,12 +337,8 @@
                   "times": {
                     "key": "Required",
                     "templatable": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_int"
-                      ]
-                    }
+                    "type": "integer",
+                    "data_type": "positive_int"
                   },
                   "wait_time": {
                     "key": "Optional",
@@ -463,42 +390,23 @@
                 "config_vars": {
                   "pulse_length": {
                     "key": "Required",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.uint32_t"
-                      ]
-                    }
+                    "type": "integer",
+                    "data_type": "uint32_t"
                   },
                   "sync": {
                     "key": "Optional",
                     "default": "[1, 31]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "zero": {
                     "key": "Optional",
                     "default": "[1, 3]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "one": {
                     "key": "Optional",
                     "default": "[3, 1]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "inverted": {
                     "key": "Optional",
@@ -519,12 +427,8 @@
                   "times": {
                     "key": "Required",
                     "templatable": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_int"
-                      ]
-                    }
+                    "type": "integer",
+                    "data_type": "positive_int"
                   },
                   "wait_time": {
                     "key": "Optional",
@@ -578,42 +482,23 @@
                 "config_vars": {
                   "pulse_length": {
                     "key": "Required",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.uint32_t"
-                      ]
-                    }
+                    "type": "integer",
+                    "data_type": "uint32_t"
                   },
                   "sync": {
                     "key": "Optional",
                     "default": "[1, 31]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "zero": {
                     "key": "Optional",
                     "default": "[1, 3]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "one": {
                     "key": "Optional",
                     "default": "[3, 1]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "inverted": {
                     "key": "Optional",
@@ -634,12 +519,8 @@
                   "times": {
                     "key": "Required",
                     "templatable": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_int"
-                      ]
-                    }
+                    "type": "integer",
+                    "data_type": "positive_int"
                   },
                   "wait_time": {
                     "key": "Optional",
@@ -717,42 +598,23 @@
                 "config_vars": {
                   "pulse_length": {
                     "key": "Required",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.uint32_t"
-                      ]
-                    }
+                    "type": "integer",
+                    "data_type": "uint32_t"
                   },
                   "sync": {
                     "key": "Optional",
                     "default": "[1, 31]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "zero": {
                     "key": "Optional",
                     "default": "[1, 3]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "one": {
                     "key": "Optional",
                     "default": "[3, 1]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "inverted": {
                     "key": "Optional",
@@ -773,12 +635,8 @@
                   "times": {
                     "key": "Required",
                     "templatable": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_int"
-                      ]
-                    }
+                    "type": "integer",
+                    "data_type": "positive_int"
                   },
                   "wait_time": {
                     "key": "Optional",
@@ -838,42 +696,23 @@
                 "config_vars": {
                   "pulse_length": {
                     "key": "Required",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.uint32_t"
-                      ]
-                    }
+                    "type": "integer",
+                    "data_type": "uint32_t"
                   },
                   "sync": {
                     "key": "Optional",
                     "default": "[1, 31]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "zero": {
                     "key": "Optional",
                     "default": "[1, 3]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "one": {
                     "key": "Optional",
                     "default": "[3, 1]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "inverted": {
                     "key": "Optional",
@@ -894,12 +733,8 @@
                   "times": {
                     "key": "Required",
                     "templatable": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_int"
-                      ]
-                    }
+                    "type": "integer",
+                    "data_type": "positive_int"
                   },
                   "wait_time": {
                     "key": "Optional",
@@ -929,12 +764,7 @@
             "data": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint64_t"
-                ]
-              },
+              "data_type": "hex_uint64_t",
               "docs": "**int**: The data to send, see dumper output for more details.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-samsung-action)*"
             },
             "nbits": {
@@ -958,23 +788,13 @@
             "address": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint16_t"
-                ]
-              },
+              "data_type": "hex_uint16_t",
               "docs": "**int**: The address to send, see dumper output for more details.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-samsung36-action)*"
             },
             "command": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint32_t"
-                ]
-              },
+              "data_type": "hex_uint32_t",
               "docs": "**int**: The Samsung36 command to send, see dumper output for more details.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-samsung36-action)*"
             }
           },
@@ -991,24 +811,14 @@
             "rc_code_1": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint64_t"
-                ]
-              },
+              "data_type": "hex_uint64_t",
               "docs": "**int**: The remote control code to send, see dumper output for more details.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-toshiba-ac-action)*"
             },
             "rc_code_2": {
               "key": "Optional",
               "default": "0",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint64_t"
-                ]
-              },
+              "data_type": "hex_uint64_t",
               "docs": "**int**: The secondary remote control code to send; some codes are sent in two parts.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-toshiba-ac-action)*"
             }
           },
@@ -1025,23 +835,13 @@
             "address": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint16_t"
-                ]
-              },
+              "data_type": "hex_uint16_t",
               "docs": "**int**: The address to send the command to, see dumper output for more details.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-panasonic-action)*"
             },
             "command": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint32_t"
-                ]
-              },
+              "data_type": "hex_uint32_t",
               "docs": "**int**: The command to send.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-panasonic-action)*"
             }
           },
@@ -1058,56 +858,31 @@
             "device": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint32_t"
-                ]
-              },
+              "data_type": "hex_uint32_t",
               "docs": "**int**: The Nexa device code to send, see dumper output for more info.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-nexa-action)*"
             },
             "group": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: The Nexa group code to send, see dumper output for more info.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-nexa-action)*"
             },
             "state": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: The Nexa state code to send (0-OFF, 1-ON, 2-DIMMER LEVEL), see dumper output for more info.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-nexa-action)*"
             },
             "channel": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: The Nexa channel code to send, see dumper output for more info.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-nexa-action)*"
             },
             "level": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: The Nexa level code to send, see dumper output for more info.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-nexa-action)*"
             }
           },

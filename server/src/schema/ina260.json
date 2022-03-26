@@ -91,12 +91,7 @@
             "address": {
               "key": "Optional",
               "default": "64",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: Manually specify the I\u00b2C address of the sensor. Defaults to `0x40`.\n\n*See also: [INA260 DC Current and Power sensor](https://esphome.io/components/sensor/ina260.html#configuration-variables)*"
             }
           },

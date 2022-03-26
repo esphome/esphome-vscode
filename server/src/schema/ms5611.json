@@ -70,12 +70,7 @@
             "address": {
               "key": "Optional",
               "default": "119",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: Manually specify the I\u00b2C address of the sensor. Defaults to `0x77`.\n\n*See also: [MS5611 Atmospheric Pressure Sensor](https://esphome.io/components/sensor/ms5611.html#configuration-variables)*"
             }
           },

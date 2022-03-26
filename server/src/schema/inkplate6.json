@@ -28,12 +28,8 @@
             "full_update_every": {
               "key": "Optional",
               "default": "10",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint32_t"
-                ]
-              },
+              "type": "integer",
+              "data_type": "uint32_t",
               "docs": "**int**: When partial updating is enabled, forces a full screen update after chosen number of updates. Defaults to `10`\n\n*See also: [Inkplate 6, 10 and 6 Plus](https://esphome.io/components/display/inkplate6.html#configuration-variables)*"
             },
             "model": {
@@ -248,12 +244,7 @@
             "address": {
               "key": "Optional",
               "default": "72",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              }
+              "data_type": "hex_uint8_t"
             }
           }
         }

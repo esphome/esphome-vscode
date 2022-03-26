@@ -19,12 +19,7 @@
             "address": {
               "key": "Optional",
               "default": "96",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: Manually specify the I2C address of the DAC. Defaults to `0x60`.\n\n*See also: [MCP4725 Output](https://esphome.io/components/output/mcp4725.html#configuration-variables)*"
             }
           }

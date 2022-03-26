@@ -406,11 +406,6 @@
       }
     },
     "schemas": {
-      "validate_filters": {
-        "is_list": true,
-        "type": "registry",
-        "registry": "sensor.filter"
-      },
       "SENSOR_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -498,12 +493,9 @@
             },
             "filters": {
               "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "sensor.validate_filters"
-                ]
-              },
+              "type": "registry",
+              "is_list": true,
+              "registry": "sensor.filter",
               "docs": "Specify filters to use for some basic transforming of values. See [Sensor Filters](https://esphome.io/components/sensor/index.html#sensor-filters) for more information.\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
             },
             "on_value": {
@@ -579,45 +571,28 @@
             "window_size": {
               "key": "Optional",
               "default": "5",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: The number of values over which to calculate the quantile when pushing out a value. Defaults to `5`.\n\n*See also: [quantile](https://esphome.io/components/sensor/index.html#quantile)*"
             },
             "send_every": {
               "key": "Optional",
               "default": "5",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: How often a sensor value should be pushed out. For example, in above configuration the quantile is calculated after every 4th received sensor value, over the last 7 received values. Defaults to `5`.\n\n*See also: [quantile](https://esphome.io/components/sensor/index.html#quantile)*"
             },
             "send_first_at": {
               "key": "Optional",
               "default": "1",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Must be smaller than or equal to `send_every` Defaults to `1`.\n\n*See also: [quantile](https://esphome.io/components/sensor/index.html#quantile)*"
             },
             "quantile": {
               "key": "Optional",
               "default": "0.9",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.zero_to_one_float"
-                ]
-              },
+              "data_type": "zero_to_one_float",
               "docs": "**float**: value from 0 to 1 to determine which quantile to pick. Defaults to `.9`.\n\n*See also: [quantile](https://esphome.io/components/sensor/index.html#quantile)*"
             }
           }
@@ -631,34 +606,22 @@
             "window_size": {
               "key": "Optional",
               "default": "5",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: The number of values over which to calculate the median when pushing out a value. This number should be odd if you want an actual received value pushed out. Defaults to `5`.\n\n*See also: [median](https://esphome.io/components/sensor/index.html#median)*"
             },
             "send_every": {
               "key": "Optional",
               "default": "5",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: How often a sensor value should be pushed out. For example, in above configuration the median is calculated after every 4th received sensor value, over the last 7 received values. Defaults to `5`.\n\n*See also: [median](https://esphome.io/components/sensor/index.html#median)*"
             },
             "send_first_at": {
               "key": "Optional",
               "default": "1",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Must be smaller than or equal to `send_every` Defaults to `1`.\n\n*See also: [median](https://esphome.io/components/sensor/index.html#median)*"
             }
           }
@@ -672,34 +635,22 @@
             "window_size": {
               "key": "Optional",
               "default": "5",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: The number of values over which to calculate the min/max when pushing out a value. Defaults to `5`.\n\n*See also: [min](https://esphome.io/components/sensor/index.html#min)*"
             },
             "send_every": {
               "key": "Optional",
               "default": "5",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: How often a sensor value should be pushed out. For example, in above configuration the min is calculated after every 4th received sensor value, over the last 7 received values. Defaults to `5`.\n\n*See also: [min](https://esphome.io/components/sensor/index.html#min)*"
             },
             "send_first_at": {
               "key": "Optional",
               "default": "1",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Must be smaller than or equal to `send_every` Defaults to `1`.\n\n*See also: [min](https://esphome.io/components/sensor/index.html#min)*"
             }
           }
@@ -713,34 +664,22 @@
             "window_size": {
               "key": "Optional",
               "default": "5",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: The number of values over which to calculate the min/max when pushing out a value. Defaults to `5`.\n\n*See also: [max](https://esphome.io/components/sensor/index.html#max)*"
             },
             "send_every": {
               "key": "Optional",
               "default": "5",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: How often a sensor value should be pushed out. For example, in above configuration the min is calculated after every 4th received sensor value, over the last 7 received values. Defaults to `5`.\n\n*See also: [max](https://esphome.io/components/sensor/index.html#max)*"
             },
             "send_first_at": {
               "key": "Optional",
               "default": "1",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Must be smaller than or equal to `send_every` Defaults to `1`.\n\n*See also: [max](https://esphome.io/components/sensor/index.html#max)*"
             }
           }
@@ -754,34 +693,22 @@
             "window_size": {
               "key": "Optional",
               "default": "15",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: The number of values over which to perform an average when pushing out a value.\n\n*See also: [sliding_window_moving_average](https://esphome.io/components/sensor/index.html#sliding-window-moving-average)*"
             },
             "send_every": {
               "key": "Optional",
               "default": "15",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: How often a sensor value should be pushed out. For example, in above configuration the weighted average is only pushed out on every 15th received sensor value.\n\n*See also: [sliding_window_moving_average](https://esphome.io/components/sensor/index.html#sliding-window-moving-average)*"
             },
             "send_first_at": {
               "key": "Optional",
               "default": "1",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Defaults to `1`.\n\n*See also: [sliding_window_moving_average](https://esphome.io/components/sensor/index.html#sliding-window-moving-average)*"
             }
           }
@@ -795,34 +722,21 @@
             "alpha": {
               "key": "Optional",
               "default": "0.1",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_float"
-                ]
-              },
+              "data_type": "positive_float",
               "docs": "**float**: The forget factor/alpha value of the filter. Defaults to `0.1`.\n\n*See also: [exponential_moving_average](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
             },
             "send_every": {
               "key": "Optional",
               "default": "15",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: How often a sensor value should be pushed out. Defaults to `15`.\n\n*See also: [exponential_moving_average](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
             },
             "send_first_at": {
               "key": "Optional",
               "default": "1",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: By default, the very first raw value on boot is immediately published. With this parameter you can specify when the very first value is to be sent. Defaults to `1`.\n\n*See also: [exponential_moving_average](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
             }
           }
@@ -845,12 +759,9 @@
         "docs": "This filter stores the last value passed through this filter and only passes incoming values through if the absolute difference is greater than the configured value. For example if a value of 1.0 first comes in, it\u2019s passed on. If the delta filter is configured with a value of 5, it will now not pass on an incoming value of 2.0, only values that are at least 6.0 big or -4.0.\n\n*See also: [debounce](https://esphome.io/components/sensor/index.html#delta)*"
       },
       "or": {
-        "type": "schema",
-        "schema": {
-          "extends": [
-            "sensor.validate_filters"
-          ]
-        },
+        "type": "registry",
+        "is_list": true,
+        "registry": "sensor.filter",
         "docs": "Pass forward a value with the first child filter that returns. Above example will only pass forward values that are *either* at least 1s old or are if the absolute difference is at least 5.0.\n\n*See also: [delta](https://esphome.io/components/sensor/index.html#or)*"
       },
       "throttle": {
@@ -894,12 +805,8 @@
             },
             "degree": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_int"
-                ]
-              }
+              "type": "integer",
+              "data_type": "positive_int"
             }
           }
         },

@@ -146,12 +146,7 @@
             "address": {
               "key": "Optional",
               "default": "119",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: Manually specify the I\u00b2C address of the sensor. Defaults to `0x77`. Another address can be `0x76`.\n\n*See also: [BME280 Temperature+Pressure+Humidity Sensor](https://esphome.io/components/sensor/bme280.html#configuration-variables)*"
             }
           },

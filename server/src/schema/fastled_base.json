@@ -14,12 +14,8 @@
             },
             "num_leds": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: The number of LEDs attached.\n\n*See also: [SPI](https://esphome.io/components/light/fastled.html#id1)*"
             },
             "rgb_order": {

@@ -19,12 +19,7 @@
             "address": {
               "key": "Optional",
               "default": "64",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: The I\u00b2C address of the driver. Defaults to `0x00`.\n\n*See also: [pca9685 Component/Hub](https://esphome.io/components/output/pca9685.html#configuration-variables)*"
             }
           },

@@ -20,12 +20,7 @@
             },
             "address": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: The i\u00b2c address of the sensor. See [I\u00b2C Addresses](https://esphome.io/components/sensor/ads1115.html#ads1115-i2c-addresses) for more information.\n\n*See also: [ads1115 Component/Hub](https://esphome.io/components/sensor/ads1115.html#configuration-variables)*"
             }
           },

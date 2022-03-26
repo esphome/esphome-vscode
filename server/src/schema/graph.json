@@ -21,22 +21,14 @@
             },
             "width": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: The graph width in pixels\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
             },
             "height": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: The graph height in pixels\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
             },
             "x_grid": {
@@ -63,12 +55,8 @@
             },
             "line_thickness": {
               "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_int"
-                ]
-              }
+              "type": "integer",
+              "data_type": "positive_int"
             },
             "line_type": {
               "key": "Optional",
@@ -116,12 +104,8 @@
                   },
                   "line_thickness": {
                     "key": "Optional",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_int"
-                      ]
-                    }
+                    "type": "integer",
+                    "data_type": "positive_int"
                   },
                   "line_type": {
                     "key": "Optional",
@@ -156,21 +140,13 @@
                   },
                   "width": {
                     "key": "Optional",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_not_null_int"
-                      ]
-                    }
+                    "type": "integer",
+                    "data_type": "positive_not_null_int"
                   },
                   "height": {
                     "key": "Optional",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_not_null_int"
-                      ]
-                    }
+                    "type": "integer",
+                    "data_type": "positive_not_null_int"
                   },
                   "border": {
                     "key": "Optional",

@@ -35,12 +35,7 @@
             "address": {
               "key": "Optional",
               "default": "24",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: Manually specify the I\u00b2C address of the sensor. Defaults to `0x18`.\n\n*See also: [MCP9808 Temperature Sensor](https://esphome.io/components/sensor/mcp9808.html#configuration-variables)*"
             }
           }

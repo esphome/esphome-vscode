@@ -32,12 +32,7 @@
             },
             "voc_baseline": {
               "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint16_t"
-                ]
-              }
+              "data_type": "hex_uint16_t"
             },
             "compensation": {
               "key": "Optional",
@@ -67,12 +62,7 @@
             "address": {
               "key": "Optional",
               "default": "89",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              }
+              "data_type": "hex_uint8_t"
             }
           }
         }

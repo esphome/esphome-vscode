@@ -39,12 +39,7 @@
             "address": {
               "key": "Optional",
               "default": "90",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: The I\u00b2C address of the sensor. Defaults to `0x5A`.\n\n*See also: [mpr121 Component/Hub](https://esphome.io/components/binary_sensor/mpr121.html#configuration-variables)*"
             }
           },

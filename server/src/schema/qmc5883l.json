@@ -34,12 +34,7 @@
             "address": {
               "key": "Optional",
               "default": "13",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: Manually specify the  I\u00b2c address of the sensor. Defaults to `0x1E`.\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
             },
             "range": {

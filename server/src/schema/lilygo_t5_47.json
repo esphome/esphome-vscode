@@ -29,12 +29,7 @@
             "address": {
               "key": "Optional",
               "default": "90",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              }
+              "data_type": "hex_uint8_t"
             }
           }
         }

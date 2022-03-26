@@ -148,12 +148,7 @@
             "address": {
               "key": "Optional",
               "default": "104",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: Manually specify the i^2c address of the sensor. Defaults to `0x68`.\n\n*See also: [MPU6886 Accelerometer/Gyroscope Sensor](https://esphome.io/components/sensor/mpu6886.html#configuration-variables)*"
             }
           },

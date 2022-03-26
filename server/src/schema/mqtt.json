@@ -17,12 +17,8 @@
             "port": {
               "key": "Optional",
               "default": "1883",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.port"
-                ]
-              },
+              "type": "integer",
+              "data_type": "port",
               "docs": "**int**: The port to connect to. Defaults to 1883.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
             },
             "username": {
@@ -147,12 +143,16 @@
                 "config_vars": {
                   "level": {
                     "key": "Optional",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "logger.is_log_level"
-                      ]
-                    },
+                    "type": "enum",
+                    "values": [
+                      "NONE",
+                      "ERROR",
+                      "WARN",
+                      "INFO",
+                      "DEBUG",
+                      "VERBOSE",
+                      "VERY_VERBOSE"
+                    ],
                     "docs": "**string**: The log level to use for MQTT logs. See [Log Levels](https://esphome.io/components/logger.html#logger-log-levels) for options.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
                   }
                 }

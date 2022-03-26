@@ -23,11 +23,11 @@
             "platformio_options": {
               "key": "String",
               "default": "{}",
-              "key_dump": "<function string_strict at 0x000001BFB6C10700>",
+              "key_dump": "<function string_strict at 0x0000026C75D73790>",
               "type": "schema",
               "schema": {
                 "config_vars": {
-                  "<function string_strict at 0x000001BFB6C10700>": {
+                  "<function string_strict at 0x0000026C75D73790>": {
                     "type": "string"
                   }
                 }
@@ -106,26 +106,6 @@
   },
   "core": {
     "schemas": {
-      "port": {
-        "type": "integer"
-      },
-      "uint8_t": {
-        "type": "integer"
-      },
-      "uint16_t": {
-        "type": "integer"
-      },
-      "uint32_t": {
-        "type": "integer"
-      },
-      "positive_float": {},
-      "zero_to_one_float": {},
-      "positive_int": {
-        "type": "integer"
-      },
-      "positive_not_null_int": {
-        "type": "integer"
-      },
       "time_period_dict": {
         "type": "schema",
         "schema": {
@@ -183,10 +163,6 @@
           ]
         }
       },
-      "hex_uint8_t": {},
-      "hex_uint16_t": {},
-      "hex_uint32_t": {},
-      "hex_uint64_t": {},
       "MQTT_COMPONENT_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -729,12 +705,8 @@
             "count": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: The number of times the action should be repeated.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#repeat-action)*"
             },
             "then": {
@@ -776,8 +748,7 @@
       },
       "lambda": {
         "docs": "This action executes an arbitrary piece of C++ code (see [Lambda](https://esphome.io/guides/automations.html#config-lambda)).\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#lambda-action)*"
-      },
-      "docs": "This automation will be triggered when the XPT2046 touch screen detects a touch, a release or periodically each `report_interval` while touched.\n\n*See also: [xpt2046 Component/Hub](https://esphome.io/components/binary_sensor/xpt2046.html#on-state-action)*"
+      }
     },
     "condition": {
       "and": {

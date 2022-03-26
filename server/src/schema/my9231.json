@@ -80,12 +80,8 @@
             },
             "channel": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint16_t"
-                ]
-              },
+              "type": "integer",
+              "data_type": "uint16_t",
               "docs": "**int**: Chose the channel of the MY9231/MY9291 chain of this output component. Channel 0 is the most close channel.\n\n*See also: [my9231 Output](https://esphome.io/components/output/my9231.html#id1)*"
             }
           }

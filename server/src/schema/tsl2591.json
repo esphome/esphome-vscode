@@ -156,12 +156,7 @@
             "address": {
               "key": "Optional",
               "default": "41",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: Manually specify the I\u00b2C address of the device. Defaults to `0x29`. It is not possible to change this for this device without additional hardware. It also automatically uses a secondary address of `0x28` (see the datasheet), making that address unavailable for other devices on the same I\u00b2C bus.\n\n*See also: [TSL2591 Ambient Light Sensor](https://esphome.io/components/sensor/tsl2591.html#configuration-variables)*"
             }
           },

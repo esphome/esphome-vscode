@@ -10,12 +10,8 @@
             },
             "port": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.port"
-                ]
-              },
+              "type": "integer",
+              "data_type": "port",
               "docs": "**string**: The serving port.\n\n*See also: [ESP32 Camera Web Server Component](https://esphome.io/components/esp32_camera_web_server.html#configuration-variables)*"
             },
             "mode": {

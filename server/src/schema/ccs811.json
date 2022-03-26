@@ -79,12 +79,7 @@
             },
             "baseline": {
               "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint16_t"
-                ]
-              },
+              "data_type": "hex_uint16_t",
               "docs": "**int**: The baseline value for the unit, for calibration purposes. See [Calibrating Baseline](https://esphome.io/components/sensor/ccs811.html#ccs811-calibrating) for more info.\n\n*See also: [CCS811 CO_2 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/ccs811.html#configuration-variables)*"
             },
             "temperature": {
@@ -106,12 +101,7 @@
             "address": {
               "key": "Optional",
               "default": "90",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) address of the sensor.\n\n*See also: [CCS811 CO_2 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/ccs811.html#configuration-variables)*"
             }
           },

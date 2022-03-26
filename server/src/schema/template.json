@@ -199,23 +199,17 @@
             "state": {
               "key": "Optional",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "cover.validate_cover_state"
-                ]
-              },
+              "type": "enum",
+              "values": [
+                "OPEN",
+                "CLOSED"
+              ],
               "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable)**: The state to publish. One of `OPEN`, `CLOSED`. If using a lambda, use `COVER_OPEN` or `COVER_CLOSED`.\n\n*See also: [Template Cover](https://esphome.io/components/cover/template.html#cover-template-publish-action)*"
             },
             "position": {
               "key": "Optional",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.zero_to_one_float"
-                ]
-              },
+              "data_type": "zero_to_one_float",
               "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), float**: The position to publish, from 0 (CLOSED) to 1.0 (OPEN)\n\n*See also: [Template Cover](https://esphome.io/components/cover/template.html#cover-template-publish-action)*"
             },
             "current_operation": {
@@ -232,12 +226,7 @@
             "tilt": {
               "key": "Optional",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.zero_to_one_float"
-                ]
-              },
+              "data_type": "zero_to_one_float",
               "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), float**: The tilt position to publish, from 0 (CLOSED) to 1.0 (OPEN)\n\n*See also: [Template Cover](https://esphome.io/components/cover/template.html#cover-template-publish-action)*"
             }
           }
@@ -345,12 +334,7 @@
             },
             "step": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_float"
-                ]
-              },
+              "data_type": "positive_float",
               "docs": "**float**: The granularity with which the number can be set.\n\n*See also: [Template Number](https://esphome.io/components/number/template.html#configuration-variables)*"
             },
             "lambda": {

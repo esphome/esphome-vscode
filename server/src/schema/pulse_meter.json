@@ -86,12 +86,8 @@
             "value": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint32_t"
-                ]
-              }
+              "type": "integer",
+              "data_type": "uint32_t"
             }
           }
         }

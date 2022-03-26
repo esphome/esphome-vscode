@@ -40,12 +40,7 @@
             "voltage_gain": {
               "key": "Optional",
               "default": "0.001",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.zero_to_one_float"
-                ]
-              },
+              "data_type": "zero_to_one_float",
               "docs": "Set this to the ratio of the voltage at the voltage input pins of CS5460A to the line voltage.  When using a simple voltage divider, this is the divider\u2019s ratio. When using a voltage transformer this is the secondary turns to primary turns ratio.  When using a current transformer (such as the ZMPT101B) this is equals `(secondary turns * burden resistor value) / (primary turns * limiting resistor value)`, and similarly for combinations of transfomers and voltage dividers.  Defaults to `0.001`.  Must be a positive number.\n\n*See also: [CS5460A Power Sensor](https://esphome.io/components/sensor/cs5460a.html#configuration-variables)*"
             },
             "current_hpf": {

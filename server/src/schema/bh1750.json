@@ -35,12 +35,7 @@
             "address": {
               "key": "Optional",
               "default": "35",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: Manually specify the I\u00b2C address of the sensor. Defaults to `0x23` (address if address pin is pulled low). If the address pin is pulled high, the address is `0x5C`.\n\n*See also: [BH1750 Ambient Light Sensor](https://esphome.io/components/sensor/bh1750.html#configuration-variables)*"
             }
           }

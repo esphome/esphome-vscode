@@ -19,12 +19,7 @@
             "address": {
               "key": "Optional",
               "default": "60",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: Manually specify the [I\u00b2C](https://esphome.io/components/i2c.html#i2c) address of the display. Defaults to 0x3C.\n\n*See also: [ssd1306 Over I\u00b2C](https://esphome.io/components/display/ssd1306.html#configuration-variables)*"
             }
           }

@@ -30,12 +30,8 @@
             },
             "max_runs": {
               "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_int",
               "docs": "**int**: Allows limiting the maxiumun number of runs when using script modes `queued` and `parallel`, use value `0` for unlimited runs. Defaults to `0`.\n\n*See also: [script Component](https://esphome.io/guides/automations.html#script-component)*"
             },
             "then": {

@@ -21,12 +21,7 @@
             "address": {
               "key": "Optional",
               "default": "33",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: The I\u00b2C address of the driver. Defaults to `0x21`.\n\n*See also: [PCF8574 I/O Expander](https://esphome.io/components/pcf8574.html#configuration-variables)*"
             }
           },

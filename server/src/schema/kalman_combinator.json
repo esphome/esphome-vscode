@@ -12,12 +12,7 @@
             "id": {},
             "process_std_dev": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_float"
-                ]
-              },
+              "data_type": "positive_float",
               "docs": "**float**: The standard deviation of the measurement\u2019s change per second (e.g. `1/3600 = 0.000277` if the temperature usually changes at most by one Kelvin per hour). A low value here will place high importance on the current state and be slow to respond to changes in the measured samples. A high value will update faster, but also be more noisy.\n\n*See also: [Kalman filter-based sensor fusion](https://esphome.io/components/sensor/kalman_combinator.html#configuration-variables)*"
             },
             "sources": {
@@ -33,12 +28,7 @@
                   "error": {
                     "key": "Required",
                     "templatable": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_float"
-                      ]
-                    },
+                    "data_type": "positive_float",
                     "docs": "**float, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The standard deviation of the sensor\u2019s measurements. If implemented as a template, the measurement is in parameter `x`.\n\n*See also: [Kalman filter-based sensor fusion](https://esphome.io/components/sensor/kalman_combinator.html#configuration-variables)*"
                   }
                 }

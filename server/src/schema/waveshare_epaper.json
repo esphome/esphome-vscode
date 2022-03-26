@@ -84,12 +84,8 @@
             },
             "full_update_every": {
               "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint32_t"
-                ]
-              },
+              "type": "integer",
+              "data_type": "uint32_t",
               "docs": "**int**: E-Paper displays have two modes of switching to the next image: A partial update that only changes the pixels that have changed and a full update mode that first clears the entire display and then re-draws the image. The former is much quicker and nicer, but every so often a full update needs to happen because artifacts accumulate. On the `1.54in`, `1.54inv2`, `2.13in`, `2.90in` and `2.90inv2` models you have the option to switch only do a full-redraw every x-th time using this option. Defaults to `30` on the described models and a full update for all other models.\n\n*See also: [Waveshare E-Paper Display](https://esphome.io/components/display/waveshare_epaper.html#configuration-variables)*"
             },
             "reset_duration": {

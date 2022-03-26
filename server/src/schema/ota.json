@@ -18,12 +18,8 @@
             "port": {
               "key": "Optional",
               "default": "8266",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.port"
-                ]
-              },
+              "type": "integer",
+              "data_type": "port",
               "docs": "**int**: The port to use for OTA updates. Defaults to `3232` for the ESP32 and `8266` for the ESP8266.\n\n*See also: [OTA Update Component](https://esphome.io/components/ota.html#configuration-variables)*"
             },
             "password": {
@@ -45,12 +41,8 @@
             "num_attempts": {
               "key": "Optional",
               "default": "10",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_not_null_int"
-                ]
-              },
+              "type": "integer",
+              "data_type": "positive_not_null_int",
               "docs": "**int**: The number of attempts to wait before entering safe mode. Defaults to `10`.\n\n*See also: [OTA Update Component](https://esphome.io/components/ota.html#configuration-variables)*"
             },
             "on_state_change": {

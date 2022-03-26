@@ -22,12 +22,7 @@
           "config_vars": {
             "data": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint32_t"
-                ]
-              },
+              "data_type": "hex_uint32_t",
               "docs": "**int**: The 24-bit Coolix code to trigger on, see dumper output for more info.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             }
           }
@@ -57,12 +52,7 @@
           "config_vars": {
             "data": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint32_t"
-                ]
-              },
+              "data_type": "hex_uint32_t",
               "docs": "**int**: The JVC code to trigger on, see dumper output for more info.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             }
           }
@@ -74,12 +64,7 @@
           "config_vars": {
             "data": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint32_t"
-                ]
-              },
+              "data_type": "hex_uint32_t",
               "docs": "**int**: The LG code to trigger on, see dumper output for more info.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             },
             "nbits": {
@@ -101,23 +86,13 @@
           "config_vars": {
             "wand_id": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint32_t"
-                ]
-              },
+              "data_type": "hex_uint32_t",
               "docs": "**int**: The MagiQuest wand ID to trigger on, see dumper output for more info.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             },
             "magnitude": {
               "key": "Optional",
               "default": "65535",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint16_t"
-                ]
-              },
+              "data_type": "hex_uint16_t",
               "docs": "**int**: The magnitude of swishes and swirls of the wand.  If omitted, will match on any activation of the wand.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             }
           }
@@ -129,22 +104,12 @@
           "config_vars": {
             "address": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint16_t"
-                ]
-              },
+              "data_type": "hex_uint16_t",
               "docs": "**int**: The address to trigger on, see dumper output for more info.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             },
             "command": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint16_t"
-                ]
-              },
+              "data_type": "hex_uint16_t",
               "docs": "**int**: The NEC command to listen for.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             }
           }
@@ -156,23 +121,13 @@
           "config_vars": {
             "rc_code_1": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint16_t"
-                ]
-              },
+              "data_type": "hex_uint16_t",
               "docs": "**int**: The remote control code to trigger on, see dumper output for more details.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             },
             "rc_code_2": {
               "key": "Optional",
               "default": "0",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint16_t"
-                ]
-              }
+              "data_type": "hex_uint16_t"
             }
           }
         }
@@ -194,12 +149,7 @@
           "config_vars": {
             "data": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint32_t"
-                ]
-              },
+              "data_type": "hex_uint32_t",
               "docs": "**int**: The Sony code to trigger on, see dumper output for more info.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             },
             "nbits": {
@@ -245,7 +195,6 @@
           }
         }
       },
-      "RC_SWITCH_TIMING_SCHEMA": {},
       "RC_SWITCH_RAW_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -262,42 +211,23 @@
                 "config_vars": {
                   "pulse_length": {
                     "key": "Required",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.uint32_t"
-                      ]
-                    }
+                    "type": "integer",
+                    "data_type": "uint32_t"
                   },
                   "sync": {
                     "key": "Optional",
                     "default": "[1, 31]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "zero": {
                     "key": "Optional",
                     "default": "[1, 3]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "one": {
                     "key": "Optional",
                     "default": "[3, 1]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "inverted": {
                     "key": "Optional",
@@ -336,42 +266,23 @@
                 "config_vars": {
                   "pulse_length": {
                     "key": "Required",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.uint32_t"
-                      ]
-                    }
+                    "type": "integer",
+                    "data_type": "uint32_t"
                   },
                   "sync": {
                     "key": "Optional",
                     "default": "[1, 31]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "zero": {
                     "key": "Optional",
                     "default": "[1, 3]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "one": {
                     "key": "Optional",
                     "default": "[3, 1]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "inverted": {
                     "key": "Optional",
@@ -412,42 +323,23 @@
                 "config_vars": {
                   "pulse_length": {
                     "key": "Required",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.uint32_t"
-                      ]
-                    }
+                    "type": "integer",
+                    "data_type": "uint32_t"
                   },
                   "sync": {
                     "key": "Optional",
                     "default": "[1, 31]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "zero": {
                     "key": "Optional",
                     "default": "[1, 3]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "one": {
                     "key": "Optional",
                     "default": "[3, 1]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "inverted": {
                     "key": "Optional",
@@ -511,42 +403,23 @@
                 "config_vars": {
                   "pulse_length": {
                     "key": "Required",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.uint32_t"
-                      ]
-                    }
+                    "type": "integer",
+                    "data_type": "uint32_t"
                   },
                   "sync": {
                     "key": "Optional",
                     "default": "[1, 31]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "zero": {
                     "key": "Optional",
                     "default": "[1, 3]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "one": {
                     "key": "Optional",
                     "default": "[3, 1]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "inverted": {
                     "key": "Optional",
@@ -593,42 +466,23 @@
                 "config_vars": {
                   "pulse_length": {
                     "key": "Required",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.uint32_t"
-                      ]
-                    }
+                    "type": "integer",
+                    "data_type": "uint32_t"
                   },
                   "sync": {
                     "key": "Optional",
                     "default": "[1, 31]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "zero": {
                     "key": "Optional",
                     "default": "[1, 3]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "one": {
                     "key": "Optional",
                     "default": "[3, 1]",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "remote_base.RC_SWITCH_TIMING_SCHEMA"
-                      ]
-                    }
+                    "data_type": "RC_SWITCH_TIMING_SCHEMA"
                   },
                   "inverted": {
                     "key": "Optional",
@@ -655,12 +509,8 @@
                   "times": {
                     "key": "Required",
                     "templatable": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_int"
-                      ]
-                    }
+                    "type": "integer",
+                    "data_type": "positive_int"
                   },
                   "wait_time": {
                     "key": "Optional",
@@ -685,12 +535,7 @@
           "config_vars": {
             "data": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint64_t"
-                ]
-              },
+              "data_type": "hex_uint64_t",
               "docs": "**int**: The data to trigger on, see dumper output for more info.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             },
             "nbits": {
@@ -708,22 +553,12 @@
           "config_vars": {
             "address": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint16_t"
-                ]
-              },
+              "data_type": "hex_uint16_t",
               "docs": "**int**: The address to trigger on, see dumper output for more info.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             },
             "command": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint32_t"
-                ]
-              },
+              "data_type": "hex_uint32_t",
               "docs": "**int**: The command.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             }
           }
@@ -735,23 +570,13 @@
           "config_vars": {
             "rc_code_1": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint64_t"
-                ]
-              },
+              "data_type": "hex_uint64_t",
               "docs": "**int**: The remote control code to trigger on, see dumper output for more details.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             },
             "rc_code_2": {
               "key": "Optional",
               "default": "0",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint64_t"
-                ]
-              },
+              "data_type": "hex_uint64_t",
               "docs": "**int**: The second part of the remote control code to trigger on, see dumper output for more details.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             }
           }
@@ -763,22 +588,12 @@
           "config_vars": {
             "address": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint16_t"
-                ]
-              },
+              "data_type": "hex_uint16_t",
               "docs": "**int**: The address to trigger on, see dumper output for more info.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             },
             "command": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint32_t"
-                ]
-              },
+              "data_type": "hex_uint32_t",
               "docs": "**int**: The command.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             }
           }
@@ -790,52 +605,27 @@
           "config_vars": {
             "device": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint32_t"
-                ]
-              },
+              "data_type": "hex_uint32_t",
               "docs": "**int**: The Nexa device code to trigger on, see dumper output for more info.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             },
             "group": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: The Nexa group code to trigger on, see dumper output for more info.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             },
             "state": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: The Nexa state code to trigger on, see dumper output for more info.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             },
             "channel": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: The Nexa channel code to trigger on, see dumper output for more info.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             },
             "level": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: The Nexa level code to trigger on, see dumper output for more info.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             }
           }

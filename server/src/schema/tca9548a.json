@@ -36,12 +36,7 @@
             "address": {
               "key": "Optional",
               "default": "112",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: The I\u00b2C address of the Multiplexer. Defaults to `0x70`.\n\n*See also: [TCA9548A I\u00b2C Multiplexer](https://esphome.io/components/tca9548a.html#configuration-variables)*"
             }
           },

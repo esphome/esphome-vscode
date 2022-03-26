@@ -15,12 +15,7 @@
             "address": {
               "key": "Optional",
               "default": "32",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: The I\u00b2C address of the driver. Defaults to `0x20`.\n\n*See also: [MCP23016 Component](https://esphome.io/components/mcp230xx.html#id1)*"
             }
           },

@@ -153,34 +153,22 @@
             "contrast": {
               "key": "Optional",
               "default": "0",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "esp32_camera.camera_range_param"
-                ]
-              },
+              "type": "integer",
+              "data_type": "camera_range_param",
               "docs": "**int**: The contrast to apply to the picture, from -2 to 2. Defaults to `0`.\n\n*See also: [ESP32 Camera Component](https://esphome.io/components/esp32_camera.html#configuration-variables)*"
             },
             "brightness": {
               "key": "Optional",
               "default": "0",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "esp32_camera.camera_range_param"
-                ]
-              },
+              "type": "integer",
+              "data_type": "camera_range_param",
               "docs": "**int**: The brightness to apply to the picture, from -2 to 2. Defaults to `0`.\n\n*See also: [ESP32 Camera Component](https://esphome.io/components/esp32_camera.html#configuration-variables)*"
             },
             "saturation": {
               "key": "Optional",
               "default": "0",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "esp32_camera.camera_range_param"
-                ]
-              },
+              "type": "integer",
+              "data_type": "camera_range_param",
               "docs": "**int**: The saturation to apply to the picture, from -2 to 2. Defaults to `0`.\n\n*See also: [ESP32 Camera Component](https://esphome.io/components/esp32_camera.html#configuration-variables)*"
             },
             "vertical_flip": {
@@ -242,12 +230,8 @@
             "ae_level": {
               "key": "Optional",
               "default": "0",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "esp32_camera.camera_range_param"
-                ]
-              },
+              "type": "integer",
+              "data_type": "camera_range_param",
               "docs": "**int**: The auto exposure level to apply to the picture (when **aec_mode** is set to `auto`), from -2 to 2. Defaults to `0`.\n\n*See also: [ESP32 Camera Component](https://esphome.io/components/esp32_camera.html#configuration-variables)*"
             },
             "aec_value": {
@@ -333,9 +317,6 @@
             }
           }
         }
-      },
-      "camera_range_param": {
-        "type": "integer"
       }
     }
   }

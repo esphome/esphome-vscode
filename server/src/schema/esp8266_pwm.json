@@ -1,7 +1,6 @@
 {
   "esp8266_pwm.output": {
     "schemas": {
-      "validate_frequency": {},
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -27,12 +26,7 @@
             "frequency": {
               "key": "Optional",
               "default": "1kHz",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "esp8266_pwm.output.validate_frequency"
-                ]
-              },
+              "data_type": "output",
               "docs": "**frequency**: The frequency to run the PWM with. Lower frequencies have more visual artifacts, but can represent much more colors. Defaults to `1000 Hz`.\n\n*See also: [ESP8266 Software PWM Output](https://esphome.io/components/output/esp8266_pwm.html#configuration-variables)*"
             }
           }
@@ -51,12 +45,7 @@
             "frequency": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "esp8266_pwm.output.validate_frequency"
-                ]
-              },
+              "data_type": "output",
               "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), float**: The frequency to set in hertz.\n\n*See also: [ESP8266 Software PWM Output](https://esphome.io/components/output/esp8266_pwm.html#output-esp8266-pwm-set-frequency-action)*"
             }
           }

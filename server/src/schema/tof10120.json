@@ -35,12 +35,7 @@
             "address": {
               "key": "Optional",
               "default": "82",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: Manually specify the I^2C address of the sensor. Defaults to `0x52`.\n\n*See also: [TOF10120 Time Of Flight Distance Sensor](https://esphome.io/components/sensor/tof10120.html#configuration-variables)*"
             }
           }

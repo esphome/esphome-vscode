@@ -12,12 +12,8 @@
             "port": {
               "key": "Optional",
               "default": "80",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.port"
-                ]
-              },
+              "type": "integer",
+              "data_type": "port",
               "docs": "**int**: The port the web server should open its socket on.\n\n*See also: [Web Server Component](https://esphome.io/components/web_server.html#configuration-variables)*"
             },
             "css_url": {

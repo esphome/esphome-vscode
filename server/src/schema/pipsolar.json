@@ -1488,12 +1488,7 @@
                     "key": "Optional",
                     "default": "[44.0, 45.0, 46.0, 47.0, 48.0, 49.0, 50.0, 51.0]",
                     "is_list": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_float"
-                      ]
-                    },
+                    "data_type": "positive_float",
                     "docs": "**list**: a list of possible values default: 44.0,45.0,46.0,47.0,48.0,49.0,50.0,51.0\n\n*See also: [pipsolar Output](https://esphome.io/components/pipsolar.html#id5)*"
                   }
                 }
@@ -1515,12 +1510,7 @@
                     "key": "Optional",
                     "default": "[40.0, 40.1, 42, 43, 44, 45, 46, 47, 48.0]",
                     "is_list": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_float"
-                      ]
-                    },
+                    "data_type": "positive_float",
                     "docs": "**list**: a list of possible values default: 40.0,40.1,42,43,44,45,46,47,48.0\n\n*See also: [pipsolar Output](https://esphome.io/components/pipsolar.html#id5)*"
                   }
                 }
@@ -1542,12 +1532,7 @@
                     "key": "Optional",
                     "default": "[48.0, 49.0, 50.0, 51.0]",
                     "is_list": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_float"
-                      ]
-                    },
+                    "data_type": "positive_float",
                     "docs": "**list**: a list of possible values default: 48.0,49.0,50.0,51.0\n\n*See also: [pipsolar Output](https://esphome.io/components/pipsolar.html#id5)*"
                   }
                 }
@@ -1569,12 +1554,7 @@
                     "key": "Optional",
                     "default": "[0, 1, 2]",
                     "is_list": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_float"
-                      ]
-                    },
+                    "data_type": "positive_float",
                     "docs": "**list**: a list of possible values default: 0,1,2\n\n*See also: [pipsolar Output](https://esphome.io/components/pipsolar.html#id5)*"
                   }
                 }
@@ -1596,12 +1576,7 @@
                     "key": "Optional",
                     "default": "[2, 10, 20]",
                     "is_list": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_float"
-                      ]
-                    },
+                    "data_type": "positive_float",
                     "docs": "**list**: a list of possible values default: 2,10,20\n\n*See also: [pipsolar Output](https://esphome.io/components/pipsolar.html#id5)*"
                   }
                 }
@@ -1623,12 +1598,7 @@
                     "key": "Optional",
                     "default": "[10, 20, 30, 40]",
                     "is_list": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_float"
-                      ]
-                    },
+                    "data_type": "positive_float",
                     "docs": "**list**: a list of possible values default: 10,20,30,40\n\n*See also: [pipsolar Output](https://esphome.io/components/pipsolar.html#id5)*"
                   }
                 }
@@ -1650,12 +1620,7 @@
                     "key": "Optional",
                     "default": "[0, 1, 2]",
                     "is_list": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_float"
-                      ]
-                    },
+                    "data_type": "positive_float",
                     "docs": "**list**: a list of possible values default: 0,1,2\n\n*See also: [pipsolar Output](https://esphome.io/components/pipsolar.html#id5)*"
                   }
                 }
@@ -1677,12 +1642,7 @@
                     "key": "Optional",
                     "default": "[0, 1, 2, 3]",
                     "is_list": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_float"
-                      ]
-                    },
+                    "data_type": "positive_float",
                     "docs": "**list**: a list of possible values default: 0,1,2,3\n\n*See also: [pipsolar Output](https://esphome.io/components/pipsolar.html#id5)*"
                   }
                 }
@@ -1704,12 +1664,7 @@
                     "key": "Optional",
                     "default": "[0, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58]",
                     "is_list": true,
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_float"
-                      ]
-                    },
+                    "data_type": "positive_float",
                     "docs": "**list**: a list of possible values default: 00.0,48.0,49,50.0,51.0,52,53,54,55,56,57,58\n\n*See also: [pipsolar Output](https://esphome.io/components/pipsolar.html#id5)*"
                   }
                 }
@@ -1732,12 +1687,7 @@
             "value": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_float"
-                ]
-              },
+              "data_type": "positive_float",
               "docs": "**percentage, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The target level.\n\n*See also: [pipsolar Output](https://esphome.io/components/pipsolar.html#output-pipsolar-set-level-action)*"
             }
           }

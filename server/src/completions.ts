@@ -4,6 +4,7 @@ import { isPair, isMap, isScalar, isSeq, YAMLMap, Node, Scalar, isNode } from "y
 import { ConfigVar, CoreSchema, Schema, ConfigVarTrigger, ConfigVarRegistry, ConfigVarPin, ConfigVarEnum, ConfigVarSchema } from "./CoreSchema";
 import { YamlNode } from "./jsonASTTypes";
 import { SingleYAMLDocument, YamlDocuments } from "./parser/yaml-documents";
+import { Telemetry } from "./telemetry";
 import { matchOffsetToDocument } from "./utils/arrUtils";
 import { isNumber, isString } from "./utils/objects";
 import { TextBuffer } from "./utils/textBuffer";
@@ -626,8 +627,9 @@ export class CompletionHandler {
                     value: config.docs,
                 };
             }
-            if (config.detail) {
-                item.detail = "D" + config.detail;
+            if (config["templatable"] !== undefined) {
+                item.detail = "lambda";
+                // TODO: triggerSuggest = true; trigger !lambda: |-
             }
             else {
                 if (config.key === "Required") {

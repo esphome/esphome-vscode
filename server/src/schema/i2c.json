@@ -12,12 +12,7 @@
             "sda": {
               "key": "Optional",
               "default": "SDA",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "i2c.pin_with_input_and_output_support"
-                ]
-              },
+              "data_type": "pin_with_input_and_output_support",
               "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: The pin for the data line of the I\u00b2C bus. Defaults to the default of your board (usually GPIO21 for ESP32 and GPIO4 for ESP8266).\n\n*See also: [I\u00b2C Bus](https://esphome.io/components/i2c.html#configuration-variables)*"
             },
             "sda_pullup_enabled": {
@@ -27,12 +22,7 @@
             "scl": {
               "key": "Optional",
               "default": "SCL",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "i2c.pin_with_input_and_output_support"
-                ]
-              },
+              "data_type": "pin_with_input_and_output_support",
               "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: The pin for the clock line of the I\u00b2C bus. Defaults to the default of your board (usually GPIO22 for ESP32 and GPIO5 for ESP8266).\n\n*See also: [I\u00b2C Bus](https://esphome.io/components/i2c.html#configuration-variables)*"
             },
             "scl_pullup_enabled": {
@@ -56,8 +46,7 @@
           ]
         },
         "is_list": true
-      },
-      "pin_with_input_and_output_support": {}
+      }
     }
   }
 }

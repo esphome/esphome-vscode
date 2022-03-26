@@ -9,7 +9,6 @@ export interface SchemaSet {
 
 interface ConfigVarBase {
     key: string;
-    detail?: string;
     is_list?: boolean;
     docs?: string;
 }

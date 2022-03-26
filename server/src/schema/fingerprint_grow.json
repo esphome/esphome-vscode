@@ -20,22 +20,14 @@
             },
             "password": {
               "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint32_t"
-                ]
-              },
+              "type": "integer",
+              "data_type": "uint32_t",
               "docs": "**int**: Password to use for authentication. Defaults to `0x00`.\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
             },
             "new_password": {
               "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint32_t"
-                ]
-              },
+              "type": "integer",
+              "data_type": "uint32_t",
               "docs": "**int**: Sets a new password to use for authentication. See [Setting a New Password](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-set-new-password) for more information.\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
             },
             "on_finger_scan_matched": {
@@ -91,23 +83,15 @@
             "finger_id": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint16_t"
-                ]
-              },
+              "type": "integer",
+              "data_type": "uint16_t",
               "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The slot number to enroll the new fingerprint into. Limited to the fingerprint capacity available on the reader.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-enroll-action)*"
             },
             "num_scans": {
               "key": "Optional",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint8_t"
-                ]
-              },
+              "type": "integer",
+              "data_type": "uint8_t",
               "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Number of times to scan the finger to be enrolled. Limited to the number of character buffers available on the reader. Defaults to 2.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-enroll-action)*"
             }
           }
@@ -136,12 +120,8 @@
             "finger_id": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint16_t"
-                ]
-              },
+              "type": "integer",
+              "data_type": "uint16_t",
               "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The slot number of the enrolled fingerprint to delete.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-delete-action)*"
             }
           }
@@ -201,12 +181,8 @@
             "speed": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint8_t"
-                ]
-              },
+              "type": "integer",
+              "data_type": "uint8_t",
               "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The duration each cycle lasts, a factor of 10ms. Only relevant for `BREATHING`, `FLASHING`, `GRADUAL_ON` and `GRADUAL_OFF` states. The total duration is defined by 10ms * speed * count. Range is 0 to 255.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-aura-led-control-action)*"
             },
             "color": {
@@ -227,12 +203,8 @@
             "count": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint8_t"
-                ]
-              },
+              "type": "integer",
+              "data_type": "uint8_t",
               "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: How many times to repeat the pattern. Only relevant for `BREATHING` and `FLASHING` states. 0 for infinite, or 1 to 255.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-aura-led-control-action)*"
             }
           }

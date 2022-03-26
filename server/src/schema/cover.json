@@ -27,13 +27,6 @@
       }
     },
     "schemas": {
-      "validate_cover_state": {
-        "type": "enum",
-        "values": [
-          "OPEN",
-          "CLOSED"
-        ]
-      },
       "COVER_SCHEMA": {
         "type": "schema",
         "schema": {
@@ -159,12 +152,11 @@
             "state": {
               "key": "Optional",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "cover.validate_cover_state"
-                ]
-              },
+              "type": "enum",
+              "values": [
+                "OPEN",
+                "CLOSED"
+              ],
               "docs": "**string**: The state to set the cover to - one of `OPEN` or `CLOSE`.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#cover-control-action)*"
             },
             "position": {

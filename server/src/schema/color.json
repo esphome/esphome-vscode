@@ -14,12 +14,8 @@
             },
             "red_int": {
               "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint8_t"
-                ]
-              }
+              "type": "integer",
+              "data_type": "uint8_t"
             },
             "green": {
               "key": "Optional",
@@ -27,12 +23,8 @@
             },
             "green_int": {
               "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint8_t"
-                ]
-              }
+              "type": "integer",
+              "data_type": "uint8_t"
             },
             "blue": {
               "key": "Optional",
@@ -40,12 +32,8 @@
             },
             "blue_int": {
               "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint8_t"
-                ]
-              }
+              "type": "integer",
+              "data_type": "uint8_t"
             },
             "white": {
               "key": "Optional",
@@ -53,12 +41,8 @@
             },
             "white_int": {
               "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint8_t"
-                ]
-              }
+              "type": "integer",
+              "data_type": "uint8_t"
             }
           },
           "extends": [

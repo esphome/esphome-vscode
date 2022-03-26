@@ -111,22 +111,12 @@
                 "config_vars": {
                   "eco2_baseline": {
                     "key": "Required",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.hex_uint16_t"
-                      ]
-                    },
+                    "data_type": "hex_uint16_t",
                     "docs": "**int**: The eCO2 baseline for calibration purposes. After OTA, this value is used to calibrate the sensor.\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
                   },
                   "tvoc_baseline": {
                     "key": "Required",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.hex_uint16_t"
-                      ]
-                    },
+                    "data_type": "hex_uint16_t",
                     "docs": "**int**: The TVOC baseline for calibration purposes. After OTA, this value is used to calibrate the sensor.\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
                   }
                 }
@@ -161,12 +151,7 @@
             "address": {
               "key": "Optional",
               "default": "88",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: Manually specify the I\u00b2C address of the sensor. Defaults to `0x58`.\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#configuration-variables)*"
             }
           },

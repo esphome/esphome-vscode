@@ -19,12 +19,7 @@
             "address": {
               "key": "Optional",
               "default": "57",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: The I\u00b2C address of the sensor. Defaults to `0x39`.\n\n*See also: [apds9960 Component/Hub](https://esphome.io/components/sensor/apds9960.html#configuration-variables)*"
             }
           },

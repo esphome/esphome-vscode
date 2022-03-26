@@ -49,12 +49,7 @@
             "address": {
               "key": "Optional",
               "default": "62",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: The I\u00b2C address of the driver. Defaults to `0x3E`.\n\n*See also: [SX1509 16 channel I/O Expander with LED driver and keypad engine](https://esphome.io/components/sx1509.html#configuration-variables)*"
             }
           },

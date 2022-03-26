@@ -92,23 +92,15 @@
             },
             "threshold": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint16_t"
-                ]
-              },
+              "type": "integer",
+              "data_type": "uint16_t",
               "docs": "**int**: The threshold to use to detect touch events. Smaller values mean a higher probability that the pad is being touched.\n\n*See also: [esp32_touch Binary Sensor](https://esphome.io/components/binary_sensor/esp32_touch.html#id1)*"
             },
             "wakeup_threshold": {
               "key": "Optional",
               "default": "0",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint16_t"
-                ]
-              },
+              "type": "integer",
+              "data_type": "uint16_t",
               "docs": "**int**: The threshold to use to detect touch events to wakeup from deep sleep. Smaller values mean a higher probability that the pad is being touched. All touch pad sensors that should trigger a wakeup from deep sleep must specify this value. The [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-component) must also be configured to enable a wakeup from a touch event. Note that no filter is active during deep sleep.\n\n*See also: [esp32_touch Binary Sensor](https://esphome.io/components/binary_sensor/esp32_touch.html#id1)*"
             }
           }

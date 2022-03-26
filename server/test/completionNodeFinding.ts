@@ -122,7 +122,8 @@ esphome:
   on_loop:
     then:
       `), { line: 4, character: 6 });
-    testCompletionHaveLabels(result, ["delay", "if"]);
+    testCompletionHaveLabels(result, ["delay", "if", "wait_until", "lambda", "repeat", "while"]);
+    expect(result).to.be.lengthOf(6);
   });
 
   it('trigger with prop and then', () => {

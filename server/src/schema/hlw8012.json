@@ -143,12 +143,7 @@
             "voltage_divider": {
               "key": "Optional",
               "default": "2351",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_float"
-                ]
-              },
+              "data_type": "positive_float",
               "docs": "**float**: The value of the voltage divider on the board as `(R_upstream + R_downstream) / R_downstream`. Defaults to the Sonoff POW\u2019s value `2351`.\n\n*See also: [HLW8012 Power Sensor](https://esphome.io/components/sensor/hlw8012.html#configuration-variables)*"
             },
             "model": {
@@ -165,12 +160,8 @@
             "change_mode_every": {
               "key": "Optional",
               "default": "8",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint32_t"
-                ]
-              },
+              "type": "integer",
+              "data_type": "uint32_t",
               "docs": "**int**: After how many updates to cycle between the current/voltage measurement mode. Note that the first value after switching is discarded because it is often inaccurate. Defaults to `8`.\n\n*See also: [HLW8012 Power Sensor](https://esphome.io/components/sensor/hlw8012.html#configuration-variables)*"
             },
             "initial_mode": {

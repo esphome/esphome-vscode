@@ -16,12 +16,8 @@
             "intensity": {
               "key": "Optional",
               "default": "7",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint8_t"
-                ]
-              },
+              "type": "integer",
+              "data_type": "uint8_t",
               "docs": "**int**: The intensity with which the TM1637 should drive the outputs. Range is from 0 (least intense) to 7 (the default).\n\n*See also: [TM1637 7-Segment Display](https://esphome.io/components/display/tm1637.html#configuration-variables)*"
             },
             "inverted": {
@@ -33,12 +29,8 @@
             "length": {
               "key": "Optional",
               "default": "6",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint8_t"
-                ]
-              },
+              "type": "integer",
+              "data_type": "uint8_t",
               "docs": "**int**: The amount of digits your TM1637 is driving. Only used when `inverted: true` Range is from 1 to 6 (the default).\n\n*See also: [TM1637 7-Segment Display](https://esphome.io/components/display/tm1637.html#configuration-variables)*"
             },
             "clk_pin": {

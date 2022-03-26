@@ -22,12 +22,7 @@
             },
             "address": {
               "key": "Required",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: Specify the I\u00b2C address of the sensor.\n\n*See also: [EZO sensor circuits](https://esphome.io/components/sensor/ezo.html#configuration-variables)*"
             }
           }

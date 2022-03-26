@@ -52,45 +52,25 @@
             "sync": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint16_t"
-                ]
-              },
+              "data_type": "hex_uint16_t",
               "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: RF Sync timing\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-code-action)*"
             },
             "low": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint16_t"
-                ]
-              },
+              "data_type": "hex_uint16_t",
               "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: RF Low timing\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-code-action)*"
             },
             "high": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint16_t"
-                ]
-              },
+              "data_type": "hex_uint16_t",
               "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: RF high timing\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-code-action)*"
             },
             "code": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint32_t"
-                ]
-              },
+              "data_type": "hex_uint32_t",
               "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: RF code\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-code-action)*"
             }
           }
@@ -144,23 +124,13 @@
             "length": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Length of code plus protocol\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-advanced-code-action)*"
             },
             "protocol": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: RF Protocol\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-advanced-code-action)*"
             },
             "code": {
@@ -202,12 +172,8 @@
             "duration": {
               "key": "Required",
               "templatable": true,
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.uint16_t"
-                ]
-              },
+              "type": "integer",
+              "data_type": "uint16_t",
               "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: beep duration in milliseconds.\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-beep-action)*"
             }
           }

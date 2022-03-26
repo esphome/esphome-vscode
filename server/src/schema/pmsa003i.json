@@ -250,12 +250,7 @@
             "address": {
               "key": "Optional",
               "default": "18",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.hex_uint8_t"
-                ]
-              },
+              "data_type": "hex_uint8_t",
               "docs": "**int**: Manually specify the I\u00b2C address of the sensor. Defaults to `0x12`.\n\n*See also: [PMSA003I Particulate Matter Sensor](https://esphome.io/components/sensor/pmsa003i.html#configuration-variables)*"
             }
           },
