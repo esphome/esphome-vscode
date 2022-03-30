@@ -14,6 +14,9 @@
         "docs": "The `gpio` switch platform allows you to use any pin on your node as a switch. You can for example hook up a relay to a GPIO pin and use it through this platform.\n\n*See also: [GPIO Switch](https://esphome.io/components/switch/gpio.html#gpio-switch)*"
       },
       "modbus_controller": {
+        "dependencies": [
+          "modbus_controller"
+        ],
         "docs": "The `modbus_controller` sensor platform creates a sensor from a modbus_controller component and requires [Modbus Controller](https://esphome.io/components/modbus_controller.html) to be configured.\n\n*See also: [Modbus Controller Switch](https://esphome.io/components/switch/modbus_controller.html#modbus-controller-switch)*"
       },
       "nextion": {
@@ -23,12 +26,18 @@
         "docs": "The `output` switch platform allows you to use any output component as a switch.\n\n*See also: [Generic Output Switch](https://esphome.io/components/switch/output.html#generic-output-switch)*"
       },
       "pipsolar": {
+        "dependencies": [
+          "uart"
+        ],
         "docs": "Not all possible switches are exposed as they lead to the possibility to make serious damage. They should only be set at the physical device itself.\n\n*See also: [pipsolar Switch](https://esphome.io/components/pipsolar.html#switch)*"
       },
       "restart": {
         "docs": "The `restart` switch platform allows you to restart your node remotely through Home Assistant.\n\n*See also: [Restart Switch](https://esphome.io/components/switch/restart.html#restart-switch)*"
       },
       "safe_mode": {
+        "dependencies": [
+          "ota"
+        ],
         "docs": "The `safe_mode` switch allows you to remotely reboot your node into [Safe Mode](https://esphome.io/components/ota.html#config-ota). This is useful in certain situations where a misbehaving component is preventing Over-The-Air updates from completing successfully.\n\n*See also: [Safe Mode Switch](https://esphome.io/components/switch/safe_mode.html#safe-mode-switch)*"
       },
       "shutdown": {
@@ -38,9 +47,15 @@
         "docs": "The `template` switch platform allows you to create simple switches out of just actions and an optional value lambda. Once defined, it will automatically appear in Home Assistant as a switch and can be controlled through the frontend.\n\n*See also: [Template Switch](https://esphome.io/components/switch/template.html#template-switch)*"
       },
       "tuya": {
+        "dependencies": [
+          "tuya"
+        ],
         "docs": "The `tuya` switch platform creates a sensor from a tuya serial component and requires [Tuya MCU](https://esphome.io/components/tuya.html) to be configured.\n\n*See also: [Tuya Switch](https://esphome.io/components/switch/tuya.html#tuya-switch)*"
       },
       "uart": {
+        "dependencies": [
+          "uart"
+        ],
         "docs": "The `uart` switch platform allows you to send a pre-defined sequence of bytes on a [UART bus](https://esphome.io/components/uart.html) when triggered.\n\n*See also: [UART Switch](https://esphome.io/components/switch/uart.html#uart-switch)*"
       }
     },

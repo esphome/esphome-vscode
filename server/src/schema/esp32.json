@@ -156,11 +156,11 @@
                     "sdkconfig_options": {
                       "key": "String",
                       "default": "{}",
-                      "key_dump": "<function string_strict at 0x0000026C75D73790>",
+                      "key_dump": "<function string_strict at 0x0000020FE2672790>",
                       "type": "schema",
                       "schema": {
                         "config_vars": {
-                          "<function string_strict at 0x0000026C75D73790>": {
+                          "<function string_strict at 0x0000020FE2672790>": {
                             "type": "string"
                           }
                         }

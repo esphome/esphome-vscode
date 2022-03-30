@@ -87,7 +87,7 @@ interface Component {
 }
 interface CoreComponent extends Component {
     platforms: { [name: string]: { docs?: string } };
-    components: { [name: string]: { docs?: string } };
+    components: { [name: string]: { docs?: string, dependencies?: string[] } };
     pins: string[];
 }
 

@@ -47,6 +47,9 @@
         "docs": "The `status_led` light platform allows to share a single LED for indicating the status of the device (when on error/warning state) or as binary light (when on OK state). This is useful for devices with only one LED available.\n\n*See also: [Status LED Light](https://esphome.io/components/light/status_led.html#status-led-light)*"
       },
       "tuya": {
+        "dependencies": [
+          "tuya"
+        ],
         "docs": "The `tuya` light platform creates a simple brightness-only light from a tuya serial component.\n\n*See also: [Tuya Dimmer](https://esphome.io/components/light/tuya.html#tuya-dimmer)*"
       }
     },

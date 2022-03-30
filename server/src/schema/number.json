@@ -5,12 +5,18 @@
         "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The number that should be mirrored.\n\n*See also: [Copy Number](https://esphome.io/components/copy.html#copy-number)*"
       },
       "modbus_controller": {
+        "dependencies": [
+          "modbus_controller"
+        ],
         "docs": "The `modbus_controller` platform creates a Number from a modbus_controller. When the Number is updated a modbus write command is created sent to the device.\n\n*See also: [Modbus Controller Number](https://esphome.io/components/number/modbus_controller.html#modbus-controller-number)*"
       },
       "template": {
         "docs": "The `template` number platform allows you to create a number with templated values using [lambdas](https://esphome.io/guides/automations.html#config-lambda).\n\n*See also: [Template Number](https://esphome.io/components/number/template.html#template-number)*"
       },
       "tuya": {
+        "dependencies": [
+          "tuya"
+        ],
         "docs": "The `tuya` number platform allows you to create a number that controls a tuya serial component. This platform requires [Tuya MCU](https://esphome.io/components/tuya.html) to be configured.\n\n*See also: [Tuya Number](https://esphome.io/components/number/tuya.html#tuya-number)*"
       }
     },

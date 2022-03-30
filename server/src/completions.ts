@@ -438,8 +438,8 @@ export class CompletionHandler {
         if (isMap(esphome)) {
             const chipset = esphome.get("platform");
             if (isString(chipset)) {
-                if (chipset.toLowerCase() === "esp32") { return "esp32"; };
-                if (chipset.toLowerCase() === "esp8266") { return "esp8266"; };
+                if (chipset.toLowerCase() === "esp32") { return "esp32"; }
+                if (chipset.toLowerCase() === "esp8266") { return "esp8266"; }
             }
         }
     }
@@ -549,6 +549,8 @@ export class CompletionHandler {
     }
 
     private addCoreComponents(result: CompletionItem[], docMap: YAMLMap) {
+        const chipset = this.getChipset(docMap);
+
         // suggest platforms, e.g. sensor:, binary_sensor:
         const platformList = this.coreSchema.getPlatformList();
         for (var platformName in platformList) {
@@ -578,6 +580,23 @@ export class CompletionHandler {
             if (this.mapHasScalarKey(docMap, componentName)) {
                 continue;
             }
+
+            // Filter esp32 or esp8266 components only when the other target is used
+            if (components[componentName].dependencies) {
+                let missingDep = false;
+                for (const dep of components[componentName].dependencies) {
+                    if (dep === "esp8266" || dep === "esp32") {
+                        if (docMap.get(dep) === undefined) {
+                            missingDep = true;
+                            break;
+                        }
+                    }
+                }
+                if (missingDep) {
+                    continue;
+                }
+            }
+
             result.push({
                 label: componentName,
                 documentation: {

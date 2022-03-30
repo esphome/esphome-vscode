@@ -14,6 +14,9 @@
         "docs": "The `speed` fan platform lets you represent any float [Output Component](https://esphome.io/components/output/index.html#output) as a fan that supports speed settings.\n\n*See also: [Speed Fan](https://esphome.io/components/fan/speed.html#speed-fan)*"
       },
       "tuya": {
+        "dependencies": [
+          "tuya"
+        ],
         "docs": "The `tuya` fan platform creates a variable speed fan from a tuya component.\n\n*See also: [Tuya Fan](https://esphome.io/components/fan/tuya.html#tuya-fan)*"
       }
     },

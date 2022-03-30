@@ -2,9 +2,15 @@
   "canbus": {
     "components": {
       "esp32_can": {
+        "dependencies": [
+          "esp32"
+        ],
         "docs": "The ESP32 has an integrated CAN controller and therefore doesn\u2019t need an external controller necessarily. You only need to specify the RX and TX pins.\n\n*See also: [ESP32 CAN Component](https://esphome.io/components/canbus.html#esp32-can-component)*"
       },
       "mcp2515": {
+        "dependencies": [
+          "spi"
+        ],
         "docs": "The MCP2515 is a spi device and therefore you must first add the configuration for the spi bus to your file. You need to have an [SPI bus](https://esphome.io/components/spi.html#spi) in your configuration with both the **mosi_pin** and **miso_pin** set.\n\n*See also: [MCP2515 Component](https://esphome.io/components/canbus.html#mcp2515-component)*"
       }
     },

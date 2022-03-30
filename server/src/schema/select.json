@@ -5,6 +5,9 @@
         "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The select that should be mirrored.\n\n*See also: [Copy Select](https://esphome.io/components/copy.html#copy-select)*"
       },
       "modbus_controller": {
+        "dependencies": [
+          "modbus_controller"
+        ],
         "docs": "The `modbus_controller` Select platform allows you to create a Select from modbus registers.\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#modbus-controller-select)*"
       },
       "template": {

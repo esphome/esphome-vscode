@@ -23,11 +23,11 @@
             "platformio_options": {
               "key": "String",
               "default": "{}",
-              "key_dump": "<function string_strict at 0x0000026C75D73790>",
+              "key_dump": "<function string_strict at 0x0000020FE2672790>",
               "type": "schema",
               "schema": {
                 "config_vars": {
-                  "<function string_strict at 0x0000026C75D73790>": {
+                  "<function string_strict at 0x0000020FE2672790>": {
                     "type": "string"
                   }
                 }
@@ -326,37 +326,75 @@
       "esphome": {
         "docs": "Here you specify some core information that ESPHome needs to create firmwares. Most importantly, this is the section of the configuration where you specify the **name** of the node.\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#esphome-core-configuration)*"
       },
-      "adalight": {},
+      "adalight": {
+        "dependencies": [
+          "uart"
+        ]
+      },
       "ads1115": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The `ads1115` domain creates a global hub so that you can later create individual sensors using the [ADS1115 Sensor Platform](https://esphome.io/components/sensor/ads1115.html#id1). To use this hub, first setup the [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) and connect the sensor to the pins specified there.\n\n*See also: [ads1115 Component/Hub](https://esphome.io/components/sensor/ads1115.html#component-hub)*"
       },
-      "airthings_ble": {},
+      "airthings_ble": {
+        "dependencies": [
+          "esp32_ble_tracker"
+        ]
+      },
       "animation": {
+        "dependencies": [
+          "display"
+        ],
         "docs": "Allows to use animated images on displays. Animation inherits all options from the image component. It adds an additional lambda method: `next_frame()` to change the shown picture of a gif.\n\n*See also: [Images](https://esphome.io/components/display/index.html#animation)*"
       },
       "apds9960": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The `apds9960` sensor platform allows you to use your APDS9960 RGB and gesture sensors ([datasheet](https://cdn.sparkfun.com/datasheets/Sensors/Proximity/apds9960.pdf), [SparkFun](https://www.sparkfun.com/products/12787)) with ESPHome. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [apds9960 Component/Hub](https://esphome.io/components/sensor/apds9960.html#component-hub)*"
       },
       "api": {
+        "dependencies": [
+          "network"
+        ],
         "docs": "The ESPHome native API is used to communicate with clients directly, with a highly-optimized network protocol. Currently, only the ESPHome tool and Home Assistant use this native API.\n\n*See also: [Native API Component](https://esphome.io/components/api.html#native-api-component)*"
       },
       "as3935_i2c": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The `as3935_i2c` sensor platform allows you to use your AS3935 sensor ([AliExpress](https://de.aliexpress.com/af/as3935.html?SearchText=as3935), [AMS_AS3935](https://ams.com/as3935)) in order to get notified when a thunderstorm is getting close.\n\n*See also: [as3935 Over I\u00b2C](https://esphome.io/components/sensor/as3935.html#over-i2c)*"
       },
       "as3935_spi": {
+        "dependencies": [
+          "spi"
+        ],
         "docs": "The `as3935_spi` sensor platform allows you to use your AS3935 sensor ([AliExpress](https://de.aliexpress.com/af/as3935.html?SearchText=as3935), [AMS_AS3935](https://ams.com/as3935)) in order to get notified when a thunderstorm is getting close.\n\n*See also: [as3935 Over SPI](https://esphome.io/components/sensor/as3935.html#over-spi)*"
       },
       "async_tcp": {},
       "ble_client": {
+        "dependencies": [
+          "esp32_ble_tracker"
+        ],
         "docs": "The `ble_client` component enables connections to Bluetooth Low Energy devices in order to query and control them. This component does not expose any sensors or output components itself, but merely manages connections to them for use by other components.\n\n*See also: [BLE Client](https://esphome.io/components/ble_client.html#ble-client)*"
       },
       "bme680_bsec": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The `bme680_bsec` sensor platform allows you to use your BME680 ([datasheet](https://cdn-shop.adafruit.com/product-files/3660/BME680.pdf), [Adafruit](https://www.adafruit.com/product/3660)) temperature, pressure and humidity and gas sensors with ESPHome via the Bosch Sensortec Environmental Cluster (BSEC) software library. The use of Bosch\u2019s proprietary algorithms provides additional Indoor Air Quality (IAQ), CO2 equivalent and Breath Volatile Organic Compounds (VOC) equivalent measurements.\n\n*See also: [bme680_bsec Component/Hub](https://esphome.io/components/sensor/bme680_bsec.html#component-hub)*"
       },
       "cap1188": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The `cap1188` sensor platform allows you to use your CAP1188 ([datasheet](https://cdn-shop.adafruit.com/datasheets/CAP1188.pdf), [Adafruit](https://learn.adafruit.com/adafruit-cap1188-breakout/overview)) Capacitive Touch Sensor with ESPHome. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) bus is required to be set up in your configuration for this sensor to work.\n\n*See also: [cap1188 Component/Hub](https://esphome.io/components/binary_sensor/cap1188.html#component-hub)*"
       },
       "captive_portal": {
+        "dependencies": [
+          "wifi"
+        ],
         "docs": "The captive portal component in ESPHome is a fallback mechanism for when connecting to the configured [WiFi](https://esphome.io/components/wifi.html) fails.\n\n*See also: [Captive Portal](https://esphome.io/components/captive_portal.html#captive-portal)*"
       },
       "cd74hc4067": {
@@ -372,10 +410,20 @@
         "docs": "The `dallas` component allows you to use your [DS18b20](https://www.adafruit.com/product/374) ([datasheet](https://datasheets.maximintegrated.com/en/ds/DS18B20.pdf)) and similar 1-Wire temperature sensors.\n\n*See also: [dallas Component/Hub](https://esphome.io/components/sensor/dallas.html#component-hub)*"
       },
       "daly_bms": {
+        "dependencies": [
+          "uart"
+        ],
         "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Delay between data requests.\n\n*See also: [daly_bms Component/Hub](https://esphome.io/components/sensor/daly_bms.html#component-hub)*"
       },
-      "dashboard_import": {},
+      "dashboard_import": {
+        "dependencies": [
+          "api"
+        ]
+      },
       "debug": {
+        "dependencies": [
+          "logger"
+        ],
         "docs": "The `debug` component can be used to debug problems with ESPHome. At startup, it prints a bunch of useful information like reset reason, free heap size, ESPHome version and so on. It also allows you get the same information as a text sensor, and to monitor the state of the ESP heap memory (free space, maximum free block size and fragmentation level) and the main-loop timing.\n\n*See also: [Debug Component](https://esphome.io/components/debug.html#debug-component)*"
       },
       "deep_sleep": {
@@ -385,78 +433,141 @@
         "docs": "The `demo` integration can be used for testing to generate sample instances of many different integrations (sensors, lights, \u2026)\n\n*See also: [Demo Integration](https://esphome.io/components/demo.html#demo-integration)*"
       },
       "dfplayer": {
+        "dependencies": [
+          "uart"
+        ],
         "docs": "The `dfplayer` ([datasheet](https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299)), component allows you to play sound and music stored in an SD card or USB flash drive.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#df-player-mini)*"
       },
       "dsmr": {
+        "dependencies": [
+          "uart"
+        ],
         "docs": "The DSMR component connects to Dutch Smart Meters which comply to DSMR (Dutch Smart Meter Requirements), also known as \u2018Slimme meter\u2019 or \u2018P1 port\u2019.\n\n*See also: [dsmr Component/Hub](https://esphome.io/components/sensor/dsmr.html#component-hub)*"
       },
       "e131": {
+        "dependencies": [
+          "network"
+        ],
         "docs": "The [E1.31 Effect](https://esphome.io/components/light/index.html#e131-light-effect) requires a component hub for the `e131` light effect.\n\n*See also: [E1.31 Component](https://esphome.io/components/light/index.html#e1-31-component)*"
       },
       "esp32": {
         "docs": "This is an alternative base framework for ESP32 chips, and recommended for variants of the ESP32 like ESP32S2, ESP32S3, ESP32C3 and single-core ESP32 chips.\n\n*See also: [Arduino framework](https://esphome.io/components/esp32.html#esp-idf-framework)*"
       },
       "esp32_ble": {
+        "dependencies": [
+          "esp32"
+        ],
         "docs": "The `esp32_ble` component in ESPHome sets up the Bluetooth LE stack on the device so that a [BLE Server](https://esphome.io/components/esp32_ble_server.html) can run.\n\n*See also: [BLE Component](https://esphome.io/components/esp32_ble.html#ble-component)*"
       },
       "esp32_ble_beacon": {
+        "dependencies": [
+          "esp32"
+        ],
         "docs": "The `esp32_ble_beacon` component creates a Bluetooth Low Energy Beacon with your ESP32 device. Beacons are BLE devices that repeatedly just send out a pre-defined packet of data. This packet can then be received by devices like smartphones and can then be used to track a phone\u2019s location.\n\n*See also: [ESP32 Bluetooth Low Energy Beacon](https://esphome.io/components/esp32_ble_beacon.html#esp32-bluetooth-low-energy-beacon)*"
       },
       "esp32_ble_server": {
+        "dependencies": [
+          "esp32"
+        ],
         "docs": "The `esp32_ble_server` component in ESPHome sets up a simple BLE GATT server that exposes the device name, manufacturer and board. This component allows other components to create their own services to expose data and control.\n\n*See also: [BLE Server](https://esphome.io/components/esp32_ble_server.html#ble-server)*"
       },
       "esp32_ble_tracker": {
+        "dependencies": [
+          "esp32"
+        ],
         "docs": "The `esp32_ble_tracker` component creates a global hub so that you can track bluetooth low energy devices using your ESP32 node.\n\n*See also: [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html#esp32-bluetooth-low-energy-tracker-hub)*"
       },
       "esp32_camera": {
+        "dependencies": [
+          "esp32"
+        ],
         "docs": "The `esp32_camera` component allows you to use ESP32-based camera boards in ESPHome that directly integrate into Home Assistant through the native API.\n\n*See also: [ESP32 Camera Component](https://esphome.io/components/esp32_camera.html#esp32-camera-component)*"
       },
       "esp32_camera_web_server": {
+        "dependencies": [
+          "esp32_camera"
+        ],
         "docs": "The `esp32_camera_web_server` component allows you to use expose web server of ESP32-based camera boards in ESPHome that directly can be integrated into external surveillance or PVR software.\n\n*See also: [ESP32 Camera Web Server Component](https://esphome.io/components/esp32_camera_web_server.html#esp32-camera-web-server-component)*"
       },
       "esp32_improv": {
+        "dependencies": [
+          "wifi",
+          "esp32"
+        ],
         "docs": "The `esp32_improv` component in ESPHome implements the open [Improv standard](https://www.improv-wifi.com/) for configuring Wi-Fi on an ESP32 device by using Bluetooth Low Energy to receive the credentials.\n\n*See also: [Improv via BLE](https://esphome.io/components/esp32_improv.html#improv-via-ble)*"
       },
       "esp32_touch": {
+        "dependencies": [
+          "esp32"
+        ],
         "docs": "The `esp32_touch` component creates a global hub for detecting touches on the eight touch pads of the ESP32 as [binary sensors](https://esphome.io/components/binary_sensor/esp32_touch.html#esp32-touch-binary-sensor).\n\n*See also: [esp32_touch Component/Hub](https://esphome.io/components/binary_sensor/esp32_touch.html#component-hub)*"
       },
       "esp8266": {
         "docs": "This component contains platform-specific options for the ESP8266 platform.\n\n*See also: [ESP8266 Platform](https://esphome.io/components/esp8266.html#esp8266-platform)*"
       },
       "ethernet": {
+        "dependencies": [
+          "esp32"
+        ],
         "docs": "This core ESPHome component sets up ethernet connections for ESP32s. Ethernet for ESP8266 is not supported.\n\n*See also: [Ethernet Component](https://esphome.io/components/ethernet.html#ethernet-component)*"
       },
       "exposure_notifications": {
+        "dependencies": [
+          "esp32_ble_tracker"
+        ],
         "docs": "The `exposure_notifications` component uses the [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html) to discover nearby COVID-19 exposure notification bluetooth messages sent by phones running the [Google/Apple Exposure Notification service](https://www.google.com/covid19/exposurenotifications/).\n\n*See also: [Exposure Notification Listener](https://esphome.io/components/exposure_notifications.html#exposure-notification-listener)*"
       },
       "external_components": {
         "docs": "You can easily import community or personal components using the external components feature. Bundled components can be overridden using this feature.\n\n*See also: [External Components](https://esphome.io/components/external_components.html#external-components)*"
       },
       "fingerprint_grow": {
+        "dependencies": [
+          "uart"
+        ],
         "docs": "The reader can be powered by the 3.3V output of an NodeMCU. As the communication with the reader is done using UART (default baud rate is 57600), you need to have an [UART bus](https://esphome.io/components/uart.html#uart) in your configuration with the `rx_pin` connected to the reader\u2019s `TX` and the `tx_pin` connected to the reader\u2019s `RX`.\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
       },
       "font": {
+        "dependencies": [
+          "display"
+        ],
         "docs": "The rendering engine also has a powerful font drawer which integrates seamlessly into ESPHome. Whereas in most Arduino display projects you have to use one of a few pre-defined fonts in very specific sizes, with ESPHome you have the option to use **any** TrueType (`.ttf`) font file at **any** size! Granted the reason for it is actually not having to worry about the licensing of font files :)\n\n*See also: [Display Component](https://esphome.io/components/display/index.html#drawing-static-text)*"
       },
       "globals": {
         "docs": "In some cases you might require to share a global variable across multiple lambdas. For example, global variables can be used to store the state of a garage door.\n\n*See also: [Automations and Templates](https://esphome.io/guides/automations.html#global-variables)*"
       },
       "gps": {
+        "dependencies": [
+          "uart"
+        ],
         "docs": "The `gps` component allows you to connect GPS modules to your ESPHome project. Any GPS module that uses the standardized NMEA communication protocol will work.\n\n*See also: [GPS Component](https://esphome.io/components/gps.html#gps-component)*"
       },
       "graph": {
+        "dependencies": [
+          "display",
+          "sensor"
+        ],
         "docs": "You can display a graph of a sensor value(s) using this component. Examples:\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
       },
       "http_request": {
+        "dependencies": [
+          "network"
+        ],
         "docs": "The `http_request` component lets you make HTTP/HTTPS requests. First, you need to setup a component:\n\n*See also: [HTTP Request](https://esphome.io/components/http_request.html#http-request)*"
       },
       "i2c": {
         "docs": "This component sets up the I\u00b2C bus for your ESP32 or ESP8266. In order for these components to work correctly, you need to define the I\u00b2C bus in your configuration. Please note the ESP will enable its internal 10k\u2126 pullup resistors for these pins, so you usually don\u2019t need to put on external ones. You can use multiple devices on one I\u00b2C bus as each device is given a unique address for communicating between it and the ESP. You can do this by hopping wires from the two lines (SDA and SCL) from each device board to the next device board or by connecting the wires from each device back to the two I\u00b2C pins on the ESP.\n\n*See also: [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c-bus)*"
       },
       "image": {
+        "dependencies": [
+          "display"
+        ],
         "docs": "Use this component to store graphical images on the device, you can then draw the images on compatible displays.\n\n*See also: [QR Code Component](https://esphome.io/components/display/index.html#images)*"
       },
       "improv_serial": {
+        "dependencies": [
+          "logger",
+          "wifi"
+        ],
         "docs": "The `improv_serial` component in ESPHome implements the open [Improv standard](https://www.improv-wifi.com/) for configuring Wi-Fi on an ESPHome device by using a serial connection to the device, eg. USB.\n\n*See also: [Improv via Serial](https://esphome.io/components/improv_serial.html#improv-via-serial)*"
       },
       "interval": {
@@ -467,43 +578,83 @@
         "docs": "The logger component automatically logs all log messages through the serial port and through MQTT topics. By default, all logs with a severity higher than `DEBUG` will be shown. Decreasing the log level can help with the performance of the application and memory size.\n\n*See also: [Logger Component](https://esphome.io/components/logger.html#logger-component)*"
       },
       "mcp23008": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The MCP23008 component ([datasheet](http://ww1.microchip.com/downloads/en/devicedoc/21919e.pdf), [Adafruit](https://www.adafruit.com/product/593)) has 8 GPIOs that can be configured independently.\n\n*See also: [MCP23008 Component](https://esphome.io/components/mcp230xx.html#mcp23008-component)*"
       },
       "mcp23016": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The MCP23016 component ([datasheet](http://ww1.microchip.com/downloads/en/devicedoc/20090c.pdf)) has 16 GPIOs and can be configured the same way than the other variants.\n\n*See also: [MCP23016 Component](https://esphome.io/components/mcp230xx.html#mcp23016-component)*"
       },
       "mcp23017": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The MCP23017 component allows you to use MCP23017 I/O expanders ([datasheet](http://ww1.microchip.com/downloads/en/devicedoc/20001952c.pdf), [Adafruit](https://www.adafruit.com/product/732)) in ESPHome. It uses the [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) for communication.\n\n*See also: [MCP23017 Component](https://esphome.io/components/mcp230xx.html#mcp23017-component)*"
       },
       "mcp23s08": {
+        "dependencies": [
+          "spi"
+        ],
         "docs": "The MCP23S08 component ([datasheet](http://ww1.microchip.com/downloads/en/DeviceDoc/MCP23008-MCP23S08-Data-Sheet-20001919F.pdf), [Digi-Key](https://www.digikey.com/product-detail/en/microchip-technology/MCP23S08-E-P/MCP23S08-E-P-ND/735954)) has 8 GPIOs that can be configured independently.\n\n*See also: [MCP23S08 Component](https://esphome.io/components/mcp23Sxx.html#mcp23s08-component)*"
       },
       "mcp23s17": {
+        "dependencies": [
+          "spi"
+        ],
         "docs": "The MCP23S17 component allows you to use MCP23S17 I/O expanders ([datasheet](http://ww1.microchip.com/downloads/en/DeviceDoc/20001952C.pdf), [Digi-Key](https://www.digikey.com/product-detail/en/microchip-technology/MCP23S17-E-SP/MCP23S17-E-SP-ND/894276)) in ESPHome. It uses the [SPI Bus](https://esphome.io/components/spi.html#spi) for communication.\n\n*See also: [MCP23S17 Component](https://esphome.io/components/mcp23Sxx.html#mcp23s17-component)*"
       },
       "mcp3008": {
+        "dependencies": [
+          "spi"
+        ],
         "docs": "The MCP3008 component allows you to use MCP3008 8-Channel 10-Bit A/D Converter ([datasheet](http://ww1.microchip.com/downloads/en/DeviceDoc/21295d.pdf), [Adafruit](https://www.adafruit.com/product/856)) in ESPHome. It uses the [SPI Bus](https://esphome.io/components/spi.html#spi) for communication.\n\n*See also: [mcp3008 Component/Hub](https://esphome.io/components/sensor/mcp3008.html#component-hub)*"
       },
       "mcp3204": {
+        "dependencies": [
+          "spi"
+        ],
         "docs": "The MCP3204 component allows you to use MCP3204 4-Channel 12-Bit A/D Converter ([datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/21298e.pdf)) in ESPHome. It uses the [SPI Bus](https://esphome.io/components/spi.html#spi) for communication.\n\n*See also: [mcp3204 Component/Hub](https://esphome.io/components/sensor/mcp3204.html#component-hub)*"
       },
       "mcp4728": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The MCP4728 output component allows to use [12bit external quad DAC](https://www.adafruit.com/product/4470) in order to have analog outputs on any board by using [I\u00b2C](https://esphome.io/components/i2c.html#i2c). Devices default address is `0x60`.\n\n*See also: [MCP4728 Component](https://esphome.io/components/output/mcp4728.html#mcp4728-component)*"
       },
       "mdns": {
+        "dependencies": [
+          "network"
+        ],
         "docs": "The `mdns` component makes the node announce itself on the local network using the multicast DNS (mDNS) protocol.\n\n*See also: [mDNS Component](https://esphome.io/components/mdns.html#mdns-component)*"
       },
       "modbus": {
+        "dependencies": [
+          "uart"
+        ],
         "docs": "The Modbus protocol is used by many consumer and industrial devices for communication. This component allows components in ESPHome to communicate to those devices. Modbus requires a [UART Bus](https://esphome.io/components/uart.html#uart) to communicate.\n\n*See also: [Modbus Component](https://esphome.io/components/modbus.html#modbus-component)*"
       },
       "modbus_controller": {
         "docs": "The `modbus_controller` component creates a RS485 connection to control a modbus device\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#modbus-controller)*"
       },
-      "mopeka_ble": {},
+      "mopeka_ble": {
+        "dependencies": [
+          "esp32_ble_tracker"
+        ]
+      },
       "mpr121": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The `mpr121` sensor platform allows you to use your MPR121 ([datasheet](https://cdn-learn.adafruit.com/downloads/pdf/adafruit-mpr121-12-key-capacitive-touch-sensor-breakout-tutorial.pdf), [Adafruit](https://learn.adafruit.com/adafruit-mpr121-12-key-capacitive-touch-sensor-breakout-tutorial/overview)) Capacitive Touch Sensor with ESPHome. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [mpr121 Component/Hub](https://esphome.io/components/binary_sensor/mpr121.html#component-hub)*"
       },
       "mqtt": {
+        "dependencies": [
+          "network"
+        ],
         "docs": "With the MQTT Message schema you can tell ESPHome how a specific MQTT message should be sent. It is used in several places like last will and birth messages or MQTT log options.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#mqttmessage)*"
       },
       "my9231": {
@@ -513,23 +664,41 @@
         "docs": "The network component is a global configuration for all types of networks (WiFi, Ethernet).\n\n*See also: [Network component](https://esphome.io/components/network.html#network-component)*"
       },
       "ota": {
+        "dependencies": [
+          "network"
+        ],
         "docs": "With the OTA (Over The Air) update component you can upload your firmware binaries to your node without having to use a USB cable for uploads. ESPHome natively supports this through its `run` and `upload` helper scripts.\n\n*See also: [OTA Update Component](https://esphome.io/components/ota.html#ota-update-component)*"
       },
       "packages": {},
       "pca9685": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The PCA9685 component represents a PCA9685 12-bit PWM driver ([datasheet](https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html#configure-channel), [adafruit](https://www.adafruit.com/product/815)) in ESPHome. It uses [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) for communication.\n\n*See also: [pca9685 Component/Hub](https://esphome.io/components/output/pca9685.html#component-hub)*"
       },
       "pcf8574": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The PCF8574 component allows you to use PCF8574 or PCF8575 I/O expanders ([datasheet](http://www.ti.com/lit/ds/symlink/pcf8574.pdf), [SparkFun](https://www.sparkfun.com/products/retired/8130)) in ESPHome. It uses [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) for communication.\n\n*See also: [PCF8574 I/O Expander](https://esphome.io/components/pcf8574.html#pcf8574-i-o-expander)*"
       },
       "pipsolar": {
+        "dependencies": [
+          "uart"
+        ],
         "docs": "The PipSolar component allows you to integrate PIP-compatible Inverters in ESPHome. It uses [UART](https://esphome.io/components/uart.html#uart) for communication.\n\n*See also: [PipSolar PV Inverter](https://esphome.io/components/pipsolar.html#pipsolar-pv-inverter)*"
       },
       "pn532": {},
       "pn532_i2c": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The `pn532` component allows you to use PN532 NFC/RFID controllers ([datasheet](https://cdn-shop.adafruit.com/datasheets/pn532ds.pdf), [Adafruit](https://www.adafruit.com/product/364)) with ESPHome. This component is a global hub that establishes the connection to the PN532 via [I\u00b2C](https://esphome.io/components/i2c.html#i2c) and outputs its data. Using the [PN532 binary sensors](https://esphome.io/components/binary_sensor/pn532.html#pn532-tag) you can then create individual binary sensors that track if an NFC/RFID tag is currently detected by the PN532.\n\n*See also: [pn532 Over I\u00b2C](https://esphome.io/components/binary_sensor/pn532.html#over-i2c)*"
       },
       "pn532_spi": {
+        "dependencies": [
+          "spi"
+        ],
         "docs": "The `pn532_spi` component allows you to use PN532 NFC/RFID controllers ([datasheet](https://cdn-shop.adafruit.com/datasheets/pn532ds.pdf), [Adafruit](https://www.adafruit.com/product/364)) with ESPHome. This component is a global hub that establishes the connection to the PN532 via [SPI](https://esphome.io/components/spi.html#spi) and outputs its data. Using the [PN532 binary sensors](https://esphome.io/components/binary_sensor/pn532.html#pn532-tag) you can then create individual binary sensors that track if an NFC/RFID tag is currently detected by the PN532.\n\n*See also: [pn532 Over SPI](https://esphome.io/components/binary_sensor/pn532.html#over-spi)*"
       },
       "power_supply": {
@@ -541,16 +710,32 @@
       },
       "psram": {},
       "qr_code": {
+        "dependencies": [
+          "display"
+        ],
         "docs": "Use this component to generate a QR-code containing a string on the device, which can then be drawn on compatible displays.\n\n*See also: [QR Code Component](https://esphome.io/components/display/index.html#qr-code-component)*"
       },
-      "radon_eye_ble": {},
+      "radon_eye_ble": {
+        "dependencies": [
+          "esp32_ble_tracker"
+        ]
+      },
       "rc522_i2c": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The `rc522_i2c` component allows you to use RC522 RFID controllers with ESPHome. This component is a global hub that establishes the connection to the RC522 via [I\u00b2C](https://esphome.io/components/i2c.html#i2c) (also available over SPI). Using the [RC522 binary sensors](https://esphome.io/components/binary_sensor/rc522.html#rc522-tag) you can then create individual binary sensors that track if an RFID tag is currently detected by the RC522.\n\n*See also: [rc522 Over I\u00b2C](https://esphome.io/components/binary_sensor/rc522.html#over-i2c)*"
       },
       "rc522_spi": {
+        "dependencies": [
+          "spi"
+        ],
         "docs": "The `rc522_spi` component allows you to use RC522 RFID controllers with ESPHome. This component is a global hub that establishes the connection to the RC522 via [SPI](https://esphome.io/components/spi.html#spi) (also available over I\u00b2C). Using the [RC522 binary sensors](https://esphome.io/components/binary_sensor/rc522.html#rc522-tag) you can then create individual binary sensors that track if an RFID tag is currently detected by the RC522.\n\n*See also: [rc522 Over SPI](https://esphome.io/components/binary_sensor/rc522.html#over-spi)*"
       },
       "rdm6300": {
+        "dependencies": [
+          "uart"
+        ],
         "docs": "The `rdm6300` component allows you to use RDM6300 NFC/RFID controllers ([datasheet](https://elty.pl/upload/download/RFID/RDM630-Spec.pdf), [iTead](https://www.itead.cc/rdm6300.html)) with ESPHome. This component is a global hub that establishes the connection to the RDM6300 via [UART](https://esphome.io/components/uart.html#uart) and translates the received data. Using the [RDM6300 binary sensors](https://esphome.io/components/binary_sensor/rdm6300.html#rdm6300-tag) you can then create individual binary sensors that track if an NFC/RFID tag is currently detected by the RDM6300.\n\n*See also: [rdm6300 Component/Hub](https://esphome.io/components/binary_sensor/rdm6300.html#component-hub)*"
       },
       "remote_receiver": {
@@ -560,12 +745,19 @@
         "docs": "The `remote_transmitter` component lets you send digital packets to control devices in your home. For example this includes infrared data or 433MHz RF signals.\n\n*See also: [Remote Transmitter](https://esphome.io/components/remote_transmitter.html#remote-transmitter)*"
       },
       "rf_bridge": {
+        "dependencies": [
+          "uart"
+        ],
         "docs": "The `RF Bridge` Component provides the ability to send and receive 433MHz remote codes without hardware hacking the circuit board to bypass the `efm8bb1` MCU. This component implements the communication protocol that the original `efm8bb1` firmware implements. The device is connected via the [UART bus](https://esphome.io/components/uart.html). The uart bus must be configured at the same speed of the module which is 19200bps.\n\n*See also: [RF Bridge Component](https://esphome.io/components/rf_bridge.html#rf-bridge-component)*"
       },
       "rtttl": {
         "docs": "The `rtttl`, component allows you to easily connect a passive piezo buzzer to your microcontroller and play monophonic songs. It accepts the Ring Tone Text Transfer Language, rtttl format ([Wikipedia](https://en.wikipedia.org/wiki/Ring_Tone_Transfer_Language)) which allows to store simple melodies.\n\n*See also: [Rtttl Buzzer](https://esphome.io/components/rtttl.html#rtttl-buzzer)*"
       },
-      "ruuvi_ble": {},
+      "ruuvi_ble": {
+        "dependencies": [
+          "esp32_ble_tracker"
+        ]
+      },
       "script": {
         "docs": "With the `script:` component you can define a list of steps in a central place, and then execute the script with a single call.\n\n*See also: [script Component](https://esphome.io/guides/automations.html#script-component)*"
       },
@@ -573,6 +765,9 @@
         "docs": "The `servo` component allows you to use servo motors with ESPHome. Servos are motor controllers that contain all the electronics necessary for driving the motor and provide a simple PWM interface to control the motor.\n\n*See also: [Servo Component](https://esphome.io/components/servo.html#servo-component)*"
       },
       "sim800l": {
+        "dependencies": [
+          "uart"
+        ],
         "docs": "The `SIM800L` Component provides the ability to dial, send and receive SMS text messages. The device must be connected via a [UART bus](https://esphome.io/components/uart.html) supporting both receiving and transmitting line. The UART bus must be configured at the same speed of the module which is by default 9600bps. The required connection wires are `+VCC`, `GND`, `RX` and `TX`.\n\n*See also: [sim800l Component/Hub](https://esphome.io/components/sim800l.html#component-hub)*"
       },
       "sm16716": {
@@ -596,15 +791,24 @@
         "docs": "The `sun` component allows you to track the sun\u2019s position in the sky.\n\n*See also: [Sun](https://esphome.io/components/sun.html#sun)*"
       },
       "sx1509": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The SX1509 component allows you to expand your I/O capabilities: ([datasheet](https://www.semtech.com/uploads/documents/sx1509_evk_users_guide.pdf), [SparkFun](https://learn.sparkfun.com/tutorials/sx1509-io-expander-breakout-hookup-guide/all)) in ESPHome. It uses [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) for communication.\n\n*See also: [SX1509 16 channel I/O Expander with LED driver and keypad engine](https://esphome.io/components/sx1509.html#sx1509-16-channel-i-o-expander-with-led-driver-and-keypad-engine)*"
       },
       "tca9548a": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The TCA9548A component allows you to use TCA9548A as a I\u00b2C multiplexer ([datasheet](https://www.ti.com/lit/ds/symlink/tca9548a.pdf), [AdaFruit](https://learn.adafruit.com/adafruit-tca9548a-1-to-8-i2c-multiplexer-breakout)) in ESPHome. It uses [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) for communication.\n\n*See also: [TCA9548A I\u00b2C Multiplexer](https://esphome.io/components/tca9548a.html#tca9548a-i2c-multiplexer)*"
       },
       "teleinfo": {
         "docs": "The `teleinfo` component allows you to retrieve data from a French electrical counter using Teleinformation ([datasheet](https://www.enedis.fr/sites/default/files/Enedis-NOI-CPT_54E.pdf)). It works with Linky electrical counter but also legacy EDF electrical counter.\n\n*See also: [teleinfo Component/Hub](https://esphome.io/components/sensor/teleinfo.html#component-hub)*"
       },
       "tlc59208f": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The TLC59208F component represents a Texas Instruments TLC59208F 8-bit PWM driver ([datasheet](http://www.ti.com/lit/gpn/tlc59208f), [hw example](https://faboplatform.github.io/ArduinoDocs/03.I2C%20Brick/211_brick_i2c_7seg/)) in ESPHome. It uses [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) for communication.\n\n*See also: [tlc59208f Component/Hub](https://esphome.io/components/output/tlc59208f.html#component-hub)*"
       },
       "tlc5947": {
@@ -614,12 +818,21 @@
         "docs": "The `tm1651` display platform allows you to use battery display units based on TM1651 chip, like [this one](https://aliexpress.com/item/32811491559.html) with ESPHome. Currently integration supports level and brightness setting. All updates can be made via lambda expressions.\n\n*See also: [TM1651 Battery Display](https://esphome.io/components/tm1651.html#tm1651-battery-display)*"
       },
       "ttp229_bsf": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The configuration is made up of two parts: The central component, and individual Binary sensors per channel.\n\n*See also: [ttp229_bsf Component](https://esphome.io/components/binary_sensor/ttp229.html#ttp229-bsf-component)*"
       },
       "ttp229_lsf": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The configuration is made up of two parts: The central component, and individual Binary sensors per channel.\n\n*See also: [ttp229_lsf Component](https://esphome.io/components/binary_sensor/ttp229.html#ttp229-lsf-component)*"
       },
       "tuya": {
+        "dependencies": [
+          "uart"
+        ],
         "docs": "The `tuya` component creates a serial connection to the Tuya MCU for platforms to use.\n\n*See also: [Tuya MCU](https://esphome.io/components/tuya.html#tuya-mcu)*"
       },
       "uart": {
@@ -628,13 +841,24 @@
       "web_server": {
         "docs": "The `web_server` component creates a simple web server on the node that can be accessed through any browser and a simple [REST API](https://esphome.io/web-api/index.html). Please note that enabling this component will take up *a lot* of memory and can lead to problems, especially on the ESP8266.\n\n*See also: [Web Server Component](https://esphome.io/components/web_server.html#web-server-component)*"
       },
-      "web_server_base": {},
+      "web_server_base": {
+        "dependencies": [
+          "network"
+        ]
+      },
       "wifi": {
         "docs": "WPA2_EAP Enterprise Authentication is supported on ESP32s and ESP8266s. In order to configure this feature you must use the [Connecting to Multiple Networks](https://esphome.io/components/wifi.html#wifi-networks) style configuration. The ESP32 is known to work with PEAP, EAP-TTLS, and the certificate based EAP-TLS. These are advanced settings and you will usually need to consult your enterprise network administrator.\n\n*See also: [Connecting to Multiple Networks](https://esphome.io/components/wifi.html#enterprise-authentication)*"
       },
       "wled": {},
-      "xiaomi_ble": {},
+      "xiaomi_ble": {
+        "dependencies": [
+          "esp32_ble_tracker"
+        ]
+      },
       "xpt2046": {
+        "dependencies": [
+          "spi"
+        ],
         "docs": "The `xpt2046` component allows using the touch screen controllers based on the XPT2046 chip ([datasheet](https://datasheetspdf.com/pdf-file/746665/XPTEK/XPT2046/1), [AZ-Delivery](https://www.az-delivery.de/en/products/2-4-tft-lcd-touch-display)) with ESPHome. Many cheap LCD displays contain this controller. The [SPI](https://esphome.io/components/spi.html#spi) is required to be set up in your configuration for this sensor to work.\n\n*See also: [xpt2046 Component/Hub](https://esphome.io/components/binary_sensor/xpt2046.html#component-hub)*"
       }
     },

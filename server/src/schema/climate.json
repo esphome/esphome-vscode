@@ -2,6 +2,9 @@
   "climate": {
     "components": {
       "anova": {
+        "dependencies": [
+          "ble_client"
+        ],
         "docs": "The `anova` climate platform creates a climate device which can be used to control a BLE Anova sous-vide stick. Whilst not strictly a climate device, the concept of keeping something to a set temperature applies equally here.\n\n*See also: [Anova Cooker](https://esphome.io/components/climate/anova.html#anova-cooker)*"
       },
       "ballu": {},
@@ -21,6 +24,11 @@
       "hitachi_ac344": {},
       "hitachi_ac424": {},
       "midea": {
+        "dependencies": [
+          "climate",
+          "uart",
+          "wifi"
+        ],
         "docs": "The `midea` component creates a Midea air conditioner climate device.\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#midea-air-conditioner)*"
       },
       "midea_ac": {},
@@ -39,6 +47,9 @@
         "docs": "Additional configuration is available for this model.\n\n*See also: [toshiba Climate](https://esphome.io/components/climate/climate_ir.html#toshiba-climate)*"
       },
       "tuya": {
+        "dependencies": [
+          "tuya"
+        ],
         "docs": "The `tuya` climate platform creates a climate device from a tuya component.\n\n*See also: [Tuya Climate](https://esphome.io/components/climate/tuya.html#tuya-climate)*"
       },
       "whirlpool": {

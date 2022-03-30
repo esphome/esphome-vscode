@@ -2,9 +2,15 @@
   "touchscreen": {
     "components": {
       "ektf2232": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The `ektf2232` component allows using the touchscreen controller found in the [Inkplate 6 Plus](https://esphome.io/components/display/inkplate6.html) with ESPHome. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [EKTF2232 Touchscreen Controller](https://esphome.io/components/touchscreen/ektf2232.html#ektf2232-touchscreen-controller)*"
       },
       "lilygo_t5_47": {
+        "dependencies": [
+          "i2c"
+        ],
         "docs": "The `liygo_t5_47` touchscreen platform allows using the touchscreen controller for the Lilygo T5 4.7\u201d e-Paper Display with ESPHome. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this touchscreen to work.\n\n*See also: [Lilygo T5 4.7\u201d Touchscreen](https://esphome.io/components/touchscreen/lilygo_t5_47.html#lilygo-t5-4-7-touchscreen)*"
       }
     },

@@ -50,11 +50,11 @@
             "logs": {
               "key": "String",
               "default": "{}",
-              "key_dump": "<function string at 0x0000026C75D73700>",
+              "key_dump": "<function string at 0x0000020FE2672700>",
               "type": "schema",
               "schema": {
                 "config_vars": {
-                  "<function string at 0x0000026C75D73700>": {
+                  "<function string at 0x0000020FE2672700>": {
                     "type": "enum",
                     "values": [
                       "NONE",

@@ -2,6 +2,9 @@
   "cover": {
     "components": {
       "am43": {
+        "dependencies": [
+          "ble_client"
+        ],
         "docs": "The `am43` cover platform allows you to control an AM43 based BLE cover motor. These devices are sold under various brands, such as Zemismart and A-OK. The platform connects to the device over the ESP32\u2019s BLE peripheral and both controls and fetches the position and state of the motor.\n\n*See also: [AM43 Cover](https://esphome.io/components/cover/am43.html#am43-cover)*"
       },
       "copy": {
@@ -23,6 +26,9 @@
         "docs": "The `time_based` cover platform allows you to create covers with position control that do not have any position feedback. The state of the cover is thus always an assumed one, the current position is approximated with the time the cover has been moving in a direction.\n\n*See also: [Time Based Cover](https://esphome.io/components/cover/time_based.html#time-based-cover)*"
       },
       "tuya": {
+        "dependencies": [
+          "tuya"
+        ],
         "docs": "The `tuya` cover platform creates a simple position-only cover from a tuya serial component.\n\n*See also: [Tuya Cover](https://esphome.io/components/cover/tuya.html#tuya-cover)*"
       }
     },
