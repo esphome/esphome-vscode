@@ -33,7 +33,7 @@ export class VsCodeFileAccessor implements FileAccessor {
     const fsPath = vscodeUri.URI.parse(uri).fsPath;
     return new Promise<boolean>((c) => {
       fs.exists(fsPath, (exists) => {
-        c(exists)
+        c(exists);
       });
     });
   }
@@ -50,7 +50,7 @@ export class VsCodeFileAccessor implements FileAccessor {
         if (!exists) {
           e('File does not exist');
         }
-        fs.readFile(fsPath, "UTF-8", (err, result) => {
+        fs.readFile(fsPath, { encoding: "utf-8" }, (err, result) => {
           if (err) {
             e(err);
           } else {
@@ -63,20 +63,20 @@ export class VsCodeFileAccessor implements FileAccessor {
 
   public getFilesInFolder(
     subFolder: string,
-    filelist: string[] = []
+    file_list: string[] = []
   ): string[] {
     subFolder = path.normalize(subFolder);
 
     try {
       fs.readdirSync(subFolder).forEach((file) => {
-        filelist = fs.statSync(path.join(subFolder, file)).isDirectory()
-          ? this.getFilesInFolder(path.join(subFolder, file), filelist)
-          : filelist.concat(path.join(subFolder, file));
+        file_list = fs.statSync(path.join(subFolder, file)).isDirectory()
+          ? this.getFilesInFolder(path.join(subFolder, file), file_list)
+          : file_list.concat(path.join(subFolder, file));
       });
     } catch (err) {
       console.log(`Cannot find the files in folder ${subFolder}`);
     }
-    return filelist;
+    return file_list;
   }
 
   private dealtWithRelativeFrom = (relativeFrom: string): string => {

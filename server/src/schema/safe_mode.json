@@ -1,0 +1,61 @@
+{
+  "safe_mode.button": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "button.BUTTON_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "icon": {
+              "default": "mdi:restart-alert"
+            },
+            "entity_category": {
+              "default": "config"
+            },
+            "device_class": {
+              "default": "restart"
+            },
+            "id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Safe Mode Button](https://esphome.io/components/button/safe_mode.html#configuration-variables)*"
+            },
+            "ota": {
+              "key": "GeneratedID"
+            }
+          }
+        }
+      }
+    }
+  },
+  "safe_mode.switch": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "switch.SWITCH_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Safe Mode Switch](https://esphome.io/components/switch/safe_mode.html#configuration-variables)*"
+            },
+            "ota": {
+              "key": "GeneratedID"
+            },
+            "icon": {
+              "default": "mdi:restart-alert"
+            },
+            "entity_category": {
+              "default": "config"
+            }
+          }
+        }
+      }
+    }
+  }
+}

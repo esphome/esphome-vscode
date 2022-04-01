@@ -1,0 +1,35 @@
+{
+  "analog_threshold.binary_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "binary_sensor.BINARY_SENSOR_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {},
+            "sensor_id": {
+              "key": "Required"
+            },
+            "threshold": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "upper": {
+                    "key": "Required"
+                  },
+                  "lower": {
+                    "key": "Required"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

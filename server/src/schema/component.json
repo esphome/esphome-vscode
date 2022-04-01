@@ -1,0 +1,17 @@
+{
+  "component": {
+    "action": {
+      "update": {
+        "type": "maybe",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required"
+            }
+          }
+        },
+        "docs": "Using this action you can manually call the `update()` method of a component.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#component-update-action)*"
+      }
+    }
+  }
+}

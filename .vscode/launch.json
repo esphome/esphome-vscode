@@ -43,6 +43,28 @@
       ],
       "outFiles": ["${workspaceFolder}/out/test/**/*.js"],
       "preLaunchTask": "npm: watch"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Server Mocha Tests",
+      "cwd": "${workspaceFolder}/server",
+      "program": "./node_modules/mocha/bin/_mocha",
+      "args": [
+        "--require",
+        "ts-node/register",
+        "--timeout",
+        "999999",
+        "--colors",
+        "--recursive",
+        "./test/**/*.ts"
+      ],
+      "env": {
+        "NODE_ENV": "testing"
+      },
+      "internalConsoleOptions": "openOnSessionStart",
+      "sourceMaps": true,
+      "outFiles": ["${workspaceFolder}/**/*.js", "!**/node_modules/**"]
     }
   ],
   "compounds": [

@@ -1,16 +1,17 @@
 {
   "compilerOptions": {
-    "target": "es2019",
-    "lib": ["ES2019"],
+    "alwaysStrict": true,
+    "declaration": true,
+    "target": "es6",
+    "lib": ["es2016"],
     "module": "commonjs",
     "moduleResolution": "node",
     "sourceMap": true,
     "resolveJsonModule": true,
-    "strict": true,
     "outDir": "out",
     "rootDir": "src",
     "skipLibCheck": true // remove when fixed issue with vscode-json-languageservice
   },
-  "include": ["src", "src/*.json"],
+  "include": ["src", "src/schema/*.json"],
   "exclude": ["node_modules", ".vscode-test"]
 }

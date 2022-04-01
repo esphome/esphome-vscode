@@ -1,0 +1,69 @@
+{
+  "st7789v.display": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "display.FULL_DISPLAY_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
+            },
+            "reset_pin": {
+              "key": "Required",
+              "schema": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin",
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The RESET pin.\n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
+            },
+            "dc_pin": {
+              "key": "Required",
+              "schema": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin",
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The DC pin.\n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
+            },
+            "cs_pin": {
+              "key": "Required",
+              "schema": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin",
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The CS pin.\n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
+            },
+            "backlight_pin": {
+              "key": "Optional",
+              "schema": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin",
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The display\u2019s backlight pin.\n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
+            },
+            "brightness": {
+              "key": "Optional",
+              "default": "1.0"
+            },
+            "update_interval": {
+              "key": "Optional",
+              "default": "5s",
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to re-draw the screen. Defaults to `5s`.\n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
+            },
+            "spi_id": {
+              "key": "GeneratedID"
+            }
+          }
+        }
+      }
+    }
+  }
+}

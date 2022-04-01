@@ -1,0 +1,39 @@
+{
+  "lilygo_t5_47.touchscreen": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "touchscreen.TOUCHSCREEN_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually set the ID of this touchscreen.\n\n*See also: [Lilygo T5 4.7\u201d Touchscreen](https://esphome.io/components/touchscreen/lilygo_t5_47.html#configuration-variables)*"
+            },
+            "interrupt_pin": {
+              "key": "Required",
+              "schema": true,
+              "internal": true,
+              "modes": [
+                "input"
+              ],
+              "type": "pin",
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The touch detection pin. Must be `GPIO13`.\n\n*See also: [Lilygo T5 4.7\u201d Touchscreen](https://esphome.io/components/touchscreen/lilygo_t5_47.html#configuration-variables)*"
+            },
+            "i2c_id": {
+              "key": "GeneratedID"
+            },
+            "address": {
+              "key": "Optional",
+              "default": "90",
+              "data_type": "hex_uint8_t"
+            }
+          }
+        }
+      }
+    }
+  }
+}
