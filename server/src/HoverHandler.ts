@@ -1,7 +1,7 @@
 import { listenerCount } from "process";
 import { TextDocument } from "vscode-languageserver-textdocument";
 import { Hover, MarkupContent, Position, Range } from "vscode-languageserver-types";
-import { isMap, isPair, isScalar, isSeq, Node, visit } from "yaml";
+import { isMap, isNode, isPair, isScalar, isSeq, Node, visit } from "yaml";
 import { ConfigVar, CoreSchema, Schema } from "./CoreSchema";
 import { YamlNode } from "./jsonASTTypes";
 import { SingleYAMLDocument, YamlDocuments, yamlDocumentsCache } from "./parser/yaml-documents";
@@ -50,8 +50,8 @@ export class HoverHandler {
 
     private getNodeFromPosition(doc: SingleYAMLDocument, positionOffset: number): YamlNode {
         let closestNode: Node;
-        visit(doc.internalDocument, (key, node: Node) => {
-            if (!node) {
+        visit(doc.internalDocument, (key, node) => {
+            if (!node || !isNode(node)) {
                 return;
             }
             const range = node.range;

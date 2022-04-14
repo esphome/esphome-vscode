@@ -75,6 +75,9 @@
                   },
                   "accuracy_decimals": {
                     "default": "0"
+                  },
+                  "entity_category": {
+                    "default": "diagnostic"
                   }
                 }
               },
@@ -93,6 +96,9 @@
                   },
                   "accuracy_decimals": {
                     "default": "0"
+                  },
+                  "entity_category": {
+                    "default": "diagnostic"
                   }
                 }
               },

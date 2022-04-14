@@ -64,11 +64,11 @@
             },
             "headers": {
               "key": "String",
-              "key_dump": "<function string at 0x0000020FE2672700>",
+              "key_type": "string",
               "type": "schema",
               "schema": {
                 "config_vars": {
-                  "<function string at 0x0000020FE2672700>": {
+                  "string": {
                     "templatable": true,
                     "type": "string"
                   }
@@ -118,11 +118,11 @@
             },
             "json": {
               "key": "String",
-              "key_dump": "<function string at 0x0000020FE2672700>",
+              "key_type": "string",
               "type": "schema",
               "schema": {
                 "config_vars": {
-                  "<function string at 0x0000020FE2672700>": {
+                  "string": {
                     "templatable": true,
                     "type": "string"
                   }
@@ -156,11 +156,11 @@
             },
             "json": {
               "key": "String",
-              "key_dump": "<function string at 0x0000020FE2672700>",
+              "key_type": "string",
               "type": "schema",
               "schema": {
                 "config_vars": {
-                  "<function string at 0x0000020FE2672700>": {
+                  "string": {
                     "templatable": true,
                     "type": "string"
                   }

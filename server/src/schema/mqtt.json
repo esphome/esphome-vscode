@@ -38,6 +38,21 @@
               "type": "string",
               "docs": "**string**: The client id to use for opening connections. See [Defaults](https://esphome.io/components/mqtt.html#mqtt-defaults) for more information.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
             },
+            "idf_send_async": {
+              "key": "Optional",
+              "type": "boolean",
+              "docs": "**bool**: Only with `esp-idf`. If true publishing the message happens from the internal mqtt task. The client only enqueues the message. Defaults to `false`. The advantage of asyncronous publishing is that it doesn\u2019t block the esphome main thread. The disadvantage is a delay (up to 1-2 seconds) until the messages are actually sent out. Set this to true if ypi send large amounts of of data over mqtt.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
+            },
+            "certificate_authority": {
+              "key": "Optional",
+              "type": "string",
+              "docs": "**string**: Only with `esp-idf`. CA certificate in PEM format. See [TLS with esp-idf (esp32)](https://esphome.io/components/mqtt.html#mqtt-tls-idf) for more information\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
+            },
+            "skip_cert_cn_check": {
+              "key": "Optional",
+              "type": "boolean",
+              "docs": "**bool**: Only with `esp-idf`. Don\u2019t verify if the common name in the server certificate matches the value of `broker`.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
+            },
             "discovery": {
               "key": "Optional",
               "default": "True",
@@ -162,7 +177,7 @@
             "ssl_fingerprints": {
               "key": "Optional",
               "is_list": true,
-              "docs": "**list**: Only on ESP8266. A list of SHA1 hashes used for verifying SSL connections. See [SSL Fingerprints](https://esphome.io/components/mqtt.html#mqtt-ssl-fingerprints) for more information.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
+              "docs": "**list**: Only on ESP8266. A list of SHA1 hashes used for verifying SSL connections. See [SSL Fingerprints](https://esphome.io/components/mqtt.html#mqtt-ssl-fingerprints). for more information.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
             },
             "keepalive": {
               "key": "Optional",

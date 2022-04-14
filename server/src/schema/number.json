@@ -47,10 +47,12 @@
                 "config_vars": {
                   "above": {
                     "key": "Optional",
+                    "templatable": true,
                     "docs": "**float**: The minimum for the trigger.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#on-value-range)*"
                   },
                   "below": {
                     "key": "Optional",
+                    "templatable": true,
                     "docs": "**float**: The maximum for the trigger.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#on-value-range)*"
                   },
                   "then": {

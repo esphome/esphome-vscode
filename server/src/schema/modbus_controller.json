@@ -234,6 +234,16 @@
             "id": {
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Modbus Controller Number](https://esphome.io/components/number/modbus_controller.html#configuration-variables)*"
             },
+            "register_type": {
+              "key": "Optional",
+              "default": "holding",
+              "type": "enum",
+              "values": [
+                "custom",
+                "coil",
+                "holding"
+              ]
+            },
             "value_type": {
               "key": "Optional",
               "default": "U_WORD",
@@ -441,6 +451,12 @@
               "default": "False",
               "type": "boolean",
               "docs": "**boolean**: By default the modbus command `Preset Single Registers` (function code 6) is used for setting the holding register if only 1 register is set. If your device only supports *Preset Multiple Registers* (function code 16) set this option to `true`. Defaults to `false`.\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#configuration-variables)*"
+            },
+            "optimistic": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean",
+              "docs": "**boolean**: Whether to operate in optimistic mode - when in this mode, any command sent to the Modbus Select will immediately update the reported state. Defaults to `false`.\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#configuration-variables)*"
             },
             "lambda": {
               "key": "Optional",

@@ -137,6 +137,14 @@
                 ]
               },
               "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), [Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time duration to stay in deep sleep mode.\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-enter-action)*"
+            },
+            "until": {
+              "key": "Optional",
+              "docs": "**string**: The time of day to wake up. Only on ESP32.\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-enter-action)*"
+            },
+            "time_id": {
+              "key": "Optional",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the time component to use for the `until` option. Only on ESP32.\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-enter-action)*"
             }
           }
         },

@@ -59,6 +59,9 @@
         ],
         "docs": "The `homeassistant` binary sensor platform allows you to create binary sensors that **import** states from your Home Assistant instance using the [native API](https://esphome.io/components/api.html).\n\n*See also: [Home Assistant Binary Sensor](https://esphome.io/components/binary_sensor/homeassistant.html#home-assistant-binary-sensor)*"
       },
+      "hydreon_rgxx": {
+        "docs": "The `hydreon_rgxx` binary sensor platform gives access to information provided by a Hydreon Rain Sensor. For this sensor to work, a [Hydreon Rain Sensor](https://esphome.io/components/sensor/hydreon_rgxx.html) must be set up.\n\n*See also: [Hydreon Rain Sensor Binary Sensor](https://esphome.io/components/binary_sensor/hydreon_rgxx.html#hydreon-rain-sensor-binary-sensor)*"
+      },
       "modbus_controller": {
         "dependencies": [
           "modbus_controller"
@@ -127,6 +130,9 @@
       "template": {
         "docs": "The `template` binary sensor platform allows you to define any [lambda template](https://esphome.io/guides/automations.html#config-lambda) and construct a binary sensor out if it. The lambda will run continuously; it isn\u2019t possible to specify an interval at which the lambda runs.\n\n*See also: [Template Binary Sensor](https://esphome.io/components/binary_sensor/template.html#template-binary-sensor)*"
       },
+      "tm1637": {
+        "docs": "The TM1637 LED display controller also includes a special circuit with keyboard scan interface and enhanced identification circuit with anti-interference keys. This circuit uses the 8 segment lines that also drive the LED display. But combined with the K1 and K2 pins we can add 16 keys that can be used as binary sensors in esphome.\n\n*See also: [tm1637 Binary Sensor](https://esphome.io/components/display/tm1637.html#binary-sensor)*"
+      },
       "touchscreen": {
         "dependencies": [
           "touchscreen"
@@ -164,6 +170,11 @@
       "xiaomi_mue4094rt": {
         "dependencies": [
           "esp32_ble_tracker"
+        ]
+      },
+      "xiaomi_rtcgq02lm": {
+        "dependencies": [
+          "xiaomi_rtcgq02lm"
         ]
       },
       "xiaomi_wx08zm": {

@@ -26,7 +26,7 @@
                 "input"
               ],
               "type": "pin",
-              "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: Receive pin.\n\n*See also: [ESP32 CAN Component](https://esphome.io/components/canbus.html#id1)*"
+              "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: Receive pin.\n\n*See also: [ESP32 CAN Component](https://esphome.io/components/canbus.html#id2)*"
             },
             "tx_pin": {
               "key": "Required",
@@ -35,7 +35,7 @@
                 "output"
               ],
               "type": "pin",
-              "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: Transmit pin.\n\n*See also: [ESP32 CAN Component](https://esphome.io/components/canbus.html#id1)*"
+              "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: Transmit pin.\n\n*See also: [ESP32 CAN Component](https://esphome.io/components/canbus.html#id2)*"
             }
           }
         }

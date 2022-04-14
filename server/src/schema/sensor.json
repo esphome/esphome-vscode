@@ -267,10 +267,13 @@
         "dependencies": [
           "i2c"
         ],
-        "docs": "The HTU21D Temperature+Humidity sensor allows you to use your HTU21D ([Adafruit](https://www.adafruit.com/product/1899)) sensors with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [HTU21D Temperature+Humidity Sensor](https://esphome.io/components/sensor/htu21d.html#htu21d-temperature-humidity-sensor)*"
+        "docs": "The HTU21D Temperature & Humidity component allows you to use HTU21D, Si7021 and SHT21 sensors with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [HTU21D | Si7021 | SHT21 Temperature & Humidity Sensor](https://esphome.io/components/sensor/htu21d.html#htu21d-si7021-sht21-temperature-humidity-sensor)*"
       },
       "hx711": {
         "docs": "The `hx711` sensor platform allows you to use your HX711 load cell amplifier ([datasheet](https://www.mouser.com/ds/2/813/hx711_english-1022875.pdf), [SparkFun](https://www.sparkfun.com/products/13879)) with ESPHome\n\n*See also: [HX711 Load Cell Amplifier](https://esphome.io/components/sensor/hx711.html#hx711-load-cell-amplifier)*"
+      },
+      "hydreon_rgxx": {
+        "docs": "The `hydreon_rgxx` sensor platform allows you to use rain sensors by Hydreon. Currently supported are the RG-9 and RG-15 ([rainsensors](https://rainsensors.com/products/model-comparison/)) sensors. These optical rain sensors use a UART connection at 3.3V. The [UART](https://esphome.io/components/uart.html#uart) is required to be set up in your configuration for this sensor to work.\n\n*See also: [Hydreon Rain Sensor](https://esphome.io/components/sensor/hydreon_rgxx.html#hydreon-rain-sensor)*"
       },
       "ina219": {
         "dependencies": [
@@ -348,7 +351,7 @@
         "dependencies": [
           "mcp3204"
         ],
-        "docs": "The `mcp3204` sensor allows you to use your MCP3204 12-Bit A/D Converter sensors with ESPHome. First, setup a [MCP3204 Hub](https://esphome.io/components/sensor/mcp3204.html#mcp3204-component) for your MCP3204 sensor and then use this sensor platform to create individual sensors that will report the voltage to Home Assistant.\n\n*See also: [mcp3204 Sensor](https://esphome.io/components/sensor/mcp3204.html#sensor)*"
+        "docs": "The `mcp3204` sensor allows you to use your MCP3204 or MCP3208 12-Bit A/D Converter sensors with ESPHome. First, setup a [MCP3204 Hub](https://esphome.io/components/sensor/mcp3204.html#mcp3204-component) for your MCP3204/8 sensor and then use this sensor platform to create individual sensors that will report the voltage to Home Assistant.\n\n*See also: [mcp3204 Sensor](https://esphome.io/components/sensor/mcp3204.html#sensor)*"
       },
       "mcp9808": {
         "dependencies": [
@@ -468,6 +471,12 @@
           "i2c"
         ],
         "docs": "The `qmc5883l` allows you to use your QMC5883L triple-axis magnetometers ([datasheet](http://wiki.sunfounder.cc/images/7/72/QMC5883L-Datasheet-1.0.pdf)) with ESPHome. This sensor is very simular to the [HMC5883L](https://esphome.io/components/sensor/hmc5883l.html#hmc5883l) sensor and is oftern found as a knock off replacement. The QMC5883L sensor performs on par to the HMC5883L sensor, though the configuration differs. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#qmc5883l-magnetometer)*"
+      },
+      "qmp6988": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `qmp6988` sensor platform allows you to use your QMP6988 ([datasheet](https://m5stack.oss-cn-shenzhen.aliyuncs.com/resource/docs/datasheet/unit/enviii/QMP6988%20Datasheet.pdf), [M5Stack](https://docs.m5stack.com/en/unit/envIII)) temperature and pressure sensors with ESPHome. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [QMP6988 Temperature+Pressure Sensor](https://esphome.io/components/sensor/qmp6988.html#qmp6988-temperature-pressure-sensor)*"
       },
       "radon_eye_rd200": {
         "dependencies": [
@@ -731,6 +740,11 @@
         "docs": "The `xiaomi_miscale` sensor platform lets you track the output of Xiaomi Bluetooth Low Energy devices using the [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html). This component will track, for example, the weight of the device every time the sensor sends out a BLE broadcast. Contrary to other implementations, `xiaomi_miscale` listens passively to advertisement packets and does not pair with the device. Hence ESPHome has no impact on battery life.\n\n*See also: [Xiaomi Miscale Sensors](https://esphome.io/components/sensor/xiaomi_miscale.html#xiaomi-miscale-sensors)*"
       },
       "xiaomi_miscale2": {},
+      "xiaomi_rtcgq02lm": {
+        "dependencies": [
+          "xiaomi_rtcgq02lm"
+        ]
+      },
       "zyaura": {
         "docs": "The ZyAura CO2 & Temperature & Humidity sensor allows you to use your [ZGm05(3)(U)](http://www.zyaura.com/products/ZGm05.asp) ([MT8057](https://masterkit.ru/shop/1266110), [MT8057S](https://medgadgets.ru/shop/kit-mt8057.html)), [ZG1683R(U)](http://www.zyaura.com/products/ZG1683R.asp) ([MT8060](https://masterkit.ru/shop/1921398)), [ZG1583RUD](http://www.zyaura.com/products/ZG1583RUD.asp) monitors with ESPHome.\n\n*See also: [ZyAura CO2 & Temperature & Humidity Sensor](https://esphome.io/components/sensor/zyaura.html#zyaura-co2-temperature-humidity-sensor)*"
       }
@@ -845,10 +859,12 @@
                 "config_vars": {
                   "above": {
                     "key": "Optional",
+                    "templatable": true,
                     "docs": "**float**: The minimum for the trigger.\n\n*See also: [lambda](https://esphome.io/components/sensor/index.html#on-value-range)*"
                   },
                   "below": {
                     "key": "Optional",
+                    "templatable": true,
                     "docs": "**float**: The maximum for the trigger.\n\n*See also: [lambda](https://esphome.io/components/sensor/index.html#on-value-range)*"
                   },
                   "then": {

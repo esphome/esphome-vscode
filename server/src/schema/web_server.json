@@ -16,9 +16,18 @@
               "data_type": "port",
               "docs": "**int**: The port the web server should open its socket on.\n\n*See also: [Web Server Component](https://esphome.io/components/web_server.html#configuration-variables)*"
             },
+            "version": {
+              "key": "Optional",
+              "default": "2",
+              "type": "enum",
+              "values": [
+                1,
+                2
+              ],
+              "docs": "**string**: `1` or `2`. Version 1 displays as a table. Version 2 uses web components and has more functionality. Defaults to `2`.\n\n*See also: [Web Server Component](https://esphome.io/components/web_server.html#configuration-variables)*"
+            },
             "css_url": {
               "key": "Optional",
-              "default": "https://esphome.io/_static/webserver-v1.min.css",
               "type": "string",
               "docs": "**url**: The URL that should be used for the CSS stylesheet. Defaults to [https://esphome.io/_static/webserver-v1.min.css](https://esphome.io/_static/webserver-v1.min.css) (updates will go to `v2`, `v3`, etc). Can be set to empty string.\n\n*See also: [Web Server Component](https://esphome.io/components/web_server.html#configuration-variables)*"
             },
@@ -28,7 +37,6 @@
             },
             "js_url": {
               "key": "Optional",
-              "default": "https://esphome.io/_static/webserver-v1.min.js",
               "type": "string",
               "docs": "**url**: The URL that should be used for the JS script. Defaults to [https://esphome.io/_static/webserver-v1.min.js](https://esphome.io/_static/webserver-v1.min.js). Can be set to empty string.\n\n*See also: [Web Server Component](https://esphome.io/components/web_server.html#configuration-variables)*"
             },
@@ -69,6 +77,10 @@
               "default": "True",
               "type": "boolean",
               "docs": "**boolean**: Turn on or off the OTA feature inside webserver. Strongly not suggested without enabled authentication settings. Defaults to `true`.\n\n*See also: [Web Server Component](https://esphome.io/components/web_server.html#configuration-variables)*"
+            },
+            "local": {
+              "key": "Optional",
+              "type": "boolean"
             }
           },
           "extends": [

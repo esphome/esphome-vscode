@@ -3,11 +3,11 @@
     "schemas": {
       "CONFIG_SCHEMA": {
         "key": "String",
-        "key_dump": "<function validate_substitution_key at 0x0000020FE3056940>",
+        "key_type": "validate_substitution_key",
         "type": "schema",
         "schema": {
           "config_vars": {
-            "<function validate_substitution_key at 0x0000020FE3056940>": {
+            "string": {
               "type": "string"
             }
           }

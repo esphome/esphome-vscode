@@ -138,7 +138,8 @@
           "config_vars": {
             "data": {
               "key": "Required",
-              "type": "string"
+              "type": "string",
+              "docs": "**string**: The code to listen for, see [remote_transmitter.transmit_raw Action](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-raw) for more info. Usually you only need to copy this directly from the dumper output.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             }
           }
         }

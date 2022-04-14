@@ -160,6 +160,16 @@
             "id": {
               "key": "GeneratedID"
             },
+            "protocol_version": {
+              "key": "Optional",
+              "default": "RTU",
+              "type": "enum",
+              "values": [
+                "RTU",
+                "RTU2"
+              ],
+              "docs": "Version of the protocol used by your inverter. Old inverters use RTU (default). Newer ones use RTU2 (e.g. MIC, MIN, MAX series)\n\n*See also: [Growatt Solar](https://esphome.io/components/sensor/growatt_solar.html#configuration-variables)*"
+            },
             "phase_a": {
               "key": "Optional",
               "type": "schema",

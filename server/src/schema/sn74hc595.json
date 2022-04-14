@@ -16,7 +16,7 @@
                 "output"
               ],
               "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: Pin connected to SN74HC595 SER input.\n\n*See also: [SN74HC595 I/O Expander (shift register)](https://esphome.io/components/sn74hc595.html#configuration-variables)*"
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: Pin connected to SN74HC595 SER (SD) input.\n\n*See also: [SN74HC595 I/O Expander (shift register)](https://esphome.io/components/sn74hc595.html#configuration-variables)*"
             },
             "clock_pin": {
               "key": "Required",
@@ -25,7 +25,7 @@
                 "output"
               ],
               "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: Pin connected to SN74HC595 SRCLK pin\n\n*See also: [SN74HC595 I/O Expander (shift register)](https://esphome.io/components/sn74hc595.html#configuration-variables)*"
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: Pin connected to SN74HC595 SRCLK (SH_CP) pin\n\n*See also: [SN74HC595 I/O Expander (shift register)](https://esphome.io/components/sn74hc595.html#configuration-variables)*"
             },
             "latch_pin": {
               "key": "Required",
@@ -34,7 +34,7 @@
                 "output"
               ],
               "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: Pin connected to SN74HC595 RCLK pin\n\n*See also: [SN74HC595 I/O Expander (shift register)](https://esphome.io/components/sn74hc595.html#configuration-variables)*"
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: Pin connected to SN74HC595 RCLK (ST_CP) pin\n\n*See also: [SN74HC595 I/O Expander (shift register)](https://esphome.io/components/sn74hc595.html#configuration-variables)*"
             },
             "oe_pin": {
               "key": "Optional",

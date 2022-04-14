@@ -43,6 +43,20 @@
       "rgbww": {
         "docs": "The `rgbww` light platform creates an RGBWW (cold white + warm white) light from 5 [float output components](https://esphome.io/components/output/index.html#output) (one for each channel). The cold and warm white channels can be controlled individually or together, see [Mixing](https://esphome.io/components/light/cwww.html#cwww-mixing) for more information.\n\n*See also: [RGBWW Light](https://esphome.io/components/light/rgbww.html#rgbww-light)*"
       },
+      "shelly_dimmer": {
+        "dependencies": [
+          "sensor",
+          "uart"
+        ],
+        "docs": "The `shelly_dimmer` component adds support for the dimming and power-metering functionality that can be found the [Shelly Dimmer 2](https://shelly.cloud/knowledge-base/devices/shelly-dimmer-2/). The interaction with mains is done via an STM32 microcontroller that is flashed with an [open source firmware](https://github.com/jamesturton/shelly-dimmer-stm32). A detailed analysis of the Shelly Dimmer 2 hardware is given [here](https://github.com/arendst/Tasmota/issues/6914).\n\n*See also: [Shelly Dimmer](https://esphome.io/components/light/shelly_dimmer.html#shelly-dimmer)*"
+      },
+      "sonoff_d1": {
+        "dependencies": [
+          "uart",
+          "light"
+        ],
+        "docs": "The `sonoff_d1` light platform creates a simple brightness-only light for the hardware found in [Sonoff D1 dimmer](https://itead.cc/product/sonoff-d1-smart-dimmer-switch/). Installations with Sonoff RM433 433MHz radio remotes are also supported. Use this component to integrate Sonoff D1 dimmer into ESPHome / Home Assistant ecosystem.\n\n*See also: [Sonoff D1 Dimmer](https://esphome.io/components/light/sonoff_d1.html#sonoff-d1-dimmer)*"
+      },
       "status_led": {
         "docs": "The `status_led` light platform allows to share a single LED for indicating the status of the device (when on error/warning state) or as binary light (when on OK state). This is useful for devices with only one LED available.\n\n*See also: [Status LED Light](https://esphome.io/components/light/status_led.html#status-led-light)*"
       },
@@ -64,7 +78,7 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Tuya Dimmer](https://esphome.io/components/light/tuya.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Sonoff D1 Dimmer](https://esphome.io/components/light/sonoff_d1.html#configuration-variables)*"
             },
             "mqtt_id": {
               "key": "Optional"
@@ -146,7 +160,7 @@
                 "automation",
                 "strobe"
               ],
-              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light, though binary lights only support very few of them.\n\n*See also: [Status LED Light](https://esphome.io/components/light/status_led.html#configuration-variables)*"
+              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
             },
             "gamma_correct": {
               "docs": "**float**: Apply a [gamma correction factor](https://en.wikipedia.org/wiki/Gamma_correction) to the light channels. Defaults to `2.8`.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
@@ -213,7 +227,7 @@
                 "strobe",
                 "flicker"
               ],
-              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n*See also: [Monochromatic Light](https://esphome.io/components/light/monochromatic.html#configuration-variables)*"
+              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
             },
             "color_correct": {
               "docs": "**list of float**: Apply a color correction to each color channel. This defines the maximum brightness of each channel. For example `[100%, 50%, 100%]` would set the green channel to be at most at 50% brightness.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
@@ -263,7 +277,7 @@
                 "e131",
                 "wled"
               ],
-              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n*See also: [Light Partition](https://esphome.io/components/light/partition.html#configuration-variables)*"
+              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
             },
             "color_correct": {
               "key": "Optional",
