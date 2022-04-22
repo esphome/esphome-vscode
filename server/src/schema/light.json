@@ -78,7 +78,7 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Sonoff D1 Dimmer](https://esphome.io/components/light/sonoff_d1.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Tuya Dimmer](https://esphome.io/components/light/tuya.html#configuration-variables)*"
             },
             "mqtt_id": {
               "key": "Optional"
@@ -160,7 +160,7 @@
                 "automation",
                 "strobe"
               ],
-              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light, though binary lights only support very few of them.\n\n*See also: [Status LED Light](https://esphome.io/components/light/status_led.html#configuration-variables)*"
             },
             "gamma_correct": {
               "docs": "**float**: Apply a [gamma correction factor](https://en.wikipedia.org/wiki/Gamma_correction) to the light channels. Defaults to `2.8`.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
@@ -227,7 +227,7 @@
                 "strobe",
                 "flicker"
               ],
-              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n*See also: [Monochromatic Light](https://esphome.io/components/light/monochromatic.html#configuration-variables)*"
             },
             "color_correct": {
               "docs": "**list of float**: Apply a color correction to each color channel. This defines the maximum brightness of each channel. For example `[100%, 50%, 100%]` would set the green channel to be at most at 50% brightness.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
@@ -277,7 +277,7 @@
                 "e131",
                 "wled"
               ],
-              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+              "docs": "**list**: A list of [light effects](https://esphome.io/components/light/index.html#light-effects) to use for this light.\n\n*See also: [Light Partition](https://esphome.io/components/light/partition.html#configuration-variables)*"
             },
             "color_correct": {
               "key": "Optional",

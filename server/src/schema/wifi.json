@@ -75,25 +75,6 @@
             },
             "ap": {
               "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "wifi.WIFI_NETWORK_BASE"
-                ],
-                "config_vars": {
-                  "ap_timeout": {
-                    "key": "Optional",
-                    "default": "1min",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "core.positive_time_period_milliseconds"
-                      ]
-                    },
-                    "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time after which to enable the configured fallback hotspot. Defaults to `1min`.\n\n*See also: [WiFi Component](https://esphome.io/components/wifi.html#configuration-variables)*"
-                  }
-                }
-              },
               "docs": "Enable an access point mode on the node.\n  * **ssid** (*Optional*, string): The name of the access point to create. Leave empty to use the device name.\n  \n  * **password** (*Optional*, string): The password for the access point. Leave empty for no password.\n  \n  * **channel** (*Optional*, int): The channel the AP should operate on from 1 to 14. Defaults to 1.\n  \n  * **manual_ip** (*Optional*): Manually set the IP options for the AP. Same options as manual_ip for station mode.\n  \n  * **ap_timeout** (*Optional*, [Time](https://esphome.io/guides/configuration-types.html#config-time)): The time after which to enable the configured fallback hotspot. Defaults to `1min`.\n  \n  \n\n*See also: [WiFi Component](https://esphome.io/components/wifi.html#configuration-variables)*"
             },
             "domain": {

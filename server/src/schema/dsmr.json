@@ -575,7 +575,7 @@
                     "default": "3"
                   },
                   "device_class": {
-                    "default": "current"
+                    "default": "power"
                   },
                   "state_class": {
                     "default": "measurement"
@@ -599,7 +599,7 @@
                     "default": "3"
                   },
                   "device_class": {
-                    "default": "current"
+                    "default": "power"
                   },
                   "state_class": {
                     "default": "measurement"
@@ -623,7 +623,7 @@
                     "default": "3"
                   },
                   "device_class": {
-                    "default": "current"
+                    "default": "power"
                   },
                   "state_class": {
                     "default": "measurement"
@@ -647,7 +647,7 @@
                     "default": "3"
                   },
                   "device_class": {
-                    "default": "current"
+                    "default": "power"
                   },
                   "state_class": {
                     "default": "measurement"
@@ -671,7 +671,7 @@
                     "default": "3"
                   },
                   "device_class": {
-                    "default": "current"
+                    "default": "power"
                   },
                   "state_class": {
                     "default": "measurement"
@@ -695,7 +695,7 @@
                     "default": "3"
                   },
                   "device_class": {
-                    "default": "current"
+                    "default": "power"
                   },
                   "state_class": {
                     "default": "measurement"

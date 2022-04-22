@@ -1069,7 +1069,7 @@
               "key": "Optional",
               "default": "0.1",
               "data_type": "positive_float",
-              "docs": "**float**: The forget factor/alpha value of the filter. Defaults to `0.1`.\n\n*See also: [exponential_moving_average](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
+              "docs": "**float**: The forget factor/alpha value of the filter. A higher value includes more details in the output while a lower value removes more noise. Defaults to `0.1`.\n\n*See also: [exponential_moving_average](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
             },
             "send_every": {
               "key": "Optional",

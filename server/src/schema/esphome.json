@@ -243,26 +243,26 @@
             "name": {
               "key": "Optional",
               "type": "string",
-              "docs": "**string**: The name of the light.\n\n*See also: [Sonoff D1 Dimmer](https://esphome.io/components/light/sonoff_d1.html#configuration-variables)*"
+              "docs": "**string**: The name for the binary sensor.\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id1)*"
             },
             "internal": {
               "key": "Optional",
               "type": "boolean",
-              "docs": "**boolean**: Mark this component as internal. Internal components will not be exposed to the frontend (like Home Assistant). Only specifying an `id` without a `name` will implicitly set this to true.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+              "docs": "**boolean**: Mark this component as internal. Internal components will not be exposed to the frontend (like Home Assistant). Only specifying an `id` without a `name` will implicitly set this to true.\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#base-text-sensor-configuration)*"
             },
             "disabled_by_default": {
               "key": "Optional",
               "default": "False",
               "type": "boolean",
-              "docs": "**boolean**: If true, then this entity should not be added to any client\u2019s frontend, (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI). Requires Home Assistant 2021.9 or newer. Defaults to `false`.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+              "docs": "**boolean**: If true, then this entity should not be added to any client\u2019s frontend, (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI). Requires Home Assistant 2021.9 or newer. Defaults to `false`.\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#base-text-sensor-configuration)*"
             },
             "icon": {
               "key": "Optional",
-              "docs": "**icon**: Manually set the icon to use for the light in the frontend.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+              "docs": "**icon**: Manually set the icon to use for the sensor in the frontend.\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#base-text-sensor-configuration)*"
             },
             "entity_category": {
               "key": "Optional",
-              "docs": "**string**: The category of the entity. See [https://developers.home-assistant.io/docs/core/entity/#generic-properties](https://developers.home-assistant.io/docs/core/entity/#generic-properties) for a list of available options. Requires Home Assistant 2021.11 or newer. Set to `\"\"` to remove the default entity category.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
+              "docs": "**string**: The category of the entity. See [https://developers.home-assistant.io/docs/core/entity/#generic-properties](https://developers.home-assistant.io/docs/core/entity/#generic-properties) for a list of available options. Requires Home Assistant 2021.11 or newer. Set to `\"\"` to remove the default entity category.\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#base-text-sensor-configuration)*"
             }
           }
         }
@@ -509,7 +509,7 @@
         "dependencies": [
           "esp32"
         ],
-        "docs": "This core ESPHome component sets up ethernet connections for ESP32s. Ethernet for ESP8266 is not supported.\n\n*See also: [Ethernet Component](https://esphome.io/components/ethernet.html#ethernet-component)*"
+        "docs": "This core ESPHome component sets up ethernet connections for ESP32s. Ethernet for ESP8266 is not supported. This component can\u2019t be used in same time than Wifi one, even if your ESP32\u00a0has both wired.\n\n*See also: [Ethernet Component](https://esphome.io/components/ethernet.html#ethernet-component)*"
       },
       "exposure_notifications": {
         "dependencies": [
@@ -546,7 +546,7 @@
           "display",
           "sensor"
         ],
-        "docs": "You can display a graph of a sensor value(s) using this component. Examples:\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+        "docs": "You can display a graph of a sensor value(s) using this component. The states used for the graph are stored in memory at the time the sensor updates and will be lost when the device reboots.\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
       },
       "http_request": {
         "dependencies": [
@@ -788,7 +788,7 @@
       },
       "substitutions": {},
       "sun": {
-        "docs": "The `sun` component allows you to track the sun\u2019s position in the sky.\n\n*See also: [Sun](https://esphome.io/components/sun.html#sun)*"
+        "docs": "The `sun` component allows you to track the sun\u2019s position in the sky. Calculations are done every 60 seconds.\n\n*See also: [Sun](https://esphome.io/components/sun.html#sun)*"
       },
       "sx1509": {
         "dependencies": [
