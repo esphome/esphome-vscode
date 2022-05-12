@@ -234,23 +234,22 @@ export class CoreSchema {
             if (s.extends !== undefined) {
                 for (const extended of s.extends) {
                     const s_cv = this.getExtendedConfigVar(extended);
-                    if (s_cv.type === "schema" &&
-                        key in s_cv.schema.config_vars) {
-                        c = {
-                            ...s_cv.schema.config_vars[key],
-                            ...c
-                        };
+                    if (s_cv.type === "schema") {
+                        if (key in s_cv.schema.config_vars) {
+                            c = {
+                                ...s_cv.schema.config_vars[key],
+                                ...c
+                            };
+                        }
+                        c = appendCvs(s_cv.schema, c);
                     }
                 }
             }
             return c;
         };
-
         cv = appendCvs(schema, cv);
-
         return cv;
     }
-
 
     * iter_configVars(schema: Schema, docMap: YAMLMap, yielded = []): Generator<[string, ConfigVar]> {
         for (var prop in schema.config_vars) {
@@ -288,6 +287,4 @@ export class CoreSchema {
         }
         return undefined;
     }
-
-
 }

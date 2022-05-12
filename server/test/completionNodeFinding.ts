@@ -363,6 +363,15 @@ light:
     testCompletionHaveLabels(result, ["strobe", "automation"]);
   });
 
+  it('list addressable light effects', () => {
+    const result = x.onCompletion(Docs.getTextDoc(`
+light:
+  - platform: fastled_clockless
+    effects:
+      `), { line: 3, character: 6 });
+    testCompletionHaveLabels(result, ["strobe", "automation", "addressable_random_twinkle"]);
+  });
+
 
   it('sensor filter in prop show props', () => {
     const result = x.onCompletion(Docs.getTextDoc(`
