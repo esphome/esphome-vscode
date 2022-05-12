@@ -357,7 +357,7 @@
             "on_state": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a state is published. See [on_state](https://esphome.io/components/binary_sensor/index.html#binary-sensor-on-state).\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#base-binary-sensor-configuration)*"
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a state change is published. See [on_state](https://esphome.io/components/binary_sensor/index.html#binary-sensor-on-state).\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#base-binary-sensor-configuration)*"
             }
           }
         }

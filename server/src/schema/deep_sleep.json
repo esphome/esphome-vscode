@@ -117,16 +117,26 @@
             "core.COMPONENT_SCHEMA"
           ]
         }
+      },
+      "DEEP_SLEEP_ACTION_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID"
+            }
+          }
+        }
       }
     },
     "action": {
       "enter": {
         "type": "maybe",
         "schema": {
+          "extends": [
+            "deep_sleep.DEEP_SLEEP_ACTION_SCHEMA"
+          ],
           "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            },
             "sleep_duration": {
               "key": "Optional",
               "templatable": true,
@@ -150,14 +160,21 @@
         },
         "docs": "This action makes the given deep sleep component enter deep sleep immediately.\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-enter-action)*"
       },
+      "allow": {
+        "type": "maybe",
+        "schema": {
+          "extends": [
+            "deep_sleep.DEEP_SLEEP_ACTION_SCHEMA"
+          ]
+        },
+        "docs": "This action allows the given deep sleep component to enter deep sleep, after previously being prevented.\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-allow-action)*"
+      },
       "prevent": {
         "type": "maybe",
         "schema": {
-          "config_vars": {
-            "id": {
-              "key": "GeneratedID"
-            }
-          }
+          "extends": [
+            "deep_sleep.DEEP_SLEEP_ACTION_SCHEMA"
+          ]
         },
         "docs": "This action prevents the given deep sleep component from entering deep sleep. Useful for keeping the ESP active during data transfer or OTA updating (See note below for more information).\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-prevent-action)*"
       }

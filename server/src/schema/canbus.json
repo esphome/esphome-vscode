@@ -93,6 +93,11 @@
                     "type": "boolean",
                     "docs": "**boolean**: Identifies the type of *can_id* to match on, defaults to *false*.\n\n*See also: [on_frame Trigger](https://esphome.io/components/canbus.html#id1)*"
                   },
+                  "remote_transmission_request": {
+                    "key": "Optional",
+                    "type": "boolean",
+                    "docs": "**boolean**: Whether to run for CAN frames with the \u201cremote transmission request\u201d bit set or not set, defaults to not checking, i.e. to run for both cases.\n\n*See also: [on_frame Trigger](https://esphome.io/components/canbus.html#id1)*"
+                  },
                   "then": {
                     "type": "trigger"
                   }

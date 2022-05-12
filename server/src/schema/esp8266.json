@@ -84,6 +84,12 @@
               "type": "boolean",
               "docs": "**boolean**: Whether to store some persistent preferences in flash memory. Defaults to `false`.\n\n*See also: [ESP8266 Platform](https://esphome.io/components/esp8266.html#configuration-variables)*"
             },
+            "early_pin_init": {
+              "key": "Optional",
+              "default": "True",
+              "type": "boolean",
+              "docs": "**boolean**: Specifies whether pins should be initialised as early as possible to known values. Recommended value is `false` where switches are involved, as these will toggle when updating the firmware or when restarting the device. Defaults to `true`.\n\n*See also: [ESP8266 Platform](https://esphome.io/components/esp8266.html#configuration-variables)*"
+            },
             "board_flash_mode": {
               "key": "Optional",
               "default": "dout",

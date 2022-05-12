@@ -74,6 +74,12 @@
           "binary_sensor"
         ]
       },
+      "bl0939": {
+        "dependencies": [
+          "uart"
+        ],
+        "docs": "The `bl0939` sensor platform allows you to use your BL0939 voltage/current/power and energy sensors with ESPHome. This sensor is commonly found in Sonoff Dual R3 v2.\n\n*See also: [BL0939 Power Sensor](https://esphome.io/components/sensor/bl0939.html#bl0939-power-sensor)*"
+      },
       "bl0940": {
         "dependencies": [
           "uart"
@@ -199,6 +205,12 @@
       },
       "duty_cycle": {
         "docs": "The duty cycle sensor allows you to measure for what percentage of time a signal on a GPIO pin is HIGH or LOW.\n\n*See also: [Duty Cycle Sensor](https://esphome.io/components/sensor/duty_cycle.html#duty-cycle-sensor)*"
+      },
+      "ens210": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `ENS210` Temperature+Humidity sensor allows you to use your ENS210 ([datasheet](https://www.sciosense.com/wp-content/uploads/2021/01/ENS210.pdf)) i2c-based sensor with ESPHome.\n\n*See also: [ENS210 Temperature+Humidity Sensor](https://esphome.io/components/sensor/ens210.html#ens210-temperature-humidity-sensor)*"
       },
       "esp32_hall": {
         "dependencies": [
@@ -381,7 +393,7 @@
         "dependencies": [
           "esp32_ble_tracker"
         ],
-        "docs": "The `mopeka_pro_check` sensor platform lets you track the output of Mopeka Pro Check LP Bluetooth Low Energy devices using the [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html). This component will track the tank level, distance, temperature, and battery percentage of a Mopeka Pro Check LP device every time the sensor sends out a BLE broadcast.\n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#mopeka-pro-check-ble-sensor)*"
+        "docs": "The `mopeka_pro_check` sensor platform lets you track the output of Mopeka Pro Check LP and Mopeka Pro Plus Bluetooth Low Energy devices using the [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html). This component will track the tank level, distance, temperature, and battery percentage of a Mopeka Pro Check LP or Mopeka Pro Plus Residential BLE device every time the sensor sends out a BLE broadcast.\n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#mopeka-pro-check-ble-sensor)*"
       },
       "mpu6050": {
         "dependencies": [
@@ -526,6 +538,12 @@
       "selec_meter": {
         "docs": "The `selec_meter` sensor platform allows you to use Selec Modbus energy monitors ([website](https://www.selec.com/product-details/energy-meter-direct-operated-em2m)) with ESPHome.\n\n*See also: [Selec Energy Monitor](https://esphome.io/components/sensor/selec_meter.html#selec-energy-monitor)*"
       },
+      "sen5x": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `sen5x` sensor platform allows you to use your Sensirion [SEN50](https://sensirion.com/products/catalog/SEN50/), [SEN54](https://sensirion.com/products/catalog/SEN54/) and [Sen55](https://sensirion.com/products/catalog/SEN55/) Environmental sensor ([datasheet](https://sensirion.com/media/documents/6791EFA0/6232E4A7/Sensirion_Datasheet_SEN5x.pdf)) sensors with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work. This sensor supports both UART and I\u00b2C communication. Only I\u00b2C communication is implemented in this component.\n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#sen5x-series-environmental-sensor)*"
+      },
       "senseair": {
         "dependencies": [
           "uart"
@@ -573,6 +591,9 @@
           "uart"
         ],
         "docs": "The `sm300d2` sensor platform allows you to use the SM300D2 7-in-1 Air Quality Sensor with ESPHome.\n\n*See also: [SM300D2 7-in-1 Air Quality Sensor](https://esphome.io/components/sensor/sm300d2.html#sm300d2-7-in-1-air-quality-sensor)*"
+      },
+      "sml": {
+        "docs": "**obis_code** (*Required*, string): Specify the OBIS code you want to retrieve data for from the device. The format must be (A-B:C.D.E, e.g. 1-0:1.8.0)\n\n*See also: [sml Sensor](https://esphome.io/components/sml.html#sensor)*"
       },
       "sps30": {
         "dependencies": [
@@ -785,6 +806,7 @@
                 "carbon_dioxide",
                 "carbon_monoxide",
                 "current",
+                "duration",
                 "energy",
                 "gas",
                 "humidity",

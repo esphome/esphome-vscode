@@ -81,17 +81,27 @@
             }
           }
         }
+      },
+      "OPERATION_BASE_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the number to update.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-operation-action)*"
+            }
+          }
+        }
       }
     },
     "action": {
       "set": {
         "type": "schema",
         "schema": {
+          "extends": [
+            "number.OPERATION_BASE_SCHEMA"
+          ],
           "config_vars": {
-            "id": {
-              "key": "Required",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the number to set.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-set-action)*"
-            },
             "value": {
               "key": "Required",
               "templatable": true,
@@ -100,6 +110,124 @@
           }
         },
         "docs": "You can also set the number for the template number from elsewhere in your YAML file with the [number.set Action](https://esphome.io/components/number/index.html#number-set-action).\n\n*See also: [Template Number](https://esphome.io/components/number/template.html#number-set-action)*"
+      },
+      "operation": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "number.OPERATION_BASE_SCHEMA"
+          ],
+          "config_vars": {
+            "operation": {
+              "key": "Required",
+              "templatable": true,
+              "type": "enum",
+              "values": [
+                "INCREMENT",
+                "DECREMENT",
+                "TO_MIN",
+                "TO_MAX"
+              ],
+              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: What operation to perform on the number component. One of `TO_MIN`, `TO_MAX`, `DECREMENT` or `INCREMENT` (case insensitive). When writing a lambda for this field, then return one of the following enum values: `NUMBER_OP_TO_MIN`, `NUMBER_OP_TO_MAX`, `NUMBER_OP_DECREMENT` or `NUMBER_OP_INCREMENT`.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-operation-action)*"
+            },
+            "cycle": {
+              "key": "Optional",
+              "default": "True",
+              "templatable": true,
+              "type": "boolean",
+              "docs": "**bool, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Can be used with `DECREMENT` or `INCREMENT` to specify whether or not to wrap around the value when respectively the minimum or maximum value of the number is exceeded.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-operation-action)*"
+            }
+          }
+        },
+        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) that can be used to perform an operation on a number component (set to minimum or maximum value, decrement, increment), using a generic templatable action call.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-operation-action)*"
+      },
+      "to_max": {
+        "type": "maybe",
+        "schema": {
+          "extends": [
+            "number.OPERATION_BASE_SCHEMA"
+          ],
+          "config_vars": {
+            "mode": {
+              "key": "Optional",
+              "default": "TO_MAX",
+              "type": "enum",
+              "values": [
+                "TO_MAX"
+              ]
+            }
+          }
+        },
+        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) seting a number to its maximum value (given a number component that has a maximum value defined for it.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-to-max-action)*"
+      },
+      "to_min": {
+        "type": "maybe",
+        "schema": {
+          "extends": [
+            "number.OPERATION_BASE_SCHEMA"
+          ],
+          "config_vars": {
+            "mode": {
+              "key": "Optional",
+              "default": "TO_MIN",
+              "type": "enum",
+              "values": [
+                "TO_MIN"
+              ]
+            }
+          }
+        },
+        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) seting a number to its minimum value, given a number component that has a minimum value defined for it.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-to-min-action)*"
+      },
+      "decrement": {
+        "type": "maybe",
+        "schema": {
+          "extends": [
+            "number.OPERATION_BASE_SCHEMA"
+          ],
+          "config_vars": {
+            "mode": {
+              "key": "Optional",
+              "default": "DECREMENT",
+              "type": "enum",
+              "values": [
+                "DECREMENT"
+              ]
+            },
+            "cycle": {
+              "key": "Optional",
+              "default": "True",
+              "type": "boolean",
+              "docs": "**boolean**: Whether or not to set the number to its maximum value when the decrement pushes the value below its minimum value. This will only work when the number component uses a minimum and maximum value. Defaults to `true`.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-decrement-action)*"
+            }
+          }
+        },
+        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) for decrementing a number value by its step size (default: 1).\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-decrement-action)*"
+      },
+      "increment": {
+        "type": "maybe",
+        "schema": {
+          "extends": [
+            "number.OPERATION_BASE_SCHEMA"
+          ],
+          "config_vars": {
+            "mode": {
+              "key": "Optional",
+              "default": "INCREMENT",
+              "type": "enum",
+              "values": [
+                "INCREMENT"
+              ]
+            },
+            "cycle": {
+              "key": "Optional",
+              "default": "True",
+              "type": "boolean",
+              "docs": "**boolean**: Whether or not to set the number to its minimum value when the increment pushes the value beyond its maximum value. This will only work when the number component uses a minimum and maximum value. Defaults to `true`.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-increment-action)*"
+            }
+          }
+        },
+        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) for incrementing a number value by its step size (default: 1).\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-increment-action)*"
       }
     },
     "condition": {

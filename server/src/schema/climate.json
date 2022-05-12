@@ -11,6 +11,12 @@
       "bang_bang": {
         "docs": "The `bang_bang` climate platform allows you to regulate a value with a [bang-bang controller](https://en.wikipedia.org/wiki/Bang%E2%80%93bang_control) (also called hysteresis controller).\n\n*See also: [Bang Bang Climate Controller](https://esphome.io/components/climate/bang_bang.html#bang-bang-climate-controller)*"
       },
+      "bedjet": {
+        "dependencies": [
+          "ble_client"
+        ],
+        "docs": "The `bedjet` climate platform creates a climate device which can be used to control a BedJet V3 Climate Comfort Sleep System.\n\n*See also: [BedJet](https://esphome.io/components/climate/bedjet.html#bedjet)*"
+      },
       "climate_ir_lg": {
         "docs": "Additional configuration is available for this platform\n\n*See also: [climate_ir_lg Climate](https://esphome.io/components/climate/climate_ir.html#climate-ir-lg-climate)*"
       },
@@ -19,6 +25,9 @@
         "docs": "This integration can be used to create custom climate devices in ESPHome using the C++ (Arduino) API.\n\n*See also: [Custom Climate](https://esphome.io/components/climate/custom.html#custom-climate)*"
       },
       "daikin": {},
+      "delonghi": {
+        "docs": "Currently supports the protocol used by some Delonghi portable units\n\n*See also: [delonghi Climate](https://esphome.io/components/climate/climate_ir.html#delonghi-climate)*"
+      },
       "fujitsu_general": {},
       "heatpumpir": {},
       "hitachi_ac344": {},

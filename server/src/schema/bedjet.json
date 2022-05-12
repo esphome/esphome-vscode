@@ -1,0 +1,42 @@
+{
+  "bedjet.climate": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "climate.CLIMATE_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [BedJet](https://esphome.io/components/climate/bedjet.html#configuration-variables)*"
+            },
+            "time_id": {
+              "key": "Optional",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of a [Time Component](https://esphome.io/components/time.html#time) which can be used to set the time on the BedJet device.\n\n*See also: [BedJet](https://esphome.io/components/climate/bedjet.html#configuration-variables)*"
+            },
+            "receive_timeout": {
+              "key": "Optional",
+              "default": "0s",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "ble_client_id": {
+              "key": "Required",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the BLE Client.\n\n*See also: [BedJet](https://esphome.io/components/climate/bedjet.html#configuration-variables)*"
+            },
+            "update_interval": {
+              "key": "Optional",
+              "default": "30s"
+            }
+          }
+        }
+      }
+    }
+  }
+}

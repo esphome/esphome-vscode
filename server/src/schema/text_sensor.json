@@ -64,6 +64,9 @@
         ],
         "docs": "All sensors are normal text sensors\u2026 so all text sensor variables are working to.\n\n*See also: [pipsolar Text Sensor](https://esphome.io/components/pipsolar.html#text-sensor)*"
       },
+      "sml": {
+        "docs": "**obis_code** (*Required*, string): Specify the OBIS code you want to retrieve data for from the device. The format must be (A-B:C.D.E, e.g. 1-0:1.8.0)\n\n*See also: [sml Text Sensor](https://esphome.io/components/sml.html#text-sensor)*"
+      },
       "sun": {
         "dependencies": [
           "sun"
