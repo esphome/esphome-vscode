@@ -248,6 +248,7 @@
             },
             "custom_fan_mode": {
               "key": "Optional",
+              "templatable": true,
               "type": "string",
               "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Set one of the supported custom_fan_modes of the climate device.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
             },
@@ -269,6 +270,7 @@
             },
             "custom_preset": {
               "key": "Optional",
+              "templatable": true,
               "type": "string",
               "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Set one of the supported custom_presets of the climate device.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
             },
