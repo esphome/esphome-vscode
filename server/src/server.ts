@@ -114,6 +114,10 @@ connection.onInitialized(async () => {
 		sendDiagnostics
 	);
 
+	documents.onDidOpen((e) =>
+		validation.onDocumentChange(e)
+	);
+
 	documents.onDidChangeContent((e) =>
 		validation.onDocumentChange(e)
 	);
