@@ -164,14 +164,17 @@ export class Validation {
 
     onDocumentChange(e: TextDocumentChangeEvent<TextDocument>): void {
         try {
+            if (vscodeUri.URI.parse(e.document.uri).path.endsWith('secrets.yaml')) {
+                // don't validate secrets
+                return;
+            }
             if (this.validating_uri !== null) {
                 const lastRequestElapsedTime = new Date().getTime() - this.lastRequest.getTime();
                 // 10 seconds without response
-                if (lastRequestElapsedTime > 10000) {
-                    console.log("Timeout waiting for previous validation to complete. Discarding.");
+                if (lastRequestElapsedTime < 10000) {
+                    return;
                 }
-                return;
-
+                console.log("Timeout waiting for previous validation to complete. Discarding.");
             }
             this.validating_uri = e.document.uri;
             this.diagnosticCollection.clear();
