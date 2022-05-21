@@ -30,10 +30,23 @@
           ],
           "config_vars": {
             "mqtt_id": {
-              "key": "Optional"
+              "key": "Optional",
+              "id_type": {
+                "class": "mqtt::MQTTNumberComponent",
+                "parents": [
+                  "mqtt::MQTTComponent",
+                  "Component"
+                ]
+              }
             },
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "number::Number",
+                "parents": [
+                  "EntityBase"
+                ]
+              }
             },
             "on_value": {
               "key": "Optional",
@@ -88,6 +101,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "number::Number",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the number to update.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-operation-action)*"
             }
           }
@@ -142,7 +157,8 @@
         "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) that can be used to perform an operation on a number component (set to minimum or maximum value, decrement, increment), using a generic templatable action call.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-operation-action)*"
       },
       "to_max": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "extends": [
             "number.OPERATION_BASE_SCHEMA"
@@ -161,7 +177,8 @@
         "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) seting a number to its maximum value (given a number component that has a maximum value defined for it.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-to-max-action)*"
       },
       "to_min": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "extends": [
             "number.OPERATION_BASE_SCHEMA"
@@ -180,7 +197,8 @@
         "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) seting a number to its minimum value, given a number component that has a minimum value defined for it.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-to-min-action)*"
       },
       "decrement": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "extends": [
             "number.OPERATION_BASE_SCHEMA"
@@ -205,7 +223,8 @@
         "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) for decrementing a number value by its step size (default: 1).\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-decrement-action)*"
       },
       "increment": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "extends": [
             "number.OPERATION_BASE_SCHEMA"
@@ -236,7 +255,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "number::Number",
+              "type": "use_id"
             },
             "above": {
               "key": "Optional",

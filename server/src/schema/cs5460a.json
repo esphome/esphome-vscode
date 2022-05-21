@@ -6,7 +6,14 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "cs5460a::CS5460AComponent",
+                "parents": [
+                  "spi::SPIDevice",
+                  "Component"
+                ]
+              }
             },
             "samples": {
               "key": "Optional",
@@ -124,7 +131,9 @@
               "docs": "The sensor subcomponent that will report the power readings in Watts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).  See note below about throttling.\n\n*See also: [CS5460A Power Sensor](https://esphome.io/components/sensor/cs5460a.html#configuration-variables)*"
             },
             "spi_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "spi::SPIComponent",
+              "type": "use_id"
             },
             "cs_pin": {
               "key": "Optional",
@@ -145,11 +154,14 @@
   "cs5460a": {
     "action": {
       "restart": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "cs5460a::CS5460AComponent",
+              "type": "use_id"
             }
           }
         },

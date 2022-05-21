@@ -7,6 +7,8 @@
           "config_vars": {
             "transmitter_id": {
               "key": "GeneratedID",
+              "use_id_type": "remote_base::RemoteTransmitterBase",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The remote transmitter to send the remote code with. Defaults to the first one defined in the configuration.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-actions)*"
             },
             "repeat": {
@@ -176,7 +178,11 @@
               "docs": "**list**: The code to listen for, see [remote_transmitter.transmit_raw Action](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-raw) for more info. Usually you only need to copy this directly from the dumper output.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             },
             "code_storage_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "int32_t",
+                "parents": null
+              }
             }
           }
         }

@@ -152,7 +152,11 @@
               "schema": {
                 "config_vars": {
                   "id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "display::DisplayPage",
+                      "parents": []
+                    }
                   },
                   "lambda": {
                     "key": "Required"
@@ -167,10 +171,14 @@
               "schema": {
                 "config_vars": {
                   "from": {
-                    "key": "Optional"
+                    "key": "Optional",
+                    "use_id_type": "display::DisplayPage",
+                    "type": "use_id"
                   },
                   "to": {
-                    "key": "Optional"
+                    "key": "Optional",
+                    "use_id_type": "display::DisplayPage",
+                    "type": "use_id"
                   },
                   "then": {
                     "type": "trigger"
@@ -195,10 +203,14 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "display::DisplayBuffer",
+              "type": "use_id"
             },
             "page_id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "display::DisplayPage",
+              "type": "use_id"
             }
           }
         }

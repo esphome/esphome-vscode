@@ -10,7 +10,15 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "esp32_camera::ESP32Camera",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "EntityBase"
+                ]
+              }
             },
             "data_pins": {
               "key": "Required",
@@ -314,6 +322,14 @@
               "key": "Optional",
               "default": "0.1 fps",
               "docs": "**float**: The framerate to capture images at when no client is requesting a full stream. Defaults to `0.1 fps`.\n\n*See also: [ESP32 Camera Component](https://esphome.io/components/esp32_camera.html#configuration-variables)*"
+            },
+            "on_stream_start": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_stream_stop": {
+              "key": "Optional",
+              "type": "trigger"
             }
           }
         }

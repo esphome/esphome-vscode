@@ -10,6 +10,15 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "pulse_counter::PulseCounterSensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Pulse Counter Sensor](https://esphome.io/components/sensor/pulse_counter.html#configuration-variables)*"
             },
             "unit_of_measurement": {

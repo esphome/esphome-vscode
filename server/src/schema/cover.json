@@ -43,10 +43,23 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "cover::Cover",
+                "parents": [
+                  "EntityBase"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Tuya Cover](https://esphome.io/components/cover/tuya.html#configuration-variables)*"
             },
             "mqtt_id": {
-              "key": "Optional"
+              "key": "Optional",
+              "id_type": {
+                "class": "mqtt::MQTTCoverComponent",
+                "parents": [
+                  "mqtt::MQTTComponent",
+                  "Component"
+                ]
+              }
             },
             "device_class": {
               "key": "Optional",
@@ -94,11 +107,14 @@
         }
       },
       "COVER_ACTION_SCHEMA": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "cover::Cover",
+              "type": "use_id"
             }
           }
         }
@@ -147,6 +163,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "cover::Cover",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The cover to control.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#cover-control-action)*"
             },
             "stop": {

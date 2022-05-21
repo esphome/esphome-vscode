@@ -192,7 +192,15 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "atm90e32::ATM90E32Component",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "spi::SPIDevice"
+                ]
+              }
             },
             "phase_a": {
               "key": "Optional",
@@ -312,6 +320,8 @@
             },
             "spi_id": {
               "key": "GeneratedID",
+              "use_id_type": "spi::SPIComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [SPI Component](https://esphome.io/components/spi.html#spi) if you want to use multiple SPI buses.\n\n*See also: [ATM90E32 Power Sensor](https://esphome.io/components/sensor/atm90e32.html#configuration-variables)*"
             },
             "cs_pin": {

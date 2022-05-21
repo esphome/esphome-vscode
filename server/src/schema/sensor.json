@@ -557,10 +557,12 @@
         "docs": "The `sgp30` sensor platform allows you to use your Sensirion SGP30 multi-pixel gas ([datasheet](https://sensirion.com/media/documents/984E0DD5/61644B8B/Sensirion_Gas_Sensors_Datasheet_SGP30.pdf)) sensors or the SVM30 breakout-boards  ([product page](https://www.sensirion.com/en/environmental-sensors/gas-sensors/multi-gas-humidity-temperature-module-svm30/)) with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#sgp30-co2-and-volatile-organic-compound-sensor)*"
       },
       "sgp40": {
+        "docs": "The `sgp40` sensor platform allows you to use your Sensirion SGP40 VOC sensor ([datasheet](https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9_Gas_Sensors/Sensirion_Gas_Sensors_SGP40_Datasheet.pdf)) with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [SGP40 Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp40.html#sgp40-volatile-organic-compound-sensor)*"
+      },
+      "sgp4x": {
         "dependencies": [
           "i2c"
-        ],
-        "docs": "The `sgp40` sensor platform allows you to use your Sensirion SGP40 VOC sensor ([datasheet](https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9_Gas_Sensors/Sensirion_Gas_Sensors_SGP40_Datasheet.pdf)) with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [SGP40 Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp40.html#sgp40-volatile-organic-compound-sensor)*"
+        ]
       },
       "sht3xd": {
         "dependencies": [
@@ -780,10 +782,23 @@
           ],
           "config_vars": {
             "mqtt_id": {
-              "key": "Optional"
+              "key": "Optional",
+              "id_type": {
+                "class": "mqtt::MQTTSensorComponent",
+                "parents": [
+                  "mqtt::MQTTComponent",
+                  "Component"
+                ]
+              }
             },
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "sensor::Sensor",
+                "parents": [
+                  "EntityBase"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n*See also: [sim800l Sensor](https://esphome.io/components/sim800l.html#sensor)*"
             },
             "unit_of_measurement": {
@@ -907,7 +922,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "sensor::Sensor",
+              "type": "use_id"
             },
             "above": {
               "key": "Optional",

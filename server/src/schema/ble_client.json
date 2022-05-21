@@ -7,6 +7,13 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "ble_client::BLEClient",
+                "parents": [
+                  "Component",
+                  "esp32_ble_tracker::ESPBTClient"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID to use for code generation, and for reference by dependent components.\n\n*See also: [BLE Client](https://esphome.io/components/ble_client.html#configuration-variables)*"
             },
             "mac_address": {
@@ -28,7 +35,9 @@
               "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the client disconnects from a device. See [on_disconnect](https://esphome.io/components/ble_client.html#ble-client-on-disconnect).\n\n*See also: [BLE Client](https://esphome.io/components/ble_client.html#configuration-variables)*"
             },
             "esp32_ble_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "esp32_ble_tracker::ESP32BLETracker",
+              "type": "use_id"
             }
           },
           "extends": [
@@ -43,6 +52,8 @@
           "config_vars": {
             "ble_client_id": {
               "key": "Required",
+              "use_id_type": "ble_client::BLEClient",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: ID of the associated BLE client.\n\n*See also: [BLE Client Text Sensor](https://esphome.io/components/text_sensor/ble_client.html#configuration-variables)*"
             }
           }
@@ -62,6 +73,16 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "ble_client::BLESensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component",
+                  "ble_client::BLEClientNode"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID to use for code generation, and for reference by dependent components.\n\n*See also: [BLE Client Sensor](https://esphome.io/components/sensor/ble_client.html#configuration-variables)*"
             },
             "accuracy_decimals": {
@@ -117,6 +138,14 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "id_type": {
+                "class": "ble_client::BLEBinaryOutput",
+                "parents": [
+                  "output::BinaryOutput",
+                  "ble_client::BLEClientNode",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID to use for code generation, and for reference by dependent components.\n\n*See also: [BLE Client Binary Output](https://esphome.io/components/output/ble_client.html#configuration-variables)*"
             },
             "service_uuid": {
@@ -151,6 +180,15 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "ble_client::BLEClientSwitch",
+                "parents": [
+                  "switch_::Switch",
+                  "EntityBase",
+                  "Component",
+                  "ble_client::BLEClientNode"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID to use for code generation, and for reference by dependent components.\n\n*See also: [BLE Client Switch](https://esphome.io/components/switch/ble_client.html#configuration-variables)*"
             },
             "icon": {
@@ -173,6 +211,16 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "ble_client::BLETextSensor",
+                "parents": [
+                  "text_sensor::TextSensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component",
+                  "ble_client::BLEClientNode"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID to use for code generation, and for reference by dependent components.\n\n*See also: [BLE Client Text Sensor](https://esphome.io/components/text_sensor/ble_client.html#configuration-variables)*"
             },
             "service_uuid": {

@@ -7,6 +7,14 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "mhz19::MHZ19Component",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "uart::UARTDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for actions.\n\n*See also: [MH-Z19 CO_2 and Temperature Sensor](https://esphome.io/components/sensor/mhz19.html#configuration-variables)*"
             },
             "co2": {
@@ -72,6 +80,8 @@
             },
             "uart_id": {
               "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Component](https://esphome.io/components/uart.html#uart) if you want to use multiple UART buses.\n\n*See also: [MH-Z19 CO_2 and Temperature Sensor](https://esphome.io/components/sensor/mhz19.html#configuration-variables)*"
             }
           },
@@ -81,11 +91,14 @@
         }
       },
       "CALIBRATION_ACTION_SCHEMA": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "mhz19::MHZ19Component",
+              "type": "use_id"
             }
           }
         }

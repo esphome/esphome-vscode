@@ -9,9 +9,20 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "yashima::YashimaClimate",
+                "parents": [
+                  "climate::Climate",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
+            },
             "transmitter_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "remote_transmitter::RemoteTransmitterComponent",
+              "type": "use_id"
             },
             "supports_cool": {
               "key": "Optional",
@@ -27,6 +38,8 @@
             },
             "sensor": {
               "key": "Optional",
+              "use_id_type": "sensor::Sensor",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The sensor that is used to measure the ambient temperature. This is only for reporting the current temperature in the frontend.\n\n*See also: [None](https://esphome.io/components/climate/climate_ir.html#configuration-variables)*"
             },
             "receiver_id": {

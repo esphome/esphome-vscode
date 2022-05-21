@@ -7,6 +7,14 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "fingerprint_grow::FingerprintGrowComponent",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "uart::UARTDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
             },
             "sensing_pin": {
@@ -61,6 +69,8 @@
             },
             "uart_id": {
               "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the UART hub.\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
             }
           },
@@ -78,7 +88,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "fingerprint_grow::FingerprintGrowComponent",
+              "type": "use_id"
             },
             "finger_id": {
               "key": "Required",
@@ -103,7 +115,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "fingerprint_grow::FingerprintGrowComponent",
+              "type": "use_id"
             }
           }
         },
@@ -115,7 +129,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "fingerprint_grow::FingerprintGrowComponent",
+              "type": "use_id"
             },
             "finger_id": {
               "key": "Required",
@@ -133,7 +149,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "fingerprint_grow::FingerprintGrowComponent",
+              "type": "use_id"
             }
           }
         },
@@ -144,7 +162,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "fingerprint_grow::FingerprintGrowComponent",
+              "type": "use_id"
             },
             "state": {
               "key": "Required",
@@ -162,7 +182,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "fingerprint_grow::FingerprintGrowComponent",
+              "type": "use_id"
             },
             "state": {
               "key": "Required",
@@ -220,7 +242,9 @@
         "schema": {
           "config_vars": {
             "fingerprint_grow_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "fingerprint_grow::FingerprintGrowComponent",
+              "type": "use_id"
             },
             "fingerprint_count": {
               "key": "Optional",
@@ -354,7 +378,9 @@
           ],
           "config_vars": {
             "fingerprint_grow_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "fingerprint_grow::FingerprintGrowComponent",
+              "type": "use_id"
             },
             "icon": {
               "default": "mdi:key-plus"

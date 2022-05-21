@@ -7,6 +7,12 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "mqtt::MQTTClientComponent",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
             },
             "broker": {
@@ -282,7 +288,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "mqtt::MQTTClientComponent",
+              "type": "use_id"
             },
             "topic": {
               "key": "Required",
@@ -316,7 +324,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "mqtt::MQTTClientComponent",
+              "type": "use_id"
             },
             "topic": {
               "key": "Required",
@@ -351,7 +361,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "mqtt::MQTTClientComponent",
+              "type": "use_id"
             }
           }
         },

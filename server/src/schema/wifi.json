@@ -7,6 +7,12 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "wifi::WiFiComponent",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [WiFi Component](https://esphome.io/components/wifi.html#configuration-variables)*"
             },
             "networks": {
@@ -191,7 +197,11 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "wifi::WiFiAP",
+                "parents": []
+              }
             },
             "ssid": {
               "key": "Optional",

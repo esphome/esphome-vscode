@@ -7,6 +7,12 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "id_type": {
+                "class": "sn74hc595::SN74HC595Component",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this SN74HC595 component.\n\n*See also: [SN74HC595 I/O Expander (shift register)](https://esphome.io/components/sn74hc595.html#configuration-variables)*"
             },
             "data_pin": {

@@ -10,6 +10,15 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "template_::TemplateSensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Template Sensor](https://esphome.io/components/sensor/template.html#configuration-variables)*"
             },
             "accuracy_decimals": {
@@ -35,6 +44,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "sensor::Sensor",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the template sensor.\n\n*See also: [Template Sensor](https://esphome.io/components/sensor/template.html#sensor-template-publish-action)*"
             },
             "state": {
@@ -59,6 +70,14 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "template_::TemplateBinarySensor",
+                "parents": [
+                  "binary_sensor::BinarySensor",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Template Binary Sensor](https://esphome.io/components/binary_sensor/template.html#configuration-variables)*"
             },
             "lambda": {
@@ -76,6 +95,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "binary_sensor::BinarySensor",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the template binary sensor.\n\n*See also: [Template Binary Sensor](https://esphome.io/components/binary_sensor/template.html#binary-sensor-template-publish-action)*"
             },
             "state": {
@@ -102,6 +123,13 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "template_::TemplateButton",
+                "parents": [
+                  "button::Button",
+                  "EntityBase"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Template Button](https://esphome.io/components/button/template.html#configuration-variables)*"
             }
           }
@@ -120,6 +148,14 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "template_::TemplateCover",
+                "parents": [
+                  "cover::Cover",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Template Cover](https://esphome.io/components/cover/template.html#configuration-variables)*"
             },
             "lambda": {
@@ -194,6 +230,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "cover::Cover",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the template cover.\n\n*See also: [Template Cover](https://esphome.io/components/cover/template.html#cover-template-publish-action)*"
             },
             "state": {
@@ -247,6 +285,14 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "template_::TemplateLock",
+                "parents": [
+                  "lock::Lock",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Template Lock](https://esphome.io/components/lock/template.html#configuration-variables)*"
             },
             "lambda": {
@@ -290,6 +336,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "lock::Lock",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the template lock.\n\n*See also: [Template Lock](https://esphome.io/components/lock/template.html#lock-template-publish-action)*"
             },
             "state": {
@@ -322,6 +370,15 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "template_::TemplateNumber",
+                "parents": [
+                  "number::Number",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Template Number](https://esphome.io/components/number/template.html#configuration-variables)*"
             },
             "max_value": {
@@ -383,6 +440,12 @@
             "config_vars": {
               "id": {
                 "key": "GeneratedID",
+                "id_type": {
+                  "class": "template_::TemplateBinaryOutput",
+                  "parents": [
+                    "output::BinaryOutput"
+                  ]
+                },
                 "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n*See also: [Template Output](https://esphome.io/components/output/template.html#configuration-variables)*"
               },
               "write_action": {
@@ -399,6 +462,13 @@
             "config_vars": {
               "id": {
                 "key": "GeneratedID",
+                "id_type": {
+                  "class": "template_::TemplateFloatOutput",
+                  "parents": [
+                    "output::FloatOutput",
+                    "output::BinaryOutput"
+                  ]
+                },
                 "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n*See also: [Template Output](https://esphome.io/components/output/template.html#configuration-variables)*"
               },
               "write_action": {
@@ -425,6 +495,15 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "template_::TemplateSelect",
+                "parents": [
+                  "select::Select",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Template Select](https://esphome.io/components/select/template.html#configuration-variables)*"
             },
             "options": {
@@ -480,6 +559,14 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "template_::TemplateSwitch",
+                "parents": [
+                  "switch_::Switch",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Template Switch](https://esphome.io/components/switch/template.html#configuration-variables)*"
             },
             "lambda": {
@@ -525,6 +612,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "switch_::Switch",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the template switch.\n\n*See also: [Template Switch](https://esphome.io/components/switch/template.html#switch-template-publish-action)*"
             },
             "state": {
@@ -550,6 +639,15 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "template_::TemplateTextSensor",
+                "parents": [
+                  "text_sensor::TextSensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Template Text Sensor](https://esphome.io/components/text_sensor/template.html#configuration-variables)*"
             },
             "lambda": {
@@ -572,6 +670,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "text_sensor::TextSensor",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the template text sensor.\n\n*See also: [Template Text Sensor](https://esphome.io/components/text_sensor/template.html#text-sensor-template-publish-action)*"
             },
             "state": {

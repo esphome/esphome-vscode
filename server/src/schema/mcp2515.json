@@ -8,7 +8,16 @@
             "canbus.CANBUS_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "mcp2515::MCP2515",
+                "parents": [
+                  "canbus::CanbusComponent",
+                  "Component",
+                  "spi::SPIDevice"
+                ]
+              }
+            },
             "clock": {
               "key": "Optional",
               "default": "8MHZ",
@@ -37,7 +46,9 @@
               }
             },
             "spi_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "spi::SPIComponent",
+              "type": "use_id"
             },
             "cs_pin": {
               "key": "Required",

@@ -7,10 +7,19 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "id_type": {
+                "class": "mcp23016::MCP23016",
+                "parents": [
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this MCP23016 component.\n\n*See also: [MCP23016 Component](https://esphome.io/components/mcp230xx.html#id1)*"
             },
             "i2c_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",

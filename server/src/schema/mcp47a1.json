@@ -11,10 +11,21 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "id_type": {
+                "class": "mcp47a1::MCP47A1",
+                "parents": [
+                  "output::FloatOutput",
+                  "output::BinaryOutput",
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n*See also: [MCP47A1 Output](https://esphome.io/components/output/mcp47a1.html#configuration-variables)*"
             },
             "i2c_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",

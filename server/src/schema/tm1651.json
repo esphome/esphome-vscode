@@ -7,6 +7,12 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "tm1651::TM1651Display",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [TM1651 Battery Display](https://esphome.io/components/tm1651.html#configuration-variables)*"
             },
             "clk_pin": {
@@ -33,11 +39,14 @@
         }
       },
       "BINARY_OUTPUT_ACTION_SCHEMA": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "tm1651::TM1651Display",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the TM1651.\n\n*See also: [TM1651 Battery Display](https://esphome.io/components/tm1651.html#tm1651-turn-on-action)*"
             }
           }
@@ -70,6 +79,8 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "use_id_type": "tm1651::TM1651Display",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the TM1651.\n\n*See also: [TM1651 Battery Display](https://esphome.io/components/tm1651.html#tm1651-set-level-percent-action)*"
             },
             "level_percent": {
@@ -90,6 +101,8 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "use_id_type": "tm1651::TM1651Display",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the TM1651.\n\n*See also: [TM1651 Battery Display](https://esphome.io/components/tm1651.html#tm1651-set-level-action)*"
             },
             "level": {
@@ -109,6 +122,8 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "use_id_type": "tm1651::TM1651Display",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the TM1651.\n\n*See also: [TM1651 Battery Display](https://esphome.io/components/tm1651.html#tm1651-set-brightness-action)*"
             },
             "brightness": {

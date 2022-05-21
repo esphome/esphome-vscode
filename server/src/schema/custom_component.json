@@ -6,7 +6,11 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "custom_component::CustomComponentConstructor",
+                "parents": []
+              }
             },
             "lambda": {
               "key": "Required",
@@ -19,7 +23,11 @@
               "schema": {
                 "config_vars": {
                   "id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "Component",
+                      "parents": []
+                    }
                   }
                 },
                 "extends": [

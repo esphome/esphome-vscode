@@ -6,7 +6,15 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "ltr390::LTR390Component",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              }
             },
             "light": {
               "key": "Optional",
@@ -142,7 +150,9 @@
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`. It is recommended that the update interval is at least 1 second since updates can take up to 800ms when using a high resolution value.\n\n*See also: [LTR390 UV and Ambient Light Sensor](https://esphome.io/components/sensor/ltr390.html#configuration-variables)*"
             },
             "i2c_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",

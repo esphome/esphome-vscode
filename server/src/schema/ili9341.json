@@ -11,6 +11,15 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "ili9341::ILI9341Display",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "spi::SPIDevice",
+                  "display::DisplayBuffer"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [ILI9341 TFT LCD](https://esphome.io/components/display/ili9341.html#configuration-variables)*"
             },
             "model": {
@@ -49,13 +58,31 @@
               "type": "pin",
               "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The display\u2019s backlight pin. **Note:** Connect to a PWM-capable pin to switch/dim the display\u2019s backlight **or** save a pin by connecting it through a 3.3K resistor to the +3V supply.\n\n*See also: [ILI9341 TFT LCD](https://esphome.io/components/display/ili9341.html#configuration-variables)*"
             },
+            "color_palette": {
+              "key": "Optional",
+              "default": "NONE",
+              "type": "enum",
+              "values": [
+                "NONE",
+                "GRAYSCALE"
+              ]
+            },
+            "raw_data_id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "uint8_t",
+                "parents": null
+              }
+            },
             "update_interval": {
               "key": "Optional",
               "default": "1s",
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to re-draw the screen. Defaults to `5s`.\n\n*See also: [ILI9341 TFT LCD](https://esphome.io/components/display/ili9341.html#configuration-variables)*"
             },
             "spi_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "spi::SPIComponent",
+              "type": "use_id"
             },
             "cs_pin": {
               "key": "Optional",

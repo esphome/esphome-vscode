@@ -6,10 +6,20 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "daly_bms::DalyBmsComponent",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "uart::UARTDevice"
+                ]
+              }
             },
             "uart_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id"
             },
             "update_interval": {
               "key": "Optional",
@@ -56,7 +66,9 @@
         "schema": {
           "config_vars": {
             "bms_daly_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "daly_bms::DalyBmsComponent",
+              "type": "use_id"
             },
             "voltage": {
               "key": "Optional",
@@ -578,7 +590,9 @@
         "schema": {
           "config_vars": {
             "bms_daly_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "daly_bms::DalyBmsComponent",
+              "type": "use_id"
             },
             "charging_mos_enabled": {
               "key": "Optional",
@@ -615,7 +629,9 @@
         "schema": {
           "config_vars": {
             "bms_daly_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "daly_bms::DalyBmsComponent",
+              "type": "use_id"
             },
             "status": {
               "key": "Optional",

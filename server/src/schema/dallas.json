@@ -7,6 +7,13 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "dallas::DallasComponent",
+                "parents": [
+                  "PollingComponent",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [dallas Component/Hub](https://esphome.io/components/sensor/dallas.html#configuration-variables)*"
             },
             "pin": {
@@ -43,6 +50,13 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "dallas::DallasTemperatureSensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [dallas Sensor](https://esphome.io/components/sensor/dallas.html#id1)*"
             },
             "unit_of_measurement": {
@@ -59,6 +73,8 @@
             },
             "dallas_id": {
               "key": "GeneratedID",
+              "use_id_type": "dallas::DallasComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the [dallas hub](https://esphome.io/components/sensor/dallas.html#dallas-component). Use this if you have multiple dallas hubs.\n\n*See also: [dallas Sensor](https://esphome.io/components/sensor/dallas.html#id1)*"
             },
             "address": {

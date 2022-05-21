@@ -7,6 +7,13 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "rf_bridge::RFBridgeComponent",
+                "parents": [
+                  "Component",
+                  "uart::UARTDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [RF Bridge Component](https://esphome.io/components/rf_bridge.html#configuration-variables)*"
             },
             "on_code_received": {
@@ -20,6 +27,8 @@
             },
             "uart_id": {
               "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the UART hub.\n\n*See also: [RF Bridge Component](https://esphome.io/components/rf_bridge.html#configuration-variables)*"
             }
           },
@@ -34,6 +43,8 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "use_id_type": "rf_bridge::RFBridgeComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the RF Bridge if you have multiple components.\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-start-bucket-sniffing-action)*"
             }
           }
@@ -47,6 +58,8 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "use_id_type": "rf_bridge::RFBridgeComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the RF Bridge if you have multiple components.\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-code-action)*"
             },
             "sync": {
@@ -119,6 +132,8 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "use_id_type": "rf_bridge::RFBridgeComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the RF Bridge if you have multiple components.\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-advanced-code-action)*"
             },
             "length": {
@@ -149,6 +164,8 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "use_id_type": "rf_bridge::RFBridgeComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the RF Bridge if you have multiple components.\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-raw-action)*"
             },
             "raw": {
@@ -167,6 +184,8 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "use_id_type": "rf_bridge::RFBridgeComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the RF Bridge if you have multiple components.\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-beep-action)*"
             },
             "duration": {

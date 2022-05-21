@@ -76,10 +76,23 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "climate::Climate",
+                "parents": [
+                  "EntityBase"
+                ]
+              }
             },
             "mqtt_id": {
-              "key": "Optional"
+              "key": "Optional",
+              "id_type": {
+                "class": "mqtt::MQTTClimateComponent",
+                "parents": [
+                  "mqtt::MQTTComponent",
+                  "Component"
+                ]
+              }
             },
             "visual": {
               "key": "Optional",
@@ -182,6 +195,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "climate::Climate",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the climate device to control.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
             },
             "mode": {

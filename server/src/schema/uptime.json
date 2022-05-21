@@ -10,6 +10,15 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "uptime::UptimeSensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n*See also: [Uptime Sensor](https://esphome.io/components/sensor/uptime.html#configuration-variables)*"
             },
             "unit_of_measurement": {

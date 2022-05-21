@@ -28,7 +28,15 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "tcs34725::TCS34725Component",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              }
             },
             "red_channel": {
               "key": "Optional",
@@ -120,9 +128,10 @@
             },
             "integration_time": {
               "key": "Optional",
-              "default": "2.4ms",
+              "default": "auto",
               "type": "enum",
               "values": [
+                "auto",
                 "2.4ms",
                 "24ms",
                 "50ms",
@@ -167,7 +176,9 @@
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n*See also: [TCS34725 RGB Color Sensor](https://esphome.io/components/sensor/tcs34725.html#configuration-variables)*"
             },
             "i2c_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",

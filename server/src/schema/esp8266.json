@@ -111,7 +111,14 @@
       "schema": {
         "config_vars": {
           "id": {
-            "key": "GeneratedID"
+            "key": "GeneratedID",
+            "id_type": {
+              "class": "esphome::esp8266::ESP8266GPIOPin",
+              "parents": [
+                "InternalGPIOPin",
+                "GPIOPin"
+              ]
+            }
           },
           "number": {
             "key": "Required",

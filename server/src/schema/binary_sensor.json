@@ -200,10 +200,23 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "binary_sensor::BinarySensor",
+                "parents": [
+                  "EntityBase"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n*See also: [sim800l Binary Sensor](https://esphome.io/components/sim800l.html#binary-sensor)*"
             },
             "mqtt_id": {
-              "key": "Optional"
+              "key": "Optional",
+              "id_type": {
+                "class": "mqtt::MQTTBinarySensorComponent",
+                "parents": [
+                  "mqtt::MQTTComponent",
+                  "Component"
+                ]
+              }
             },
             "device_class": {
               "key": "Optional",
@@ -363,11 +376,14 @@
         }
       },
       "BINARY_SENSOR_CONDITION_SCHEMA": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "binary_sensor::BinarySensor",
+              "type": "use_id"
             }
           }
         }

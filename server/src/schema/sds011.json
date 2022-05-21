@@ -6,7 +6,14 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "sds011::SDS011Component",
+                "parents": [
+                  "uart::UARTDevice",
+                  "Component"
+                ]
+              }
             },
             "pm_2_5": {
               "key": "Optional",
@@ -80,6 +87,8 @@
             },
             "uart_id": {
               "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Component](https://esphome.io/components/uart.html#uart) if you want to use multiple UART buses.\n\n*See also: [SDS011 Particulate Matter Sensor](https://esphome.io/components/sensor/sds011.html#configuration-variables)*"
             }
           },

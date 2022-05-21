@@ -6,7 +6,15 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "qmp6988::QMP6988Component",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              }
             },
             "temperature": {
               "key": "Optional",
@@ -108,7 +116,9 @@
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n*See also: [QMP6988 Temperature+Pressure Sensor](https://esphome.io/components/sensor/qmp6988.html#configuration-variables)*"
             },
             "i2c_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",

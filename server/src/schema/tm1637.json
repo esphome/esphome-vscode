@@ -9,10 +9,19 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "tm1637::TM1637Key",
+                "parents": [
+                  "binary_sensor::BinarySensor",
+                  "EntityBase"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor.\n\n*See also: [tm1637 Binary Sensor](https://esphome.io/components/display/tm1637.html#id1)*"
             },
             "tm1637_id": {
               "key": "GeneratedID",
+              "use_id_type": "tm1637::TM1637Display",
+              "type": "use_id",
               "docs": "**:[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the tm1637 that should be used to scan the keys in case you are using multiple devices.\n\n*See also: [tm1637 Binary Sensor](https://esphome.io/components/display/tm1637.html#id1)*"
             },
             "key": {
@@ -37,6 +46,13 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "tm1637::TM1637Display",
+                "parents": [
+                  "PollingComponent",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [TM1637 7-Segment Display](https://esphome.io/components/display/tm1637.html#configuration-variables)*"
             },
             "intensity": {

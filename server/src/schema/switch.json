@@ -69,7 +69,14 @@
           ],
           "config_vars": {
             "mqtt_id": {
-              "key": "Optional"
+              "key": "Optional",
+              "id_type": {
+                "class": "mqtt::MQTTSwitchComponent",
+                "parents": [
+                  "mqtt::MQTTComponent",
+                  "Component"
+                ]
+              }
             },
             "inverted": {
               "key": "Optional",
@@ -100,11 +107,14 @@
         }
       },
       "SWITCH_ACTION_SCHEMA": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "switch_::Switch",
+              "type": "use_id"
             }
           }
         }

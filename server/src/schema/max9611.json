@@ -6,7 +6,15 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "max9611::MAX9611Component",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              }
             },
             "shunt_resistance": {
               "key": "Required",
@@ -123,7 +131,9 @@
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n*See also: [MAX9611/9612 High Side Current+Voltage+Temperature Sensor](https://esphome.io/components/sensor/max9611.html#configuration-variables)*"
             },
             "i2c_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",

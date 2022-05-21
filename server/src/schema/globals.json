@@ -7,6 +7,12 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "id_type": {
+                "class": "globals::GlobalsComponent",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Give the global variable an ID so that you can refer to it later in [lambdas](https://esphome.io/guides/automations.html#config-lambda).\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#global-variables)*"
             },
             "type": {
@@ -40,6 +46,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "globals::GlobalsComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The [ID](https://esphome.io/guides/configuration-types.html#config-id) of the global variable to set.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#globals-set-action)*"
             },
             "value": {

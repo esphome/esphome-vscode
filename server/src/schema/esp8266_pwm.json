@@ -11,6 +11,14 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "id_type": {
+                "class": "esp8266_pwm::ESP8266PWM",
+                "parents": [
+                  "output::FloatOutput",
+                  "output::BinaryOutput",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n*See also: [ESP8266 Software PWM Output](https://esphome.io/components/output/esp8266_pwm.html#configuration-variables)*"
             },
             "pin": {
@@ -40,6 +48,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "esp8266_pwm::ESP8266PWM",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the PWM output to change.\n\n*See also: [ESP8266 Software PWM Output](https://esphome.io/components/output/esp8266_pwm.html#output-esp8266-pwm-set-frequency-action)*"
             },
             "frequency": {

@@ -6,7 +6,14 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "bme680_bsec::BME680BSECComponent",
+                "parents": [
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              }
             },
             "temperature_offset": {
               "key": "Optional",
@@ -45,7 +52,9 @@
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The minimum interval at which to save calibrated BSEC algorithm state to flash so that calibration doesn\u2019t have to start from zero on device restart. Defaults to `6h`.\n\n*See also: [bme680_bsec Component/Hub](https://esphome.io/components/sensor/bme680_bsec.html#component-hub)*"
             },
             "i2c_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",
@@ -65,7 +74,9 @@
         "schema": {
           "config_vars": {
             "bme680_bsec_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "bme680_bsec::BME680BSECComponent",
+              "type": "use_id"
             },
             "temperature": {
               "key": "Optional",
@@ -304,7 +315,9 @@
         "schema": {
           "config_vars": {
             "bme680_bsec_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "bme680_bsec::BME680BSECComponent",
+              "type": "use_id"
             },
             "iaq_accuracy": {
               "key": "Optional",

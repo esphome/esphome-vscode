@@ -7,10 +7,19 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "sml::Sml",
+                "parents": [
+                  "Component",
+                  "uart::UARTDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [SML (Smart Message Language)](https://esphome.io/components/sml.html#sml-platform)*"
             },
             "uart_id": {
               "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Component](https://esphome.io/components/uart.html#uart) if you want to use multiple UART buses.\n\n*See also: [SML (Smart Message Language)](https://esphome.io/components/sml.html#sml-platform)*"
             }
           }
@@ -28,9 +37,20 @@
             "sensor.SENSOR_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "sml::SmlSensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
+            },
             "sml_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "sml::Sml",
+              "type": "use_id"
             },
             "obis_code": {
               "key": "Required"
@@ -54,9 +74,20 @@
             "text_sensor.TEXT_SENSOR_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "sml::SmlTextSensor",
+                "parents": [
+                  "text_sensor::TextSensor",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
+            },
             "sml_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "sml::Sml",
+              "type": "use_id"
             },
             "obis_code": {
               "key": "Required"

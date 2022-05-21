@@ -10,10 +10,22 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "bedjet::Bedjet",
+                "parents": [
+                  "climate::Climate",
+                  "EntityBase",
+                  "ble_client::BLEClientNode",
+                  "PollingComponent",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [BedJet](https://esphome.io/components/climate/bedjet.html#configuration-variables)*"
             },
             "time_id": {
               "key": "Optional",
+              "use_id_type": "time::RealTimeClock",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of a [Time Component](https://esphome.io/components/time.html#time) which can be used to set the time on the BedJet device.\n\n*See also: [BedJet](https://esphome.io/components/climate/bedjet.html#configuration-variables)*"
             },
             "receive_timeout": {
@@ -28,6 +40,8 @@
             },
             "ble_client_id": {
               "key": "Required",
+              "use_id_type": "ble_client::BLEClient",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the BLE Client.\n\n*See also: [BedJet](https://esphome.io/components/climate/bedjet.html#configuration-variables)*"
             },
             "update_interval": {

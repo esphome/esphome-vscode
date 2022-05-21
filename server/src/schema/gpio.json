@@ -10,6 +10,14 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "gpio::GPIOBinarySensor",
+                "parents": [
+                  "binary_sensor::BinarySensor",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [GPIO Binary Sensor](https://esphome.io/components/binary_sensor/gpio.html#configuration-variables)*"
             },
             "pin": {
@@ -38,6 +46,13 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "id_type": {
+                "class": "gpio::GPIOBinaryOutput",
+                "parents": [
+                  "output::BinaryOutput",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n*See also: [GPIO Output](https://esphome.io/components/output/gpio.html#configuration-variables)*"
             },
             "pin": {
@@ -66,6 +81,14 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "gpio::GPIOSwitch",
+                "parents": [
+                  "switch_::Switch",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [GPIO Switch](https://esphome.io/components/switch/gpio.html#configuration-variables)*"
             },
             "pin": {
@@ -101,6 +124,8 @@
             "interlock": {
               "key": "Optional",
               "is_list": true,
+              "use_id_type": "switch_::Switch",
+              "type": "use_id",
               "docs": "**list**: A list of other GPIO switches in an interlock group. See [Interlocking](https://esphome.io/components/switch/gpio.html#switch-gpio-interlocking).\n\n*See also: [GPIO Switch](https://esphome.io/components/switch/gpio.html#configuration-variables)*"
             },
             "interlock_wait_time": {

@@ -31,6 +31,12 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "fan::Fan",
+                "parents": [
+                  "EntityBase"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Tuya Fan](https://esphome.io/components/fan/tuya.html#configuration-variables)*"
             },
             "restore_mode": {
@@ -58,7 +64,14 @@
               }
             },
             "mqtt_id": {
-              "key": "Optional"
+              "key": "Optional",
+              "id_type": {
+                "class": "mqtt::MQTTFanComponent",
+                "parents": [
+                  "mqtt::MQTTComponent",
+                  "Component"
+                ]
+              }
             },
             "oscillation_state_topic": {
               "key": "Optional",
@@ -103,11 +116,14 @@
         }
       },
       "FAN_ACTION_SCHEMA": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "fan::Fan",
+              "type": "use_id"
             }
           }
         }
@@ -133,11 +149,14 @@
         "docs": "Turns the fan with the given ID off when executed.\n\n*See also: [Fan Component](https://esphome.io/components/fan/index.html#fan-turn-off-action)*"
       },
       "turn_on": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "fan::Fan",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the fan.\n\n*See also: [Fan Component](https://esphome.io/components/fan/index.html#fan-turn-on-action)*"
             },
             "oscillating": {
@@ -178,21 +197,27 @@
     },
     "condition": {
       "is_off": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "fan::Fan",
+              "type": "use_id"
             }
           }
         }
       },
       "is_on": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "fan::Fan",
+              "type": "use_id"
             }
           }
         }

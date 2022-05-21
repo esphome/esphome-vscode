@@ -6,10 +6,19 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "mcp3008::MCP3008",
+                "parents": [
+                  "Component",
+                  "spi::SPIDevice"
+                ]
+              }
             },
             "spi_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "spi::SPIComponent",
+              "type": "use_id"
             },
             "cs_pin": {
               "key": "Required",
@@ -36,10 +45,22 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "mcp3008::MCP3008Sensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component",
+                  "voltage_sampler::VoltageSampler"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the parent MCP3008 component.\n\n*See also: [mcp3008 Sensor](https://esphome.io/components/sensor/mcp3008.html#sensor)*"
             },
             "mcp3008_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "mcp3008::MCP3008",
+              "type": "use_id"
             },
             "number": {
               "key": "Required",

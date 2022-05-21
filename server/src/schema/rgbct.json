@@ -9,26 +9,42 @@
           ],
           "config_vars": {
             "output_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "rgbct::RGBCTLightOutput",
+                "parents": [
+                  "light::LightOutput"
+                ]
+              }
             },
             "red": {
               "key": "Required",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the float [Output Component](https://esphome.io/components/output/index.html#output) to use for the red channel.\n\n*See also: [RGBCT Light](https://esphome.io/components/light/rgbct.html#configuration-variables)*"
             },
             "green": {
               "key": "Required",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the float [Output Component](https://esphome.io/components/output/index.html#output) to use for the green channel.\n\n*See also: [RGBCT Light](https://esphome.io/components/light/rgbct.html#configuration-variables)*"
             },
             "blue": {
               "key": "Required",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the float [Output Component](https://esphome.io/components/output/index.html#output) to use for the blue channel.\n\n*See also: [RGBCT Light](https://esphome.io/components/light/rgbct.html#configuration-variables)*"
             },
             "color_temperature": {
               "key": "Required",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the float [Output Component](https://esphome.io/components/output/index.html#output) to use for the color temperature channel.\n\n*See also: [RGBCT Light](https://esphome.io/components/light/rgbct.html#configuration-variables)*"
             },
             "white_brightness": {
               "key": "Required",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the float [Output Component](https://esphome.io/components/output/index.html#output) to use for the brightness of the white leds.\n\n*See also: [RGBCT Light](https://esphome.io/components/light/rgbct.html#configuration-variables)*"
             },
             "cold_white_color_temperature": {

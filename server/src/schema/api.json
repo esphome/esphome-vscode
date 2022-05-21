@@ -7,6 +7,13 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "api::APIServer",
+                "parents": [
+                  "Component",
+                  "Controller"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Native API Component](https://esphome.io/components/api.html#configuration-variables)*"
             },
             "port": {

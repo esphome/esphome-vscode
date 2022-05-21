@@ -10,13 +10,23 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "mqtt_subscribe::MQTTSubscribeSensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [MQTT Subscribe Sensor](https://esphome.io/components/sensor/mqtt_subscribe.html#configuration-variables)*"
             },
             "accuracy_decimals": {
               "default": "1"
             },
             "mqtt_parent_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "mqtt::MQTTClientComponent",
+              "type": "use_id"
             },
             "topic": {
               "key": "Required",
@@ -43,10 +53,20 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "mqtt_subscribe::MQTTSubscribeTextSensor",
+                "parents": [
+                  "text_sensor::TextSensor",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [MQTT Subscribe Text Sensor](https://esphome.io/components/text_sensor/mqtt_subscribe.html#configuration-variables)*"
             },
             "mqtt_parent_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "mqtt::MQTTClientComponent",
+              "type": "use_id"
             },
             "topic": {
               "key": "Required",

@@ -9,9 +9,20 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "copy::CopySensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
+            },
             "source_id": {
               "key": "Required",
+              "use_id_type": "sensor::Sensor",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The sensor that should be mirrored.\n\n*See also: [Copy Sensor](https://esphome.io/components/copy.html#id7)*"
             }
           }
@@ -29,9 +40,20 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "copy::CopyBinarySensor",
+                "parents": [
+                  "binary_sensor::BinarySensor",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
+            },
             "source_id": {
               "key": "Required",
+              "use_id_type": "binary_sensor::BinarySensor",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The binary sensor that should be mirrored.\n\n*See also: [Copy Binary Sensor](https://esphome.io/components/copy.html#configuration-variables)*"
             }
           }
@@ -50,10 +72,20 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "copy::CopyButton",
+                "parents": [
+                  "button::Button",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
             },
             "source_id": {
               "key": "Required",
+              "use_id_type": "button::Button",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The button that should be mirrored.\n\n*See also: [Copy Button](https://esphome.io/components/copy.html#id1)*"
             }
           }
@@ -71,9 +103,20 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "copy::CopyCover",
+                "parents": [
+                  "cover::Cover",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
+            },
             "source_id": {
               "key": "Required",
+              "use_id_type": "cover::Cover",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The cover that should be mirrored.\n\n*See also: [Copy Cover](https://esphome.io/components/copy.html#id2)*"
             }
           }
@@ -91,9 +134,20 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "copy::CopyFan",
+                "parents": [
+                  "fan::Fan",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
+            },
             "source_id": {
               "key": "Required",
+              "use_id_type": "fan::Fan",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The fan that should be mirrored.\n\n*See also: [Copy Fan](https://esphome.io/components/copy.html#id3)*"
             }
           }
@@ -112,10 +166,20 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "copy::CopyLock",
+                "parents": [
+                  "lock::Lock",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
             },
             "source_id": {
               "key": "Required",
+              "use_id_type": "lock::Lock",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The lock that should be mirrored.\n\n*See also: [Copy Lock](https://esphome.io/components/copy.html#id4)*"
             }
           }
@@ -133,9 +197,20 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "copy::CopyNumber",
+                "parents": [
+                  "number::Number",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
+            },
             "source_id": {
               "key": "Required",
+              "use_id_type": "number::Number",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The number that should be mirrored.\n\n*See also: [Copy Number](https://esphome.io/components/copy.html#id5)*"
             }
           }
@@ -153,9 +228,20 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "copy::CopySelect",
+                "parents": [
+                  "select::Select",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
+            },
             "source_id": {
               "key": "Required",
+              "use_id_type": "select::Select",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The select that should be mirrored.\n\n*See also: [Copy Select](https://esphome.io/components/copy.html#id6)*"
             }
           }
@@ -174,10 +260,20 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "copy::CopySwitch",
+                "parents": [
+                  "switch_::Switch",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
             },
             "source_id": {
               "key": "Required",
+              "use_id_type": "switch_::Switch",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The switch that should be mirrored.\n\n*See also: [Copy Switch](https://esphome.io/components/copy.html#id8)*"
             }
           }
@@ -195,9 +291,20 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "copy::CopyTextSensor",
+                "parents": [
+                  "text_sensor::TextSensor",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
+            },
             "source_id": {
               "key": "Required",
+              "use_id_type": "text_sensor::TextSensor",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The text sensor that should be mirrored.\n\n*See also: [Copy Text Sensor](https://esphome.io/components/copy.html#id9)*"
             }
           }

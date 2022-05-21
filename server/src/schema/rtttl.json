@@ -7,10 +7,18 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "rtttl::Rtttl",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Rtttl Buzzer](https://esphome.io/components/rtttl.html#configuration-variables)*"
             },
             "output": {
               "key": "Required",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the [float output](https://esphome.io/components/output/index.html#output) to use for this buzzer.\n\n*See also: [Rtttl Buzzer](https://esphome.io/components/rtttl.html#configuration-variables)*"
             },
             "on_finished_playback": {
@@ -33,7 +41,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "rtttl::Rtttl",
+              "type": "use_id"
             },
             "rtttl": {
               "key": "Required",
@@ -50,7 +60,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "rtttl::Rtttl",
+              "type": "use_id"
             }
           }
         },
@@ -63,7 +75,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "rtttl::Rtttl",
+              "type": "use_id"
             }
           }
         },

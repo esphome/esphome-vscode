@@ -119,6 +119,8 @@
           "config_vars": {
             "power_supply": {
               "key": "Optional",
+              "use_id_type": "power_supply::PowerSupply",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The [power supply](https://esphome.io/components/power_supply.html) to connect to this output. When the output is enabled, the power supply will automatically be switched on too.\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
             },
             "inverted": {
@@ -157,11 +159,14 @@
         }
       },
       "BINARY_OUTPUT_ACTION_SCHEMA": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "output::BinaryOutput",
+              "type": "use_id"
             }
           }
         }
@@ -191,7 +196,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id"
             },
             "level": {
               "key": "Required",
@@ -215,10 +222,20 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "output::OutputButton",
+                "parents": [
+                  "button::Button",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Generic Output Button](https://esphome.io/components/button/output.html#configuration-variables)*"
             },
             "output": {
               "key": "Required",
+              "use_id_type": "output::BinaryOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the output component to use.\n\n*See also: [Generic Output Button](https://esphome.io/components/button/output.html#configuration-variables)*"
             },
             "duration": {
@@ -248,10 +265,20 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "output::OutputLock",
+                "parents": [
+                  "lock::Lock",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Generic Output Lock](https://esphome.io/components/lock/output.html#configuration-variables)*"
             },
             "output": {
               "key": "Required",
+              "use_id_type": "output::BinaryOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the output component to use.\n\n*See also: [Generic Output Lock](https://esphome.io/components/lock/output.html#configuration-variables)*"
             }
           }
@@ -271,10 +298,20 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "output::OutputSwitch",
+                "parents": [
+                  "switch_::Switch",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Generic Output Switch](https://esphome.io/components/switch/output.html#configuration-variables)*"
             },
             "output": {
               "key": "Required",
+              "use_id_type": "output::BinaryOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the output component to use.\n\n*See also: [Generic Output Switch](https://esphome.io/components/switch/output.html#configuration-variables)*"
             },
             "restore_mode": {

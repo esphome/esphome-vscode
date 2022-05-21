@@ -2,34 +2,43 @@
   "page.display": {
     "action": {
       "show": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
               "key": "Required",
-              "templatable": true
+              "templatable": true,
+              "use_id_type": "display::DisplayPage",
+              "type": "use_id"
             }
           }
         }
       },
       "show_next": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
               "key": "Required",
-              "templatable": true
+              "templatable": true,
+              "use_id_type": "display::DisplayBuffer",
+              "type": "use_id"
             }
           }
         }
       },
       "show_previous": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
               "key": "Required",
-              "templatable": true
+              "templatable": true,
+              "use_id_type": "display::DisplayBuffer",
+              "type": "use_id"
             }
           }
         }

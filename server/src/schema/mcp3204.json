@@ -7,6 +7,13 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "mcp3204::MCP3204",
+                "parents": [
+                  "Component",
+                  "spi::SPIDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this MCP3204 component.\n\n*See also: [mcp3204 Component/Hub](https://esphome.io/components/sensor/mcp3204.html#configuration-variables)*"
             },
             "reference_voltage": {
@@ -15,7 +22,9 @@
               "docs": "**float**: The reference voltage. Defaults to `3.3V`.\n\n*See also: [mcp3204 Component/Hub](https://esphome.io/components/sensor/mcp3204.html#configuration-variables)*"
             },
             "spi_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "spi::SPIComponent",
+              "type": "use_id"
             },
             "cs_pin": {
               "key": "Required",
@@ -43,10 +52,22 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "mcp3204::MCP3204Sensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component",
+                  "voltage_sampler::VoltageSampler"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [mcp3204 Sensor](https://esphome.io/components/sensor/mcp3204.html#id1)*"
             },
             "mcp3204_id": {
               "key": "GeneratedID",
+              "use_id_type": "mcp3204::MCP3204",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the parent MCP3204 component.\n\n*See also: [mcp3204 Sensor](https://esphome.io/components/sensor/mcp3204.html#id1)*"
             },
             "number": {

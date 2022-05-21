@@ -38,6 +38,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "stepper::Stepper",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the stepper.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-target-action)*"
             },
             "target": {
@@ -56,6 +58,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "stepper::Stepper",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the stepper.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-report-position-action)*"
             },
             "position": {
@@ -74,6 +78,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "stepper::Stepper",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the stepper.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-speed-action)*"
             },
             "speed": {
@@ -91,6 +97,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "stepper::Stepper",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the stepper.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-acceleration-action)*"
             },
             "acceleration": {
@@ -108,6 +116,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "stepper::Stepper",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the stepper.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-deceleration-action)*"
             },
             "deceleration": {

@@ -7,6 +7,12 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "esp32_ble_beacon::ESP32BLEBeacon",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for code generation.\n\n*See also: [ESP32 Bluetooth Low Energy Beacon](https://esphome.io/components/esp32_ble_beacon.html#configuration-variables)*"
             },
             "type": {

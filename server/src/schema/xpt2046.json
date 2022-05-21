@@ -7,6 +7,14 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "xpt2046::XPT2046Component",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "spi::SPIDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor.\n\n*See also: [xpt2046 Component/Hub](https://esphome.io/components/binary_sensor/xpt2046.html#configuration-variables)*"
             },
             "irq_pin": {
@@ -84,7 +92,9 @@
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. If `irq_pin` is specified the touch will be detected nearly instantaneously and this setting will be used only for the release detection. Defaults to `50ms`.\n\n*See also: [xpt2046 Component/Hub](https://esphome.io/components/binary_sensor/xpt2046.html#configuration-variables)*"
             },
             "spi_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "spi::SPIComponent",
+              "type": "use_id"
             },
             "cs_pin": {
               "key": "Required",
@@ -113,9 +123,19 @@
             "binary_sensor.BINARY_SENSOR_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "xpt2046::XPT2046Button",
+                "parents": [
+                  "binary_sensor::BinarySensor",
+                  "EntityBase"
+                ]
+              }
+            },
             "xpt2046_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "xpt2046::XPT2046Component",
+              "type": "use_id"
             },
             "x_min": {
               "key": "Required",

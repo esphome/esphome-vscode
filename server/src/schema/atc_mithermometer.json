@@ -6,7 +6,14 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "atc_mithermometer::ATCMiThermometer",
+                "parents": [
+                  "esp32_ble_tracker::ESPBTDeviceListener",
+                  "Component"
+                ]
+              }
             },
             "mac_address": {
               "key": "Required"
@@ -136,7 +143,9 @@
               }
             },
             "esp32_ble_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "esp32_ble_tracker::ESP32BLETracker",
+              "type": "use_id"
             }
           },
           "extends": [

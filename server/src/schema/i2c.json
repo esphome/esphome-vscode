@@ -7,6 +7,12 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "i2c::I2CBus",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for this I\u00b2C bus if you need multiple I\u00b2C buses.\n\n*See also: [I\u00b2C Bus](https://esphome.io/components/i2c.html#configuration-variables)*"
             },
             "sda": {

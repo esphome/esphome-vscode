@@ -11,6 +11,13 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "id_type": {
+                "class": "uln2003::ULN2003",
+                "parents": [
+                  "stepper::Stepper",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Specify the ID of the stepper so that you can control it.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#uln2003-component)*"
             },
             "pin_a": {

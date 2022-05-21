@@ -6,7 +6,13 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "esp32_camera_web_server::CameraWebServer",
+                "parents": [
+                  "Component"
+                ]
+              }
             },
             "port": {
               "key": "Required",

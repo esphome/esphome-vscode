@@ -7,6 +7,14 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "tsl2591::TSL2591Component",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [TSL2591 Ambient Light Sensor](https://esphome.io/components/sensor/tsl2591.html#configuration-variables)*"
             },
             "infrared": {
@@ -151,7 +159,9 @@
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval for checking the sensors. Defaults to `60s`.\n\n*See also: [TSL2591 Ambient Light Sensor](https://esphome.io/components/sensor/tsl2591.html#configuration-variables)*"
             },
             "i2c_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",

@@ -58,7 +58,16 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "sen5x::SEN5XComponent",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "sensirion_common::SensirionI2CDevice",
+                  "i2c::I2CDevice"
+                ]
+              }
             },
             "pm_1_0": {
               "key": "Optional",
@@ -323,7 +332,9 @@
               "default": "60s"
             },
             "i2c_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",
@@ -342,14 +353,17 @@
   "sen5x": {
     "action": {
       "start_fan_autoclean": {
-        "type": "maybe",
+        "type": "schema",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "sen5x::SEN5XComponent",
+              "type": "use_id"
             }
           }
         },
+        "maybe": "id",
         "docs": "This [action](https://esphome.io/guides/automations.html#config-action) manually starts fan-cleaning.\n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#sen5x-start-fan-autoclean-action)*"
       }
     }

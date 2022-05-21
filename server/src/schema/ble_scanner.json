@@ -9,9 +9,21 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "ble_scanner::BLEScanner",
+                "parents": [
+                  "text_sensor::TextSensor",
+                  "EntityBase",
+                  "Component",
+                  "esp32_ble_tracker::ESPBTDeviceListener"
+                ]
+              }
+            },
             "esp32_ble_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "esp32_ble_tracker::ESP32BLETracker",
+              "type": "use_id"
             }
           }
         }

@@ -7,6 +7,12 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "pipsolar::Pipsolar",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this pipsolar component.\n\n*See also: [PipSolar PV Inverter](https://esphome.io/components/pipsolar.html#configuration-variables)*"
             },
             "update_interval": {
@@ -15,6 +21,8 @@
             },
             "uart_id": {
               "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
               "docs": "The uart Bus ID\n\n*See also: [PipSolar PV Inverter](https://esphome.io/components/pipsolar.html#configuration-variables)*"
             }
           },
@@ -29,7 +37,9 @@
         "schema": {
           "config_vars": {
             "pipsolar_id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "pipsolar::Pipsolar",
+              "type": "use_id"
             }
           }
         }
@@ -1482,7 +1492,14 @@
                 ],
                 "config_vars": {
                   "id": {
-                    "key": "Required"
+                    "key": "Required",
+                    "id_type": {
+                      "class": "pipsolar::PipsolarOutput",
+                      "parents": [
+                        "output::FloatOutput",
+                        "output::BinaryOutput"
+                      ]
+                    }
                   },
                   "possible_values": {
                     "key": "Optional",
@@ -1504,7 +1521,14 @@
                 ],
                 "config_vars": {
                   "id": {
-                    "key": "Required"
+                    "key": "Required",
+                    "id_type": {
+                      "class": "pipsolar::PipsolarOutput",
+                      "parents": [
+                        "output::FloatOutput",
+                        "output::BinaryOutput"
+                      ]
+                    }
                   },
                   "possible_values": {
                     "key": "Optional",
@@ -1526,7 +1550,14 @@
                 ],
                 "config_vars": {
                   "id": {
-                    "key": "Required"
+                    "key": "Required",
+                    "id_type": {
+                      "class": "pipsolar::PipsolarOutput",
+                      "parents": [
+                        "output::FloatOutput",
+                        "output::BinaryOutput"
+                      ]
+                    }
                   },
                   "possible_values": {
                     "key": "Optional",
@@ -1548,7 +1579,14 @@
                 ],
                 "config_vars": {
                   "id": {
-                    "key": "Required"
+                    "key": "Required",
+                    "id_type": {
+                      "class": "pipsolar::PipsolarOutput",
+                      "parents": [
+                        "output::FloatOutput",
+                        "output::BinaryOutput"
+                      ]
+                    }
                   },
                   "possible_values": {
                     "key": "Optional",
@@ -1570,7 +1608,14 @@
                 ],
                 "config_vars": {
                   "id": {
-                    "key": "Required"
+                    "key": "Required",
+                    "id_type": {
+                      "class": "pipsolar::PipsolarOutput",
+                      "parents": [
+                        "output::FloatOutput",
+                        "output::BinaryOutput"
+                      ]
+                    }
                   },
                   "possible_values": {
                     "key": "Optional",
@@ -1592,7 +1637,14 @@
                 ],
                 "config_vars": {
                   "id": {
-                    "key": "Required"
+                    "key": "Required",
+                    "id_type": {
+                      "class": "pipsolar::PipsolarOutput",
+                      "parents": [
+                        "output::FloatOutput",
+                        "output::BinaryOutput"
+                      ]
+                    }
                   },
                   "possible_values": {
                     "key": "Optional",
@@ -1614,7 +1666,14 @@
                 ],
                 "config_vars": {
                   "id": {
-                    "key": "Required"
+                    "key": "Required",
+                    "id_type": {
+                      "class": "pipsolar::PipsolarOutput",
+                      "parents": [
+                        "output::FloatOutput",
+                        "output::BinaryOutput"
+                      ]
+                    }
                   },
                   "possible_values": {
                     "key": "Optional",
@@ -1636,7 +1695,14 @@
                 ],
                 "config_vars": {
                   "id": {
-                    "key": "Required"
+                    "key": "Required",
+                    "id_type": {
+                      "class": "pipsolar::PipsolarOutput",
+                      "parents": [
+                        "output::FloatOutput",
+                        "output::BinaryOutput"
+                      ]
+                    }
                   },
                   "possible_values": {
                     "key": "Optional",
@@ -1658,7 +1724,14 @@
                 ],
                 "config_vars": {
                   "id": {
-                    "key": "Required"
+                    "key": "Required",
+                    "id_type": {
+                      "class": "pipsolar::PipsolarOutput",
+                      "parents": [
+                        "output::FloatOutput",
+                        "output::BinaryOutput"
+                      ]
+                    }
                   },
                   "possible_values": {
                     "key": "Optional",
@@ -1682,6 +1755,7 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the output.\n\n*See also: [pipsolar Output](https://esphome.io/components/pipsolar.html#output-pipsolar-set-level-action)*"
             },
             "value": {
@@ -1707,7 +1781,15 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "pipsolar::PipsolarSwitch",
+                "parents": [
+                  "switch_::Switch",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
             },
             "icon": {
               "default": "mdi:power"

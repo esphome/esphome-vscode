@@ -7,6 +7,12 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "esp32_touch::ESP32TouchComponent",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for code generation.\n\n*See also: [esp32_touch Component/Hub](https://esphome.io/components/binary_sensor/esp32_touch.html#configuration-variables)*"
             },
             "setup_mode": {
@@ -81,10 +87,19 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "esp32_touch::ESP32TouchBinarySensor",
+                "parents": [
+                  "binary_sensor::BinarySensor",
+                  "EntityBase"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [esp32_touch Binary Sensor](https://esphome.io/components/binary_sensor/esp32_touch.html#id1)*"
             },
             "esp32_touch_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "esp32_touch::ESP32TouchComponent",
+              "type": "use_id"
             },
             "pin": {
               "key": "Required",

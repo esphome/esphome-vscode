@@ -10,6 +10,14 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "current_based::CurrentBasedCover",
+                "parents": [
+                  "cover::Cover",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Current Based Cover](https://esphome.io/components/cover/current_based.html#configuration-variables)*"
             },
             "stop_action": {
@@ -19,6 +27,8 @@
             },
             "open_sensor": {
               "key": "Required",
+              "use_id_type": "sensor::Sensor",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The open current sensor.\n\n*See also: [Current Based Cover](https://esphome.io/components/cover/current_based.html#configuration-variables)*"
             },
             "open_moving_current_threshold": {
@@ -46,6 +56,8 @@
             },
             "close_sensor": {
               "key": "Required",
+              "use_id_type": "sensor::Sensor",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The close current sensor.\n\n*See also: [Current Based Cover](https://esphome.io/components/cover/current_based.html#configuration-variables)*"
             },
             "close_moving_current_threshold": {

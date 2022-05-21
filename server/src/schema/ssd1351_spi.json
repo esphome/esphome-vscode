@@ -7,6 +7,16 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "ssd1351_spi::SPISSD1351",
+                "parents": [
+                  "ssd1351_base::SSD1351",
+                  "PollingComponent",
+                  "Component",
+                  "display::DisplayBuffer",
+                  "spi::SPIDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [ssd1351_spi Component](https://esphome.io/components/display/ssd1351.html#configuration-variables)*"
             },
             "dc_pin": {
@@ -19,7 +29,9 @@
               "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The DC pin.\n\n*See also: [ssd1351_spi Component](https://esphome.io/components/display/ssd1351.html#configuration-variables)*"
             },
             "spi_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "spi::SPIComponent",
+              "type": "use_id"
             },
             "cs_pin": {
               "key": "Required",

@@ -113,7 +113,7 @@ export class CompletionHandler {
 
         if (position.character === 0) {
 
-            return this.addCoreComponents(result, docMap);
+            return this.addCoreComponents(result, currentDoc);
         }
 
         let [node, foundByClosest] = currentDoc.getNodeFromPosition(offset, textBuffer);
@@ -247,11 +247,11 @@ export class CompletionHandler {
             }
 
             if (path.length === 0) {
-                this.addCoreComponents(result, docMap);
+                this.addCoreComponents(result, currentDoc);
             }
             else {
                 // const cv = schema as any as ConfigVar;
-                this.resolveConfigVar(result, path, pathIndex, cv, pathElement, node, docMap);
+                this.resolveConfigVar(result, path, pathIndex, cv, pathElement, node, currentDoc);
                 // // schema should be ok at this level
                 // if (pathIndex + 1 === path.length) {
                 //     // this case might be if a component has any child yet
@@ -264,21 +264,21 @@ export class CompletionHandler {
             }
 
         } catch (error) {
-            console.log("ERROR:" + error);
+            console.log("Completion:" + error);
         }
 
         return result;
     }
 
-    private resolveSchema(result: CompletionItem[], path: any[], pathIndex: number, schema: Schema, pathElement: YAMLMap, node: YamlNode, docMap: YAMLMap) {
+    private resolveSchema(result: CompletionItem[], path: any[], pathIndex: number, schema: Schema, pathElement: YAMLMap, node: YamlNode, currentDoc: SingleYAMLDocument) {
         console.log("component: " + path[pathIndex]);
-        const cv = this.coreSchema.findConfigVar(schema, path[pathIndex], docMap);
+        const cv = this.coreSchema.findConfigVar(schema, path[pathIndex], currentDoc);
         const innerNode = pathElement.get(path[pathIndex]) as YAMLMap;
         pathIndex++;
-        this.resolveConfigVar(result, path, pathIndex, cv, innerNode, node, docMap);
+        this.resolveConfigVar(result, path, pathIndex, cv, innerNode, node, currentDoc);
     }
 
-    private resolveConfigVar(result: CompletionItem[], path: any[], pathIndex: number, cv: ConfigVar, pathNode: YAMLMap, cursorNode: YamlNode, docMap: YAMLMap) {
+    private resolveConfigVar(result: CompletionItem[], path: any[], pathIndex: number, cv: ConfigVar, pathNode: YAMLMap, cursorNode: YamlNode, currentDoc: SingleYAMLDocument) {
         if (cv.is_list && isNumber(path[pathIndex])) {
             if (isSeq(pathNode)) {
                 pathNode = pathNode.get(path[pathIndex]) as any as YAMLMap;
@@ -288,13 +288,21 @@ export class CompletionHandler {
         if (cv.type === "schema") {
             if (isMap(pathNode)) {
                 if (pathIndex === path.length) {
-                    return this.addConfigVars(result, cv.schema, pathNode, docMap);
+                    return this.addConfigVars(result, cv.schema, pathNode, currentDoc);
                 }
-                return this.resolveSchema(result, path, pathIndex, cv.schema, pathNode, cursorNode, docMap);
+                return this.resolveSchema(result, path, pathIndex, cv.schema, pathNode, cursorNode, currentDoc);
             }
             else {
                 if (pathIndex === path.length) {
-                    return this.addConfigVars(result, cv.schema, null, docMap, cv.is_list);
+                    if (isScalar(cursorNode)) {
+                        const complete = this.coreSchema.getConfigVarComplete2(cv);
+                        if (complete["maybe"] !== undefined) {
+                            const mayb_cv = this.coreSchema.findConfigVar(cv.schema, complete["maybe"], currentDoc);
+                            return this.resolveConfigVar(result, path, pathIndex, mayb_cv, null, cursorNode, currentDoc);
+                        }
+                    }
+
+                    return this.addConfigVars(result, cv.schema, null, currentDoc, cv.is_list);
                 }
                 throw new Error("Expected map not found in " + pathIndex);
             }
@@ -303,20 +311,20 @@ export class CompletionHandler {
             return this.addEnums(result, cv);
         }
         else if (cv.type === "trigger") {
-            return this.resolveTrigger(result, path, pathIndex, pathNode, cv, cursorNode, docMap);
+            return this.resolveTrigger(result, path, pathIndex, pathNode, cv, cursorNode, currentDoc);
         }
         else if (cv.type === "registry") {
             let elem: any = pathNode;
             if (isSeq(elem) && elem.items.length) {
                 elem = elem.items[path[pathIndex]];
                 if (isNode(elem)) {
-                    return this.resolveRegistryInner(result, path, pathIndex + 1, isMap(elem) ? elem : null, cv, cursorNode, docMap);
+                    return this.resolveRegistryInner(result, path, pathIndex + 1, isMap(elem) ? elem : null, cv, cursorNode, currentDoc);
                 }
             }
             if (isMap(elem)) {
-                return this.resolveRegistryInner(result, path, pathIndex, elem, cv, cursorNode, docMap);
+                return this.resolveRegistryInner(result, path, pathIndex, elem, cv, cursorNode, currentDoc);
             }
-            return this.resolveRegistryInner(result, path, pathIndex, isMap(elem) ? elem : null, cv, cursorNode, docMap);
+            return this.resolveRegistryInner(result, path, pathIndex, isMap(elem) ? elem : null, cv, cursorNode, currentDoc);
         }
         else if (cv.type === "typed") {
             if (pathNode === null) {
@@ -344,9 +352,9 @@ export class CompletionHandler {
                     const type = pathNode.get(cv.typed_key);
                     if (type !== null && isString(type)) {
                         if (pathIndex === path.length) {
-                            return this.addConfigVars(result, cv.types[type], pathNode, docMap);
+                            return this.addConfigVars(result, cv.types[type], pathNode, currentDoc);
                         }
-                        return this.resolveSchema(result, path, pathIndex, cv.types[type], pathNode, cursorNode, docMap);
+                        return this.resolveSchema(result, path, pathIndex, cv.types[type], pathNode, cursorNode, currentDoc);
                     }
                     // there are other options but still not `type`
                     result.push({
@@ -380,7 +388,7 @@ export class CompletionHandler {
             if (isMap(pathNode)) {
                 // Check if it is using a port expander
                 for (const expander of this.coreSchema.getPins()) {
-                    if (expander !== "esp32" && expander !== "esp8266" && docMap.get(expander)) {
+                    if (expander !== "esp32" && expander !== "esp8266" && (currentDoc.root.internalNode as YAMLMap).get(expander)) {
                         if (pathNode.get(expander)) {
                             pinCv = this.coreSchema.getPinConfigVar(expander);
                             break;
@@ -390,7 +398,7 @@ export class CompletionHandler {
             }
 
             if (pinCv === undefined) {
-                const chipset = this.getChipset(docMap);
+                const chipset = this.getChipset(currentDoc);
                 if (chipset === "esp32") {
                     pinCv = this.coreSchema.getPinConfigVar("esp32");
                 }
@@ -402,13 +410,13 @@ export class CompletionHandler {
             if (pinCv !== undefined && pinCv.type === "schema" && pathNode === null && !cv.internal) {
                 // suggest all expanders
                 for (const expander of this.coreSchema.getPins()) {
-                    if (expander !== "esp32" && expander !== "esp8266" && docMap.get(expander)) {
+                    if (expander !== "esp32" && expander !== "esp8266" && (currentDoc.root.internalNode as YAMLMap).get(expander)) {
                         pinCv.schema.config_vars[expander] = { key: "Optional", "type": "string" };
                     }
                 }
             }
 
-            return this.resolveConfigVar(result, path, pathIndex, pinCv, pathNode, cursorNode, docMap);
+            return this.resolveConfigVar(result, path, pathIndex, pinCv, pathNode, cursorNode, currentDoc);
         }
         else if (cv.type === "boolean") {
             for (var value of ["True", "False"]) {
@@ -423,11 +431,25 @@ export class CompletionHandler {
             }
             return result;
         }
+        else if (cv.type === "use_id") {
+            const usableIds = this.coreSchema.getUsableIds(cv.use_id_type, currentDoc);
+            for (var usableId of usableIds) {
+                const item: CompletionItem = {
+                    label: usableId,
+                    kind: CompletionItemKind.Variable,
+                    insertText: value,
+                    // command: { title: 'chain', command: "editor.action.triggerSuggest" }
+                };
+                result.push(item);
+            }
+            return result;
+        }
 
         throw new Error("Unexpected path traverse.");
     }
 
-    getChipset(docMap: YAMLMap): "esp8266" | "esp32" | undefined {
+    getChipset(currentDoc: SingleYAMLDocument): "esp8266" | "esp32" | undefined {
+        const docMap = currentDoc.root.internalNode as YAMLMap;
         if (docMap.get("esp8266", true) !== undefined) {
             return "esp8266";
         }
@@ -444,14 +466,14 @@ export class CompletionHandler {
         }
     }
 
-    resolveRegistryInner(result: CompletionItem[], path: any[], pathIndex: number, pathNode: YAMLMap, cv: ConfigVarRegistry, node: YamlNode, docMap: YAMLMap<unknown, unknown>) {
+    resolveRegistryInner(result: CompletionItem[], path: any[], pathIndex: number, pathNode: YAMLMap, cv: ConfigVarRegistry, node: YamlNode, doc: SingleYAMLDocument) {
         const final = pathIndex === path.length;
         if (final && pathNode === null) {
-            return this.addRegistry(result, cv, docMap);
+            return this.addRegistry(result, cv, doc);
         }
         const registryCv = this.coreSchema.getRegistryConfigVar(cv.registry, path[pathIndex]);
         const inner = pathNode.get(path[pathIndex]);
-        return this.resolveConfigVar(result, path, pathIndex + 1, registryCv, isMap(inner) ? inner : null, node, docMap);
+        return this.resolveConfigVar(result, path, pathIndex + 1, registryCv, isMap(inner) ? inner : null, node, doc);
     }
 
     resolvePinNumbers(result: CompletionItem[], cv: ConfigVarPin) {
@@ -464,60 +486,77 @@ export class CompletionHandler {
         });
     }
 
-    resolveTriggerInner(result: CompletionItem[], path: any[], pathIndex: number, pathNode: YamlNode, cv: ConfigVarTrigger, node: YamlNode, docMap: YAMLMap) {
+    resolveTriggerInner(result: CompletionItem[], path: any[], pathIndex: number, pathNode: YamlNode, cv: ConfigVarTrigger, node: YamlNode, doc: SingleYAMLDocument) {
         console.log("resolve inner: " + pathNode?.toString() + ' - cv: ' + cv.type);
         const final = pathIndex === path.length;
         if (final) {
             // If this has a schema, use it, these are suggestions so user will see the trigger parameters even when they are optional
             // However if the only option is 'then:' we should avoid it for readability
             if (cv.schema !== undefined) {
-                return this.addConfigVars(result, cv.schema, isMap(pathNode) ? pathNode : null, docMap);
+                return this.addConfigVars(result, cv.schema, isMap(pathNode) ? pathNode : null, doc);
             }
-            return this.addRegistry(result, { type: "registry", "registry": "action", "key": null }, docMap);
+            return this.addRegistry(result, { type: "registry", "registry": "action", "key": null }, doc);
         }
 
         if (path[pathIndex] === "then") {
             // all triggers support then, even when they do not have a schema
             // then is a trigger without schema so...
-            return this.resolveTrigger(result, path, pathIndex + 1, isMap(pathNode) ? pathNode : null, { type: 'trigger', key: 'Optional', schema: undefined, has_required_var: false }, node, docMap);
+            let thenNode = pathNode;
+            if (isMap(pathNode)) {
+                thenNode = pathNode.get("then", true) as YamlNode;
+            }
+            return this.resolveTrigger(result, path, pathIndex + 1, thenNode, { type: 'trigger', key: 'Optional', schema: undefined, has_required_var: false }, node, doc);
         }
 
         // navigate into the prop
         // this can be an action or a prop of this trigger
         if (cv.schema !== undefined) {
-            const innerProp = this.coreSchema.findConfigVar(cv.schema, path[pathIndex], docMap);
+            const innerProp = this.coreSchema.findConfigVar(cv.schema, path[pathIndex], doc);
             if (innerProp !== undefined) {
-                return this.resolveSchema(result, path, pathIndex, cv.schema, isMap(pathNode) ? pathNode : null, node, docMap);
+                return this.resolveSchema(result, path, pathIndex, cv.schema, isMap(pathNode) ? pathNode : null, node, doc);
             }
         }
         // is this an action?
         const action = this.coreSchema.getActionConfigVar(path[pathIndex]);
         if (action !== undefined) {
-            if (pathIndex + 1 === path.length && isMap(pathNode)) {
-                const props = pathNode.get(path[pathIndex]);
-                return this.addConfigVars(result, action.schema, isMap(props) ? props : null, docMap);
+            var innerNode: YamlNode;
+            if (isMap(pathNode)) {
+                innerNode = pathNode.get(path[pathIndex]) as YamlNode;
             }
-            return this.resolveSchema(result, path, pathIndex + 1, action.schema, isMap(pathNode) ? pathNode : null, node, docMap);
+            if (pathIndex + 1 === path.length && isMap(pathNode)) {
+                if (isScalar(node)) {
+                    const complete = this.coreSchema.getConfigVarComplete2(action);
+                    if (complete.type === 'schema' && complete["maybe"] !== undefined) {
+                        const mayb_cv = this.coreSchema.findConfigVar(action.schema, complete["maybe"], doc);
+                        return this.resolveConfigVar(result, path, pathIndex, mayb_cv, null, node, doc);
+                    }
+                    return result;
+                }
+
+                return this.addConfigVars(result, action.schema, innerNode as YAMLMap, doc);
+            }
+
+            return this.resolveSchema(result, path, pathIndex + 1, action.schema, innerNode as YAMLMap, node, doc);
         }
     }
 
-    resolveTrigger(result: CompletionItem[], path: any[], pathIndex: number, pathNode: YAMLMap, cv: ConfigVarTrigger, node: YamlNode, docMap: YAMLMap) {
+    resolveTrigger(result: CompletionItem[], path: any[], pathIndex: number, pathNode: YamlNode, cv: ConfigVarTrigger, node: YamlNode, doc: SingleYAMLDocument) {
         console.log("trigger: " + path[pathIndex]);
         // trigger can be a single item on a map or otherwise a seq.
         if (isSeq(pathNode)) {
-            let innerNode: Node;
+            let innerNode: YamlNode;
             if (pathIndex < path.length) {
-                if (pathNode.items.length) { innerNode = pathNode.items[path[pathIndex]]; }
-                return this.resolveTriggerInner(result, path, pathIndex + 1, innerNode, cv, node, docMap);
+                if (pathNode.items.length) { innerNode = pathNode.items[path[pathIndex]] as YamlNode; }
+                return this.resolveTriggerInner(result, path, pathIndex + 1, innerNode, cv, node, doc);
             }
             if (cv.schema && !cv.has_required_var) {
                 // if this has a schema, when inside the list we no longer can setup automation props
                 cv = cv.schema.config_vars.then as ConfigVarTrigger;
             }
-            return this.resolveTriggerInner(result, path, pathIndex, innerNode, cv, node, docMap);
+            return this.resolveTriggerInner(result, path, pathIndex, innerNode, cv, node, doc);
 
         }
-        return this.resolveTriggerInner(result, path, pathIndex, isMap(pathNode) ? pathNode : null, cv, node, docMap);
+        return this.resolveTriggerInner(result, path, pathIndex, isMap(pathNode) ? pathNode : null, cv, node, doc);
     }
 
 
@@ -548,9 +587,9 @@ export class CompletionHandler {
         return result;
     }
 
-    private addCoreComponents(result: CompletionItem[], docMap: YAMLMap) {
-        const chipset = this.getChipset(docMap);
-
+    private addCoreComponents(result: CompletionItem[], doc: SingleYAMLDocument) {
+        const chipset = this.getChipset(doc);
+        const docMap = doc.root.internalNode as YAMLMap;
         // suggest platforms, e.g. sensor:, binary_sensor:
         const platformList = this.coreSchema.getPlatformList();
         for (var platformName in platformList) {
@@ -620,11 +659,11 @@ export class CompletionHandler {
         return false;
     }
 
-    private addConfigVars(result: CompletionItem[], schema: Schema, node: YAMLMap, docMap: YAMLMap, isList = false) {
+    private addConfigVars(result: CompletionItem[], schema: Schema, node: YAMLMap, doc: SingleYAMLDocument, isList = false) {
         let preselected = false;
         const ret: { [name: string]: CompletionItem } = {};
 
-        for (const [prop, config] of this.coreSchema.iter_configVars(schema, docMap)) {
+        for (const [prop, config] of this.coreSchema.iter_configVars(schema, doc)) {
             // Skip existent properties
             if (node !== null && this.mapHasScalarKey(node, prop)) {
                 continue;
@@ -726,8 +765,8 @@ export class CompletionHandler {
         }
     }
 
-    addRegistry(result: CompletionItem[], configVar: ConfigVarRegistry, docMap: YAMLMap) {
-        for (const [value, props] of this.coreSchema.getRegistry(configVar.registry, docMap)) {
+    addRegistry(result: CompletionItem[], configVar: ConfigVarRegistry, doc: SingleYAMLDocument) {
+        for (const [value, props] of this.coreSchema.getRegistry(configVar.registry, doc)) {
             if (configVar.filter && !configVar.filter.includes(value)) {
                 continue;
             }
@@ -736,11 +775,16 @@ export class CompletionHandler {
                 kind: CompletionItemKind.Keyword,
                 insertText: "- " + value + ": ",
                 sortText: value.includes(".") ? ("z" + value) : value,
-                // command: { title: 'chain', command: "editor.action.triggerSuggest" }
+                command: { title: 'chain', command: "editor.action.triggerSuggest" }
             };
             if (props.docs) {
                 item.documentation = { kind: "markdown", value: props.docs };
             }
+            const completeCv = this.coreSchema.getConfigVarComplete2(props);
+            if (!completeCv["maybe"]) {
+                item.insertText += "\n    ";
+            }
+
             result.push(item);
         }
     }

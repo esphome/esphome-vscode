@@ -105,7 +105,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "time::RealTimeClock",
+              "type": "use_id"
             }
           }
         },

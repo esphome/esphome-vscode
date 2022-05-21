@@ -14,7 +14,17 @@
                   "core.COMPONENT_SCHEMA"
                 ],
                 "config_vars": {
-                  "id": {},
+                  "id": {
+                    "id_type": {
+                      "class": "wifi_info::IPAddressWiFiInfo",
+                      "parents": [
+                        "text_sensor::TextSensor",
+                        "EntityBase",
+                        "PollingComponent",
+                        "Component"
+                      ]
+                    }
+                  },
                   "entity_category": {
                     "default": "diagnostic"
                   },
@@ -35,7 +45,17 @@
                   "core.COMPONENT_SCHEMA"
                 ],
                 "config_vars": {
-                  "id": {},
+                  "id": {
+                    "id_type": {
+                      "class": "wifi_info::ScanResultsWiFiInfo",
+                      "parents": [
+                        "text_sensor::TextSensor",
+                        "EntityBase",
+                        "PollingComponent",
+                        "Component"
+                      ]
+                    }
+                  },
                   "entity_category": {
                     "default": "diagnostic"
                   },
@@ -56,7 +76,17 @@
                   "core.COMPONENT_SCHEMA"
                 ],
                 "config_vars": {
-                  "id": {},
+                  "id": {
+                    "id_type": {
+                      "class": "wifi_info::SSIDWiFiInfo",
+                      "parents": [
+                        "text_sensor::TextSensor",
+                        "EntityBase",
+                        "PollingComponent",
+                        "Component"
+                      ]
+                    }
+                  },
                   "entity_category": {
                     "default": "diagnostic"
                   },
@@ -77,7 +107,17 @@
                   "core.COMPONENT_SCHEMA"
                 ],
                 "config_vars": {
-                  "id": {},
+                  "id": {
+                    "id_type": {
+                      "class": "wifi_info::BSSIDWiFiInfo",
+                      "parents": [
+                        "text_sensor::TextSensor",
+                        "EntityBase",
+                        "PollingComponent",
+                        "Component"
+                      ]
+                    }
+                  },
                   "entity_category": {
                     "default": "diagnostic"
                   },
@@ -97,7 +137,16 @@
                   "text_sensor.TEXT_SENSOR_SCHEMA"
                 ],
                 "config_vars": {
-                  "id": {},
+                  "id": {
+                    "id_type": {
+                      "class": "wifi_info::MacAddressWifiInfo",
+                      "parents": [
+                        "text_sensor::TextSensor",
+                        "EntityBase",
+                        "Component"
+                      ]
+                    }
+                  },
                   "entity_category": {
                     "default": "diagnostic"
                   }

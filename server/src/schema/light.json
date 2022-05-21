@@ -78,10 +78,24 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "light::LightState",
+                "parents": [
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Tuya Dimmer](https://esphome.io/components/light/tuya.html#configuration-variables)*"
             },
             "mqtt_id": {
-              "key": "Optional"
+              "key": "Optional",
+              "id_type": {
+                "class": "mqtt::MQTTJSONLightComponent",
+                "parents": [
+                  "mqtt::MQTTComponent",
+                  "Component"
+                ]
+              }
             },
             "restore_mode": {
               "key": "Optional",
@@ -256,7 +270,17 @@
             "light.RGB_LIGHT_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "light::AddressableLightState",
+                "parents": [
+                  "light::LightState",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Light Partition](https://esphome.io/components/light/partition.html#configuration-variables)*"
+            },
             "effects": {
               "filter": [
                 "lambda",
@@ -285,6 +309,8 @@
             },
             "power_supply": {
               "key": "Optional",
+              "use_id_type": "power_supply::PowerSupply",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The [Power Supply Component](https://esphome.io/components/power_supply.html) to connect to this light. When the light is turned on, the power supply will automatically be switched on too.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#base-light-configuration)*"
             }
           }
@@ -293,11 +319,14 @@
     },
     "action": {
       "toggle": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "light::LightState",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the light.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#light-toggle-action)*"
             },
             "transition_length": {
@@ -321,6 +350,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "light::LightState",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the light.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#light-control-action)*"
             },
             "color_mode": {
@@ -410,11 +441,14 @@
         "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) is a generic call to change the state of a light - it is essentially just a combination of the turn_on and turn_off calls.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#light-control-action)*"
       },
       "turn_on": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "light::LightState",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the light.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#light-turn-on-action)*"
             },
             "color_mode": {
@@ -526,11 +560,14 @@
         "docs": "This action turns a light with the given ID on when executed.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#light-turn-on-action)*"
       },
       "turn_off": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "light::LightState",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the light.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#light-turn-off-action)*"
             },
             "transition_length": {
@@ -558,6 +595,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "light::LightState",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the light.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#light-dim-relative-action)*"
             },
             "relative_brightness": {
@@ -586,6 +625,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "light::AddressableLightState",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the addressable light to control.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#light-addressable-set-action)*"
             },
             "range_from": {
@@ -634,21 +675,27 @@
     },
     "condition": {
       "is_off": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "light::LightState",
+              "type": "use_id"
             }
           }
         }
       },
       "is_on": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "light::LightState",
+              "type": "use_id"
             }
           }
         }
@@ -1191,6 +1238,8 @@
           "config_vars": {
             "uart_id": {
               "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Component](https://esphome.io/components/uart.html#uart) if you want to use multiple UART buses.\n\n*See also: [Adalight Effect](https://esphome.io/components/light/index.html#adalight-effect)*"
             },
             "name": {
@@ -1207,7 +1256,9 @@
         "schema": {
           "config_vars": {
             "e131_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "e131::E131Component",
+              "type": "use_id"
             },
             "universe": {
               "key": "Required",

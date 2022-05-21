@@ -11,6 +11,15 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "pcd8544::PCD8544",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "display::DisplayBuffer",
+                  "spi::SPIDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [PCD 8544 Display (Nokia 5110/3310)](https://esphome.io/components/display/pcd8544.html#configuration-variables)*"
             },
             "dc_pin": {
@@ -52,7 +61,9 @@
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to re-draw the screen. Defaults to `5s`.\n\n*See also: [PCD 8544 Display (Nokia 5110/3310)](https://esphome.io/components/display/pcd8544.html#configuration-variables)*"
             },
             "spi_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "spi::SPIComponent",
+              "type": "use_id"
             }
           }
         }

@@ -7,6 +7,14 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "senseair::SenseAirComponent",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "uart::UARTDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for actions.\n\n*See also: [SenseAir CO_2 Sensor](https://esphome.io/components/sensor/senseair.html#configuration-variables)*"
             },
             "co2": {
@@ -43,6 +51,8 @@
             },
             "uart_id": {
               "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Component](https://esphome.io/components/uart.html#uart) if you want to use multiple UART buses.\n\n*See also: [SenseAir CO_2 Sensor](https://esphome.io/components/sensor/senseair.html#configuration-variables)*"
             }
           },
@@ -52,11 +62,14 @@
         }
       },
       "CALIBRATION_ACTION_SCHEMA": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "senseair::SenseAirComponent",
+              "type": "use_id"
             }
           }
         }

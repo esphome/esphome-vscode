@@ -11,6 +11,15 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "st7920::ST7920",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "display::DisplayBuffer",
+                  "spi::SPIDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [ST7920 LCD Graphic Display](https://esphome.io/components/display/st7920.html#configuration-variables)*"
             },
             "width": {
@@ -29,7 +38,9 @@
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to re-draw the screen. Defaults to `60s`.\n\n*See also: [ST7920 LCD Graphic Display](https://esphome.io/components/display/st7920.html#configuration-variables)*"
             },
             "spi_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "spi::SPIComponent",
+              "type": "use_id"
             },
             "cs_pin": {
               "key": "Required",

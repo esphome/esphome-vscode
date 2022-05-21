@@ -21,7 +21,14 @@
           ],
           "config_vars": {
             "mqtt_id": {
-              "key": "Optional"
+              "key": "Optional",
+              "id_type": {
+                "class": "mqtt::MQTTLockComponent",
+                "parents": [
+                  "mqtt::MQTTComponent",
+                  "Component"
+                ]
+              }
             },
             "on_lock": {
               "key": "Optional",
@@ -37,11 +44,14 @@
         }
       },
       "LOCK_ACTION_SCHEMA": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "lock::Lock",
+              "type": "use_id"
             }
           }
         }

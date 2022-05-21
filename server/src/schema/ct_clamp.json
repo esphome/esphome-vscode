@@ -10,6 +10,15 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "ct_clamp::CTClampSensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [CT Clamp Current Sensor](https://esphome.io/components/sensor/ct_clamp.html#configuration-variables)*"
             },
             "unit_of_measurement": {
@@ -26,6 +35,8 @@
             },
             "sensor": {
               "key": "Required",
+              "use_id_type": "voltage_sampler::VoltageSampler",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The source sensor to measure voltage values from.\n\n*See also: [CT Clamp Current Sensor](https://esphome.io/components/sensor/ct_clamp.html#configuration-variables)*"
             },
             "sample_duration": {

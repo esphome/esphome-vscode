@@ -9,9 +9,20 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "thermostat::ThermostatClimate",
+                "parents": [
+                  "climate::Climate",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
+            },
             "sensor": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "sensor::Sensor",
+              "type": "use_id"
             },
             "idle_action": {
               "key": "Required",

@@ -8,7 +8,15 @@
             "canbus.CANBUS_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "esp32_can::ESP32Can",
+                "parents": [
+                  "canbus::CanbusComponent",
+                  "Component"
+                ]
+              }
+            },
             "bit_rate": {
               "values": [
                 "50KBPS",

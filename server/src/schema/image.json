@@ -7,6 +7,10 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "id_type": {
+                "class": "display::Image",
+                "parents": []
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID with which you will be able to reference the image later in your display code.\n\n*See also: [Images](https://esphome.io/components/display/index.html#images)*"
             },
             "file": {
@@ -52,7 +56,11 @@
               }
             },
             "raw_data_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "uint8_t",
+                "parents": null
+              }
             }
           }
         },

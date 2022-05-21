@@ -6,7 +6,14 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "xiaomi_gcls002::XiaomiGCLS002",
+                "parents": [
+                  "esp32_ble_tracker::ESPBTDeviceListener",
+                  "Component"
+                ]
+              }
             },
             "mac_address": {
               "key": "Required"

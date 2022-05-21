@@ -10,6 +10,16 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "max31856::MAX31856Sensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component",
+                  "spi::SPIDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [MAX31856 Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31856.html#configuration-variables)*"
             },
             "unit_of_measurement": {
@@ -41,6 +51,8 @@
             },
             "spi_id": {
               "key": "GeneratedID",
+              "use_id_type": "spi::SPIComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [SPI Component](https://esphome.io/components/spi.html#spi) if you want to use multiple SPI buses.\n\n*See also: [MAX31856 Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31856.html#configuration-variables)*"
             },
             "cs_pin": {

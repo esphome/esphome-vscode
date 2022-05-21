@@ -10,7 +10,15 @@
           ],
           "config_vars": {
             "output_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "sonoff_d1::SonoffD1Output",
+                "parents": [
+                  "Component",
+                  "uart::UARTDevice",
+                  "light::LightOutput"
+                ]
+              }
             },
             "use_rm433_remote": {
               "key": "Optional",
@@ -31,7 +39,9 @@
               "docs": "**int**: The highest dimmer value allowed. Use this to hard-limit light intensity for your setup. For some bulbs this parameter might be also useful to prevent flickering at high brightness values. Defaults to 100.\n\n*See also: [Sonoff D1 Dimmer](https://esphome.io/components/light/sonoff_d1.html#configuration-variables)*"
             },
             "uart_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id"
             }
           }
         }

@@ -6,7 +6,15 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "radon_eye_rd200::RadonEyeRD200",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "ble_client::BLEClientNode"
+                ]
+              }
             },
             "radon": {
               "key": "Optional",

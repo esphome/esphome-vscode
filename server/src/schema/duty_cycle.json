@@ -10,6 +10,15 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "duty_cycle::DutyCycleSensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n*See also: [Duty Cycle Sensor](https://esphome.io/components/sensor/duty_cycle.html#configuration-variables)*"
             },
             "unit_of_measurement": {

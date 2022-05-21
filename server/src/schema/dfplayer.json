@@ -7,6 +7,12 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "dfplayer::DFPlayer",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#configuration-variables)*"
             },
             "on_finished_playback": {
@@ -16,6 +22,8 @@
             },
             "uart_id": {
               "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the UART hub.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#configuration-variables)*"
             }
           }
@@ -29,7 +37,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "dfplayer::DFPlayer",
+              "type": "use_id"
             }
           }
         },
@@ -40,7 +50,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "dfplayer::DFPlayer",
+              "type": "use_id"
             }
           }
         },
@@ -52,7 +64,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "dfplayer::DFPlayer",
+              "type": "use_id"
             },
             "file": {
               "key": "Required",
@@ -75,7 +89,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "dfplayer::DFPlayer",
+              "type": "use_id"
             },
             "folder": {
               "key": "Required",
@@ -105,7 +121,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "dfplayer::DFPlayer",
+              "type": "use_id"
             },
             "device": {
               "key": "Required",
@@ -125,7 +143,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "dfplayer::DFPlayer",
+              "type": "use_id"
             },
             "volume": {
               "key": "Required",
@@ -142,7 +162,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "dfplayer::DFPlayer",
+              "type": "use_id"
             }
           }
         },
@@ -153,7 +175,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "dfplayer::DFPlayer",
+              "type": "use_id"
             }
           }
         },
@@ -165,7 +189,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "dfplayer::DFPlayer",
+              "type": "use_id"
             },
             "eq_preset": {
               "key": "Required",
@@ -190,7 +216,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "dfplayer::DFPlayer",
+              "type": "use_id"
             }
           }
         },
@@ -201,7 +229,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "dfplayer::DFPlayer",
+              "type": "use_id"
             }
           }
         },
@@ -212,7 +242,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "dfplayer::DFPlayer",
+              "type": "use_id"
             }
           }
         },
@@ -223,7 +255,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "dfplayer::DFPlayer",
+              "type": "use_id"
             }
           }
         },
@@ -234,7 +268,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "dfplayer::DFPlayer",
+              "type": "use_id"
             }
           }
         },
@@ -245,7 +281,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "dfplayer::DFPlayer",
+              "type": "use_id"
             }
           }
         },
@@ -258,7 +296,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "dfplayer::DFPlayer",
+              "type": "use_id"
             }
           }
         },

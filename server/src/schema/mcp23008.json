@@ -7,6 +7,15 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "id_type": {
+                "class": "mcp23008::MCP23008",
+                "parents": [
+                  "mcp23x08_base::MCP23X08Base",
+                  "mcp23xxx_base::MCP23XXXBase",
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this MCP23008 component.\n\n*See also: [MCP23008 Component](https://esphome.io/components/mcp230xx.html#configuration-variables)*"
             },
             "open_drain_interrupt": {
@@ -16,7 +25,9 @@
               "docs": "**boolean**: Configure the interrupt pin to open-drain mode. Useful when the MCP23008\u2019s power supply is greater than 3.3 volts. Note that this pin will require a pull-up resistor (to 3.3 volts) when this mode is enabled.\n\n*See also: [MCP23008 Component](https://esphome.io/components/mcp230xx.html#configuration-variables)*"
             },
             "i2c_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",

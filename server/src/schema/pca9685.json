@@ -7,6 +7,13 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "pca9685::PCA9685Output",
+                "parents": [
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this pca9685 component. Use this if you have multiple PCA9685s connected at the same time\n\n*See also: [pca9685 Component/Hub](https://esphome.io/components/output/pca9685.html#configuration-variables)*"
             },
             "frequency": {
@@ -14,7 +21,9 @@
               "docs": "**float**: The frequency to let the component drive all PWM outputs at. Must be in range from 24Hz to 1525.88Hz.\n\n*See also: [pca9685 Component/Hub](https://esphome.io/components/output/pca9685.html#configuration-variables)*"
             },
             "i2c_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",
@@ -42,10 +51,19 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "id_type": {
+                "class": "pca9685::PCA9685Channel",
+                "parents": [
+                  "output::FloatOutput",
+                  "output::BinaryOutput"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n*See also: [PCA9685 Output](https://esphome.io/components/output/pca9685.html#id2)*"
             },
             "pca9685_id": {
               "key": "GeneratedID",
+              "use_id_type": "pca9685::PCA9685Output",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [PCA9685 hub](https://esphome.io/components/output/pca9685.html#pca9685-component). Use this if you have multiple PCA9685s you want to use at the same time.\n\n*See also: [PCA9685 Output](https://esphome.io/components/output/pca9685.html#id2)*"
             },
             "channel": {

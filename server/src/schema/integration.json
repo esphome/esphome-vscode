@@ -10,10 +10,20 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "integration::IntegrationSensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Integration Sensor](https://esphome.io/components/sensor/integration.html#configuration-variables)*"
             },
             "sensor": {
               "key": "Required",
+              "use_id_type": "sensor::Sensor",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the sensor to integrate over time.\n\n*See also: [Integration Sensor](https://esphome.io/components/sensor/integration.html#configuration-variables)*"
             },
             "time_unit": {
@@ -62,11 +72,14 @@
     },
     "action": {
       "reset": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "integration::IntegrationSensor",
+              "type": "use_id"
             }
           }
         },

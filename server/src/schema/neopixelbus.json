@@ -10,7 +10,15 @@
           ],
           "config_vars": {
             "output_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "neopixelbus::NeoPixelBusLightOutputBase",
+                "parents": [
+                  "light::AddressableLight",
+                  "light::LightOutput",
+                  "Component"
+                ]
+              }
             },
             "type": {
               "key": "Optional",
@@ -83,9 +91,6 @@
               "type": "integer",
               "data_type": "positive_not_null_int",
               "docs": "**int**: The number of LEDs attached.\n\n*See also: [NeoPixelBus Light](https://esphome.io/components/light/neopixelbus.html#configuration-variables)*"
-            },
-            "id": {
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [NeoPixelBus Light](https://esphome.io/components/light/neopixelbus.html#configuration-variables)*"
             }
           }
         }

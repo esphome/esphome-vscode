@@ -7,6 +7,12 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "my9231::MY9231OutputComponent",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this `my9231` component. Use this if you have multiple MY9231/MY9291 chains connected at the same time.\n\n*See also: [my9231 Component/Hub](https://esphome.io/components/output/my9231.html#configuration-variables)*"
             },
             "data_pin": {
@@ -72,10 +78,19 @@
           "config_vars": {
             "my9231_id": {
               "key": "GeneratedID",
+              "use_id_type": "my9231::MY9231OutputComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [Component/Hub](https://esphome.io/components/output/my9231.html#my9231-component). Use this if you have multiple MY9231/MY9291 chains you want to use at the same time.\n\n*See also: [my9231 Output](https://esphome.io/components/output/my9231.html#id1)*"
             },
             "id": {
               "key": "Required",
+              "id_type": {
+                "class": "my9231::MY9231OutputComponent::Channel",
+                "parents": [
+                  "output::FloatOutput",
+                  "output::BinaryOutput"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n*See also: [my9231 Output](https://esphome.io/components/output/my9231.html#id1)*"
             },
             "channel": {

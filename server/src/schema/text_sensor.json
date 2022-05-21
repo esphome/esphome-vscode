@@ -105,10 +105,23 @@
           ],
           "config_vars": {
             "mqtt_id": {
-              "key": "Optional"
+              "key": "Optional",
+              "id_type": {
+                "class": "mqtt::MQTTTextSensor",
+                "parents": [
+                  "mqtt::MQTTComponent",
+                  "Component"
+                ]
+              }
             },
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "text_sensor::TextSensor",
+                "parents": [
+                  "EntityBase"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
             "filters": {
@@ -139,6 +152,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "text_sensor::TextSensor",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The text sensor ID.\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#text-sensor-state-condition)*"
             },
             "state": {

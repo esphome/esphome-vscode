@@ -12,6 +12,11 @@
       },
       "template": {
         "docs": "The `template` Select platform allows you to create a Select with templated values using [lambdas](https://esphome.io/guides/automations.html#config-lambda).\n\n*See also: [Template Select](https://esphome.io/components/select/template.html#template-select)*"
+      },
+      "tuya": {
+        "dependencies": [
+          "tuya"
+        ]
       }
     },
     "schemas": {
@@ -24,10 +29,23 @@
           ],
           "config_vars": {
             "mqtt_id": {
-              "key": "Optional"
+              "key": "Optional",
+              "id_type": {
+                "class": "mqtt::MQTTSelectComponent",
+                "parents": [
+                  "mqtt::MQTTComponent",
+                  "Component"
+                ]
+              }
             },
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "select::Select",
+                "parents": [
+                  "EntityBase"
+                ]
+              }
             },
             "on_value": {
               "key": "Optional",
@@ -43,6 +61,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "select::Select",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the select to set.\n\n*See also: [Select Component](https://esphome.io/components/select/index.html#select-operation-action)*"
             }
           }
@@ -86,7 +106,8 @@
         "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) for setting the active option using its index offset.\n\n*See also: [Select Component](https://esphome.io/components/select/index.html#select-set-index-action)*"
       },
       "last": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "extends": [
             "select.OPERATION_BASE_SCHEMA"
@@ -105,7 +126,8 @@
         "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) for selecting the last option in a select component.\n\n*See also: [Select Component](https://esphome.io/components/select/index.html#select-last-action)*"
       },
       "first": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "extends": [
             "select.OPERATION_BASE_SCHEMA"
@@ -124,7 +146,8 @@
         "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) for selecting the first option in a select component.\n\n*See also: [Select Component](https://esphome.io/components/select/index.html#select-first-action)*"
       },
       "previous": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "extends": [
             "select.OPERATION_BASE_SCHEMA"
@@ -149,7 +172,8 @@
         "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) for selecting the previous option in a select component.\n\n*See also: [Select Component](https://esphome.io/components/select/index.html#select-previous-action)*"
       },
       "next": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "extends": [
             "select.OPERATION_BASE_SCHEMA"

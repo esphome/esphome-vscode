@@ -2,11 +2,14 @@
   "component": {
     "action": {
       "update": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "PollingComponent",
+              "type": "use_id"
             }
           }
         },

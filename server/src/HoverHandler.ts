@@ -1,7 +1,7 @@
 import { listenerCount } from "process";
 import { TextDocument } from "vscode-languageserver-textdocument";
 import { Hover, MarkupContent, Position, Range } from "vscode-languageserver-types";
-import { isMap, isNode, isPair, isScalar, isSeq, Node, visit } from "yaml";
+import { isMap, isNode, isPair, isScalar, isSeq, Node, visit, YAMLMap } from "yaml";
 import { ConfigVar, CoreSchema, Schema } from "./CoreSchema";
 import { YamlNode } from "./jsonASTTypes";
 import { SingleYAMLDocument, YamlDocuments, yamlDocumentsCache } from "./parser/yaml-documents";
@@ -99,7 +99,7 @@ export class HoverHandler {
             return result;
         };
 
-        const docNode = doc.root.internalNode as any;
+        const docNode = doc.root.internalNode as YAMLMap;
         let pathNode;
         pathNode = docNode;
 
@@ -152,7 +152,7 @@ export class HoverHandler {
                         else {
                             if (cv.type === "schema" || cv.type === "trigger") {
                                 if (cv.schema !== undefined) {
-                                    const schema_cv = this.coreSchema.findConfigVar(cv.schema, path[index], docNode);
+                                    const schema_cv = this.coreSchema.findConfigVar(cv.schema, path[index], doc);
                                     if (schema_cv !== undefined) {
                                         cv = schema_cv;
                                         continue;
@@ -191,8 +191,8 @@ export class HoverHandler {
                 const hover = createHover(content);
                 resolve(hover);
             }
-            catch (ex) {
-                console.log(ex);
+            catch (error) {
+                console.log("Hover:" + error);
             }
         });
     }

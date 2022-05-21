@@ -7,6 +7,12 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "deep_sleep::DeepSleepComponent",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#configuration-variables)*"
             },
             "run_duration": {
@@ -123,7 +129,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "deep_sleep::DeepSleepComponent",
+              "type": "use_id"
             }
           }
         }
@@ -131,7 +139,7 @@
     },
     "action": {
       "enter": {
-        "type": "maybe",
+        "type": "schema",
         "schema": {
           "extends": [
             "deep_sleep.DEEP_SLEEP_ACTION_SCHEMA"
@@ -154,14 +162,18 @@
             },
             "time_id": {
               "key": "Optional",
+              "use_id_type": "time::RealTimeClock",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the time component to use for the `until` option. Only on ESP32.\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-enter-action)*"
             }
           }
         },
+        "maybe": "id",
         "docs": "This action makes the given deep sleep component enter deep sleep immediately.\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-enter-action)*"
       },
       "allow": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "extends": [
             "deep_sleep.DEEP_SLEEP_ACTION_SCHEMA"
@@ -170,7 +182,8 @@
         "docs": "This action allows the given deep sleep component to enter deep sleep, after previously being prevented.\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-allow-action)*"
       },
       "prevent": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "extends": [
             "deep_sleep.DEEP_SLEEP_ACTION_SCHEMA"

@@ -21,6 +21,12 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "canbus::CanbusComponent",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Base CAN Bus Configuration](https://esphome.io/components/canbus.html#configuration-variables)*"
             },
             "can_id": {
@@ -120,6 +126,8 @@
           "config_vars": {
             "canbus_id": {
               "key": "GeneratedID",
+              "use_id_type": "canbus::CanbusComponent",
+              "type": "use_id",
               "docs": "Optionally set the can bus id to use for transmitting the frame. Not needed if you are using only 1 can bus.\n\n*See also: [on_frame Trigger](https://esphome.io/components/canbus.html#canbus-send-action)*"
             },
             "can_id": {

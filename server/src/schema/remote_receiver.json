@@ -7,6 +7,13 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "remote_receiver::RemoteReceiverComponent",
+                "parents": [
+                  "remote_base::RemoteReceiverBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation. Use this if you have multiple remote receivers.\n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#configuration-variables)*"
             },
             "pin": {
@@ -67,7 +74,9 @@
               "schema": {
                 "config_vars": {
                   "receiver_id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "use_id_type": "remote_base::RemoteReceiverBase",
+                    "type": "use_id"
                   },
                   "then": {
                     "type": "trigger"
@@ -82,7 +91,9 @@
               "schema": {
                 "config_vars": {
                   "receiver_id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "use_id_type": "remote_base::RemoteReceiverBase",
+                    "type": "use_id"
                   },
                   "then": {
                     "type": "trigger"
@@ -97,7 +108,9 @@
               "schema": {
                 "config_vars": {
                   "receiver_id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "use_id_type": "remote_base::RemoteReceiverBase",
+                    "type": "use_id"
                   },
                   "then": {
                     "type": "trigger"
@@ -112,7 +125,9 @@
               "schema": {
                 "config_vars": {
                   "receiver_id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "use_id_type": "remote_base::RemoteReceiverBase",
+                    "type": "use_id"
                   },
                   "then": {
                     "type": "trigger"
@@ -127,7 +142,9 @@
               "schema": {
                 "config_vars": {
                   "receiver_id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "use_id_type": "remote_base::RemoteReceiverBase",
+                    "type": "use_id"
                   },
                   "then": {
                     "type": "trigger"
@@ -142,7 +159,9 @@
               "schema": {
                 "config_vars": {
                   "receiver_id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "use_id_type": "remote_base::RemoteReceiverBase",
+                    "type": "use_id"
                   },
                   "then": {
                     "type": "trigger"
@@ -157,7 +176,9 @@
               "schema": {
                 "config_vars": {
                   "receiver_id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "use_id_type": "remote_base::RemoteReceiverBase",
+                    "type": "use_id"
                   },
                   "then": {
                     "type": "trigger"
@@ -172,7 +193,9 @@
               "schema": {
                 "config_vars": {
                   "receiver_id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "use_id_type": "remote_base::RemoteReceiverBase",
+                    "type": "use_id"
                   },
                   "then": {
                     "type": "trigger"
@@ -187,7 +210,9 @@
               "schema": {
                 "config_vars": {
                   "receiver_id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "use_id_type": "remote_base::RemoteReceiverBase",
+                    "type": "use_id"
                   },
                   "then": {
                     "type": "trigger"
@@ -202,7 +227,9 @@
               "schema": {
                 "config_vars": {
                   "receiver_id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "use_id_type": "remote_base::RemoteReceiverBase",
+                    "type": "use_id"
                   },
                   "then": {
                     "type": "trigger"
@@ -217,7 +244,9 @@
               "schema": {
                 "config_vars": {
                   "receiver_id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "use_id_type": "remote_base::RemoteReceiverBase",
+                    "type": "use_id"
                   },
                   "then": {
                     "type": "trigger"
@@ -232,7 +261,9 @@
               "schema": {
                 "config_vars": {
                   "receiver_id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "use_id_type": "remote_base::RemoteReceiverBase",
+                    "type": "use_id"
                   },
                   "then": {
                     "type": "trigger"
@@ -247,7 +278,9 @@
               "schema": {
                 "config_vars": {
                   "receiver_id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "use_id_type": "remote_base::RemoteReceiverBase",
+                    "type": "use_id"
                   },
                   "then": {
                     "type": "trigger"
@@ -262,7 +295,9 @@
               "schema": {
                 "config_vars": {
                   "receiver_id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "use_id_type": "remote_base::RemoteReceiverBase",
+                    "type": "use_id"
                   },
                   "then": {
                     "type": "trigger"
@@ -277,7 +312,9 @@
               "schema": {
                 "config_vars": {
                   "receiver_id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "use_id_type": "remote_base::RemoteReceiverBase",
+                    "type": "use_id"
                   },
                   "then": {
                     "type": "trigger"
@@ -292,7 +329,9 @@
               "schema": {
                 "config_vars": {
                   "receiver_id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "use_id_type": "remote_base::RemoteReceiverBase",
+                    "type": "use_id"
                   },
                   "then": {
                     "type": "trigger"
@@ -307,7 +346,9 @@
               "schema": {
                 "config_vars": {
                   "receiver_id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "use_id_type": "remote_base::RemoteReceiverBase",
+                    "type": "use_id"
                   },
                   "then": {
                     "type": "trigger"
@@ -322,7 +363,9 @@
               "schema": {
                 "config_vars": {
                   "receiver_id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "use_id_type": "remote_base::RemoteReceiverBase",
+                    "type": "use_id"
                   },
                   "then": {
                     "type": "trigger"

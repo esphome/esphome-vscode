@@ -11,6 +11,14 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "id_type": {
+                "class": "ledc::LEDCOutput",
+                "parents": [
+                  "output::FloatOutput",
+                  "output::BinaryOutput",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n*See also: [ESP32 LEDC Output](https://esphome.io/components/output/ledc.html#configuration-variables)*"
             },
             "pin": {
@@ -44,6 +52,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "ledc::LEDCOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the LEDC output to change.\n\n*See also: [ESP32 LEDC Output](https://esphome.io/components/output/ledc.html#output-ledc-set-frequency-action)*"
             },
             "frequency": {
