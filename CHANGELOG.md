@@ -1,5 +1,10 @@
 # Changelog
 
+## v2022.5.2 prerelease
+
+- Adds completions on declared ids 😎
+- Fix hover docs for platform element
+
 ## v2022.5.0
 
 Seems like I have skipped some release notes, anyway:
