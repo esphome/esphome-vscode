@@ -1,5 +1,9 @@
 # Changelog
 
+## v2022.5.3 prerelease
+
+- Adds goto definition
+
 ## v2022.5.2 prerelease
 
 - Adds completions on declared ids 😎
