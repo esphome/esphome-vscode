@@ -1,6 +1,7 @@
 import * as fs from "fs";
 import path = require("path");
 import { isMap, isPair, isScalar, isSeq, YAMLMap } from "yaml";
+import { Range } from "yaml/dist/nodes/Node";
 import { YamlNode } from "./jsonASTTypes";
 import { SingleYAMLDocument } from "./parser/yamlParser07";
 
@@ -35,6 +36,7 @@ export interface ConfigVarEnum extends ConfigVarBase {
 export interface ConfigVarSchema extends ConfigVarBase {
     type: 'schema';
     schema: Schema;
+    maybe?: string;
 }
 
 export interface ConfigVarTyped extends ConfigVarBase {
@@ -222,8 +224,15 @@ export class CoreSchema {
         }
         else {
             if (entry.includes(".")) {
-                const [domain, actionName] = entry.split(".");
-                return this.getComponent(domain)[registry][actionName];
+                const parts = entry.split('.');
+                if (parts.length === 3) {
+                    const [domain, platform, actionName] = parts;
+                    return this.getComponent(platform, domain)[registry][actionName];
+                }
+                else {
+                    const [domain, actionName] = parts;
+                    return this.getComponent(domain)[registry][actionName];
+                }
             }
             for (const c in this.schema) {
                 const schema = this.getComponent(c);
@@ -319,6 +328,37 @@ export class CoreSchema {
             }
         }
         return undefined;
+    }
+
+    findComponentDefinition(id_type: string, id: string, doc: SingleYAMLDocument): Range {
+        const findComponentDefinitionInner = (node: YamlNode) => {
+            if (isSeq(node)) {
+                for (const item of node.items) {
+                    return findComponentDefinitionInner(item as YamlNode);
+                }
+                return;
+            }
+            if (isMap(node)) {
+                const given_id = node.get("id", true);
+                if (isScalar(given_id) && given_id.value === id) {
+                    return given_id.range;
+                }
+            }
+        };
+
+        for (const [componentName, component, node] of this.getDocComponents(doc)) {
+            const cs = component.schemas.CONFIG_SCHEMA;
+            if (cs && cs.type === "schema") {
+                const schema_id = this.findConfigVar(cs.schema, "id", doc) as any as ConfigVarId;
+                if (schema_id && (schema_id.id_type.class === id_type || schema_id.id_type.parents?.includes(id_type))) {
+                    const foundNode = findComponentDefinitionInner(node);
+                    if (foundNode) {
+                        return foundNode;
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     getUsableIds(use_id_type: string, doc: SingleYAMLDocument): string[] {

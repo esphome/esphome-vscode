@@ -24,6 +24,7 @@ import { CompletionHandler } from './completions';
 import { yamlDocumentsCache } from './parser/yaml-documents';
 import { HoverHandler } from './HoverHandler';
 import { CoreSchema } from './CoreSchema';
+import { DefinitionHandler } from './DefinitionHandler';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -76,7 +77,8 @@ connection.onInitialize((params: InitializeParams) => {
 			},
 			hoverProvider: {
 				workDoneProgress: false
-			}
+			},
+			definitionProvider: true
 		}
 	};
 	if (hasWorkspaceFolderCapability) {
@@ -137,6 +139,18 @@ connection.onInitialized(async () => {
 		const hoverHandler = new HoverHandler(yamlDocumentsCache, coreSchema);
 		connection.onHover(p => {
 			return hoverHandler.onHover(
+				documents.get(p.textDocument.uri),
+				p.position);
+		});
+	}
+	catch (ex) {
+		console.log("Error " + ex);
+	}
+
+	try {
+		const definitionHandler = new DefinitionHandler(yamlDocumentsCache, coreSchema);
+		connection.onDefinition(p => {
+			return definitionHandler.onDefinition(
 				documents.get(p.textDocument.uri),
 				p.position);
 		});
