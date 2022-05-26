@@ -81,6 +81,9 @@ export class SchemaHandler {
                         }
 
                         if (cv.type === "trigger") {
+                            if (path[index] === "then") {
+                                continue;
+                            }
                             const action = this.coreSchema.getActionConfigVar(path[index]);
                             if (action !== undefined) {
                                 cv = action;

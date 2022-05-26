@@ -2,12 +2,15 @@
   "script": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "type": "trigger",
+        "type": "schema",
         "schema": {
           "config_vars": {
             "id": {
               "key": "Required",
               "type": "string",
+              "id_type": {
+                "class": "script::Script"
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The [ID](https://esphome.io/guides/configuration-types.html#config-id) of the script. Use this to interact with the script using the script actions.\n\n*See also: [script Component](https://esphome.io/guides/automations.html#script-component)*"
             },
             "mode": {
@@ -40,7 +43,8 @@
             }
           }
         },
-        "has_required_var": true
+        "has_required_var": true,
+        "is_list": true
       }
     },
     "action": {

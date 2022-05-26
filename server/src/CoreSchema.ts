@@ -292,7 +292,7 @@ export class CoreSchema {
         return ret;
     }
 
-    * iter_configVars(schema: Schema, doc: SingleYAMLDocument, yielded = []): Generator<[string, ConfigVar]> {
+    * iterConfigVars(schema: Schema, doc: SingleYAMLDocument, yielded = []): Generator<[string, ConfigVar]> {
         const docMap = doc.root.internalNode as YAMLMap;
         for (var prop in schema.config_vars) {
             if (schema.extends?.includes("core.MQTT_COMPONENT_SCHEMA") &&
@@ -313,7 +313,7 @@ export class CoreSchema {
                 }
                 const s = this.getExtendedConfigVar(extended);
                 if (s.type === "schema") {
-                    for (const pair of this.iter_configVars(s.schema, doc, yielded)) {
+                    for (const pair of this.iterConfigVars(s.schema, doc, yielded)) {
                         yield pair;
                     }
                 }
@@ -322,7 +322,7 @@ export class CoreSchema {
     }
 
     findConfigVar(schema, prop, doc: SingleYAMLDocument): ConfigVar {
-        for (const [p, config] of this.iter_configVars(schema, doc)) {
+        for (const [p, config] of this.iterConfigVars(schema, doc)) {
             if (p === prop) {
                 return config;
             }
@@ -330,32 +330,81 @@ export class CoreSchema {
         return undefined;
     }
 
-    findComponentDefinition(id_type: string, id: string, doc: SingleYAMLDocument): Range {
-        const findComponentDefinitionInner = (node: YamlNode) => {
-            if (isSeq(node)) {
-                for (const item of node.items) {
-                    return findComponentDefinitionInner(item as YamlNode);
-                }
-                return;
-            }
-            if (isMap(node)) {
-                const given_id = node.get("id", true);
-                if (isScalar(given_id) && given_id.value === id) {
-                    return given_id.range;
-                }
-            }
-        };
 
-        for (const [componentName, component, node] of this.getDocComponents(doc)) {
-            const cs = component.schemas.CONFIG_SCHEMA;
-            if (cs && cs.type === "schema") {
-                const schema_id = this.findConfigVar(cs.schema, "id", doc) as any as ConfigVarId;
-                if (schema_id && (schema_id.id_type.class === id_type || schema_id.id_type.parents?.includes(id_type))) {
-                    const foundNode = findComponentDefinitionInner(node);
-                    if (foundNode) {
-                        return foundNode;
+    * iterDeclaringIdsInner(idType: string, map: YAMLMap, schema: Schema, doc: SingleYAMLDocument): Generator<YamlNode> {
+        for (const k of map.items) {
+            if (isPair(k) && isScalar(k.key)) {
+                const propName = k.key.value as string;
+                const cv = this.findConfigVar(schema, propName, doc);
+                if (cv) {
+                    const idCv = cv as any as ConfigVarId;
+                    if (idCv.id_type && (idCv.id_type.class === idType || idCv.id_type.parents?.includes(idType))) {
+                        yield k.value as YamlNode;
+                    }
+                    else if (cv.type === "schema" && isMap(k.value)) {
+                        for (const yieldNode of this.iterDeclaringIdsInner(idType, k.value, cv.schema, doc)) {
+                            yield yieldNode;
+                        }
                     }
                 }
+            }
+        }
+    }
+
+    * iterDeclaringIds(idType: string, doc: SingleYAMLDocument): Generator<YamlNode> {
+        const docMap = doc.root.internalNode as YAMLMap;
+        for (const k of docMap.items) {
+            if (isPair(k) && isScalar(k.key)) {
+                const componentName = k.key.value as string;
+                if (componentName in this.schema.core.components || this.isPlatform(componentName)) {
+                    const component = this.getComponent(componentName);
+                    const cv = component.schemas.CONFIG_SCHEMA;
+                    if (isMap(k.value) && isScalar(k.value.get("id", true)) && cv && cv.type === "schema") {
+                        for (const yieldNode of this.iterDeclaringIdsInner(idType, k.value, cv.schema, doc)) { yield yieldNode; }
+                    }
+                    else if (isSeq(k.value) && cv && cv.is_list) {
+                        const nodeList = k.value;
+                        for (const item of nodeList.items) {
+                            if (isMap(item) && isScalar(item.get("id", true)) && cv && cv.type === "schema") {
+                                for (const yieldNode of this.iterDeclaringIdsInner(idType, item, cv.schema, doc)) { yield yieldNode; }
+                            }
+                        }
+                    }
+                    if (this.isPlatform(componentName)) {
+                        // iterate elements and lookup platform to load components
+                        const platNode = k.value;
+                        if (isSeq(platNode)) {
+                            for (const seqItemNode of platNode.items) {
+                                if (isMap(seqItemNode)) {
+                                    const platCompName = seqItemNode.get("platform") as string;
+                                    if (platCompName in component.components) {
+                                        const platCv = this.getComponent(platCompName, componentName).schemas.CONFIG_SCHEMA;
+                                        if (platCv.type === "schema") {
+                                            for (const yieldNode of this.iterDeclaringIdsInner(idType, seqItemNode, platCv.schema, doc)) { yield yieldNode; }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else if (isMap(platNode)) {
+                            const platCompName = platNode.get("platform") as string;
+                            if (platCompName in component.components) {
+                                const platCv = this.getComponent(platCompName, componentName).schemas.CONFIG_SCHEMA;
+                                if (platCv.type === "schema") {
+                                    for (const yieldNode of this.iterDeclaringIdsInner(idType, platNode, platCv.schema, doc)) { yield yieldNode; }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    findComponentDefinition(id_type: string, id: string, doc: SingleYAMLDocument): Range {
+        for (const item of this.iterDeclaringIds(id_type, doc)) {
+            if (isScalar(item) && item.value === id) {
+                return item.range;
             }
         }
         return null;
@@ -363,32 +412,9 @@ export class CoreSchema {
 
     getUsableIds(use_id_type: string, doc: SingleYAMLDocument): string[] {
         const ret: string[] = [];
-
-        const pushIds = (node: YamlNode) => {
-            if (isSeq(node)) {
-                for (const item of node.items) {
-                    pushIds(item as YamlNode);
-                }
-                return;
-            }
-            if (isMap(node)) {
-                const given_id = node.get("id");
-                if (given_id) {
-                    ret.push(given_id.toString());
-                }
-            }
-        };
-
-        for (const [componentName, component, node] of this.getDocComponents(doc)) {
-            const cs = component.schemas.CONFIG_SCHEMA;
-            if (cs && cs.type === "schema") {
-                const schema_id = this.findConfigVar(cs.schema, "id", doc) as any as ConfigVarId;
-                if (schema_id && (schema_id.id_type.class === use_id_type || schema_id.id_type.parents?.includes(use_id_type))) {
-                    pushIds(node);
-                }
-            }
+        for (const item of this.iterDeclaringIds(use_id_type, doc)) {
+            ret.push(item.toString());
         }
         return ret;
     }
-
 }

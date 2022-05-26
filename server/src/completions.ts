@@ -663,7 +663,7 @@ export class CompletionHandler {
         let preselected = false;
         const ret: { [name: string]: CompletionItem } = {};
 
-        for (const [prop, config] of this.coreSchema.iter_configVars(schema, doc)) {
+        for (const [prop, config] of this.coreSchema.iterConfigVars(schema, doc)) {
             // Skip existent properties
             if (node !== null && this.mapHasScalarKey(node, prop)) {
                 continue;

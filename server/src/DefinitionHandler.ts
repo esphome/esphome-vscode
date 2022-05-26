@@ -64,6 +64,9 @@ export class DefinitionHandler extends SchemaHandler {
                     const typeId = fullCv.use_id_type;
                     const targetId = pathNode.value as string;
                     const range = this.coreSchema.findComponentDefinition(typeId, targetId, doc);
+                    if (range === null) {
+                        resolve(null);
+                    }
                     const definition = {
                         uri: document.uri,
                         range:
