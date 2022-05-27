@@ -149,7 +149,12 @@
         {
           "begin": "^([ ]+)(?! )",
           "end": "^(?!\\1|\\s*$)",
-          "name": "string.unquoted.block.yaml"
+          "name": "string.unquoted.block.yaml",
+          "patterns": [
+            {
+              "include": "source.cpp"
+            }
+          ]
         }
       ]
     },
@@ -581,6 +586,30 @@
       "name": "meta.property.yaml",
       "patterns": [
         {
+          "match": "(!lambda) (\"(.*)\"|(.*))",
+          "captures": {
+            "1": {
+              "name": "keyword.control.directive.tag.yaml"
+            },
+            "3": {
+              "name": "cpp.lambda.directive.tag.yaml",
+              "patterns": [
+                {
+                  "include": "source.cpp"
+                }
+              ]
+            },
+            "4": {
+              "name": "cpp.lambda.directive.tag.yaml",
+              "patterns": [
+                {
+                  "include": "source.cpp"
+                }
+              ]
+            }
+          }
+        },
+        {
           "captures": {
             "1": {
               "name": "keyword.control.property.anchor.yaml"
@@ -598,8 +627,8 @@
           "match": "\\G((&))([^\\s\\[\\]/{/},]+)(\\S+)?"
         },
         {
-          "match": "(?x)\n                        \\G\n                        (?:\n                            ! < (?: %[0-9A-Fa-f]{2} | [0-9A-Za-z\\-#;/?:@&=+$,_.!~*'()\\[\\]] )+ >\n                          | (?:!(?:[0-9A-Za-z\\-]*!)?) (?: %[0-9A-Fa-f]{2} | [0-9A-Za-z\\-#;/?:@&=+$_.~*'()] )+\n                          | !\n                        )\n                        (?=\\ |\\t|$)\n                    ",
-          "name": "storage.type.tag-handle.yaml"
+          "match": "(?x) \\G (?:! < (?: %[0-9A-Fa-f]{2} | [0-9A-Za-z\\-#;/?:@&=+$,_.!~*'()\\[\\]] )+ >| (?:!(?:[0-9A-Za-z\\-]*!)?) (?: %[0-9A-Fa-f]{2} | [0-9A-Za-z\\-#;/?:@&=+$_.~*'()] )+| !)(?=\\ |\\t|$)",
+          "name": "keyword.control.directive.tag.yaml"
         },
         {
           "match": "\\S+",
