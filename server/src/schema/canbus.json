@@ -120,8 +120,8 @@
     },
     "action": {
       "send": {
-        "is_list": true,
         "type": "schema",
+        "maybe": "data",
         "schema": {
           "config_vars": {
             "canbus_id": {

@@ -36,8 +36,8 @@
     },
     "action": {
       "play": {
-        "is_list": true,
         "type": "schema",
+        "maybe": "rtttl",
         "schema": {
           "config_vars": {
             "id": {

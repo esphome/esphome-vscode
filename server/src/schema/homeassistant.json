@@ -144,7 +144,7 @@
             }
           }
         },
-        "is_list": true,
+        "maybe": "tag",
         "docs": "When using the native API with Home Assistant, you can push tag_scanned to Home Assistant straight from ESPHome [Automations](https://esphome.io/guides/automations.html#automation).\n\n*See also: [Native API Component](https://esphome.io/components/api.html#homeassistant-tag-scanned-action)*"
       }
     }

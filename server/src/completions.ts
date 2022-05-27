@@ -467,10 +467,21 @@ export class CompletionHandler {
             const item: CompletionItem = {
                 label: "!lambda",
                 insertTextFormat: InsertTextFormat.Snippet,
-                insertText: "!lambda return \"${0:<expression>}\";",
+                insertText: "!lambda return ${0:<expression>};",
                 kind: CompletionItemKind.Function,
             };
+            if (cv.docs && cv.docs.startsWith("**")) {
+                const endStrType = cv.docs.indexOf("**", 2);
+                if (endStrType !== -1) {
+                    const strType = cv.docs.substring(2, cv.docs.indexOf("**", 2));
+                    if (strType === "string") {
+                        item.insertText = "!lambda return \"${0:<string expression>}\";";
+                    }
+                    else { item.insertText = "!lambda return ${0:<" + strType + " expression>};"; }
+                }
+            }
             result.push(item);
+            return result;
         }
         throw new Error("Unexpected path traverse.");
     }
@@ -748,6 +759,13 @@ export class CompletionHandler {
                     break;
                 case "trigger":
                     item.kind = CompletionItemKind.Event;
+                    if (prop !== "then" && !config.has_required_var) {
+                        item.insertText += '\n  then:\n    ';
+                    }
+                    else {
+                        item.insertText += '\n  ';
+                    }
+                    triggerSuggest = true;
                     break;
                 case "registry":
                     item.kind = CompletionItemKind.Field;
@@ -762,6 +780,10 @@ export class CompletionHandler {
                 default:
                     item.kind = CompletionItemKind.Property;
                     break;
+            }
+
+            if (config["use_id_type"] || config["maybe"]) {
+                triggerSuggest = true;
             }
 
             if (triggerSuggest) {

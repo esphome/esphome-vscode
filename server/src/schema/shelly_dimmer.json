@@ -24,8 +24,8 @@
             "firmware": {
               "key": "Optional",
               "default": "51.6",
-              "is_list": true,
               "type": "schema",
+              "maybe": "version",
               "schema": {
                 "config_vars": {
                   "url": {
