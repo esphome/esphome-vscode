@@ -59,8 +59,8 @@
         "docs": "Plays the previously played track.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-play-previous-action)*"
       },
       "play": {
-        "is_list": true,
         "type": "schema",
+        "maybe": "file",
         "schema": {
           "config_vars": {
             "id": {
@@ -116,8 +116,8 @@
         "docs": "Plays files inside numbered folders, folders must be numbered from 1 and with leading zeros. Like `01`, `02`, \u2026 etc. Files inside the folders must be numbered with two leading zeros, like `001.mp3`, `002.mp3`, \u2026 etc. Folder numbers can range from 1 to 99 and file name from 1 to 255 or folder number from 1 to 10 and file number from 1 to 1000.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-play-folder-action)*"
       },
       "set_device": {
-        "is_list": true,
         "type": "schema",
+        "maybe": "device",
         "schema": {
           "config_vars": {
             "id": {
@@ -138,8 +138,8 @@
         "docs": "Changes the device in use. Valid values are `TF_CARD` and `USB`.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-set-device-action)*"
       },
       "set_volume": {
-        "is_list": true,
         "type": "schema",
+        "maybe": "volume",
         "schema": {
           "config_vars": {
             "id": {
@@ -184,8 +184,8 @@
         "docs": "Turn volume down.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-volume-down-action)*"
       },
       "set_eq": {
-        "is_list": true,
         "type": "schema",
+        "maybe": "eq_preset",
         "schema": {
           "config_vars": {
             "id": {

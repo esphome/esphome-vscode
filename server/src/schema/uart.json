@@ -80,8 +80,8 @@
     },
     "action": {
       "write": {
-        "is_list": true,
         "type": "schema",
+        "maybe": "data",
         "schema": {
           "config_vars": {
             "id": {

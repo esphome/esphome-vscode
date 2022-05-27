@@ -368,6 +368,15 @@ export class CompletionHandler {
             }
         }
         else if (cv.type === "string") {
+            if (cv["templatable"]) {
+                const item: CompletionItem = {
+                    label: "!lambda ",
+                    insertTextFormat: InsertTextFormat.Snippet,
+                    insertText: "!lambda return \"${0:<string expression>}\";",
+                    kind: CompletionItemKind.Function,
+                };
+                result.push(item);
+            }
             return result;
         }
 
@@ -419,6 +428,15 @@ export class CompletionHandler {
             return this.resolveConfigVar(result, path, pathIndex, pinCv, pathNode, cursorNode, currentDoc);
         }
         else if (cv.type === "boolean") {
+            if (cv["templatable"]) {
+                const item: CompletionItem = {
+                    label: "!lambda ",
+                    insertTextFormat: InsertTextFormat.Snippet,
+                    insertText: "!lambda return \"${0:<boolean expression>}\";",
+                    kind: CompletionItemKind.Function,
+                };
+                result.push(item);
+            }
             for (var value of ["True", "False"]) {
                 const item: CompletionItem = {
                     label: value,
@@ -445,6 +463,26 @@ export class CompletionHandler {
             return result;
         }
 
+        else if (cv["templatable"]) {
+            const item: CompletionItem = {
+                label: "!lambda",
+                insertTextFormat: InsertTextFormat.Snippet,
+                insertText: "!lambda return ${0:<expression>};",
+                kind: CompletionItemKind.Function,
+            };
+            if (cv.docs && cv.docs.startsWith("**")) {
+                const endStrType = cv.docs.indexOf("**", 2);
+                if (endStrType !== -1) {
+                    const strType = cv.docs.substring(2, cv.docs.indexOf("**", 2));
+                    if (strType === "string") {
+                        item.insertText = "!lambda return \"${0:<string expression>}\";";
+                    }
+                    else { item.insertText = "!lambda return ${0:<" + strType + " expression>};"; }
+                }
+            }
+            result.push(item);
+            return result;
+        }
         throw new Error("Unexpected path traverse.");
     }
 
@@ -687,7 +725,7 @@ export class CompletionHandler {
             }
             if (config["templatable"] !== undefined) {
                 item.detail = "lambda";
-                // TODO: triggerSuggest = true; trigger !lambda: |-
+                triggerSuggest = true;
             }
             else {
                 if (config.key === "Required") {
@@ -721,6 +759,13 @@ export class CompletionHandler {
                     break;
                 case "trigger":
                     item.kind = CompletionItemKind.Event;
+                    if (prop !== "then" && !config.has_required_var) {
+                        item.insertText += '\n  then:\n    ';
+                    }
+                    else {
+                        item.insertText += '\n  ';
+                    }
+                    triggerSuggest = true;
                     break;
                 case "registry":
                     item.kind = CompletionItemKind.Field;
@@ -737,6 +782,10 @@ export class CompletionHandler {
                     break;
             }
 
+            if (config["use_id_type"] || config["maybe"]) {
+                triggerSuggest = true;
+            }
+
             if (triggerSuggest) {
                 item.command = { title: 'chain', command: "editor.action.triggerSuggest" };
             }
@@ -744,6 +793,15 @@ export class CompletionHandler {
     }
 
     addEnums(result: CompletionItem[], cv: ConfigVarEnum) {
+        if (cv["templatable"]) {
+            const item: CompletionItem = {
+                label: "!lambda ",
+                insertTextFormat: InsertTextFormat.Snippet,
+                insertText: "!lambda return \"${0:<enum expression>}\";",
+                kind: CompletionItemKind.Function,
+            };
+            result.push(item);
+        }
         for (var value of cv.values) {
             if (isNumber(value as any)) {
                 value = value.toString();

@@ -198,8 +198,8 @@
     },
     "condition": {
       "is_displaying_page": {
-        "is_list": true,
         "type": "schema",
+        "maybe": "page_id",
         "schema": {
           "config_vars": {
             "id": {

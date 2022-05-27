@@ -956,8 +956,8 @@
         "docs": "This action allows you to repeat a block a given number of times. For example, the automation below will flash the light five times.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#repeat-action)*"
       },
       "wait_until": {
-        "is_list": true,
         "type": "schema",
+        "maybe": "condition",
         "schema": {
           "config_vars": {
             "condition": {

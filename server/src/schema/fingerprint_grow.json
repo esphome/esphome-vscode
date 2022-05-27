@@ -83,8 +83,8 @@
     },
     "action": {
       "enroll": {
-        "is_list": true,
         "type": "schema",
+        "maybe": "finger_id",
         "schema": {
           "config_vars": {
             "id": {
@@ -124,8 +124,8 @@
         "docs": "Cancels the current fingerprint enrollment process. Triggers the `on_enrollment_failed` trigger.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-cancel-enroll-action)*"
       },
       "delete": {
-        "is_list": true,
         "type": "schema",
+        "maybe": "finger_id",
         "schema": {
           "config_vars": {
             "id": {
@@ -174,7 +174,7 @@
             }
           }
         },
-        "is_list": true,
+        "maybe": "state",
         "docs": "Turns on or off the LED on the reader. Only available on select models. If you have the R503 or R503-RGB use [fingerprint_grow.aura_led_control Action](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-aura-led-control) instead.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-led-control-action)*"
       },
       "aura_led_control": {
