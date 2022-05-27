@@ -368,6 +368,15 @@ export class CompletionHandler {
             }
         }
         else if (cv.type === "string") {
+            if (cv["templatable"]) {
+                const item: CompletionItem = {
+                    label: "!lambda ",
+                    insertTextFormat: InsertTextFormat.Snippet,
+                    insertText: "!lambda return \"${0:<string expression>}\";",
+                    kind: CompletionItemKind.Function,
+                };
+                result.push(item);
+            }
             return result;
         }
 
@@ -419,6 +428,15 @@ export class CompletionHandler {
             return this.resolveConfigVar(result, path, pathIndex, pinCv, pathNode, cursorNode, currentDoc);
         }
         else if (cv.type === "boolean") {
+            if (cv["templatable"]) {
+                const item: CompletionItem = {
+                    label: "!lambda ",
+                    insertTextFormat: InsertTextFormat.Snippet,
+                    insertText: "!lambda return \"${0:<boolean expression>}\";",
+                    kind: CompletionItemKind.Function,
+                };
+                result.push(item);
+            }
             for (var value of ["True", "False"]) {
                 const item: CompletionItem = {
                     label: value,
@@ -445,6 +463,15 @@ export class CompletionHandler {
             return result;
         }
 
+        else if (cv["templatable"]) {
+            const item: CompletionItem = {
+                label: "!lambda",
+                insertTextFormat: InsertTextFormat.Snippet,
+                insertText: "!lambda return \"${0:<expression>}\";",
+                kind: CompletionItemKind.Function,
+            };
+            result.push(item);
+        }
         throw new Error("Unexpected path traverse.");
     }
 
@@ -687,7 +714,7 @@ export class CompletionHandler {
             }
             if (config["templatable"] !== undefined) {
                 item.detail = "lambda";
-                // TODO: triggerSuggest = true; trigger !lambda: |-
+                triggerSuggest = true;
             }
             else {
                 if (config.key === "Required") {
@@ -744,6 +771,15 @@ export class CompletionHandler {
     }
 
     addEnums(result: CompletionItem[], cv: ConfigVarEnum) {
+        if (cv["templatable"]) {
+            const item: CompletionItem = {
+                label: "!lambda ",
+                insertTextFormat: InsertTextFormat.Snippet,
+                insertText: "!lambda return \"${0:<enum expression>}\";",
+                kind: CompletionItemKind.Function,
+            };
+            result.push(item);
+        }
         for (var value of cv.values) {
             if (isNumber(value as any)) {
                 value = value.toString();
