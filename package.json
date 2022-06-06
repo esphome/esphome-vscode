@@ -64,7 +64,7 @@
       {
         "source.cpp": "cpp",
         "language": "esphome",
-        "scopeName": "source.yaml",
+        "scopeName": "source.yaml-esphome",
         "path": "./yaml-language/yaml.tmLanguage.json",
         "embeddedLanguages": {
           "cpp.lambda.directive.tag.yaml": "cpp"
