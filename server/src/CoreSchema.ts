@@ -260,7 +260,7 @@ export class CoreSchema {
                 for (const extended of s.extends) {
                     const s_cv = this.getExtendedConfigVar(extended);
                     if (s_cv.type === "schema") {
-                        if (key in s_cv.schema.config_vars) {
+                        if (s_cv.schema.config_vars !== undefined && key in s_cv.schema.config_vars) {
                             c = {
                                 ...s_cv.schema.config_vars[key],
                                 ...c
