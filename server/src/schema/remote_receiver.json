@@ -29,7 +29,7 @@
             "dump": {
               "key": "Optional",
               "default": "[]",
-              "docs": "**list**: Decode and dump these remote codes in the logs (at log.level=DEBUG). Set to `all` to dump all available codecs:\n  * **coolix**: Decode and dump Coolix infrared codes.\n  \n  * **dish**: Decode and dump Dish infrared codes.\n  \n  * **jvc**: Decode and dump JVC infrared codes.\n  \n  * **lg**: Decode and dump LG infrared codes.\n  \n  * **magiquest**: Decode and dump MagiQuest wand infrared codes.\n  \n  * **midea**: Decode and dump Midea infrared codes.\n  \n  * **nec**: Decode and dump NEC infrared codes.\n  \n  * **nexa**: Decode and dump Nexa (RF) codes.\n  \n  * **panasonic**: Decode and dump Panasonic infrared codes.\n  \n  * **pioneer**: Decode and dump Pioneer infrared codes.\n  \n  * **pronto**: Print remote code in Pronto form. Useful for using arbitrary protocols.\n  \n  * **raw**: Print all remote codes in their raw form. Also useful for using arbitrary protocols.\n  \n  * **rc5**: Decode and dump RC5 IR codes.\n  \n  * **rc_switch**: Decode and dump RCSwitch RF codes.\n  \n  * **samsung**: Decode and dump Samsung infrared codes.\n  \n  * **samsung36**: Decode and dump Samsung36 infrared codes.\n  \n  * **sony**: Decode and dump Sony infrared codes.\n  \n  * **toshiba_ac**: Decode and dump Toshiba AC infrared codes.\n  \n  \n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#configuration-variables)*"
+              "docs": "**list**: Decode and dump these remote codes in the logs (at log.level=DEBUG). Set to `all` to dump all available codecs:\n  * **coolix**: Decode and dump Coolix infrared codes.\n  \n  * **dish**: Decode and dump Dish infrared codes.\n  \n  * **jvc**: Decode and dump JVC infrared codes.\n  \n  * **lg**: Decode and dump LG infrared codes.\n  \n  * **magiquest**: Decode and dump MagiQuest wand infrared codes.\n  \n  * **midea**: Decode and dump Midea infrared codes.\n  \n  * **nec**: Decode and dump NEC infrared codes.\n  \n  * **nexa**: Decode and dump Nexa (RF) codes.\n  \n  * **panasonic**: Decode and dump Panasonic infrared codes.\n  \n  * **pioneer**: Decode and dump Pioneer infrared codes.\n  \n  * **pronto**: Print remote code in Pronto form. Useful for using arbitrary protocols.\n  \n  * **raw**: Print all remote codes in their raw form. Also useful for using arbitrary protocols.\n  \n  * **rc5**: Decode and dump RC5 IR codes.\n  \n  * **rc6**: Decode and dump RC6 IR codes.\n  \n  * **rc_switch**: Decode and dump RCSwitch RF codes.\n  \n  * **samsung**: Decode and dump Samsung infrared codes.\n  \n  * **samsung36**: Decode and dump Samsung36 infrared codes.\n  \n  * **sony**: Decode and dump Sony infrared codes.\n  \n  * **toshiba_ac**: Decode and dump Toshiba AC infrared codes.\n  \n  \n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#configuration-variables)*"
             },
             "tolerance": {
               "key": "Optional",
@@ -254,6 +254,23 @@
                 }
               },
               "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a RC5 remote code has been decoded. A variable `x` of type [remote_base::RC5Data](https://esphome.io/api/structesphome_1_1remote__base_1_1_r_c5_data.html) is passed to the automation for use in lambdas.\n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#configuration-variables)*"
+            },
+            "on_rc6": {
+              "key": "Optional",
+              "type": "trigger",
+              "schema": {
+                "config_vars": {
+                  "receiver_id": {
+                    "key": "GeneratedID",
+                    "use_id_type": "remote_base::RemoteReceiverBase",
+                    "type": "use_id"
+                  },
+                  "then": {
+                    "type": "trigger"
+                  }
+                }
+              },
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a RC6 remote code has been decoded. A variable `x` of type [remote_base::RC6Data](https://esphome.io/api/structesphome_1_1remote__base_1_1_r_c6_data.html) is passed to the automation for use in lambdas.\n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#configuration-variables)*"
             },
             "on_rc_switch": {
               "key": "Optional",
@@ -587,6 +604,24 @@
                 }
               },
               "docs": "Trigger on a decoded RC5 remote code with the given data.\n  * **address** (**Required**, int): The address to trigger on, see dumper output for more info.\n  \n  * **command** (**Required**, int): The RC5 command to listen for.\n  \n  \n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
+            },
+            "rc6": {
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "address": {
+                    "key": "Required",
+                    "data_type": "hex_uint8_t",
+                    "docs": "**int**: The address to trigger on, see dumper output for more info.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
+                  },
+                  "command": {
+                    "key": "Required",
+                    "data_type": "hex_uint8_t",
+                    "docs": "**int**: The RC6 command to listen for.\n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
+                  }
+                }
+              },
+              "docs": "Trigger on a decoded RC6 remote code with the given data.\n  * **address** (**Required**, int): The address to trigger on, see dumper output for more info.\n  \n  * **command** (**Required**, int): The RC6 command to listen for.\n  \n  \n\n*See also: [remote_receiver Binary Sensor](https://esphome.io/components/remote_receiver.html#id1)*"
             },
             "rc_switch_raw": {
               "type": "schema",

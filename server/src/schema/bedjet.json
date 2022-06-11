@@ -22,6 +22,20 @@
               },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [BedJet](https://esphome.io/components/climate/bedjet.html#configuration-variables)*"
             },
+            "heat_mode": {
+              "key": "Optional",
+              "default": "heat",
+              "type": "enum",
+              "values": [
+                "heat",
+                "extended"
+              ],
+              "docs": "**string**: The primary heating mode to use for `HVACMode.HEAT`. Whichever is not selected will be made available as a custom preset.\n  * `heat`: (Default) - Setting `hvac_mode=heat` uses the BedJet \u201cHEAT\u201d mode.\n  \n  * `extended`: - Setting `hvac_mode=heat` uses BedJet \u201cEXT HEAT\u201d mode.\n  \n  \n\n*See also: [BedJet](https://esphome.io/components/climate/bedjet.html#configuration-variables)*",
+              "values_docs": {
+                "heat": "(Default) - Setting `hvac_mode=heat` uses the BedJet \u201cHEAT\u201d mode.",
+                "extended": "- Setting `hvac_mode=heat` uses BedJet \u201cEXT HEAT\u201d mode."
+              }
+            },
             "time_id": {
               "key": "Optional",
               "use_id_type": "time::RealTimeClock",

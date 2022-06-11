@@ -118,5 +118,82 @@ script:
     assert.lengthOf(result, 1);
   });
 
+  it('custom sensor id', () => {
+    const result = coreSchema.getUsableIds("sensor::Sensor", getSingleYAMLDocument(`
+sensor:
+  - platform: custom
+    lambda: |-
+      auto my_sensor = new MyCustomSensor();
+      App.register_component(my_sensor);
+      return {my_sensor};
+
+    sensors:
+      name: "My Custom Sensor"
+      id: a_custom_sensor
+`));
+
+    assert.include(result, 'a_custom_sensor');
+    assert.lengthOf(result, 1);
+  });
+
+  it('custom sensors seq ids', () => {
+    const result = coreSchema.getUsableIds("sensor::Sensor", getSingleYAMLDocument(`
+sensor:
+  - platform: custom
+    lambda: |-
+      auto my_sensor = new MyCustomSensor();
+      App.register_component(my_sensor);
+      return {my_sensor};
+
+    sensors:
+      - name: "My Custom Sensor A"
+        id: a_custom_sensor
+      - name: "My Custom Sensor B"
+        id: b_custom_sensor
+`));
+
+    assert.include(result, 'a_custom_sensor', 'b_custom_sensor');
+    assert.lengthOf(result, 2);
+  });
+
+  it('custom binary sensor id', () => {
+    const result = coreSchema.getUsableIds("binary_sensor::BinarySensor", getSingleYAMLDocument(`
+
+binary_sensor:
+  - platform: custom
+    lambda: |-
+      return {my_custom_sensor};
+
+    binary_sensors:
+      name: "My Custom Binary Sensor"
+      id: a_custom_binary_sensor
+`));
+
+
+    assert.include(result, 'a_custom_binary_sensor');
+    assert.lengthOf(result, 1);
+  });
+
+
+  it('custom binary outputs is', () => {
+    const result = coreSchema.getUsableIds("output::BinaryOutput", getSingleYAMLDocument(`
+output:
+  - platform: custom
+    type: binary
+    lambda: |-
+      return {ape_binary_output(id(ape), 7),
+              ape_binary_output(id(ape), 6),
+              ape_binary_output(id(ape), 5),
+              ape_binary_output(id(ape), 4)};
+    outputs:
+      - id: custom_output_id_1
+      - id: custom_output_id_2
+`));
+
+
+    assert.include(result, 'custom_output_id_1', 'custom_output_id_2');
+    assert.lengthOf(result, 2);
+  });
+
 
 });

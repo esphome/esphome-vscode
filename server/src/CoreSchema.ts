@@ -260,7 +260,7 @@ export class CoreSchema {
                 for (const extended of s.extends) {
                     const s_cv = this.getExtendedConfigVar(extended);
                     if (s_cv.type === "schema") {
-                        if (key in s_cv.schema.config_vars) {
+                        if (s_cv.schema.config_vars !== undefined && key in s_cv.schema.config_vars) {
                             c = {
                                 ...s_cv.schema.config_vars[key],
                                 ...c
@@ -331,7 +331,18 @@ export class CoreSchema {
     }
 
 
-    * iterDeclaringIdsInner(idType: string, map: YAMLMap, schema: Schema, doc: SingleYAMLDocument): Generator<YamlNode> {
+    * iterDeclaringIdsInner(idType: string, map: YAMLMap, declaringCv: ConfigVar, doc: SingleYAMLDocument): Generator<YamlNode> {
+        let schema: Schema;
+        if (declaringCv.type === "schema") {
+            schema = declaringCv.schema;
+        }
+        else if (declaringCv.type === "typed") {
+            const schemaType = map.get(declaringCv.typed_key) as string;
+            schema = declaringCv.types[schemaType];
+        }
+        else {
+            return;
+        }
         for (const k of map.items) {
             if (isPair(k) && isScalar(k.key)) {
                 const propName = k.key.value as string;
@@ -341,9 +352,18 @@ export class CoreSchema {
                     if (idCv.id_type && (idCv.id_type.class === idType || idCv.id_type.parents?.includes(idType))) {
                         yield k.value as YamlNode;
                     }
-                    else if (cv.type === "schema" && isMap(k.value)) {
-                        for (const yieldNode of this.iterDeclaringIdsInner(idType, k.value, cv.schema, doc)) {
+                    if (isMap(k.value)) {
+                        for (const yieldNode of this.iterDeclaringIdsInner(idType, k.value, cv, doc)) {
                             yield yieldNode;
+                        }
+                    }
+                    else if (cv.is_list && isSeq(k.value)) {
+                        for (const seqItem of k.value.items) {
+                            if (isMap(seqItem)) {
+                                for (const yieldNode of this.iterDeclaringIdsInner(idType, seqItem, cv, doc)) {
+                                    yield yieldNode;
+                                }
+                            }
                         }
                     }
                 }
@@ -359,14 +379,14 @@ export class CoreSchema {
                 if (componentName in this.schema.core.components || this.isPlatform(componentName)) {
                     const component = this.getComponent(componentName);
                     const cv = component.schemas.CONFIG_SCHEMA;
-                    if (isMap(k.value) && isScalar(k.value.get("id", true)) && cv && cv.type === "schema") {
-                        for (const yieldNode of this.iterDeclaringIdsInner(idType, k.value, cv.schema, doc)) { yield yieldNode; }
+                    if (isMap(k.value) && isScalar(k.value.get("id", true)) && cv) {
+                        for (const yieldNode of this.iterDeclaringIdsInner(idType, k.value, cv, doc)) { yield yieldNode; }
                     }
                     else if (isSeq(k.value) && cv && cv.is_list) {
                         const nodeList = k.value;
                         for (const item of nodeList.items) {
-                            if (isMap(item) && isScalar(item.get("id", true)) && cv && cv.type === "schema") {
-                                for (const yieldNode of this.iterDeclaringIdsInner(idType, item, cv.schema, doc)) { yield yieldNode; }
+                            if (isMap(item) && isScalar(item.get("id", true)) && cv) {
+                                for (const yieldNode of this.iterDeclaringIdsInner(idType, item, cv, doc)) { yield yieldNode; }
                             }
                         }
                     }
@@ -379,9 +399,7 @@ export class CoreSchema {
                                     const platCompName = seqItemNode.get("platform") as string;
                                     if (platCompName in component.components) {
                                         const platCv = this.getComponent(platCompName, componentName).schemas.CONFIG_SCHEMA;
-                                        if (platCv.type === "schema") {
-                                            for (const yieldNode of this.iterDeclaringIdsInner(idType, seqItemNode, platCv.schema, doc)) { yield yieldNode; }
-                                        }
+                                        for (const yieldNode of this.iterDeclaringIdsInner(idType, seqItemNode, platCv, doc)) { yield yieldNode; }
                                     }
                                 }
                             }
@@ -390,9 +408,7 @@ export class CoreSchema {
                             const platCompName = platNode.get("platform") as string;
                             if (platCompName in component.components) {
                                 const platCv = this.getComponent(platCompName, componentName).schemas.CONFIG_SCHEMA;
-                                if (platCv.type === "schema") {
-                                    for (const yieldNode of this.iterDeclaringIdsInner(idType, platNode, platCv.schema, doc)) { yield yieldNode; }
-                                }
+                                for (const yieldNode of this.iterDeclaringIdsInner(idType, platNode, platCv, doc)) { yield yieldNode; }
                             }
                         }
                     }

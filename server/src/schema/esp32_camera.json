@@ -325,11 +325,13 @@
             },
             "on_stream_start": {
               "key": "Optional",
-              "type": "trigger"
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a stream starts.\n\n*See also: [ESP32 Camera Component](https://esphome.io/components/esp32_camera.html#configuration-variables)*"
             },
             "on_stream_stop": {
               "key": "Optional",
-              "type": "trigger"
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a stream stops.\n\n*See also: [ESP32 Camera Component](https://esphome.io/components/esp32_camera.html#configuration-variables)*"
             }
           }
         }

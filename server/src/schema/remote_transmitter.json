@@ -293,6 +293,29 @@
         },
         "docs": "This [action](https://esphome.io/guides/automations.html#config-action) sends an RC5 infrared remote code to a remote transmitter.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-rc5-action)*"
       },
+      "transmit_rc6": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "address": {
+              "key": "Required",
+              "templatable": true,
+              "data_type": "hex_uint8_t",
+              "docs": "**int**: The address to send, see dumper output for more details.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-rc6-action)*"
+            },
+            "command": {
+              "key": "Required",
+              "templatable": true,
+              "data_type": "hex_uint8_t",
+              "docs": "**int**: The RC6 command to send.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-rc6-action)*"
+            }
+          },
+          "extends": [
+            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
+          ]
+        },
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) sends an RC6 infrared remote code to a remote transmitter.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-rc6-action)*"
+      },
       "transmit_rc_switch_raw": {
         "type": "schema",
         "schema": {

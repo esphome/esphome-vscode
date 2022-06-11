@@ -77,6 +77,15 @@
           ]
         },
         "docs": "This action turn off power.\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#midea-ac-power-off-action)*"
+      },
+      "power_toggle": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "midea.climate.MIDEA_ACTION_BASE_SCHEMA"
+          ]
+        },
+        "docs": "This action toggle the power state. Identical to pressing the power button on the remote control.\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#midea-ac-power-toggle-action)*"
       }
     }
   }

@@ -307,6 +307,76 @@
                   }
                 }
               }
+            },
+            "preset": {
+              "key": "Optional",
+              "is_list": true,
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "thermostat::ThermostatClimateTargetTempConfig",
+                      "parents": []
+                    }
+                  },
+                  "name": {
+                    "key": "Required",
+                    "type": "string"
+                  },
+                  "mode": {
+                    "key": "Optional",
+                    "type": "enum",
+                    "values": [
+                      "OFF",
+                      "HEAT_COOL",
+                      "COOL",
+                      "HEAT",
+                      "DRY",
+                      "FAN_ONLY",
+                      "AUTO"
+                    ]
+                  },
+                  "default_target_temperature_high": {
+                    "key": "Optional"
+                  },
+                  "default_target_temperature_low": {
+                    "key": "Optional"
+                  },
+                  "fan_mode": {
+                    "key": "Optional",
+                    "templatable": true,
+                    "type": "enum",
+                    "values": [
+                      "ON",
+                      "OFF",
+                      "AUTO",
+                      "LOW",
+                      "MEDIUM",
+                      "HIGH",
+                      "MIDDLE",
+                      "FOCUS",
+                      "DIFFUSE"
+                    ]
+                  },
+                  "swing_mode": {
+                    "key": "Optional",
+                    "templatable": true,
+                    "type": "enum",
+                    "values": [
+                      "OFF",
+                      "BOTH",
+                      "VERTICAL",
+                      "HORIZONTAL"
+                    ]
+                  }
+                }
+              }
+            },
+            "preset_change": {
+              "key": "Optional",
+              "type": "trigger"
             }
           }
         }

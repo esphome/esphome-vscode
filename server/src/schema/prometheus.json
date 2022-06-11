@@ -19,6 +19,12 @@
               "key": "GeneratedID",
               "use_id_type": "web_server_base::WebServerBase",
               "type": "use_id"
+            },
+            "include_internal": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean",
+              "docs": "**boolean**: Whether `internal` entities should be displayed on the web interface. Defaults to `false`.\n\n*See also: [Prometheus Component](https://esphome.io/components/prometheus.html#configuration-variables)*"
             }
           },
           "extends": [

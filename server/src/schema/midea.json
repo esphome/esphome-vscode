@@ -64,7 +64,7 @@
               "key": "Optional",
               "use_id_type": "remote_transmitter::RemoteTransmitterComponent",
               "type": "use_id",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set if you use [Remote Transmitter](https://esphome.io/components/remote_transmitter.html) component for IR commands transmit.\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Defined and used automatically when using [Remote Transmitter](https://esphome.io/components/remote_transmitter.html) component for IR commands transmit.\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#configuration-variables)*"
             },
             "beeper": {
               "key": "Optional",
