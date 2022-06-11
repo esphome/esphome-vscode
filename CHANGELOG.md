@@ -1,13 +1,14 @@
 # Changelog
 
-## v2022.5.3 prerelease
+## v2022.6.0
 
-- Adds goto definition
-
-## v2022.5.2 prerelease
-
-- Adds completions on declared ids 😎
+- Sync with ESPHome v2022.6 Schema
+- Adds completions on declared ids 😎 e.g. if you have a light.tun_on: action, the extension will suggest the compatible ids
+- Adds goto definition (F12 or ctrl-click on ids)
+- Completion suggests !lambda on templatable properties
 - Fix hover docs for platform element
+- Fix scripts completions not working properly
+- Don't try to validate secrets.yaml
 
 ## v2022.5.0
 

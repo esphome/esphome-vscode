@@ -1980,6 +1980,18 @@
                       "VERY_VERBOSE"
                     ]
                   },
+                  "audio": {
+                    "type": "enum",
+                    "values": [
+                      "NONE",
+                      "ERROR",
+                      "WARN",
+                      "INFO",
+                      "DEBUG",
+                      "VERBOSE",
+                      "VERY_VERBOSE"
+                    ]
+                  },
                   "ili9341": {
                     "type": "enum",
                     "values": [
@@ -2509,6 +2521,18 @@
                     ]
                   },
                   "mdns": {
+                    "type": "enum",
+                    "values": [
+                      "NONE",
+                      "ERROR",
+                      "WARN",
+                      "INFO",
+                      "DEBUG",
+                      "VERBOSE",
+                      "VERY_VERBOSE"
+                    ]
+                  },
+                  "media_player": {
                     "type": "enum",
                     "values": [
                       "NONE",

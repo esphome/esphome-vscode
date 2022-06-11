@@ -151,7 +151,7 @@
                 "600ms",
                 "614ms"
               ],
-              "docs": "The amount of time the light sensor is exposed. Valid values are `2.4ms` (default), `24ms`, `50ms`, `101ms`, `120ms`, `154ms`, `180ms`, `199ms`, `240ms`, `300ms`, `360ms`, `401ms`, `420ms`, `480ms`, `499ms`, `540ms`, `600ms`, `614ms`.\n\n*See also: [TCS34725 RGB Color Sensor](https://esphome.io/components/sensor/tcs34725.html#configuration-variables)*"
+              "docs": "The amount of time the light sensor is exposed. Valid values are `auto` (default), `2.4ms`, `24ms`, `50ms`, `101ms`, `120ms`, `154ms`, `180ms`, `199ms`, `240ms`, `300ms`, `360ms`, `401ms`, `420ms`, `480ms`, `499ms`, `540ms`, `600ms`, `614ms`.\n\n*See also: [TCS34725 RGB Color Sensor](https://esphome.io/components/sensor/tcs34725.html#configuration-variables)*"
             },
             "gain": {
               "key": "Optional",
@@ -163,7 +163,7 @@
                 "16X",
                 "60X"
               ],
-              "docs": "Set the gain for the internal ADCs to work better in certain low-light conditions. Valid values are `1x` (default), `4x`, `16x`, `60x` (highest gain).\n\n*See also: [TCS34725 RGB Color Sensor](https://esphome.io/components/sensor/tcs34725.html#configuration-variables)*"
+              "docs": "Set the gain for the internal ADCs to work better in certain low-light conditions. Valid values are `1x` (default), `4x`, `16x`, `60x` (highest gain). Will be overwritten if auto integration time is used\n\n*See also: [TCS34725 RGB Color Sensor](https://esphome.io/components/sensor/tcs34725.html#configuration-variables)*"
             },
             "glass_attenuation_factor": {
               "key": "Optional",

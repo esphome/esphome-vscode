@@ -556,13 +556,12 @@
         ],
         "docs": "The `sgp30` sensor platform allows you to use your Sensirion SGP30 multi-pixel gas ([datasheet](https://sensirion.com/media/documents/984E0DD5/61644B8B/Sensirion_Gas_Sensors_Datasheet_SGP30.pdf)) sensors or the SVM30 breakout-boards  ([product page](https://www.sensirion.com/en/environmental-sensors/gas-sensors/multi-gas-humidity-temperature-module-svm30/)) with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#sgp30-co2-and-volatile-organic-compound-sensor)*"
       },
-      "sgp40": {
-        "docs": "The `sgp40` sensor platform allows you to use your Sensirion SGP40 VOC sensor ([datasheet](https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9_Gas_Sensors/Sensirion_Gas_Sensors_SGP40_Datasheet.pdf)) with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [SGP40 Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp40.html#sgp40-volatile-organic-compound-sensor)*"
-      },
+      "sgp40": {},
       "sgp4x": {
         "dependencies": [
           "i2c"
-        ]
+        ],
+        "docs": "The `sgp4x` sensor platform allows you to use your Sensirion SGP40 ([datasheet](https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9_Gas_Sensors/Sensirion_Gas_Sensors_SGP40_Datasheet.pdf)) or SGP41 ([datasheet](https://sensirion.com/media/documents/5FE8673C/61E96F50/Sensirion_Gas_Sensors_Datasheet_SGP41.pdf)) with ESPHome. The type of sensor used is automatically detected. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [SGP40 Volatile Organic Compound Sensor and SGP41 VOC and NOx Sensor](https://esphome.io/components/sensor/sgp4x.html#sgp40-volatile-organic-compound-sensor-and-sgp41-voc-and-nox-sensor)*"
       },
       "sht3xd": {
         "dependencies": [

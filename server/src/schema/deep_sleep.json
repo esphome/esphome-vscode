@@ -111,7 +111,7 @@
                   }
                 }
               },
-              "docs": "Use the EXT1 wakeup source of the ESP32 to wake from deep sleep to wake up on multiple pins. This cannot be used together with wakeup pin.\n  * **pins** (**Required**, list of pin numbers): The pins to wake up on.\n  \n  * **mode** (*Optional*): The mode to use for the wakeup source. Must be one of `ALL_LOW` (wake up when all pins go LOW) or `ANY_HIGH` (wake up when any pin goes HIGH).\n  \n  \n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#configuration-variables)*"
+              "docs": "Use the EXT1 wakeup source of the ESP32 to wake from deep sleep to wake up on multiple pins. This cannot be used together with wakeup pin.\n  * **pins** (**Required**, list of pin numbers): The pins to wake up on.\n  \n  * **mode** (**Required**): The mode to use for the wakeup source. Must be one of `ALL_LOW` (wake up when all pins go LOW) or `ANY_HIGH` (wake up when any pin goes HIGH).\n  \n  \n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#configuration-variables)*"
             },
             "touch_wakeup": {
               "key": "Optional",

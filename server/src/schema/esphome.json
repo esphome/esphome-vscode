@@ -297,6 +297,9 @@
       "lock": {
         "docs": "The `lock` domain includes all platforms that should function like a lock with lock/unlock actions.\n\n*See also: [Lock Component](https://esphome.io/components/lock/index.html#lock-component)*"
       },
+      "media_player": {
+        "docs": "The `media_player` domain includes all platforms that implement media player functionality.\n\n*See also: [Media Player Components](https://esphome.io/components/media_player/index.html#media-player-components)*"
+      },
       "number": {
         "docs": "ESPHome has support for components to create a number entity. A number entity is like a sensor that can read a value from a device, but is useful when that value can be set by the user/frontend.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-component)*"
       },

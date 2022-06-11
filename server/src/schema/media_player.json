@@ -1,0 +1,63 @@
+{
+  "media_player": {
+    "components": {
+      "i2s_audio": {
+        "dependencies": [
+          "esp32"
+        ],
+        "docs": "The `i2s_audio` media player platform allows you to play media from webservers and web streams via the I2S bus. This platform only works on ESP32 based chips.\n\n*See also: [I2S Audio Media Player](https://esphome.io/components/media_player/i2s_audio.html#i2s-audio-media-player)*"
+      }
+    },
+    "schemas": {
+      "MEDIA_PLAYER_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "core.ENTITY_BASE_SCHEMA"
+          ]
+        }
+      },
+      "MEDIA_PLAYER_ACTION_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "use_id_type": "media_player::MediaPlayer",
+              "type": "use_id"
+            }
+          }
+        }
+      }
+    },
+    "action": {
+      "stop": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "media_player.MEDIA_PLAYER_ACTION_SCHEMA"
+          ]
+        },
+        "docs": "This action stops the current playback.\n\n*See also: [Media Player Components](https://esphome.io/components/media_player/index.html#media-player-stop-action)*"
+      },
+      "pause": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "media_player.MEDIA_PLAYER_ACTION_SCHEMA"
+          ]
+        },
+        "docs": "This action pauses the current playback.\n\n*See also: [Media Player Components](https://esphome.io/components/media_player/index.html#media-player-pause-action)*"
+      },
+      "play": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "media_player.MEDIA_PLAYER_ACTION_SCHEMA"
+          ]
+        },
+        "docs": "This action will resume playing the media player. A future change will allow specifying the `media_url` for starting a new stream.\n\n*See also: [Media Player Components](https://esphome.io/components/media_player/index.html#media-player-play-action)*"
+      }
+    }
+  }
+}
