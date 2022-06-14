@@ -1,570 +1,728 @@
-scopeName: source.yaml-esphome
+---
+# this yaml was taken from vscode yaml extension first, it coinains
+# modifications to support some ESPHome features like lambda hilight
 name: YAML
-
+scopeName: source.yaml-esphome
 patterns:
-  - match: ^---(?= |$)
-    name: entity.other.document-start.yaml-tmlanguage
-  - match: ^\.{3}$
-    name: entity.other.document-end.yaml-tmlanguage
-  - match: ^\t+
-    name: invalid.illegal.tab-indent.yaml-tmlanguage
   - include: "#comment"
-  - include: "#repository"
-  - include: "#uuid"
-  - include: "#name-main"
-  - include: "#scope-name"
-  - include: "#file-types"
-  - include: "#author"
-  - include: "#key-equivalent"
-  - include: "#other-markers"
-  - include: "#patterns"
-  - include: "#captures"
-  - include: "#name"
-  - include: "#match"
-  - include: "#include"
-  - include: "#comment-from-key"
-  - include: "#number-key"
-  - include: "#repository-key-inline"
-  - include: "#comment"
-  - include: "#unmatched"
+  - include: "#property"
+  - include: "#directive"
+  - match: ^---
+    name: entity.other.document.begin.yaml
+  - match: ^\.{3}
+    name: entity.other.document.end.yaml
+  - include: "#node"
 repository:
-  author:
-    captures:
+  block-collection:
+    patterns:
+      - include: "#block-sequence"
+      - include: "#block-mapping"
+  block-mapping:
+    patterns:
+      - include: "#block-pair"
+  block-node:
+    patterns:
+      - include: "#prototype"
+      - include: "#block-scalar"
+      - include: "#block-collection"
+      - include: "#flow-scalar-plain-out"
+      - include: "#flow-node"
+  block-pair:
+    patterns:
+      - match: (?=not)possible # seems like this should be in a low depth so it is loaded or something
+        name: meta.embedded.block.cpp
+        patterns:
+          - include: source.cpp
+      - begin: \?
+        beginCaptures:
+          "1":
+            name: punctuation.definition.key-value.begin.yaml
+        end: (?=\?)|^ *(:)|(:)
+        endCaptures:
+          "1":
+            name: punctuation.separator.key-value.mapping.yaml
+          "2":
+            name: invalid.illegal.expected-newline.yaml
+        name: meta.block-mapping.yaml
+        patterns:
+          - include: "#block-node"
+
+      - begin: (?:\s*(?:-\s*)?)(lambda|[^\s:]+(?=\s*:\s+!lambda\s+))(?:\s*):\s+(?:(!lambda)\s+)?(?:(\|)|(>))([1-9])?([-+])?(.*\n?)
+        beginCaptures:
+          "0":
+            name: string.quoted.yaml
+          "1":
+            name: entity.name.function.lambda.yaml-esphome
+          "2":
+            name: keyword.control.directive.tag.yaml
+          "3":
+            patterns:
+              - include: "#comment"
+              - match: .+
+                name: invalid.illegal.expected-comment-or-newline.yaml
+        end: ^(?=\S)|(?!\G)
+        patterns:
+          - begin: ^([ ]+)(?! )
+            end: ^(?!\1|\s*$)
+            name: meta.embedded.block.cpp
+            patterns:
+              - include: source.cpp
+      - match: (?:\s*)(lambda)(?:\s*):\s+(?:(!lambda)\s+)?(?:(['"]?)([^'"]+)(\3)|$)
+        captures:
+          "0":
+            name: string.quoted.yaml
+          "1":
+            name: entity.name.function.lambda.yaml-esphome
+          "2":
+            name: keyword.control.directive.tag.yaml
+          "3":
+            name: punctuation.definition.string.begin.yaml
+          "4":
+            name: meta.embedded.block.cpp
+            patterns:
+              - include: source.cpp
+          "5":
+            name: punctuation.definition.string.end.yaml
+
+      - begin:
+          "(?x)(?=(?x:[^\\s[-?:,\\[\\]{}#&*!|>'\"%@`]]| [?:-] \\S)([^\\s:]| : \\S|
+          \\s+ (?![#\\s]))*\\s*:(\\s|$))"
+        end: "(?x)(?=\\s* $| \\s+ \\#| \\s* : (\\s|$))"
+        patterns:
+          - include: "#flow-scalar-plain-out-implicit-type"
+          - begin: (?x)[^\s[-?:,\[\]{}#&*!|>'"%@`]]| [?:-] \S
+            beginCaptures:
+              "0":
+                name: entity.name.tag.yaml
+            contentName: entity.name.tag.yaml
+            end: "(?x)(?=\\s* $| \\s+ \\#| \\s* : (\\s|$))"
+            name: string.unquoted.plain.out.yaml
+      - match: :(?=\s|$)
+        name: punctuation.separator.key-value.mapping.yaml
+  # lambda-block-scalar:
+  #   begin: (?:(\|)|(>))([1-9])?([-+])?(.*\n?)
+  #   beginCaptures:
+  #     "1":
+  #       name: keyword.control.flow.block-scalar.literal.yaml
+  #     "2":
+  #       name: keyword.control.flow.block-scalar.folded.yaml
+  #     "3":
+  #       name: constant.numeric.indentation-indicator.yaml
+  #     "4":
+  #       name: storage.modifier.chomping-indicator.yaml
+  #     "5":
+  #       patterns:
+  #         - include: "#comment"
+  #         - match: .+
+  #           name: invalid.illegal.expected-comment-or-newline.yaml
+  #   end: ^(?=\S)|(?!\G)
+  #   patterns:
+  #     - begin: ^([ ]+)(?! )
+  #       end: ^(?!\1|\s*$)
+  #       name: meta.embedded.block.cpp
+  #       patterns:
+  #         - include: source.cpp
+
+  block-scalar:
+    begin: (?:(\|)|(>))([1-9])?([-+])?(.*\n?)
+    beginCaptures:
       "1":
-        name: string.other.quoted-or-unquoted.yaml-tmlanguage
+        name: keyword.control.flow.block-scalar.literal.yaml
       "2":
-        name: punctuation.definition.string.yaml-tmlanguage
+        name: keyword.control.flow.block-scalar.folded.yaml
       "3":
-        name: keyword.other.name.author.yaml-tmlanguage
+        name: constant.numeric.indentation-indicator.yaml
       "4":
-        name: punctuation.definition.string.yaml-tmlanguage
+        name: storage.modifier.chomping-indicator.yaml
       "5":
-        name: keyword.control.definition.yaml-tmlanguage
-      "6":
-        name: meta.value.yaml-tmlanguage string.other.quoted-or-unquoted.yaml-tmlanguage
-      "7":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "8":
-        name: punctuation.definition.string.yaml-tmlanguage
-    match: (?:,|\{ *|^)((["']?)(author)(\2))(:) +((["']?).*(\7))
-    name: meta.author.yaml-tmlanguage
-  captures:
-    captures:
-      "1":
-        name: string.other.quoted-or-unquoted.yaml-tmlanguage
-      "2":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "3":
-        name: entity.other.captures.yaml-tmlanguage
-      "4":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "5":
-        name: keyword.control.definition.yaml-tmlanguage
-    match: (?:, +|\{ *|^ {2,}|^ *- +)((["']?)((?:(?:begin|end)C|c)aptures)(\2))(:)
-    name: meta.captures.yaml-tmlanguage
+        patterns:
+          - include: "#comment"
+          - match: .+
+            name: invalid.illegal.expected-comment-or-newline.yaml
+    end: ^(?=\S)|(?!\G)
+    patterns:
+      - begin: ^([ ]+)(?! )
+        end: ^(?!\1|\s*$)
+        name: string.unquoted.block.yaml
+        # name: meta.embedded.block.cpp
+        # patterns:
+        #   - include: source.cpp
+  block-sequence:
+    match: (-)(?!\S)
+    name: punctuation.definition.block.sequence.item.yaml
   comment:
-    captures:
+    begin: (?:(^[ \t]*)|[ \t]+)(?=#\p{Print}*$)
+    beginCaptures:
       "1":
-        name: comment.line.number-sign.yaml-tmlanguage
-      "2":
-        name: punctuation.definition.comment.line.yaml-tmlanguage
-    match: (?:^ *|\G *| +)((#).*\n?)
-  comment-from-key:
+        name: punctuation.whitespace.comment.leading.yaml
+    end: (?!\G)
     patterns:
-      - begin: ^( *)(?:- +)?((["']?)(comment)(\3))(:) +([|>](\d*)[-+]?)(?=, |,$| +#| *$)
+      - begin: "#"
         beginCaptures:
-          "2":
-            name: string.other.quoted-or-unquoted.yaml-tmlanguage
-          "3":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "4":
-            name: keyword.other.comment-from-key.yaml-tmlanguage
-          "5":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "6":
-            name: keyword.control.definition.yaml-tmlanguage
-          "7":
-            name: keyword.control.block.yaml-tmlanguage
-          "8":
-            name: constant.numeric.indentation-indicator.yaml-tmlanguage
-        comment: "block\r\ncomment\r\n"
-        contentName: comment.block.from-key.block.yaml-tmlanguage
-        end: ^(?! *$|\1 )
-        name: meta.comment-from-key.block.yaml-tmlanguage
-      - begin: (?:, +|\{ *|^ *|^ *- +)((["']?)(comment)(\2))(:) +(?!#)(["'])
-        beginCaptures:
-          "1":
-            name: string.other.quoted-or-unquoted.yaml-tmlanguage
-          "2":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "3":
-            name: keyword.other.comment-from-key.yaml-tmlanguage
-          "4":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "5":
-            name: keyword.control.definition.yaml-tmlanguage
-          "6":
-            name: punctuation.definition.string.yaml-tmlanguage
-        comment: test comment over multiple lines?
-        contentName: comment.block.from-key.quoted.yaml-tmlanguage
-        end: (?<![^\\]\\)(\6)(?=, |,$| +#| *$| *})
-        endCaptures:
-          "1":
-            name: punctuation.definition.string.yaml-tmlanguage
-        name: meta.comment-from-key.quoted.yaml-tmlanguage
-      - begin: ^( *)(?:-( +))?((["']?)(comment)(\4))(:)[ ]
-        beginCaptures:
-          "3":
-            name: string.other.quoted-or-unquoted.yaml-tmlanguage
-          "4":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "5":
-            name: keyword.other.comment-from-key.yaml-tmlanguage
-          "6":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "7":
-            name: keyword.control.definition.yaml-tmlanguage
-        comment: this is a "test" comment in another line
-        contentName: comment.block.from-key.unquoted.yaml-tmlanguage
-        end: ^(?! *$|\1\2  )
-        name: meta.comment-from-key.unquoted.yaml-tmlanguage
-  file-types:
-    patterns:
-      - begin: (?:, +|\{ *|^)((["']?)(fileTypes)(\2))(:) (\[)
-        beginCaptures:
-          "1":
-            name: string.other.quoted-or-unquoted.yaml-tmlanguage
-          "2":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "3":
-            name: keyword.other.name.yaml-tmlanguage
-          "4":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "5":
-            name: keyword.control.definition.yaml-tmlanguage
-          "6":
-            name: keyword.control.list.opening-bracket.yaml-tmlanguage
-        end: \]
-        endCaptures:
           "0":
-            name: keyword.control.list.closing-bracket.yaml-tmlanguage
-        name: meta.file-types.yaml-tmlanguage
-        patterns:
-          - captures:
-              "1":
-                name: string.other.quoted-or-unquoted.yaml-tmlanguage
-              "2":
-                name: punctuation.definition.string.yaml-tmlanguage
-              "3":
-                name: support.other.file-types.item.yaml-tmlanguage
-              "4":
-                name: punctuation.definition.string.yaml-tmlanguage
-            match: (?:\G|^),? *((["']?)([-\w\._]+)(\2))(?=, |,$| +#| *\Z| *\])
-          - include: "#comment"
-      - begin: (?:, +|\{ *|^)((["']?)(fileTypes)(\2))(:)(?= +#| *$)
-        beginCaptures:
-          "1":
-            name: string.other.quoted-or-unquoted.yaml-tmlanguage
-          "2":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "3":
-            name: keyword.other.name.yaml-tmlanguage
-          "4":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "5":
-            name: keyword.control.definition.yaml-tmlanguage
-        end: ^(?!$|-| *#)
-        name: meta.file-types.yaml-tmlanguage
-        patterns:
-          - captures:
-              "1":
-                name: string.other.quoted-or-unquoted.yaml-tmlanguage
-              "2":
-                name: punctuation.definition.string.yaml-tmlanguage
-              "3":
-                name: support.other.file-types.item.yaml-tmlanguage
-              "4":
-                name: punctuation.definition.string.yaml-tmlanguage
-            match: ^- +((["']?)([-\w\. _]+)(\2))(?= +#| *$)
-          - include: "#comment"
-  illegal:
-    match: "[^\\s}]"
-    name: invalid.illegal.unrecognized.yaml-tmlanguage
-  include:
-    captures:
-      "1":
-        name: string.other.quoted-or-unquoted.yaml-tmlanguage
-      "2":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "3":
-        name: keyword.other.include.yaml-tmlanguage
-      "4":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "5":
-        name: keyword.control.definition.yaml-tmlanguage
-      "6":
-        name: meta.value.yaml-tmlanguage string.other.quoted-or-unquoted.yaml-tmlanguage
-      "7":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "8":
-        name: storage.modifier.self-include.yaml-tmlanguage
-      "9":
-        name: variable.other.include.yaml-tmlanguage
-      "10":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "11":
-        name: storage.modifier.self-include.yaml-tmlanguage
-      "12":
-        name: variable.other.include.yaml-tmlanguage
-    match: "(?x)\r
-
-      (?:,\\ +|\\{\\ *|^\\ {2,}|^\\ *-\\ +)\r
-
-      \  (([\"']?)(include)(\\2))(:)\\ +\r
-
-      (([\"'])(?:(\\$self)\r
-
-      \       |\\#?([-\\w\\.\\ ]*)) (\\7)\r
-
-      |(\\$self)\r
-
-      |([-\\w\\.\\ ]*)\r
-
-      )\r\n"
-    name: meta.include.yaml-tmlanguage
-  key-equivalent:
-    captures:
-      "1":
-        name: string.other.quoted-or-unquoted.yaml-tmlanguage
-      "2":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "3":
-        name: keyword.other.name.key-equivalent.yaml-tmlanguage
-      "4":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "5":
-        name: keyword.control.definition.yaml-tmlanguage
-      "6":
-        name: meta.value.yaml-tmlanguage string.other.quoted-or-unquoted.yaml-tmlanguage
-      "7":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "8":
-        name: punctuation.definition.string.yaml-tmlanguage
-    match: (?:,|\{ *|^)((["']?)(keyEquivalent)(\2))(:) +((["']?).*(\7))
-    name: meta.key-equivalent.yaml-tmlanguage
-  match:
-    patterns:
-      - begin:
-          ^( *)(?:-?( +)())((["']?)(match|begin|end)(\3))(:) +([|>](\d*)[-+]?)(?=,
-          |,$| +#| *$)
-        beginCaptures:
-          "4":
-            name: string.other.quoted-or-unquoted.yaml-tmlanguage
-          "5":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "6":
-            name: keyword.other.match.yaml-tmlanguage
-          "7":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "8":
-            name: keyword.control.definition.yaml-tmlanguage
-          "9":
-            name: keyword.control.block.yaml-tmlanguage
-          "10":
-            name: constant.numeric.indentation-indicator.yaml-tmlanguage
-        contentName: meta.value.yaml-tmlanguage
-        end: ^(?! *$|\1\2  )
-        name: meta.match.block.yaml-tmlanguage
-        patterns:
-          - include: "#comment"
-          - include: source.oniregexp
-      - begin: (?:, +|\{ *|^ {2,}|^ *- +)((["']?)(match|begin|end)(\2))(:) +(["'])
-        beginCaptures:
-          "1":
-            name: string.other.quoted-or-unquoted.yaml-tmlanguage
-          "2":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "3":
-            name: keyword.other.match.yaml-tmlanguage
-          "4":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "5":
-            name: keyword.control.definition.yaml-tmlanguage
-          "6":
-            name: punctuation.definition.string.yaml-tmlanguage
-        contentName: meta.value.yaml-tmlanguage
-        end: \6(?!\6)
-        endCaptures:
-          "0":
-            name: punctuation.definition.string.yaml-tmlanguage
-        name: meta.match.yaml-tmlanguage
-        patterns:
-          - match: "''"
-          - match: '""'
-          - include: source.oniregexp
-      - begin:
-          (?:, +|\{ *|^ {2,}|^ *- +)((["']?)(match|begin|end)(\2))(:)(?:(?= +#)|
-          +(?!["'\[{]))
-        beginCaptures:
-          "1":
-            name: string.other.quoted-or-unquoted.yaml-tmlanguage
-          "2":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "3":
-            name: keyword.other.match.yaml-tmlanguage
-          "4":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "5":
-            name: keyword.control.definition.yaml-tmlanguage
-        contentName: meta.value.yaml-tmlanguage
-        end: (?=, |,$| +[#{\[]| *$| *})
-        name: meta.match.yaml-tmlanguage
-        patterns:
-          - include: source.oniregexp
-  name:
-    captures:
-      "1":
-        name: string.other.quoted-or-unquoted.yaml-tmlanguage
-      "2":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "3":
-        name: keyword.other.name.yaml-tmlanguage
-      "4":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "5":
-        name: keyword.control.definition.yaml-tmlanguage
-      "6":
-        name: meta.value.yaml-tmlanguage string.other.quoted-or-unquoted.yaml-tmlanguage
-      "7":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "8":
-        name: punctuation.definition.string.yaml-tmlanguage
-    match: (?:, +|\{ *|^ {2,}|^ *- +)((["']?)(contentName|name)(\2))(:)
-      +((["']?)[-\w\. ]*(\7))
-    name: meta.name.yaml-tmlanguage
-  name-main:
-    captures:
-      "1":
-        name: string.other.quoted-or-unquoted.yaml-tmlanguage
-      "2":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "3":
-        name: keyword.other.name.yaml-tmlanguage
-      "4":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "5":
-        name: keyword.control.definition.yaml-tmlanguage
-      "6":
-        name: entity.other.name.yaml-tmlanguage
-      "7":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "8":
-        name: punctuation.definition.string.yaml-tmlanguage
-    match: ^((["']?)(name)(\2))(:) +((["']?).*?(\7))(?=, |,$| +#| *$| *})
-    name: meta.name-main.yaml-tmlanguage
-  number-key:
-    captures:
-      "1":
-        name: string.other.quoted-or-unquoted.yaml-tmlanguage
-      "2":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "3":
-        name: constant.numeric.key.yaml-tmlanguage
-      "4":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "5":
-        name: keyword.control.definition.yaml-tmlanguage
-    match: (?:, +|\{ *|^ *)((["'])(\d+)(\2))(:)
-    name: meta.number-key.yaml-tmlanguage
-  other-markers:
-    patterns:
-      - begin: ^( *)?(?:-
-          +)?((["']?)(firstLineMatch|foldingStartMarker|foldingStopMarker)(\3))(:)
-          +([|>])(?=, |,$| +#| *$)
-        beginCaptures:
-          "2":
-            name: string.other.quoted-or-unquoted.yaml-tmlanguage
-          "3":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "4":
-            name: keyword.other.name.other-marker.yaml-tmlanguage
-          "5":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "6":
-            name: keyword.control.definition.yaml-tmlanguage
-          "7":
-            name: keyword.control.block.yaml-tmlanguage
-        contentName: meta.value.yaml-tmlanguage
-        end: ^(?! *$|\1 )
-        name: meta.other-marker.block.yaml-tmlanguage
-        patterns:
-          - include: "#comment"
-          - include: source.oniregexp
-      - begin: (?:, +|\{ *|^ {2,}|^ *-
-          +)?((["']?)(firstLineMatch|foldingStartMarker|foldingStopMarker)(\2))(:)
-          +(["'])
-        beginCaptures:
-          "1":
-            name: string.other.quoted-or-unquoted.yaml-tmlanguage
-          "2":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "3":
-            name: keyword.other.name.other-marker.yaml-tmlanguage
-          "4":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "5":
-            name: keyword.control.definition.yaml-tmlanguage
-          "6":
-            name: punctuation.definition.string.yaml-tmlanguage
-        contentName: meta.value.yaml-tmlanguage
-        end: \6(?!\6)
-        endCaptures:
-          "0":
-            name: punctuation.definition.string.yaml-tmlanguage
-        name: meta.other-marker.yaml-tmlanguage
-        patterns:
-          - match: "''"
-            name: test
-          - include: source.oniregexp
-      - begin: (?:, +|\{ *|^ {2,}|^ *-
-          +)?((["']?)(firstLineMatch|foldingStartMarker|foldingStopMarker)(\2))(:)
-          +(?!["'])
-        beginCaptures:
-          "1":
-            name: string.other.quoted-or-unquoted.yaml-tmlanguage
-          "2":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "3":
-            name: keyword.other.name.other-marker.yaml-tmlanguage
-          "4":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "5":
-            name: keyword.control.definition.yaml-tmlanguage
-        contentName: meta.value.yaml-tmlanguage
-        end: (?=, |,$| +[#{\['"]| *$| *})
-        name: meta.other-marker.yaml-tmlanguage
-        patterns:
-          - include: source.oniregexp
-  patterns:
-    captures:
-      "1":
-        name: string.other.quoted-or-unquoted.yaml-tmlanguage
-      "2":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "3":
-        name: support.type.patterns.patterns.yaml-tmlanguage
-      "4":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "5":
-        name: keyword.control.definition.yaml-tmlanguage
-    match: (?:, +|\{ *|^ *|^ *- +)((["']?)(patterns)(\2))(:)
-    name: meta.patterns.yaml-tmlanguage
-  repository:
+            name: punctuation.definition.comment.yaml
+        end: \n
+        name: comment.line.number-sign.yaml
+  directive:
+    begin: ^%
+    beginCaptures:
+      "0":
+        name: punctuation.definition.directive.begin.yaml
+    end: (?=$|[ \t]+($|#))
+    name: meta.directive.yaml
     patterns:
       - captures:
           "1":
-            name: string.other.quoted-or-unquoted.yaml-tmlanguage
+            name: keyword.other.directive.yaml.yaml
           "2":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "3":
-            name: entity.other.repository.yaml-tmlanguage
-          "4":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "5":
-            name: keyword.control.definition.yaml-tmlanguage
-        match: (?:, +|\{ *)((["']?)(repository)(\2))(:)
-        name: meta.repository.yaml-tmlanguage
-      - begin: ^((["']?)(repository)(\2))(:)
-        beginCaptures:
+            name: constant.numeric.yaml-version.yaml
+        match: \G(YAML)[ \t]+(\d+\.\d+)
+      - captures:
           "1":
-            name: string.other.quoted-or-unquoted.yaml-tmlanguage
+            name: keyword.other.directive.tag.yaml
           "2":
-            name: punctuation.definition.string.yaml-tmlanguage
+            name: storage.type.tag-handle.yaml
           "3":
-            name: entity.other.repository.yaml-tmlanguage
-          "4":
-            name: punctuation.definition.string.yaml-tmlanguage
-          "5":
-            name: keyword.control.definition.yaml-tmlanguage
-        end: ^(?!\s*($|#))(?=\S)
-        name: meta.repository-block.yaml-tmlanguage
+            name: support.type.tag-prefix.yaml
+        match: "(?x)\\G(TAG)(?:[ \\t]+((?:!(?:[0-9A-Za-z\\-]*!)?))(?:[ \\t]+
+          (!              (?x: %[0-9A-Fa-f]{2} |
+          [0-9A-Za-z\\-#;/?:@&=+$,_.!~*'()\\[\\]] )*|
+          (?![,!\\[\\]{}]) (?x: %[0-9A-Fa-f]{2} |
+          [0-9A-Za-z\\-#;/?:@&=+$,_.!~*'()\\[\\]] )+))?)?"
+      - captures:
+          "1":
+            name: support.other.directive.reserved.yaml
+          "2":
+            name: string.unquoted.directive-name.yaml
+          "3":
+            name: string.unquoted.directive-parameter.yaml
+        match: (?x) \G (\w+) (?:[ \t]+ (\w+) (?:[ \t]+ (\w+))? )?
+      - match: \S+
+        name: invalid.illegal.unrecognized.yaml
+  flow-alias:
+    captures:
+      "1":
+        name: keyword.control.flow.alias.yaml
+      "2":
+        name: punctuation.definition.alias.yaml
+      "3":
+        name: variable.other.alias.yaml
+      "4":
+        name: invalid.illegal.character.anchor.yaml
+    match: ((\*))([^\s\[\]/{/},]+)([^\s\]},]\S*)?
+  flow-collection:
+    patterns:
+      - include: "#flow-sequence"
+      - include: "#flow-mapping"
+  flow-mapping:
+    begin: \{
+    beginCaptures:
+      "0":
+        name: punctuation.definition.mapping.begin.yaml
+    end: \}
+    endCaptures:
+      "0":
+        name: punctuation.definition.mapping.end.yaml
+    name: meta.flow-mapping.yaml
+    patterns:
+      - include: "#prototype"
+      - match: ","
+        name: punctuation.separator.mapping.yaml
+      - include: "#flow-pair"
+  flow-node:
+    patterns:
+      - include: "#prototype"
+      - include: "#flow-alias"
+      - include: "#flow-collection"
+      - include: "#flow-scalar"
+  flow-pair:
+    patterns:
+      - begin: \?
+        beginCaptures:
+          "0":
+            name: punctuation.definition.key-value.begin.yaml
+        end: (?=[},\]])
+        name: meta.flow-pair.explicit.yaml
         patterns:
-          - include: "#comment"
-          - include: "#repository-key"
-          - include: "#patterns"
-          - include: "#captures"
-          - include: "#name"
-          - include: "#match"
-          - include: "#include"
-          - include: "#comment-from-key"
-          - include: "#number-key"
-          - include: "#comment"
-          - include: "#unmatched"
-          - include: "#illegal"
-  repository-key:
-    captures:
-      "2":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "3":
-        name: variable.other.repository-key.yaml-tmlanguage
-      "4":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "5":
-        name: keyword.control.definition.yaml-tmlanguage
-    match: (?:^  )((["']?)([-\w]+)(\2))(:)
-    name: meta.repository-key.yaml-tmlanguage
-  repository-key-inline:
-    captures:
-      "2":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "3":
-        name: variable.other.repository-key.yaml-tmlanguage
-      "4":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "5":
-        name: keyword.control.definition.yaml-tmlanguage
-    match: (?:, +|\{ *)((["']?)([-\w]+)(\2))(:)
-    name: meta.repository-key.yaml-tmlanguage
-  scope-name:
-    captures:
-      "1":
-        name: string.other.quoted-or-unquoted.yaml-tmlanguage
-      "2":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "3":
-        name: keyword.other.name.yaml-tmlanguage
-      "4":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "5":
-        name: keyword.control.definition.yaml-tmlanguage
-      "6":
-        name: meta.value.yaml-tmlanguage string.other.quoted-or-unquoted.yaml-tmlanguage
-      "7":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "8":
-        name: punctuation.definition.string.yaml-tmlanguage
-    match: (?:,|\{ *|^)((["']?)(scopeName)(\2))(:) +((["']?)[-\w\. ]*(\7))
-    name: meta.scope-name.yaml-tmlanguage
-  unmatched:
-    match: ^ *- |,(?= *$| +#)
-  uuid:
-    captures:
-      "1":
-        name: string.other.quoted-or-unquoted.yaml-tmlanguage
-      "2":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "3":
-        name: keyword.other.uuid.yaml-tmlanguage
-      "4":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "5":
-        name: keyword.control.definition.yaml-tmlanguage
-      "7":
-        name: punctuation.definition.string.yaml-tmlanguage
-      "8":
-        name: constant.numeric.uuid.yaml-tmlanguage
-      "9":
-        name: punctuation.definition.string.yaml-tmlanguage
-    match: (?:,|\{ *|^)((["']?)(uuid|bundleUUID)(\2))(:)
-      +((["']?)(\h{8}-\h{4}-\h{4}-\h{4}-\h{12})(\7))
-    name: meta.uuid.yaml-tmlanguage
+          - include: "#prototype"
+          - include: "#flow-pair"
+          - include: "#flow-node"
+          - begin: :(?=\s|$|[\[\]{},])
+            beginCaptures:
+              "0":
+                name: punctuation.separator.key-value.mapping.yaml
+            end: (?=[},\]])
+            patterns:
+              - include: "#flow-value"
+      - begin: "(?x)(?=(?:[^\\s[-?:,\\[\\]{}#&*!|>'\"%@`]]| [?:-]
+          [^\\s[\\[\\]{},]])([^\\s:[\\[\\]{},]]| :
+          [^\\s[\\[\\]{},]]| \\s+
+          (?![#\\s]))*\\s*:\t\t\t\t\t\t\t(\\s|$))"
+        end: "(?x)(?=\\s* $| \\s+ \\#| \\s* : (\\s|$)| \\s* : [\\[\\]{},]| \\s*
+          [\\[\\]{},])"
+        name: meta.flow-pair.key.yaml
+        patterns:
+          - include: "#flow-scalar-plain-in-implicit-type"
+          - begin: (?x)[^\s[-?:,\[\]{}#&*!|>'"%@`]]| [?:-] [^\s[\[\]{},]]
+            beginCaptures:
+              "0":
+                name: entity.name.tag.yaml
+            contentName: entity.name.tag.yaml
+            end:
+              "(?x)(?=\\s* $| \\s+ \\#| \\s* : (\\s|$)| \\s* : [\\[\\]{},]| \\s*
+              [\\[\\]{},])"
+            name: string.unquoted.plain.in.yaml
+      - include: "#flow-node"
+      - begin: :(?=\s|$|[\[\]{},])
+        captures:
+          "0":
+            name: punctuation.separator.key-value.mapping.yaml
+        end: (?=[},\]])
+        name: meta.flow-pair.yaml
+        patterns:
+          - include: "#flow-value"
+  flow-scalar:
+    patterns:
+      - include: "#flow-scalar-double-quoted"
+      - include: "#flow-scalar-single-quoted"
+      - include: "#flow-scalar-plain-in"
+  flow-scalar-double-quoted:
+    begin: '"'
+    beginCaptures:
+      "0":
+        name: punctuation.definition.string.begin.yaml
+    end: '"'
+    endCaptures:
+      "0":
+        name: punctuation.definition.string.end.yaml
+    name: string.quoted.double.yaml
+    patterns:
+      - match: \\([0abtnvfre "/\\N_Lp]|x\d\d|u\d{4}|U\d{8})
+        name: constant.character.escape.yaml
+      - match: \\\n
+        name: constant.character.escape.double-quoted.newline.yaml
+  flow-scalar-plain-in:
+    patterns:
+      - include: "#flow-scalar-plain-in-implicit-type"
+      - begin: (?x)[^\s[-?:,\[\]{}#&*!|>'"%@`]]| [?:-] [^\s[\[\]{},]]
+        end: "(?x)(?=\\s* $| \\s+ \\#| \\s* : (\\s|$)| \\s* : [\\[\\]{},]| \\s*
+          [\\[\\]{},])"
+        name: string.unquoted.plain.in.yaml
+  flow-scalar-plain-in-implicit-type:
+    patterns:
+      - captures:
+          "1":
+            name: constant.language.null.yaml
+          "2":
+            name: constant.language.boolean.yaml
+          "3":
+            name: constant.numeric.integer.yaml
+          "4":
+            name: constant.numeric.float.yaml
+          "5":
+            name: constant.other.timestamp.yaml
+          "6":
+            name: constant.language.value.yaml
+          "7":
+            name: constant.language.merge.yaml
+        match: "(?x)(?x:(null|Null|NULL|~)|
+          (y|Y|yes|Yes|YES|n|N|no|No|NO|true|True|TRUE|false|Fa\
+          lse|FALSE|on|On|ON|off|Off|OFF)
+
+          \                            \
+          | (
+
+          \                                \
+          (?:
+
+          \                                      \
+          [-+]? 0b [0-1_]+ # (base 2)
+
+          \                                    \
+          | [-+]? 0  [0-7_]+ # (base 8)
+
+          \                                    \
+          | [-+]? (?: 0|[1-9][0-9_]*) # (base 10)
+
+          \                                    \
+          | [-+]? 0x [0-9a-fA-F_]+ # (base 16)
+
+          \                                    \
+          | [-+]? [1-9] [0-9_]* (?: :[0-5]?[0-9])+ # (base 60)
+
+          \                                \
+          )
+
+          \                              \
+          )
+
+          \                            \
+          | (
+
+          \                                \
+          (?x:
+
+          \                                      \
+          [-+]? (?: [0-9] [0-9_]*)? \\. [0-9.]* (?: [eE] [-+]
+          [0-9]+)? # (base 10)
+
+          \                                    \
+          | [-+]? [0-9] [0-9_]* (?: :[0-5]?[0-9])+ \\. [0-9_]* #
+          (base 60)
+
+          \                                    \
+          | [-+]? \\. (?: inf|Inf|INF) # (infinity)
+
+          \                                    \
+          |       \\. (?: nan|NaN|NAN) # (not a number)
+
+          \                                \
+          )
+
+          \                              \
+          )
+
+          \                            \
+          | (
+
+          \                                \
+          (?x:
+
+          \                                    \
+          \\d{4} - \\d{2} - \\d{2}           # (y-m-d)
+
+          \                                  \
+          | \\d{4}                           # (year)
+
+          \                                    \
+          - \\d{1,2}                       # (month)
+
+          \                                    \
+          - \\d{1,2}                       # (day)
+
+          \                                    \
+          (?: [Tt] | [ \\t]+) \\d{1,2}      # (hour)
+
+          \                                    \
+          : \\d{2}                         # (minute)
+
+          \                                    \
+          : \\d{2}                         # (second)
+
+          \                                    \
+          (?: \\.\\d*)?                     # (fraction)
+
+          \                                    \
+          (?:
+
+          \                                          \
+          (?:[ \\t]*) Z
+
+          \                                        \
+          | [-+] \\d{1,2} (?: :\\d{1,2})?
+
+          \                                    \
+          )?                              # (time zone)
+
+          \                                \
+          )
+
+          \                              \
+          )
+
+          \                            \
+          | (=)
+
+          \                            \
+          | (<<)
+
+          \                        )
+
+          \                        (?:
+
+          \                            \
+          (?=
+
+          \                                  \
+          \\s* $
+
+          \                                \
+          | \\s+ \\#
+
+          \                                \
+          | \\s* : (\\s|$)
+
+          \                                \
+          | \\s* : [\\[\\]{},]
+
+          \                                \
+          | \\s* [\\[\\]{},]
+
+          \                            \
+          )
+
+          \                        )
+
+          \                    "
+  flow-scalar-plain-out:
+    patterns:
+      - include: "#flow-scalar-plain-out-implicit-type"
+      - begin: "(?x)
+          \                          \
+          [^\\s[-?:,\\[\\]{}#&*!|>'\"%@`]]
+          \                        |
+          [?:-] \\S
+          \                    "
+        end: "(?x)
+
+          \                        (?=
+
+          \                              \
+          \\s* $
+
+          \                            \
+          | \\s+ \\#
+
+          \                            \
+          | \\s* : (\\s|$)
+
+          \                        )
+
+          \                    "
+        name: string.unquoted.plain.out.yaml
+  flow-scalar-plain-out-implicit-type:
+    patterns:
+      - captures:
+          "1":
+            name: constant.language.null.yaml
+          "2":
+            name: constant.language.boolean.yaml
+          "3":
+            name: constant.numeric.integer.yaml
+          "4":
+            name: constant.numeric.float.yaml
+          "5":
+            name: constant.other.timestamp.yaml
+          "6":
+            name: constant.language.value.yaml
+          "7":
+            name: constant.language.merge.yaml
+        match: "(?x)
+
+          \                        (?\
+          x:
+
+          \                              \
+          (null|Null|NULL|~)
+
+          \                            \
+          | (y|Y|yes|Yes|YES|n|N|no|No|NO|true|True|TRUE|false|\
+          False|FALSE|on|On|ON|off|Off|OFF)
+
+          \                            \
+          | (
+
+          \                                \
+          (?:
+
+          \                                      \
+          [-+]? 0b [0-1_]+ # (base 2)
+
+          \                                    \
+          | [-+]? 0  [0-7_]+ # (base 8)
+
+          \                                    \
+          | [-+]? (?: 0|[1-9][0-9_]*) # (base 10)
+
+          \                                    \
+          | [-+]? 0x [0-9a-fA-F_]+ # (base 16)
+
+          \                                    \
+          | [-+]? [1-9] [0-9_]* (?: :[0-5]?[0-9])+ # (base 60)
+
+          \                                \
+          )
+
+          \                              \
+          )
+
+          \                            \
+          | (
+
+          \                                \
+          (?x:
+
+          \                                      \
+          [-+]? (?: [0-9] [0-9_]*)? \\. [0-9.]* (?: [eE] [-+]
+          [0-9]+)? # (base 10)
+
+          \                                    \
+          | [-+]? [0-9] [0-9_]* (?: :[0-5]?[0-9])+ \\. [0-9_]* #
+          (base 60)
+
+          \                                    \
+          | [-+]? \\. (?: inf|Inf|INF) # (infinity)
+
+          \                                    \
+          |       \\. (?: nan|NaN|NAN) # (not a number)
+
+          \                                \
+          )
+
+          \                              \
+          )
+
+          \                            \
+          | (
+
+          \                                \
+          (?x:
+
+          \                                    \
+          \\d{4} - \\d{2} - \\d{2}           # (y-m-d)
+
+          \                                  \
+          | \\d{4}                           # (year)
+
+          \                                    \
+          - \\d{1,2}                       # (month)
+
+          \                                    \
+          - \\d{1,2}                       # (day)
+
+          \                                    \
+          (?: [Tt] | [ \\t]+) \\d{1,2}      # (hour)
+
+          \                                    \
+          : \\d{2}                         # (minute)
+
+          \                                    \
+          : \\d{2}                         # (second)
+
+          \                                    \
+          (?: \\.\\d*)?                     # (fraction)
+
+          \                                    \
+          (?:
+
+          \                                          \
+          (?:[ \\t]*) Z
+
+          \                                        \
+          | [-+] \\d{1,2} (?: :\\d{1,2})?
+
+          \                                    \
+          )?                              # (time zone)
+
+          \                                \
+          )
+
+          \                              \
+          )
+
+          \                            \
+          | (=)
+
+          \                            \
+          | (<<)
+
+          \                        )
+
+          \                        (?\
+          x:
+
+          \                            \
+          (?=
+
+          \                                  \
+          \\s* $
+
+          \                                \
+          | \\s+ \\#
+
+          \                                \
+          | \\s* : (\\s|$)
+
+          \                            \
+          )
+
+          \                        )
+
+          \                    "
+  flow-scalar-single-quoted:
+    begin: "'"
+    beginCaptures:
+      "0":
+        name: punctuation.definition.string.begin.yaml
+    end: "'(?!')"
+    endCaptures:
+      "0":
+        name: punctuation.definition.string.end.yaml
+    name: string.quoted.single.yaml
+    patterns:
+      - match: "''"
+        name: constant.character.escape.single-quoted.yaml
+  flow-sequence:
+    begin: \[
+    beginCaptures:
+      "0":
+        name: punctuation.definition.sequence.begin.yaml
+    end: \]
+    endCaptures:
+      "0":
+        name: punctuation.definition.sequence.end.yaml
+    name: meta.flow-sequence.yaml
+    patterns:
+      - include: "#prototype"
+      - match: ","
+        name: punctuation.separator.sequence.yaml
+      - include: "#flow-pair"
+      - include: "#flow-node"
+  flow-value:
+    patterns:
+      - begin: \G(?![},\]])
+        end: (?=[},\]])
+        name: meta.flow-pair.value.yaml
+        patterns:
+          - include: "#flow-node"
+  node:
+    patterns:
+      - include: "#block-node"
+  property:
+    begin: (?=!|&)
+    end: (?!\G)
+    name: meta.property.yaml
+    patterns:
+      - match: '(!lambda) ("(.*)"|(.*))'
+        captures:
+          "1":
+            name: keyword.control.directive.tag.yaml
+          "3":
+            name: meta.embedded.block.cpp
+            patterns:
+              - include: source.cpp
+          "4":
+            name: meta.embedded.block.cpp
+            patterns:
+              - include: source.cpp
+      - captures:
+          "1":
+            name: keyword.control.property.anchor.yaml
+          "2":
+            name: punctuation.definition.anchor.yaml
+          "3":
+            name: entity.name.type.anchor.yaml
+          "4":
+            name: invalid.illegal.character.anchor.yaml
+        match: \G((&))([^\s\[\]/{/},]+)(\S+)?
+      - match: "(?x) \\G (?:! < (?: %[0-9A-Fa-f]{2} |
+          [0-9A-Za-z\\-#;/?:@&=+$,_.!~*'()\\[\\]] )+ >|
+          (?:!(?:[0-9A-Za-z\\-]*!)?) (?: %[0-9A-Fa-f]{2} |
+          [0-9A-Za-z\\-#;/?:@&=+$_.~*'()] )+| !)(?=\\ |\\t|$)"
+        name: keyword.control.directive.tag.yaml
+      - match: \S+
+        name: invalid.illegal.tag-handle.yaml
+  prototype:
+    patterns:
+      - include: "#comment"
+      - include: "#property"

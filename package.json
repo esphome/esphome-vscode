@@ -62,14 +62,14 @@
     ],
     "grammars": [
       {
-        "source.cpp": "cpp",
         "language": "esphome",
         "scopeName": "source.yaml-esphome",
         "path": "./yaml-language/yaml.tmLanguage.json",
         "embeddedLanguages": {
-          "cpp.lambda.directive.tag.yaml": "cpp"
+          "source.cpp": "cpp",
+          "meta.embedded.block.cpp": "cpp"
         },
-        "tokenTypes": {
+        "_tokenTypes": {
           "cpp.lambda.directive.tag.yaml": "other"
         }
       }
