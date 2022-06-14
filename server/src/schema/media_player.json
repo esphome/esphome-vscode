@@ -19,10 +19,11 @@
       },
       "MEDIA_PLAYER_ACTION_SCHEMA": {
         "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required",
+              "key": "GeneratedID",
               "use_id_type": "media_player::MediaPlayer",
               "type": "use_id"
             }
@@ -31,6 +32,24 @@
       }
     },
     "action": {
+      "volume_down": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "media_player.MEDIA_PLAYER_ACTION_SCHEMA"
+          ]
+        },
+        "docs": "This action will decrease the volume of the media player.\n\n*See also: [Media Player Components](https://esphome.io/components/media_player/index.html#media-player-volume-down-action)*"
+      },
+      "volume_up": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "media_player.MEDIA_PLAYER_ACTION_SCHEMA"
+          ]
+        },
+        "docs": "This action will increase the volume of the media player.\n\n*See also: [Media Player Components](https://esphome.io/components/media_player/index.html#media-player-volume-up-action)*"
+      },
       "stop": {
         "type": "schema",
         "schema": {
@@ -49,6 +68,15 @@
         },
         "docs": "This action pauses the current playback.\n\n*See also: [Media Player Components](https://esphome.io/components/media_player/index.html#media-player-pause-action)*"
       },
+      "toggle": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "media_player.MEDIA_PLAYER_ACTION_SCHEMA"
+          ]
+        },
+        "docs": "This action will pause or resume the current playback.\n\n*See also: [Media Player Components](https://esphome.io/components/media_player/index.html#media-player-toggle-action)*"
+      },
       "play": {
         "type": "schema",
         "schema": {
@@ -57,6 +85,24 @@
           ]
         },
         "docs": "This action will resume playing the media player. A future change will allow specifying the `media_url` for starting a new stream.\n\n*See also: [Media Player Components](https://esphome.io/components/media_player/index.html#media-player-play-action)*"
+      },
+      "volume_set": {
+        "type": "schema",
+        "maybe": "volume",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "use_id_type": "media_player::MediaPlayer",
+              "type": "use_id"
+            },
+            "volume": {
+              "key": "Required",
+              "templatable": true
+            }
+          }
+        },
+        "docs": "This action will set the volume of the media player.\n\n*See also: [Media Player Components](https://esphome.io/components/media_player/index.html#media-player-volume-set-action)*"
       }
     }
   }

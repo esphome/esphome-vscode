@@ -27,7 +27,8 @@
               "type": "enum",
               "values": [
                 "M5STACK",
-                "TFT_2.4"
+                "TFT_2.4",
+                "TFT_2.4R"
               ],
               "docs": "The model of the display. Options are:\n  * `M5STACK`\n  \n  * `TFT 2.4`\n  \n  * `TFT 2.4R`  (ILI9342)\n  \n  \n\n*See also: [ILI9341 TFT LCD](https://esphome.io/components/display/ili9341.html#configuration-variables)*"
             },

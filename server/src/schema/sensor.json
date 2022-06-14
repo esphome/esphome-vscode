@@ -336,6 +336,9 @@
         "docs": "The `MAX31856` temperature sensor allows you to use your MAX31856 Thermocouple temperature sensor ([datasheet](https://datasheets.maximintegrated.com/en/ds/MAX31856.pdf)) with ESPHome\n\n*See also: [MAX31856 Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31856.html#max31856-thermocouple-temperature-sensor)*"
       },
       "max31865": {
+        "dependencies": [
+          "spi"
+        ],
         "docs": "The `max31865` temperature sensor allows you to use your max31865 RTD temperature sensor ([datasheet](https://datasheets.maximintegrated.com/en/ds/MAX31865.pdf)) with ESPHome\n\n*See also: [MAX31865 Platinum RTD Temperature Sensor](https://esphome.io/components/sensor/max31865.html#max31865-platinum-rtd-temperature-sensor)*"
       },
       "max44009": {

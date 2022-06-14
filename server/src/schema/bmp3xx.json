@@ -46,7 +46,7 @@
                       "4X",
                       "8X",
                       "16X",
-                      "32x"
+                      "32X"
                     ],
                     "docs": "The oversampling parameter for the temperature sensor. See [Oversampling Options](https://esphome.io/components/sensor/bmp3xx.html#bmp3xx-oversampling).\n\n*See also: [BMP388 / BMP390 Temperature+Pressure Sensor](https://esphome.io/components/sensor/bmp3xx.html#configuration-variables)*"
                   }
@@ -84,7 +84,7 @@
                       "4X",
                       "8X",
                       "16X",
-                      "32x"
+                      "32X"
                     ],
                     "docs": "The oversampling parameter for the temperature sensor. See [Oversampling Options](https://esphome.io/components/sensor/bmp3xx.html#bmp3xx-oversampling).\n\n*See also: [BMP388 / BMP390 Temperature+Pressure Sensor](https://esphome.io/components/sensor/bmp3xx.html#configuration-variables)*"
                   }
