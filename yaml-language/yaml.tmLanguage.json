@@ -1,10 +1,4 @@
 {
-  "information_for_contributors": [
-    "This file has been converted from https://github.com/textmate/yaml.tmbundle/blob/master/Syntaxes/YAML.tmLanguage",
-    "If you want to provide a fix or improvement, please create a pull request against the original repository.",
-    "Once accepted there, we are happy to receive an update request."
-  ],
-  "version": "https://github.com/textmate/yaml.tmbundle/commit/e54ceae3b719506dba7e481a77cea4a8b576ae46",
   "name": "YAML",
   "scopeName": "source.yaml-esphome",
   "patterns": [
@@ -107,12 +101,24 @@
               "name": "string.quoted.yaml"
             },
             "1": {
-              "name": "entity.name.function.lambda.yaml-esphome"
+              "name": "entity.name.tag.yaml"
             },
             "2": {
               "name": "keyword.control.directive.tag.yaml"
             },
             "3": {
+              "name": "keyword.control.flow.block-scalar.literal.yaml"
+            },
+            "4": {
+              "name": "keyword.control.flow.block-scalar.folded.yaml"
+            },
+            "5": {
+              "name": "constant.numeric.indentation-indicator.yaml"
+            },
+            "6": {
+              "name": "storage.modifier.chomping-indicator.yaml"
+            },
+            "7": {
               "patterns": [
                 {
                   "include": "#comment"
@@ -145,7 +151,7 @@
               "name": "string.quoted.yaml"
             },
             "1": {
-              "name": "entity.name.function.lambda.yaml-esphome"
+              "name": "entity.name.tag.yaml"
             },
             "2": {
               "name": "keyword.control.directive.tag.yaml"
