@@ -63,7 +63,7 @@
             }
           }
         },
-        "docs": "Send a SMS message to a phone recipient using this action in automations.\n\n*See also: [on_sms_received Trigger](https://esphome.io/components/sim800l.html#sim800l-send-sms-action)*"
+        "docs": "Send a SMS message to a phone recipient using this action in automations.\n\n*See also: [`sim800l.send_sms` Action](https://esphome.io/components/sim800l.html#sim800l-send-sms-action)*"
       },
       "dial": {
         "type": "schema",
@@ -83,7 +83,7 @@
             }
           }
         },
-        "docs": "Dial to a phone recipient using this action in automations.\n\n*See also: [on_sms_received Trigger](https://esphome.io/components/sim800l.html#sim800l-dial-action)*"
+        "docs": "Dial to a phone recipient using this action in automations.\n\n*See also: [`sim800l.dial` Action](https://esphome.io/components/sim800l.html#sim800l-dial-action)*"
       }
     }
   },

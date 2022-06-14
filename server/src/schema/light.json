@@ -14,10 +14,10 @@
         "docs": "The `cwww` light platform creates a cold white + warm white light from 2 [float output components](https://esphome.io/components/output/index.html#output) (one for each channel). The two channels can be controlled individually or together.\n\n*See also: [Cold White + Warm White Light](https://esphome.io/components/light/cwww.html#cold-white-warm-white-light)*"
       },
       "fastled_clockless": {
-        "docs": "The `fastled_clockless` light platform allows you to create RGB lights in ESPHome for a [number of supported chipsets](https://esphome.io/components/light/fastled.html#fastled-clockless-chipsets).\n\n*See also: [FastLED Light](https://esphome.io/components/light/fastled.html#clockless)*"
+        "docs": "The `fastled_clockless` light platform allows you to create RGB lights in ESPHome for a [number of supported chipsets](https://esphome.io/components/light/fastled.html#fastled-clockless-chipsets).\n\n*See also: [Clockless](https://esphome.io/components/light/fastled.html#clockless)*"
       },
       "fastled_spi": {
-        "docs": "The `fastled_spi` light platform allows you to create RGB lights in ESPHome for a [number of supported chipsets](https://esphome.io/components/light/fastled.html#fastled-spi-chipsets).\n\n*See also: [Clockless](https://esphome.io/components/light/fastled.html#spi)*"
+        "docs": "The `fastled_spi` light platform allows you to create RGB lights in ESPHome for a [number of supported chipsets](https://esphome.io/components/light/fastled.html#fastled-spi-chipsets).\n\n*See also: [SPI](https://esphome.io/components/light/fastled.html#spi)*"
       },
       "hbridge": {
         "docs": "The `hbridge` light platform creates a dual color brightness controlled light from two [float output component](https://esphome.io/components/output/index.html#output).\n\n*See also: [H-bridge Light](https://esphome.io/components/light/hbridge.html#h-bridge-light)*"
@@ -342,7 +342,7 @@
             }
           }
         },
-        "docs": "This action toggles a light with the given ID when executed.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#light-toggle-action)*"
+        "docs": "This action toggles a light with the given ID when executed.\n\n*See also: [`light.toggle` Action](https://esphome.io/components/light/index.html#light-toggle-action)*"
       },
       "control": {
         "type": "schema",
@@ -438,7 +438,7 @@
             }
           }
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) is a generic call to change the state of a light - it is essentially just a combination of the turn_on and turn_off calls.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#light-control-action)*"
+        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) is a generic call to change the state of a light - it is essentially just a combination of the turn_on and turn_off calls.\n\n*See also: [`light.control` Action](https://esphome.io/components/light/index.html#light-control-action)*"
       },
       "turn_on": {
         "type": "schema",
@@ -557,7 +557,7 @@
             }
           }
         },
-        "docs": "This action turns a light with the given ID on when executed.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#light-turn-on-action)*"
+        "docs": "This action turns a light with the given ID on when executed.\n\n*See also: [`light.turn_on` Action](https://esphome.io/components/light/index.html#light-turn-on-action)*"
       },
       "turn_off": {
         "type": "schema",
@@ -587,7 +587,7 @@
             }
           }
         },
-        "docs": "This action turns a light with the given ID off when executed.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#light-turn-off-action)*"
+        "docs": "This action turns a light with the given ID off when executed.\n\n*See also: [`light.turn_off` Action](https://esphome.io/components/light/index.html#light-turn-off-action)*"
       },
       "dim_relative": {
         "type": "schema",
@@ -617,7 +617,7 @@
             }
           }
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to dim a light that supports brightness by a relative amount.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#light-dim-relative-action)*"
+        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to dim a light that supports brightness by a relative amount.\n\n*See also: [`light.dim_relative` Action](https://esphome.io/components/light/index.html#light-dim-relative-action)*"
       },
       "addressable_set": {
         "type": "schema",
@@ -670,7 +670,7 @@
             }
           }
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to manually set a range of LEDs on an addressable light to a specific color.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#light-addressable-set-action)*"
+        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to manually set a range of LEDs on an addressable light to a specific color.\n\n*See also: [`light.addressable_set` Action](https://esphome.io/components/light/index.html#light-addressable-set-action)*"
       }
     },
     "condition": {
@@ -723,7 +723,7 @@
             }
           }
         },
-        "docs": "This effect allows you to write completely custom light effects yourself using [lambdas](https://esphome.io/guides/automations.html#config-lambda).\n\n*See also: [Flicker Effect](https://esphome.io/components/light/index.html#lambda-effect)*"
+        "docs": "This effect allows you to write completely custom light effects yourself using [lambdas](https://esphome.io/guides/automations.html#config-lambda).\n\n*See also: [Lambda Effect](https://esphome.io/components/light/index.html#lambda-effect)*"
       },
       "automation": {
         "type": "schema",
@@ -742,7 +742,7 @@
             }
           }
         },
-        "docs": "Additionally to the `lambda` and `addressable_lambda` light effects, effects can also be written through ESPHome\u2019s [Automation](https://esphome.io/guides/automations.html#automation) system with the `automation` effect type.\n\n*See also: [Addressable Lambda Effect](https://esphome.io/components/light/index.html#automation-light-effect)*"
+        "docs": "Additionally to the `lambda` and `addressable_lambda` light effects, effects can also be written through ESPHome\u2019s [Automation](https://esphome.io/guides/automations.html#automation) system with the `automation` effect type.\n\n*See also: [Automation Light Effect](https://esphome.io/components/light/index.html#automation-light-effect)*"
       },
       "pulse": {
         "type": "schema",
@@ -778,7 +778,7 @@
             }
           }
         },
-        "docs": "This effect makes a pulsating light. The period can be defined by `update_interval`, the transition length with `transition_length`. `transition_length` should be set to less than `update_interval`, setting `transition_length` to `1s` and `update_interval` to `2s` will result in a transition from 0% to 100% lasting 1 second, 1 second full light, a transition from 100% to 0% for 1 second and off for 1 second.\n\n*See also: [light.on_state Trigger](https://esphome.io/components/light/index.html#pulse-effect)*"
+        "docs": "This effect makes a pulsating light. The period can be defined by `update_interval`, the transition length with `transition_length`. `transition_length` should be set to less than `update_interval`, setting `transition_length` to `1s` and `update_interval` to `2s` will result in a transition from 0% to 100% lasting 1 second, 1 second full light, a transition from 100% to 0% for 1 second and off for 1 second.\n\n*See also: [Pulse Effect](https://esphome.io/components/light/index.html#pulse-effect)*"
       },
       "random": {
         "type": "schema",
@@ -814,7 +814,7 @@
             }
           }
         },
-        "docs": "This effect makes a transition (of length `transition_length`) to a randomly-chosen color every `update_interval`.\n\n*See also: [Pulse Effect](https://esphome.io/components/light/index.html#random-effect)*"
+        "docs": "This effect makes a transition (of length `transition_length`) to a randomly-chosen color every `update_interval`.\n\n*See also: [Random Effect](https://esphome.io/components/light/index.html#random-effect)*"
       },
       "strobe": {
         "type": "schema",
@@ -915,7 +915,7 @@
             }
           }
         },
-        "docs": "This effect cycles through a list of colors with specific durations.\n\n*See also: [Random Effect](https://esphome.io/components/light/index.html#strobe-effect)*"
+        "docs": "This effect cycles through a list of colors with specific durations.\n\n*See also: [Strobe Effect](https://esphome.io/components/light/index.html#strobe-effect)*"
       },
       "flicker": {
         "type": "schema",
@@ -939,7 +939,7 @@
             }
           }
         },
-        "docs": "This effect \u201chovers\u201d around the active color of the light and flickers each color channel a bit.\n\n*See also: [Strobe Effect](https://esphome.io/components/light/index.html#flicker-effect)*"
+        "docs": "This effect \u201chovers\u201d around the active color of the light and flickers each color channel a bit.\n\n*See also: [Flicker Effect](https://esphome.io/components/light/index.html#flicker-effect)*"
       },
       "addressable_lambda": {
         "type": "schema",
@@ -965,7 +965,7 @@
             }
           }
         },
-        "docs": "This effect allows you to access each LED individually in a custom light effect.\n\n*See also: [Addressable Flicker Effect](https://esphome.io/components/light/index.html#addressable-lambda-effect)*"
+        "docs": "This effect allows you to access each LED individually in a custom light effect.\n\n*See also: [Addressable Lambda Effect](https://esphome.io/components/light/index.html#addressable-lambda-effect)*"
       },
       "addressable_rainbow": {
         "type": "schema",
@@ -993,7 +993,7 @@
             }
           }
         },
-        "docs": "A light effect for individually-addressable LEDs that creates a moving rainbow over the whole LED strip using the HSV color wheel.\n\n*See also: [Lambda Effect](https://esphome.io/components/light/index.html#addressable-rainbow-effect)*"
+        "docs": "A light effect for individually-addressable LEDs that creates a moving rainbow over the whole LED strip using the HSV color wheel.\n\n*See also: [Addressable Rainbow Effect](https://esphome.io/components/light/index.html#addressable-rainbow-effect)*"
       },
       "addressable_color_wipe": {
         "type": "schema",
@@ -1066,7 +1066,7 @@
             }
           }
         },
-        "docs": "A light effect for individually-addressable LEDs that continuously introduces new colors at the beginning of the strip and shifts them forward every `add_led_interval`.\n\n*See also: [Addressable Rainbow Effect](https://esphome.io/components/light/index.html#addressable-color-wipe-effect)*"
+        "docs": "A light effect for individually-addressable LEDs that continuously introduces new colors at the beginning of the strip and shifts them forward every `add_led_interval`.\n\n*See also: [Addressable Color Wipe Effect](https://esphome.io/components/light/index.html#addressable-color-wipe-effect)*"
       },
       "addressable_scan": {
         "type": "schema",
@@ -1097,7 +1097,7 @@
             }
           }
         },
-        "docs": "Create a single, fast-moving dot moving back and forth an individually-addressable LED strip. The color is chosen by the currently active light color.\n\n*See also: [Addressable Color Wipe Effect](https://esphome.io/components/light/index.html#addressable-scan-effect)*"
+        "docs": "Create a single, fast-moving dot moving back and forth an individually-addressable LED strip. The color is chosen by the currently active light color.\n\n*See also: [Addressable Scan Effect](https://esphome.io/components/light/index.html#addressable-scan-effect)*"
       },
       "addressable_twinkle": {
         "type": "schema",
@@ -1127,7 +1127,7 @@
             }
           }
         },
-        "docs": "A light effect for individually-addressable LED strips that randomly chooses some LEDs and let\u2019s them bright up for a moment, like a stars twinkling in the night\u2019s sky. The color of the pixels will be chosen by the currently active light color.\n\n*See also: [Addressable Scan Effect](https://esphome.io/components/light/index.html#addressable-twinkle-effect)*"
+        "docs": "A light effect for individually-addressable LED strips that randomly chooses some LEDs and let\u2019s them bright up for a moment, like a stars twinkling in the night\u2019s sky. The color of the pixels will be chosen by the currently active light color.\n\n*See also: [Addressable Twinkle Effect](https://esphome.io/components/light/index.html#addressable-twinkle-effect)*"
       },
       "addressable_random_twinkle": {
         "type": "schema",
@@ -1157,7 +1157,7 @@
             }
           }
         },
-        "docs": "A light effect similar to `addressable_twinkle`, but using random colors for each twinkle animation.\n\n*See also: [Addressable Twinkle Effect](https://esphome.io/components/light/index.html#addressable-random-twinkle-effect)*"
+        "docs": "A light effect similar to `addressable_twinkle`, but using random colors for each twinkle animation.\n\n*See also: [Addressable Random Twinkle Effect](https://esphome.io/components/light/index.html#addressable-random-twinkle-effect)*"
       },
       "addressable_fireworks": {
         "type": "schema",
@@ -1200,7 +1200,7 @@
             }
           }
         },
-        "docs": "A light effect for individually-addressable LED strips that randomly sparks some fireworks at random positions and lets the sparkles cascade over the LED strip.\n\n*See also: [Addressable Random Twinkle Effect](https://esphome.io/components/light/index.html#addressable-fireworks-effect)*"
+        "docs": "A light effect for individually-addressable LED strips that randomly sparks some fireworks at random positions and lets the sparkles cascade over the LED strip.\n\n*See also: [Addressable Fireworks Effect](https://esphome.io/components/light/index.html#addressable-fireworks-effect)*"
       },
       "addressable_flicker": {
         "type": "schema",
@@ -1230,7 +1230,7 @@
             }
           }
         },
-        "docs": "An effect similar to the `flicker` effect, but for individually-addressable LED strips. This effect flickers each LED by its own random amount around the currently active light color.\n\n*See also: [Addressable Fireworks Effect](https://esphome.io/components/light/index.html#addressable-flicker-effect)*"
+        "docs": "An effect similar to the `flicker` effect, but for individually-addressable LED strips. This effect flickers each LED by its own random amount around the currently active light color.\n\n*See also: [Addressable Flicker Effect](https://esphome.io/components/light/index.html#addressable-flicker-effect)*"
       },
       "adalight": {
         "type": "schema",
@@ -1249,7 +1249,7 @@
             }
           }
         },
-        "docs": "This effect enables controlling addressable lights using UART-based [Adalight](https://learn.adafruit.com/adalight-diy-ambient-tv-lighting) protocol, allowing to create realtime ambient lighting effects.\n\n*See also: [E1.31 Component](https://esphome.io/components/light/index.html#adalight-effect)*"
+        "docs": "This effect enables controlling addressable lights using UART-based [Adalight](https://learn.adafruit.com/adalight-diy-ambient-tv-lighting) protocol, allowing to create realtime ambient lighting effects.\n\n*See also: [Adalight Effect](https://esphome.io/components/light/index.html#adalight-effect)*"
       },
       "e131": {
         "type": "schema",
@@ -1283,7 +1283,7 @@
             }
           }
         },
-        "docs": "This effect enables controlling addressable lights using UDP-based [E1.31](https://www.doityourselfchristmas.com/wiki/index.php?title=E1.31_(Streaming-ACN)_Protocol) protocol.\n\n*See also: [Automation Light Effect](https://esphome.io/components/light/index.html#e1-31-effect)*"
+        "docs": "This effect enables controlling addressable lights using UDP-based [E1.31](https://www.doityourselfchristmas.com/wiki/index.php?title=E1.31_(Streaming-ACN)_Protocol) protocol.\n\n*See also: [E1.31 Effect](https://esphome.io/components/light/index.html#e1-31-effect)*"
       },
       "wled": {
         "type": "schema",
@@ -1303,7 +1303,7 @@
             }
           }
         },
-        "docs": "This effect enables controlling addressable lights using UDP-based [UDP Realtime Control](https://github.com/Aircoookie/WLED/wiki/UDP-Realtime-Control) protocol used by [WLED](https://github.com/Aircoookie/WLED/wiki/UDP-Realtime-Control), allowing to create realtime ambient lighting effects.\n\n*See also: [Adalight Effect](https://esphome.io/components/light/index.html#wled-effect)*"
+        "docs": "This effect enables controlling addressable lights using UDP-based [UDP Realtime Control](https://github.com/Aircoookie/WLED/wiki/UDP-Realtime-Control) protocol used by [WLED](https://github.com/Aircoookie/WLED/wiki/UDP-Realtime-Control), allowing to create realtime ambient lighting effects.\n\n*See also: [WLED Effect](https://esphome.io/components/light/index.html#wled-effect)*"
       }
     }
   }

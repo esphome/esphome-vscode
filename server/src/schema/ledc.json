@@ -63,7 +63,7 @@
             }
           }
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to manually change the frequency of an LEDC channel at runtime. Use cases include controlling a passive buzzer (for pitch control).\n\n*See also: [ESP32 LEDC Output](https://esphome.io/components/output/ledc.html#output-ledc-set-frequency-action)*"
+        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to manually change the frequency of an LEDC channel at runtime. Use cases include controlling a passive buzzer (for pitch control).\n\n*See also: [`output.ledc.set_frequency` Action](https://esphome.io/components/output/ledc.html#output-ledc-set-frequency-action)*"
       }
     }
   }

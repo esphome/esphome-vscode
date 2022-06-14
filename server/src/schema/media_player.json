@@ -39,7 +39,7 @@
             "media_player.MEDIA_PLAYER_ACTION_SCHEMA"
           ]
         },
-        "docs": "This action will decrease the volume of the media player.\n\n*See also: [Media Player Components](https://esphome.io/components/media_player/index.html#media-player-volume-down-action)*"
+        "docs": "This action will decrease the volume of the media player.\n\n*See also: [`media_player.volume_down` Action](https://esphome.io/components/media_player/index.html#media-player-volume-down-action)*"
       },
       "volume_up": {
         "type": "schema",
@@ -48,7 +48,7 @@
             "media_player.MEDIA_PLAYER_ACTION_SCHEMA"
           ]
         },
-        "docs": "This action will increase the volume of the media player.\n\n*See also: [Media Player Components](https://esphome.io/components/media_player/index.html#media-player-volume-up-action)*"
+        "docs": "This action will increase the volume of the media player.\n\n*See also: [`media_player.volume_up` Action](https://esphome.io/components/media_player/index.html#media-player-volume-up-action)*"
       },
       "stop": {
         "type": "schema",
@@ -57,7 +57,7 @@
             "media_player.MEDIA_PLAYER_ACTION_SCHEMA"
           ]
         },
-        "docs": "This action stops the current playback.\n\n*See also: [Media Player Components](https://esphome.io/components/media_player/index.html#media-player-stop-action)*"
+        "docs": "This action stops the current playback.\n\n*See also: [`media_player.stop` Action](https://esphome.io/components/media_player/index.html#media-player-stop-action)*"
       },
       "pause": {
         "type": "schema",
@@ -66,7 +66,7 @@
             "media_player.MEDIA_PLAYER_ACTION_SCHEMA"
           ]
         },
-        "docs": "This action pauses the current playback.\n\n*See also: [Media Player Components](https://esphome.io/components/media_player/index.html#media-player-pause-action)*"
+        "docs": "This action pauses the current playback.\n\n*See also: [`media_player.pause` Action](https://esphome.io/components/media_player/index.html#media-player-pause-action)*"
       },
       "toggle": {
         "type": "schema",
@@ -75,7 +75,7 @@
             "media_player.MEDIA_PLAYER_ACTION_SCHEMA"
           ]
         },
-        "docs": "This action will pause or resume the current playback.\n\n*See also: [Media Player Components](https://esphome.io/components/media_player/index.html#media-player-toggle-action)*"
+        "docs": "This action will pause or resume the current playback.\n\n*See also: [`media_player.toggle` Action](https://esphome.io/components/media_player/index.html#media-player-toggle-action)*"
       },
       "play": {
         "type": "schema",
@@ -84,7 +84,7 @@
             "media_player.MEDIA_PLAYER_ACTION_SCHEMA"
           ]
         },
-        "docs": "This action will resume playing the media player. A future change will allow specifying the `media_url` for starting a new stream.\n\n*See also: [Media Player Components](https://esphome.io/components/media_player/index.html#media-player-play-action)*"
+        "docs": "This action will resume playing the media player. A future change will allow specifying the `media_url` for starting a new stream.\n\n*See also: [`media_player.play` Action](https://esphome.io/components/media_player/index.html#media-player-play-action)*"
       },
       "volume_set": {
         "type": "schema",
@@ -102,7 +102,7 @@
             }
           }
         },
-        "docs": "This action will set the volume of the media player.\n\n*See also: [Media Player Components](https://esphome.io/components/media_player/index.html#media-player-volume-set-action)*"
+        "docs": "This action will set the volume of the media player.\n\n*See also: [`media_player.volume_set` Action](https://esphome.io/components/media_player/index.html#media-player-volume-set-action)*"
       }
     }
   }

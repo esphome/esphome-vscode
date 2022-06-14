@@ -137,7 +137,7 @@
             "fan.FAN_ACTION_SCHEMA"
           ]
         },
-        "docs": "Toggles the ON/OFF state of the fan with the given ID when executed.\n\n*See also: [Fan Component](https://esphome.io/components/fan/index.html#fan-toggle-action)*"
+        "docs": "Toggles the ON/OFF state of the fan with the given ID when executed.\n\n*See also: [`fan.toggle` Action](https://esphome.io/components/fan/index.html#fan-toggle-action)*"
       },
       "turn_off": {
         "type": "schema",
@@ -146,7 +146,7 @@
             "fan.FAN_ACTION_SCHEMA"
           ]
         },
-        "docs": "Turns the fan with the given ID off when executed.\n\n*See also: [Fan Component](https://esphome.io/components/fan/index.html#fan-turn-off-action)*"
+        "docs": "Turns the fan with the given ID off when executed.\n\n*See also: [`fan.turn_off` Action](https://esphome.io/components/fan/index.html#fan-turn-off-action)*"
       },
       "turn_on": {
         "type": "schema",
@@ -183,7 +183,7 @@
             }
           }
         },
-        "docs": "Turns the fan with the given ID on when executed.\n\n*See also: [Fan Component](https://esphome.io/components/fan/index.html#fan-turn-on-action)*"
+        "docs": "Turns the fan with the given ID on when executed.\n\n*See also: [`fan.turn_on` Action](https://esphome.io/components/fan/index.html#fan-turn-on-action)*"
       },
       "cycle_speed": {
         "type": "schema",
@@ -192,7 +192,7 @@
             "fan.FAN_ACTION_SCHEMA"
           ]
         },
-        "docs": "Increments through speed levels of the fan with the given ID when executed. If the fan\u2019s speed level is set to maximum when executed, turns fan off.\n\n*See also: [Fan Component](https://esphome.io/components/fan/index.html#fan-cycle-speed-action)*"
+        "docs": "Increments through speed levels of the fan with the given ID when executed. If the fan\u2019s speed level is set to maximum when executed, turns fan off.\n\n*See also: [`fan.cycle_speed` Action](https://esphome.io/components/fan/index.html#fan-cycle-speed-action)*"
       }
     },
     "condition": {

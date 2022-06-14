@@ -124,7 +124,7 @@
             }
           }
         },
-        "docs": "You can also set the number for the template number from elsewhere in your YAML file with the [number.set Action](https://esphome.io/components/number/index.html#number-set-action).\n\n*See also: [Template Number](https://esphome.io/components/number/template.html#number-set-action)*"
+        "docs": "You can also set the number for the template number from elsewhere in your YAML file with the [number.set Action](https://esphome.io/components/number/index.html#number-set-action).\n\n*See also: [`number.set` Action](https://esphome.io/components/number/template.html#number-set-action)*"
       },
       "operation": {
         "type": "schema",
@@ -154,7 +154,7 @@
             }
           }
         },
-        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) that can be used to perform an operation on a number component (set to minimum or maximum value, decrement, increment), using a generic templatable action call.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-operation-action)*"
+        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) that can be used to perform an operation on a number component (set to minimum or maximum value, decrement, increment), using a generic templatable action call.\n\n*See also: [`number.operation` Action](https://esphome.io/components/number/index.html#number-operation-action)*"
       },
       "to_max": {
         "type": "schema",
@@ -174,7 +174,7 @@
             }
           }
         },
-        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) seting a number to its maximum value (given a number component that has a maximum value defined for it.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-to-max-action)*"
+        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) seting a number to its maximum value (given a number component that has a maximum value defined for it.\n\n*See also: [`number.to_max` Action](https://esphome.io/components/number/index.html#number-to-max-action)*"
       },
       "to_min": {
         "type": "schema",
@@ -194,7 +194,7 @@
             }
           }
         },
-        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) seting a number to its minimum value, given a number component that has a minimum value defined for it.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-to-min-action)*"
+        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) seting a number to its minimum value, given a number component that has a minimum value defined for it.\n\n*See also: [`number.to_min` Action](https://esphome.io/components/number/index.html#number-to-min-action)*"
       },
       "decrement": {
         "type": "schema",
@@ -220,7 +220,7 @@
             }
           }
         },
-        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) for decrementing a number value by its step size (default: 1).\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-decrement-action)*"
+        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) for decrementing a number value by its step size (default: 1).\n\n*See also: [`number.decrement` Action](https://esphome.io/components/number/index.html#number-decrement-action)*"
       },
       "increment": {
         "type": "schema",
@@ -246,7 +246,7 @@
             }
           }
         },
-        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) for incrementing a number value by its step size (default: 1).\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-increment-action)*"
+        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) for incrementing a number value by its step size (default: 1).\n\n*See also: [`number.increment` Action](https://esphome.io/components/number/index.html#number-increment-action)*"
       }
     },
     "condition": {
@@ -269,7 +269,7 @@
             }
           }
         },
-        "docs": "This condition passes if the state of the given number is inside a range.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-in-range-condition)*"
+        "docs": "This condition passes if the state of the given number is inside a range.\n\n*See also: [`number.in_range` Condition](https://esphome.io/components/number/index.html#number-in-range-condition)*"
       }
     }
   }

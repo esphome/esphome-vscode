@@ -196,7 +196,7 @@
             }
           }
         },
-        "docs": "This action resets the total energy value of the pzemac device with the given ID when executed.\n\n*See also: [Peacefair PZEM-004T V3 Energy Monitor](https://esphome.io/components/sensor/pzemac.html#pzemac-reset-energy-action)*"
+        "docs": "This action resets the total energy value of the pzemac device with the given ID when executed.\n\n*See also: [`pzemac.reset_energy` Action](https://esphome.io/components/sensor/pzemac.html#pzemac-reset-energy-action)*"
       }
     }
   }

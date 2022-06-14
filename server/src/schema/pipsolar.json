@@ -1766,7 +1766,7 @@
             }
           }
         },
-        "docs": "To use your outputs in [automations](https://esphome.io/guides/automations.html#automation) or templates, you can use this action to set the target level of the output.\n\n*See also: [pipsolar Output](https://esphome.io/components/pipsolar.html#output-pipsolar-set-level-action)*"
+        "docs": "To use your outputs in [automations](https://esphome.io/guides/automations.html#automation) or templates, you can use this action to set the target level of the output.\n\n*See also: [`output.pipsolar.set_level` Action](https://esphome.io/components/pipsolar.html#output-pipsolar-set-level-action)*"
       }
     }
   },

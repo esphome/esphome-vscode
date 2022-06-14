@@ -308,7 +308,7 @@
           }
         },
         "maybe": "id",
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) manually starts fan-cleaning.\n\n*See also: [SPS30 Particulate Matter Sensor](https://esphome.io/components/sensor/sps30.html#sps30-start-fan-autoclean-action)*"
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) manually starts fan-cleaning.\n\n*See also: [`sps30.start_fan_autoclean` Action](https://esphome.io/components/sensor/sps30.html#sps30-start-fan-autoclean-action)*"
       }
     }
   }

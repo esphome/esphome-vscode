@@ -137,7 +137,7 @@
             }
           }
         },
-        "docs": "The internal state of the rotary encoder can be manually changed to any value with this action. After executing this action, rotating the encoder further will increase/decrease the state relative to the newly set internal value.\n\n*See also: [Rotary Encoder Sensor](https://esphome.io/components/sensor/rotary_encoder.html#sensor-rotary-encoder-set-value-action)*"
+        "docs": "The internal state of the rotary encoder can be manually changed to any value with this action. After executing this action, rotating the encoder further will increase/decrease the state relative to the newly set internal value.\n\n*See also: [`sensor.rotary_encoder.set_value` Action](https://esphome.io/components/sensor/rotary_encoder.html#sensor-rotary-encoder-set-value-action)*"
       }
     }
   }

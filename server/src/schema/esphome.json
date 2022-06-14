@@ -279,7 +279,7 @@
         "docs": "To attach a physical buttons to ESPHome, see [GPIO Binary Sensor](https://esphome.io/components/binary_sensor/gpio.html).\n\n*See also: [Button Component](https://esphome.io/components/button/index.html#button-component)*"
       },
       "canbus": {
-        "docs": "Each canbus platform extends this configuration schema.\n\n*See also: [CAN bus](https://esphome.io/components/canbus.html#base-can-bus-configuration)*"
+        "docs": "Each canbus platform extends this configuration schema.\n\n*See also: [Base CAN Bus Configuration](https://esphome.io/components/canbus.html#base-can-bus-configuration)*"
       },
       "climate": {
         "docs": "ESPHome has support for climate devices. Climate devices can represent different types of hardware, but the defining factor is that climate devices have a settable target temperature and can be put in different modes like HEAT, COOL, HEAT_COOL or OFF.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-component)*"
@@ -304,7 +304,7 @@
         "docs": "ESPHome has support for components to create a number entity. A number entity is like a sensor that can read a value from a device, but is useful when that value can be set by the user/frontend.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-component)*"
       },
       "output": {
-        "docs": "Each output platform extends this configuration schema.\n\n*See also: [Output Component](https://esphome.io/components/output/index.html#base-output-configuration)*"
+        "docs": "Each output platform extends this configuration schema.\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
       },
       "select": {
         "docs": "ESPHome has support for components to create a select entity. A select entity is basically an option list that can be set by either yaml, hardware or the user/frontend.\n\n*See also: [Select Component](https://esphome.io/components/select/index.html#select-component)*"
@@ -319,7 +319,7 @@
         "docs": "Text sensors are a lot like normal [sensors](https://esphome.io/components/sensor/index.html). But where the \u201cnormal\u201d sensors only represent sensors that output **numbers**, this component can represent any *text*.\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#text-sensor-component)*"
       },
       "time": {
-        "docs": "This powerful automation can be used to run automations at specific intervals at specific times of day. The syntax is a subset of the [crontab](https://crontab.guru/) syntax.\n\n*See also: [Base Time Configuration](https://esphome.io/components/time.html#on-time-trigger)*"
+        "docs": "This powerful automation can be used to run automations at specific intervals at specific times of day. The syntax is a subset of the [crontab](https://crontab.guru/) syntax.\n\n*See also: [`on_time` Trigger](https://esphome.io/components/time.html#on-time-trigger)*"
       },
       "touchscreen": {
         "docs": "The `touchscreen` component holds the base code for most touchscreen components available in ESPHome and is responsible for passing the touch events to `binary_sensors` with the `touchscreen` platform.\n\n*See also: [Touchscreen Components](https://esphome.io/components/touchscreen/index.html#touchscreen-components)*"
@@ -349,7 +349,7 @@
         "dependencies": [
           "display"
         ],
-        "docs": "Allows to use animated images on displays. Animation inherits all options from the image component. It adds additional lambda methods: `next_frame()` and `prev_frame()` to change the shown picture of a gif.\n\n*See also: [Images](https://esphome.io/components/display/index.html#animation)*"
+        "docs": "Allows to use animated images on displays. Animation inherits all options from the image component. It adds additional lambda methods: `next_frame()` and `prev_frame()` to change the shown picture of a gif.\n\n*See also: [Animation](https://esphome.io/components/display/index.html#animation)*"
       },
       "apds9960": {
         "dependencies": [
@@ -404,7 +404,7 @@
         "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: The I/O pins connected to the S0 to S3 channel selection pins\n\n*See also: [cd74hc4067 Component/Hub](https://esphome.io/components/sensor/cd74hc4067.html#component-hub)*"
       },
       "color": {
-        "docs": "When using RGB-capable displays in ESPHome you may wish to use custom colors. A `color` component exists for just this purpose:\n\n*See also: [Fonts](https://esphome.io/components/display/index.html#color)*"
+        "docs": "When using RGB-capable displays in ESPHome you may wish to use custom colors. A `color` component exists for just this purpose:\n\n*See also: [Color](https://esphome.io/components/display/index.html#color)*"
       },
       "custom_component": {
         "docs": "This integration can be used to create generic custom components in ESPHome using the C++ (Arduino) API. This integration should be used in cases where none of ESPHome\u2019s abstraction layers (for example the \u201csensor\u201d, \u201cbinary sensor\u201d, \u201cswitch\u201d, etc concepts) work well for your integration.\n\n*See also: [Generic Custom Component](https://esphome.io/custom/custom_component.html#generic-custom-component)*"
@@ -454,7 +454,7 @@
         "docs": "The [E1.31 Effect](https://esphome.io/components/light/index.html#e131-light-effect) requires a component hub for the `e131` light effect.\n\n*See also: [E1.31 Component](https://esphome.io/components/light/index.html#e1-31-component)*"
       },
       "esp32": {
-        "docs": "This is an alternative base framework for ESP32 chips, and recommended for variants of the ESP32 like ESP32S2, ESP32S3, ESP32C3 and single-core ESP32 chips.\n\n*See also: [Arduino framework](https://esphome.io/components/esp32.html#esp-idf-framework)*"
+        "docs": "This is an alternative base framework for ESP32 chips, and recommended for variants of the ESP32 like ESP32S2, ESP32S3, ESP32C3 and single-core ESP32 chips.\n\n*See also: [ESP-IDF framework](https://esphome.io/components/esp32.html#esp-idf-framework)*"
       },
       "esp32_ble": {
         "dependencies": [
@@ -533,10 +533,10 @@
         "dependencies": [
           "display"
         ],
-        "docs": "The rendering engine also has a powerful font drawer which integrates seamlessly into ESPHome. Whereas in most Arduino display projects you have to use one of a few pre-defined fonts in very specific sizes, with ESPHome you have the option to use **any** TrueType (`.ttf`) font file at **any** size! Granted the reason for it is actually not having to worry about the licensing of font files :)\n\n*See also: [Display Component](https://esphome.io/components/display/index.html#fonts)*"
+        "docs": "The rendering engine also has a powerful font drawer which integrates seamlessly into ESPHome. Whereas in most Arduino display projects you have to use one of a few pre-defined fonts in very specific sizes, with ESPHome you have the option to use **any** TrueType (`.ttf`) font file at **any** size! Granted the reason for it is actually not having to worry about the licensing of font files :)\n\n*See also: [Fonts](https://esphome.io/components/display/index.html#fonts)*"
       },
       "globals": {
-        "docs": "In some cases you might require to share a global variable across multiple lambdas. For example, global variables can be used to store the state of a garage door.\n\n*See also: [Automations and Templates](https://esphome.io/guides/automations.html#global-variables)*"
+        "docs": "In some cases you might require to share a global variable across multiple lambdas. For example, global variables can be used to store the state of a garage door.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#global-variables)*"
       },
       "gps": {
         "dependencies": [
@@ -564,7 +564,7 @@
         "dependencies": [
           "display"
         ],
-        "docs": "Use this component to store graphical images on the device, you can then draw the images on compatible displays.\n\n*See also: [QR Code Component](https://esphome.io/components/display/index.html#images)*"
+        "docs": "Use this component to store graphical images on the device, you can then draw the images on compatible displays.\n\n*See also: [Images](https://esphome.io/components/display/index.html#images)*"
       },
       "improv_serial": {
         "dependencies": [
@@ -658,7 +658,7 @@
         "dependencies": [
           "network"
         ],
-        "docs": "With the MQTT Message schema you can tell ESPHome how a specific MQTT message should be sent. It is used in several places like last will and birth messages or MQTT log options.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#mqttmessage)*"
+        "docs": "With the MQTT Message schema you can tell ESPHome how a specific MQTT message should be sent. It is used in several places like last will and birth messages or MQTT log options.\n\n*See also: [MQTTMessage](https://esphome.io/components/mqtt.html#mqttmessage)*"
       },
       "my9231": {
         "docs": "The MY9231/MY9291 component represents a MY9231/MY9291 LED diver chain ([MY9231 description](http://www.my-semi.com.tw/file/MY9231_BF_0.91.pdf), [MY9291 description](http://www.my-semi.com.tw/file/MY9291_BF_0.91.pdf)) in ESPHome. Communication is done with two GPIO pins (DI and DCKI) and multiple driver chips can be chained. There are two models with different number of output channels (MY9291 with 4 channels and MY9231 with 3 channels). They are popular driver chips used in smart light bulbs:\n\n*See also: [my9231 Component/Hub](https://esphome.io/components/output/my9231.html#component-hub)*"
@@ -856,7 +856,7 @@
         ]
       },
       "wifi": {
-        "docs": "WPA2_EAP Enterprise Authentication is supported on ESP32s and ESP8266s. In order to configure this feature you must use the [Connecting to Multiple Networks](https://esphome.io/components/wifi.html#wifi-networks) style configuration. The ESP32 is known to work with PEAP, EAP-TTLS, and the certificate based EAP-TLS. These are advanced settings and you will usually need to consult your enterprise network administrator.\n\n*See also: [Connecting to Multiple Networks](https://esphome.io/components/wifi.html#enterprise-authentication)*"
+        "docs": "WPA2_EAP Enterprise Authentication is supported on ESP32s and ESP8266s. In order to configure this feature you must use the [Connecting to Multiple Networks](https://esphome.io/components/wifi.html#wifi-networks) style configuration. The ESP32 is known to work with PEAP, EAP-TTLS, and the certificate based EAP-TLS. These are advanced settings and you will usually need to consult your enterprise network administrator.\n\n*See also: [Enterprise Authentication](https://esphome.io/components/wifi.html#enterprise-authentication)*"
       },
       "wled": {},
       "xiaomi_ble": {
@@ -885,7 +885,7 @@
             "core.positive_time_period_milliseconds"
           ]
         },
-        "docs": "This action delays the execution of the next action in the action list by a specified time period.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#delay-action)*"
+        "docs": "This action delays the execution of the next action in the action list by a specified time period.\n\n*See also: [`delay` Action](https://esphome.io/guides/automations.html#delay-action)*"
       },
       "if": {
         "type": "schema",
@@ -913,7 +913,7 @@
             }
           }
         },
-        "docs": "This action first evaluated a certain condition (`if:`) and then either executes the `then:` branch or the `else:` branch depending on the output of the condition.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#if-action)*"
+        "docs": "This action first evaluated a certain condition (`if:`) and then either executes the `then:` branch or the `else:` branch depending on the output of the condition.\n\n*See also: [`if` Action](https://esphome.io/guides/automations.html#if-action)*"
       },
       "while": {
         "type": "schema",
@@ -934,7 +934,7 @@
             }
           }
         },
-        "docs": "This action is similar to the [if](https://esphome.io/guides/automations.html#if-action) Action. The `while` action executes a block until a given condition evaluates to false.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#while-action)*"
+        "docs": "This action is similar to the [if](https://esphome.io/guides/automations.html#if-action) Action. The `while` action executes a block until a given condition evaluates to false.\n\n*See also: [`while` Action](https://esphome.io/guides/automations.html#while-action)*"
       },
       "repeat": {
         "type": "schema",
@@ -956,7 +956,7 @@
             }
           }
         },
-        "docs": "This action allows you to repeat a block a given number of times. For example, the automation below will flash the light five times.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#repeat-action)*"
+        "docs": "This action allows you to repeat a block a given number of times. For example, the automation below will flash the light five times.\n\n*See also: [`repeat` Action](https://esphome.io/guides/automations.html#repeat-action)*"
       },
       "wait_until": {
         "type": "schema",
@@ -982,10 +982,10 @@
             }
           }
         },
-        "docs": "This action allows your automations to wait until a condition evaluates to true. (So this is just a shorthand way of writing a `while` action with an empty `then` block.)\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#wait-until-action)*"
+        "docs": "This action allows your automations to wait until a condition evaluates to true. (So this is just a shorthand way of writing a `while` action with an empty `then` block.)\n\n*See also: [`wait_until` Action](https://esphome.io/guides/automations.html#wait-until-action)*"
       },
       "lambda": {
-        "docs": "This action executes an arbitrary piece of C++ code (see [Lambda](https://esphome.io/guides/automations.html#config-lambda)).\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#lambda-action)*"
+        "docs": "This action executes an arbitrary piece of C++ code (see [Lambda](https://esphome.io/guides/automations.html#config-lambda)).\n\n*See also: [`lambda` Action](https://esphome.io/guides/automations.html#lambda-action)*"
       }
     },
     "condition": {
@@ -1004,7 +1004,7 @@
         "registry": "condition"
       },
       "lambda": {
-        "docs": "This condition performs an arbitrary piece of C++ code (see [Lambda](https://esphome.io/guides/automations.html#config-lambda)) and can be used to create conditional flow in actions.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#lambda-condition)*"
+        "docs": "This condition performs an arbitrary piece of C++ code (see [Lambda](https://esphome.io/guides/automations.html#config-lambda)) and can be used to create conditional flow in actions.\n\n*See also: [`lambda` Condition](https://esphome.io/guides/automations.html#lambda-condition)*"
       },
       "for": {
         "type": "schema",
@@ -1032,7 +1032,7 @@
             "core.COMPONENT_SCHEMA"
           ]
         },
-        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) allows you to check if a given condition has been true for at least a given amount of time.\n\n*See also: [script Component](https://esphome.io/guides/automations.html#for-condition)*"
+        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) allows you to check if a given condition has been true for at least a given amount of time.\n\n*See also: [`for` Condition](https://esphome.io/guides/automations.html#for-condition)*"
       }
     },
     "pins": [

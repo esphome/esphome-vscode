@@ -231,7 +231,7 @@
     },
     "condition": {
       "connected": {
-        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) checks if the WiFi client is currently connected to a station.\n\n*See also: [Enterprise Authentication](https://esphome.io/components/wifi.html#wifi-connected-condition)*"
+        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) checks if the WiFi client is currently connected to a station.\n\n*See also: [`wifi.connected` Condition](https://esphome.io/components/wifi.html#wifi-connected-condition)*"
       }
     }
   }

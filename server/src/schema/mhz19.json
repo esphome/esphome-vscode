@@ -114,7 +114,7 @@
             "mhz19.sensor.CALIBRATION_ACTION_SCHEMA"
           ]
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) disables automatic baseline calibration on the sensor with the given ID.\n\n*See also: [MH-Z19 CO_2 and Temperature Sensor](https://esphome.io/components/sensor/mhz19.html#mhz19-abc-disable-action)*"
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) disables automatic baseline calibration on the sensor with the given ID.\n\n*See also: [`mhz19.abc_disable` Action](https://esphome.io/components/sensor/mhz19.html#mhz19-abc-disable-action)*"
       },
       "abc_enable": {
         "type": "schema",
@@ -123,7 +123,7 @@
             "mhz19.sensor.CALIBRATION_ACTION_SCHEMA"
           ]
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) enables automatic baseline calibration on the sensor with the given ID.\n\n*See also: [MH-Z19 CO_2 and Temperature Sensor](https://esphome.io/components/sensor/mhz19.html#mhz19-abc-enable-action)*"
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) enables automatic baseline calibration on the sensor with the given ID.\n\n*See also: [`mhz19.abc_enable` Action](https://esphome.io/components/sensor/mhz19.html#mhz19-abc-enable-action)*"
       },
       "calibrate_zero": {
         "type": "schema",
@@ -132,7 +132,7 @@
             "mhz19.sensor.CALIBRATION_ACTION_SCHEMA"
           ]
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) executes zero point calibration command on the sensor with the given ID.\n\n*See also: [MH-Z19 CO_2 and Temperature Sensor](https://esphome.io/components/sensor/mhz19.html#mhz19-calibrate-zero-action)*"
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) executes zero point calibration command on the sensor with the given ID.\n\n*See also: [`mhz19.calibrate_zero` Action](https://esphome.io/components/sensor/mhz19.html#mhz19-calibrate-zero-action)*"
       }
     }
   }

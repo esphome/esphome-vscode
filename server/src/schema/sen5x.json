@@ -364,7 +364,7 @@
           }
         },
         "maybe": "id",
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) manually starts fan-cleaning.\n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#sen5x-start-fan-autoclean-action)*"
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) manually starts fan-cleaning.\n\n*See also: [`sen5x.start_fan_autoclean` Action](https://esphome.io/components/sensor/sen5x.html#sen5x-start-fan-autoclean-action)*"
       }
     }
   }

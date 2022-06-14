@@ -163,7 +163,7 @@
             }
           }
         },
-        "docs": "This action resets the integral term of the PID controller to 0. This might be necessary under certain conditions to avoid the control loop to overshoot (or undershoot) a target.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-reset-integral-term-action)*"
+        "docs": "This action resets the integral term of the PID controller to 0. This might be necessary under certain conditions to avoid the control loop to overshoot (or undershoot) a target.\n\n*See also: [`climate.pid.reset_integral_term` Action](https://esphome.io/components/climate/pid.html#climate-pid-reset-integral-term-action)*"
       },
       "autotune": {
         "type": "schema",
@@ -193,7 +193,7 @@
             }
           }
         },
-        "docs": "This action starts the autotune process of the PID controller.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-autotune-action)*"
+        "docs": "This action starts the autotune process of the PID controller.\n\n*See also: [`climate.pid.autotune` Action](https://esphome.io/components/climate/pid.html#climate-pid-autotune-action)*"
       },
       "set_control_parameters": {
         "type": "schema",
@@ -225,7 +225,7 @@
             }
           }
         },
-        "docs": "This action sets new values for the control parameters of the PID controller. This can be used to manually tune the PID controller. Make sure to take update the values you want on the YAML file! They will reset on the next reboot.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-set-control-parameters-action)*"
+        "docs": "This action sets new values for the control parameters of the PID controller. This can be used to manually tune the PID controller. Make sure to take update the values you want on the YAML file! They will reset on the next reboot.\n\n*See also: [`climate.pid.set_control_parameters` Action](https://esphome.io/components/climate/pid.html#climate-pid-set-control-parameters-action)*"
       }
     }
   }

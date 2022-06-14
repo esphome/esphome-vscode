@@ -65,7 +65,7 @@
             "lock.LOCK_ACTION_SCHEMA"
           ]
         },
-        "docs": "This action opens (e.g. unlatch) a lock with the given ID off when executed.\n\n*See also: [Lock Component](https://esphome.io/components/lock/index.html#lock-open-action)*"
+        "docs": "This action opens (e.g. unlatch) a lock with the given ID off when executed.\n\n*See also: [`lock.open` Action](https://esphome.io/components/lock/index.html#lock-open-action)*"
       },
       "lock": {
         "type": "schema",
@@ -74,7 +74,7 @@
             "lock.LOCK_ACTION_SCHEMA"
           ]
         },
-        "docs": "This action locks a lock with the given ID on when executed.\n\n*See also: [Lock Component](https://esphome.io/components/lock/index.html#lock-lock-action)*"
+        "docs": "This action locks a lock with the given ID on when executed.\n\n*See also: [`lock.lock` Action](https://esphome.io/components/lock/index.html#lock-lock-action)*"
       },
       "unlock": {
         "type": "schema",
@@ -83,7 +83,7 @@
             "lock.LOCK_ACTION_SCHEMA"
           ]
         },
-        "docs": "This action unlocks a lock with the given ID off when executed.\n\n*See also: [Lock Component](https://esphome.io/components/lock/index.html#lock-unlock-action)*"
+        "docs": "This action unlocks a lock with the given ID off when executed.\n\n*See also: [`lock.unlock` Action](https://esphome.io/components/lock/index.html#lock-unlock-action)*"
       }
     },
     "condition": {

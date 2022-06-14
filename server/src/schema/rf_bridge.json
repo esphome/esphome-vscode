@@ -88,7 +88,7 @@
             }
           }
         },
-        "docs": "Send an RF code using this action in automations.\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-code-action)*"
+        "docs": "Send an RF code using this action in automations.\n\n*See also: [`rf_bridge.send_code` Action](https://esphome.io/components/rf_bridge.html#rf-bridge-send-code-action)*"
       },
       "learn": {
         "type": "schema",
@@ -97,7 +97,7 @@
             "rf_bridge.RFBRIDGE_ID_SCHEMA"
           ]
         },
-        "docs": "Tell the RF Bridge to learn new protocol timings using this action in automations. A new code with timings will be returned to [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-on-code-received)\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-learn-action)*"
+        "docs": "Tell the RF Bridge to learn new protocol timings using this action in automations. A new code with timings will be returned to [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-on-code-received)\n\n*See also: [`rf_bridge.learn` Action](https://esphome.io/components/rf_bridge.html#rf-bridge-learn-action)*"
       },
       "start_advanced_sniffing": {
         "type": "schema",
@@ -106,7 +106,7 @@
             "rf_bridge.RFBRIDGE_ID_SCHEMA"
           ]
         },
-        "docs": "Tell the RF Bridge to listen for the advanced/extra protocols defined in the portisch firmware. The decoded codes with length and protocol will be returned to [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-on-advanced-code-received)\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-start-advanced-sniffing-action)*"
+        "docs": "Tell the RF Bridge to listen for the advanced/extra protocols defined in the portisch firmware. The decoded codes with length and protocol will be returned to [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-on-advanced-code-received)\n\n*See also: [`rf_bridge.start_advanced_sniffing` Action](https://esphome.io/components/rf_bridge.html#rf-bridge-start-advanced-sniffing-action)*"
       },
       "stop_advanced_sniffing": {
         "type": "schema",
@@ -115,7 +115,7 @@
             "rf_bridge.RFBRIDGE_ID_SCHEMA"
           ]
         },
-        "docs": "Tell the RF Bridge to stop listening for the advanced/extra protocols defined in the portisch firmware.\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-stop-advanced-sniffing-action)*"
+        "docs": "Tell the RF Bridge to stop listening for the advanced/extra protocols defined in the portisch firmware.\n\n*See also: [`rf_bridge.stop_advanced_sniffing` Action](https://esphome.io/components/rf_bridge.html#rf-bridge-stop-advanced-sniffing-action)*"
       },
       "start_bucket_sniffing": {
         "type": "schema",
@@ -124,7 +124,7 @@
             "rf_bridge.RFBRIDGE_ID_SCHEMA"
           ]
         },
-        "docs": "Tell the RF Bridge to dump raw sniffing data. Useful for getting codes for unsupported protocols. The raw data will be available in the log and can later be used with [rf_bridge.send_raw Action](https://esphome.io/components/rf_bridge.html#rf-bridge-send-raw-action) action.\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-start-bucket-sniffing-action)*"
+        "docs": "Tell the RF Bridge to dump raw sniffing data. Useful for getting codes for unsupported protocols. The raw data will be available in the log and can later be used with [rf_bridge.send_raw Action](https://esphome.io/components/rf_bridge.html#rf-bridge-send-raw-action) action.\n\n*See also: [`rf_bridge.start_bucket_sniffing` Action](https://esphome.io/components/rf_bridge.html#rf-bridge-start-bucket-sniffing-action)*"
       },
       "send_advanced_code": {
         "type": "schema",
@@ -156,7 +156,7 @@
             }
           }
         },
-        "docs": "Send an  RF code using this action in automations.\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-advanced-code-action)*"
+        "docs": "Send an  RF code using this action in automations.\n\n*See also: [`rf_bridge.send_advanced_code` Action](https://esphome.io/components/rf_bridge.html#rf-bridge-send-advanced-code-action)*"
       },
       "send_raw": {
         "type": "schema",
@@ -176,7 +176,7 @@
             }
           }
         },
-        "docs": "Send a raw command to the onboard EFM8BB1 chip. You can see a list of available commands and format in the [Portisch Wiki](https://github.com/Portisch/RF-Bridge-EFM8BB1/wiki/Commands)\n\n*See also: [on_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-send-raw-action)*"
+        "docs": "Send a raw command to the onboard EFM8BB1 chip. You can see a list of available commands and format in the [Portisch Wiki](https://github.com/Portisch/RF-Bridge-EFM8BB1/wiki/Commands)\n\n*See also: [`rf_bridge.send_raw` Action](https://esphome.io/components/rf_bridge.html#rf-bridge-send-raw-action)*"
       },
       "beep": {
         "type": "schema",
@@ -197,7 +197,7 @@
             }
           }
         },
-        "docs": "Activate the internal buzzer to make a beep.\n\n*See also: [on_advanced_code_received Trigger](https://esphome.io/components/rf_bridge.html#rf-bridge-beep-action)*"
+        "docs": "Activate the internal buzzer to make a beep.\n\n*See also: [`rf_bridge.beep` Action](https://esphome.io/components/rf_bridge.html#rf-bridge-beep-action)*"
       }
     }
   }

@@ -164,7 +164,7 @@
             }
           }
         },
-        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) allows you to check if a given text sensor has a specific state.\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#text-sensor-state-condition)*"
+        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) allows you to check if a given text sensor has a specific state.\n\n*See also: [`text_sensor.state` Condition](https://esphome.io/components/text_sensor/index.html#text-sensor-state-condition)*"
       }
     },
     "filter": {

@@ -22,7 +22,7 @@
             "midea.climate.MIDEA_ACTION_BASE_SCHEMA"
           ]
         },
-        "docs": "This action transmit IR FollowMe command telling the air conditioner a more accurate room temperature value to be used instead of the internal indoor unit sensor.\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#midea-ac-follow-me-action)*"
+        "docs": "This action transmit IR FollowMe command telling the air conditioner a more accurate room temperature value to be used instead of the internal indoor unit sensor.\n\n*See also: [`midea_ac.follow_me` Action](https://esphome.io/components/climate/midea.html#midea-ac-follow-me-action)*"
       },
       "display_toggle": {
         "type": "schema",
@@ -31,7 +31,7 @@
             "midea.climate.MIDEA_ACTION_BASE_SCHEMA"
           ]
         },
-        "docs": "This action toggle ac screen. Works via UART if supported or [Remote Transmitter](https://esphome.io/components/remote_transmitter.html).\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#midea-ac-display-toggle-action)*"
+        "docs": "This action toggle ac screen. Works via UART if supported or [Remote Transmitter](https://esphome.io/components/remote_transmitter.html).\n\n*See also: [`midea_ac.display_toggle` Action](https://esphome.io/components/climate/midea.html#midea-ac-display-toggle-action)*"
       },
       "swing_step": {
         "type": "schema",
@@ -40,7 +40,7 @@
             "midea.climate.MIDEA_ACTION_BASE_SCHEMA"
           ]
         },
-        "docs": "This action adjust the louver by one step. [Remote Transmitter](https://esphome.io/components/remote_transmitter.html) required.\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#midea-ac-swing-step-action)*"
+        "docs": "This action adjust the louver by one step. [Remote Transmitter](https://esphome.io/components/remote_transmitter.html) required.\n\n*See also: [`midea_ac.swing_step` Action](https://esphome.io/components/climate/midea.html#midea-ac-swing-step-action)*"
       },
       "beeper_on": {
         "type": "schema",
@@ -49,7 +49,7 @@
             "midea.climate.MIDEA_ACTION_BASE_SCHEMA"
           ]
         },
-        "docs": "This action turn on beeper feedback.\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#midea-ac-beeper-on-action)*"
+        "docs": "This action turn on beeper feedback.\n\n*See also: [`midea_ac.beeper_on` Action](https://esphome.io/components/climate/midea.html#midea-ac-beeper-on-action)*"
       },
       "beeper_off": {
         "type": "schema",
@@ -58,7 +58,7 @@
             "midea.climate.MIDEA_ACTION_BASE_SCHEMA"
           ]
         },
-        "docs": "This action turn off beeper feedback.\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#midea-ac-beeper-off-action)*"
+        "docs": "This action turn off beeper feedback.\n\n*See also: [`midea_ac.beeper_off` Action](https://esphome.io/components/climate/midea.html#midea-ac-beeper-off-action)*"
       },
       "power_on": {
         "type": "schema",
@@ -67,7 +67,7 @@
             "midea.climate.MIDEA_ACTION_BASE_SCHEMA"
           ]
         },
-        "docs": "This action turn on power. The mode and preset will be restored to the last state before turned off.\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#midea-ac-power-on-action)*"
+        "docs": "This action turn on power. The mode and preset will be restored to the last state before turned off.\n\n*See also: [`midea_ac.power_on` Action](https://esphome.io/components/climate/midea.html#midea-ac-power-on-action)*"
       },
       "power_off": {
         "type": "schema",
@@ -76,7 +76,7 @@
             "midea.climate.MIDEA_ACTION_BASE_SCHEMA"
           ]
         },
-        "docs": "This action turn off power.\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#midea-ac-power-off-action)*"
+        "docs": "This action turn off power.\n\n*See also: [`midea_ac.power_off` Action](https://esphome.io/components/climate/midea.html#midea-ac-power-off-action)*"
       },
       "power_toggle": {
         "type": "schema",
@@ -85,7 +85,7 @@
             "midea.climate.MIDEA_ACTION_BASE_SCHEMA"
           ]
         },
-        "docs": "This action toggle the power state. Identical to pressing the power button on the remote control.\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#midea-ac-power-toggle-action)*"
+        "docs": "This action toggle the power state. Identical to pressing the power button on the remote control.\n\n*See also: [`midea_ac.power_toggle` Action](https://esphome.io/components/climate/midea.html#midea-ac-power-toggle-action)*"
       }
     }
   }

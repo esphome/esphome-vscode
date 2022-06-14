@@ -327,7 +327,7 @@
             }
           }
         },
-        "docs": "Publish an MQTT message on a topic using this action in automations.\n\n*See also: [on_json_message Trigger](https://esphome.io/components/mqtt.html#mqtt-publish-action)*"
+        "docs": "Publish an MQTT message on a topic using this action in automations.\n\n*See also: [`mqtt.publish` Action](https://esphome.io/components/mqtt.html#mqtt-publish-action)*"
       },
       "publish_json": {
         "type": "schema",
@@ -362,7 +362,7 @@
             }
           }
         },
-        "docs": "Publish a JSON-formatted MQTT message on a topic using this action in automations.\n\n*See also: [on_json_message Trigger](https://esphome.io/components/mqtt.html#mqtt-publish-json-action)*"
+        "docs": "Publish a JSON-formatted MQTT message on a topic using this action in automations.\n\n*See also: [`mqtt.publish_json` Action](https://esphome.io/components/mqtt.html#mqtt-publish-json-action)*"
       }
     },
     "condition": {
@@ -377,7 +377,7 @@
             }
           }
         },
-        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) checks if the MQTT client is currently connected to the MQTT broker.\n\n*See also: [on_json_message Trigger](https://esphome.io/components/mqtt.html#mqtt-connected-condition)*"
+        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) checks if the MQTT client is currently connected to the MQTT broker.\n\n*See also: [`mqtt.connected` Condition](https://esphome.io/components/mqtt.html#mqtt-connected-condition)*"
       }
     }
   }

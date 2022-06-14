@@ -139,7 +139,7 @@
             }
           }
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) sends a request.\n\n*See also: [HTTP Request](https://esphome.io/components/http_request.html#http-request-send-action)*"
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) sends a request.\n\n*See also: [`http_request.send` Action](https://esphome.io/components/http_request.html#http-request-send-action)*"
       },
       "post": {
         "type": "schema",
@@ -179,7 +179,7 @@
           }
         },
         "maybe": "url",
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) sends a POST request.\n\n*See also: [HTTP Request](https://esphome.io/components/http_request.html#http-request-post-action)*"
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) sends a POST request.\n\n*See also: [`http_request.post` Action](https://esphome.io/components/http_request.html#http-request-post-action)*"
       },
       "get": {
         "type": "schema",
@@ -199,7 +199,7 @@
           }
         },
         "maybe": "url",
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) sends a GET request.\n\n*See also: [HTTP Request](https://esphome.io/components/http_request.html#http-request-get-action)*"
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) sends a GET request.\n\n*See also: [`http_request.get` Action](https://esphome.io/components/http_request.html#http-request-get-action)*"
       }
     }
   }

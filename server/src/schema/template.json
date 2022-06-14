@@ -55,7 +55,7 @@
             }
           }
         },
-        "docs": "You can also publish a state to a template sensor from elsewhere in your YAML file with the `sensor.template.publish` action.\n\n*See also: [Template Sensor](https://esphome.io/components/sensor/template.html#sensor-template-publish-action)*"
+        "docs": "You can also publish a state to a template sensor from elsewhere in your YAML file with the `sensor.template.publish` action.\n\n*See also: [`sensor.template.publish` Action](https://esphome.io/components/sensor/template.html#sensor-template-publish-action)*"
       }
     }
   },
@@ -107,7 +107,7 @@
             }
           }
         },
-        "docs": "You can also publish a state to a template binary sensor from elsewhere in your YAML file with the `binary_sensor.template.publish` action.\n\n*See also: [Template Binary Sensor](https://esphome.io/components/binary_sensor/template.html#binary-sensor-template-publish-action)*"
+        "docs": "You can also publish a state to a template binary sensor from elsewhere in your YAML file with the `binary_sensor.template.publish` action.\n\n*See also: [`binary_sensor.template.publish` Action](https://esphome.io/components/binary_sensor/template.html#binary-sensor-template-publish-action)*"
       }
     }
   },
@@ -269,7 +269,7 @@
             }
           }
         },
-        "docs": "You can also publish a state to a template cover from elsewhere in your YAML file with the `cover.template.publish` action.\n\n*See also: [Template Cover](https://esphome.io/components/cover/template.html#cover-template-publish-action)*"
+        "docs": "You can also publish a state to a template cover from elsewhere in your YAML file with the `cover.template.publish` action.\n\n*See also: [`cover.template.publish` Action](https://esphome.io/components/cover/template.html#cover-template-publish-action)*"
       }
     }
   },
@@ -355,7 +355,7 @@
             }
           }
         },
-        "docs": "You can also publish a state to a template lock from elsewhere in your YAML file with the `lock.template.publish` action.\n\n*See also: [Template Lock](https://esphome.io/components/lock/template.html#lock-template-publish-action)*"
+        "docs": "You can also publish a state to a template lock from elsewhere in your YAML file with the `lock.template.publish` action.\n\n*See also: [`lock.template.publish` Action](https://esphome.io/components/lock/template.html#lock-template-publish-action)*"
       }
     }
   },
@@ -624,7 +624,7 @@
             }
           }
         },
-        "docs": "You can also publish a state to a template switch from elsewhere in your YAML file with the `switch.template.publish` action.\n\n*See also: [Template Switch](https://esphome.io/components/switch/template.html#switch-template-publish-action)*"
+        "docs": "You can also publish a state to a template switch from elsewhere in your YAML file with the `switch.template.publish` action.\n\n*See also: [`switch.template.publish` Action](https://esphome.io/components/switch/template.html#switch-template-publish-action)*"
       }
     }
   },
@@ -682,7 +682,7 @@
             }
           }
         },
-        "docs": "You can also publish a state to a template text sensor from elsewhere in your YAML file with the `text_sensor.template.publish` action.\n\n*See also: [Template Text Sensor](https://esphome.io/components/text_sensor/template.html#text-sensor-template-publish-action)*"
+        "docs": "You can also publish a state to a template text sensor from elsewhere in your YAML file with the `text_sensor.template.publish` action.\n\n*See also: [`text_sensor.template.publish` Action](https://esphome.io/components/text_sensor/template.html#text-sensor-template-publish-action)*"
       }
     }
   }

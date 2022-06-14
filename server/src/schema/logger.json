@@ -6034,7 +6034,7 @@
           }
         },
         "maybe": "format",
-        "docs": "Print a formatted message to the logs.\n\n*See also: [Logger Component](https://esphome.io/components/logger.html#logger-log-action)*"
+        "docs": "Print a formatted message to the logs.\n\n*See also: [`logger.log` Action](https://esphome.io/components/logger.html#logger-log-action)*"
       }
     }
   }

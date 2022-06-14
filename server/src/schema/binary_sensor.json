@@ -409,7 +409,7 @@
     },
     "filter": {
       "invert": {
-        "docs": "Simple filter that just inverts every value from the binary sensor.\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#invert)*"
+        "docs": "Simple filter that just inverts every value from the binary sensor.\n\n*See also: [`invert`](https://esphome.io/components/binary_sensor/index.html#invert)*"
       },
       "delayed_on_off": {
         "type": "schema",
@@ -418,7 +418,7 @@
             "core.positive_time_period_milliseconds"
           ]
         },
-        "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Only send an ON or OFF value if the binary sensor has stayed in the same state for at least the specified time period. **Useful for debouncing binary switches**.\n\n*See also: [delayed_off](https://esphome.io/components/binary_sensor/index.html#delayed-on-off)*"
+        "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Only send an ON or OFF value if the binary sensor has stayed in the same state for at least the specified time period. **Useful for debouncing binary switches**.\n\n*See also: [`delayed_on_off`](https://esphome.io/components/binary_sensor/index.html#delayed-on-off)*"
       },
       "delayed_on": {
         "type": "schema",
@@ -427,7 +427,7 @@
             "core.positive_time_period_milliseconds"
           ]
         },
-        "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: When a signal ON is received, wait for the specified time period until publishing an ON state. If an OFF value is received while waiting, the ON action is discarded. Or in other words: Only send an ON value if the binary sensor has stayed ON for at least the specified time period. **Useful for debouncing push buttons**.\n\n*See also: [invert](https://esphome.io/components/binary_sensor/index.html#delayed-on)*"
+        "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: When a signal ON is received, wait for the specified time period until publishing an ON state. If an OFF value is received while waiting, the ON action is discarded. Or in other words: Only send an ON value if the binary sensor has stayed ON for at least the specified time period. **Useful for debouncing push buttons**.\n\n*See also: [`delayed_on`](https://esphome.io/components/binary_sensor/index.html#delayed-on)*"
       },
       "delayed_off": {
         "type": "schema",
@@ -436,7 +436,7 @@
             "core.positive_time_period_milliseconds"
           ]
         },
-        "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: When a signal OFF is received, wait for the specified time period until publishing an OFF state. If an ON value is received while waiting, the OFF action is discarded. Or in other words: Only send an OFF value if the binary sensor has stayed OFF for at least the specified time period. **Useful for debouncing push buttons**.\n\n*See also: [delayed_on](https://esphome.io/components/binary_sensor/index.html#delayed-off)*"
+        "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: When a signal OFF is received, wait for the specified time period until publishing an OFF state. If an ON value is received while waiting, the OFF action is discarded. Or in other words: Only send an OFF value if the binary sensor has stayed OFF for at least the specified time period. **Useful for debouncing push buttons**.\n\n*See also: [`delayed_off`](https://esphome.io/components/binary_sensor/index.html#delayed-off)*"
       },
       "autorepeat": {
         "is_list": true,
@@ -478,10 +478,10 @@
             }
           }
         },
-        "docs": "A filter implementing the autorepeat behavior. The filter is parametrized by a list of timing descriptions. When a signal ON is received it is passed to the output and the first `delay` is started. When this interval expires the output is turned OFF and toggles using the `time_off` and `time_on` durations for the OFF and ON state respectively. At the same time the `delay` of the second timing description is started and the process is repeated until the list is exhausted, in which case the timing of the last description remains in use. Receiving an OFF signal stops the whole process and immediately outputs OFF.\n\n*See also: [delayed_on_off](https://esphome.io/components/binary_sensor/index.html#autorepeat)*"
+        "docs": "A filter implementing the autorepeat behavior. The filter is parametrized by a list of timing descriptions. When a signal ON is received it is passed to the output and the first `delay` is started. When this interval expires the output is turned OFF and toggles using the `time_off` and `time_on` durations for the OFF and ON state respectively. At the same time the `delay` of the second timing description is started and the process is repeated until the list is exhausted, in which case the timing of the last description remains in use. Receiving an OFF signal stops the whole process and immediately outputs OFF.\n\n*See also: [`autorepeat`](https://esphome.io/components/binary_sensor/index.html#autorepeat)*"
       },
       "lambda": {
-        "docs": "Specify any [lambda](https://esphome.io/guides/automations.html#config-lambda) for more complex filters. The input value from the binary sensor is `x` and you can return `true` for ON, `false` for OFF, and `{}` to stop the filter chain.\n\n*See also: [autorepeat](https://esphome.io/components/binary_sensor/index.html#lambda)*"
+        "docs": "Specify any [lambda](https://esphome.io/guides/automations.html#config-lambda) for more complex filters. The input value from the binary sensor is `x` and you can return `true` for ON, `false` for OFF, and `{}` to stop the filter chain.\n\n*See also: [`lambda`](https://esphome.io/components/binary_sensor/index.html#lambda)*"
       }
     }
   }

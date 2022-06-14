@@ -169,7 +169,7 @@
           }
         },
         "maybe": "id",
-        "docs": "This action makes the given deep sleep component enter deep sleep immediately.\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-enter-action)*"
+        "docs": "This action makes the given deep sleep component enter deep sleep immediately.\n\n*See also: [`deep_sleep.enter` Action](https://esphome.io/components/deep_sleep.html#deep-sleep-enter-action)*"
       },
       "allow": {
         "type": "schema",
@@ -179,7 +179,7 @@
             "deep_sleep.DEEP_SLEEP_ACTION_SCHEMA"
           ]
         },
-        "docs": "This action allows the given deep sleep component to enter deep sleep, after previously being prevented.\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-allow-action)*"
+        "docs": "This action allows the given deep sleep component to enter deep sleep, after previously being prevented.\n\n*See also: [`deep_sleep.allow` Action](https://esphome.io/components/deep_sleep.html#deep-sleep-allow-action)*"
       },
       "prevent": {
         "type": "schema",
@@ -189,7 +189,7 @@
             "deep_sleep.DEEP_SLEEP_ACTION_SCHEMA"
           ]
         },
-        "docs": "This action prevents the given deep sleep component from entering deep sleep. Useful for keeping the ESP active during data transfer or OTA updating (See note below for more information).\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-prevent-action)*"
+        "docs": "This action prevents the given deep sleep component from entering deep sleep. Useful for keeping the ESP active during data transfer or OTA updating (See note below for more information).\n\n*See also: [`deep_sleep.prevent` Action](https://esphome.io/components/deep_sleep.html#deep-sleep-prevent-action)*"
       }
     }
   }

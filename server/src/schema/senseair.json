@@ -85,7 +85,7 @@
             "senseair.sensor.CALIBRATION_ACTION_SCHEMA"
           ]
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) requests the currently configured ABC interval from the sensor with the given ID. The value will be printed in ESPHome logs.\n\n*See also: [SenseAir CO_2 Sensor](https://esphome.io/components/sensor/senseair.html#senseair-abc-get-period-action)*"
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) requests the currently configured ABC interval from the sensor with the given ID. The value will be printed in ESPHome logs.\n\n*See also: [`senseair.abc_get_period` Action](https://esphome.io/components/sensor/senseair.html#senseair-abc-get-period-action)*"
       },
       "abc_disable": {
         "type": "schema",
@@ -94,7 +94,7 @@
             "senseair.sensor.CALIBRATION_ACTION_SCHEMA"
           ]
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) disables Automatic Baseline Calibration on the sensor with the given ID.\n\n*See also: [SenseAir CO_2 Sensor](https://esphome.io/components/sensor/senseair.html#senseair-abc-disable-action)*"
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) disables Automatic Baseline Calibration on the sensor with the given ID.\n\n*See also: [`senseair.abc_disable` Action](https://esphome.io/components/sensor/senseair.html#senseair-abc-disable-action)*"
       },
       "abc_enable": {
         "type": "schema",
@@ -103,7 +103,7 @@
             "senseair.sensor.CALIBRATION_ACTION_SCHEMA"
           ]
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) enables Automatic Baseline Calibration on the sensor with the given ID. ABC will be activated with the default interval of 180 hours.\n\n*See also: [SenseAir CO_2 Sensor](https://esphome.io/components/sensor/senseair.html#senseair-abc-enable-action)*"
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) enables Automatic Baseline Calibration on the sensor with the given ID. ABC will be activated with the default interval of 180 hours.\n\n*See also: [`senseair.abc_enable` Action](https://esphome.io/components/sensor/senseair.html#senseair-abc-enable-action)*"
       },
       "background_calibration_result": {
         "type": "schema",
@@ -112,7 +112,7 @@
             "senseair.sensor.CALIBRATION_ACTION_SCHEMA"
           ]
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) requests the result of the background calibration procedure from the sensor with the given ID. The value will be printed in ESPHome logs.\n\n*See also: [SenseAir CO_2 Sensor](https://esphome.io/components/sensor/senseair.html#senseair-background-calibration-result-action)*"
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) requests the result of the background calibration procedure from the sensor with the given ID. The value will be printed in ESPHome logs.\n\n*See also: [`senseair.background_calibration_result` Action](https://esphome.io/components/sensor/senseair.html#senseair-background-calibration-result-action)*"
       },
       "background_calibration": {
         "type": "schema",
@@ -121,7 +121,7 @@
             "senseair.sensor.CALIBRATION_ACTION_SCHEMA"
           ]
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) initiates a background calibration on the sensor with the given ID: the current CO2 level will be used as a reference for the 400ppm threshold. Ensure that the sensor is in a stable environment with fresh ambient air, preferably near a window that has already been opened for a sufficient time.\n\n*See also: [SenseAir CO_2 Sensor](https://esphome.io/components/sensor/senseair.html#senseair-background-calibration-action)*"
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) initiates a background calibration on the sensor with the given ID: the current CO2 level will be used as a reference for the 400ppm threshold. Ensure that the sensor is in a stable environment with fresh ambient air, preferably near a window that has already been opened for a sufficient time.\n\n*See also: [`senseair.background_calibration` Action](https://esphome.io/components/sensor/senseair.html#senseair-background-calibration-action)*"
       }
     }
   }

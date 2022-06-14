@@ -180,7 +180,7 @@
             "output.BINARY_OUTPUT_ACTION_SCHEMA"
           ]
         },
-        "docs": "This action turns the output with the given ID on when executed.\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#output-turn-on-action)*"
+        "docs": "This action turns the output with the given ID on when executed.\n\n*See also: [`output.turn_on` Action](https://esphome.io/components/output/index.html#output-turn-on-action)*"
       },
       "turn_off": {
         "type": "schema",
@@ -189,7 +189,7 @@
             "output.BINARY_OUTPUT_ACTION_SCHEMA"
           ]
         },
-        "docs": "This action turns the output with the given ID off when executed.\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#output-turn-off-action)*"
+        "docs": "This action turns the output with the given ID off when executed.\n\n*See also: [`output.turn_off` Action](https://esphome.io/components/output/index.html#output-turn-off-action)*"
       },
       "set_level": {
         "type": "schema",
@@ -206,7 +206,7 @@
             }
           }
         },
-        "docs": "This action sets the float output to the given level when executed. Note: This only works with floating point outputs like ESP8266 PWM or LEDC.\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#output-set-level-action)*"
+        "docs": "This action sets the float output to the given level when executed. Note: This only works with floating point outputs like ESP8266 PWM or LEDC.\n\n*See also: [`output.set_level` Action](https://esphome.io/components/output/index.html#output-set-level-action)*"
       }
     }
   },

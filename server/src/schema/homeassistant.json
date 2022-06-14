@@ -75,7 +75,7 @@
             }
           }
         },
-        "docs": "When using the native API with Home Assistant, you can create Home Assistant service calls straight from ESPHome [Automations](https://esphome.io/guides/automations.html#automation).\n\n*See also: [Native API Component](https://esphome.io/components/api.html#homeassistant-service-action)*"
+        "docs": "When using the native API with Home Assistant, you can create Home Assistant service calls straight from ESPHome [Automations](https://esphome.io/guides/automations.html#automation).\n\n*See also: [`homeassistant.service` Action](https://esphome.io/components/api.html#homeassistant-service-action)*"
       },
       "event": {
         "type": "schema",
@@ -125,7 +125,7 @@
             }
           }
         },
-        "docs": "When using the native API with Home Assistant, you can create events in the Home Assistant event bus straight from ESPHome [Automations](https://esphome.io/guides/automations.html#automation).\n\n*See also: [Native API Component](https://esphome.io/components/api.html#homeassistant-event-action)*"
+        "docs": "When using the native API with Home Assistant, you can create events in the Home Assistant event bus straight from ESPHome [Automations](https://esphome.io/guides/automations.html#automation).\n\n*See also: [`homeassistant.event` Action](https://esphome.io/components/api.html#homeassistant-event-action)*"
       },
       "tag_scanned": {
         "type": "schema",
@@ -145,7 +145,7 @@
           }
         },
         "maybe": "tag",
-        "docs": "When using the native API with Home Assistant, you can push tag_scanned to Home Assistant straight from ESPHome [Automations](https://esphome.io/guides/automations.html#automation).\n\n*See also: [Native API Component](https://esphome.io/components/api.html#homeassistant-tag-scanned-action)*"
+        "docs": "When using the native API with Home Assistant, you can push tag_scanned to Home Assistant straight from ESPHome [Automations](https://esphome.io/guides/automations.html#automation).\n\n*See also: [`homeassistant.tag_scanned` Action](https://esphome.io/components/api.html#homeassistant-tag-scanned-action)*"
       }
     }
   },

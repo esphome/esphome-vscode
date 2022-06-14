@@ -938,18 +938,18 @@
             }
           }
         },
-        "docs": "This condition passes if the state of the given sensor is inside a range.\n\n*See also: [lambda](https://esphome.io/components/sensor/index.html#sensor-in-range-condition)*"
+        "docs": "This condition passes if the state of the given sensor is inside a range.\n\n*See also: [`sensor.in_range` Condition](https://esphome.io/components/sensor/index.html#sensor-in-range-condition)*"
       }
     },
     "filter": {
       "offset": {
-        "docs": "Adds a constant value to each sensor value.\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#offset)*"
+        "docs": "Adds a constant value to each sensor value.\n\n*See also: [`offset`](https://esphome.io/components/sensor/index.html#offset)*"
       },
       "multiply": {
-        "docs": "Multiplies each value by a constant value.\n\n*See also: [offset](https://esphome.io/components/sensor/index.html#multiply)*"
+        "docs": "Multiplies each value by a constant value.\n\n*See also: [`multiply`](https://esphome.io/components/sensor/index.html#multiply)*"
       },
       "filter_out": {
-        "docs": "**number**: Filter out specific values to be displayed. For example to filter out the value `85.0`\n\n*See also: [calibrate_polynomial](https://esphome.io/components/sensor/index.html#filter-out)*"
+        "docs": "**number**: Filter out specific values to be displayed. For example to filter out the value `85.0`\n\n*See also: [`filter_out`](https://esphome.io/components/sensor/index.html#filter-out)*"
       },
       "quantile": {
         "type": "schema",
@@ -984,7 +984,7 @@
             }
           }
         },
-        "docs": "A [simple moving quantile](https://en.wikipedia.org/wiki/Quantile) over the last few values. This can be used to filter outliers from the received sensor data. A large window size will make the filter slow to react to input changes.\n\n*See also: [filter_out](https://esphome.io/components/sensor/index.html#quantile)*"
+        "docs": "A [simple moving quantile](https://en.wikipedia.org/wiki/Quantile) over the last few values. This can be used to filter outliers from the received sensor data. A large window size will make the filter slow to react to input changes.\n\n*See also: [`quantile`](https://esphome.io/components/sensor/index.html#quantile)*"
       },
       "median": {
         "type": "schema",
@@ -1013,7 +1013,7 @@
             }
           }
         },
-        "docs": "A [simple moving median](https://en.wikipedia.org/wiki/Median_filter#Worked_1D_example) over the last few values. This can be used to filter outliers from the received sensor data. A large window size will make the filter slow to react to input changes.\n\n*See also: [quantile](https://esphome.io/components/sensor/index.html#median)*"
+        "docs": "A [simple moving median](https://en.wikipedia.org/wiki/Median_filter#Worked_1D_example) over the last few values. This can be used to filter outliers from the received sensor data. A large window size will make the filter slow to react to input changes.\n\n*See also: [`median`](https://esphome.io/components/sensor/index.html#median)*"
       },
       "min": {
         "type": "schema",
@@ -1042,7 +1042,7 @@
             }
           }
         },
-        "docs": "A moving minimum over the last few values. A large window size will make the filter slow to react to input changes.\n\n*See also: [median](https://esphome.io/components/sensor/index.html#min)*"
+        "docs": "A moving minimum over the last few values. A large window size will make the filter slow to react to input changes.\n\n*See also: [`min`](https://esphome.io/components/sensor/index.html#min)*"
       },
       "max": {
         "type": "schema",
@@ -1071,7 +1071,7 @@
             }
           }
         },
-        "docs": "A moving maximum over the last few values. A large window size will make the filter slow to react to input changes.\n\n*See also: [min](https://esphome.io/components/sensor/index.html#max)*"
+        "docs": "A moving maximum over the last few values. A large window size will make the filter slow to react to input changes.\n\n*See also: [`max`](https://esphome.io/components/sensor/index.html#max)*"
       },
       "sliding_window_moving_average": {
         "type": "schema",
@@ -1100,7 +1100,7 @@
             }
           }
         },
-        "docs": "A [simple moving average](https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average) over the last few values. It can be used to have a short update interval on the sensor but only push out an average on a specific interval (thus increasing resolution).\n\n*See also: [max](https://esphome.io/components/sensor/index.html#sliding-window-moving-average)*"
+        "docs": "A [simple moving average](https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average) over the last few values. It can be used to have a short update interval on the sensor but only push out an average on a specific interval (thus increasing resolution).\n\n*See also: [`sliding_window_moving_average`](https://esphome.io/components/sensor/index.html#sliding-window-moving-average)*"
       },
       "exponential_moving_average": {
         "type": "schema",
@@ -1128,7 +1128,7 @@
             }
           }
         },
-        "docs": "A simple [exponential moving average](https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average) over the last few values. It can be used to have a short update interval on the sensor but only push out an average on a specific interval (thus increasing resolution).\n\n*See also: [sliding_window_moving_average](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
+        "docs": "A simple [exponential moving average](https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average) over the last few values. It can be used to have a short update interval on the sensor but only push out an average on a specific interval (thus increasing resolution).\n\n*See also: [`exponential_moving_average`](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
       },
       "throttle_average": {
         "type": "schema",
@@ -1137,19 +1137,19 @@
             "core.positive_time_period_milliseconds"
           ]
         },
-        "docs": "An average over the `specified time period`, potentially throttling incoming values. When this filter gets incoming values, it sums up all values and pushes out the average after the `specified time period` passed. There are two edge cases to consider within the `specified time period`:\n\n*See also: [throttle](https://esphome.io/components/sensor/index.html#throttle-average)*"
+        "docs": "An average over the `specified time period`, potentially throttling incoming values. When this filter gets incoming values, it sums up all values and pushes out the average after the `specified time period` passed. There are two edge cases to consider within the `specified time period`:\n\n*See also: [`throttle_average`](https://esphome.io/components/sensor/index.html#throttle-average)*"
       },
       "lambda": {
-        "docs": "Perform a simple mathematical operation over the sensor values. The input value is `x` and the result of the lambda is used as the output (use `return`).\n\n*See also: [or](https://esphome.io/components/sensor/index.html#lambda)*"
+        "docs": "Perform a simple mathematical operation over the sensor values. The input value is `x` and the result of the lambda is used as the output (use `return`).\n\n*See also: [`lambda`](https://esphome.io/components/sensor/index.html#lambda)*"
       },
       "delta": {
-        "docs": "This filter stores the last value passed through this filter and only passes incoming values through if the absolute difference is greater than the configured value. For example if a value of 1.0 first comes in, it\u2019s passed on. If the delta filter is configured with a value of 5, it will now not pass on an incoming value of 2.0, only values that are at least 6.0 big or -4.0.\n\n*See also: [debounce](https://esphome.io/components/sensor/index.html#delta)*"
+        "docs": "This filter stores the last value passed through this filter and only passes incoming values through if the absolute difference is greater than the configured value. For example if a value of 1.0 first comes in, it\u2019s passed on. If the delta filter is configured with a value of 5, it will now not pass on an incoming value of 2.0, only values that are at least 6.0 big or -4.0.\n\n*See also: [`delta`](https://esphome.io/components/sensor/index.html#delta)*"
       },
       "or": {
         "type": "registry",
         "is_list": true,
         "registry": "sensor.filter",
-        "docs": "Pass forward a value with the first child filter that returns. Above example will only pass forward values that are *either* at least 1s old or are if the absolute difference is at least 5.0.\n\n*See also: [delta](https://esphome.io/components/sensor/index.html#or)*"
+        "docs": "Pass forward a value with the first child filter that returns. Above example will only pass forward values that are *either* at least 1s old or are if the absolute difference is at least 5.0.\n\n*See also: [`or`](https://esphome.io/components/sensor/index.html#or)*"
       },
       "throttle": {
         "type": "schema",
@@ -1158,7 +1158,7 @@
             "core.positive_time_period_milliseconds"
           ]
         },
-        "docs": "Throttle the incoming values. When this filter gets an incoming value, it checks if the last incoming value is at least `specified time period` old. If it is not older than the configured value, the value is not passed forward.\n\n*See also: [exponential_moving_average](https://esphome.io/components/sensor/index.html#throttle)*"
+        "docs": "Throttle the incoming values. When this filter gets an incoming value, it checks if the last incoming value is at least `specified time period` old. If it is not older than the configured value, the value is not passed forward.\n\n*See also: [`throttle`](https://esphome.io/components/sensor/index.html#throttle)*"
       },
       "heartbeat": {
         "type": "schema",
@@ -1167,7 +1167,7 @@
             "core.positive_time_period_milliseconds"
           ]
         },
-        "docs": "Send the value periodically with the specified time interval. If the sensor value changes during the interval the interval will not reset. The last value of the sensor will be sent.\n\n*See also: [throttle_average](https://esphome.io/components/sensor/index.html#heartbeat)*"
+        "docs": "Send the value periodically with the specified time interval. If the sensor value changes during the interval the interval will not reset. The last value of the sensor will be sent.\n\n*See also: [`heartbeat`](https://esphome.io/components/sensor/index.html#heartbeat)*"
       },
       "debounce": {
         "type": "schema",
@@ -1176,11 +1176,11 @@
             "core.positive_time_period_milliseconds"
           ]
         },
-        "docs": "Only send values if the last incoming value is at least `specified time period` old. For example if two values come in at almost the same time, this filter will only output the last value and only after the specified time period has passed without any new incoming values.\n\n*See also: [heartbeat](https://esphome.io/components/sensor/index.html#debounce)*"
+        "docs": "Only send values if the last incoming value is at least `specified time period` old. For example if two values come in at almost the same time, this filter will only output the last value and only after the specified time period has passed without any new incoming values.\n\n*See also: [`debounce`](https://esphome.io/components/sensor/index.html#debounce)*"
       },
       "calibrate_linear": {
         "is_list": true,
-        "docs": "Calibrate your sensor values by using values you measured with an accurate \u201ctruth\u201d source.\n\n*See also: [multiply](https://esphome.io/components/sensor/index.html#calibrate-linear)*"
+        "docs": "Calibrate your sensor values by using values you measured with an accurate \u201ctruth\u201d source.\n\n*See also: [`calibrate_linear`](https://esphome.io/components/sensor/index.html#calibrate-linear)*"
       },
       "calibrate_polynomial": {
         "type": "schema",
@@ -1197,7 +1197,7 @@
             }
           }
         },
-        "docs": "Calibrate your sensor values by fitting them to a polynomial functions. This is similar to the `calibrate_linear` filter, but also allows for higher-order functions like quadratic polynomials.\n\n*See also: [calibrate_linear](https://esphome.io/components/sensor/index.html#calibrate-polynomial)*"
+        "docs": "Calibrate your sensor values by fitting them to a polynomial functions. This is similar to the `calibrate_linear` filter, but also allows for higher-order functions like quadratic polynomials.\n\n*See also: [`calibrate_polynomial`](https://esphome.io/components/sensor/index.html#calibrate-polynomial)*"
       }
     }
   }

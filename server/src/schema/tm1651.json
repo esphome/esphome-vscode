@@ -61,7 +61,7 @@
             "tm1651.BINARY_OUTPUT_ACTION_SCHEMA"
           ]
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) turns on the LEDs.\n\n*See also: [TM1651 Battery Display](https://esphome.io/components/tm1651.html#tm1651-turn-on-action)*"
+        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) turns on the LEDs.\n\n*See also: [`tm1651.turn_on` Action](https://esphome.io/components/tm1651.html#tm1651-turn-on-action)*"
       },
       "turn_off": {
         "type": "schema",
@@ -70,7 +70,7 @@
             "tm1651.BINARY_OUTPUT_ACTION_SCHEMA"
           ]
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) turns off all the LEDs.\n\n*See also: [TM1651 Battery Display](https://esphome.io/components/tm1651.html#tm1651-turn-off-action)*"
+        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) turns off all the LEDs.\n\n*See also: [`tm1651.turn_off` Action](https://esphome.io/components/tm1651.html#tm1651-turn-off-action)*"
       },
       "set_level_percent": {
         "type": "schema",
@@ -92,7 +92,7 @@
             }
           }
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) changes the level of the battery display at runtime. Automatically calculates input level in percentages to actual level for the display.\n\n*See also: [TM1651 Battery Display](https://esphome.io/components/tm1651.html#tm1651-set-level-percent-action)*"
+        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) changes the level of the battery display at runtime. Automatically calculates input level in percentages to actual level for the display.\n\n*See also: [`tm1651.set_level_percent` Action](https://esphome.io/components/tm1651.html#tm1651-set-level-percent-action)*"
       },
       "set_level": {
         "type": "schema",
@@ -113,7 +113,7 @@
             }
           }
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) changes the level of the battery display at runtime.\n\n*See also: [TM1651 Battery Display](https://esphome.io/components/tm1651.html#tm1651-set-level-action)*"
+        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) changes the level of the battery display at runtime.\n\n*See also: [`tm1651.set_level` Action](https://esphome.io/components/tm1651.html#tm1651-set-level-action)*"
       },
       "set_brightness": {
         "type": "schema",
@@ -139,7 +139,7 @@
             }
           }
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to manually change the brightness of the battery display at runtime.\n\n*See also: [TM1651 Battery Display](https://esphome.io/components/tm1651.html#tm1651-set-brightness-action)*"
+        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to manually change the brightness of the battery display at runtime.\n\n*See also: [`tm1651.set_brightness` Action](https://esphome.io/components/tm1651.html#tm1651-set-brightness-action)*"
       }
     }
   }

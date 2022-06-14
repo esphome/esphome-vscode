@@ -50,7 +50,7 @@
             }
           }
         },
-        "docs": "To use your stepper motor in [automations](https://esphome.io/guides/automations.html#automation) or templates, you can use this action to set the target position (in steps). The stepper will always run towards the target position and stop once it has reached the target.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-target-action)*"
+        "docs": "To use your stepper motor in [automations](https://esphome.io/guides/automations.html#automation) or templates, you can use this action to set the target position (in steps). The stepper will always run towards the target position and stop once it has reached the target.\n\n*See also: [`stepper.set_target` Action](https://esphome.io/components/stepper/index.html#stepper-set-target-action)*"
       },
       "report_position": {
         "type": "schema",
@@ -70,7 +70,7 @@
             }
           }
         },
-        "docs": "All steppers start out with a target and current position of `0` on boot. However, if you for example want to home a stepper motor, it can be useful to **report** the stepper where it is currently at.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-report-position-action)*"
+        "docs": "All steppers start out with a target and current position of `0` on boot. However, if you for example want to home a stepper motor, it can be useful to **report** the stepper where it is currently at.\n\n*See also: [`stepper.report_position` Action](https://esphome.io/components/stepper/index.html#stepper-report-position-action)*"
       },
       "set_speed": {
         "type": "schema",
@@ -89,7 +89,7 @@
             }
           }
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to set the speed of a stepper at runtime.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-speed-action)*"
+        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to set the speed of a stepper at runtime.\n\n*See also: [`stepper.set_speed` Action](https://esphome.io/components/stepper/index.html#stepper-set-speed-action)*"
       },
       "set_acceleration": {
         "type": "schema",
@@ -108,7 +108,7 @@
             }
           }
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to set the acceleration of a stepper at runtime.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-acceleration-action)*"
+        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to set the acceleration of a stepper at runtime.\n\n*See also: [`stepper.set_acceleration` Action](https://esphome.io/components/stepper/index.html#stepper-set-acceleration-action)*"
       },
       "set_deceleration": {
         "type": "schema",
@@ -127,7 +127,7 @@
             }
           }
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to set the deceleration of a stepper at runtime.\n\n*See also: [ULN2003 Component](https://esphome.io/components/stepper/index.html#stepper-set-deceleration-action)*"
+        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to set the deceleration of a stepper at runtime.\n\n*See also: [`stepper.set_deceleration` Action](https://esphome.io/components/stepper/index.html#stepper-set-deceleration-action)*"
       }
     }
   }

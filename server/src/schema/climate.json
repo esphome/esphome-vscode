@@ -303,7 +303,7 @@
             }
           }
         },
-        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) for setting parameters for climate devices.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
+        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) for setting parameters for climate devices.\n\n*See also: [`climate.control` Action](https://esphome.io/components/climate/index.html#climate-control-action)*"
       }
     }
   }

@@ -53,7 +53,7 @@
             }
           }
         },
-        "docs": "Plays an rtttl tone.\n\n*See also: [Rtttl Buzzer](https://esphome.io/components/rtttl.html#rtttl-play-action)*"
+        "docs": "Plays an rtttl tone.\n\n*See also: [`rtttl.play` Action](https://esphome.io/components/rtttl.html#rtttl-play-action)*"
       },
       "stop": {
         "type": "schema",
@@ -66,7 +66,7 @@
             }
           }
         },
-        "docs": "Stops playback.\n\n*See also: [Rtttl Buzzer](https://esphome.io/components/rtttl.html#rtttl-stop-action)*"
+        "docs": "Stops playback.\n\n*See also: [`rtttl.stop` Action](https://esphome.io/components/rtttl.html#rtttl-stop-action)*"
       }
     },
     "condition": {
@@ -81,7 +81,7 @@
             }
           }
         },
-        "docs": "This Condition returns true while playback is active.\n\n*See also: [Rtttl Buzzer](https://esphome.io/components/rtttl.html#rtttl-is-playing-condition)*"
+        "docs": "This Condition returns true while playback is active.\n\n*See also: [`rtttl.is_playing` Condition](https://esphome.io/components/rtttl.html#rtttl-is-playing-condition)*"
       }
     }
   }

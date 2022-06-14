@@ -90,7 +90,7 @@
             }
           }
         },
-        "docs": "To use your servo motor in [automations](https://esphome.io/guides/automations.html#automation) or templates, you can use this action to set the target level of the servo from -100% to 100%.\n\n*See also: [Servo Component](https://esphome.io/components/servo.html#servo-write-action)*"
+        "docs": "To use your servo motor in [automations](https://esphome.io/guides/automations.html#automation) or templates, you can use this action to set the target level of the servo from -100% to 100%.\n\n*See also: [`servo.write` Action](https://esphome.io/components/servo.html#servo-write-action)*"
       },
       "detach": {
         "type": "schema",
@@ -104,7 +104,7 @@
             }
           }
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to disable the output on a servo motor - this will make the servo motor stop immediately and disable its active control.\n\n*See also: [Servo Component](https://esphome.io/components/servo.html#servo-detach-action)*"
+        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to disable the output on a servo motor - this will make the servo motor stop immediately and disable its active control.\n\n*See also: [`servo.detach` Action](https://esphome.io/components/servo.html#servo-detach-action)*"
       }
     }
   }

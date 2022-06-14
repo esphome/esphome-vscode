@@ -154,7 +154,7 @@
             }
           }
         },
-        "docs": "The can bus can transmit frames by means of the `canbus.send` action. There are several forms to use it:\n\n*See also: [on_frame Trigger](https://esphome.io/components/canbus.html#canbus-send-action)*"
+        "docs": "The can bus can transmit frames by means of the `canbus.send` action. There are several forms to use it:\n\n*See also: [`canbus.send` Action](https://esphome.io/components/canbus.html#canbus-send-action)*"
       }
     }
   }

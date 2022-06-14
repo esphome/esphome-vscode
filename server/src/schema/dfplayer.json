@@ -43,7 +43,7 @@
             }
           }
         },
-        "docs": "Starts playback of next track or skips to the next track.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-play-next-action)*"
+        "docs": "Starts playback of next track or skips to the next track.\n\n*See also: [`dfplayer.play_next` Action](https://esphome.io/components/dfplayer.html#dfplayer-play-next-action)*"
       },
       "play_previous": {
         "type": "schema",
@@ -56,7 +56,7 @@
             }
           }
         },
-        "docs": "Plays the previously played track.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-play-previous-action)*"
+        "docs": "Plays the previously played track.\n\n*See also: [`dfplayer.play_previous` Action](https://esphome.io/components/dfplayer.html#dfplayer-play-previous-action)*"
       },
       "play": {
         "type": "schema",
@@ -82,7 +82,7 @@
             }
           }
         },
-        "docs": "Plays a track.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-play-action)*"
+        "docs": "Plays a track.\n\n*See also: [`dfplayer.play` Action](https://esphome.io/components/dfplayer.html#dfplayer-play-action)*"
       },
       "play_folder": {
         "type": "schema",
@@ -113,7 +113,7 @@
             }
           }
         },
-        "docs": "Plays files inside numbered folders, folders must be numbered from 1 and with leading zeros. Like `01`, `02`, \u2026 etc. Files inside the folders must be numbered with two leading zeros, like `001.mp3`, `002.mp3`, \u2026 etc. Folder numbers can range from 1 to 99 and file name from 1 to 255 or folder number from 1 to 10 and file number from 1 to 1000.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-play-folder-action)*"
+        "docs": "Plays files inside numbered folders, folders must be numbered from 1 and with leading zeros. Like `01`, `02`, \u2026 etc. Files inside the folders must be numbered with two leading zeros, like `001.mp3`, `002.mp3`, \u2026 etc. Folder numbers can range from 1 to 99 and file name from 1 to 255 or folder number from 1 to 10 and file number from 1 to 1000.\n\n*See also: [`dfplayer.play_folder` Action](https://esphome.io/components/dfplayer.html#dfplayer-play-folder-action)*"
       },
       "set_device": {
         "type": "schema",
@@ -135,7 +135,7 @@
             }
           }
         },
-        "docs": "Changes the device in use. Valid values are `TF_CARD` and `USB`.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-set-device-action)*"
+        "docs": "Changes the device in use. Valid values are `TF_CARD` and `USB`.\n\n*See also: [`dfplayer.set_device` Action](https://esphome.io/components/dfplayer.html#dfplayer-set-device-action)*"
       },
       "set_volume": {
         "type": "schema",
@@ -155,7 +155,7 @@
             }
           }
         },
-        "docs": "Changes volume.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-set-volume-action)*"
+        "docs": "Changes volume.\n\n*See also: [`dfplayer.set_volume` Action](https://esphome.io/components/dfplayer.html#dfplayer-set-volume-action)*"
       },
       "volume_up": {
         "type": "schema",
@@ -168,7 +168,7 @@
             }
           }
         },
-        "docs": "Turn volume up.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-volume-up-action)*"
+        "docs": "Turn volume up.\n\n*See also: [`dfplayer.volume_up` Action](https://esphome.io/components/dfplayer.html#dfplayer-volume-up-action)*"
       },
       "volume_down": {
         "type": "schema",
@@ -181,7 +181,7 @@
             }
           }
         },
-        "docs": "Turn volume down.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-volume-down-action)*"
+        "docs": "Turn volume down.\n\n*See also: [`dfplayer.volume_down` Action](https://esphome.io/components/dfplayer.html#dfplayer-volume-down-action)*"
       },
       "set_eq": {
         "type": "schema",
@@ -209,7 +209,7 @@
             }
           }
         },
-        "docs": "Changes audio equalization preset.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-set-eq-action)*"
+        "docs": "Changes audio equalization preset.\n\n*See also: [`dfplayer.set_eq` Action](https://esphome.io/components/dfplayer.html#dfplayer-set-eq-action)*"
       },
       "sleep": {
         "type": "schema",
@@ -222,7 +222,7 @@
             }
           }
         },
-        "docs": "Enters sleep mode. Playback is stopped and the action `dfplayer.set_device: TF_CARD` should be send for playback to be enabled again.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-sleep-action)*"
+        "docs": "Enters sleep mode. Playback is stopped and the action `dfplayer.set_device: TF_CARD` should be send for playback to be enabled again.\n\n*See also: [`dfplayer.sleep` Action](https://esphome.io/components/dfplayer.html#dfplayer-sleep-action)*"
       },
       "reset": {
         "type": "schema",
@@ -235,7 +235,7 @@
             }
           }
         },
-        "docs": "Module reset.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-reset-action)*"
+        "docs": "Module reset.\n\n*See also: [`dfplayer.reset` Action](https://esphome.io/components/dfplayer.html#dfplayer-reset-action)*"
       },
       "start": {
         "type": "schema",
@@ -248,7 +248,7 @@
             }
           }
         },
-        "docs": "Starts playing a track or resumes paused playback.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-start-action)*"
+        "docs": "Starts playing a track or resumes paused playback.\n\n*See also: [`dfplayer.start` Action](https://esphome.io/components/dfplayer.html#dfplayer-start-action)*"
       },
       "pause": {
         "type": "schema",
@@ -261,7 +261,7 @@
             }
           }
         },
-        "docs": "Pauses playback, playback can be resumed from the same position with `dfplayer.start`.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-pause-action)*"
+        "docs": "Pauses playback, playback can be resumed from the same position with `dfplayer.start`.\n\n*See also: [`dfplayer.pause` Action](https://esphome.io/components/dfplayer.html#dfplayer-pause-action)*"
       },
       "stop": {
         "type": "schema",
@@ -274,7 +274,7 @@
             }
           }
         },
-        "docs": "Stops playback.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-stop-action)*"
+        "docs": "Stops playback.\n\n*See also: [`dfplayer.stop` Action](https://esphome.io/components/dfplayer.html#dfplayer-stop-action)*"
       },
       "random": {
         "type": "schema",
@@ -287,7 +287,7 @@
             }
           }
         },
-        "docs": "Randomly plays all tracks.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-random-action)*"
+        "docs": "Randomly plays all tracks.\n\n*See also: [`dfplayer.random` Action](https://esphome.io/components/dfplayer.html#dfplayer-random-action)*"
       }
     },
     "condition": {
@@ -302,7 +302,7 @@
             }
           }
         },
-        "docs": "This Condition returns true while playback is active.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#dfplayer-is-playing-condition)*"
+        "docs": "This Condition returns true while playback is active.\n\n*See also: [`dfplayer.is_playing` Condition](https://esphome.io/components/dfplayer.html#dfplayer-is-playing-condition)*"
       }
     }
   }

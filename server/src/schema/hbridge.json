@@ -71,7 +71,7 @@
             }
           }
         },
-        "docs": "Set all h-bridge pins high, shorting the fan/motor\u2019s windings and forcing the motor to actively stop.\n\n*See also: [H-bridge Fan](https://esphome.io/components/fan/hbridge.html#fan-hbridge-brake-action)*"
+        "docs": "Set all h-bridge pins high, shorting the fan/motor\u2019s windings and forcing the motor to actively stop.\n\n*See also: [`fan.hbridge.brake` Action](https://esphome.io/components/fan/hbridge.html#fan-hbridge-brake-action)*"
       }
     }
   },
