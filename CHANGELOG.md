@@ -2,13 +2,15 @@
 
 ## v2022.6.0
 
-- Sync with ESPHome v2022.6 Schema
+- 🆕 Sync with ESPHome v2022.6 Schema
 - Adds completions on declared ids 😎 e.g. if you have a light.tun_on: action, the extension will suggest the compatible ids
-- Adds goto definition (F12 or ctrl-click on ids)
-- Completion suggests !lambda on templatable properties
+- Adds goto definition (F12 or ctrl-click on ids) 🌟
+- Completion suggests `!lambda` on templatable properties
 - Fix hover docs for platform element
 - Fix scripts completions not working properly
 - Don't try to validate secrets.yaml
+- Adds lambda syntax 🌈 hilighting of C++
+- Fix titles in See Also hovers
 
 ## v2022.5.0
 
