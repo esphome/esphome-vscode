@@ -9,7 +9,14 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "pn532::PN532",
+                "parents": [
+                  "PollingComponent",
+                  "Component"
+                ]
+              }
             },
             "on_tag": {
               "key": "Optional",
@@ -43,7 +50,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "pn532::PN532",
+              "type": "use_id"
             }
           }
         }
@@ -60,10 +69,19 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "pn532::PN532BinarySensor",
+                "parents": [
+                  "binary_sensor::BinarySensor",
+                  "EntityBase"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [pn532 Binary Sensor](https://esphome.io/components/binary_sensor/pn532.html#id2)*"
             },
             "pn532_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "pn532::PN532",
+              "type": "use_id"
             },
             "uid": {
               "key": "Required",

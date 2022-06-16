@@ -64,6 +64,9 @@
         ],
         "docs": "All sensors are normal text sensors\u2026 so all text sensor variables are working to.\n\n*See also: [pipsolar Text Sensor](https://esphome.io/components/pipsolar.html#text-sensor)*"
       },
+      "sml": {
+        "docs": "**obis_code** (*Required*, string): Specify the OBIS code you want to retrieve data for from the device. The format must be (A-B:C.D.E, e.g. 1-0:1.8.0)\n\n*See also: [sml Text Sensor](https://esphome.io/components/sml.html#text-sensor)*"
+      },
       "sun": {
         "dependencies": [
           "sun"
@@ -102,10 +105,23 @@
           ],
           "config_vars": {
             "mqtt_id": {
-              "key": "Optional"
+              "key": "Optional",
+              "id_type": {
+                "class": "mqtt::MQTTTextSensor",
+                "parents": [
+                  "mqtt::MQTTComponent",
+                  "Component"
+                ]
+              }
             },
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "text_sensor::TextSensor",
+                "parents": [
+                  "EntityBase"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
             "filters": {
@@ -136,6 +152,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "text_sensor::TextSensor",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The text sensor ID.\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#text-sensor-state-condition)*"
             },
             "state": {
@@ -146,7 +164,7 @@
             }
           }
         },
-        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) allows you to check if a given text sensor has a specific state.\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#text-sensor-state-condition)*"
+        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) allows you to check if a given text sensor has a specific state.\n\n*See also: [`text_sensor.state` Condition](https://esphome.io/components/text_sensor/index.html#text-sensor-state-condition)*"
       }
     },
     "filter": {

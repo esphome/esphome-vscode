@@ -6,7 +6,15 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "selec_meter::SelecMeter",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "modbus::ModbusDevice"
+                ]
+              }
             },
             "total_active_energy": {
               "key": "Optional",
@@ -395,7 +403,9 @@
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n*See also: [Selec Energy Monitor](https://esphome.io/components/sensor/selec_meter.html#configuration-variables)*"
             },
             "modbus_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "modbus::Modbus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",

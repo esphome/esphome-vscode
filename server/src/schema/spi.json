@@ -7,6 +7,12 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "spi::SPIComponent",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for this SPI hub if you need multiple SPI hubs.\n\n*See also: [SPI Bus](https://esphome.io/components/spi.html#configuration-variables)*"
             },
             "clk_pin": {

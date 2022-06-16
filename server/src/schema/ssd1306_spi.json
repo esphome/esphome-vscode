@@ -11,6 +11,16 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "ssd1306_spi::SPISSD1306",
+                "parents": [
+                  "ssd1306_base::SSD1306",
+                  "PollingComponent",
+                  "Component",
+                  "display::DisplayBuffer",
+                  "spi::SPIDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [ssd1306 Over SPI](https://esphome.io/components/display/ssd1306.html#id1)*"
             },
             "dc_pin": {
@@ -24,6 +34,8 @@
             },
             "spi_id": {
               "key": "GeneratedID",
+              "use_id_type": "spi::SPIComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [SPI Component](https://esphome.io/components/spi.html#spi) if you want to use multiple SPI buses.\n\n*See also: [ssd1306 Over SPI](https://esphome.io/components/display/ssd1306.html#id1)*"
             },
             "cs_pin": {

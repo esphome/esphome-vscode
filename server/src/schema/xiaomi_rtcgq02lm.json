@@ -6,7 +6,14 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "xiaomi_rtcgq02lm::XiaomiRTCGQ02LM",
+                "parents": [
+                  "esp32_ble_tracker::ESPBTDeviceListener",
+                  "Component"
+                ]
+              }
             },
             "bindkey": {
               "key": "Required"
@@ -31,7 +38,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "xiaomi_rtcgq02lm::XiaomiRTCGQ02LM",
+              "type": "use_id"
             },
             "battery_level": {
               "key": "Optional",
@@ -71,7 +80,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "xiaomi_rtcgq02lm::XiaomiRTCGQ02LM",
+              "type": "use_id"
             },
             "motion": {
               "key": "Optional",

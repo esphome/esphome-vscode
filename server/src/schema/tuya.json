@@ -6,10 +6,19 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "tuya::Tuya",
+                "parents": [
+                  "Component",
+                  "uart::UARTDevice"
+                ]
+              }
             },
             "time_id": {
               "key": "Optional",
+              "use_id_type": "time::RealTimeClock",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Some Tuya devices support obtaining local time from ESPHome. Specify the ID of the [Time Component](https://esphome.io/components/time.html#time) which will be used.\n\n*See also: [Tuya MCU](https://esphome.io/components/tuya.html#configuration-variables)*"
             },
             "ignore_mcu_update_on_datapoints": {
@@ -18,6 +27,15 @@
               "type": "integer",
               "data_type": "uint8_t",
               "docs": "**list**: A list of datapoints to ignore MCU updates for.  Useful for certain broken/erratic hardware and debugging.\n\n*See also: [Tuya MCU](https://esphome.io/components/tuya.html#configuration-variables)*"
+            },
+            "status_pin": {
+              "key": "Optional",
+              "schema": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin",
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: Some Tuya devices support WiFi status reporting ONLY through gpio pin. Specify the pin reported in the config dump or leave empty otherwise. More about this [here](https://developer.tuya.com/en/docs/iot/tuya-cloud-universal-serial-port-access-protocol?id=K9hhi0xxtn9cb#title-6-Query%20working%20mode).\n\n*See also: [Tuya MCU](https://esphome.io/components/tuya.html#configuration-variables)*"
             },
             "on_datapoint_update": {
               "key": "Optional",
@@ -55,7 +73,9 @@
               "docs": "An automation to perform when a Tuya datapoint update is received. See [on_datapoint_update](https://esphome.io/components/tuya.html#tuya-on-datapoint-update).\n\n*See also: [Tuya MCU](https://esphome.io/components/tuya.html#configuration-variables)*"
             },
             "uart_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id"
             }
           },
           "extends": [
@@ -76,10 +96,20 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "tuya::TuyaSensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Tuya Sensor](https://esphome.io/components/sensor/tuya.html#configuration-variables)*"
             },
             "tuya_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "tuya::Tuya",
+              "type": "use_id"
             },
             "sensor_datapoint": {
               "key": "Required",
@@ -103,10 +133,20 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "tuya::TuyaBinarySensor",
+                "parents": [
+                  "binary_sensor::BinarySensor",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Tuya Binary Sensor](https://esphome.io/components/binary_sensor/tuya.html#configuration-variables)*"
             },
             "tuya_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "tuya::Tuya",
+              "type": "use_id"
             },
             "sensor_datapoint": {
               "key": "Required",
@@ -130,10 +170,20 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "tuya::TuyaClimate",
+                "parents": [
+                  "climate::Climate",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Tuya Climate](https://esphome.io/components/climate/tuya.html#configuration-variables)*"
             },
             "tuya_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "tuya::Tuya",
+              "type": "use_id"
             },
             "supports_heat": {
               "key": "Optional",
@@ -243,10 +293,20 @@
           ],
           "config_vars": {
             "output_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "tuya::TuyaCover",
+                "parents": [
+                  "cover::Cover",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
             },
             "tuya_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "tuya::Tuya",
+              "type": "use_id"
             },
             "control_datapoint": {
               "key": "Optional",
@@ -316,10 +376,20 @@
           ],
           "config_vars": {
             "output_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "tuya::TuyaFan",
+                "parents": [
+                  "Component",
+                  "fan::Fan",
+                  "EntityBase"
+                ]
+              }
             },
             "tuya_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "tuya::Tuya",
+              "type": "use_id"
             },
             "oscillation_datapoint": {
               "key": "Optional",
@@ -367,10 +437,19 @@
           ],
           "config_vars": {
             "output_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "tuya::TuyaLight",
+                "parents": [
+                  "light::LightOutput",
+                  "Component"
+                ]
+              }
             },
             "tuya_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "tuya::Tuya",
+              "type": "use_id"
             },
             "dimmer_datapoint": {
               "key": "Optional",
@@ -464,10 +543,20 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "tuya::TuyaNumber",
+                "parents": [
+                  "number::Number",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Tuya Number](https://esphome.io/components/number/tuya.html#configuration-variables)*"
             },
             "tuya_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "tuya::Tuya",
+              "type": "use_id"
             },
             "number_datapoint": {
               "key": "Required",
@@ -493,6 +582,53 @@
       }
     }
   },
+  "tuya.select": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "select.SELECT_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "id_type": {
+                "class": "tuya::TuyaSelect",
+                "parents": [
+                  "select::Select",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Tuya Select](https://esphome.io/components/select/tuya.html#configuration-variables)*"
+            },
+            "tuya_id": {
+              "key": "GeneratedID",
+              "use_id_type": "tuya::Tuya",
+              "type": "use_id"
+            },
+            "enum_datapoint": {
+              "key": "Required",
+              "type": "integer",
+              "data_type": "uint8_t",
+              "docs": "**int**: The enum datapoint id number for the select.\n\n*See also: [Tuya Select](https://esphome.io/components/select/tuya.html#configuration-variables)*"
+            },
+            "options": {
+              "key": "Required",
+              "docs": "**Map[int, str]**: Provide a mapping from values (int) of this Select to options (str) of the *enum_datapoint* and vice versa. All options and all values have to be unique.\n\n*See also: [Tuya Select](https://esphome.io/components/select/tuya.html#configuration-variables)*"
+            },
+            "optimistic": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean",
+              "docs": "**boolean**: Whether to operate in optimistic mode - when in this mode, any command sent to the Select will immediately update the reported state.\n\n*See also: [Tuya Select](https://esphome.io/components/select/tuya.html#configuration-variables)*"
+            }
+          }
+        }
+      }
+    }
+  },
   "tuya.switch": {
     "schemas": {
       "CONFIG_SCHEMA": {
@@ -505,10 +641,20 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "tuya::TuyaSwitch",
+                "parents": [
+                  "switch_::Switch",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Tuya Switch](https://esphome.io/components/switch/tuya.html#configuration-variables)*"
             },
             "tuya_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "tuya::Tuya",
+              "type": "use_id"
             },
             "switch_datapoint": {
               "key": "Required",
@@ -532,10 +678,20 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "tuya::TuyaTextSensor",
+                "parents": [
+                  "text_sensor::TextSensor",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Tuya Text Sensor](https://esphome.io/components/text_sensor/tuya.html#configuration-variables)*"
             },
             "tuya_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "tuya::Tuya",
+              "type": "use_id"
             },
             "sensor_datapoint": {
               "key": "Required",

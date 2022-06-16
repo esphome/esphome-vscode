@@ -7,6 +7,12 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "id_type": {
+                "class": "power_supply::PowerSupply",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the power supply so that it can be used by the outputs.\n\n*See also: [Power Supply Component](https://esphome.io/components/power_supply.html#configuration-variables)*"
             },
             "pin": {

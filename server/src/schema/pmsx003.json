@@ -6,7 +6,14 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "pmsx003::PMSX003Component",
+                "parents": [
+                  "uart::UARTDevice",
+                  "Component"
+                ]
+              }
             },
             "type": {
               "key": "Required",
@@ -360,8 +367,15 @@
               },
               "docs": "Use the formaldehyde (HCHO) concentration in \u00b5g per cubic meter for the `PMS5003S` and `PMS5003ST`. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [PMSX003 Particulate Matter Sensor](https://esphome.io/components/sensor/pmsx003.html#configuration-variables)*"
             },
+            "update_interval": {
+              "key": "Optional",
+              "default": "0s",
+              "docs": "Amount of time to wait between generating measurements. If this is longer than 30 seconds, and if `tx_pin` is set in the UART configuration, the fan will be spun down between measurements. Default to `0s` (forward data as it\u2019s coming in from the sensor).\n\n*See also: [PMSX003 Particulate Matter Sensor](https://esphome.io/components/sensor/pmsx003.html#configuration-variables)*"
+            },
             "uart_id": {
               "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Component](https://esphome.io/components/uart.html#uart) if you want to use multiple UART buses.\n\n*See also: [PMSX003 Particulate Matter Sensor](https://esphome.io/components/sensor/pmsx003.html#configuration-variables)*"
             }
           },

@@ -10,6 +10,16 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "tsl2561::TSL2561Sensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [TSL2561 Ambient Light Sensor](https://esphome.io/components/sensor/tsl2561.html#configuration-variables)*"
             },
             "unit_of_measurement": {
@@ -51,7 +61,9 @@
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n*See also: [TSL2561 Ambient Light Sensor](https://esphome.io/components/sensor/tsl2561.html#configuration-variables)*"
             },
             "i2c_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",

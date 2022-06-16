@@ -9,7 +9,16 @@
               "sensor.SENSOR_SCHEMA"
             ],
             "config_vars": {
-              "id": {},
+              "id": {
+                "id_type": {
+                  "class": "binary_sensor_map::BinarySensorMap",
+                  "parents": [
+                    "Component",
+                    "sensor::Sensor",
+                    "EntityBase"
+                  ]
+                }
+              },
               "icon": {
                 "default": "mdi:check-circle-outline"
               },
@@ -23,7 +32,9 @@
                 "schema": {
                   "config_vars": {
                     "binary_sensor": {
-                      "key": "Required"
+                      "key": "Required",
+                      "use_id_type": "binary_sensor::BinarySensor",
+                      "type": "use_id"
                     },
                     "value": {
                       "key": "Required"

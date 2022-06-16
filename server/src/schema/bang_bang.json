@@ -9,9 +9,20 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "bang_bang::BangBangClimate",
+                "parents": [
+                  "climate::Climate",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
+            },
             "sensor": {
               "key": "Required",
+              "use_id_type": "sensor::Sensor",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The sensor that is used to measure the current temperature.\n\n*See also: [Bang Bang Climate Controller](https://esphome.io/components/climate/bang_bang.html#configuration-variables)*"
             },
             "default_target_temperature_low": {

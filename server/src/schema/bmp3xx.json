@@ -6,7 +6,15 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "bmp3xx::BMP3XXComponent",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              }
             },
             "temperature": {
               "key": "Optional",
@@ -38,7 +46,7 @@
                       "4X",
                       "8X",
                       "16X",
-                      "32x"
+                      "32X"
                     ],
                     "docs": "The oversampling parameter for the temperature sensor. See [Oversampling Options](https://esphome.io/components/sensor/bmp3xx.html#bmp3xx-oversampling).\n\n*See also: [BMP388 / BMP390 Temperature+Pressure Sensor](https://esphome.io/components/sensor/bmp3xx.html#configuration-variables)*"
                   }
@@ -76,7 +84,7 @@
                       "4X",
                       "8X",
                       "16X",
-                      "32x"
+                      "32X"
                     ],
                     "docs": "The oversampling parameter for the temperature sensor. See [Oversampling Options](https://esphome.io/components/sensor/bmp3xx.html#bmp3xx-oversampling).\n\n*See also: [BMP388 / BMP390 Temperature+Pressure Sensor](https://esphome.io/components/sensor/bmp3xx.html#configuration-variables)*"
                   }
@@ -106,7 +114,9 @@
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n*See also: [BMP388 / BMP390 Temperature+Pressure Sensor](https://esphome.io/components/sensor/bmp3xx.html#configuration-variables)*"
             },
             "i2c_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",

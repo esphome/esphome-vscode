@@ -7,6 +7,12 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "ttp229_bsf::TTP229BSFComponent",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually set the ID of this component.\n\n*See also: [ttp229_bsf Component](https://esphome.io/components/binary_sensor/ttp229.html#id1)*"
             },
             "sdo_pin": {
@@ -47,10 +53,19 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "ttp229_bsf::TTP229BSFChannel",
+                "parents": [
+                  "binary_sensor::BinarySensor",
+                  "EntityBase"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [ttp229_bsf Binary Sensor](https://esphome.io/components/binary_sensor/ttp229.html#ttp229-bsf-binary-sensor)*"
             },
             "ttp229_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "ttp229_bsf::TTP229BSFComponent",
+              "type": "use_id"
             },
             "channel": {
               "key": "Required",

@@ -69,7 +69,14 @@
           ],
           "config_vars": {
             "mqtt_id": {
-              "key": "Optional"
+              "key": "Optional",
+              "id_type": {
+                "class": "mqtt::MQTTSwitchComponent",
+                "parents": [
+                  "mqtt::MQTTComponent",
+                  "Component"
+                ]
+              }
             },
             "inverted": {
               "key": "Optional",
@@ -100,11 +107,14 @@
         }
       },
       "SWITCH_ACTION_SCHEMA": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "switch_::Switch",
+              "type": "use_id"
             }
           }
         }
@@ -118,7 +128,7 @@
             "switch.SWITCH_ACTION_SCHEMA"
           ]
         },
-        "docs": "This action turns a switch with the given ID on when executed.\n\n*See also: [Switch Component](https://esphome.io/components/switch/index.html#switch-turn-on-action)*"
+        "docs": "This action turns a switch with the given ID on when executed.\n\n*See also: [`switch.turn_on` Action](https://esphome.io/components/switch/index.html#switch-turn-on-action)*"
       },
       "turn_off": {
         "type": "schema",
@@ -127,7 +137,7 @@
             "switch.SWITCH_ACTION_SCHEMA"
           ]
         },
-        "docs": "This action turns a switch with the given ID off when executed.\n\n*See also: [Switch Component](https://esphome.io/components/switch/index.html#switch-turn-off-action)*"
+        "docs": "This action turns a switch with the given ID off when executed.\n\n*See also: [`switch.turn_off` Action](https://esphome.io/components/switch/index.html#switch-turn-off-action)*"
       },
       "toggle": {
         "type": "schema",
@@ -136,7 +146,7 @@
             "switch.SWITCH_ACTION_SCHEMA"
           ]
         },
-        "docs": "This action toggles a switch with the given ID when executed.\n\n*See also: [Switch Component](https://esphome.io/components/switch/index.html#switch-toggle-action)*"
+        "docs": "This action toggles a switch with the given ID when executed.\n\n*See also: [`switch.toggle` Action](https://esphome.io/components/switch/index.html#switch-toggle-action)*"
       }
     },
     "condition": {

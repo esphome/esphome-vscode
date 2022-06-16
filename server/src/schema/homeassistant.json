@@ -29,7 +29,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "api::APIServer",
+              "type": "use_id"
             },
             "service": {
               "key": "Required",
@@ -73,14 +75,16 @@
             }
           }
         },
-        "docs": "When using the native API with Home Assistant, you can create Home Assistant service calls straight from ESPHome [Automations](https://esphome.io/guides/automations.html#automation).\n\n*See also: [Native API Component](https://esphome.io/components/api.html#homeassistant-service-action)*"
+        "docs": "When using the native API with Home Assistant, you can create Home Assistant service calls straight from ESPHome [Automations](https://esphome.io/guides/automations.html#automation).\n\n*See also: [`homeassistant.service` Action](https://esphome.io/components/api.html#homeassistant-service-action)*"
       },
       "event": {
         "type": "schema",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "api::APIServer",
+              "type": "use_id"
             },
             "event": {
               "key": "Required",
@@ -121,14 +125,16 @@
             }
           }
         },
-        "docs": "When using the native API with Home Assistant, you can create events in the Home Assistant event bus straight from ESPHome [Automations](https://esphome.io/guides/automations.html#automation).\n\n*See also: [Native API Component](https://esphome.io/components/api.html#homeassistant-event-action)*"
+        "docs": "When using the native API with Home Assistant, you can create events in the Home Assistant event bus straight from ESPHome [Automations](https://esphome.io/guides/automations.html#automation).\n\n*See also: [`homeassistant.event` Action](https://esphome.io/components/api.html#homeassistant-event-action)*"
       },
       "tag_scanned": {
         "type": "schema",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "api::APIServer",
+              "type": "use_id"
             },
             "tag": {
               "key": "Required",
@@ -138,8 +144,8 @@
             }
           }
         },
-        "is_list": true,
-        "docs": "When using the native API with Home Assistant, you can push tag_scanned to Home Assistant straight from ESPHome [Automations](https://esphome.io/guides/automations.html#automation).\n\n*See also: [Native API Component](https://esphome.io/components/api.html#homeassistant-tag-scanned-action)*"
+        "maybe": "tag",
+        "docs": "When using the native API with Home Assistant, you can push tag_scanned to Home Assistant straight from ESPHome [Automations](https://esphome.io/guides/automations.html#automation).\n\n*See also: [`homeassistant.tag_scanned` Action](https://esphome.io/components/api.html#homeassistant-tag-scanned-action)*"
       }
     }
   },
@@ -154,6 +160,14 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "homeassistant::HomeassistantSensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Home Assistant Sensor](https://esphome.io/components/sensor/homeassistant.html#configuration-variables)*"
             },
             "accuracy_decimals": {
@@ -175,6 +189,14 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "homeassistant::HomeassistantBinarySensor",
+                "parents": [
+                  "binary_sensor::BinarySensor",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Home Assistant Binary Sensor](https://esphome.io/components/binary_sensor/homeassistant.html#configuration-variables)*"
             }
           }
@@ -193,6 +215,14 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "homeassistant::HomeassistantTextSensor",
+                "parents": [
+                  "text_sensor::TextSensor",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Home Assistant Text Sensor](https://esphome.io/components/text_sensor/homeassistant.html#configuration-variables)*"
             }
           }
@@ -211,7 +241,15 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "homeassistant::HomeassistantTime",
+                "parents": [
+                  "time::RealTimeClock",
+                  "PollingComponent",
+                  "Component"
+                ]
+              }
             }
           }
         }

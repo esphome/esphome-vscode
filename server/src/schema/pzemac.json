@@ -6,7 +6,15 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "pzemac::PZEMAC",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "modbus::ModbusDevice"
+                ]
+              }
             },
             "voltage": {
               "key": "Optional",
@@ -156,6 +164,8 @@
             },
             "modbus_id": {
               "key": "GeneratedID",
+              "use_id_type": "modbus::Modbus",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the Modbus hub.\n\n*See also: [Peacefair PZEM-004T V3 Energy Monitor](https://esphome.io/components/sensor/pzemac.html#configuration-variables)*"
             },
             "address": {
@@ -175,15 +185,18 @@
   "pzemac": {
     "action": {
       "reset_energy": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "pzemac::PZEMAC",
+              "type": "use_id"
             }
           }
         },
-        "docs": "This action resets the total energy value of the pzemac device with the given ID when executed.\n\n*See also: [Peacefair PZEM-004T V3 Energy Monitor](https://esphome.io/components/sensor/pzemac.html#pzemac-reset-energy-action)*"
+        "docs": "This action resets the total energy value of the pzemac device with the given ID when executed.\n\n*See also: [`pzemac.reset_energy` Action](https://esphome.io/components/sensor/pzemac.html#pzemac-reset-energy-action)*"
       }
     }
   }

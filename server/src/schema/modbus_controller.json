@@ -6,7 +6,15 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "modbus_controller::ModbusController",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "modbus::ModbusDevice"
+                ]
+              }
             },
             "command_throttle": {
               "key": "Optional",
@@ -25,6 +33,8 @@
             },
             "modbus_id": {
               "key": "GeneratedID",
+              "use_id_type": "modbus::Modbus",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the modbus hub.\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#configuration-variables)*"
             },
             "address": {
@@ -45,7 +55,9 @@
         "schema": {
           "config_vars": {
             "modbus_controller_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "modbus_controller::ModbusController",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",
@@ -117,6 +129,15 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "modbus_controller::ModbusSensor",
+                "parents": [
+                  "Component",
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "modbus_controller::SensorItem"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Modbus Controller Sensor](https://esphome.io/components/sensor/modbus_controller.html#configuration-variables)*"
             },
             "register_type": {
@@ -196,6 +217,15 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "modbus_controller::ModbusBinarySensor",
+                "parents": [
+                  "Component",
+                  "binary_sensor::BinarySensor",
+                  "EntityBase",
+                  "modbus_controller::SensorItem"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Modbus Controller Binary Sensor](https://esphome.io/components/binary_sensor/modbus_controller.html#configuration-variables)*"
             },
             "register_type": {
@@ -232,6 +262,15 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "modbus_controller::ModbusNumber",
+                "parents": [
+                  "Component",
+                  "number::Number",
+                  "EntityBase",
+                  "modbus_controller::SensorItem"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Modbus Controller Number](https://esphome.io/components/number/modbus_controller.html#configuration-variables)*"
             },
             "register_type": {
@@ -314,6 +353,14 @@
             "config_vars": {
               "id": {
                 "key": "GeneratedID",
+                "id_type": {
+                  "class": "modbus_controller::ModbusBinaryOutput",
+                  "parents": [
+                    "Component",
+                    "output::BinaryOutput",
+                    "modbus_controller::SensorItem"
+                  ]
+                },
                 "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Modbus Controller Output](https://esphome.io/components/output/modbus_controller.html#configuration-variables)*"
               },
               "write_lambda": {
@@ -336,6 +383,15 @@
             "config_vars": {
               "id": {
                 "key": "GeneratedID",
+                "id_type": {
+                  "class": "modbus_controller::ModbusFloatOutput",
+                  "parents": [
+                    "Component",
+                    "output::FloatOutput",
+                    "output::BinaryOutput",
+                    "modbus_controller::SensorItem"
+                  ]
+                },
                 "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Modbus Controller Output](https://esphome.io/components/output/modbus_controller.html#configuration-variables)*"
               },
               "value_type": {
@@ -393,10 +449,21 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "modbus_controller::ModbusSelect",
+                "parents": [
+                  "Component",
+                  "select::Select",
+                  "EntityBase",
+                  "modbus_controller::SensorItem"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#configuration-variables)*"
             },
             "modbus_controller_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "modbus_controller::ModbusController",
+              "type": "use_id"
             },
             "address": {
               "key": "Required",
@@ -484,6 +551,15 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "modbus_controller::ModbusSwitch",
+                "parents": [
+                  "Component",
+                  "switch_::Switch",
+                  "EntityBase",
+                  "modbus_controller::SensorItem"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Modbus Controller Switch](https://esphome.io/components/switch/modbus_controller.html#configuration-variables)*"
             },
             "register_type": {
@@ -525,6 +601,15 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "modbus_controller::ModbusTextSensor",
+                "parents": [
+                  "Component",
+                  "text_sensor::TextSensor",
+                  "EntityBase",
+                  "modbus_controller::SensorItem"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
             },
             "register_type": {

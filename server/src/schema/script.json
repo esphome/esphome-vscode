@@ -2,12 +2,15 @@
   "script": {
     "schemas": {
       "CONFIG_SCHEMA": {
-        "type": "trigger",
+        "type": "schema",
         "schema": {
           "config_vars": {
             "id": {
               "key": "Required",
               "type": "string",
+              "id_type": {
+                "class": "script::Script"
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The [ID](https://esphome.io/guides/configuration-types.html#config-id) of the script. Use this to interact with the script using the script actions.\n\n*See also: [script Component](https://esphome.io/guides/automations.html#script-component)*"
             },
             "mode": {
@@ -40,55 +43,68 @@
             }
           }
         },
-        "has_required_var": true
+        "has_required_var": true,
+        "is_list": true
       }
     },
     "action": {
       "execute": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "script::Script",
+              "type": "use_id"
             }
           }
         },
-        "docs": "This action executes the script. The script **mode** dictates what will happen if the script was already running.\n\n*See also: [script Component](https://esphome.io/guides/automations.html#script-execute-action)*"
+        "docs": "This action executes the script. The script **mode** dictates what will happen if the script was already running.\n\n*See also: [`script.execute` Action](https://esphome.io/guides/automations.html#script-execute-action)*"
       },
       "stop": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "script::Script",
+              "type": "use_id"
             }
           }
         },
-        "docs": "This action allows you to stop a given script during execution. If the script is not running, it does nothing. This is useful right now if your want to stop a script that contains a `delay` action, `wait_until` action, or is inside a `while` loop, etc. You can also call this action from the script itself, and any subsequent action will not be executed.\n\n*See also: [script Component](https://esphome.io/guides/automations.html#script-stop-action)*"
+        "docs": "This action allows you to stop a given script during execution. If the script is not running, it does nothing. This is useful right now if your want to stop a script that contains a `delay` action, `wait_until` action, or is inside a `while` loop, etc. You can also call this action from the script itself, and any subsequent action will not be executed.\n\n*See also: [`script.stop` Action](https://esphome.io/guides/automations.html#script-stop-action)*"
       },
       "wait": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "script::Script",
+              "type": "use_id"
             }
           }
         },
-        "docs": "This action suspends execution of the automation until a script has finished executing.\n\n*See also: [script Component](https://esphome.io/guides/automations.html#script-wait-action)*"
+        "docs": "This action suspends execution of the automation until a script has finished executing.\n\n*See also: [`script.wait` Action](https://esphome.io/guides/automations.html#script-wait-action)*"
       }
     },
     "condition": {
       "is_running": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "script::Script",
+              "type": "use_id"
             }
           }
         },
-        "docs": "This [condition](https://esphome.io/guides/automations.html#config-condition) allows you to check if a given script is running. In case scripts are run in `parallel`, this condition only tells you if at least one script of the given id is running, not how many.\n\n*See also: [script Component](https://esphome.io/guides/automations.html#script-is-running-condition)*"
+        "docs": "This [condition](https://esphome.io/guides/automations.html#config-condition) allows you to check if a given script is running. In case scripts are run in `parallel`, this condition only tells you if at least one script of the given id is running, not how many.\n\n*See also: [`script.is_running` Condition](https://esphome.io/guides/automations.html#script-is-running-condition)*"
       }
     }
   }

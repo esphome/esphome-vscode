@@ -11,7 +11,9 @@
               "schema": {
                 "config_vars": {
                   "esp32_ble_id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "use_id_type": "esp32_ble_tracker::ESP32BLETracker",
+                    "type": "use_id"
                   },
                   "then": {
                     "type": "trigger"

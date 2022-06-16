@@ -7,6 +7,13 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "esphome::dsmr::Dsmr",
+                "parents": [
+                  "Component",
+                  "uart::UARTDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the DSMR if you have multiple components.\n\n*See also: [dsmr Component/Hub](https://esphome.io/components/sensor/dsmr.html#component-hub)*"
             },
             "decryption_key": {
@@ -64,6 +71,8 @@
             },
             "uart_id": {
               "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the UART hub.\n\n*See also: [dsmr Component/Hub](https://esphome.io/components/sensor/dsmr.html#component-hub)*"
             }
           }
@@ -78,7 +87,9 @@
         "schema": {
           "config_vars": {
             "dsmr_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "esphome::dsmr::Dsmr",
+              "type": "use_id"
             },
             "energy_delivered_lux": {
               "key": "Optional",
@@ -959,7 +970,9 @@
         "schema": {
           "config_vars": {
             "dsmr_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "esphome::dsmr::Dsmr",
+              "type": "use_id"
             },
             "identification": {
               "key": "Optional",

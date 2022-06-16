@@ -7,14 +7,20 @@
           "config_vars": {
             "nextion_id": {
               "key": "GeneratedID",
+              "use_id_type": "nextion::Nextion",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the Nextion display.\n\n*See also: [Nextion Switch Component](https://esphome.io/components/switch/nextion.html#configuration-variables)*"
             },
             "background_color": {
               "key": "Optional",
+              "use_id_type": "Color",
+              "type": "use_id",
               "docs": "**[Color](https://esphome.io/components/display/index.html#config-color)**: The background color\n\n*See also: [Nextion Switch Component](https://esphome.io/components/switch/nextion.html#configuration-variables)*"
             },
             "foreground_color": {
               "key": "Optional",
+              "use_id_type": "Color",
+              "type": "use_id",
               "docs": "**[Color](https://esphome.io/components/display/index.html#config-color)**: The foreground color\n\n*See also: [Nextion Switch Component](https://esphome.io/components/switch/nextion.html#configuration-variables)*"
             },
             "visible": {
@@ -47,7 +53,17 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "nextion::NextionSensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component"
+                ]
+              }
+            },
             "accuracy_decimals": {
               "default": "2"
             },
@@ -96,7 +112,17 @@
         "type": "schema",
         "schema": {
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "nextion::NextionBinarySensor",
+                "parents": [
+                  "binary_sensor::BinarySensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component"
+                ]
+              }
+            },
             "page_id": {
               "key": "Optional",
               "type": "integer",
@@ -116,14 +142,20 @@
             },
             "nextion_id": {
               "key": "GeneratedID",
+              "use_id_type": "nextion::Nextion",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the Nextion display.\n\n*See also: [Nextion Binary Sensor Component](https://esphome.io/components/binary_sensor/nextion.html#configuration-variables)*"
             },
             "background_color": {
               "key": "Optional",
+              "use_id_type": "Color",
+              "type": "use_id",
               "docs": "**[Color](https://esphome.io/components/display/index.html#config-color)**: The background color\n\n*See also: [Nextion Binary Sensor Component](https://esphome.io/components/binary_sensor/nextion.html#configuration-variables)*"
             },
             "foreground_color": {
               "key": "Optional",
+              "use_id_type": "Color",
+              "type": "use_id",
               "docs": "**[Color](https://esphome.io/components/display/index.html#config-color)**: The foreground color\n\n*See also: [Nextion Binary Sensor Component](https://esphome.io/components/binary_sensor/nextion.html#configuration-variables)*"
             },
             "visible": {
@@ -160,6 +192,14 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "nextion::Nextion",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "uart::UARTDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
             },
             "tft_url": {
@@ -210,6 +250,8 @@
             },
             "uart_id": {
               "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the [UART bus](https://esphome.io/components/uart.html#uart) you wish to use for this display. Use this if you want to use multiple UART buses at once.\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
             }
           }
@@ -224,7 +266,16 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "nextion::NextionSwitch",
+                "parents": [
+                  "switch_::Switch",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component"
+                ]
+              }
             },
             "update_interval": {
               "key": "Optional",
@@ -233,10 +284,14 @@
             },
             "foreground_pressed_color": {
               "key": "Optional",
+              "use_id_type": "Color",
+              "type": "use_id",
               "docs": "**[Color](https://esphome.io/components/display/index.html#config-color)**: The foreground color when pressed\n\n*See also: [Nextion Switch Component](https://esphome.io/components/switch/nextion.html#configuration-variables)*"
             },
             "background_pressed_color": {
               "key": "Optional",
+              "use_id_type": "Color",
+              "type": "use_id",
               "docs": "**[Color](https://esphome.io/components/display/index.html#config-color)**: The background color when pressed\n\n*See also: [Nextion Switch Component](https://esphome.io/components/switch/nextion.html#configuration-variables)*"
             },
             "name": {
@@ -256,7 +311,17 @@
         "type": "schema",
         "schema": {
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "nextion::NextionTextSensor",
+                "parents": [
+                  "text_sensor::TextSensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component"
+                ]
+              }
+            },
             "update_interval": {
               "key": "Optional",
               "default": "never",
@@ -264,14 +329,20 @@
             },
             "nextion_id": {
               "key": "GeneratedID",
+              "use_id_type": "nextion::Nextion",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the Nextion display.\n\n*See also: [Nextion Text Sensor Component](https://esphome.io/components/text_sensor/nextion.html#configuration-variables)*"
             },
             "background_color": {
               "key": "Optional",
+              "use_id_type": "Color",
+              "type": "use_id",
               "docs": "**[Color](https://esphome.io/components/display/index.html#config-color)**: The background color\n\n*See also: [Nextion Text Sensor Component](https://esphome.io/components/text_sensor/nextion.html#configuration-variables)*"
             },
             "foreground_color": {
               "key": "Optional",
+              "use_id_type": "Color",
+              "type": "use_id",
               "docs": "**[Color](https://esphome.io/components/display/index.html#config-color)**: The foreground color\n\n*See also: [Nextion Text Sensor Component](https://esphome.io/components/text_sensor/nextion.html#configuration-variables)*"
             },
             "visible": {

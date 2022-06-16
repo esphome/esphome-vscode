@@ -9,9 +9,20 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "analog_threshold::AnalogThresholdBinarySensor",
+                "parents": [
+                  "binary_sensor::BinarySensor",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
+            },
             "sensor_id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "sensor::Sensor",
+              "type": "use_id"
             },
             "threshold": {
               "key": "Required",

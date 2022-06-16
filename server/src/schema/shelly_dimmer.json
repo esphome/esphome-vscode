@@ -10,13 +10,22 @@
           ],
           "config_vars": {
             "output_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "shelly_dimmer::ShellyDimmer",
+                "parents": [
+                  "light::LightOutput",
+                  "PollingComponent",
+                  "Component",
+                  "uart::UARTDevice"
+                ]
+              }
             },
             "firmware": {
               "key": "Optional",
               "default": "51.6",
-              "is_list": true,
               "type": "schema",
+              "maybe": "version",
               "schema": {
                 "config_vars": {
                   "url": {
@@ -160,6 +169,8 @@
             },
             "uart_id": {
               "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the UART hub.\n\n*See also: [Shelly Dimmer](https://esphome.io/components/light/shelly_dimmer.html#configuration-variables)*"
             }
           }

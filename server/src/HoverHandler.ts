@@ -1,16 +1,16 @@
-import { listenerCount } from "process";
 import { TextDocument } from "vscode-languageserver-textdocument";
-import { Hover, MarkupContent, Position, Range } from "vscode-languageserver-types";
-import { isMap, isNode, isPair, isScalar, isSeq, Node, visit } from "yaml";
-import { ConfigVar, CoreSchema, Schema } from "./CoreSchema";
-import { YamlNode } from "./jsonASTTypes";
+import { Hover, MarkupContent, Position } from "vscode-languageserver-types";
+import { isScalar, YAMLMap } from "yaml";
+import { CoreSchema, Schema } from "./CoreSchema";
 import { SingleYAMLDocument, YamlDocuments, yamlDocumentsCache } from "./parser/yaml-documents";
+import { SchemaHandler } from "./SchemaHandler";
 import { matchOffsetToDocument } from "./utils/arrUtils";
-import { isNumber, isString } from "./utils/objects";
 import { TextBuffer } from "./utils/textBuffer";
 
-export class HoverHandler {
-    constructor(private yamlDocuments: YamlDocuments, private coreSchema: CoreSchema) { }
+export class HoverHandler extends SchemaHandler {
+    constructor(yamlDocuments: YamlDocuments, coreSchema: CoreSchema) {
+        super(yamlDocuments, coreSchema);
+    }
 
     onHover(textDocument: TextDocument, position: Position): import("vscode-jsonrpc").HandlerResult<import("vscode-languageserver-types").Hover, void> {
         try {
@@ -30,44 +30,6 @@ export class HoverHandler {
         }
     }
 
-    getPath(node: YamlNode, currentDoc: SingleYAMLDocument) {
-        const path = [];
-        let child: YamlNode;
-        while (node) {
-            if (isPair(node)) {
-                if (isScalar(node.key)) {
-                    path.push(node.key.value);
-                }
-            }
-            if (isSeq(node) && child !== undefined) {
-                path.push(node.items.indexOf(child));
-            }
-            child = node;
-            node = currentDoc.getParent(node);
-        }
-        return path.reverse();
-    }
-
-    private getNodeFromPosition(doc: SingleYAMLDocument, positionOffset: number): YamlNode {
-        let closestNode: Node;
-        visit(doc.internalDocument, (key, node) => {
-            if (!node || !isNode(node)) {
-                return;
-            }
-            const range = node.range;
-            if (!range) {
-                return;
-            }
-
-            if (range[0] <= positionOffset && range[1] >= positionOffset) {
-                closestNode = node;
-            } else {
-                return visit.SKIP;
-            }
-        });
-
-        return closestNode;
-    }
 
     private getHover(document: TextDocument, position: Position, doc: SingleYAMLDocument): Promise<Hover | null> {
 
@@ -81,10 +43,6 @@ export class HoverHandler {
 
         let node = this.getNodeFromPosition(doc, offset);
 
-        // const hoverRange = Range.create(
-        //   document.positionAt(node),
-        //   document.positionAt(hoverRangeNode.offset + hoverRangeNode.length)
-        // );
         const hoverRange = null;
 
         const createHover = (contents: string): Hover => {
@@ -99,20 +57,15 @@ export class HoverHandler {
             return result;
         };
 
-        const docNode = doc.root.internalNode as any;
+        const docNode = doc.root.internalNode as YAMLMap;
         let pathNode;
         pathNode = docNode;
 
-
-
         return new Promise<Hover>((resolve, reject) => {
-
             try {
-
                 var path = this.getPath(node, doc);
 
                 let schema: Schema;
-                let cv: ConfigVar;
 
                 if (path.length === 1) {
                     const rootComponents = this.coreSchema.getComponentList();
@@ -127,59 +80,14 @@ export class HoverHandler {
                     return resolve(null);
                 }
 
-                for (let index = 0; index < path.length; index++) {
-                    if (isString(path[index]) && isMap(pathNode)) {
-                        if (cv === undefined && index <= 2 && pathNode.get("platform")) {
-                            const componentName = pathNode.get("platform");
-                            if (isString(componentName)) {
-                                const platformComponents = this.coreSchema.getPlatformList();
-                                if (path[0] in platformComponents) {
-                                    const c = this.coreSchema.getComponent(path[0]);
-                                    if (c.components !== undefined && componentName in c.components) {
-                                        cv = this.coreSchema.getComponentPlatformSchema(componentName, path[0]);
-                                    }
-                                }
-                            }
-                        }
-
-                        pathNode = pathNode.get(path[index], true);
-                        if (cv === undefined) {
-                            const rootComponents = this.coreSchema.getComponentList();
-                            if (path[0] in rootComponents) {
-                                cv = this.coreSchema.getComponent(path[0]).schemas.CONFIG_SCHEMA;
-                            }
-                        }
-                        else {
-                            if (cv.type === "schema" || cv.type === "trigger") {
-                                if (cv.schema !== undefined) {
-                                    const schema_cv = this.coreSchema.findConfigVar(cv.schema, path[index], docNode);
-                                    if (schema_cv !== undefined) {
-                                        cv = schema_cv;
-                                        continue;
-                                    }
-                                }
-
-                                if (cv.type === "trigger") {
-                                    const action = this.coreSchema.getActionConfigVar(path[index]);
-                                    if (action !== undefined) {
-                                        cv = action;
-                                        continue;
-                                    }
-                                }
-                            }
-                            if (cv.type === "registry") {
-                                cv = this.coreSchema.getRegistryConfigVar(cv.registry, path[index]);
-                            }
-                        }
-                    }
-                    else if (isNumber(path[index]) && isSeq(pathNode)) {
-                        pathNode = pathNode.get(path[index], true);
-                    }
-                }
+                const [cv, pathNode] = this.getConfigVarAndPathNode(path, doc);
 
                 let content: string;
                 if (cv !== undefined) {
                     content = cv.docs;
+                    if (content === undefined && path.length === 3 && path[2] === 'platform' && isScalar(pathNode)) {
+                        content = this.coreSchema.getComponent(path[0]).components[pathNode.value as string].docs;
+                    }
                 } else {
                     content = JSON.stringify(schema);
 
@@ -191,8 +99,8 @@ export class HoverHandler {
                 const hover = createHover(content);
                 resolve(hover);
             }
-            catch (ex) {
-                console.log(ex);
+            catch (error) {
+                console.log("Hover:" + error);
             }
         });
     }

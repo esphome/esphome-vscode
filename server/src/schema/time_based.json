@@ -10,6 +10,14 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "time_based::TimeBasedCover",
+                "parents": [
+                  "cover::Cover",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Time Based Cover](https://esphome.io/components/cover/time_based.html#configuration-variables)*"
             },
             "stop_action": {

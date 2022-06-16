@@ -9,10 +9,22 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "rc522_spi::RC522Spi",
+                "parents": [
+                  "rc522::RC522",
+                  "PollingComponent",
+                  "Component",
+                  "i2c::I2CDevice",
+                  "spi::SPIDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for this component.\n\n*See also: [rc522 Over SPI](https://esphome.io/components/binary_sensor/rc522.html#configuration-variables)*"
             },
             "spi_id": {
               "key": "GeneratedID",
+              "use_id_type": "spi::SPIComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [SPI Component](https://esphome.io/components/spi.html#spi) if you want to use multiple SPI buses.\n\n*See also: [rc522 Over SPI](https://esphome.io/components/binary_sensor/rc522.html#configuration-variables)*"
             },
             "cs_pin": {
@@ -39,9 +51,19 @@
             "binary_sensor.BINARY_SENSOR_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "rc522::RC522BinarySensor",
+                "parents": [
+                  "binary_sensor::BinarySensor",
+                  "EntityBase"
+                ]
+              }
+            },
             "rc522_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "rc522::RC522",
+              "type": "use_id"
             },
             "uid": {
               "key": "Required"

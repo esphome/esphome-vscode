@@ -6,7 +6,15 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "ccs811::CCS811Component",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              }
             },
             "eco2": {
               "key": "Required",
@@ -84,10 +92,14 @@
             },
             "temperature": {
               "key": "Optional",
+              "use_id_type": "sensor::Sensor",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Give an external temperature sensor ID here. This can improve the sensor\u2019s internal calculations.\n\n*See also: [CCS811 CO_2 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/ccs811.html#configuration-variables)*"
             },
             "humidity": {
               "key": "Optional",
+              "use_id_type": "sensor::Sensor",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Give an external humidity sensor ID here. This can improve the sensor\u2019s internal calculations.\n\n*See also: [CCS811 CO_2 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/ccs811.html#configuration-variables)*"
             },
             "update_interval": {
@@ -96,7 +108,9 @@
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n*See also: [CCS811 CO_2 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/ccs811.html#configuration-variables)*"
             },
             "i2c_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",

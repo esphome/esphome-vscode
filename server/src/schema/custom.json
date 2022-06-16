@@ -6,7 +6,11 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "custom::CustomSensorConstructor",
+                "parents": []
+              }
             },
             "lambda": {
               "key": "Required",
@@ -35,7 +39,11 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "custom::CustomBinarySensorConstructor",
+                "parents": []
+              }
             },
             "lambda": {
               "key": "Required",
@@ -64,7 +72,11 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "custom::CustomClimateConstructor",
+                "parents": []
+              }
             },
             "lambda": {
               "key": "Required",
@@ -93,7 +105,11 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "custom::CustomCoverConstructor",
+                "parents": []
+              }
             },
             "lambda": {
               "key": "Required",
@@ -122,7 +138,11 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "custom::CustomLightOutputConstructor",
+                "parents": []
+              }
             },
             "lambda": {
               "key": "Required",
@@ -152,7 +172,11 @@
           "binary": {
             "config_vars": {
               "id": {
-                "key": "GeneratedID"
+                "key": "GeneratedID",
+                "id_type": {
+                  "class": "custom::CustomBinaryOutputConstructor",
+                  "parents": []
+                }
               },
               "lambda": {
                 "key": "Required",
@@ -168,7 +192,11 @@
                   ],
                   "config_vars": {
                     "id": {
-                      "key": "GeneratedID"
+                      "key": "GeneratedID",
+                      "id_type": {
+                        "class": "output::BinaryOutput",
+                        "parents": []
+                      }
                     }
                   }
                 },
@@ -179,7 +207,11 @@
           "float": {
             "config_vars": {
               "id": {
-                "key": "GeneratedID"
+                "key": "GeneratedID",
+                "id_type": {
+                  "class": "custom::CustomFloatOutputConstructor",
+                  "parents": []
+                }
               },
               "lambda": {
                 "key": "Required",
@@ -195,7 +227,13 @@
                   ],
                   "config_vars": {
                     "id": {
-                      "key": "GeneratedID"
+                      "key": "GeneratedID",
+                      "id_type": {
+                        "class": "output::FloatOutput",
+                        "parents": [
+                          "output::BinaryOutput"
+                        ]
+                      }
                     }
                   }
                 },
@@ -216,7 +254,11 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "custom::CustomSwitchConstructor",
+                "parents": []
+              }
             },
             "lambda": {
               "key": "Required",
@@ -232,7 +274,13 @@
                 ],
                 "config_vars": {
                   "id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "switch_::Switch",
+                      "parents": [
+                        "EntityBase"
+                      ]
+                    }
                   }
                 }
               },
@@ -250,7 +298,11 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "custom::CustomTextSensorConstructor",
+                "parents": []
+              }
             },
             "lambda": {
               "key": "Required",

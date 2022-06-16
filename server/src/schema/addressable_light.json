@@ -10,10 +10,20 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "addressable_light::AddressableLightDisplay",
+                "parents": [
+                  "display::DisplayBuffer",
+                  "PollingComponent",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Addressable Light](https://esphome.io/components/display/addressable_light.html#configuration-variables)*"
             },
             "addressable_light_id": {
               "key": "Required",
+              "use_id_type": "light::AddressableLightState",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the addressable light component to use as a display.\n\n*See also: [Addressable Light](https://esphome.io/components/display/addressable_light.html#configuration-variables)*"
             },
             "width": {

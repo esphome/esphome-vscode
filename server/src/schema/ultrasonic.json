@@ -10,6 +10,15 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "ultrasonic::UltrasonicSensorComponent",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Ultrasonic Distance Sensor](https://esphome.io/components/sensor/ultrasonic.html#configuration-variables)*"
             },
             "unit_of_measurement": {

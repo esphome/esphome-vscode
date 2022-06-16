@@ -2,15 +2,18 @@
   "component": {
     "action": {
       "update": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "PollingComponent",
+              "type": "use_id"
             }
           }
         },
-        "docs": "Using this action you can manually call the `update()` method of a component.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#component-update-action)*"
+        "docs": "Using this action you can manually call the `update()` method of a component.\n\n*See also: [`component.update` Action](https://esphome.io/guides/automations.html#component-update-action)*"
       }
     }
   }

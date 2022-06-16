@@ -21,6 +21,8 @@
           "config_vars": {
             "display": {
               "key": "GeneratedID",
+              "use_id_type": "display::DisplayBuffer",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The display to use. If only one display is available, this can be omitted.\n\n*See also: [Touchscreen Components](https://esphome.io/components/touchscreen/index.html#configuration-variables)*"
             },
             "on_touch": {
@@ -44,10 +46,23 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "touchscreen::TouchscreenBinarySensor",
+                "parents": [
+                  "binary_sensor::BinarySensor",
+                  "EntityBase",
+                  "Component",
+                  "touchscreen::TouchListener",
+                  "Parented<touchscreen::Touchscreen>",
+                  "Parented"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id1)*"
             },
             "touchscreen_id": {
               "key": "GeneratedID",
+              "use_id_type": "touchscreen::Touchscreen",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the touchscreen.\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id1)*"
             },
             "x_min": {
@@ -72,6 +87,8 @@
             },
             "page_id": {
               "key": "Optional",
+              "use_id_type": "display::DisplayPage",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Only trigger this binary sensor if the display is showing this page.\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id1)*"
             }
           }

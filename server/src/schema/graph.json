@@ -7,6 +7,12 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "id_type": {
+                "class": "graph::Graph",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID with which you will be able to reference the graph later in your display code.\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
             },
             "duration": {
@@ -51,7 +57,9 @@
               "docs": "**boolean**: Specifies if a border will be drawn around the graph. Default is True.\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
             },
             "sensor": {
-              "key": "Optional"
+              "key": "Optional",
+              "use_id_type": "sensor::Sensor",
+              "type": "use_id"
             },
             "line_thickness": {
               "key": "Optional",
@@ -68,7 +76,9 @@
               ]
             },
             "color": {
-              "key": "Optional"
+              "key": "Optional",
+              "use_id_type": "Color",
+              "type": "use_id"
             },
             "min_value": {
               "key": "Optional",
@@ -93,10 +103,16 @@
               "schema": {
                 "config_vars": {
                   "id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "graph::GraphTrace",
+                      "parents": []
+                    }
                   },
                   "sensor": {
-                    "key": "Required"
+                    "key": "Required",
+                    "use_id_type": "sensor::Sensor",
+                    "type": "use_id"
                   },
                   "name": {
                     "key": "Optional",
@@ -117,7 +133,9 @@
                     ]
                   },
                   "color": {
-                    "key": "Optional"
+                    "key": "Optional",
+                    "use_id_type": "Color",
+                    "type": "use_id"
                   }
                 }
               },
@@ -130,13 +148,21 @@
               "schema": {
                 "config_vars": {
                   "id": {
-                    "key": "GeneratedID"
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "graph::GraphLegend",
+                      "parents": []
+                    }
                   },
                   "name_font": {
-                    "key": "Required"
+                    "key": "Required",
+                    "use_id_type": "display::Font",
+                    "type": "use_id"
                   },
                   "value_font": {
-                    "key": "Optional"
+                    "key": "Optional",
+                    "use_id_type": "display::Font",
+                    "type": "use_id"
                   },
                   "width": {
                     "key": "Optional",

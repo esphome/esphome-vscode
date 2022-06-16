@@ -6,17 +6,30 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "esp32_improv::ESP32ImprovComponent",
+                "parents": [
+                  "Component",
+                  "esp32_ble_server::BLEServiceComponent"
+                ]
+              }
             },
             "ble_server_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "esp32_ble_server::BLEServer",
+              "type": "use_id"
             },
             "authorizer": {
               "key": "Required",
+              "use_id_type": "binary_sensor::BinarySensor",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: A [binary sensor](https://esphome.io/components/binary_sensor/index.html) to authorize with. Also accepts `none`/`false` to skip authorization.\n\n*See also: [Improv via BLE](https://esphome.io/components/esp32_improv.html#configuration-variables)*"
             },
             "status_indicator": {
               "key": "Optional",
+              "use_id_type": "output::BinaryOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: An [output](https://esphome.io/components/output/index.html) to display feedback to the user.\n\n*See also: [Improv via BLE](https://esphome.io/components/esp32_improv.html#configuration-variables)*"
             },
             "identify_duration": {

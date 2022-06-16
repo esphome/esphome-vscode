@@ -7,6 +7,13 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "api::APIServer",
+                "parents": [
+                  "Component",
+                  "Controller"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Native API Component](https://esphome.io/components/api.html#configuration-variables)*"
             },
             "port": {
@@ -108,7 +115,7 @@
     },
     "condition": {
       "connected": {
-        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) checks if at least one client is connected to the ESPHome native API. Please note client not only includes Home Assistant, but also ESPHome\u2019s OTA log output if logs are shown remotely.\n\n*See also: [Native API Component](https://esphome.io/components/api.html#api-connected-condition)*"
+        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) checks if at least one client is connected to the ESPHome native API. Please note client not only includes Home Assistant, but also ESPHome\u2019s OTA log output if logs are shown remotely.\n\n*See also: [`api.connected` Condition](https://esphome.io/components/api.html#api-connected-condition)*"
       }
     }
   }

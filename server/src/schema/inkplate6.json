@@ -11,6 +11,15 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "inkplate6::Inkplate6",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "i2c::I2CDevice",
+                  "display::DisplayBuffer"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Inkplate 6, 10 and 6 Plus](https://esphome.io/components/display/inkplate6.html#configuration-variables)*"
             },
             "greyscale": {
@@ -239,7 +248,9 @@
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to re-draw the screen. Defaults to `5s`.\n\n*See also: [Inkplate 6, 10 and 6 Plus](https://esphome.io/components/display/inkplate6.html#configuration-variables)*"
             },
             "i2c_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",

@@ -7,10 +7,18 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "id_type": {
+                "class": "servo::Servo",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of this servo so that it can be controlled.\n\n*See also: [Servo Component](https://esphome.io/components/servo.html#configuration-variables)*"
             },
             "output": {
               "key": "Required",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the [output component](https://esphome.io/components/output/index.html) to use for this servo.\n\n*See also: [Servo Component](https://esphome.io/components/servo.html#configuration-variables)*"
             },
             "min_level": {
@@ -71,6 +79,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "servo::Servo",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the servo.\n\n*See also: [Servo Component](https://esphome.io/components/servo.html#servo-write-action)*"
             },
             "level": {
@@ -80,18 +90,21 @@
             }
           }
         },
-        "docs": "To use your servo motor in [automations](https://esphome.io/guides/automations.html#automation) or templates, you can use this action to set the target level of the servo from -100% to 100%.\n\n*See also: [Servo Component](https://esphome.io/components/servo.html#servo-write-action)*"
+        "docs": "To use your servo motor in [automations](https://esphome.io/guides/automations.html#automation) or templates, you can use this action to set the target level of the servo from -100% to 100%.\n\n*See also: [`servo.write` Action](https://esphome.io/components/servo.html#servo-write-action)*"
       },
       "detach": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "servo::Servo",
+              "type": "use_id"
             }
           }
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to disable the output on a servo motor - this will make the servo motor stop immediately and disable its active control.\n\n*See also: [Servo Component](https://esphome.io/components/servo.html#servo-detach-action)*"
+        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to disable the output on a servo motor - this will make the servo motor stop immediately and disable its active control.\n\n*See also: [`servo.detach` Action](https://esphome.io/components/servo.html#servo-detach-action)*"
       }
     }
   }

@@ -2,9 +2,9 @@
   "name": "esphome-vscode",
   "displayName": "ESPHome",
   "description": "Provide instant validation of ESPHome configuration files",
-  "version": "2022.4.0",
+  "version": "2022.6.0",
   "engines": {
-    "vscode": "^1.33.0"
+    "vscode": "^1.63.0"
   },
   "publisher": "ESPHome",
   "icon": "esphome128.png",
@@ -63,8 +63,15 @@
     "grammars": [
       {
         "language": "esphome",
-        "scopeName": "source.yaml",
-        "path": "./yaml-language/yaml.tmLanguage.json"
+        "scopeName": "source.yaml-esphome",
+        "path": "./yaml-language/yaml.tmLanguage.json",
+        "embeddedLanguages": {
+          "source.cpp": "cpp",
+          "meta.embedded.block.cpp": "cpp"
+        },
+        "_tokenTypes": {
+          "cpp.lambda.directive.tag.yaml": "other"
+        }
       }
     ]
   },

@@ -10,6 +10,14 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "resistance::ResistanceSensor",
+                "parents": [
+                  "Component",
+                  "sensor::Sensor",
+                  "EntityBase"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n*See also: [Resistance Sensor](https://esphome.io/components/sensor/resistance.html#configuration-variables)*"
             },
             "unit_of_measurement": {
@@ -26,6 +34,8 @@
             },
             "sensor": {
               "key": "Required",
+              "use_id_type": "sensor::Sensor",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The sensor to read the voltage values from to convert to resistance readings.\n\n*See also: [Resistance Sensor](https://esphome.io/components/sensor/resistance.html#configuration-variables)*"
             },
             "configuration": {

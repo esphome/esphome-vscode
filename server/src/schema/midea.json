@@ -6,7 +6,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "midea::ac::AirConditioner",
+              "type": "use_id"
             }
           }
         }
@@ -20,6 +22,14 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "midea::ac::AirConditioner",
+                "parents": [
+                  "climate::Climate",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#configuration-variables)*"
             },
             "period": {
@@ -52,7 +62,9 @@
             },
             "transmitter_id": {
               "key": "Optional",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set if you use [Remote Transmitter](https://esphome.io/components/remote_transmitter.html) component for IR commands transmit.\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#configuration-variables)*"
+              "use_id_type": "remote_transmitter::RemoteTransmitterComponent",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Defined and used automatically when using [Remote Transmitter](https://esphome.io/components/remote_transmitter.html) component for IR commands transmit.\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#configuration-variables)*"
             },
             "beeper": {
               "key": "Optional",
@@ -203,6 +215,8 @@
             },
             "uart_id": {
               "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Bus](https://esphome.io/components/uart.html) if you want to use multiple UART buses.\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#configuration-variables)*"
             }
           }

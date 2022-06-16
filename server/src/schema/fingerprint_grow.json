@@ -7,6 +7,14 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "fingerprint_grow::FingerprintGrowComponent",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "uart::UARTDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
             },
             "sensing_pin": {
@@ -61,6 +69,8 @@
             },
             "uart_id": {
               "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the UART hub.\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
             }
           },
@@ -73,12 +83,14 @@
     },
     "action": {
       "enroll": {
-        "is_list": true,
         "type": "schema",
+        "maybe": "finger_id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "fingerprint_grow::FingerprintGrowComponent",
+              "type": "use_id"
             },
             "finger_id": {
               "key": "Required",
@@ -96,26 +108,30 @@
             }
           }
         },
-        "docs": "Starts the fingerprint enrollment process on the slot number defined.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-enroll-action)*"
+        "docs": "Starts the fingerprint enrollment process on the slot number defined.\n\n*See also: [`fingerprint_grow.enroll` Action](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-enroll-action)*"
       },
       "cancel_enroll": {
         "type": "schema",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "fingerprint_grow::FingerprintGrowComponent",
+              "type": "use_id"
             }
           }
         },
-        "docs": "Cancels the current fingerprint enrollment process. Triggers the `on_enrollment_failed` trigger.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-cancel-enroll-action)*"
+        "docs": "Cancels the current fingerprint enrollment process. Triggers the `on_enrollment_failed` trigger.\n\n*See also: [`fingerprint_grow.cancel_enroll` Action](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-cancel-enroll-action)*"
       },
       "delete": {
-        "is_list": true,
         "type": "schema",
+        "maybe": "finger_id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "fingerprint_grow::FingerprintGrowComponent",
+              "type": "use_id"
             },
             "finger_id": {
               "key": "Required",
@@ -126,25 +142,29 @@
             }
           }
         },
-        "docs": "Removes the enrolled fingerprint from the slot number defined.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-delete-action)*"
+        "docs": "Removes the enrolled fingerprint from the slot number defined.\n\n*See also: [`fingerprint_grow.delete` Action](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-delete-action)*"
       },
       "delete_all": {
         "type": "schema",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "fingerprint_grow::FingerprintGrowComponent",
+              "type": "use_id"
             }
           }
         },
-        "docs": "Removes all enrolled fingerprints.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-delete-all-action)*"
+        "docs": "Removes all enrolled fingerprints.\n\n*See also: [`fingerprint_grow.delete_all` Action](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-delete-all-action)*"
       },
       "led_control": {
         "type": "schema",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "fingerprint_grow::FingerprintGrowComponent",
+              "type": "use_id"
             },
             "state": {
               "key": "Required",
@@ -154,15 +174,17 @@
             }
           }
         },
-        "is_list": true,
-        "docs": "Turns on or off the LED on the reader. Only available on select models. If you have the R503 or R503-RGB use [fingerprint_grow.aura_led_control Action](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-aura-led-control) instead.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-led-control-action)*"
+        "maybe": "state",
+        "docs": "Turns on or off the LED on the reader. Only available on select models. If you have the R503 or R503-RGB use [fingerprint_grow.aura_led_control Action](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-aura-led-control) instead.\n\n*See also: [`fingerprint_grow.led_control` Action](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-led-control-action)*"
       },
       "aura_led_control": {
         "type": "schema",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "fingerprint_grow::FingerprintGrowComponent",
+              "type": "use_id"
             },
             "state": {
               "key": "Required",
@@ -209,7 +231,7 @@
             }
           }
         },
-        "docs": "Controls the Aura LED on the reader. Only available on select models.  NOTE: The R503 has 2 variants with different LED colour options.\n\n*See also: [on_enrollment_failed Trigger](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-aura-led-control-action)*"
+        "docs": "Controls the Aura LED on the reader. Only available on select models.  NOTE: The R503 has 2 variants with different LED colour options.\n\n*See also: [`fingerprint_grow.aura_led_control` Action](https://esphome.io/components/fingerprint_grow.html#fingerprint-grow-aura-led-control-action)*"
       }
     }
   },
@@ -220,7 +242,9 @@
         "schema": {
           "config_vars": {
             "fingerprint_grow_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "fingerprint_grow::FingerprintGrowComponent",
+              "type": "use_id"
             },
             "fingerprint_count": {
               "key": "Optional",
@@ -354,7 +378,9 @@
           ],
           "config_vars": {
             "fingerprint_grow_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "fingerprint_grow::FingerprintGrowComponent",
+              "type": "use_id"
             },
             "icon": {
               "default": "mdi:key-plus"

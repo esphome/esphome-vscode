@@ -6,7 +6,16 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "st7735::ST7735",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "display::DisplayBuffer",
+                  "spi::SPIDevice"
+                ]
+              }
             },
             "dc_pin": {
               "key": "Required",
@@ -56,7 +65,9 @@
               "docs": "**boolean**: Invert LCD colors. Default is false.\n\n*See also: [ST7735 Display](https://esphome.io/components/display/st7735.html#configuration-variables)*"
             },
             "spi_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "spi::SPIComponent",
+              "type": "use_id"
             },
             "cs_pin": {
               "key": "Required",

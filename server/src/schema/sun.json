@@ -7,10 +7,16 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "sun::Sun",
+                "parents": []
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Sun](https://esphome.io/components/sun.html#configuration-variables)*"
             },
             "time_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "time::RealTimeClock",
+              "type": "use_id"
             },
             "latitude": {
               "key": "Required",
@@ -64,7 +70,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "sun::Sun",
+              "type": "use_id"
             },
             "elevation": {
               "key": "Optional",
@@ -79,7 +87,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "sun::Sun",
+              "type": "use_id"
             },
             "elevation": {
               "key": "Optional",
@@ -102,6 +112,15 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "sun::SunSensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [sun Sensor](https://esphome.io/components/sun.html#sun-sensor)*"
             },
             "unit_of_measurement": {
@@ -114,7 +133,9 @@
               "default": "1"
             },
             "sun_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "sun::Sun",
+              "type": "use_id"
             },
             "type": {
               "key": "Required",
@@ -145,10 +166,21 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "sun::SunTextSensor",
+                "parents": [
+                  "text_sensor::TextSensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [sun Text Sensor](https://esphome.io/components/sun.html#sun-text-sensor)*"
             },
             "sun_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "sun::Sun",
+              "type": "use_id"
             },
             "type": {
               "key": "Required",

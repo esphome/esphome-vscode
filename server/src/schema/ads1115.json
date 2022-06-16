@@ -7,6 +7,13 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "ads1115::ADS1115Component",
+                "parents": [
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for this ADS1115 Hub. Use this if you want to use multiple ADS1115 hubs at once.\n\n*See also: [ads1115 Component/Hub](https://esphome.io/components/sensor/ads1115.html#configuration-variables)*"
             },
             "continuous_mode": {
@@ -16,7 +23,9 @@
               "docs": "**boolean**: Set if the ADS1115 should continuously measure voltages or only measure them when an update is called. Please enable this for the [CT Clamp Current Sensor](https://esphome.io/components/sensor/ct_clamp.html) integration. Defaults to `off`.\n\n*See also: [ads1115 Component/Hub](https://esphome.io/components/sensor/ads1115.html#configuration-variables)*"
             },
             "i2c_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
             },
             "address": {
               "key": "Required",
@@ -43,6 +52,16 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "ads1115::ADS1115Sensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component",
+                  "voltage_sampler::VoltageSampler"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [ads1115 Sensor](https://esphome.io/components/sensor/ads1115.html#id3)*"
             },
             "unit_of_measurement": {
@@ -59,6 +78,8 @@
             },
             "ads1115_id": {
               "key": "GeneratedID",
+              "use_id_type": "ads1115::ADS1115Component",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [ADS1115 Hub](https://esphome.io/components/sensor/ads1115.html#ads1115-component) you want to use this sensor.\n\n*See also: [ads1115 Sensor](https://esphome.io/components/sensor/ads1115.html#id3)*"
             },
             "multiplexer": {

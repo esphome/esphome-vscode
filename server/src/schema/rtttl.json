@@ -7,10 +7,18 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "rtttl::Rtttl",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Rtttl Buzzer](https://esphome.io/components/rtttl.html#configuration-variables)*"
             },
             "output": {
               "key": "Required",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the [float output](https://esphome.io/components/output/index.html#output) to use for this buzzer.\n\n*See also: [Rtttl Buzzer](https://esphome.io/components/rtttl.html#configuration-variables)*"
             },
             "on_finished_playback": {
@@ -28,12 +36,14 @@
     },
     "action": {
       "play": {
-        "is_list": true,
         "type": "schema",
+        "maybe": "rtttl",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "rtttl::Rtttl",
+              "type": "use_id"
             },
             "rtttl": {
               "key": "Required",
@@ -43,18 +53,20 @@
             }
           }
         },
-        "docs": "Plays an rtttl tone.\n\n*See also: [Rtttl Buzzer](https://esphome.io/components/rtttl.html#rtttl-play-action)*"
+        "docs": "Plays an rtttl tone.\n\n*See also: [`rtttl.play` Action](https://esphome.io/components/rtttl.html#rtttl-play-action)*"
       },
       "stop": {
         "type": "schema",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "rtttl::Rtttl",
+              "type": "use_id"
             }
           }
         },
-        "docs": "Stops playback.\n\n*See also: [Rtttl Buzzer](https://esphome.io/components/rtttl.html#rtttl-stop-action)*"
+        "docs": "Stops playback.\n\n*See also: [`rtttl.stop` Action](https://esphome.io/components/rtttl.html#rtttl-stop-action)*"
       }
     },
     "condition": {
@@ -63,11 +75,13 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "rtttl::Rtttl",
+              "type": "use_id"
             }
           }
         },
-        "docs": "This Condition returns true while playback is active.\n\n*See also: [Rtttl Buzzer](https://esphome.io/components/rtttl.html#rtttl-is-playing-condition)*"
+        "docs": "This Condition returns true while playback is active.\n\n*See also: [`rtttl.is_playing` Condition](https://esphome.io/components/rtttl.html#rtttl-is-playing-condition)*"
       }
     }
   }

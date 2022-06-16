@@ -7,6 +7,10 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "id_type": {
+                "class": "display::Font",
+                "parents": []
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID with which you will be able to reference the font later in your display code.\n\n*See also: [Fonts](https://esphome.io/components/display/index.html#fonts)*"
             },
             "file": {
@@ -27,10 +31,18 @@
               "docs": "**int**: The size of the font in pt (not pixel!). If you want to use the same font in different sizes, create two font objects. Defaults to `20`.\n\n*See also: [Fonts](https://esphome.io/components/display/index.html#fonts)*"
             },
             "raw_data_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "uint8_t",
+                "parents": null
+              }
             },
             "raw_glyph_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "display::GlyphData",
+                "parents": []
+              }
             }
           }
         },

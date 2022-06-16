@@ -11,6 +11,15 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "max7219digit::MAX7219Component",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "spi::SPIDevice",
+                  "display::DisplayBuffer"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [MAX7219 Digit Display](https://esphome.io/components/display/max7219digit.html#configuration-variables)*"
             },
             "num_chips": {
@@ -119,6 +128,8 @@
             },
             "spi_id": {
               "key": "GeneratedID",
+              "use_id_type": "spi::SPIComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [SPI Component](https://esphome.io/components/spi.html#spi) if you want to use multiple SPI buses.\n\n*See also: [MAX7219 Digit Display](https://esphome.io/components/display/max7219digit.html#configuration-variables)*"
             },
             "cs_pin": {

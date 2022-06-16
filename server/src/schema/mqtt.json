@@ -7,6 +7,12 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "mqtt::MQTTClientComponent",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
             },
             "broker": {
@@ -201,6 +207,16 @@
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The amount of time to wait before rebooting when no MQTT connection exists. Can be disabled by setting this to `0s`. Defaults to `15min`.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
             },
+            "on_connect": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when a connection to the broker is established.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
+            },
+            "on_disconnect": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when the connection to the broker is dropped.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
+            },
             "on_message": {
               "key": "Optional",
               "type": "trigger",
@@ -282,7 +298,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "mqtt::MQTTClientComponent",
+              "type": "use_id"
             },
             "topic": {
               "key": "Required",
@@ -309,14 +327,16 @@
             }
           }
         },
-        "docs": "Publish an MQTT message on a topic using this action in automations.\n\n*See also: [on_json_message Trigger](https://esphome.io/components/mqtt.html#mqtt-publish-action)*"
+        "docs": "Publish an MQTT message on a topic using this action in automations.\n\n*See also: [`mqtt.publish` Action](https://esphome.io/components/mqtt.html#mqtt-publish-action)*"
       },
       "publish_json": {
         "type": "schema",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "mqtt::MQTTClientComponent",
+              "type": "use_id"
             },
             "topic": {
               "key": "Required",
@@ -342,7 +362,7 @@
             }
           }
         },
-        "docs": "Publish a JSON-formatted MQTT message on a topic using this action in automations.\n\n*See also: [on_json_message Trigger](https://esphome.io/components/mqtt.html#mqtt-publish-json-action)*"
+        "docs": "Publish a JSON-formatted MQTT message on a topic using this action in automations.\n\n*See also: [`mqtt.publish_json` Action](https://esphome.io/components/mqtt.html#mqtt-publish-json-action)*"
       }
     },
     "condition": {
@@ -351,11 +371,13 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "mqtt::MQTTClientComponent",
+              "type": "use_id"
             }
           }
         },
-        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) checks if the MQTT client is currently connected to the MQTT broker.\n\n*See also: [on_json_message Trigger](https://esphome.io/components/mqtt.html#mqtt-connected-condition)*"
+        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) checks if the MQTT client is currently connected to the MQTT broker.\n\n*See also: [`mqtt.connected` Condition](https://esphome.io/components/mqtt.html#mqtt-connected-condition)*"
       }
     }
   }

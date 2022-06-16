@@ -43,10 +43,23 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "cover::Cover",
+                "parents": [
+                  "EntityBase"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Tuya Cover](https://esphome.io/components/cover/tuya.html#configuration-variables)*"
             },
             "mqtt_id": {
-              "key": "Optional"
+              "key": "Optional",
+              "id_type": {
+                "class": "mqtt::MQTTCoverComponent",
+                "parents": [
+                  "mqtt::MQTTComponent",
+                  "Component"
+                ]
+              }
             },
             "device_class": {
               "key": "Optional",
@@ -94,11 +107,14 @@
         }
       },
       "COVER_ACTION_SCHEMA": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "cover::Cover",
+              "type": "use_id"
             }
           }
         }
@@ -112,7 +128,7 @@
             "cover.COVER_ACTION_SCHEMA"
           ]
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) opens the cover with the given ID when executed.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#cover-open-action)*"
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) opens the cover with the given ID when executed.\n\n*See also: [`cover.open` Action](https://esphome.io/components/cover/index.html#cover-open-action)*"
       },
       "close": {
         "type": "schema",
@@ -121,7 +137,7 @@
             "cover.COVER_ACTION_SCHEMA"
           ]
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) closes the cover with the given ID when executed.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#cover-close-action)*"
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) closes the cover with the given ID when executed.\n\n*See also: [`cover.close` Action](https://esphome.io/components/cover/index.html#cover-close-action)*"
       },
       "stop": {
         "type": "schema",
@@ -130,7 +146,7 @@
             "cover.COVER_ACTION_SCHEMA"
           ]
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) stops the cover with the given ID when executed.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#cover-stop-action)*"
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) stops the cover with the given ID when executed.\n\n*See also: [`cover.stop` Action](https://esphome.io/components/cover/index.html#cover-stop-action)*"
       },
       "toggle": {
         "type": "schema",
@@ -139,7 +155,7 @@
             "cover.COVER_ACTION_SCHEMA"
           ]
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) toggles the cover with the given ID when executed, cycling through the states close/stop/open/stop\u2026 This allows the cover to be controlled by a single push button.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#cover-toggle-action)*"
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) toggles the cover with the given ID when executed, cycling through the states close/stop/open/stop\u2026 This allows the cover to be controlled by a single push button.\n\n*See also: [`cover.toggle` Action](https://esphome.io/components/cover/index.html#cover-toggle-action)*"
       },
       "control": {
         "type": "schema",
@@ -147,6 +163,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "cover::Cover",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The cover to control.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#cover-control-action)*"
             },
             "stop": {
@@ -177,7 +195,7 @@
             }
           }
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) is a more generic version of the other cover actions and allows all cover attributes to be set.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#cover-control-action)*"
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) is a more generic version of the other cover actions and allows all cover attributes to be set.\n\n*See also: [`cover.control` Action](https://esphome.io/components/cover/index.html#cover-control-action)*"
       }
     }
   }

@@ -6,7 +6,11 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "id_type": {
+                "class": "Color",
+                "parents": []
+              }
             },
             "red": {
               "key": "Optional",

@@ -6,7 +6,15 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "am43::Am43",
+                "parents": [
+                  "ble_client::BLEClientNode",
+                  "PollingComponent",
+                  "Component"
+                ]
+              }
             },
             "battery_level": {
               "key": "Optional",
@@ -55,6 +63,8 @@
             },
             "ble_client_id": {
               "key": "Required",
+              "use_id_type": "ble_client::BLEClient",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the `ble_client` entry associated with the device.\n\n*See also: [AM43 Sensor](https://esphome.io/components/sensor/am43.html#configuration-variables)*"
             },
             "update_interval": {
@@ -81,6 +91,15 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "am43::Am43Component",
+                "parents": [
+                  "cover::Cover",
+                  "EntityBase",
+                  "ble_client::BLEClientNode",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [AM43 Cover](https://esphome.io/components/cover/am43.html#configuration-variables)*"
             },
             "pin": {
@@ -97,6 +116,8 @@
             },
             "ble_client_id": {
               "key": "Required",
+              "use_id_type": "ble_client::BLEClient",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the `ble_client` entry associated with the device.\n\n*See also: [AM43 Cover](https://esphome.io/components/cover/am43.html#configuration-variables)*"
             }
           }

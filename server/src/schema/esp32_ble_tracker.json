@@ -7,6 +7,12 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "esp32_ble_tracker::ESP32BLETracker",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for this ESP32 BLE Hub.\n\n*See also: [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html#configuration-variables)*"
             },
             "scan_parameters": {
@@ -127,7 +133,9 @@
         "schema": {
           "config_vars": {
             "esp32_ble_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "esp32_ble_tracker::ESP32BLETracker",
+              "type": "use_id"
             }
           }
         }

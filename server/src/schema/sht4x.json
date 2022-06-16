@@ -6,7 +6,16 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "sht4x::SHT4XComponent",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "sensirion_common::SensirionI2CDevice",
+                  "i2c::I2CDevice"
+                ]
+              }
             },
             "temperature": {
               "key": "Optional",
@@ -105,7 +114,9 @@
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n*See also: [SHT4X Temperature and Humidity Sensor](https://esphome.io/components/sensor/sht4x.html#configuration-variables)*"
             },
             "i2c_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",

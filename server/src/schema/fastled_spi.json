@@ -44,9 +44,6 @@
             "data_rate": {
               "key": "Optional",
               "docs": "**frequency**: The data rate to use for shifting data to the light. Can help if you have long cables or slow level-shifters.\n\n*See also: [SPI](https://esphome.io/components/light/fastled.html#id1)*"
-            },
-            "id": {
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [SPI](https://esphome.io/components/light/fastled.html#id1)*"
             }
           }
         }

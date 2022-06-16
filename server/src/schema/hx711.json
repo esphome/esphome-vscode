@@ -10,6 +10,15 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "hx711::HX711Sensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [HX711 Load Cell Amplifier](https://esphome.io/components/sensor/hx711.html#configuration-variables)*"
             },
             "icon": {
@@ -47,7 +56,8 @@
                 128,
                 32,
                 64
-              ]
+              ],
+              "docs": "**enum**: The gain. Implicitly selects the channel. Defaults to `128`.\n  * `32` (Channel B, gain 32)\n  \n  * `64` (Channel A, gain 64)\n  \n  * `128` (Channel A, gain 128)\n  \n  \n\n*See also: [HX711 Load Cell Amplifier](https://esphome.io/components/sensor/hx711.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",

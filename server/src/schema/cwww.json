@@ -9,14 +9,24 @@
           ],
           "config_vars": {
             "output_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "cwww::CWWWLightOutput",
+                "parents": [
+                  "light::LightOutput"
+                ]
+              }
             },
             "cold_white": {
               "key": "Required",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the float [Output Component](https://esphome.io/components/output/index.html#output) to use for the cold white channel.\n\n*See also: [Cold White + Warm White Light](https://esphome.io/components/light/cwww.html#configuration-variables)*"
             },
             "warm_white": {
               "key": "Required",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the float [Output Component](https://esphome.io/components/output/index.html#output) to use for the warm white channel.\n\n*See also: [Cold White + Warm White Light](https://esphome.io/components/light/cwww.html#configuration-variables)*"
             },
             "cold_white_color_temperature": {

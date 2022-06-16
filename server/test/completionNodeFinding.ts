@@ -278,6 +278,17 @@ esp32:
     testCompletionHaveLabels(result, ["version"]);
   });
 
+
+  it('typed media player', () => {
+    const result = x.onCompletion(Docs.getTextDoc(`
+media_player:
+  - platform: i2s_audio
+    dac_type: internal
+    `), { line: 3, character: 4 });
+    testCompletionHaveLabels(result, ["mode"]);
+  });
+
+
   it('sensor props no list', () => {
     const result = x.onCompletion(Docs.getTextDoc(`
 sensor:

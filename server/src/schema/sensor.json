@@ -74,6 +74,12 @@
           "binary_sensor"
         ]
       },
+      "bl0939": {
+        "dependencies": [
+          "uart"
+        ],
+        "docs": "The `bl0939` sensor platform allows you to use your BL0939 voltage/current/power and energy sensors with ESPHome. This sensor is commonly found in Sonoff Dual R3 v2.\n\n*See also: [BL0939 Power Sensor](https://esphome.io/components/sensor/bl0939.html#bl0939-power-sensor)*"
+      },
       "bl0940": {
         "dependencies": [
           "uart"
@@ -200,6 +206,12 @@
       "duty_cycle": {
         "docs": "The duty cycle sensor allows you to measure for what percentage of time a signal on a GPIO pin is HIGH or LOW.\n\n*See also: [Duty Cycle Sensor](https://esphome.io/components/sensor/duty_cycle.html#duty-cycle-sensor)*"
       },
+      "ens210": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `ENS210` Temperature+Humidity sensor allows you to use your ENS210 ([datasheet](https://www.sciosense.com/wp-content/uploads/2021/01/ENS210.pdf)) i2c-based sensor with ESPHome.\n\n*See also: [ENS210 Temperature+Humidity Sensor](https://esphome.io/components/sensor/ens210.html#ens210-temperature-humidity-sensor)*"
+      },
       "esp32_hall": {
         "dependencies": [
           "esp32"
@@ -303,7 +315,7 @@
         "dependencies": [
           "esp32_ble_tracker"
         ],
-        "docs": "The `inkbird_ibsth1_mini` sensor platform lets you track the output of Inkbird IBS-TH1 and IBS-TH1 Mini Bluetooth Low Energy devices using the [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html). This component will track the temperature, external temperature (non mini only), humidity and the battery level of the IBS-TH1 device every time the sensor sends out a BLE broadcast. Note that contrary to other implementations, ESPHome can track as many IBS-TH1 devices at once as you want.\n\n*See also: [Inkbird IBS-TH1 and IBS-TH1 Mini BLE Sensor](https://esphome.io/components/sensor/inkbird_ibsth1_mini.html#inkbird-ibs-th1-and-ibs-th1-mini-ble-sensor)*"
+        "docs": "The `inkbird_ibsth1_mini` sensor platform lets you track the output of Inkbird IBS-TH1, IBS-TH1 Mini, and IBS-TH2 Bluetooth Low Energy devices using the [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html). This component will track the temperature, external temperature (non mini only), humidity and the battery level of the IBS-TH1 device every time the sensor sends out a BLE broadcast. Note that contrary to other implementations, ESPHome can track as many IBS-TH1/TH2 devices at once as you want.\n\n*See also: [Inkbird IBS-TH1, IBS-TH1 Mini, and IBS-TH2 BLE Sensor](https://esphome.io/components/sensor/inkbird_ibsth1_mini.html#inkbird-ibs-th1-ibs-th1-mini-and-ibs-th2-ble-sensor)*"
       },
       "integration": {
         "docs": "The `integration` sensor is a helper sensor that can integrate values from other sensors over time. This can for example be useful to integrate the values of a water flow sensor (in m^3/s) over time (result is in m^3).\n\n*See also: [Integration Sensor](https://esphome.io/components/sensor/integration.html#integration-sensor)*"
@@ -324,6 +336,9 @@
         "docs": "The `MAX31856` temperature sensor allows you to use your MAX31856 Thermocouple temperature sensor ([datasheet](https://datasheets.maximintegrated.com/en/ds/MAX31856.pdf)) with ESPHome\n\n*See also: [MAX31856 Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31856.html#max31856-thermocouple-temperature-sensor)*"
       },
       "max31865": {
+        "dependencies": [
+          "spi"
+        ],
         "docs": "The `max31865` temperature sensor allows you to use your max31865 RTD temperature sensor ([datasheet](https://datasheets.maximintegrated.com/en/ds/MAX31865.pdf)) with ESPHome\n\n*See also: [MAX31865 Platinum RTD Temperature Sensor](https://esphome.io/components/sensor/max31865.html#max31865-platinum-rtd-temperature-sensor)*"
       },
       "max44009": {
@@ -381,7 +396,7 @@
         "dependencies": [
           "esp32_ble_tracker"
         ],
-        "docs": "The `mopeka_pro_check` sensor platform lets you track the output of Mopeka Pro Check LP Bluetooth Low Energy devices using the [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html). This component will track the tank level, distance, temperature, and battery percentage of a Mopeka Pro Check LP device every time the sensor sends out a BLE broadcast.\n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#mopeka-pro-check-ble-sensor)*"
+        "docs": "The `mopeka_pro_check` sensor platform lets you track the output of Mopeka Pro Check LP and Mopeka Pro Plus Bluetooth Low Energy devices using the [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html). This component will track the tank level, distance, temperature, and battery percentage of a Mopeka Pro Check LP or Mopeka Pro Plus Residential BLE device every time the sensor sends out a BLE broadcast.\n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#mopeka-pro-check-ble-sensor)*"
       },
       "mpu6050": {
         "dependencies": [
@@ -526,6 +541,12 @@
       "selec_meter": {
         "docs": "The `selec_meter` sensor platform allows you to use Selec Modbus energy monitors ([website](https://www.selec.com/product-details/energy-meter-direct-operated-em2m)) with ESPHome.\n\n*See also: [Selec Energy Monitor](https://esphome.io/components/sensor/selec_meter.html#selec-energy-monitor)*"
       },
+      "sen5x": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `sen5x` sensor platform allows you to use your Sensirion [SEN50](https://sensirion.com/products/catalog/SEN50/), [SEN54](https://sensirion.com/products/catalog/SEN54/) and [Sen55](https://sensirion.com/products/catalog/SEN55/) Environmental sensor ([datasheet](https://sensirion.com/media/documents/6791EFA0/6232E4A7/Sensirion_Datasheet_SEN5x.pdf)) sensors with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work. This sensor supports both UART and I\u00b2C communication. Only I\u00b2C communication is implemented in this component.\n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#sen5x-series-environmental-sensor)*"
+      },
       "senseair": {
         "dependencies": [
           "uart"
@@ -538,11 +559,12 @@
         ],
         "docs": "The `sgp30` sensor platform allows you to use your Sensirion SGP30 multi-pixel gas ([datasheet](https://sensirion.com/media/documents/984E0DD5/61644B8B/Sensirion_Gas_Sensors_Datasheet_SGP30.pdf)) sensors or the SVM30 breakout-boards  ([product page](https://www.sensirion.com/en/environmental-sensors/gas-sensors/multi-gas-humidity-temperature-module-svm30/)) with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [SGP30 CO\u2082 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp30.html#sgp30-co2-and-volatile-organic-compound-sensor)*"
       },
-      "sgp40": {
+      "sgp40": {},
+      "sgp4x": {
         "dependencies": [
           "i2c"
         ],
-        "docs": "The `sgp40` sensor platform allows you to use your Sensirion SGP40 VOC sensor ([datasheet](https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9_Gas_Sensors/Sensirion_Gas_Sensors_SGP40_Datasheet.pdf)) with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [SGP40 Volatile Organic Compound Sensor](https://esphome.io/components/sensor/sgp40.html#sgp40-volatile-organic-compound-sensor)*"
+        "docs": "The `sgp4x` sensor platform allows you to use your Sensirion SGP40 ([datasheet](https://www.sensirion.com/fileadmin/user_upload/customers/sensirion/Dokumente/9_Gas_Sensors/Sensirion_Gas_Sensors_SGP40_Datasheet.pdf)) or SGP41 ([datasheet](https://sensirion.com/media/documents/5FE8673C/61E96F50/Sensirion_Gas_Sensors_Datasheet_SGP41.pdf)) with ESPHome. The type of sensor used is automatically detected. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [SGP40 Volatile Organic Compound Sensor and SGP41 VOC and NOx Sensor](https://esphome.io/components/sensor/sgp4x.html#sgp40-volatile-organic-compound-sensor-and-sgp41-voc-and-nox-sensor)*"
       },
       "sht3xd": {
         "dependencies": [
@@ -573,6 +595,9 @@
           "uart"
         ],
         "docs": "The `sm300d2` sensor platform allows you to use the SM300D2 7-in-1 Air Quality Sensor with ESPHome.\n\n*See also: [SM300D2 7-in-1 Air Quality Sensor](https://esphome.io/components/sensor/sm300d2.html#sm300d2-7-in-1-air-quality-sensor)*"
+      },
+      "sml": {
+        "docs": "**obis_code** (*Required*, string): Specify the OBIS code you want to retrieve data for from the device. The format must be (A-B:C.D.E, e.g. 1-0:1.8.0)\n\n*See also: [sml Sensor](https://esphome.io/components/sml.html#sensor)*"
       },
       "sps30": {
         "dependencies": [
@@ -759,10 +784,23 @@
           ],
           "config_vars": {
             "mqtt_id": {
-              "key": "Optional"
+              "key": "Optional",
+              "id_type": {
+                "class": "mqtt::MQTTSensorComponent",
+                "parents": [
+                  "mqtt::MQTTComponent",
+                  "Component"
+                ]
+              }
             },
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "sensor::Sensor",
+                "parents": [
+                  "EntityBase"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n*See also: [sim800l Sensor](https://esphome.io/components/sim800l.html#sensor)*"
             },
             "unit_of_measurement": {
@@ -785,6 +823,7 @@
                 "carbon_dioxide",
                 "carbon_monoxide",
                 "current",
+                "duration",
                 "energy",
                 "gas",
                 "humidity",
@@ -885,7 +924,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "sensor::Sensor",
+              "type": "use_id"
             },
             "above": {
               "key": "Optional",
@@ -897,18 +938,18 @@
             }
           }
         },
-        "docs": "This condition passes if the state of the given sensor is inside a range.\n\n*See also: [lambda](https://esphome.io/components/sensor/index.html#sensor-in-range-condition)*"
+        "docs": "This condition passes if the state of the given sensor is inside a range.\n\n*See also: [`sensor.in_range` Condition](https://esphome.io/components/sensor/index.html#sensor-in-range-condition)*"
       }
     },
     "filter": {
       "offset": {
-        "docs": "Adds a constant value to each sensor value.\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#offset)*"
+        "docs": "Adds a constant value to each sensor value.\n\n*See also: [`offset`](https://esphome.io/components/sensor/index.html#offset)*"
       },
       "multiply": {
-        "docs": "Multiplies each value by a constant value.\n\n*See also: [offset](https://esphome.io/components/sensor/index.html#multiply)*"
+        "docs": "Multiplies each value by a constant value.\n\n*See also: [`multiply`](https://esphome.io/components/sensor/index.html#multiply)*"
       },
       "filter_out": {
-        "docs": "**number**: Filter out specific values to be displayed. For example to filter out the value `85.0`\n\n*See also: [calibrate_polynomial](https://esphome.io/components/sensor/index.html#filter-out)*"
+        "docs": "**number**: Filter out specific values to be displayed. For example to filter out the value `85.0`\n\n*See also: [`filter_out`](https://esphome.io/components/sensor/index.html#filter-out)*"
       },
       "quantile": {
         "type": "schema",
@@ -943,7 +984,7 @@
             }
           }
         },
-        "docs": "A [simple moving quantile](https://en.wikipedia.org/wiki/Quantile) over the last few values. This can be used to filter outliers from the received sensor data. A large window size will make the filter slow to react to input changes.\n\n*See also: [filter_out](https://esphome.io/components/sensor/index.html#quantile)*"
+        "docs": "A [simple moving quantile](https://en.wikipedia.org/wiki/Quantile) over the last few values. This can be used to filter outliers from the received sensor data. A large window size will make the filter slow to react to input changes.\n\n*See also: [`quantile`](https://esphome.io/components/sensor/index.html#quantile)*"
       },
       "median": {
         "type": "schema",
@@ -972,7 +1013,7 @@
             }
           }
         },
-        "docs": "A [simple moving median](https://en.wikipedia.org/wiki/Median_filter#Worked_1D_example) over the last few values. This can be used to filter outliers from the received sensor data. A large window size will make the filter slow to react to input changes.\n\n*See also: [quantile](https://esphome.io/components/sensor/index.html#median)*"
+        "docs": "A [simple moving median](https://en.wikipedia.org/wiki/Median_filter#Worked_1D_example) over the last few values. This can be used to filter outliers from the received sensor data. A large window size will make the filter slow to react to input changes.\n\n*See also: [`median`](https://esphome.io/components/sensor/index.html#median)*"
       },
       "min": {
         "type": "schema",
@@ -1001,7 +1042,7 @@
             }
           }
         },
-        "docs": "A moving minimum over the last few values. A large window size will make the filter slow to react to input changes.\n\n*See also: [median](https://esphome.io/components/sensor/index.html#min)*"
+        "docs": "A moving minimum over the last few values. A large window size will make the filter slow to react to input changes.\n\n*See also: [`min`](https://esphome.io/components/sensor/index.html#min)*"
       },
       "max": {
         "type": "schema",
@@ -1030,7 +1071,7 @@
             }
           }
         },
-        "docs": "A moving maximum over the last few values. A large window size will make the filter slow to react to input changes.\n\n*See also: [min](https://esphome.io/components/sensor/index.html#max)*"
+        "docs": "A moving maximum over the last few values. A large window size will make the filter slow to react to input changes.\n\n*See also: [`max`](https://esphome.io/components/sensor/index.html#max)*"
       },
       "sliding_window_moving_average": {
         "type": "schema",
@@ -1059,7 +1100,7 @@
             }
           }
         },
-        "docs": "A [simple moving average](https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average) over the last few values. It can be used to have a short update interval on the sensor but only push out an average on a specific interval (thus increasing resolution).\n\n*See also: [max](https://esphome.io/components/sensor/index.html#sliding-window-moving-average)*"
+        "docs": "A [simple moving average](https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average) over the last few values. It can be used to have a short update interval on the sensor but only push out an average on a specific interval (thus increasing resolution).\n\n*See also: [`sliding_window_moving_average`](https://esphome.io/components/sensor/index.html#sliding-window-moving-average)*"
       },
       "exponential_moving_average": {
         "type": "schema",
@@ -1087,7 +1128,7 @@
             }
           }
         },
-        "docs": "A simple [exponential moving average](https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average) over the last few values. It can be used to have a short update interval on the sensor but only push out an average on a specific interval (thus increasing resolution).\n\n*See also: [sliding_window_moving_average](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
+        "docs": "A simple [exponential moving average](https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average) over the last few values. It can be used to have a short update interval on the sensor but only push out an average on a specific interval (thus increasing resolution).\n\n*See also: [`exponential_moving_average`](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
       },
       "throttle_average": {
         "type": "schema",
@@ -1096,19 +1137,19 @@
             "core.positive_time_period_milliseconds"
           ]
         },
-        "docs": "An average over the `specified time period`, potentially throttling incoming values. When this filter gets incoming values, it sums up all values and pushes out the average after the `specified time period` passed. There are two edge cases to consider within the `specified time period`:\n\n*See also: [throttle](https://esphome.io/components/sensor/index.html#throttle-average)*"
+        "docs": "An average over the `specified time period`, potentially throttling incoming values. When this filter gets incoming values, it sums up all values and pushes out the average after the `specified time period` passed. There are two edge cases to consider within the `specified time period`:\n\n*See also: [`throttle_average`](https://esphome.io/components/sensor/index.html#throttle-average)*"
       },
       "lambda": {
-        "docs": "Perform a simple mathematical operation over the sensor values. The input value is `x` and the result of the lambda is used as the output (use `return`).\n\n*See also: [or](https://esphome.io/components/sensor/index.html#lambda)*"
+        "docs": "Perform a simple mathematical operation over the sensor values. The input value is `x` and the result of the lambda is used as the output (use `return`).\n\n*See also: [`lambda`](https://esphome.io/components/sensor/index.html#lambda)*"
       },
       "delta": {
-        "docs": "This filter stores the last value passed through this filter and only passes incoming values through if the absolute difference is greater than the configured value. For example if a value of 1.0 first comes in, it\u2019s passed on. If the delta filter is configured with a value of 5, it will now not pass on an incoming value of 2.0, only values that are at least 6.0 big or -4.0.\n\n*See also: [debounce](https://esphome.io/components/sensor/index.html#delta)*"
+        "docs": "This filter stores the last value passed through this filter and only passes incoming values through if the absolute difference is greater than the configured value. For example if a value of 1.0 first comes in, it\u2019s passed on. If the delta filter is configured with a value of 5, it will now not pass on an incoming value of 2.0, only values that are at least 6.0 big or -4.0.\n\n*See also: [`delta`](https://esphome.io/components/sensor/index.html#delta)*"
       },
       "or": {
         "type": "registry",
         "is_list": true,
         "registry": "sensor.filter",
-        "docs": "Pass forward a value with the first child filter that returns. Above example will only pass forward values that are *either* at least 1s old or are if the absolute difference is at least 5.0.\n\n*See also: [delta](https://esphome.io/components/sensor/index.html#or)*"
+        "docs": "Pass forward a value with the first child filter that returns. Above example will only pass forward values that are *either* at least 1s old or are if the absolute difference is at least 5.0.\n\n*See also: [`or`](https://esphome.io/components/sensor/index.html#or)*"
       },
       "throttle": {
         "type": "schema",
@@ -1117,7 +1158,7 @@
             "core.positive_time_period_milliseconds"
           ]
         },
-        "docs": "Throttle the incoming values. When this filter gets an incoming value, it checks if the last incoming value is at least `specified time period` old. If it is not older than the configured value, the value is not passed forward.\n\n*See also: [exponential_moving_average](https://esphome.io/components/sensor/index.html#throttle)*"
+        "docs": "Throttle the incoming values. When this filter gets an incoming value, it checks if the last incoming value is at least `specified time period` old. If it is not older than the configured value, the value is not passed forward.\n\n*See also: [`throttle`](https://esphome.io/components/sensor/index.html#throttle)*"
       },
       "heartbeat": {
         "type": "schema",
@@ -1126,7 +1167,7 @@
             "core.positive_time_period_milliseconds"
           ]
         },
-        "docs": "Send the value periodically with the specified time interval. If the sensor value changes during the interval the interval will not reset. The last value of the sensor will be sent.\n\n*See also: [throttle_average](https://esphome.io/components/sensor/index.html#heartbeat)*"
+        "docs": "Send the value periodically with the specified time interval. If the sensor value changes during the interval the interval will not reset. The last value of the sensor will be sent.\n\n*See also: [`heartbeat`](https://esphome.io/components/sensor/index.html#heartbeat)*"
       },
       "debounce": {
         "type": "schema",
@@ -1135,11 +1176,11 @@
             "core.positive_time_period_milliseconds"
           ]
         },
-        "docs": "Only send values if the last incoming value is at least `specified time period` old. For example if two values come in at almost the same time, this filter will only output the last value and only after the specified time period has passed without any new incoming values.\n\n*See also: [heartbeat](https://esphome.io/components/sensor/index.html#debounce)*"
+        "docs": "Only send values if the last incoming value is at least `specified time period` old. For example if two values come in at almost the same time, this filter will only output the last value and only after the specified time period has passed without any new incoming values.\n\n*See also: [`debounce`](https://esphome.io/components/sensor/index.html#debounce)*"
       },
       "calibrate_linear": {
         "is_list": true,
-        "docs": "Calibrate your sensor values by using values you measured with an accurate \u201ctruth\u201d source.\n\n*See also: [multiply](https://esphome.io/components/sensor/index.html#calibrate-linear)*"
+        "docs": "Calibrate your sensor values by using values you measured with an accurate \u201ctruth\u201d source.\n\n*See also: [`calibrate_linear`](https://esphome.io/components/sensor/index.html#calibrate-linear)*"
       },
       "calibrate_polynomial": {
         "type": "schema",
@@ -1156,7 +1197,7 @@
             }
           }
         },
-        "docs": "Calibrate your sensor values by fitting them to a polynomial functions. This is similar to the `calibrate_linear` filter, but also allows for higher-order functions like quadratic polynomials.\n\n*See also: [calibrate_linear](https://esphome.io/components/sensor/index.html#calibrate-polynomial)*"
+        "docs": "Calibrate your sensor values by fitting them to a polynomial functions. This is similar to the `calibrate_linear` filter, but also allows for higher-order functions like quadratic polynomials.\n\n*See also: [`calibrate_polynomial`](https://esphome.io/components/sensor/index.html#calibrate-polynomial)*"
       }
     }
   }

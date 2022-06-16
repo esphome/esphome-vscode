@@ -9,7 +9,16 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "kalman_combinator::KalmanCombinatorComponent",
+                "parents": [
+                  "Component",
+                  "sensor::Sensor",
+                  "EntityBase"
+                ]
+              }
+            },
             "process_std_dev": {
               "key": "Required",
               "data_type": "positive_float",
@@ -23,6 +32,8 @@
                 "config_vars": {
                   "source": {
                     "key": "Required",
+                    "use_id_type": "sensor::Sensor",
+                    "type": "use_id",
                     "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id) of a [Sensor Component](https://esphome.io/components/sensor/index.html)**: The sensor that is used as sample source\n\n*See also: [Kalman filter-based sensor fusion](https://esphome.io/components/sensor/kalman_combinator.html#configuration-variables)*"
                   },
                   "error": {

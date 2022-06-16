@@ -6,7 +6,15 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "hydreon_rgxx::HydreonRGxxComponent",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "uart::UARTDevice"
+                ]
+              }
             },
             "model": {
               "key": "Required",
@@ -144,6 +152,8 @@
             },
             "uart_id": {
               "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Component](https://esphome.io/components/uart.html#uart) if you want to use multiple UART buses.\n\n*See also: [Hydreon Rain Sensor](https://esphome.io/components/sensor/hydreon_rgxx.html#configuration-variables)*"
             }
           },
@@ -161,10 +171,18 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "hydreon_rgxx::HydreonRGxxBinaryComponent",
+                "parents": [
+                  "Component"
+                ]
+              }
             },
             "hydreon_rgxx_id": {
               "key": "GeneratedID",
+              "use_id_type": "hydreon_rgxx::HydreonRGxxComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the Hydreon Rain Sensor display.\n\n*See also: [Hydreon Rain Sensor Binary Sensor](https://esphome.io/components/binary_sensor/hydreon_rgxx.html#configuration-variables)*"
             },
             "too_cold": {

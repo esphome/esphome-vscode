@@ -216,7 +216,8 @@
       "schema": {
         "config_vars": {
           "id": {
-            "key": "GeneratedID"
+            "key": "GeneratedID",
+            "id_type": "pin"
           },
           "number": {
             "key": "Required",

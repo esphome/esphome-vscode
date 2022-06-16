@@ -9,9 +9,20 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "as3935_spi::SPIAS3935Component",
+                "parents": [
+                  "as3935::AS3935Component",
+                  "Component",
+                  "spi::SPIDevice"
+                ]
+              }
+            },
             "spi_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "spi::SPIComponent",
+              "type": "use_id"
             },
             "cs_pin": {
               "key": "Required",

@@ -9,9 +9,20 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "as3935_i2c::I2CAS3935Component",
+                "parents": [
+                  "as3935::AS3935Component",
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              }
+            },
             "i2c_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",

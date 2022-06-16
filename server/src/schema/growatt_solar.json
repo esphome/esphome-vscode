@@ -158,7 +158,15 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "growatt_solar::GrowattSolar",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "modbus::ModbusDevice"
+                ]
+              }
             },
             "protocol_version": {
               "key": "Optional",
@@ -376,7 +384,9 @@
               "default": "10s"
             },
             "modbus_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "modbus::Modbus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",

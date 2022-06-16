@@ -6,7 +6,15 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "cd74hc4067::CD74HC4067Component",
+                "parents": [
+                  "Component",
+                  "PollingComponent",
+                  "Component"
+                ]
+              }
             },
             "pin_s0": {
               "key": "Required",
@@ -73,7 +81,18 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "cd74hc4067::CD74HC4067Sensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component",
+                  "voltage_sampler::VoltageSampler"
+                ]
+              }
+            },
             "unit_of_measurement": {
               "default": "V"
             },
@@ -90,14 +109,18 @@
               "default": "measurement"
             },
             "cd74hc4067_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "cd74hc4067::CD74HC4067Component",
+              "type": "use_id"
             },
             "number": {
               "key": "Required",
               "type": "integer"
             },
             "sensor": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "voltage_sampler::VoltageSampler",
+              "type": "use_id"
             },
             "update_interval": {
               "key": "Optional",

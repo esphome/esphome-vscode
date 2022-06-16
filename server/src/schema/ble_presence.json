@@ -10,6 +10,15 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "ble_presence::BLEPresenceDevice",
+                "parents": [
+                  "binary_sensor::BinarySensor",
+                  "EntityBase",
+                  "Component",
+                  "esp32_ble_tracker::ESPBTDeviceListener"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [ESP32 Bluetooth Low Energy Device](https://esphome.io/components/binary_sensor/ble_presence.html#configuration-variables)*"
             },
             "mac_address": {
@@ -37,7 +46,9 @@
               "docs": "**string**: The [universally unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier) to identify the beacon that needs to be tracked. Note that exactly one of `mac_address`, `service_uuid` or `ibeacon_uuid` must be present.\n\n*See also: [ESP32 Bluetooth Low Energy Device](https://esphome.io/components/binary_sensor/ble_presence.html#configuration-variables)*"
             },
             "esp32_ble_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "esp32_ble_tracker::ESP32BLETracker",
+              "type": "use_id"
             }
           }
         }

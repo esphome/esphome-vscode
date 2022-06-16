@@ -7,6 +7,12 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "http_request::HttpRequestComponent",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [HTTP Request](https://esphome.io/components/http_request.html#configuration-variables)*"
             },
             "useragent": {
@@ -55,7 +61,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "http_request::HttpRequestComponent",
+              "type": "use_id"
             },
             "url": {
               "key": "Required",
@@ -131,10 +139,10 @@
             }
           }
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) sends a request.\n\n*See also: [HTTP Request](https://esphome.io/components/http_request.html#http-request-send-action)*"
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) sends a request.\n\n*See also: [`http_request.send` Action](https://esphome.io/components/http_request.html#http-request-send-action)*"
       },
       "post": {
-        "type": "maybe",
+        "type": "schema",
         "schema": {
           "extends": [
             "http_request.HTTP_REQUEST_ACTION_SCHEMA"
@@ -170,10 +178,11 @@
             }
           }
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) sends a POST request.\n\n*See also: [HTTP Request](https://esphome.io/components/http_request.html#http-request-post-action)*"
+        "maybe": "url",
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) sends a POST request.\n\n*See also: [`http_request.post` Action](https://esphome.io/components/http_request.html#http-request-post-action)*"
       },
       "get": {
-        "type": "maybe",
+        "type": "schema",
         "schema": {
           "extends": [
             "http_request.HTTP_REQUEST_ACTION_SCHEMA"
@@ -189,7 +198,8 @@
             }
           }
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) sends a GET request.\n\n*See also: [HTTP Request](https://esphome.io/components/http_request.html#http-request-get-action)*"
+        "maybe": "url",
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) sends a GET request.\n\n*See also: [`http_request.get` Action](https://esphome.io/components/http_request.html#http-request-get-action)*"
       }
     }
   }

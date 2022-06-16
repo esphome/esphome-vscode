@@ -6,7 +6,14 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "cs5460a::CS5460AComponent",
+                "parents": [
+                  "spi::SPIDevice",
+                  "Component"
+                ]
+              }
             },
             "samples": {
               "key": "Optional",
@@ -124,7 +131,9 @@
               "docs": "The sensor subcomponent that will report the power readings in Watts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).  See note below about throttling.\n\n*See also: [CS5460A Power Sensor](https://esphome.io/components/sensor/cs5460a.html#configuration-variables)*"
             },
             "spi_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "spi::SPIComponent",
+              "type": "use_id"
             },
             "cs_pin": {
               "key": "Optional",
@@ -145,15 +154,18 @@
   "cs5460a": {
     "action": {
       "restart": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "cs5460a::CS5460AComponent",
+              "type": "use_id"
             }
           }
         },
-        "docs": "This action can be used in automations to interrupt the current *computation cycle* and start a new one.  This is useful if you\u2019re measuring multiple current/power values using a single CS5460A chip and a signal multiplexer.  As an example you can measure the power usage on up to wall sockets in a house by using one voltage transformer and 16 current transformers, each on the cable leading to the corresponding wall socket.  One side of all the current transformers connects directly to your CS5460A current input terminal (plus any filtering and protection circuitry as recommended in the datasheet), while the other side each connects to one channel of a CD74HC4067 analog multiplexer.  The multiplexer\u2019s single signal pin then connects to the CS5460A\u2019s second current input terminal.  Every time the CS5460A sensor publishes a new power value, an automation can switch the multiplexer to the next channel but it needs to interrupt the *computation cycle* automatically started when the previous one ended, and start a new cycle that uses current samples only from the new CD74HC4067 multiplexer channel.\n\n*See also: [CS5460A Power Sensor](https://esphome.io/components/sensor/cs5460a.html#cs5460a-restart-action)*"
+        "docs": "This action can be used in automations to interrupt the current *computation cycle* and start a new one.  This is useful if you\u2019re measuring multiple current/power values using a single CS5460A chip and a signal multiplexer.  As an example you can measure the power usage on up to wall sockets in a house by using one voltage transformer and 16 current transformers, each on the cable leading to the corresponding wall socket.  One side of all the current transformers connects directly to your CS5460A current input terminal (plus any filtering and protection circuitry as recommended in the datasheet), while the other side each connects to one channel of a CD74HC4067 analog multiplexer.  The multiplexer\u2019s single signal pin then connects to the CS5460A\u2019s second current input terminal.  Every time the CS5460A sensor publishes a new power value, an automation can switch the multiplexer to the next channel but it needs to interrupt the *computation cycle* automatically started when the previous one ended, and start a new cycle that uses current samples only from the new CD74HC4067 multiplexer channel.\n\n*See also: [`cs5460a.restart` Action](https://esphome.io/components/sensor/cs5460a.html#cs5460a-restart-action)*"
       }
     }
   }

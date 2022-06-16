@@ -9,10 +9,21 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "pn532_spi::PN532Spi",
+                "parents": [
+                  "pn532::PN532",
+                  "PollingComponent",
+                  "Component",
+                  "spi::SPIDevice"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for this component.\n\n*See also: [pn532 Over SPI](https://esphome.io/components/binary_sensor/pn532.html#configuration-variables)*"
             },
             "spi_id": {
               "key": "GeneratedID",
+              "use_id_type": "spi::SPIComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [SPI Component](https://esphome.io/components/spi.html#spi) if you want to use multiple SPI buses.\n\n*See also: [pn532 Over SPI](https://esphome.io/components/binary_sensor/pn532.html#configuration-variables)*"
             },
             "cs_pin": {

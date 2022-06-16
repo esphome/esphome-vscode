@@ -1,6 +1,9 @@
 import * as fs from "fs";
 import path = require("path");
 import { isMap, isPair, isScalar, isSeq, YAMLMap } from "yaml";
+import { Range } from "yaml/dist/nodes/Node";
+import { YamlNode } from "./jsonASTTypes";
+import { SingleYAMLDocument } from "./parser/yamlParser07";
 
 export interface SchemaSet {
     [name: string]: Component;
@@ -33,6 +36,7 @@ export interface ConfigVarEnum extends ConfigVarBase {
 export interface ConfigVarSchema extends ConfigVarBase {
     type: 'schema';
     schema: Schema;
+    maybe?: string;
 }
 
 export interface ConfigVarTyped extends ConfigVarBase {
@@ -56,12 +60,25 @@ interface ConfigVarString extends ConfigVarBase {
     type: 'string' | 'integer';
     default?: string;
 }
+export interface ConfigVarUseId extends ConfigVarBase {
+    type: 'use_id';
+    use_id_type: string;
+}
 
-export type ConfigVar = ConfigVarSchema | ConfigVarRegistry | ConfigVarEnum | ConfigVarTrigger | ConfigVarTyped | ConfigVarPin | ConfigVarBoolean | ConfigVarString;
+export interface ConfigVarId {
+    id_type: {
+        class: string;
+        parents: string[];
+    };
+}
+
+export type ConfigVar = ConfigVarSchema | ConfigVarRegistry | ConfigVarEnum | ConfigVarTrigger | ConfigVarTyped | ConfigVarPin | ConfigVarBoolean | ConfigVarString | ConfigVarUseId;
 
 interface ConfigVars {
     [name: string]: ConfigVar;
+    id?: ConfigVar & ConfigVarId;
 }
+
 export interface Schema {
     config_vars: ConfigVars;
     extends: string[];
@@ -146,13 +163,14 @@ export class CoreSchema {
         return (name in this.schema.core.platforms);
     }
 
-    *getDocComponents(docMap: YAMLMap): Generator<[string, Component]> {
+    *getDocComponents(doc: SingleYAMLDocument): Generator<[string, Component, YamlNode]> {
+        const docMap = doc.root.internalNode as YAMLMap;
         for (const k of docMap.items) {
             if (isPair(k) && isScalar(k.key)) {
                 const componentName = k.key.value as string;
                 if (componentName in this.schema.core.components || this.isPlatform(componentName)) {
                     const component = this.getComponent(componentName);
-                    yield [componentName, component];
+                    yield [componentName, component, k.value as YamlNode];
 
                     if (this.isPlatform(componentName)) {
                         // iterate elements and lookup platform to load components
@@ -162,7 +180,7 @@ export class CoreSchema {
                                 if (isMap(plat)) {
                                     const platCompName = plat.get("platform") as string;
                                     if (platCompName in component.components) {
-                                        yield [platCompName + '.' + componentName, this.getComponent(platCompName, componentName)];
+                                        yield [platCompName + '.' + componentName, this.getComponent(platCompName, componentName), plat];
                                     }
                                 }
                             }
@@ -171,10 +189,10 @@ export class CoreSchema {
                 }
             }
         }
-        yield ["core", this.schema.core];
+        yield ["core", this.schema.core, undefined];
     }
 
-    *getRegistry(registry: string, docMap: YAMLMap): Generator<[string, ConfigVar]> {
+    *getRegistry(registry: string, doc: SingleYAMLDocument): Generator<[string, ConfigVar]> {
         if (registry.includes(".")) {
             // e.g. sensor.filter only items from one component
             const [domain, registryName] = registry.split('.');
@@ -184,7 +202,7 @@ export class CoreSchema {
         }
         else {
             // e.g. action, condition: search in all domains
-            for (const [componentName, component] of this.getDocComponents(docMap)) {
+            for (const [componentName, component] of this.getDocComponents(doc)) {
                 if (component[registry] !== undefined) {
                     for (const name in component[registry]) {
                         if (componentName === "core") {
@@ -206,8 +224,15 @@ export class CoreSchema {
         }
         else {
             if (entry.includes(".")) {
-                const [domain, actionName] = entry.split(".");
-                return this.getComponent(domain)[registry][actionName];
+                const parts = entry.split('.');
+                if (parts.length === 3) {
+                    const [domain, platform, actionName] = parts;
+                    return this.getComponent(platform, domain)[registry][actionName];
+                }
+                else {
+                    const [domain, actionName] = parts;
+                    return this.getComponent(domain)[registry][actionName];
+                }
             }
             for (const c in this.schema) {
                 const schema = this.getComponent(c);
@@ -235,7 +260,7 @@ export class CoreSchema {
                 for (const extended of s.extends) {
                     const s_cv = this.getExtendedConfigVar(extended);
                     if (s_cv.type === "schema") {
-                        if (key in s_cv.schema.config_vars) {
+                        if (s_cv.schema.config_vars !== undefined && key in s_cv.schema.config_vars) {
                             c = {
                                 ...s_cv.schema.config_vars[key],
                                 ...c
@@ -251,7 +276,24 @@ export class CoreSchema {
         return cv;
     }
 
-    * iter_configVars(schema: Schema, docMap: YAMLMap, yielded = []): Generator<[string, ConfigVar]> {
+    getConfigVarComplete2(cv: ConfigVar): ConfigVar {
+        var ret = { ...cv };
+
+        if (cv.type === 'schema' && cv.schema.extends !== undefined) {
+            for (const extended of cv.schema.extends) {
+                const s_cv = this.getExtendedConfigVar(extended);
+                ret = {
+                    ...s_cv,
+                    ...ret
+                };
+            }
+        }
+
+        return ret;
+    }
+
+    * iterConfigVars(schema: Schema, doc: SingleYAMLDocument, yielded = []): Generator<[string, ConfigVar]> {
+        const docMap = doc.root.internalNode as YAMLMap;
         for (var prop in schema.config_vars) {
             if (schema.extends?.includes("core.MQTT_COMPONENT_SCHEMA") &&
                 (prop === "mqtt_id" || prop === "expire_after") && docMap.get("mqtt") === undefined) {
@@ -271,7 +313,7 @@ export class CoreSchema {
                 }
                 const s = this.getExtendedConfigVar(extended);
                 if (s.type === "schema") {
-                    for (const pair of this.iter_configVars(s.schema, docMap, yielded)) {
+                    for (const pair of this.iterConfigVars(s.schema, doc, yielded)) {
                         yield pair;
                     }
                 }
@@ -279,12 +321,116 @@ export class CoreSchema {
         }
     }
 
-    findConfigVar(schema, prop, docMap: YAMLMap): ConfigVar {
-        for (const [p, config] of this.iter_configVars(schema, docMap)) {
+    findConfigVar(schema, prop, doc: SingleYAMLDocument): ConfigVar {
+        for (const [p, config] of this.iterConfigVars(schema, doc)) {
             if (p === prop) {
                 return config;
             }
         }
         return undefined;
+    }
+
+
+    * iterDeclaringIdsInner(idType: string, map: YAMLMap, declaringCv: ConfigVar, doc: SingleYAMLDocument): Generator<YamlNode> {
+        let schema: Schema;
+        if (declaringCv.type === "schema") {
+            schema = declaringCv.schema;
+        }
+        else if (declaringCv.type === "typed") {
+            const schemaType = map.get(declaringCv.typed_key) as string;
+            schema = declaringCv.types[schemaType];
+        }
+        else {
+            return;
+        }
+        for (const k of map.items) {
+            if (isPair(k) && isScalar(k.key)) {
+                const propName = k.key.value as string;
+                const cv = this.findConfigVar(schema, propName, doc);
+                if (cv) {
+                    const idCv = cv as any as ConfigVarId;
+                    if (idCv.id_type && (idCv.id_type.class === idType || idCv.id_type.parents?.includes(idType))) {
+                        yield k.value as YamlNode;
+                    }
+                    if (isMap(k.value)) {
+                        for (const yieldNode of this.iterDeclaringIdsInner(idType, k.value, cv, doc)) {
+                            yield yieldNode;
+                        }
+                    }
+                    else if (cv.is_list && isSeq(k.value)) {
+                        for (const seqItem of k.value.items) {
+                            if (isMap(seqItem)) {
+                                for (const yieldNode of this.iterDeclaringIdsInner(idType, seqItem, cv, doc)) {
+                                    yield yieldNode;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    * iterDeclaringIds(idType: string, doc: SingleYAMLDocument): Generator<YamlNode> {
+        const docMap = doc.root.internalNode as YAMLMap;
+        for (const k of docMap.items) {
+            if (isPair(k) && isScalar(k.key)) {
+                const componentName = k.key.value as string;
+                if (componentName in this.schema.core.components || this.isPlatform(componentName)) {
+                    const component = this.getComponent(componentName);
+                    const cv = component.schemas.CONFIG_SCHEMA;
+                    if (isMap(k.value) && isScalar(k.value.get("id", true)) && cv) {
+                        for (const yieldNode of this.iterDeclaringIdsInner(idType, k.value, cv, doc)) { yield yieldNode; }
+                    }
+                    else if (isSeq(k.value) && cv && cv.is_list) {
+                        const nodeList = k.value;
+                        for (const item of nodeList.items) {
+                            if (isMap(item) && isScalar(item.get("id", true)) && cv) {
+                                for (const yieldNode of this.iterDeclaringIdsInner(idType, item, cv, doc)) { yield yieldNode; }
+                            }
+                        }
+                    }
+                    if (this.isPlatform(componentName)) {
+                        // iterate elements and lookup platform to load components
+                        const platNode = k.value;
+                        if (isSeq(platNode)) {
+                            for (const seqItemNode of platNode.items) {
+                                if (isMap(seqItemNode)) {
+                                    const platCompName = seqItemNode.get("platform") as string;
+                                    if (platCompName in component.components) {
+                                        const platCv = this.getComponent(platCompName, componentName).schemas.CONFIG_SCHEMA;
+                                        for (const yieldNode of this.iterDeclaringIdsInner(idType, seqItemNode, platCv, doc)) { yield yieldNode; }
+                                    }
+                                }
+                            }
+                        }
+                        else if (isMap(platNode)) {
+                            const platCompName = platNode.get("platform") as string;
+                            if (platCompName in component.components) {
+                                const platCv = this.getComponent(platCompName, componentName).schemas.CONFIG_SCHEMA;
+                                for (const yieldNode of this.iterDeclaringIdsInner(idType, platNode, platCv, doc)) { yield yieldNode; }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    findComponentDefinition(id_type: string, id: string, doc: SingleYAMLDocument): Range {
+        for (const item of this.iterDeclaringIds(id_type, doc)) {
+            if (isScalar(item) && item.value === id) {
+                return item.range;
+            }
+        }
+        return null;
+    }
+
+    getUsableIds(use_id_type: string, doc: SingleYAMLDocument): string[] {
+        const ret: string[] = [];
+        for (const item of this.iterDeclaringIds(use_id_type, doc)) {
+            ret.push(item.toString());
+        }
+        return ret;
     }
 }

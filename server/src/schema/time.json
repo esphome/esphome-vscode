@@ -5,25 +5,25 @@
         "dependencies": [
           "i2c"
         ],
-        "docs": "You first need to set up the [I2C](https://esphome.io/components/i2c.html) component.\n\n*See also: [GPS Time Source](https://esphome.io/components/time.html#ds1307-time-source)*"
+        "docs": "You first need to set up the [I2C](https://esphome.io/components/i2c.html) component.\n\n*See also: [DS1307 Time Source](https://esphome.io/components/time.html#ds1307-time-source)*"
       },
       "gps": {
         "dependencies": [
           "gps"
         ],
-        "docs": "You first need to set up the [GPS](https://esphome.io/components/gps.html) component.\n\n*See also: [SNTP Time Source](https://esphome.io/components/time.html#gps-time-source)*"
+        "docs": "You first need to set up the [GPS](https://esphome.io/components/gps.html) component.\n\n*See also: [GPS Time Source](https://esphome.io/components/time.html#gps-time-source)*"
       },
       "homeassistant": {
         "dependencies": [
           "api"
         ],
-        "docs": "The preferred way to get time in ESPHome is using Home Assistant. With the `homeassistant` time platform, the [native API](https://esphome.io/components/api.html) connection to Home Assistant will be used to periodically synchronize the current time.\n\n*See also: [on_time_sync Trigger](https://esphome.io/components/time.html#home-assistant-time-source)*"
+        "docs": "The preferred way to get time in ESPHome is using Home Assistant. With the `homeassistant` time platform, the [native API](https://esphome.io/components/api.html) connection to Home Assistant will be used to periodically synchronize the current time.\n\n*See also: [Home Assistant Time Source](https://esphome.io/components/time.html#home-assistant-time-source)*"
       },
       "sntp": {
         "dependencies": [
           "network"
         ],
-        "docs": "Configuration variables:\n\n*See also: [Home Assistant Time Source](https://esphome.io/components/time.html#sntp-time-source)*"
+        "docs": "Configuration variables:\n\n*See also: [SNTP Time Source](https://esphome.io/components/time.html#sntp-time-source)*"
       }
     },
     "schemas": {
@@ -105,11 +105,13 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "time::RealTimeClock",
+              "type": "use_id"
             }
           }
         },
-        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) checks if time has been set and is valid.\n\n*See also: [Base Time Configuration](https://esphome.io/components/time.html#time-has-time-condition)*"
+        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) checks if time has been set and is valid.\n\n*See also: [`time.has_time` Condition](https://esphome.io/components/time.html#time-has-time-condition)*"
       }
     }
   }

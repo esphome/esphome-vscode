@@ -9,10 +9,21 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "ds1307::DS1307Component",
+                "parents": [
+                  "time::RealTimeClock",
+                  "PollingComponent",
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              }
             },
             "i2c_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",
@@ -32,22 +43,27 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "ds1307::DS1307Component",
+              "type": "use_id"
             }
           }
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) triggers a synchronization of the current system time to the RTC hardware.\n\n*See also: [DS1307 Time Source](https://esphome.io/components/time.html#ds1307-write-time-action)*"
+        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) triggers a synchronization of the current system time to the RTC hardware.\n\n*See also: [`ds1307.write_time` Action](https://esphome.io/components/time.html#ds1307-write-time-action)*"
       },
       "read_time": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "ds1307::DS1307Component",
+              "type": "use_id"
             }
           }
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) triggers a synchronization of the current system time from the RTC hardware.\n\n*See also: [DS1307 Time Source](https://esphome.io/components/time.html#ds1307-read-time-action)*"
+        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) triggers a synchronization of the current system time from the RTC hardware.\n\n*See also: [`ds1307.read_time` Action](https://esphome.io/components/time.html#ds1307-read-time-action)*"
       }
     }
   }

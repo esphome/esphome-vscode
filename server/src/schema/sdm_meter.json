@@ -169,7 +169,15 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "sdm_meter::SDMMeter",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "modbus::ModbusDevice"
+                ]
+              }
             },
             "phase_a": {
               "key": "Optional",
@@ -345,7 +353,9 @@
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n*See also: [Eastron SDM Energy Monitor](https://esphome.io/components/sensor/sdm_meter.html#configuration-variables)*"
             },
             "modbus_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "modbus::Modbus",
+              "type": "use_id"
             },
             "address": {
               "key": "Optional",

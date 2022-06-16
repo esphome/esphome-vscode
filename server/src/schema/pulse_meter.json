@@ -8,7 +8,16 @@
             "sensor.SENSOR_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "pulse_meter::PulseMeterSensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
+            },
             "unit_of_measurement": {
               "default": "pulses/min"
             },
@@ -81,7 +90,9 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "pulse_meter::PulseMeterSensor",
+              "type": "use_id"
             },
             "value": {
               "key": "Required",

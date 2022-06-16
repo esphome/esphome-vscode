@@ -6,7 +6,15 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "mlx90393::MLX90393Cls",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              }
             },
             "gain": {
               "key": "Optional",
@@ -190,6 +198,8 @@
             },
             "i2c_id": {
               "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [I\u00b2C Component](https://esphome.io/components/i2c.html#i2c) if you want to use multiple I\u00b2C buses.\n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
             },
             "address": {

@@ -9,18 +9,30 @@
           ],
           "config_vars": {
             "output_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "rgb::RGBLightOutput",
+                "parents": [
+                  "light::LightOutput"
+                ]
+              }
             },
             "red": {
               "key": "Required",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the float [Output Component](https://esphome.io/components/output/index.html#output) to use for the red channel.\n\n*See also: [RGB Light](https://esphome.io/components/light/rgb.html#configuration-variables)*"
             },
             "green": {
               "key": "Required",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the float [Output Component](https://esphome.io/components/output/index.html#output) to use for the green channel.\n\n*See also: [RGB Light](https://esphome.io/components/light/rgb.html#configuration-variables)*"
             },
             "blue": {
               "key": "Required",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the float [Output Component](https://esphome.io/components/output/index.html#output) to use for the blue channel.\n\n*See also: [RGB Light](https://esphome.io/components/light/rgb.html#configuration-variables)*"
             },
             "effects": {

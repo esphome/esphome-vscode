@@ -10,7 +10,17 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "xiaomi_mue4094rt::XiaomiMUE4094RT",
+                "parents": [
+                  "binary_sensor::BinarySensor",
+                  "EntityBase",
+                  "Component",
+                  "esp32_ble_tracker::ESPBTDeviceListener"
+                ]
+              }
+            },
             "device_class": {
               "default": "motion"
             },

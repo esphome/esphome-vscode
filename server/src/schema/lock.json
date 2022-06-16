@@ -21,7 +21,14 @@
           ],
           "config_vars": {
             "mqtt_id": {
-              "key": "Optional"
+              "key": "Optional",
+              "id_type": {
+                "class": "mqtt::MQTTLockComponent",
+                "parents": [
+                  "mqtt::MQTTComponent",
+                  "Component"
+                ]
+              }
             },
             "on_lock": {
               "key": "Optional",
@@ -37,11 +44,14 @@
         }
       },
       "LOCK_ACTION_SCHEMA": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "lock::Lock",
+              "type": "use_id"
             }
           }
         }
@@ -55,7 +65,7 @@
             "lock.LOCK_ACTION_SCHEMA"
           ]
         },
-        "docs": "This action opens (e.g. unlatch) a lock with the given ID off when executed.\n\n*See also: [Lock Component](https://esphome.io/components/lock/index.html#lock-open-action)*"
+        "docs": "This action opens (e.g. unlatch) a lock with the given ID off when executed.\n\n*See also: [`lock.open` Action](https://esphome.io/components/lock/index.html#lock-open-action)*"
       },
       "lock": {
         "type": "schema",
@@ -64,7 +74,7 @@
             "lock.LOCK_ACTION_SCHEMA"
           ]
         },
-        "docs": "This action locks a lock with the given ID on when executed.\n\n*See also: [Lock Component](https://esphome.io/components/lock/index.html#lock-lock-action)*"
+        "docs": "This action locks a lock with the given ID on when executed.\n\n*See also: [`lock.lock` Action](https://esphome.io/components/lock/index.html#lock-lock-action)*"
       },
       "unlock": {
         "type": "schema",
@@ -73,7 +83,7 @@
             "lock.LOCK_ACTION_SCHEMA"
           ]
         },
-        "docs": "This action unlocks a lock with the given ID off when executed.\n\n*See also: [Lock Component](https://esphome.io/components/lock/index.html#lock-unlock-action)*"
+        "docs": "This action unlocks a lock with the given ID off when executed.\n\n*See also: [`lock.unlock` Action](https://esphome.io/components/lock/index.html#lock-unlock-action)*"
       }
     },
     "condition": {

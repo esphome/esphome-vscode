@@ -6,7 +6,15 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "airthings_wave_plus::AirthingsWavePlus",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "ble_client::BLEClientNode"
+                ]
+              }
             },
             "humidity": {
               "key": "Optional",
@@ -174,7 +182,9 @@
               "default": "5min"
             },
             "ble_client_id": {
-              "key": "Required"
+              "key": "Required",
+              "use_id_type": "ble_client::BLEClient",
+              "type": "use_id"
             }
           },
           "extends": [

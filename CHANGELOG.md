@@ -1,5 +1,25 @@
 # Changelog
 
+## v2022.6.0
+
+- 🆕 Sync with ESPHome v2022.6 Schema
+- Adds completions on declared ids 😎 e.g. if you have a `light.tun_on:` action, the extension will suggest the compatible ids
+- Adds goto definition (<kbd>F12</kbd> or ctrl-click on ids) 🌟
+- Completion suggests `!lambda` on templatable properties
+- Fix hover docs for `platform:` element
+- Fix `scripts:` completions not working properly
+- Don't try to validate secrets.yaml
+- Adds lambda syntax 🌈 hilighting of C++
+- Fix titles in See Also hovers
+
+## v2022.5.0
+
+Seems like I have skipped some release notes, anyway:
+
+- Brand new implementation, without the YAML language server, now more detailed analysis can be done.
+- Now using version in sync with ESPHome, during beta time of ESPHome there might be a pre release version available
+- Fixed an issue where effects autocomplete were not listed on some lights
+
 ## v.0.22.0 - 2021-07-29
 
 - Sync schema with ESPHome v1.20.2 (fix)

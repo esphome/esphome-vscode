@@ -6,10 +6,18 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "esp32_ble_server::BLEServer",
+                "parents": [
+                  "Component"
+                ]
+              }
             },
             "ble_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "esp32_ble::ESP32BLE",
+              "type": "use_id"
             },
             "manufacturer": {
               "key": "Optional",

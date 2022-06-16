@@ -6,7 +6,14 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "hlw8012::HLW8012Component",
+                "parents": [
+                  "PollingComponent",
+                  "Component"
+                ]
+              }
             },
             "sel_pin": {
               "key": "Required",

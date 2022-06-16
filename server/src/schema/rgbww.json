@@ -9,26 +9,42 @@
           ],
           "config_vars": {
             "output_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "rgbww::RGBWWLightOutput",
+                "parents": [
+                  "light::LightOutput"
+                ]
+              }
             },
             "red": {
               "key": "Required",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the float [Output Component](https://esphome.io/components/output/index.html#output) to use for the red channel.\n\n*See also: [RGBWW Light](https://esphome.io/components/light/rgbww.html#configuration-variables)*"
             },
             "green": {
               "key": "Required",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the float [Output Component](https://esphome.io/components/output/index.html#output) to use for the green channel.\n\n*See also: [RGBWW Light](https://esphome.io/components/light/rgbww.html#configuration-variables)*"
             },
             "blue": {
               "key": "Required",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the float [Output Component](https://esphome.io/components/output/index.html#output) to use for the blue channel.\n\n*See also: [RGBWW Light](https://esphome.io/components/light/rgbww.html#configuration-variables)*"
             },
             "cold_white": {
               "key": "Required",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the float [Output Component](https://esphome.io/components/output/index.html#output) to use for the cold white channel.\n\n*See also: [RGBWW Light](https://esphome.io/components/light/rgbww.html#configuration-variables)*"
             },
             "warm_white": {
               "key": "Required",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the float [Output Component](https://esphome.io/components/output/index.html#output) to use for the warm white channel.\n\n*See also: [RGBWW Light](https://esphome.io/components/light/rgbww.html#configuration-variables)*"
             },
             "cold_white_color_temperature": {

@@ -6,7 +6,14 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "debug::DebugComponent",
+                "parents": [
+                  "PollingComponent",
+                  "Component"
+                ]
+              }
             },
             "update_interval": {
               "key": "Optional",
@@ -27,7 +34,9 @@
         "schema": {
           "config_vars": {
             "debug_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "debug::DebugComponent",
+              "type": "use_id"
             },
             "free": {
               "key": "Optional",
@@ -137,7 +146,9 @@
         "schema": {
           "config_vars": {
             "debug_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "debug::DebugComponent",
+              "type": "use_id"
             },
             "device": {
               "key": "Optional",

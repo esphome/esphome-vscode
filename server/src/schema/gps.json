@@ -6,7 +6,14 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "gps::GPS",
+                "parents": [
+                  "Component",
+                  "uart::UARTDevice"
+                ]
+              }
             },
             "latitude": {
               "key": "Optional",
@@ -121,7 +128,9 @@
               "default": "20s"
             },
             "uart_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id"
             }
           },
           "extends": [
@@ -143,10 +152,23 @@
           ],
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "gps::GPSTime",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "time::RealTimeClock",
+                  "PollingComponent",
+                  "Component",
+                  "gps::GPSListener"
+                ]
+              }
             },
             "gps_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "gps::GPS",
+              "type": "use_id"
             },
             "update_interval": {
               "default": "5min"

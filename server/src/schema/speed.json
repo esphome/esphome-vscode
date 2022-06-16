@@ -10,18 +10,32 @@
           ],
           "config_vars": {
             "output_id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "speed::SpeedFan",
+                "parents": [
+                  "Component",
+                  "fan::Fan",
+                  "EntityBase"
+                ]
+              }
             },
             "output": {
               "key": "Required",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the [float output](https://esphome.io/components/output/index.html#output) to use for this fan.\n\n*See also: [Speed Fan](https://esphome.io/components/fan/speed.html#configuration-variables)*"
             },
             "oscillation_output": {
               "key": "Optional",
+              "use_id_type": "output::BinaryOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the [output](https://esphome.io/components/output/index.html#output) to use for the oscillation state of this fan. Default is empty.\n\n*See also: [Speed Fan](https://esphome.io/components/fan/speed.html#configuration-variables)*"
             },
             "direction_output": {
               "key": "Optional",
+              "use_id_type": "output::BinaryOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the [output](https://esphome.io/components/output/index.html#output) to use for the direction state of the fan. Default is empty.\n\n*See also: [Speed Fan](https://esphome.io/components/fan/speed.html#configuration-variables)*"
             },
             "speed_count": {

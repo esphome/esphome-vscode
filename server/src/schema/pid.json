@@ -9,7 +9,16 @@
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "pid::PIDClimateSensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
+            },
             "unit_of_measurement": {
               "default": "%"
             },
@@ -24,6 +33,8 @@
             },
             "climate_id": {
               "key": "GeneratedID",
+              "use_id_type": "pid::PIDClimate",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the pid climate to get the values from.\n\n*See also: [pid Sensor](https://esphome.io/components/climate/pid.html#pid-sensor)*"
             },
             "type": {
@@ -69,9 +80,20 @@
             "climate.CLIMATE_SCHEMA"
           ],
           "config_vars": {
-            "id": {},
+            "id": {
+              "id_type": {
+                "class": "pid::PIDClimate",
+                "parents": [
+                  "climate::Climate",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
+            },
             "sensor": {
               "key": "Required",
+              "use_id_type": "sensor::Sensor",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The sensor that is used to measure the current temperature.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
             },
             "default_target_temperature": {
@@ -80,10 +102,14 @@
             },
             "cool_output": {
               "key": "Optional",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of a [float output](https://esphome.io/components/output/index.html#config-output) that decreases the current temperature. At least one of `heat_output` and `cool_output` must be specified.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
             },
             "heat_output": {
               "key": "Optional",
+              "use_id_type": "output::FloatOutput",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of a [float output](https://esphome.io/components/output/index.html#config-output) that increases the current temperature. At least one of `heat_output` and `cool_output` must be specified.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
             },
             "control_parameters": {
@@ -125,23 +151,29 @@
     },
     "action": {
       "reset_integral_term": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "pid::PIDClimate",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: ID of the PID Climate being reset.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-reset-integral-term-action)*"
             }
           }
         },
-        "docs": "This action resets the integral term of the PID controller to 0. This might be necessary under certain conditions to avoid the control loop to overshoot (or undershoot) a target.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-reset-integral-term-action)*"
+        "docs": "This action resets the integral term of the PID controller to 0. This might be necessary under certain conditions to avoid the control loop to overshoot (or undershoot) a target.\n\n*See also: [`climate.pid.reset_integral_term` Action](https://esphome.io/components/climate/pid.html#climate-pid-reset-integral-term-action)*"
       },
       "autotune": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "pid::PIDClimate",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: ID of the PID Climate to start autotuning for.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-autotune-action)*"
             },
             "noiseband": {
@@ -161,14 +193,17 @@
             }
           }
         },
-        "docs": "This action starts the autotune process of the PID controller.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-autotune-action)*"
+        "docs": "This action starts the autotune process of the PID controller.\n\n*See also: [`climate.pid.autotune` Action](https://esphome.io/components/climate/pid.html#climate-pid-autotune-action)*"
       },
       "set_control_parameters": {
-        "type": "maybe",
+        "type": "schema",
+        "maybe": "id",
         "schema": {
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "pid::PIDClimate",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: ID of the PID Climate to start autotuning for.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-set-control-parameters-action)*"
             },
             "kp": {
@@ -190,7 +225,7 @@
             }
           }
         },
-        "docs": "This action sets new values for the control parameters of the PID controller. This can be used to manually tune the PID controller. Make sure to take update the values you want on the YAML file! They will reset on the next reboot.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#climate-pid-set-control-parameters-action)*"
+        "docs": "This action sets new values for the control parameters of the PID controller. This can be used to manually tune the PID controller. Make sure to take update the values you want on the YAML file! They will reset on the next reboot.\n\n*See also: [`climate.pid.set_control_parameters` Action](https://esphome.io/components/climate/pid.html#climate-pid-set-control-parameters-action)*"
       }
     }
   }

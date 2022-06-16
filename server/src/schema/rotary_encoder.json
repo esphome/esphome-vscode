@@ -10,6 +10,14 @@
           ],
           "config_vars": {
             "id": {
+              "id_type": {
+                "class": "rotary_encoder::RotaryEncoderSensor",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Rotary Encoder Sensor](https://esphome.io/components/sensor/rotary_encoder.html#configuration-variables)*"
             },
             "unit_of_measurement": {
@@ -116,6 +124,8 @@
           "config_vars": {
             "id": {
               "key": "Required",
+              "use_id_type": "sensor::Sensor",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the rotary encoder.\n\n*See also: [Rotary Encoder Sensor](https://esphome.io/components/sensor/rotary_encoder.html#sensor-rotary-encoder-set-value-action)*"
             },
             "value": {
@@ -126,7 +136,7 @@
             }
           }
         },
-        "docs": "The internal state of the rotary encoder can be manually changed to any value with this action. After executing this action, rotating the encoder further will increase/decrease the state relative to the newly set internal value.\n\n*See also: [Rotary Encoder Sensor](https://esphome.io/components/sensor/rotary_encoder.html#sensor-rotary-encoder-set-value-action)*"
+        "docs": "The internal state of the rotary encoder can be manually changed to any value with this action. After executing this action, rotating the encoder further will increase/decrease the state relative to the newly set internal value.\n\n*See also: [`sensor.rotary_encoder.set_value` Action](https://esphome.io/components/sensor/rotary_encoder.html#sensor-rotary-encoder-set-value-action)*"
       }
     }
   }

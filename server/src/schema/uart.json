@@ -7,6 +7,12 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "uart::UARTComponent",
+                "parents": [
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for this UART hub if you need multiple UART hubs.\n\n*See also: [UART Bus](https://esphome.io/components/uart.html#configuration-variables)*"
             },
             "baud_rate": {
@@ -74,12 +80,14 @@
     },
     "action": {
       "write": {
-        "is_list": true,
         "type": "schema",
+        "maybe": "data",
         "schema": {
           "config_vars": {
             "id": {
-              "key": "GeneratedID"
+              "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id"
             },
             "data": {
               "key": "Required",
@@ -87,7 +95,7 @@
             }
           }
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) sends a defined UART signal to the given UART bus.\n\n*See also: [UART Bus](https://esphome.io/components/uart.html#uart-write-action)*"
+        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) sends a defined UART signal to the given UART bus.\n\n*See also: [`uart.write` Action](https://esphome.io/components/uart.html#uart-write-action)*"
       }
     }
   },
@@ -99,6 +107,15 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
+              "id_type": {
+                "class": "uart::UARTSwitch",
+                "parents": [
+                  "switch_::Switch",
+                  "EntityBase",
+                  "uart::UARTDevice",
+                  "Component"
+                ]
+              },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [UART Switch](https://esphome.io/components/switch/uart.html#configuration-variables)*"
             },
             "data": {
@@ -117,6 +134,8 @@
             },
             "uart_id": {
               "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the UART hub.\n\n*See also: [UART Switch](https://esphome.io/components/switch/uart.html#configuration-variables)*"
             },
             "name": {
