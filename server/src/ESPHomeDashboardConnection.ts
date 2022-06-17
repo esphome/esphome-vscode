@@ -35,7 +35,7 @@ export class ESPHomeDashboardConnection extends ESPHomeConnection {
         }
 
         const httpUri = `${match[2]}://${match[4]}/`;
-        const wsUri = `ws://${match[4]}/vscode`;
+        const wsUri = `ws${match[2] === 'https' ? 's' : ''}://${match[4]}/vscode`;
 
         console.log(`Using ESPHome dashboard at: ${wsUri} server: ${httpUri}`);
         this.ws = new WebSocket(wsUri.toString());
