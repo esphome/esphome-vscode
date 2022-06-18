@@ -1,5 +1,9 @@
 # Changelog
 
+## v2022.6.1
+
+- Support dashboard running in https (@slovdahl)
+
 ## v2022.6.0
 
 - 🆕 Sync with ESPHome v2022.6 Schema
