@@ -13,6 +13,12 @@
       "custom": {
         "docs": "This integration can be used to create custom binary and float [outputs](https://esphome.io/components/output/index.html) in ESPHome using the C++ (Arduino) API.\n\n*See also: [Custom Output](https://esphome.io/components/output/custom.html#custom-output)*"
       },
+      "dac7678": {
+        "dependencies": [
+          "dac7678"
+        ],
+        "docs": "The DAC7678 output component exposes a DAC7678 DAC channel of a global [DAC7678 hub](https://esphome.io/components/output/dac7678.html#dac7678-component) as a float output.\n\n*See also: [DAC7678 Output](https://esphome.io/components/output/dac7678.html#dac7678-output)*"
+      },
       "esp32_dac": {
         "dependencies": [
           "esp32"

@@ -19,6 +19,9 @@
       "endstop": {
         "docs": "The `endstop` cover platform allows you to create covers with position control that have endstops at both ends of the cover to detect the fully-open and fully-closed states. When any of these endstops are reached, the cover is stopped (via `stop_action`) and the corresponding state is sent out.\n\n*See also: [Endstop Cover](https://esphome.io/components/cover/endstop.html#endstop-cover)*"
       },
+      "feedback": {
+        "docs": "The `feedback` cover platform allows you to create covers with position control that can optionally have feedback from sensors to detect the fully-open and fully-closed states (endstops), and from sensors to detect actual movement (opening/closing). In all the cases the current position is approximated with the time the cover has been moving in a direction.\n\n*See also: [Feedback Cover](https://esphome.io/components/cover/feedback.html#feedback-cover)*"
+      },
       "template": {
         "docs": "The `template` cover platform allows you to create simple covers out of just a few actions and a value lambda. Once defined, it will automatically appear in Home Assistant as a cover and can be controlled through the frontend.\n\n*See also: [Template Cover](https://esphome.io/components/cover/template.html#template-cover)*"
       },

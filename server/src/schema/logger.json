@@ -552,6 +552,18 @@
                       "VERY_VERBOSE"
                     ]
                   },
+                  "ble_client.automation": {
+                    "type": "enum",
+                    "values": [
+                      "NONE",
+                      "ERROR",
+                      "WARN",
+                      "INFO",
+                      "DEBUG",
+                      "VERBOSE",
+                      "VERY_VERBOSE"
+                    ]
+                  },
                   "ble_client": {
                     "type": "enum",
                     "values": [
@@ -1092,6 +1104,18 @@
                       "VERY_VERBOSE"
                     ]
                   },
+                  "dac7678": {
+                    "type": "enum",
+                    "values": [
+                      "NONE",
+                      "ERROR",
+                      "WARN",
+                      "INFO",
+                      "DEBUG",
+                      "VERBOSE",
+                      "VERY_VERBOSE"
+                    ]
+                  },
                   "daikin.climate": {
                     "type": "enum",
                     "values": [
@@ -1597,6 +1621,18 @@
                     ]
                   },
                   "fastled": {
+                    "type": "enum",
+                    "values": [
+                      "NONE",
+                      "ERROR",
+                      "WARN",
+                      "INFO",
+                      "DEBUG",
+                      "VERBOSE",
+                      "VERY_VERBOSE"
+                    ]
+                  },
+                  "feedback.cover": {
                     "type": "enum",
                     "values": [
                       "NONE",
@@ -4416,6 +4452,18 @@
                       "VERY_VERBOSE"
                     ]
                   },
+                  "smt100": {
+                    "type": "enum",
+                    "values": [
+                      "NONE",
+                      "ERROR",
+                      "WARN",
+                      "INFO",
+                      "DEBUG",
+                      "VERBOSE",
+                      "VERY_VERBOSE"
+                    ]
+                  },
                   "sn74hc595": {
                     "type": "enum",
                     "values": [
@@ -4477,6 +4525,18 @@
                     ]
                   },
                   "spi": {
+                    "type": "enum",
+                    "values": [
+                      "NONE",
+                      "ERROR",
+                      "WARN",
+                      "INFO",
+                      "DEBUG",
+                      "VERBOSE",
+                      "VERY_VERBOSE"
+                    ]
+                  },
+                  "sprinkler": {
                     "type": "enum",
                     "values": [
                       "NONE",
@@ -5605,6 +5665,18 @@
                     ]
                   },
                   "whirlpool.climate": {
+                    "type": "enum",
+                    "values": [
+                      "NONE",
+                      "ERROR",
+                      "WARN",
+                      "INFO",
+                      "DEBUG",
+                      "VERBOSE",
+                      "VERY_VERBOSE"
+                    ]
+                  },
+                  "climate.whynter": {
                     "type": "enum",
                     "values": [
                       "NONE",

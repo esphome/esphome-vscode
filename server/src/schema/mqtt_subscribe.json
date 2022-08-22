@@ -70,7 +70,7 @@
             },
             "topic": {
               "key": "Required",
-              "docs": "**string**: The MQTT topic to listen for numeric messages.\n\n*See also: [MQTT Subscribe Text Sensor](https://esphome.io/components/text_sensor/mqtt_subscribe.html#configuration-variables)*"
+              "docs": "**string**: The MQTT topic to listen for string data.\n\n*See also: [MQTT Subscribe Text Sensor](https://esphome.io/components/text_sensor/mqtt_subscribe.html#configuration-variables)*"
             },
             "qos": {
               "key": "Optional",

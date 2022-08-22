@@ -14,7 +14,25 @@
         "schema": {
           "extends": [
             "core.ENTITY_BASE_SCHEMA"
-          ]
+          ],
+          "config_vars": {
+            "on_state": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_idle": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_play": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_pause": {
+              "key": "Optional",
+              "type": "trigger"
+            }
+          }
         }
       },
       "MEDIA_PLAYER_ACTION_SCHEMA": {
@@ -32,6 +50,24 @@
       }
     },
     "action": {
+      "play_media": {
+        "type": "schema",
+        "maybe": "media_url",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "use_id_type": "media_player::MediaPlayer",
+              "type": "use_id"
+            },
+            "media_url": {
+              "key": "Required",
+              "templatable": true
+            }
+          }
+        },
+        "docs": "This action will start playing the specified media.\n\n*See also: [`media_player.play_media` Action](https://esphome.io/components/media_player/index.html#media-player-play-media-action)*"
+      },
       "volume_down": {
         "type": "schema",
         "schema": {
@@ -84,7 +120,7 @@
             "media_player.MEDIA_PLAYER_ACTION_SCHEMA"
           ]
         },
-        "docs": "This action will resume playing the media player. A future change will allow specifying the `media_url` for starting a new stream.\n\n*See also: [`media_player.play` Action](https://esphome.io/components/media_player/index.html#media-player-play-action)*"
+        "docs": "This action will resume playing the media player.\n\n*See also: [`media_player.play` Action](https://esphome.io/components/media_player/index.html#media-player-play-action)*"
       },
       "volume_set": {
         "type": "schema",
@@ -103,6 +139,26 @@
           }
         },
         "docs": "This action will set the volume of the media player.\n\n*See also: [`media_player.volume_set` Action](https://esphome.io/components/media_player/index.html#media-player-volume-set-action)*"
+      }
+    },
+    "condition": {
+      "is_playing": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "media_player.MEDIA_PLAYER_ACTION_SCHEMA"
+          ]
+        },
+        "docs": "This condition checks if the media player is playing media.\n\n*See also: [`media_player.is_playing` Condition](https://esphome.io/components/media_player/index.html#media-player-is-playing-condition)*"
+      },
+      "is_idle": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "media_player.MEDIA_PLAYER_ACTION_SCHEMA"
+          ]
+        },
+        "docs": "This condition checks if the media player is idle.\n\n*See also: [`media_player.is_idle` Condition](https://esphome.io/components/media_player/index.html#media-player-is-idle-condition)*"
       }
     }
   }

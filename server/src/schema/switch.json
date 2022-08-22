@@ -17,7 +17,7 @@
         "dependencies": [
           "modbus_controller"
         ],
-        "docs": "The `modbus_controller` sensor platform creates a sensor from a modbus_controller component and requires [Modbus Controller](https://esphome.io/components/modbus_controller.html) to be configured.\n\n*See also: [Modbus Controller Switch](https://esphome.io/components/switch/modbus_controller.html#modbus-controller-switch)*"
+        "docs": "The `modbus_controller` switch platform creates a switch from a modbus_controller component and requires [Modbus Controller](https://esphome.io/components/modbus_controller.html) to be configured.\n\n*See also: [Modbus Controller Switch](https://esphome.io/components/switch/modbus_controller.html#modbus-controller-switch)*"
       },
       "nextion": {
         "docs": "The `nextion` switch platform supports the many switched components in the Nextion as well as integer variables. It can be a component or variable in the Nextion display. It is best to set the components vscope to global in the Nextion Editor. This way the component will be available if the page is shown or not.\n\n*See also: [Nextion Switch Component](https://esphome.io/components/switch/nextion.html#nextion-switch-component)*"

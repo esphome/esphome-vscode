@@ -92,7 +92,7 @@
           }
         },
         "typed_key": "dac_type",
-        "docs": "**enum**: Use an external DAC, for example the NS4168.\n  \n  * `internal`: Use the internal DAC\n  \n  \n\n*See also: [I2S Audio Media Player](https://esphome.io/components/media_player/i2s_audio.html#configuration-variables)*"
+        "docs": "**enum**: Use an external DAC, for example the NS4168, or UDA1334A.\n  \n  * `internal`: Use the internal DAC\n  \n  \n\n*See also: [I2S Audio Media Player](https://esphome.io/components/media_player/i2s_audio.html#configuration-variables)*"
       }
     }
   }

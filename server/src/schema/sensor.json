@@ -20,7 +20,7 @@
         "dependencies": [
           "i2c"
         ],
-        "docs": "The `aht10` Temperature+Humidity sensor allows you to use your aht10 ([datasheet](http://www.aosong.com/userfiles/files/media/aht10%E8%A7%84%E6%A0%BC%E4%B9%A6v1_1%EF%BC%8820191015%EF%BC%89.pdf)) i2c-based sensor with ESPHome.\n\n*See also: [AHT10 Temperature+Humidity Sensor](https://esphome.io/components/sensor/aht10.html#aht10-temperature-humidity-sensor)*"
+        "docs": "The `aht10` Temperature+Humidity sensor allows you to use your AHT10 ([datasheet](http://www.aosong.com/userfiles/files/media/aht10%E8%A7%84%E6%A0%BC%E4%B9%A6v1_1%EF%BC%8820191015%EF%BC%89.pdf)), AHT20 ([datasheet](https://cdn-learn.adafruit.com/assets/assets/000/091/676/original/AHT20-datasheet-2020-4-16.pdf?1591047915)), AHT21 ([datasheet](https://asairsensors.com/wp-content/uploads/2021/09/Data-Sheet-AHT21-Humidity-and-Temperature-Sensor-ASAIR-V1.0.03.pdf)) [I\u00b2C](https://esphome.io/components/i2c.html#i2c)-based sensor with ESPHome.\n\n*See also: [AHT10 Temperature+Humidity Sensor](https://esphome.io/components/sensor/aht10.html#aht10-temperature-humidity-sensor)*"
       },
       "airthings_wave_mini": {
         "dependencies": [
@@ -192,7 +192,7 @@
         "docs": "Configuration variables:\n\n*See also: [debug Sensor](https://esphome.io/components/debug.html#sensor)*"
       },
       "dht": {
-        "docs": "The DHT Temperature+Humidity sensor allows you to use your DHT11 ([datasheet](https://akizukidenshi.com/download/ds/aosong/DHT11.pdf), [Adafruit](https://www.adafruit.com/product/386)), DHT22 ([datasheet](https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf), [Adafruit](https://www.adafruit.com/product/385)), AM2302 ([datasheet](https://cdn-shop.adafruit.com/datasheets/Digital+humidity+and+temperature+sensor+AM2302.pdf), [Adafruit](https://www.adafruit.com/product/393)), RHT03 ([datasheet](https://cdn.sparkfun.com/datasheets/Sensors/Weather/RHT03.pdf), [SparkFun](https://cdn.sparkfun.com/datasheets/Sensors/Weather/RHT03.pdf)) and SI7021 (one wire Sonoff version) ([datasheet](https://cdn.sparkfun.com/assets/b/1/b/8/5/Si7021-A20.pdf), [SparkFun](https://cdn.sparkfun.com/assets/b/1/b/8/5/Si7021-A20.pdf)) sensors with ESPHome.\n\n*See also: [DHT Temperature+Humidity Sensor](https://esphome.io/components/sensor/dht.html#dht-temperature-humidity-sensor)*"
+        "docs": "The DHT Temperature+Humidity sensor allows you to use your DHT11 ([datasheet](https://akizukidenshi.com/download/ds/aosong/DHT11.pdf), [Adafruit](https://www.adafruit.com/product/386)), DHT21/DHT22 ([datasheet](https://www.sparkfun.com/datasheets/Sensors/Temperature/DHT22.pdf), [Adafruit](https://www.adafruit.com/product/385)), AMS2301/AM2302 ([datasheet](https://cdn-shop.adafruit.com/datasheets/Digital+humidity+and+temperature+sensor+AM2302.pdf), [Adafruit](https://www.adafruit.com/product/393)), RHT03 ([datasheet](https://cdn.sparkfun.com/datasheets/Sensors/Weather/RHT03.pdf), [SparkFun](https://cdn.sparkfun.com/datasheets/Sensors/Weather/RHT03.pdf)) and SI7021 (one wire Sonoff version) ([datasheet](https://cdn.sparkfun.com/assets/b/1/b/8/5/Si7021-A20.pdf), [SparkFun](https://cdn.sparkfun.com/assets/b/1/b/8/5/Si7021-A20.pdf)) sensors with ESPHome.\n\n*See also: [DHT Temperature+Humidity Sensor](https://esphome.io/components/sensor/dht.html#dht-temperature-humidity-sensor)*"
       },
       "dht12": {
         "dependencies": [
@@ -599,6 +599,12 @@
       "sml": {
         "docs": "**obis_code** (*Required*, string): Specify the OBIS code you want to retrieve data for from the device. The format must be (A-B:C.D.E, e.g. 1-0:1.8.0)\n\n*See also: [sml Sensor](https://esphome.io/components/sml.html#sensor)*"
       },
+      "smt100": {
+        "dependencies": [
+          "uart"
+        ],
+        "docs": "The SMT100 sensor platform allows you to use the SMT100 soil moisture and temperature with ESPHome.\n\n*See also: [SMT100 Soil Moisture Sensor](https://esphome.io/components/sensor/smt100.html#smt100-soil-moisture-sensor)*"
+      },
       "sps30": {
         "dependencies": [
           "i2c"
@@ -811,20 +817,23 @@
             "accuracy_decimals": {
               "key": "Optional",
               "type": "integer",
-              "docs": "**int**: Manually set the accuracy of decimals to use when reporting values.\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
+              "docs": "**int**: Manually set the number of decimals to use when reporting values. This does not impact the actual value reported to Home Assistant, it just sets the number of decimals to use when displaying it.\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
             },
             "device_class": {
               "key": "Optional",
               "type": "enum",
               "values": [
                 "",
+                "apparent_power",
                 "aqi",
                 "battery",
                 "carbon_dioxide",
                 "carbon_monoxide",
                 "current",
+                "date",
                 "duration",
                 "energy",
+                "frequency",
                 "gas",
                 "humidity",
                 "illuminance",
@@ -839,6 +848,7 @@
                 "power",
                 "power_factor",
                 "pressure",
+                "reactive_power",
                 "signal_strength",
                 "sulphur_dioxide",
                 "temperature",
