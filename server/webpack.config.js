@@ -14,5 +14,9 @@ module.exports = withDefaults({
 	output: {
 		filename: 'server.js',
 		path: path.join(__dirname, 'out')
+	},
+	externals: {
+		bufferutil: "bufferutil",
+		"utf-8-validate": "utf-8-validate",
 	}
 });
