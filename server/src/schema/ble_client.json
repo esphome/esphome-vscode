@@ -59,6 +59,32 @@
           }
         }
       }
+    },
+    "action": {
+      "ble_write": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "use_id_type": "ble_client::BLEClient",
+              "type": "use_id"
+            },
+            "service_uuid": {
+              "key": "Required"
+            },
+            "characteristic_uuid": {
+              "key": "Required"
+            },
+            "value": {
+              "key": "Required",
+              "is_list": true,
+              "data_type": "hex_uint8_t"
+            }
+          }
+        },
+        "docs": "This action triggers a write to a specified BLE characteristic. The write is attempted in a best-effort fashion and will only succeed if the `ble_client`\u2019s  connection has been established and the peripheral exposes the expected BLE service and characteristic.\n\n*See also: [`ble_client.ble_write` Action](https://esphome.io/components/ble_client.html#ble-client-ble-write-action)*"
+      }
     }
   },
   "ble_client.sensor": {

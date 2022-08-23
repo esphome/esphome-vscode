@@ -54,6 +54,18 @@
             "on_shutdown": {
               "key": "Optional",
               "type": "trigger",
+              "schema": {
+                "config_vars": {
+                  "priority": {
+                    "key": "Optional",
+                    "default": "600.0",
+                    "docs": "**float**: The priority to execute your custom shutdown code. A higher value means a high priority and in case of shutdown triggers that the code is executed **later**. Priority is used primarily for the initialization order of components. Shutdowns for these components are handled in *reverse* order, such that e.g. sensors (600) are shutdown before the hardware components (800) they depend on. Please note this is an ESPHome-internal value and any change will not be marked as a breaking change. Defaults to `600`. For priority values refer to the list in the [on_boot](https://esphome.io/components/esphome.html#esphome-on-boot) section.\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#on-shutdown)*"
+                  },
+                  "then": {
+                    "type": "trigger"
+                  }
+                }
+              },
               "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform right before the node shuts down. See [on_shutdown](https://esphome.io/components/esphome.html#esphome-on-shutdown).\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
             },
             "on_loop": {
@@ -349,7 +361,7 @@
         "dependencies": [
           "display"
         ],
-        "docs": "Allows to use animated images on displays. Animation inherits all options from the image component. It adds additional lambda methods: `next_frame()` and `prev_frame()` to change the shown picture of a gif.\n\n*See also: [Animation](https://esphome.io/components/display/index.html#animation)*"
+        "docs": "Allows to use animated images on displays. Animation inherits all options from the image component. It adds additional lambda methods: `next_frame()`, `prev_frame()` and `set_frame()` to change the shown picture of a gif.\n\n*See also: [Animation](https://esphome.io/components/display/index.html#animation)*"
       },
       "apds9960": {
         "dependencies": [
@@ -376,6 +388,12 @@
         "docs": "The `as3935_spi` sensor platform allows you to use your AS3935 sensor ([AliExpress](https://de.aliexpress.com/af/as3935.html?SearchText=as3935), [AMS_AS3935](https://ams.com/as3935)) in order to get notified when a thunderstorm is getting close.\n\n*See also: [as3935 Over SPI](https://esphome.io/components/sensor/as3935.html#over-spi)*"
       },
       "async_tcp": {},
+      "bedjet": {
+        "dependencies": [
+          "ble_client"
+        ],
+        "docs": "This component is a global hub that maintains the connection to the BedJet device and delegates status updates to individual platform components.\n\n*See also: [bedjet Component/Hub](https://esphome.io/components/climate/bedjet.html#component-hub)*"
+      },
       "ble_client": {
         "dependencies": [
           "esp32_ble_tracker"
@@ -408,6 +426,12 @@
       },
       "custom_component": {
         "docs": "This integration can be used to create generic custom components in ESPHome using the C++ (Arduino) API. This integration should be used in cases where none of ESPHome\u2019s abstraction layers (for example the \u201csensor\u201d, \u201cbinary sensor\u201d, \u201cswitch\u201d, etc concepts) work well for your integration.\n\n*See also: [Generic Custom Component](https://esphome.io/custom/custom_component.html#generic-custom-component)*"
+      },
+      "dac7678": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The DAC7678 component represents a DAC7678 12-bit 8 channel DAC with internal reference ([datasheet](https://www.ti.com/lit/ds/symlink/dac7678.pdf)) in ESPHome. It uses the [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) for communication.\n\n*See also: [dac7678 Component/Hub](https://esphome.io/components/output/dac7678.html#component-hub)*"
       },
       "dallas": {
         "docs": "The `dallas` component allows you to use your [DS18b20](https://www.adafruit.com/product/374) ([datasheet](https://datasheets.maximintegrated.com/en/ds/DS18B20.pdf)) and similar 1-Wire temperature sensors.\n\n*See also: [dallas Component/Hub](https://esphome.io/components/sensor/dallas.html#component-hub)*"
@@ -792,6 +816,9 @@
       "spi": {
         "docs": "SPI is a very common high-speed protocol for a lot of devices. The SPI bus usually consists of 4 wires:\n\n*See also: [SPI Bus](https://esphome.io/components/spi.html#spi-bus)*"
       },
+      "sprinkler": {
+        "docs": "The `sprinkler` controller component aims to behave like a sprinkler/irrigation valve controller, much like those made by companies such as Rain Bird or Hunter. It does so by automating control of a number of [switch](https://esphome.io/components/switch/index.html#config-switch) components, each of which would typically be used to control an individual electric valve via a relay or other switching device. It provides a number of features you\u2019d expect of a sprinkler controller, including:\n\n*See also: [Sprinkler Controller](https://esphome.io/components/sprinkler.html#sprinkler-controller)*"
+      },
       "status_led": {
         "docs": "The `status_led` hooks into all ESPHome components and can indicate the status of the device. Specifically, it will:\n\n*See also: [Status LED](https://esphome.io/components/status_led.html#status-led)*"
       },
@@ -1039,10 +1066,6 @@
       "esp32",
       "esp8266",
       "mcp23xxx",
-      "mcp23008",
-      "mcp23s08",
-      "mcp23017",
-      "mcp23s17",
       "mcp23016",
       "pcf8574",
       "sn74hc595",

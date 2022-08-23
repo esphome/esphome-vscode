@@ -89,7 +89,8 @@
             },
             "local": {
               "key": "Optional",
-              "type": "boolean"
+              "type": "boolean",
+              "docs": "**boolean**: Include supporting javascript locally allowing it to work without internet access. Defaults to `false`.\n\n*See also: [Web Server Component](https://esphome.io/components/web_server.html#configuration-variables)*"
             }
           },
           "extends": [

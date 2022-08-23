@@ -15,7 +15,7 @@
         "dependencies": [
           "ble_client"
         ],
-        "docs": "The `bedjet` climate platform creates a climate device which can be used to control a BedJet V3 Climate Comfort Sleep System.\n\n*See also: [BedJet](https://esphome.io/components/climate/bedjet.html#bedjet)*"
+        "docs": "The `climate` platform exposes the BedJet\u2019s climate-related functionality, including setting the mode and target temperature.\n\n*See also: [bedjet Climate](https://esphome.io/components/climate/bedjet.html#bedjet-climate)*"
       },
       "climate_ir_lg": {
         "docs": "Additional configuration is available for this platform\n\n*See also: [climate_ir_lg Climate](https://esphome.io/components/climate/climate_ir.html#climate-ir-lg-climate)*"
@@ -63,6 +63,9 @@
       },
       "whirlpool": {
         "docs": "Additional configuration is available for this model.\n\n*See also: [whirlpool Climate](https://esphome.io/components/climate/climate_ir.html#whirlpool-climate)*"
+      },
+      "whynter": {
+        "docs": "Additional configuration is available for this platform\n\n*See also: [whynter Climate](https://esphome.io/components/climate/climate_ir.html#whynter-climate)*"
       },
       "yashima": {}
     },

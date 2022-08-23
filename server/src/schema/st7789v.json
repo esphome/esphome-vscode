@@ -22,6 +22,17 @@
               },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
             },
+            "model": {
+              "key": "Required",
+              "type": "enum",
+              "values": [
+                "TTGO_TDISPLAY_135X240",
+                "ADAFRUIT_FUNHOUSE_240X240",
+                "ADAFRUIT_RR_280X240",
+                "CUSTOM"
+              ],
+              "docs": "**string**: The display model to use. One of the following options:\n  * `TTGO TDisplay 135x240`\n  \n  * `Adafruit Funhouse 240x240`\n  \n  * `Adafruit RR 280x240` (round-rectangular display \u2013 some pixels are \u201cdeleted\u201d from corners to form rounded shape)\n  \n  * `Custom` (see details below)\n  \n  \n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
+            },
             "reset_pin": {
               "key": "Required",
               "schema": true,
@@ -58,9 +69,31 @@
               "type": "pin",
               "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The display\u2019s backlight pin.\n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
             },
-            "brightness": {
+            "eightbitcolor": {
               "key": "Optional",
-              "default": "1.0"
+              "default": "False",
+              "type": "boolean",
+              "docs": "**boolean**: Limits the supported color depth to eight bits. May be useful on memory-constrained devices.\n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
+            },
+            "height": {
+              "key": "Optional",
+              "type": "integer",
+              "docs": "**int**: When `model` is set to \u201cCustom\u201d, use this to specify the `height` of the display in pixels. This option may not be specified when the `model` is not set to \u201cCustom\u201d.\n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
+            },
+            "width": {
+              "key": "Optional",
+              "type": "integer",
+              "docs": "**int**: When `model` is set to \u201cCustom\u201d, use this to specify the `width` of the display in pixels. This option may not be specified when the `model` is not set to \u201cCustom\u201d.\n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
+            },
+            "offset_height": {
+              "key": "Optional",
+              "type": "integer",
+              "docs": "**int**: When `model` is set to \u201cCustom\u201d, use this to specify the display\u2019s vertical offset in pixels. This option may not be specified when the `model` is not set to \u201cCustom\u201d.\n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
+            },
+            "offset_width": {
+              "key": "Optional",
+              "type": "integer",
+              "docs": "**int**: When `model` is set to \u201cCustom\u201d, use this to specify the display\u2019s horizontal offset in pixels. This option may not be specified when the `model` is not set to \u201cCustom\u201d.\n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",

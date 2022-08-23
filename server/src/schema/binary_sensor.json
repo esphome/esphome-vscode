@@ -218,6 +218,11 @@
                 ]
               }
             },
+            "publish_initial_state": {
+              "key": "Optional",
+              "type": "boolean",
+              "docs": "**boolean**: If true, then the sensor will publish its initial state at boot or when HA first connects, depending on the platform.  This means that any applicable triggers will be run. Defaults to `false`.\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#base-binary-sensor-configuration)*"
+            },
             "device_class": {
               "key": "Optional",
               "type": "enum",
@@ -225,6 +230,7 @@
                 "",
                 "battery",
                 "battery_charging",
+                "carbon_monoxide",
                 "cold",
                 "connectivity",
                 "door",
