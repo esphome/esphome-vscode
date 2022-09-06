@@ -24,7 +24,7 @@
     "vscode-nls": "^5.0.0",
     "vscode-uri": "^3.0.2",
     "ws": "^8.8.1",
-    "yaml": "2.0.0-8"
+    "yaml": "^2.1.1"
   },
   "scripts": {
     "tests": "mocha --require ts-node/register test/**/*.ts"
