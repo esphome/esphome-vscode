@@ -1,5 +1,11 @@
 # Changelog
 
+## v2022.8.3 - 2022-09-07
+
+- 🆕 Sync with ESPHome v2022.8.3 Schema
+- Fix completions not working properly on partial written keys
+- Code clean up for sync with esphome-dashboard
+
 ## v2022.8.0
 
 - 🆕 Sync with ESPHome v2022.8 Schema
