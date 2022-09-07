@@ -5,8 +5,8 @@
 
 //copied from https://github.com/Microsoft/vscode/blob/015c3afe96966df50c15a7d66be2ab0ef1dc5f49/src/vs/editor/common/model/indentationGuesser.ts
 
-import { CharCode } from './charCode';
-import { TextBuffer } from './textBuffer';
+import { CharCode } from "./charCode";
+import { TextBuffer } from "./text-buffer";
 
 class SpacesDiffResult {
   public spacesDiff = 0;
@@ -16,7 +16,13 @@ class SpacesDiffResult {
 /**
  * Compute the diff in spaces between two line's indentation.
  */
-function spacesDiff(a: string, aLength: number, b: string, bLength: number, result: SpacesDiffResult): void {
+function spacesDiff(
+  a: string,
+  aLength: number,
+  b: string,
+  bLength: number,
+  result: SpacesDiffResult
+): void {
   result.spacesDiff = 0;
   result.looksLikeAlignment = false;
 
@@ -73,8 +79,16 @@ function spacesDiff(a: string, aLength: number, b: string, bLength: number, resu
     // sometime folks like to align their code, but this should not be used as a hint
     result.spacesDiff = spacesDiff;
 
-    if (spacesDiff > 0 && 0 <= bSpacesCnt - 1 && bSpacesCnt - 1 < a.length && bSpacesCnt < b.length) {
-      if (b.charCodeAt(bSpacesCnt) !== CharCode.Space && a.charCodeAt(bSpacesCnt - 1) === CharCode.Space) {
+    if (
+      spacesDiff > 0 &&
+      0 <= bSpacesCnt - 1 &&
+      bSpacesCnt - 1 < a.length &&
+      bSpacesCnt < b.length
+    ) {
+      if (
+        b.charCodeAt(bSpacesCnt) !== CharCode.Space &&
+        a.charCodeAt(bSpacesCnt - 1) === CharCode.Space
+      ) {
         if (a.charCodeAt(a.length - 1) === CharCode.Comma) {
           // This looks like an alignment desire: e.g.
           // const a = b + c,
@@ -105,14 +119,18 @@ export interface IGuessedIndentation {
   insertSpaces: boolean;
 }
 
-export function guessIndentation(source: TextBuffer, defaultTabSize: number, defaultInsertSpaces: boolean): IGuessedIndentation {
+export function guessIndentation(
+  source: TextBuffer,
+  defaultTabSize: number,
+  defaultInsertSpaces: boolean
+): IGuessedIndentation {
   // Look at most at the first 10k lines
   const linesCount = Math.min(source.getLineCount(), 10000);
 
   let linesIndentedWithTabsCount = 0; // number of lines that contain at least one tab in indentation
   let linesIndentedWithSpacesCount = 0; // number of lines that contain only spaces in indentation
 
-  let previousLineText = ''; // content of latest line that contained non-whitespace chars
+  let previousLineText = ""; // content of latest line that contained non-whitespace chars
   let previousLineIndentation = 0; // index at which latest line contained the first non-whitespace char
 
   const ALLOWED_TAB_SIZE_GUESSES = [2, 4, 6, 8, 3, 5, 7]; // prefer even guesses for `tabSize`, limit to [2, 8].
@@ -134,7 +152,9 @@ export function guessIndentation(source: TextBuffer, defaultTabSize: number, def
     let currentLineSpacesCount = 0; // count of spaces found in `currentLineText` indentation
     let currentLineTabsCount = 0; // count of tabs found in `currentLineText` indentation
     for (let j = 0, lenJ = currentLineLength; j < lenJ; j++) {
-      const charCode = useCurrentLineText ? currentLineText.charCodeAt(j) : source.getLineCharCode(lineNumber, j);
+      const charCode = useCurrentLineText
+        ? currentLineText.charCodeAt(j)
+        : source.getLineCharCode(lineNumber, j);
 
       if (charCode === CharCode.Tab) {
         currentLineTabsCount++;
@@ -159,7 +179,13 @@ export function guessIndentation(source: TextBuffer, defaultTabSize: number, def
       linesIndentedWithSpacesCount++;
     }
 
-    spacesDiff(previousLineText, previousLineIndentation, currentLineText, currentLineIndentation, tmp);
+    spacesDiff(
+      previousLineText,
+      previousLineIndentation,
+      currentLineText,
+      currentLineIndentation,
+      tmp
+    );
 
     if (tmp.looksLikeAlignment) {
       // if defaultInsertSpaces === true && the spaces count == tabSize, we may want to count it as valid indentation
@@ -209,7 +235,12 @@ export function guessIndentation(source: TextBuffer, defaultTabSize: number, def
 
     // Let a tabSize of 2 win even if it is not the maximum
     // (only in case 4 was guessed)
-    if (tabSize === 4 && spacesDiffCount[4] > 0 && spacesDiffCount[2] > 0 && spacesDiffCount[2] >= spacesDiffCount[4] / 2) {
+    if (
+      tabSize === 4 &&
+      spacesDiffCount[4] > 0 &&
+      spacesDiffCount[2] > 0 &&
+      spacesDiffCount[2] >= spacesDiffCount[4] / 2
+    ) {
       tabSize = 2;
     }
   }
