@@ -50,8 +50,54 @@ const getCompletionsFor = async (yamlString: string, position?: Position) => {
 
 describe("complete", () => {
   it("empty file lists esphome, wifi and others", async () => {
-    const result = await getCompletionsFor("", { line: 0, character: 0 });
+    const result = await getCompletionsFor("");
     testCompletionHaveLabels(result, ["esphome", "wifi"]);
+  });
+
+  it("partial completes esph___", async () => {
+    const result = await getCompletionsFor("esph");
+    testCompletionHaveLabels(result, ["esphome", "wifi"]);
+  });
+
+  it("partial completes esph___ with other content", async () => {
+    const result = await getCompletionsFor(`
+substitutions:
+
+esph`);
+    testCompletionHaveLabels(result, ["esphome", "wifi"]);
+  });
+
+  it("partial completes can___ with other content", async () => {
+    const result = await getCompletionsFor(
+      `
+can
+
+esphome:
+    `,
+      { line: 0, character: 3 }
+    );
+    testCompletionHaveLabels(result, ["esphome", "wifi"]);
+  });
+  it("partial completes properties", async () => {
+    const result = await getCompletionsFor(
+      `
+canbus:
+  - platform: esp32_can
+    tx_p`
+    );
+    testCompletionHaveLabels(result, ["tx_pin", "rx_pin"]);
+  });
+  it("partial completes properties with other content", async () => {
+    const result = await getCompletionsFor(
+      `
+canbus:
+  - platform: esp32_can
+    tx_p
+
+esphome:`,
+      { line: 2, character: 8 }
+    );
+    testCompletionHaveLabels(result, ["tx_pin", "rx_pin"]);
   });
 
   it("esphome props, empty esphome dict", async () => {

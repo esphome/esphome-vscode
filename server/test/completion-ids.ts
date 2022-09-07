@@ -61,6 +61,21 @@ ads1115:
     testCompletionHaveLabels(result, ["i2c_one", "i2c_two"]);
   });
 
+  it("i2c_ids_prop_and_trailing_space", async () => {
+    const result = await getCompletionsFor(
+      `
+i2c:
+  - id: i2c_one
+  - id: i2c_two
+
+ads1115:
+  address: 23
+  i2c_id:  `,
+      { line: 6, character: 10 }
+    );
+    testCompletionHaveLabels(result, ["i2c_one", "i2c_two"]);
+  });
+
   it("output_ids", async () => {
     const result = await getCompletionsFor(`
 output:
