@@ -698,4 +698,61 @@ i2c:
     `);
     testCompletionHaveLabels(result, ["frequency"]);
   });
+
+  it("pzemac restart", async () => {
+    const result = await getCompletionsFor(`
+esphome:
+  name: test-completions
+
+sensor:
+  - platform: pzemac
+    voltage:
+      on_value:
+        `);
+    testCompletionHaveLabels(result, ["pzemac.reset_energy"]);
+  });
+
+  it("component update", async () => {
+    const result = await getCompletionsFor(`
+esphome:
+  name: test-completions
+
+sensor:
+  - platform: adc # Polling component
+    on_value:
+      `);
+    testCompletionHaveLabels(result, ["component.update"]);
+  });
+  it("component update non platform", async () => {
+    const result = await getCompletionsFor(`
+interval:
+esphome:
+  name: test-completions
+  on_loop:
+    `);
+
+    testCompletionHaveLabels(result, ["component.update"]);
+  });
+  it("script execute non platform", async () => {
+    const result = await getCompletionsFor(`
+script:
+esphome:
+  name: test-completions
+  on_loop:
+    `);
+
+    testCompletionHaveLabels(result, ["script.execute"]);
+  });
+
+  it("script execute non platform dont crash", async () => {
+    const result = await getCompletionsFor(`
+script:
+not_a_component:
+esphome:
+  name: test-completions
+  on_loop:
+    `);
+
+    testCompletionHaveLabels(result, ["script.execute"]);
+  });
 });
