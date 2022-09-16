@@ -35,7 +35,6 @@ const esphomeDocuments: ESPHomeDocuments = new ESPHomeDocuments();
 
 let hasConfigurationCapability: boolean = false;
 let hasWorkspaceFolderCapability: boolean = false;
-let hasDiagnosticRelatedInformationCapability: boolean = false;
 
 const sendDiagnostics = (uri: string, diagnostics: Diagnostic[]) => {
   connection.sendDiagnostics({
@@ -57,11 +56,6 @@ connection.onInitialize((params: InitializeParams) => {
   );
   hasWorkspaceFolderCapability = !!(
     capabilities.workspace && !!capabilities.workspace.workspaceFolders
-  );
-  hasDiagnosticRelatedInformationCapability = !!(
-    capabilities.textDocument &&
-    capabilities.textDocument.publishDiagnostics &&
-    capabilities.textDocument.publishDiagnostics.relatedInformation
   );
 
   const result: InitializeResult = {
@@ -85,7 +79,7 @@ connection.onInitialize((params: InitializeParams) => {
     };
   }
 
-  fileAccessor = new VsCodeFileAccessor(params.rootUri, documents);
+  fileAccessor = new VsCodeFileAccessor(documents);
 
   return result;
 });
@@ -120,27 +114,24 @@ connection.onInitialized(async () => {
 
   const completionHandler = new CompletionsHandler(esphomeDocuments);
   connection.onCompletion((p) => {
-    esphomeDocuments.update(
-      p.textDocument.uri,
-      new TextBuffer(documents.get(p.textDocument.uri))
-    );
+    const doc = documents.get(p.textDocument.uri);
+    if (!doc) return;
+    esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
     return completionHandler.getCompletions(p.textDocument.uri, p.position);
   });
 
   const hoverHandler = new HoverHandler(esphomeDocuments);
   connection.onHover((p) => {
-    esphomeDocuments.update(
-      p.textDocument.uri,
-      new TextBuffer(documents.get(p.textDocument.uri))
-    );
+    const doc = documents.get(p.textDocument.uri);
+    if (!doc) return;
+    esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
     return hoverHandler.getHover(p.textDocument.uri, p.position);
   });
   const definitionHandler = new DefinitionHandler(esphomeDocuments);
   connection.onDefinition((p) => {
-    esphomeDocuments.update(
-      p.textDocument.uri,
-      new TextBuffer(documents.get(p.textDocument.uri))
-    );
+    const doc = documents.get(p.textDocument.uri);
+    if (!doc) return;
+    esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
     return definitionHandler.getDefinition(p.textDocument.uri, p.position);
   });
 });

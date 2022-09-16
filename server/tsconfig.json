@@ -1,15 +1,18 @@
 {
   "compilerOptions": {
+    "strict": true,
     "alwaysStrict": true,
     "declaration": true,
     "target": "es6",
     "lib": ["es2016"],
     "module": "commonjs",
     "moduleResolution": "node",
+    "noUnusedLocals": true,
     "sourceMap": true,
     "resolveJsonModule": true,
     "outDir": "out",
     "rootDir": "src",
+    "suppressImplicitAnyIndexErrors": true,
     "skipLibCheck": true // remove when fixed issue with vscode-json-languageservice
   },
   "include": ["src", "src/schema/*.json"],
