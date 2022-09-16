@@ -92,7 +92,7 @@ export interface Schema {
 interface Component {
   schemas: {
     [name: string]: ConfigVar;
-    CONFIG_SCHEMA: ConfigVar;
+    CONFIG_SCHEMA: ConfigVarSchema;
   };
   // These are the components e.g. of sensor, binary_sensor
   components: { docs?: string };
@@ -177,36 +177,62 @@ export class ESPHomeSchema {
     doc: Document
   ): AsyncGenerator<[string, Component, Node?]> {
     const docMap = doc.contents as YAMLMap;
+    let addPollingComponent = false;
     for (const k of docMap.items) {
       if (isPair(k) && isScalar(k.key)) {
         const componentName = k.key.value as string;
+        const isPlatformComponent = await this.isPlatform(componentName);
         if (
-          componentName in (await this.getSchema()).core.components ||
-          (await this.isPlatform(componentName))
+          !isPlatformComponent &&
+          !(componentName in (await this.getSchema()).core.components)
         ) {
-          const component = await this.getComponent(componentName);
-          yield [componentName, component, k.value as Node];
+          // invalid or unknown name
+          continue;
+        }
+        const component = await this.getComponent(componentName);
+        yield [componentName, component, k.value as Node];
 
-          if (await this.isPlatform(componentName)) {
-            // iterate elements and lookup platform to load components
-            const platList = docMap.get(componentName);
-            if (isSeq(platList)) {
-              for (const plat of platList.items) {
-                if (isMap(plat)) {
-                  const platCompName = plat.get("platform") as string;
-                  if (platCompName in component.components) {
-                    yield [
-                      platCompName + "." + componentName,
-                      await this.getComponent(platCompName, componentName),
-                      plat,
-                    ];
+        if (isPlatformComponent) {
+          // iterate elements and lookup platform to load components
+          const platList = docMap.get(componentName);
+          if (isSeq(platList)) {
+            for (const plat of platList.items) {
+              if (isMap(plat)) {
+                const platCompName = plat.get("platform") as string;
+                if (platCompName in component.components) {
+                  if (!addPollingComponent) {
+                    const platComponent = await this.getComponent(
+                      platCompName,
+                      componentName
+                    );
+                    addPollingComponent =
+                      addPollingComponent ||
+                      platComponent.schemas.CONFIG_SCHEMA?.schema?.config_vars.id.id_type.parents.includes(
+                        "PollingComponent"
+                      );
                   }
+                  yield [
+                    platCompName,
+                    await this.getComponent(platCompName),
+                    plat,
+                  ];
                 }
               }
             }
           }
+        } else {
+          if (!addPollingComponent) {
+            addPollingComponent =
+              addPollingComponent ||
+              component.schemas.CONFIG_SCHEMA?.schema?.config_vars.id?.id_type?.parents?.includes(
+                "PollingComponent"
+              );
+          }
         }
       }
+    }
+    if (addPollingComponent) {
+      yield ["component", await this.getComponent("component"), undefined];
     }
     yield ["core", (await this.getSchema()).core, undefined];
   }
@@ -226,7 +252,8 @@ export class ESPHomeSchema {
       for await (const [componentName, component] of this.getDocComponents(
         doc
       )) {
-        if (component[registry] !== undefined) {
+        // component might be undefined if this component has no registries
+        if (component && component[registry] !== undefined) {
           for (const name in component[registry]) {
             if (componentName === "core") {
               yield [name, component[registry][name]];
