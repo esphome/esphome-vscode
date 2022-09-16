@@ -114,27 +114,24 @@ connection.onInitialized(async () => {
 
   const completionHandler = new CompletionsHandler(esphomeDocuments);
   connection.onCompletion((p) => {
-    esphomeDocuments.update(
-      p.textDocument.uri,
-      new TextBuffer(documents.get(p.textDocument.uri))
-    );
+    const doc = documents.get(p.textDocument.uri);
+    if (!doc) return;
+    esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
     return completionHandler.getCompletions(p.textDocument.uri, p.position);
   });
 
   const hoverHandler = new HoverHandler(esphomeDocuments);
   connection.onHover((p) => {
-    esphomeDocuments.update(
-      p.textDocument.uri,
-      new TextBuffer(documents.get(p.textDocument.uri))
-    );
+    const doc = documents.get(p.textDocument.uri);
+    if (!doc) return;
+    esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
     return hoverHandler.getHover(p.textDocument.uri, p.position);
   });
   const definitionHandler = new DefinitionHandler(esphomeDocuments);
   connection.onDefinition((p) => {
-    esphomeDocuments.update(
-      p.textDocument.uri,
-      new TextBuffer(documents.get(p.textDocument.uri))
-    );
+    const doc = documents.get(p.textDocument.uri);
+    if (!doc) return;
+    esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
     return definitionHandler.getDefinition(p.textDocument.uri, p.position);
   });
 });

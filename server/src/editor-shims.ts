@@ -39,7 +39,7 @@ export const createCompletion = (
   label: string,
   insertText: string,
   kind: CompletionItemKind,
-  documentation: string = undefined,
+  documentation: string | undefined = undefined,
   triggerSuggest: boolean = false,
   preselect?: boolean,
   snippet?: boolean,
@@ -77,7 +77,7 @@ export const createCompletionSnippet = (
   label: string,
   insertText: string,
   kind: CompletionItemKind,
-  documentation: string = undefined
+  documentation: string | undefined = undefined
 ) => {
   const completion: CompletionItem = {
     label: label,
