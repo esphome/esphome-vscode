@@ -579,11 +579,7 @@ export class CompletionsHandler {
           sortText = "00" + prop;
           detail = "Required";
         } else {
-          if (
-            config.type === "integer" ||
-            config.type === "string" ||
-            config.type === undefined
-          ) {
+          if (config.type === "integer" || config.type === "string") {
             if (config.default) {
               snippet = true;
               insertText = prop + ": ${0:" + config.default + "}";

@@ -93,6 +93,9 @@ export interface Schema {
   extends: string[];
 }
 
+interface Registry {
+  [name: string]: ConfigVar;
+}
 interface Component {
   schemas: {
     [name: string]: ConfigVar;
@@ -101,16 +104,10 @@ interface Component {
   // These are the components e.g. of sensor, binary_sensor
   components: { docs?: string };
 
-  action: {
-    [name: string]: ConfigVar;
-  };
-  condition: {
-    [name: string]: ConfigVar;
-  };
-  filter: {
-    [name: string]: ConfigVar;
-  };
-
+  action: Registry;
+  condition: Registry;
+  filter: Registry;
+  effects: Registry;
   pin?: ConfigVar;
 }
 interface CoreComponent extends Component {
@@ -253,13 +250,13 @@ export class ESPHomeSchema {
     if (registry.includes(".")) {
       // e.g. sensor.filter only items from one component
       const [domain, registryName] = registry.split(".");
-      if (registryName === "filter")
+      if (this.isRegistry(registryName))
         for (const name in (await this.getSchema())[domain][registryName]) {
           yield [name, (await this.getSchema())[domain][registryName][name]];
         }
     } else {
       // e.g. action, condition: search in all domains
-      if (registry === "action" || registry === "condition")
+      if (this.isRegistry(registry))
         for await (const [componentName, component] of this.getDocComponents(
           doc
         )) {
@@ -286,10 +283,10 @@ export class ESPHomeSchema {
   ): Promise<ConfigVar | undefined> {
     if (registry.includes(".")) {
       const [domain, registryName] = registry.split(".");
-      if (registryName === "filter")
+      if (this.isRegistry(registryName))
         return (await this.getComponent(domain))[registryName][entry];
     } else {
-      if (registry === "action" || registry === "condition") {
+      if (this.isRegistry(registry)) {
         if (entry.includes(".")) {
           const parts = entry.split(".");
           if (parts.length === 3) {
@@ -314,6 +311,14 @@ export class ESPHomeSchema {
       }
     }
     return undefined;
+  }
+  isRegistry(name: string) {
+    return (
+      name === "filter" ||
+      name === "effects" ||
+      name === "condition" ||
+      name === "action"
+    );
   }
   async getActionConfigVar(entry: string): Promise<ConfigVarTrigger> {
     return (await this.getRegistryConfigVar(
