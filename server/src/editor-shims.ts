@@ -2,7 +2,6 @@ import * as fs from "fs";
 import path = require("path");
 
 import {
-  MarkupContent,
   Hover,
   Range,
   CompletionItem,

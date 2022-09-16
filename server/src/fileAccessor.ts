@@ -23,10 +23,7 @@ export interface FileAccessor {
 export class VsCodeFileAccessor implements FileAccessor {
   private ourRoot: string;
 
-  constructor(
-    private workspaceFolder: string | null,
-    private documents: TextDocuments<TextDocument>
-  ) {
+  constructor(private documents: TextDocuments<TextDocument>) {
     this.ourRoot = path.resolve();
   }
   async checkPathExists(uri: string): Promise<boolean> {
@@ -48,7 +45,7 @@ export class VsCodeFileAccessor implements FileAccessor {
     return new Promise<string>((c, e) => {
       fs.exists(fsPath, (exists) => {
         if (!exists) {
-          e('File does not exist');
+          e("File does not exist");
         }
         fs.readFile(fsPath, { encoding: "utf-8" }, (err, result) => {
           if (err) {
@@ -89,7 +86,7 @@ export class VsCodeFileAccessor implements FileAccessor {
       relativeFrom = vscodeUri.URI.file(relativeFrom).fsPath;
     }
     return relativeFrom;
-  }
+  };
 
   public getFilesInFolderRelativeFrom(
     subFolder: string,
@@ -117,7 +114,7 @@ export class VsCodeFileAccessor implements FileAccessor {
     const joinedPath = path.join(dirOfFile, filename);
 
     return joinedPath;
-  }
+  };
 
   public getRelativePathAsFileUri = (
     relativeFrom: string,
@@ -126,5 +123,5 @@ export class VsCodeFileAccessor implements FileAccessor {
     return vscodeUri.URI.file(
       this.getRelativePath(relativeFrom, filename)
     ).toString();
-  }
+  };
 }

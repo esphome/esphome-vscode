@@ -1,5 +1,5 @@
 import { isScalar } from "yaml";
-import { coreSchema, Position, Range } from "./editor-shims";
+import { coreSchema, Position } from "./editor-shims";
 import { ESPHomeDocuments } from "./esphome-document";
 
 export class DefinitionHandler {
@@ -14,11 +14,6 @@ export class DefinitionHandler {
       }
       const offset = document.text.offsetAt(position);
       const node = document.getNodeFromOffset(offset);
-
-      const range: Range = {
-        start: document.text.getPosition(node.range?.[0]!),
-        end: document.text.getPosition(node.range?.[1]!),
-      };
 
       var path = document.getPath(node);
 

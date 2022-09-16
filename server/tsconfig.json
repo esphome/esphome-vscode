@@ -6,6 +6,7 @@
     "lib": ["es2016"],
     "module": "commonjs",
     "moduleResolution": "node",
+    "noUnusedLocals": true,
     "sourceMap": true,
     "resolveJsonModule": true,
     "outDir": "out",

@@ -35,7 +35,6 @@ const esphomeDocuments: ESPHomeDocuments = new ESPHomeDocuments();
 
 let hasConfigurationCapability: boolean = false;
 let hasWorkspaceFolderCapability: boolean = false;
-let hasDiagnosticRelatedInformationCapability: boolean = false;
 
 const sendDiagnostics = (uri: string, diagnostics: Diagnostic[]) => {
   connection.sendDiagnostics({
@@ -57,11 +56,6 @@ connection.onInitialize((params: InitializeParams) => {
   );
   hasWorkspaceFolderCapability = !!(
     capabilities.workspace && !!capabilities.workspace.workspaceFolders
-  );
-  hasDiagnosticRelatedInformationCapability = !!(
-    capabilities.textDocument &&
-    capabilities.textDocument.publishDiagnostics &&
-    capabilities.textDocument.publishDiagnostics.relatedInformation
   );
 
   const result: InitializeResult = {
@@ -85,7 +79,7 @@ connection.onInitialize((params: InitializeParams) => {
     };
   }
 
-  fileAccessor = new VsCodeFileAccessor(params.rootUri, documents);
+  fileAccessor = new VsCodeFileAccessor(documents);
 
   return result;
 });
