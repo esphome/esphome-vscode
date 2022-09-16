@@ -51,7 +51,6 @@ export const createCompletion = (
     label: label,
     insertText: insertText,
     kind,
-    documentation,
     detail,
     sortText,
     preselect,
@@ -60,6 +59,12 @@ export const createCompletion = (
     completion.command = {
       title: "chain",
       command: "editor.action.triggerSuggest",
+    };
+  }
+  if (documentation) {
+    completion.documentation = {
+      kind: "markdown",
+      value: documentation,
     };
   }
   if (snippet) {
