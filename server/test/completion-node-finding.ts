@@ -769,4 +769,23 @@ esphome:
       "homeassistant.service",
     ]);
   });
+
+  it("dont repeat actions", async () => {
+    const result = await getCompletionsFor(`
+sim800l:
+sensor:
+  - platform: sim800l
+    rssi:
+      id: rssi_sensor
+esphome:
+  name: test-completions
+  on_loop:
+    `);
+
+    const matchCount = result.filter((c) => c.label === "sim800l.connect")
+      .length;
+    if (matchCount !== 1) {
+      assert.fail(`expected 1 match but found ${matchCount} instead`);
+    }
+  });
 });
