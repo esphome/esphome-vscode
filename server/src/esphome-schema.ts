@@ -234,6 +234,13 @@ export class ESPHomeSchema {
           ) {
             addPollingComponent = true;
           }
+          if (componentName === "api") {
+            yield [
+              "homeassistant",
+              await this.getComponent("homeassistant"),
+              k.value as Node,
+            ];
+          }
         }
       }
     }

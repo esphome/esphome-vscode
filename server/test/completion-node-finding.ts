@@ -755,4 +755,18 @@ esphome:
 
     testCompletionHaveLabels(result, ["script.execute"]);
   });
+
+  it("homeassistant actions with api component", async () => {
+    const result = await getCompletionsFor(`
+api:
+esphome:
+  name: test-completions
+  on_loop:
+    `);
+
+    testCompletionHaveLabels(result, [
+      "homeassistant.event",
+      "homeassistant.service",
+    ]);
+  });
 });
