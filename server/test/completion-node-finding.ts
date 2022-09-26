@@ -78,6 +78,16 @@ esphome:
     );
     testCompletionHaveLabels(result, ["esphome", "wifi"]);
   });
+
+  it("completes platforms", async () => {
+    const result = await getCompletionsFor(
+      `
+sensor:
+  - platform: `
+    );
+    testCompletionHaveLabels(result, ["adc", "dallas", "dht"]);
+  });
+
   it("partial completes properties", async () => {
     const result = await getCompletionsFor(
       `

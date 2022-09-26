@@ -22,22 +22,24 @@ import { TextBuffer } from "./utils/text-buffer";
 
 export class ESPHomeDocument {
   public yaml: Document;
+  public bufferText?: string;
 
   constructor(public text: TextBuffer) {
-    this.yaml = this.parse();
+    this.bufferText = text.getText();
+    this.yaml = this.parse(this.bufferText);
   }
 
   public update(buffer: TextBuffer) {
-    if (this.text === buffer) {
-      console.log("text buffer cache hit");
+    this.text = buffer;
+    const text = this.text.getText();
+    if (this.bufferText === text) {
       return;
     }
-    console.log("text buffer changed, parsing yaml");
-    this.text = buffer;
-    this.yaml = this.parse();
+    this.bufferText = text;
+    this.yaml = this.parse(this.bufferText);
   }
 
-  private parse() {
+  private parse(text: string) {
     const options: ParseOptions & DocumentOptions & SchemaOptions = {
       strict: false,
       version: "1.2",
@@ -50,7 +52,6 @@ export class ESPHomeDocument {
       ? new Parser()
       : new Parser(lineCounter.addNewLine);
 
-    const text = this.text.getText();
     const tokens = parser.parse(text);
     const tokensArr = Array.from(tokens);
     const docs = composer.compose(tokensArr, true, text.length);
