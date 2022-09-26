@@ -1,5 +1,12 @@
 # Changelog
 
+## v2022.9.0 - 2022-09-26
+
+- ↔ Sync with ESPHome v2022.9.0 Schema
+- Fix docs not formatted in completions docs
+- add homeassistant, component.update and other sensor actions
+- A few other fixes
+
 ## v2022.8.3 - 2022-09-07
 
 - 🆕 Sync with ESPHome v2022.8.3 Schema
