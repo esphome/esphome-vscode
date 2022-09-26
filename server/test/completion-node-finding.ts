@@ -798,4 +798,49 @@ esphome:
       assert.fail(`expected 1 match but found ${matchCount} instead`);
     }
   });
+
+  it("list add dash", async () => {
+    const result = await getCompletionsFor(`
+i2c:
+  `);
+
+    assert(
+      result.find((r) => r.label === "frequency")?.insertText?.startsWith("- ")
+    );
+  });
+
+  it("list dont add dash twice", async () => {
+    const result = await getCompletionsFor(`
+i2c:
+  - `);
+
+    assert(
+      result
+        .find((r) => r.label === "frequency")
+        ?.insertText?.startsWith("frequency")
+    );
+  });
+  it("registry add dash", async () => {
+    const result = await getCompletionsFor(`
+esphome:
+  on_loop:
+    - delay: 1s
+    `);
+
+    assert(
+      result.find((r) => r.label === "delay")?.insertText?.startsWith("- ")
+    );
+  });
+
+  it("registry dont add dash twice", async () => {
+    const result = await getCompletionsFor(`
+esphome:
+  on_loop:
+    - delay: 1s
+    - `);
+
+    assert(
+      result.find((r) => r.label === "delay")?.insertText?.startsWith("delay")
+    );
+  });
 });
