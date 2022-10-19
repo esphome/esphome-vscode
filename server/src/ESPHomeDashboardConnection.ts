@@ -16,7 +16,6 @@ export class ESPHomeDashboardConnection extends ESPHomeConnection {
       type: "stdin",
       data: JSON.stringify(msg) + "\n",
     });
-    console.log(`Sending ${send}`);
     this.ws.send(send);
   }
 
