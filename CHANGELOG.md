@@ -1,5 +1,12 @@
 # Changelog
 
+## v2022.10.0 - 2022-10-19
+
+- ↔ Sync with ESPHome v2022.10.0 Schema
+- Fix handling of tags for hover help e.g. !secret wrong docs
+- Fix handling of included files with relative paths
+- Improve autocomplete on lists when a - is already on the left of the cursor
+
 ## v2022.9.0 - 2022-09-26
 
 - ↔ Sync with ESPHome v2022.9.0 Schema
