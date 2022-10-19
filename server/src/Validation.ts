@@ -12,6 +12,7 @@ import {
 } from "./esphome_types";
 import { FileAccessor } from "./fileAccessor";
 import * as vscodeUri from "vscode-uri";
+import path = require("path");
 
 export class Validation {
   lastRequest!: Date;
@@ -52,7 +53,7 @@ export class Validation {
 
     if (error.range !== null) {
       this.addError(
-        vscodeUri.URI.file(error.range.document).toString(),
+        this.getUriStringForValidationPath(error.range.document),
         Range.create(
           error.range.start_line,
           error.range.start_col,
@@ -78,7 +79,7 @@ export class Validation {
       } else {
         let location = line.match(/in "([^"]*)", line (\d*), column (\d*):/);
         if (location) {
-          const uri = vscodeUri.URI.file(location[1]).toString();
+          const uri = this.getUriStringForValidationPath(location[1]);
           const line_number = parseInt(location[2]) - 1;
           const col_number = parseInt(location[3]) - 1;
           const range = Range.create(
@@ -98,11 +99,22 @@ export class Validation {
     });
   }
 
+  private getUriStringForValidationPath(file_path: string) {
+    const absolute_path = path.isAbsolute(file_path)
+      ? file_path
+      : this.fileAccessor.getRelativePath(
+          vscodeUri.URI.parse(this.validating_uri!).fsPath,
+          file_path
+        );
+    const uri_string = vscodeUri.URI.file(absolute_path).toString();
+    return uri_string;
+  }
+
   private async handleESPHomeMessage(msg: MessageTypes): Promise<void> {
     try {
       switch (msg.type) {
         case MESSAGE_READ_FILE: {
-          const uri = vscodeUri.URI.file(msg.path).toString();
+          const uri = this.getUriStringForValidationPath(msg.path);
 
           if (uri !== this.validating_uri) {
             // Track this as an included file, so when the user edits this file
@@ -122,7 +134,7 @@ export class Validation {
             this.addError(
               this.validating_uri!,
               Range.create(0, 0, 1, 0),
-              `Could not open '${uri}': ${e}`
+              `Could not open '${msg.path}': ${e}`
             );
             this.connection.sendMessage({
               type: "file_response",
