@@ -60,6 +60,8 @@ export class CompletionsHandler {
       ? this.findClosestNode(position, offset)
       : this.document.getNodeFromOffset(offset);
 
+    if (!node) return [];
+
     const range: Range = {
       start: this.document.text.getPosition(node.range?.[0]!),
       end: this.document.text.getPosition(node.range?.[1]!),
