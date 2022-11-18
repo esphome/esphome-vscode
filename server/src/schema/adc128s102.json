@@ -1,5 +1,5 @@
 {
-  "mcp3008": {
+  "adc128s102": {
     "schemas": {
       "CONFIG_SCHEMA": {
         "type": "schema",
@@ -8,7 +8,7 @@
             "id": {
               "key": "GeneratedID",
               "id_type": {
-                "class": "mcp3008::MCP3008",
+                "class": "adc128s102::ADC128S102",
                 "parents": [
                   "Component",
                   "spi::SPIDevice"
@@ -29,7 +29,7 @@
               "type": "pin"
             },
             "update_interval": {
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `1s`.\n\n*See also: [mcp3008 Component/Hub](https://esphome.io/components/sensor/mcp3008.html#sensor)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n*See also: [adc128s102 Component/Hub](https://esphome.io/components/sensor/adc128s102.html#sensor)*"
             }
           }
         },
@@ -37,7 +37,7 @@
       }
     }
   },
-  "mcp3008.sensor": {
+  "adc128s102.sensor": {
     "schemas": {
       "CONFIG_SCHEMA": {
         "type": "schema",
@@ -49,7 +49,7 @@
           "config_vars": {
             "id": {
               "id_type": {
-                "class": "mcp3008::MCP3008Sensor",
+                "class": "adc128s102::ADC128S102Sensor",
                 "parents": [
                   "sensor::Sensor",
                   "EntityBase",
@@ -59,26 +59,21 @@
                 ]
               }
             },
-            "mcp3008_id": {
+            "adc128s102_id": {
               "key": "GeneratedID",
-              "use_id_type": "mcp3008::MCP3008",
+              "use_id_type": "adc128s102::ADC128S102",
               "type": "use_id",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the parent MCP3008 component.\n\n*See also: [mcp3008 Sensor](https://esphome.io/components/sensor/mcp3008.html#sensor)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the parent ADC128S102 component.\n\n*See also: [adc128s102 Sensor](https://esphome.io/components/sensor/adc128s102.html#sensor)*"
             },
-            "number": {
+            "channel": {
               "key": "Required",
               "type": "integer",
-              "docs": "**int**: The pin number of the MCP3008\n\n*See also: [mcp3008 Sensor](https://esphome.io/components/sensor/mcp3008.html#sensor)*"
-            },
-            "reference_voltage": {
-              "key": "Optional",
-              "default": "3.3V",
-              "docs": "**float**: The reference voltage. Defaults to `3.3V`.\n\n*See also: [mcp3008 Sensor](https://esphome.io/components/sensor/mcp3008.html#sensor)*"
+              "docs": "**int**: The channel of the ADC128S102 to use.\n\n*See also: [adc128s102 Sensor](https://esphome.io/components/sensor/adc128s102.html#sensor)*"
             },
             "update_interval": {
               "key": "Optional",
-              "default": "1s",
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `1s`.\n\n*See also: [mcp3008 Sensor](https://esphome.io/components/sensor/mcp3008.html#sensor)*"
+              "default": "60s",
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n*See also: [adc128s102 Sensor](https://esphome.io/components/sensor/adc128s102.html#sensor)*"
             }
           }
         }
