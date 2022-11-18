@@ -843,4 +843,31 @@ esphome:
       result.find((r) => r.label === "delay")?.insertText?.startsWith("delay")
     );
   });
+
+  it("complete menu items single", async () => {
+    const result = await getCompletionsFor(`
+lcd_menu:
+  items:
+    - type: `);
+
+    testCompletionHaveLabels(result, ["label", "menu"]);
+  });
+  it("complete menu items single menu", async () => {
+    const result = await getCompletionsFor(`
+lcd_menu:
+  items:
+    - type: menu
+      `);
+    testCompletionHaveLabels(result, ["items"]);
+  });
+  it("complete menu items recursive", async () => {
+    const result = await getCompletionsFor(`
+lcd_menu:
+  items:
+    - type: menu
+      items:
+        - `);
+
+    testCompletionHaveLabels(result, ["type"]);
+  });
 });
