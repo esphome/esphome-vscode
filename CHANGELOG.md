@@ -1,5 +1,9 @@
 # Changelog
 
+## v2022.11.0 - 2022-11-18
+
+- ↔ Sync with ESPHome v2022.11.0 Schema
+
 ## v2022.10.0 - 2022-10-19
 
 - ↔ Sync with ESPHome v2022.10.0 Schema
