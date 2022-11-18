@@ -854,7 +854,7 @@
                   "EntityBase"
                 ]
               },
-              "docs": "**string**: Manually specify the ID for code generation. At least one of **id** and **name** must be specified.\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n*See also: [sim800l Sensor](https://esphome.io/components/sim800l.html#sensor)*"
             },
             "unit_of_measurement": {
               "key": "Optional",

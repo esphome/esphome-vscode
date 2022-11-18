@@ -27,9 +27,6 @@
                 "output"
               ],
               "type": "pin"
-            },
-            "update_interval": {
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n*See also: [adc128s102 Component/Hub](https://esphome.io/components/sensor/adc128s102.html#sensor)*"
             }
           }
         },
