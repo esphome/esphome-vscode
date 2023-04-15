@@ -28,8 +28,7 @@ export interface ConfigVarTrigger extends ConfigVarBase {
 
 export interface ConfigVarEnum extends ConfigVarBase {
   type: "enum";
-  values: string[];
-  values_docs?: { [key: string]: string };
+  values: { [key: string] : { docs: string } | null}
   default?: string;
 }
 

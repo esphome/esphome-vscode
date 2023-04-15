@@ -698,7 +698,7 @@ export class CompletionsHandler {
         )
       );
     }
-    for (var value of cv.values) {
+    for (var value in cv.values) {
       if (isNumber(value as any)) {
         value = value.toString();
       }
@@ -707,9 +707,7 @@ export class CompletionsHandler {
           value,
           value,
           CompletionItemKind.EnumMember,
-          cv.values_docs !== undefined && cv.values_docs[value] !== undefined
-            ? cv.values_docs[value]
-            : undefined,
+          cv.values[value]?.docs,
           false,
           cv.default === value
         )
