@@ -12,7 +12,6 @@
     "resolveJsonModule": true,
     "outDir": "out",
     "rootDir": "src",
-    "suppressImplicitAnyIndexErrors": true,
     "skipLibCheck": true // remove when fixed issue with vscode-json-languageservice
   },
   "include": ["src", "src/schema/*.json"],

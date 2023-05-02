@@ -52,7 +52,7 @@
         "schema": {
           "config_vars": {
             "ble_client_id": {
-              "key": "Required",
+              "key": "GeneratedID",
               "use_id_type": "ble_client::BLEClient",
               "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: ID of the associated BLE client.\n\n*See also: [BLE Client Text Sensor](https://esphome.io/components/text_sensor/ble_client.html#configuration-variables)*"
@@ -67,7 +67,7 @@
         "schema": {
           "config_vars": {
             "id": {
-              "key": "Required",
+              "key": "GeneratedID",
               "use_id_type": "ble_client::BLEClient",
               "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: ID of the associated BLE client.\n\n*See also: [BLE Client](https://esphome.io/components/ble_client.html#ble-client-ble-write-action)*"
@@ -248,11 +248,25 @@
         "type": "schema",
         "schema": {
           "extends": [
-            "switch.SWITCH_SCHEMA",
+            "switch._SWITCH_SCHEMA",
             "ble_client.BLE_CLIENT_SCHEMA",
             "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
+            "restore_mode": {
+              "key": "Optional",
+              "default": "ALWAYS_OFF",
+              "type": "enum",
+              "values": {
+                "RESTORE_DEFAULT_OFF": null,
+                "RESTORE_DEFAULT_ON": null,
+                "ALWAYS_OFF": null,
+                "ALWAYS_ON": null,
+                "RESTORE_INVERTED_DEFAULT_OFF": null,
+                "RESTORE_INVERTED_DEFAULT_ON": null,
+                "DISABLED": null
+              }
+            },
             "id": {
               "key": "GeneratedID",
               "id_type": {

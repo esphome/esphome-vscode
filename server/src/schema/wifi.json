@@ -103,11 +103,11 @@
               "key": "Optional",
               "default": "none",
               "type": "enum",
-              "values": [
-                "NONE",
-                "LIGHT",
-                "HIGH"
-              ],
+              "values": {
+                "NONE": null,
+                "LIGHT": null,
+                "HIGH": null
+              },
               "docs": "**string**: The power save mode for the WiFi interface. See [Power Save Mode](https://esphome.io/components/wifi.html#wifi-power-save-mode)\n\n*See also: [WiFi Component](https://esphome.io/components/wifi.html#configuration-variables)*"
             },
             "fast_connect": {
