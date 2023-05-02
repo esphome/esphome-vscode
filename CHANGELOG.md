@@ -1,5 +1,10 @@
 # Changelog
 
+## v2023.04.0 - 2023-05-01
+
+- ↔ Sync with ESPHome v2023.04.0 Schema
+- Fix output console showing up on every error
+
 ## v2022.11.0 - 2022-11-18
 
 - ↔ Sync with ESPHome v2022.11.0 Schema
