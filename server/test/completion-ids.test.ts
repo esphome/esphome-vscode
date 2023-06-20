@@ -1,53 +1,5 @@
 import "mocha";
-import { assert, expect } from "chai";
-import { CompletionItem, Position } from "../src/editor-shims";
-import { CompletionsHandler } from "../src/completions-handler";
-import { ESPHomeDocuments } from "../src/esphome-document";
-import { TextBuffer } from "../src/utils/text-buffer";
-import { getTextDoc } from "./sample-esphome-yaml";
-
-const documents = new ESPHomeDocuments();
-
-const testCompletionHaveLabels = (result: CompletionItem[], testSet) => {
-  let count = 0;
-  for (var c of testSet) {
-    if (result.find((x) => x.label === c)) {
-      count++;
-    } else {
-      assert.fail(
-        `expected label '${c}' in result, got instead: ${JSON.stringify(
-          result
-        )}`
-      );
-    }
-  }
-  assert(count === testSet.length, "some completion labels not found");
-};
-const testCompletionDoesNotHaveLabels = (result: CompletionItem[], testSet) => {
-  let count = 0;
-  for (var c of testSet) {
-    if (result.find((x) => x.label === c)) {
-      assert.fail(`not expected label '${c}' in result`);
-    }
-  }
-};
-
-const x = new CompletionsHandler(documents);
-
-const getCompletionsFor = async (yamlString: string, position?: Position) => {
-  yamlString = yamlString.trimStart();
-  if (position === undefined) {
-    // default to end of doc
-    const lines = yamlString.split("\n");
-    position = {
-      line: lines.length - 1,
-      character: lines[lines.length - 1].length,
-    };
-  }
-  console.log("position is " + JSON.stringify(position));
-  documents.update("test", new TextBuffer(getTextDoc(yamlString)));
-  return await x.getCompletions("test", position);
-};
+import { getCompletionsFor, testCompletionHaveLabels } from "./shared";
 
 describe("complete_ids", () => {
   it("i2c_ids", async () => {

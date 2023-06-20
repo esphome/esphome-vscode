@@ -1,7 +1,6 @@
 import "mocha";
-import { assert, expect } from "chai";
-import { CompletionItem, coreSchema, Position } from "../src/editor-shims";
-import { CompletionsHandler } from "../src/completions-handler";
+import { assert } from "chai";
+import { coreSchema } from "../src/editor-shims";
 import { ESPHomeDocuments } from "../src/esphome-document";
 import { TextBuffer } from "../src/utils/text-buffer";
 import { getTextDoc } from "./sample-esphome-yaml";

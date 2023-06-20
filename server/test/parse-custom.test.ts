@@ -5,7 +5,7 @@ import { TextBuffer } from "../src/utils/text-buffer";
 import { getTextDoc } from "./sample-esphome-yaml";
 import { isMap } from "yaml";
 import { HoverHandler } from "../src/hover-handler";
-import { Hover, MarkupContent } from "vscode-languageserver-types";
+import { MarkupContent } from "vscode-languageserver-types";
 
 const documents = new ESPHomeDocuments();
 
@@ -20,7 +20,6 @@ wifi:
     documents.update("test_uri", new TextBuffer(getTextDoc(yamlString)));
     const doc = documents.getDocument("test_uri");
 
-    const x = doc;
     const map = doc.yaml?.contents;
     expect(isMap(map));
     if (isMap(map)) {
@@ -42,7 +41,6 @@ api:
     const yamlString = yaml.trimStart();
 
     documents.update("test_uri", new TextBuffer(getTextDoc(yamlString)));
-    const doc = documents.getDocument("test_uri");
 
     const hoverHandler = new HoverHandler(documents);
 
@@ -66,7 +64,6 @@ api:
     const yamlString = yaml.trimStart();
 
     documents.update("test_uri", new TextBuffer(getTextDoc(yamlString)));
-    const doc = documents.getDocument("test_uri");
 
     const hoverHandler = new HoverHandler(documents);
 
