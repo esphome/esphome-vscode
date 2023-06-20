@@ -386,7 +386,7 @@ export class ESPHomeSchema {
       return c;
     };
     cv = await appendCvs(schema, cv);
-    return cv;
+    return await this.getConfigVarComplete2(cv);
   }
 
   async getConfigVarComplete2(cv: ConfigVar): Promise<ConfigVar> {
@@ -399,6 +399,7 @@ export class ESPHomeSchema {
           ...s_cv,
           ...ret,
         };
+        ret.type = s_cv.type;
       }
     }
 
@@ -443,6 +444,8 @@ export class ESPHomeSchema {
           )) {
             yield pair;
           }
+        } else if (s.type === "typed") {
+          yield [s.typed_key, s];
         }
       }
     }
