@@ -1,5 +1,10 @@
 # Changelog
 
+## v2023.6.0 - 2023-06-23
+
+- ↔ Sync with ESPHome v2023.6.0 Schema
+- Minor fixes to support components schema oddities
+
 ## v2023.4.1 - 2023-05-05
 
 - Update dependencies
