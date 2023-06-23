@@ -5,7 +5,7 @@ import { TextBuffer } from "../src/utils/text-buffer";
 import { getTextDoc } from "./sample-esphome-yaml";
 import { isMap } from "yaml";
 import { HoverHandler } from "../src/hover-handler";
-import { Hover, MarkupContent } from "vscode-languageserver-types";
+import { MarkupContent } from "vscode-languageserver-types";
 
 const documents = new ESPHomeDocuments();
 
@@ -20,7 +20,6 @@ wifi:
     documents.update("test_uri", new TextBuffer(getTextDoc(yamlString)));
     const doc = documents.getDocument("test_uri");
 
-    const x = doc;
     const map = doc.yaml?.contents;
     expect(isMap(map));
     if (isMap(map)) {
@@ -42,7 +41,6 @@ api:
     const yamlString = yaml.trimStart();
 
     documents.update("test_uri", new TextBuffer(getTextDoc(yamlString)));
-    const doc = documents.getDocument("test_uri");
 
     const hoverHandler = new HoverHandler(documents);
 
@@ -52,7 +50,9 @@ api:
     });
 
     const contents = hover?.contents as MarkupContent;
-    expect(contents?.value).to.include("wifi");
+    expect(contents?.value).to.include(
+      "**string**: The name (or [service set identifier](https://www.lifewire.com/definition-of-service-set-identifier-816547)) of the WiFi access point your device should connect to"
+    );
   });
 
   it("don't fall thru", async () => {
@@ -66,7 +66,6 @@ api:
     const yamlString = yaml.trimStart();
 
     documents.update("test_uri", new TextBuffer(getTextDoc(yamlString)));
-    const doc = documents.getDocument("test_uri");
 
     const hoverHandler = new HoverHandler(documents);
 
@@ -77,6 +76,8 @@ api:
 
     const contents = hover?.contents as MarkupContent;
     expect(contents?.value).to.not.include("api");
-    expect(contents?.value).to.include("wifi");
+    expect(contents?.value).to.include(
+      "WPA2_EAP Enterprise Authentication is supported on ESP32s and ESP8266s. In order to configure this feature you must use the"
+    );
   });
 });

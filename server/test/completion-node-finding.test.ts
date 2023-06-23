@@ -1,52 +1,11 @@
 import "mocha";
 import { assert, expect } from "chai";
-import { CompletionItem, Position } from "../src/editor-shims";
-import { CompletionsHandler } from "../src/completions-handler";
-import { ESPHomeDocuments } from "../src/esphome-document";
-import { TextBuffer } from "../src/utils/text-buffer";
-import { esphomeDoc4, getTextDoc } from "./sample-esphome-yaml";
-
-const documents = new ESPHomeDocuments();
-const testCompletionHaveLabels = (result: CompletionItem[], testSet) => {
-  let count = 0;
-  for (var c of testSet) {
-    if (result.find((x) => x.label === c)) {
-      count++;
-    } else {
-      assert.fail(
-        `expected label '${c}' in result, got instead: ${JSON.stringify(
-          result
-        )}`
-      );
-    }
-  }
-  assert(count === testSet.length, "some completion labels not found");
-};
-const testCompletionDoesNotHaveLabels = (result: CompletionItem[], testSet) => {
-  let count = 0;
-  for (var c of testSet) {
-    if (result.find((x) => x.label === c)) {
-      assert.fail(`not expected label '${c}' in result`);
-    }
-  }
-};
-
-const x = new CompletionsHandler(documents);
-
-const getCompletionsFor = async (yamlString: string, position?: Position) => {
-  yamlString = yamlString.trimStart();
-  if (position === undefined) {
-    // default to end of doc
-    const lines = yamlString.split("\n");
-    position = {
-      line: lines.length - 1,
-      character: lines[lines.length - 1].length,
-    };
-  }
-  console.log("position is " + JSON.stringify(position));
-  documents.update("test", new TextBuffer(getTextDoc(yamlString)));
-  return await x.getCompletions("test", position);
-};
+import { esphomeDoc4 } from "./sample-esphome-yaml";
+import {
+  getCompletionsFor,
+  testCompletionDoesNotHaveLabels,
+  testCompletionHaveLabels,
+} from "./shared";
 
 describe("complete", () => {
   it("empty file lists esphome, wifi and others", async () => {
@@ -354,65 +313,6 @@ sensor:
     testCompletionHaveLabels(result, ["platform"]);
   });
 
-  it("typed schema ask type only", async () => {
-    const result = await getCompletionsFor(
-      `
-esp32:
-  framework:
-    `
-    );
-    expect(result.length).to.be.equal(1);
-    testCompletionHaveLabels(result, ["type"]);
-  });
-
-  it("typed schema suggests types", async () => {
-    const result = await getCompletionsFor(
-      `
-esp32:
-  framework:
-    type: `
-    );
-    expect(result.length).to.be.equal(2);
-    testCompletionHaveLabels(result, ["esp-idf", "arduino"]);
-  });
-
-  it("typed schema suggests props of type", async () => {
-    const result = await getCompletionsFor(
-      `
-esp32:
-  framework:
-    type: esp-idf
-    `,
-      { line: 3, character: 4 }
-    );
-    testCompletionHaveLabels(result, ["advanced", "version", "source"]);
-  });
-
-  it("typed schema suggests props of type 2", async () => {
-    const result = await getCompletionsFor(
-      `
-esp32:
-  framework:
-    type: arduino
-    `,
-      { line: 3, character: 4 }
-    );
-    expect(result.length).to.be.equal(3);
-    testCompletionHaveLabels(result, ["version"]);
-  });
-
-  it("typed media player", async () => {
-    const result = await getCompletionsFor(
-      `
-media_player:
-  - platform: i2s_audio
-    dac_type: internal
-    `,
-      { line: 3, character: 4 }
-    );
-    testCompletionHaveLabels(result, ["mode"]);
-  });
-
   it("sensor props no list", async () => {
     const result = await getCompletionsFor(
       `
@@ -664,29 +564,6 @@ interval:
     `);
     testCompletionHaveLabels(result, ["then"]);
     testCompletionDoesNotHaveLabels(result, ["interval"]);
-  });
-
-  it("single ext component types", async () => {
-    const result = await getCompletionsFor(`
-esphome:
-  name: arduino
-esp32:
-  board: d1
-external_components:
-  source:
-    type: `);
-    testCompletionHaveLabels(result, ["git", "local"]);
-  });
-  it("list ext component types", async () => {
-    const result = await getCompletionsFor(`
-esphome:
-  name: arduino
-esp32:
-  board: d1
-external_components:
-  - source:
-      type: `);
-    testCompletionHaveLabels(result, ["git", "local"]);
   });
 
   it("list automations when schema and list has an automation", async () => {
