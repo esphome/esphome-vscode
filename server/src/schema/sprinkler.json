@@ -31,7 +31,7 @@
                 "config_vars": {
                   "restore_mode": {
                     "key": "Optional",
-                    "default": "ALWAYS_OFF",
+                    "default": "RESTORE_DEFAULT_OFF",
                     "type": "enum",
                     "values": {
                       "RESTORE_DEFAULT_OFF": null,
@@ -110,7 +110,7 @@
                 "config_vars": {
                   "restore_mode": {
                     "key": "Optional",
-                    "default": "ALWAYS_OFF",
+                    "default": "RESTORE_DEFAULT_OFF",
                     "type": "enum",
                     "values": {
                       "RESTORE_DEFAULT_OFF": null,
@@ -151,7 +151,7 @@
                 "config_vars": {
                   "restore_mode": {
                     "key": "Optional",
-                    "default": "ALWAYS_OFF",
+                    "default": "RESTORE_DEFAULT_OFF",
                     "type": "enum",
                     "values": {
                       "RESTORE_DEFAULT_OFF": null,
@@ -192,7 +192,7 @@
                 "config_vars": {
                   "restore_mode": {
                     "key": "Optional",
-                    "default": "ALWAYS_OFF",
+                    "default": "RESTORE_DEFAULT_OFF",
                     "type": "enum",
                     "values": {
                       "RESTORE_DEFAULT_OFF": null,
@@ -464,7 +464,7 @@
                       "config_vars": {
                         "restore_mode": {
                           "key": "Optional",
-                          "default": "ALWAYS_OFF",
+                          "default": "RESTORE_DEFAULT_OFF",
                           "type": "enum",
                           "values": {
                             "RESTORE_DEFAULT_OFF": null,
@@ -720,7 +720,7 @@
             },
             "run_duration": {
               "key": "Optional",
-              "default": "0",
+              "default": "0s",
               "templatable": true,
               "type": "schema",
               "schema": {

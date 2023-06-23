@@ -332,6 +332,32 @@
         },
         "docs": "This [action](https://esphome.io/guides/automations.html#config-action) sends a raw code to a remote transmitter.\n\n*See also: [`remote_transmitter.transmit_raw` Action](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-raw-action)*"
       },
+      "transmit_drayton": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "address": {
+              "key": "Required",
+              "templatable": true,
+              "docs": "**int**: The 16-bit ID to send, see dumper output for more info.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-drayton-action)*"
+            },
+            "channel": {
+              "key": "Required",
+              "templatable": true,
+              "docs": "**int**: The switch/channel to send, between 0 and 127 inclusive.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-drayton-action)*"
+            },
+            "command": {
+              "key": "Required",
+              "templatable": true,
+              "docs": "**int**: The command to send, between 0 and 63 inclusive.\n\n*See also: [Remote Transmitter Actions](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-drayton-action)*"
+            }
+          },
+          "extends": [
+            "remote_base.BASE_REMOTE_TRANSMITTER_SCHEMA"
+          ]
+        },
+        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) sends a Draton Digistat RF remote code to a remote transmitter.\n\n*See also: [`remote_transmitter.transmit_drayton` Action](https://esphome.io/components/remote_transmitter.html#remote-transmitter-transmit-drayton-action)*"
+      },
       "transmit_rc5": {
         "type": "schema",
         "schema": {
