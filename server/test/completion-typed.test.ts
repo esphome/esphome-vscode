@@ -95,4 +95,13 @@ external_components:
     type: g`);
     testCompletionHaveLabels(result, ["git"]);
   });
+
+  it("speaker dac_type", async () => {
+    const result = await getCompletionsFor(`
+speaker:
+  - platform: i2s_audio
+    dac_type: external
+    `);
+    testCompletionHaveLabels(result, ["mode", "i2s_dout_pin"]);
+  });
 });
