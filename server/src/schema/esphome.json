@@ -1055,7 +1055,8 @@
       "xl9535": {
         "dependencies": [
           "i2c"
-        ]
+        ],
+        "docs": "The XL9535 component allows you to use **XL9535** I/O expander in ESPHome. It uses [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) for communication.\n\n*See also: [XL9535 I/O Expander](https://esphome.io/components/xl9535.html#xl9535-i-o-expander)*"
       },
       "xpt2046": {}
     },

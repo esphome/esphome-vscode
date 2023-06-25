@@ -1,25 +1,15 @@
 {
-  "airthings_wave_plus.sensor": {
+  "airthings_wave_base": {
     "schemas": {
-      "CONFIG_SCHEMA": {
+      "BASE_SCHEMA": {
         "type": "schema",
         "schema": {
           "extends": [
-            "airthings_wave_base.BASE_SCHEMA"
+            "sensor.SENSOR_SCHEMA",
+            "core.COMPONENT_SCHEMA"
           ],
           "config_vars": {
-            "id": {
-              "id_type": {
-                "class": "airthings_wave_plus::AirthingsWavePlus",
-                "parents": [
-                  "airthings_wave_base::AirthingsWaveBase",
-                  "PollingComponent",
-                  "Component",
-                  "ble_client::BLEClientNode"
-                ]
-              }
-            },
-            "radon": {
+            "humidity": {
               "key": "Optional",
               "type": "schema",
               "schema": {
@@ -28,65 +18,100 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "default": "Bq/m\u00b3"
-                  },
-                  "icon": {
-                    "default": "mdi:radioactive"
-                  },
-                  "accuracy_decimals": {
-                    "default": "0"
-                  },
-                  "state_class": {
-                    "default": "measurement"
-                  }
-                }
-              }
-            },
-            "radon_long_term": {
-              "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "sensor.SENSOR_SCHEMA"
-                ],
-                "config_vars": {
-                  "unit_of_measurement": {
-                    "default": "Bq/m\u00b3"
-                  },
-                  "icon": {
-                    "default": "mdi:radioactive"
-                  },
-                  "accuracy_decimals": {
-                    "default": "0"
-                  },
-                  "state_class": {
-                    "default": "measurement"
-                  }
-                }
-              }
-            },
-            "co2": {
-              "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "sensor.SENSOR_SCHEMA"
-                ],
-                "config_vars": {
-                  "unit_of_measurement": {
-                    "default": "ppm"
+                    "default": "%"
                   },
                   "accuracy_decimals": {
                     "default": "0"
                   },
                   "device_class": {
-                    "default": "carbon_dioxide"
+                    "default": "humidity"
                   },
                   "state_class": {
                     "default": "measurement"
                   }
                 }
               }
+            },
+            "temperature": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "\u00b0C"
+                  },
+                  "accuracy_decimals": {
+                    "default": "2"
+                  },
+                  "device_class": {
+                    "default": "temperature"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  }
+                }
+              }
+            },
+            "pressure": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "hPa"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  },
+                  "device_class": {
+                    "default": "pressure"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  }
+                }
+              }
+            },
+            "tvoc": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "ppb"
+                  },
+                  "icon": {
+                    "default": "mdi:radiator"
+                  },
+                  "accuracy_decimals": {
+                    "default": "0"
+                  },
+                  "device_class": {
+                    "default": "volatile_organic_compounds_parts"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  }
+                }
+              }
+            },
+            "update_interval": {
+              "key": "Optional",
+              "default": "5min"
+            },
+            "ble_client_id": {
+              "key": "GeneratedID",
+              "use_id_type": "ble_client::BLEClient",
+              "type": "use_id"
             }
           }
         }

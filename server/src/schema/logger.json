@@ -264,6 +264,18 @@
                       "VERY_VERBOSE": null
                     }
                   },
+                  "airthings_wave_base": {
+                    "type": "enum",
+                    "values": {
+                      "NONE": null,
+                      "ERROR": null,
+                      "WARN": null,
+                      "INFO": null,
+                      "DEBUG": null,
+                      "VERBOSE": null,
+                      "VERY_VERBOSE": null
+                    }
+                  },
                   "airthings_wave_mini": {
                     "type": "enum",
                     "values": {
@@ -1873,6 +1885,18 @@
                     }
                   },
                   "fingerprint_grow": {
+                    "type": "enum",
+                    "values": {
+                      "NONE": null,
+                      "ERROR": null,
+                      "WARN": null,
+                      "INFO": null,
+                      "DEBUG": null,
+                      "VERBOSE": null,
+                      "VERY_VERBOSE": null
+                    }
+                  },
+                  "font": {
                     "type": "enum",
                     "values": {
                       "NONE": null,
