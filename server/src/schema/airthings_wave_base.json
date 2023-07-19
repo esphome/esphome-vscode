@@ -89,9 +89,6 @@
                   "unit_of_measurement": {
                     "default": "ppb"
                   },
-                  "icon": {
-                    "default": "mdi:radiator"
-                  },
                   "accuracy_decimals": {
                     "default": "0"
                   },
@@ -103,6 +100,36 @@
                   }
                 }
               }
+            },
+            "battery_voltage": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "V"
+                  },
+                  "accuracy_decimals": {
+                    "default": "3"
+                  },
+                  "device_class": {
+                    "default": "voltage"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  },
+                  "entity_category": {
+                    "default": "diagnostic"
+                  }
+                }
+              }
+            },
+            "battery_update_interval": {
+              "key": "Optional",
+              "default": "24h"
             },
             "update_interval": {
               "key": "Optional",
