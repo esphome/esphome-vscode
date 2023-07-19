@@ -1,5 +1,9 @@
 # Changelog
 
+## v2023.7.0 - 2023-07-23
+
+- ↔ Sync with ESPHome v2023.7.0 Schema
+
 ## v2023.6.0 - 2023-06-23
 
 - ↔ Sync with ESPHome v2023.6.0 Schema
