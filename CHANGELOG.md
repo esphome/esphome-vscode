@@ -1,5 +1,11 @@
 # Changelog
 
+## v2023.9.0 - 2023-10-09
+
+- ↔ Sync with ESPHome v2023.9.3 Schema
+- Remove weird identation rules on pasting
+- Fixes some components not listing members like sgp4x
+
 ## v2023.7.0 - 2023-07-23
 
 - ↔ Sync with ESPHome v2023.7.0 Schema
