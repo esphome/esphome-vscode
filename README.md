@@ -17,6 +17,21 @@ To select an option use VSCode built in settings editor and search for `ESPHome`
 Completion and hover help works with local data in the extension, so you will get this functionality even if the
 connection with ESPHome is not made.
 
+### Selecting the ESPHome language
+
+The Plugin creates a new [language](https://code.visualstudio.com/docs/languages/overview) type of `ESPHome` that can be associated with `.yaml` or `.yml` filetypes. To enable the plugin's features for a file, that file must be associated with the `ESPHome` language.
+
+Whilst you have an ESPHome configuration file open you can do *one* of the following:
+
+* type `Ctrl`+`K` followed by `M`;
+* type `Ctrl`+`Shift`+`P` to open the command pallette, and search for `Change Language Mode`, followed by enter;
+* click the current language in the footer (see the bottom arrow in the image below);
+
+to bring up the below menu:
+![Select Language Mode](select-language-mode.jpg)
+
+From here you can search for, and select the `ESPHome` language.  Or you can configure all such extensions to be associated with the `ESPHome` language (which is not recommended unless you exclusively use YAML files with ESPHome), by selecting the `Configure File Association for '.yaml'...` option prior to selecting the language.
+
 ### Feedback
 
 Please submit your issues to https://github.com/esphome/esphome-vscode/issues
