@@ -20,6 +20,12 @@
   ],
   "main": "./client/out/extension",
   "contributes": {
+    "commands": [
+      {
+        "command": "esphome.otaUpload",
+        "title": "ESPHome: Compile and upload OTA"
+      }
+    ],
     "taskDefinitions": [
       {
         "type": "esphome"
