@@ -62,7 +62,7 @@
                   "core.positive_time_period_milliseconds"
                 ]
               },
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time needed for a full movement (-1.0 to 1.0). This will effectively limit the speed of the servo, the larger the value, the slowest the servo will move. Defaults to `` 0s`` This can slow down the servo to avoid loud noises or just make the movement not jerking.\n\n*See also: [Servo Component](https://esphome.io/components/servo.html#configuration-variables)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time needed for a full movement (-1.0 to 1.0). This will effectively limit the speed of the servo, the larger the value, the slowest the servo will move. Defaults to `0s`. This can slow down the servo to avoid loud noises or just make the movement not jerking.\n\n*See also: [Servo Component](https://esphome.io/components/servo.html#configuration-variables)*"
             }
           },
           "extends": [
@@ -86,11 +86,11 @@
             "level": {
               "key": "Required",
               "templatable": true,
-              "docs": "**percentage, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The target level. Range is from -100% to 100% (-1.0 to 1.0).\n\n*See also: [Servo Component](https://esphome.io/components/servo.html#servo-write-action)*"
+              "docs": "**percentage, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The target level. Range is from -100% to 100% (-1.0 to 1.0).\n\n*See also: [Servo Component](https://esphome.io/components/servo.html#servo-write-action)*"
             }
           }
         },
-        "docs": "To use your servo motor in [automations](https://esphome.io/guides/automations.html#automation) or templates, you can use this action to set the target level of the servo from -100% to 100%.\n\n*See also: [`servo.write` Action](https://esphome.io/components/servo.html#servo-write-action)*"
+        "docs": "To use your servo motor in [automations](https://esphome.io/automations/index.html#automation) or templates, you can use this action to set the target level of the servo from -100% to 100%.\n\n*See also: [`servo.write` Action](https://esphome.io/components/servo.html#servo-write-action)*"
       },
       "detach": {
         "type": "schema",
@@ -104,7 +104,7 @@
             }
           }
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to disable the output on a servo motor - this will make the servo motor stop immediately and disable its active control.\n\n*See also: [`servo.detach` Action](https://esphome.io/components/servo.html#servo-detach-action)*"
+        "docs": "This [Action](https://esphome.io/automations/actions.html#config-action) allows you to disable the output on a servo motor - this will make the servo motor stop immediately and disable its active control.\n\n*See also: [`servo.detach` Action](https://esphome.io/components/servo.html#servo-detach-action)*"
       }
     }
   }

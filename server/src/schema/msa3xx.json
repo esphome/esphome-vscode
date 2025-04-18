@@ -1,0 +1,368 @@
+{
+  "msa3xx": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "typed",
+        "types": {
+          "MSA301": {
+            "extends": [
+              "msa3xx._COMMON_SCHEMA"
+            ],
+            "config_vars": {
+              "resolution": {
+                "key": "Optional",
+                "default": "14",
+                "type": "enum",
+                "values": {
+                  "14": null,
+                  "12": null,
+                  "10": null,
+                  "8": null
+                }
+              },
+              "i2c_id": {
+                "key": "GeneratedID",
+                "use_id_type": "i2c::I2CBus",
+                "type": "use_id"
+              },
+              "address": {
+                "key": "Optional",
+                "default": "38",
+                "data_type": "hex_uint8_t"
+              }
+            }
+          },
+          "MSA311": {
+            "extends": [
+              "msa3xx._COMMON_SCHEMA"
+            ],
+            "config_vars": {
+              "resolution": {
+                "key": "Optional",
+                "default": "12",
+                "type": "enum",
+                "values": {
+                  "12": null
+                }
+              },
+              "i2c_id": {
+                "key": "GeneratedID",
+                "use_id_type": "i2c::I2CBus",
+                "type": "use_id"
+              },
+              "address": {
+                "key": "Optional",
+                "default": "98",
+                "data_type": "hex_uint8_t"
+              }
+            }
+          }
+        },
+        "typed_key": "type",
+        "is_list": true
+      },
+      "_COMMON_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "msa3xx::MSA3xxComponent",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              }
+            },
+            "range": {
+              "key": "Optional",
+              "default": "2G",
+              "type": "enum",
+              "values": {
+                "2G": null,
+                "4G": null,
+                "8G": null,
+                "16G": null
+              }
+            },
+            "calibration": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "offset_x": {
+                    "key": "Optional",
+                    "default": "0"
+                  },
+                  "offset_y": {
+                    "key": "Optional",
+                    "default": "0"
+                  },
+                  "offset_z": {
+                    "key": "Optional",
+                    "default": "0"
+                  }
+                }
+              }
+            },
+            "transform": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "mirror_x": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean"
+                  },
+                  "mirror_y": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean"
+                  },
+                  "mirror_z": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean"
+                  },
+                  "swap_xy": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "on_active": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_tap": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_double_tap": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_freefall": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_orientation": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "update_interval": {
+              "key": "Optional",
+              "default": "10s"
+            }
+          },
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
+        }
+      },
+      "MSA_SENSOR_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "msa3xx_id": {
+              "key": "GeneratedID",
+              "use_id_type": "msa3xx::MSA3xxComponent",
+              "type": "use_id"
+            }
+          }
+        }
+      }
+    }
+  },
+  "msa3xx.sensor": {
+    "schemas": {
+      "accel_schema": {
+        "type": "schema",
+        "maybe": "name",
+        "schema": {
+          "extends": [
+            "sensor.SENSOR_SCHEMA"
+          ],
+          "config_vars": {
+            "unit_of_measurement": {
+              "default": "m/s\u00b2"
+            },
+            "icon": {
+              "default": "mdi:briefcase-download"
+            },
+            "accuracy_decimals": {
+              "default": "2"
+            },
+            "state_class": {
+              "default": "measurement"
+            }
+          }
+        }
+      },
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "msa3xx.MSA_SENSOR_SCHEMA"
+          ],
+          "config_vars": {
+            "acceleration_x": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "msa3xx.sensor.accel_schema"
+                ]
+              },
+              "docs": "X-axis acceleration, m/s\u00b2.\n\n*See also: [msa3xx Sensor](https://esphome.io/components/sensor/msa3xx.html#id2)*"
+            },
+            "acceleration_y": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "msa3xx.sensor.accel_schema"
+                ]
+              },
+              "docs": "Y-axis acceleration, m/s\u00b2.\n\n*See also: [msa3xx Sensor](https://esphome.io/components/sensor/msa3xx.html#id2)*"
+            },
+            "acceleration_z": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "msa3xx.sensor.accel_schema"
+                ]
+              }
+            },
+            "update_interval": {
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval for updating acceleration sensors. Defaults to `10s`.\n\n*See also: [msa3xx Component/Hub](https://esphome.io/components/sensor/msa3xx.html#configuration-variables)*"
+            }
+          }
+        }
+      }
+    }
+  },
+  "msa3xx.binary_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "msa3xx.MSA_SENSOR_SCHEMA"
+          ],
+          "config_vars": {
+            "tap": {
+              "key": "Optional",
+              "type": "schema",
+              "maybe": "name",
+              "schema": {
+                "extends": [
+                  "binary_sensor.BINARY_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:gesture-tap"
+                  },
+                  "device_class": {
+                    "default": "vibration"
+                  }
+                }
+              },
+              "docs": "Single tap detection.\n\n*See also: [msa3xx Binary Sensor](https://esphome.io/components/sensor/msa3xx.html#id1)*"
+            },
+            "double_tap": {
+              "key": "Optional",
+              "type": "schema",
+              "maybe": "name",
+              "schema": {
+                "extends": [
+                  "binary_sensor.BINARY_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:gesture-double-tap"
+                  },
+                  "device_class": {
+                    "default": "vibration"
+                  }
+                }
+              },
+              "docs": "Double tap detection.\n\n*See also: [msa3xx Binary Sensor](https://esphome.io/components/sensor/msa3xx.html#id1)*"
+            },
+            "active": {
+              "key": "Optional",
+              "type": "schema",
+              "maybe": "name",
+              "schema": {
+                "extends": [
+                  "binary_sensor.BINARY_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:vibrate"
+                  },
+                  "device_class": {
+                    "default": "vibration"
+                  }
+                }
+              },
+              "docs": "Movement detection.\n\n*See also: [msa3xx Binary Sensor](https://esphome.io/components/sensor/msa3xx.html#id1)*"
+            }
+          }
+        }
+      }
+    }
+  },
+  "msa3xx.text_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "msa3xx.MSA_SENSOR_SCHEMA"
+          ],
+          "config_vars": {
+            "orientation_xy": {
+              "key": "Optional",
+              "type": "schema",
+              "maybe": "name",
+              "schema": {
+                "extends": [
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:screen-rotation"
+                  }
+                }
+              },
+              "docs": "XY orientation. Can be one of `Portrait Upright`, `Portrait Upside Down`, `Landscape Left`, `Landscape Right`.\n\n*See also: [msa3xx Text Sensor](https://esphome.io/components/sensor/msa3xx.html#id3)*"
+            },
+            "orientation_z": {
+              "key": "Optional",
+              "type": "schema",
+              "maybe": "name",
+              "schema": {
+                "extends": [
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:screen-rotation"
+                  }
+                }
+              },
+              "docs": "Z orientation. Can be one of `Upwards looking`, `Downwards looking`\n\n*See also: [msa3xx Text Sensor](https://esphome.io/components/sensor/msa3xx.html#id3)*"
+            }
+          }
+        }
+      }
+    }
+  }
+}

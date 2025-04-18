@@ -1,0 +1,9 @@
+{
+  "mapping": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "is_list": true
+      }
+    }
+  }
+}

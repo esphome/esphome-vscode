@@ -24,23 +24,426 @@
             },
             "manufacturer": {
               "key": "Optional",
-              "default": "ESPHome",
-              "type": "string",
-              "docs": "**string**: The name of the manufacturer/firmware creator. Defaults to `ESPHome`.\n\n*See also: [BLE Server](https://esphome.io/components/esp32_ble_server.html#configuration-variables)*"
+              "type": "schema",
+              "maybe": "data",
+              "schema": {
+                "config_vars": {
+                  "data": {
+                    "key": "Required",
+                    "type": "integer"
+                  },
+                  "type": {
+                    "key": "Optional",
+                    "default": "string",
+                    "type": "enum",
+                    "values": {
+                      "uint8_t": null,
+                      "uint16_t": null,
+                      "uint32_t": null,
+                      "uint64_t": null,
+                      "int8_t": null,
+                      "int16_t": null,
+                      "int32_t": null,
+                      "int64_t": null,
+                      "float": null,
+                      "double": null,
+                      "string": null
+                    }
+                  },
+                  "string_encoding": {
+                    "key": "Optional",
+                    "default": "utf_8"
+                  },
+                  "endianness": {
+                    "key": "Optional",
+                    "default": "LITTLE",
+                    "type": "enum",
+                    "values": {
+                      "LITTLE": null,
+                      "BIG": null
+                    }
+                  }
+                }
+              },
+              "docs": "**[Value Configuration](https://esphome.io/components/esp32_ble_server.html#esp32-ble-server-value)**: The name of the manufacturer/firmware creator. Defaults to `ESPHome`.\n\n*See also: [BLE Server](https://esphome.io/components/esp32_ble_server.html#configuration-variables)*"
+            },
+            "model": {
+              "key": "Optional",
+              "type": "schema",
+              "maybe": "data",
+              "schema": {
+                "config_vars": {
+                  "data": {
+                    "key": "Required",
+                    "type": "integer"
+                  },
+                  "type": {
+                    "key": "Optional",
+                    "default": "string",
+                    "type": "enum",
+                    "values": {
+                      "uint8_t": null,
+                      "uint16_t": null,
+                      "uint32_t": null,
+                      "uint64_t": null,
+                      "int8_t": null,
+                      "int16_t": null,
+                      "int32_t": null,
+                      "int64_t": null,
+                      "float": null,
+                      "double": null,
+                      "string": null
+                    }
+                  },
+                  "string_encoding": {
+                    "key": "Optional",
+                    "default": "utf_8"
+                  },
+                  "endianness": {
+                    "key": "Optional",
+                    "default": "LITTLE",
+                    "type": "enum",
+                    "values": {
+                      "LITTLE": null,
+                      "BIG": null
+                    }
+                  }
+                }
+              },
+              "docs": "**[Value Configuration](https://esphome.io/components/esp32_ble_server.html#esp32-ble-server-value)**: The model name of the device. Defaults to the project\u2019s name defined in the [core configuration](https://esphome.io/components/esphome.html#esphome-creators-project) if present, otherwise to the friendly name of the `board` chosen in the [core configuration](https://esphome.io/components/esphome.html#esphome-configuration-variables).\n\n*See also: [BLE Server](https://esphome.io/components/esp32_ble_server.html#configuration-variables)*"
+            },
+            "firmware_version": {
+              "key": "Optional",
+              "type": "schema",
+              "maybe": "data",
+              "schema": {
+                "config_vars": {
+                  "data": {
+                    "key": "Required",
+                    "type": "integer"
+                  },
+                  "type": {
+                    "key": "Optional",
+                    "default": "string",
+                    "type": "enum",
+                    "values": {
+                      "uint8_t": null,
+                      "uint16_t": null,
+                      "uint32_t": null,
+                      "uint64_t": null,
+                      "int8_t": null,
+                      "int16_t": null,
+                      "int32_t": null,
+                      "int64_t": null,
+                      "float": null,
+                      "double": null,
+                      "string": null
+                    }
+                  },
+                  "string_encoding": {
+                    "key": "Optional",
+                    "default": "utf_8"
+                  },
+                  "endianness": {
+                    "key": "Optional",
+                    "default": "LITTLE",
+                    "type": "enum",
+                    "values": {
+                      "LITTLE": null,
+                      "BIG": null
+                    }
+                  }
+                }
+              },
+              "docs": "**[Value Configuration](https://esphome.io/components/esp32_ble_server.html#esp32-ble-server-value)**: The firmware version of the device. Defaults to the project\u2019s version defined in the [core configuration](https://esphome.io/components/esphome.html#esphome-creators-project) if present, otherwise to the ESPHome version.\n\n*See also: [BLE Server](https://esphome.io/components/esp32_ble_server.html#configuration-variables)*"
             },
             "manufacturer_data": {
               "key": "Optional",
               "docs": "**list of bytes**: The manufacturer-specific data to include in the advertising packet. Should be a list of bytes, where the first two are the little-endian representation of the 16-bit manufacturer ID as assigned by the Bluetooth SIG.\n\n*See also: [BLE Server](https://esphome.io/components/esp32_ble_server.html#configuration-variables)*"
             },
-            "model": {
+            "services": {
               "key": "Optional",
-              "type": "string",
-              "docs": "**string**: The model name of the device. Defaults to the friendly name of the `board` chosen in the [core configuration](https://esphome.io/components/esphome.html#esphome-configuration-variables).\n\n*See also: [BLE Server](https://esphome.io/components/esp32_ble_server.html#configuration-variables)*"
+              "default": "[]",
+              "is_list": true,
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "esp32_ble_server::BLEService",
+                      "parents": []
+                    }
+                  },
+                  "uuid": {
+                    "key": "Required",
+                    "data_type": "hex_uint32_t"
+                  },
+                  "advertise": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean"
+                  },
+                  "characteristics": {
+                    "key": "Optional",
+                    "default": "[]",
+                    "is_list": true,
+                    "type": "schema",
+                    "schema": {
+                      "config_vars": {
+                        "id": {
+                          "key": "GeneratedID",
+                          "id_type": {
+                            "class": "esp32_ble_server::BLECharacteristic",
+                            "parents": []
+                          }
+                        },
+                        "uuid": {
+                          "key": "Required",
+                          "data_type": "hex_uint32_t"
+                        },
+                        "value": {
+                          "key": "Optional",
+                          "type": "schema",
+                          "maybe": "data",
+                          "schema": {
+                            "config_vars": {
+                              "data": {
+                                "key": "Required",
+                                "type": "integer"
+                              },
+                              "type": {
+                                "key": "Optional",
+                                "type": "enum",
+                                "values": {
+                                  "uint8_t": null,
+                                  "uint16_t": null,
+                                  "uint32_t": null,
+                                  "uint64_t": null,
+                                  "int8_t": null,
+                                  "int16_t": null,
+                                  "int32_t": null,
+                                  "int64_t": null,
+                                  "float": null,
+                                  "double": null,
+                                  "string": null
+                                }
+                              },
+                              "string_encoding": {
+                                "key": "Optional",
+                                "default": "utf_8"
+                              },
+                              "endianness": {
+                                "key": "Optional",
+                                "default": "LITTLE",
+                                "type": "enum",
+                                "values": {
+                                  "LITTLE": null,
+                                  "BIG": null
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "char_value_action_id_": {
+                          "key": "GeneratedID",
+                          "id_type": {
+                            "class": "esp32_ble_server::esp32_ble_server_automations::BLECharacteristicSetValueAction",
+                            "parents": [
+                              "Action"
+                            ]
+                          }
+                        },
+                        "descriptors": {
+                          "key": "Optional",
+                          "default": "[]",
+                          "is_list": true,
+                          "type": "schema",
+                          "schema": {
+                            "extends": [
+                              "esp32_ble_server.DESCRIPTOR_SCHEMA"
+                            ]
+                          }
+                        },
+                        "on_write": {
+                          "key": "Optional",
+                          "type": "trigger"
+                        },
+                        "description": {
+                          "key": "Optional",
+                          "type": "schema",
+                          "maybe": "data",
+                          "schema": {
+                            "config_vars": {
+                              "data": {
+                                "key": "Required",
+                                "type": "integer"
+                              },
+                              "type": {
+                                "key": "Optional",
+                                "default": "string",
+                                "type": "enum",
+                                "values": {
+                                  "uint8_t": null,
+                                  "uint16_t": null,
+                                  "uint32_t": null,
+                                  "uint64_t": null,
+                                  "int8_t": null,
+                                  "int16_t": null,
+                                  "int32_t": null,
+                                  "int64_t": null,
+                                  "float": null,
+                                  "double": null,
+                                  "string": null
+                                }
+                              },
+                              "string_encoding": {
+                                "key": "Optional",
+                                "default": "utf_8"
+                              },
+                              "endianness": {
+                                "key": "Optional",
+                                "default": "LITTLE",
+                                "type": "enum",
+                                "values": {
+                                  "LITTLE": null,
+                                  "BIG": null
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "read": {
+                          "key": "Optional",
+                          "default": "False",
+                          "type": "boolean"
+                        },
+                        "write": {
+                          "key": "Optional",
+                          "default": "False",
+                          "type": "boolean"
+                        },
+                        "notify": {
+                          "key": "Optional",
+                          "default": "False",
+                          "type": "boolean"
+                        },
+                        "broadcast": {
+                          "key": "Optional",
+                          "default": "False",
+                          "type": "boolean"
+                        },
+                        "indicate": {
+                          "key": "Optional",
+                          "default": "False",
+                          "type": "boolean"
+                        },
+                        "write_no_response": {
+                          "key": "Optional",
+                          "default": "False",
+                          "type": "boolean"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "docs": "**list of [Service Configuration](https://esphome.io/components/esp32_ble_server.html#esp32-ble-server-service)**: A list of services to expose on the BLE GATT server.\n\n*See also: [BLE Server](https://esphome.io/components/esp32_ble_server.html#configuration-variables)*"
+            },
+            "on_connect": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An action to be performed when a client connects to the BLE server. It provides the `id` variable which contains the ID of the client that connected.\n\n*See also: [BLE Server](https://esphome.io/components/esp32_ble_server.html#configuration-variables)*"
+            },
+            "on_disconnect": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An action to be performed when a client disconnects from the BLE server. It provides the `id` variable which contains the ID of the client that disconnected.\n\n*See also: [BLE Server](https://esphome.io/components/esp32_ble_server.html#configuration-variables)*"
             }
           },
           "extends": [
             "core.COMPONENT_SCHEMA"
           ]
+        }
+      },
+      "DESCRIPTOR_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "esp32_ble_server::BLEDescriptor",
+                "parents": []
+              }
+            },
+            "uuid": {
+              "key": "Required",
+              "data_type": "hex_uint32_t"
+            },
+            "read": {
+              "key": "Optional",
+              "default": "True",
+              "type": "boolean"
+            },
+            "write": {
+              "key": "Optional",
+              "default": "True",
+              "type": "boolean"
+            },
+            "on_write": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "value": {
+              "key": "Required",
+              "type": "schema",
+              "maybe": "data",
+              "schema": {
+                "config_vars": {
+                  "data": {
+                    "key": "Required",
+                    "type": "integer"
+                  },
+                  "type": {
+                    "key": "Optional",
+                    "type": "enum",
+                    "values": {
+                      "uint8_t": null,
+                      "uint16_t": null,
+                      "uint32_t": null,
+                      "uint64_t": null,
+                      "int8_t": null,
+                      "int16_t": null,
+                      "int32_t": null,
+                      "int64_t": null,
+                      "float": null,
+                      "double": null,
+                      "string": null
+                    }
+                  },
+                  "string_encoding": {
+                    "key": "Optional",
+                    "default": "utf_8"
+                  },
+                  "endianness": {
+                    "key": "Optional",
+                    "default": "LITTLE",
+                    "type": "enum",
+                    "values": {
+                      "LITTLE": null,
+                      "BIG": null
+                    }
+                  }
+                }
+              }
+            },
+            "max_length": {
+              "key": "Optional",
+              "type": "integer",
+              "data_type": "uint16_t"
+            }
+          }
         }
       }
     }

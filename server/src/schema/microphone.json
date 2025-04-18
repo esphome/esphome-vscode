@@ -5,7 +5,7 @@
         "dependencies": [
           "i2s_audio"
         ],
-        "docs": "The `i2s_audio` microphone platform allows you to receive audio via the the [I\u00b2S Audio Component](https://esphome.io/components/i2s_audio.html). This platform only works on ESP32 based chips.\n\n*See also: [I\u00b2S Audio Microphone](https://esphome.io/components/microphone/i2s_audio.html#i2s-audio-microphone)*"
+        "docs": "The `i2s_audio` microphone platform allows you to receive audio via the the [I\u00b2S Audio Component](https://esphome.io/components/i2s_audio.html).\n\n*See also: [I\u00b2S Audio Microphone](https://esphome.io/components/microphone/i2s_audio.html#i2s-audio-microphone)*"
       }
     },
     "schemas": {
@@ -16,7 +16,7 @@
             "on_data": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when new data is received.\n\n*See also: [Microphone Components](https://esphome.io/components/microphone/index.html#base-microphone-configuration)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when new data is received.\n\n*See also: [Microphone Components](https://esphome.io/components/microphone/index.html#base-microphone-configuration)*"
             }
           }
         }

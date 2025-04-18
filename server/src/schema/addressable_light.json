@@ -14,11 +14,13 @@
                 "class": "addressable_light::AddressableLightDisplay",
                 "parents": [
                   "display::DisplayBuffer",
+                  "display::Display",
+                  "PollingComponent",
+                  "Component",
                   "PollingComponent",
                   "Component"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Addressable Light](https://esphome.io/components/display/addressable_light.html#configuration-variables)*"
+              }
             },
             "addressable_light_id": {
               "key": "Required",
@@ -39,7 +41,6 @@
               "docs": "**int**: The height of the LED matrix in pixels.\n\n*See also: [Addressable Light](https://esphome.io/components/display/addressable_light.html#configuration-variables)*"
             },
             "update_interval": {
-              "key": "Optional",
               "default": "16ms",
               "type": "schema",
               "schema": {
@@ -51,7 +52,7 @@
             },
             "pixel_mapper": {
               "key": "Optional",
-              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: A lambda that returns the integer address of the LED given the supplied the `x` and `y` pixel coordinate. By default, a left-to-right direct pixel mapper is used.\n\n*See also: [Addressable Light](https://esphome.io/components/display/addressable_light.html#configuration-variables)*"
+              "docs": "**[lambda](https://esphome.io/automations/templates.html#config-lambda)**: A lambda that returns the integer address of the LED given the supplied the `x` and `y` pixel coordinate. By default, a left-to-right direct pixel mapper is used.\n\n*See also: [Addressable Light](https://esphome.io/components/display/addressable_light.html#configuration-variables)*"
             }
           }
         }

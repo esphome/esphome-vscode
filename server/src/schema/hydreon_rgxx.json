@@ -25,6 +25,15 @@
               },
               "docs": "**string**: Specify which rain sensor you have connected. Must be either `RG_9` or `RG_15`.\n\n*See also: [Hydreon Rain Sensor](https://esphome.io/components/sensor/hydreon_rgxx.html#configuration-variables)*"
             },
+            "resolution": {
+              "key": "Optional",
+              "type": "enum",
+              "values": {
+                "low": null,
+                "high": null
+              },
+              "docs": "**string**: Specify rain sensor resolution. Must be either `low` or `high`. Default resolution is `high`. Only applies to RG-15.\n\n*See also: [Hydreon Rain Sensor](https://esphome.io/components/sensor/hydreon_rgxx.html#configuration-variables)*"
+            },
             "acc": {
               "key": "Optional",
               "type": "schema",
@@ -47,7 +56,7 @@
                   }
                 }
               },
-              "docs": "Amount of rain since last message (see `update_interval`), in `mm`. Only on RG-15.\n  * **name** (**Required**, string): The name for the sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Hydreon Rain Sensor](https://esphome.io/components/sensor/hydreon_rgxx.html#configuration-variables)*"
+              "docs": "Amount of rain since last message (see `update_interval`), in `mm`. Only on RG-15.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Hydreon Rain Sensor](https://esphome.io/components/sensor/hydreon_rgxx.html#configuration-variables)*"
             },
             "event_acc": {
               "key": "Optional",
@@ -71,7 +80,7 @@
                   }
                 }
               },
-              "docs": "Amount of rain for this event (i.e. since it last stopped raining), in `mm`. Only on RG-15.\n  * **name** (**Required**, string): The name for the sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Hydreon Rain Sensor](https://esphome.io/components/sensor/hydreon_rgxx.html#configuration-variables)*"
+              "docs": "Amount of rain for this event (i.e. since it last stopped raining), in `mm`. Only on RG-15.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Hydreon Rain Sensor](https://esphome.io/components/sensor/hydreon_rgxx.html#configuration-variables)*"
             },
             "total_acc": {
               "key": "Optional",
@@ -95,7 +104,7 @@
                   }
                 }
               },
-              "docs": "Total amount of rain this sensor has ever measured, in `mm`. Only on RG-15.\n  * **name** (**Required**, string): The name for the sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Hydreon Rain Sensor](https://esphome.io/components/sensor/hydreon_rgxx.html#configuration-variables)*"
+              "docs": "Total amount of rain this sensor has ever measured, in `mm`. Only on RG-15.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Hydreon Rain Sensor](https://esphome.io/components/sensor/hydreon_rgxx.html#configuration-variables)*"
             },
             "r_int": {
               "key": "Optional",
@@ -119,7 +128,7 @@
                   }
                 }
               },
-              "docs": "Current rain intensity in `mm/h`. Only on RG-15.\n  * **name** (**Required**, string): The name for the sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Hydreon Rain Sensor](https://esphome.io/components/sensor/hydreon_rgxx.html#configuration-variables)*"
+              "docs": "Current rain intensity in `mm/h`. Only on RG-15.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Hydreon Rain Sensor](https://esphome.io/components/sensor/hydreon_rgxx.html#configuration-variables)*"
             },
             "moisture": {
               "key": "Optional",
@@ -143,7 +152,7 @@
                   }
                 }
               },
-              "docs": "Rain intensity level from 0-7. Only on RG-9.\n  * **name** (**Required**, string): The name for the sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Hydreon Rain Sensor](https://esphome.io/components/sensor/hydreon_rgxx.html#configuration-variables)*"
+              "docs": "Rain intensity level from 0-7 ([more detail](https://rainsensors.com/support/rg-9-rg-15-faq/#RG-9RValue)). Only on RG-9.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Hydreon Rain Sensor](https://esphome.io/components/sensor/hydreon_rgxx.html#configuration-variables)*"
             },
             "temperature": {
               "key": "Optional",
@@ -167,7 +176,12 @@
                   }
                 }
               },
-              "docs": "Temperature +-5\u00b0C. Only on RG-9 Version 1.100 or later.\n  * **name** (**Required**, string): The name for the sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Hydreon Rain Sensor](https://esphome.io/components/sensor/hydreon_rgxx.html#configuration-variables)*"
+              "docs": "Device internal temperature in Celsius. Accuracy is \u00b15\u00b0C. Only on RG-9 firmware version 1.100-onwards.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Hydreon Rain Sensor](https://esphome.io/components/sensor/hydreon_rgxx.html#configuration-variables)*"
+            },
+            "disable_led": {
+              "key": "Optional",
+              "type": "boolean",
+              "docs": "Disables the on-board LED. Defaults to `false`. Only on RG-9 firmware version 1.200-onwards.\n\n*See also: [Hydreon Rain Sensor](https://esphome.io/components/sensor/hydreon_rgxx.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",
@@ -222,7 +236,7 @@
                   }
                 }
               },
-              "docs": "`true` if the sensor reports being too cold. Hydreon only mentions this feature for the RG-9.\n  * **name** (**Required**, string): The name for the sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Binary Sensor](https://esphome.io/components/binary_sensor/index.html#config-binary-sensor).\n  \n  \n\n*See also: [Hydreon Rain Sensor Binary Sensor](https://esphome.io/components/binary_sensor/hydreon_rgxx.html#configuration-variables)*"
+              "docs": "`true` if the sensor reports being too cold. Hydreon only mentions this feature for the RG-9.\n  * All options from [Binary Sensor](https://esphome.io/components/binary_sensor/index.html#config-binary-sensor).\n  \n  \n\n*See also: [Hydreon Rain Sensor Binary Sensor](https://esphome.io/components/binary_sensor/hydreon_rgxx.html#configuration-variables)*"
             },
             "lens_bad": {
               "key": "Optional",
@@ -237,7 +251,7 @@
                   }
                 }
               },
-              "docs": "`true` if the sensor reports the lens being bad.\n  * **name** (**Required**, string): The name for the sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Binary Sensor](https://esphome.io/components/binary_sensor/index.html#config-binary-sensor).\n  \n  \n\n*See also: [Hydreon Rain Sensor Binary Sensor](https://esphome.io/components/binary_sensor/hydreon_rgxx.html#configuration-variables)*"
+              "docs": "`true` if the sensor reports the lens being bad.\n  * All options from [Binary Sensor](https://esphome.io/components/binary_sensor/index.html#config-binary-sensor).\n  \n  \n\n*See also: [Hydreon Rain Sensor Binary Sensor](https://esphome.io/components/binary_sensor/hydreon_rgxx.html#configuration-variables)*"
             },
             "em_sat": {
               "key": "Optional",
@@ -252,7 +266,7 @@
                   }
                 }
               },
-              "docs": "`true` if the sensor reports the Emitter being saturated.\n  * **name** (**Required**, string): The name for the sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Binary Sensor](https://esphome.io/components/binary_sensor/index.html#config-binary-sensor).\n  \n  \n\n*See also: [Hydreon Rain Sensor Binary Sensor](https://esphome.io/components/binary_sensor/hydreon_rgxx.html#configuration-variables)*"
+              "docs": "`true` if the sensor reports the Emitter being saturated.\n  * All options from [Binary Sensor](https://esphome.io/components/binary_sensor/index.html#config-binary-sensor).\n  \n  \n\n*See also: [Hydreon Rain Sensor Binary Sensor](https://esphome.io/components/binary_sensor/hydreon_rgxx.html#configuration-variables)*"
             }
           }
         }

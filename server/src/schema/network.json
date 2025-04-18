@@ -10,6 +10,13 @@
               "default": "False",
               "type": "boolean",
               "docs": "**boolean**: Enables IPv6 support. Defaults to `false`.\n\n*See also: [Network component](https://esphome.io/components/network.html#configuration-variables)*"
+            },
+            "min_ipv6_addr_count": {
+              "key": "Optional",
+              "default": "0",
+              "type": "integer",
+              "data_type": "positive_int",
+              "docs": "**integer**: ESPHome considers the network to be connected when it has one IPv4 address and this number of IPv6 addresses. Defaults to `0` so as to not hang on boot with networks where IPv6 is not enabled. `2` is typically a reasonable value for configurations requiring IPv6.\n\n*See also: [Network component](https://esphome.io/components/network.html#configuration-variables)*"
             }
           }
         }

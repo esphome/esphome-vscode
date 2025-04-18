@@ -18,8 +18,7 @@
                   "sensirion_common::SensirionI2CDevice",
                   "i2c::I2CDevice"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for lambdas/multiple sensors.\n\n*See also: [SDP3x / SDP800 Series Differential Pressure Sensor](https://esphome.io/components/sensor/sdp3x.html#configuration-variables)*"
+              }
             },
             "unit_of_measurement": {
               "default": "hPa"

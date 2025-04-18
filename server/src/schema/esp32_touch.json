@@ -178,8 +178,7 @@
                   "binary_sensor::BinarySensor",
                   "EntityBase"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [esp32_touch Binary Sensor](https://esphome.io/components/binary_sensor/esp32_touch.html#id1)*"
+              }
             },
             "esp32_touch_id": {
               "key": "GeneratedID",

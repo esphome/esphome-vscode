@@ -22,14 +22,18 @@
         ],
         "docs": "The BP5758D output component exposes a BP5758D channel of a global [Component/Hub](https://esphome.io/components/output/bp5758d.html#bp5758d-component) as a float output.\n\n*See also: [bp5758d Output](https://esphome.io/components/output/bp5758d.html#output)*"
       },
-      "custom": {
-        "docs": "This integration can be used to create custom binary and float [outputs](https://esphome.io/components/output/index.html) in ESPHome using the C++ (Arduino) API.\n\n*See also: [Custom Output](https://esphome.io/components/output/custom.html#custom-output)*"
-      },
+      "custom": {},
       "dac7678": {
         "dependencies": [
           "dac7678"
         ],
         "docs": "The DAC7678 output component exposes a DAC7678 DAC channel of a global [DAC7678 hub](https://esphome.io/components/output/dac7678.html#dac7678-component) as a float output.\n\n*See also: [DAC7678 Output](https://esphome.io/components/output/dac7678.html#dac7678-output)*"
+      },
+      "emc2101": {
+        "dependencies": [
+          "emc2101"
+        ],
+        "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID to use for code generation, and for reference by dependent components.\n\n*See also: [EMC2101 Output](https://esphome.io/components/emc2101.html#emc2101-output)*"
       },
       "esp32_dac": {
         "dependencies": [
@@ -69,6 +73,12 @@
           "max6956"
         ]
       },
+      "mcp4461": {
+        "dependencies": [
+          "mcp4461"
+        ],
+        "docs": "The MCP4461 output component exposes 8 MCP4461 (wiper-)channels of a global [MCP4461](https://esphome.io/components/output/mcp4461.html#id1) as float outputs.\n\n*See also: [MCP4461 Output](https://esphome.io/components/output/mcp4461.html#mcp4461-output)*"
+      },
       "mcp4725": {
         "dependencies": [
           "i2c"
@@ -91,13 +101,18 @@
         "dependencies": [
           "modbus_controller"
         ],
-        "docs": "The `modbus_controller` platform creates a output from a modbus_controller.\n\n*See also: [Modbus Controller Output](https://esphome.io/components/output/modbus_controller.html#modbus-controller-output)*"
+        "docs": "The `modbus_controller` platform creates an output from a modbus_controller. The goal is to write a value to a modbus register on a device.\n\n*See also: [Modbus Controller Output](https://esphome.io/components/output/modbus_controller.html#modbus-controller-output)*"
       },
       "my9231": {
         "dependencies": [
           "my9231"
         ],
         "docs": "The MY931/MY9291 output component exposes a MY931/MY9291 channel of a global [Component/Hub](https://esphome.io/components/output/my9231.html#my9231-component) as a float output.\n\n*See also: [my9231 Output](https://esphome.io/components/output/my9231.html#output)*"
+      },
+      "opentherm": {
+        "dependencies": [
+          "opentherm"
+        ]
       },
       "pca9685": {
         "dependencies": [
@@ -117,7 +132,7 @@
         ]
       },
       "sigma_delta_output": {
-        "docs": "This integration uses [sigma-delta modulation](https://en.wikipedia.org/wiki/Delta-sigma_modulation) to output a floating-point value on a binary output. Unlike with [Slow PWM Output](https://esphome.io/components/output/slow_pwm.html), it is possible to update the output value with each update cycle, not just at the end of a longer period.\n\n*See also: [Sigma-Delta Output](https://esphome.io/components/output/sigma_delta_output.html#sigma-delta-output)*"
+        "docs": "This component uses [sigma-delta modulation](https://en.wikipedia.org/wiki/Delta-sigma_modulation) to output a floating-point value on a binary output. Unlike with [Slow PWM Output](https://esphome.io/components/output/slow_pwm.html), it is possible to update the output value with each update cycle, not just at the end of a longer period.\n\n*See also: [Sigma-Delta Output](https://esphome.io/components/output/sigma_delta_output.html#sigma-delta-output)*"
       },
       "slow_pwm": {
         "docs": "Similar to PWM, the Slow PWM Output platform allows you to control GPIO pins by pulsing them on/off over a longer time period. It could be used to control a heating element through a relay where a fast PWM update cycle would not be appropriate.\n\n*See also: [Slow PWM Output](https://esphome.io/components/output/slow_pwm.html#slow-pwm-output)*"
@@ -165,6 +180,12 @@
           "tlc5947"
         ],
         "docs": "The tlc5947 output component exposes a tlc5947 channel of a global [Component/Hub](https://esphome.io/components/output/tlc5947.html#tlc5947-component) as a float output.\n\n*See also: [tlc5947 Output](https://esphome.io/components/output/tlc5947.html#output)*"
+      },
+      "tlc5971": {
+        "dependencies": [
+          "tlc5971"
+        ],
+        "docs": "The tlc5971 output component exposes a tlc5971 channel of a global [Component/Hub](https://esphome.io/components/output/tlc5971.html#tlc5971-component) as a float output.\n\n*See also: [tlc5971 Output](https://esphome.io/components/output/tlc5971.html#output)*"
       },
       "tm1638": {},
       "x9c": {
@@ -288,8 +309,7 @@
                   "EntityBase",
                   "Component"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Generic Output Button](https://esphome.io/components/button/output.html#configuration-variables)*"
+              }
             },
             "output": {
               "key": "Required",
@@ -331,8 +351,7 @@
                   "EntityBase",
                   "Component"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Generic Output Lock](https://esphome.io/components/lock/output.html#configuration-variables)*"
+              }
             },
             "output": {
               "key": "Required",
@@ -378,8 +397,7 @@
                   "EntityBase",
                   "Component"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Generic Output Switch](https://esphome.io/components/switch/output.html#configuration-variables)*"
+              }
             },
             "output": {
               "key": "Required",

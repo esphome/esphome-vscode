@@ -29,16 +29,49 @@
               "use_id_type": "media_player::MediaPlayer",
               "type": "use_id"
             },
-            "silence_detection": {
+            "use_wake_word": {
               "key": "Optional",
-              "default": "True",
+              "default": "False",
               "type": "boolean"
+            },
+            "vad_threshold": {
+              "key": "Optional",
+              "type": "integer",
+              "data_type": "uint8_t"
+            },
+            "noise_suppression_level": {
+              "key": "Optional",
+              "default": "0",
+              "type": "integer"
+            },
+            "auto_gain": {
+              "key": "Optional",
+              "default": "0dBFS",
+              "type": "integer"
+            },
+            "conversation_timeout": {
+              "key": "Optional",
+              "default": "300s",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "volume_multiplier": {
+              "key": "Optional",
+              "default": "1.0"
             },
             "on_listening": {
               "key": "Optional",
               "type": "trigger"
             },
             "on_start": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_wake_word_detected": {
               "key": "Optional",
               "type": "trigger"
             },
@@ -59,6 +92,62 @@
               "type": "trigger"
             },
             "on_error": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_client_connected": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_client_disconnected": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_intent_start": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_intent_end": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_stt_vad_start": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_stt_vad_end": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_tts_stream_start": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_tts_stream_end": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_idle": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_timer_started": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_timer_updated": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_timer_cancelled": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_timer_finished": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_timer_tick": {
               "key": "Optional",
               "type": "trigger"
             }
@@ -87,7 +176,19 @@
         "schema": {
           "extends": [
             "voice_assistant.VOICE_ASSISTANT_ACTION_SCHEMA"
-          ]
+          ],
+          "config_vars": {
+            "silence_detection": {
+              "key": "Optional",
+              "default": "True",
+              "type": "boolean"
+            },
+            "wake_word": {
+              "key": "Optional",
+              "templatable": true,
+              "type": "string"
+            }
+          }
         }
       },
       "start_continuous": {
@@ -109,6 +210,14 @@
     },
     "condition": {
       "is_running": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "voice_assistant.VOICE_ASSISTANT_ACTION_SCHEMA"
+          ]
+        }
+      },
+      "connected": {
         "type": "schema",
         "schema": {
           "extends": [

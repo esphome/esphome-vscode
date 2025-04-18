@@ -90,7 +90,7 @@
                   }
                 }
               },
-              "docs": "The percentage of full for the tank sensor\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
+              "docs": "The percentage of full for the tank sensor.  If read is ignored due to quality this sensor will not be updated.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
             },
             "distance": {
               "key": "Optional",
@@ -114,7 +114,7 @@
                   }
                 }
               },
-              "docs": "The raw distance/depth of the liquid for the sensor in mm.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
+              "docs": "The raw distance/depth of the liquid for the sensor in mm. If read is ignored due to quality this sensor will not be updated.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
             },
             "battery_level": {
               "key": "Optional",
@@ -139,6 +139,66 @@
                 }
               },
               "docs": "The information for the battery percentage sensor.  Sensor uses a standard CR2032 battery.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
+            },
+            "signal_quality": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": ""
+                  },
+                  "icon": {
+                    "default": "mdi:signal-distance-variant"
+                  },
+                  "accuracy_decimals": {
+                    "default": "0"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  }
+                }
+              },
+              "docs": "The information for the read quality sensor.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
+            },
+            "ignored_reads": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": ""
+                  },
+                  "icon": {
+                    "default": "mdi:counter"
+                  },
+                  "accuracy_decimals": {
+                    "default": "0"
+                  },
+                  "entity_category": {
+                    "default": "diagnostic"
+                  }
+                }
+              },
+              "docs": "A diagnostic sensor indicating the number of consecutive ignored reads.  This resets to zero each time the read is equal or greater than the configured ignored quality.  Only the distance and level sensors are not reported.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
+            },
+            "minimum_signal_quality": {
+              "key": "Optional",
+              "default": "MEDIUM",
+              "type": "enum",
+              "values": {
+                "ZERO": null,
+                "LOW": null,
+                "MEDIUM": null,
+                "HIGH": null
+              },
+              "docs": "Each report from the sensor indicates the quality or confidence in the distance the sensor calculated. Physical sensor placement, tank material or quality, or other factors can influence the sensors ability to read with confidence.  As quality gets lower, the accuracy of the distance reading may not align with expectations. This value allows configuration of the minimum quality level that the distance should be evaluated/reported. Acceptable Values:\n  * \u201cHIGH\u201d: High Quality\n  \n  * \u201cMEDIUM\u201d: Medium Quality (default value)\n  \n  * \u201cLOW\u201d: Low Quality\n  \n  * \u201cZERO\u201d: Zero Quality\n  \n  \n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#configuration-variables)*"
             }
           },
           "extends": [

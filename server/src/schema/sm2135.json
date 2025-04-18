@@ -67,6 +67,12 @@
                 "60mA": null
               },
               "docs": "**current**: The current used for the white channel. Defaults to `10mA`. Can be one of `10mA`, `15mA`, `20mA`, `25mA`, `30mA`, `35mA`, `40mA`, `45mA`, `50mA`, `55mA`, `60mA`.\n\n*See also: [sm2135 Component/Hub](https://esphome.io/components/output/sm2135.html#configuration-variables)*"
+            },
+            "separate_modes": {
+              "key": "Optional",
+              "default": "True",
+              "type": "boolean",
+              "docs": "**bool**: Use separate RGB/CW modes instead of writing all 5 values as RGB. Defaults to `true`, keep it at `true` if your SM2135 chip variant does not support simultaneous CW and RGB modes (e.g. SM2135E). Set this to `false` when your SM2135 chip variant supports having CW and RGB leds on at the same time (e.g. SM2135EH/SM2135EJ).\n\n*See also: [sm2135 Component/Hub](https://esphome.io/components/output/sm2135.html#configuration-variables)*"
             }
           },
           "extends": [

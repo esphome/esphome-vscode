@@ -14,13 +14,17 @@
                   "uart::UARTDevice"
                 ]
               },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [SML (Smart Message Language)](https://esphome.io/components/sml.html#sml-platform)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [sml Component/Hub](https://esphome.io/components/sml.html#component-hub)*"
+            },
+            "on_data": {
+              "key": "Optional",
+              "type": "trigger"
             },
             "uart_id": {
               "key": "GeneratedID",
               "use_id_type": "uart::UARTComponent",
               "type": "use_id",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Component](https://esphome.io/components/uart.html#uart) if you want to use multiple UART buses.\n\n*See also: [SML (Smart Message Language)](https://esphome.io/components/sml.html#sml-platform)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Component](https://esphome.io/components/uart.html#uart) if you want to use multiple UART buses.\n\n*See also: [sml Component/Hub](https://esphome.io/components/sml.html#component-hub)*"
             }
           }
         },

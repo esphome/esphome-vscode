@@ -1,0 +1,85 @@
+{
+  "ina2xx_spi.sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "ina2xx_base.INA2XX_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "ina2xx_spi::INA2XXSPI",
+                "parents": [
+                  "ina2xx_base::INA2XX",
+                  "PollingComponent",
+                  "Component",
+                  "spi::SPIDevice"
+                ]
+              }
+            },
+            "model": {
+              "key": "Required",
+              "type": "enum",
+              "values": {
+                "INA229": null,
+                "INA239": null
+              }
+            },
+            "spi_id": {
+              "key": "GeneratedID",
+              "use_id_type": "spi::SPIComponent",
+              "type": "use_id"
+            },
+            "data_rate": {
+              "key": "Optional",
+              "type": "enum",
+              "values": {
+                "80000000.0": null,
+                "40000000.0": null,
+                "20000000.0": null,
+                "10000000.0": null,
+                "8000000.0": null,
+                "5000000.0": null,
+                "4000000.0": null,
+                "2000000.0": null,
+                "1000000.0": null,
+                "200000.0": null,
+                "75000.0": null,
+                "1000.0": null
+              }
+            },
+            "spi_mode": {
+              "key": "Optional",
+              "type": "enum",
+              "values": {
+                "MODE0": null,
+                "MODE1": null,
+                "MODE2": null,
+                "MODE3": null,
+                "0": null,
+                "1": null,
+                "2": null,
+                "3": null,
+                "0": null,
+                "1": null,
+                "2": null,
+                "3": null
+              }
+            },
+            "cs_pin": {
+              "key": "Required",
+              "schema": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin"
+            }
+          }
+        }
+      }
+    }
+  }
+}

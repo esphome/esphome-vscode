@@ -86,7 +86,7 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "default": "VAR"
+                    "default": "var"
                   },
                   "icon": {
                     "default": "mdi:lightbulb"
@@ -100,6 +100,29 @@
                 }
               },
               "docs": "Use the reactive power value on this phase. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [ATM90E32 Power Sensor](https://esphome.io/components/sensor/atm90e32.html#configuration-variables)*"
+            },
+            "apparent_power": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "W"
+                  },
+                  "accuracy_decimals": {
+                    "default": "2"
+                  },
+                  "device_class": {
+                    "default": "power"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  }
+                }
+              }
             },
             "power_factor": {
               "key": "Optional",
@@ -170,6 +193,78 @@
               },
               "docs": "Use the reverse active energy value on this phase in watt-hours. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [ATM90E32 Power Sensor](https://esphome.io/components/sensor/atm90e32.html#configuration-variables)*"
             },
+            "phase_angle": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "\u00b0"
+                  },
+                  "accuracy_decimals": {
+                    "default": "2"
+                  },
+                  "device_class": {
+                    "default": "power"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  }
+                }
+              },
+              "docs": "Use the phase angle value on this phase in degrees. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [ATM90E32 Power Sensor](https://esphome.io/components/sensor/atm90e32.html#configuration-variables)*"
+            },
+            "harmonic_power": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "W"
+                  },
+                  "accuracy_decimals": {
+                    "default": "2"
+                  },
+                  "device_class": {
+                    "default": "power"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  }
+                }
+              },
+              "docs": "Use the harmonic power value on this phase. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [ATM90E32 Power Sensor](https://esphome.io/components/sensor/atm90e32.html#configuration-variables)*"
+            },
+            "peak_current": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "A"
+                  },
+                  "accuracy_decimals": {
+                    "default": "2"
+                  },
+                  "device_class": {
+                    "default": "current"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  }
+                }
+              },
+              "docs": "Use the peak current value on this phase in amperes. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [ATM90E32 Power Sensor](https://esphome.io/components/sensor/atm90e32.html#configuration-variables)*"
+            },
             "gain_voltage": {
               "key": "Optional",
               "default": "7305",
@@ -210,7 +305,7 @@
                   "atm90e32.sensor.ATM90E32_PHASE_SCHEMA"
                 ]
               },
-              "docs": "The configuration options for the 1st phase.\n  * **voltage** (*Optional*): Use the voltage value of this phase in V (RMS). All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **current** (*Optional*): Use the current value of this phase in amperes. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **power** (*Optional*): Use the power value on this phase in watts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **reactive_power** (*Optional*): Use the reactive power value on this phase. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **power_factor** (*Optional*): Use the power factor value on this phase. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **gain_voltage** (*Optional*, int): Voltage gain to scale the low voltage AC power pack to household mains feed. Defaults to `7305`.\n  \n  * **gain_ct** (*Optional*, int): CT clamp calibration for this phase. Defaults to `27961`.\n  \n  * **forward_active_energy** (*Optional*): Use the forward active energy value on this phase in watt-hours. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **reverse_active_energy** (*Optional*): Use the reverse active energy value on this phase in watt-hours. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [ATM90E32 Power Sensor](https://esphome.io/components/sensor/atm90e32.html#configuration-variables)*"
+              "docs": "The configuration options for the 1st phase.\n  * **voltage** (*Optional*): Use the voltage value of this phase in V (RMS). All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **current** (*Optional*): Use the current value of this phase in amperes. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **power** (*Optional*): Use the power value on this phase in watts. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **reactive_power** (*Optional*): Use the reactive power value on this phase. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **power_factor** (*Optional*): Use the power factor value on this phase. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **phase_angle** (*Optional*): Use the phase angle value on this phase in degrees. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **peak_current** (*Optional*): Use the peak current value on this phase in amperes. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **harmonic_power** (*Optional*): Use the harmonic power value on this phase. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **gain_voltage** (*Optional*, int): Voltage gain to scale the low voltage AC power pack to household mains feed. Defaults to `7305`.\n  \n  * **gain_ct** (*Optional*, int): CT clamp calibration for this phase. Defaults to `27961`.\n  \n  * **forward_active_energy** (*Optional*): Use the forward active energy value on this phase in watt-hours. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * **reverse_active_energy** (*Optional*): Use the reverse active energy value on this phase in watt-hours. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [ATM90E32 Power Sensor](https://esphome.io/components/sensor/atm90e32.html#configuration-variables)*"
             },
             "phase_b": {
               "key": "Optional",
@@ -254,7 +349,7 @@
                   }
                 }
               },
-              "docs": "Use the frequenycy value calculated by the meter. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [ATM90E32 Power Sensor](https://esphome.io/components/sensor/atm90e32.html#configuration-variables)*"
+              "docs": "Use the frequency value calculated by the meter. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [ATM90E32 Power Sensor](https://esphome.io/components/sensor/atm90e32.html#configuration-variables)*"
             },
             "chip_temperature": {
               "key": "Optional",
@@ -313,6 +408,18 @@
               },
               "docs": "**string**: The gain for the CT clamp, `2X` for 100A, `4X` for 100A - 200A. One of `1X`, `2X`, `4X`. Defaults to `2X` which is suitable for the popular SCT-013-000 clamp.\n\n*See also: [ATM90E32 Power Sensor](https://esphome.io/components/sensor/atm90e32.html#configuration-variables)*"
             },
+            "peak_current_signed": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean",
+              "docs": "**boolean**: Control the peak current output as signed or absolute. Defaults to `false`.\n\n*See also: [ATM90E32 Power Sensor](https://esphome.io/components/sensor/atm90e32.html#configuration-variables)*"
+            },
+            "enable_offset_calibration": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean",
+              "docs": "**boolean**: If true it enables fine grained offset noise 0 level calibration for voltage and current sensors. Buttons are required to operate the calibration feature. With multiple atm90e32 sensors each one is enabled individually and it\u2019s buttons are mapped using an id value pair. e.g. `id: chip1` when more than one is defined. Offset calibration should only be used when DC supply noise causes non 0 current or voltage readings. Calibration can only be performed when all voltage and current inputs are at a 0 value.\n\n*See also: [ATM90E32 Power Sensor](https://esphome.io/components/sensor/atm90e32.html#configuration-variables)*"
+            },
             "update_interval": {
               "key": "Optional",
               "default": "60s",
@@ -323,6 +430,38 @@
               "use_id_type": "spi::SPIComponent",
               "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [SPI Component](https://esphome.io/components/spi.html#spi) if you want to use multiple SPI buses.\n\n*See also: [ATM90E32 Power Sensor](https://esphome.io/components/sensor/atm90e32.html#configuration-variables)*"
+            },
+            "data_rate": {
+              "key": "Optional",
+              "type": "enum",
+              "values": {
+                "80000000.0": null,
+                "40000000.0": null,
+                "20000000.0": null,
+                "10000000.0": null,
+                "8000000.0": null,
+                "5000000.0": null,
+                "4000000.0": null,
+                "2000000.0": null,
+                "1000000.0": null,
+                "200000.0": null,
+                "75000.0": null,
+                "1000.0": null
+              }
+            },
+            "spi_mode": {
+              "key": "Optional",
+              "type": "enum",
+              "values": {
+                "MODE0": null,
+                "MODE1": null,
+                "MODE2": null,
+                "MODE3": null,
+                "0": null,
+                "1": null,
+                "2": null,
+                "3": null
+              }
             },
             "cs_pin": {
               "key": "Required",
@@ -337,6 +476,79 @@
           "extends": [
             "core.COMPONENT_SCHEMA"
           ]
+        }
+      }
+    }
+  },
+  "atm90e32.button": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "use_id_type": "atm90e32::ATM90E32Component",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the atm90e32 defined above. Required if there are multiple atm90e32 configured.\n\n*See also: [atm90e32 Button](https://esphome.io/components/sensor/atm90e32.html#button)*"
+            },
+            "run_offset_calibration": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "button.BUTTON_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "atm90e32::ATM90E32CalibrationButton",
+                      "parents": [
+                        "button::Button",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "icon": {
+                    "default": "mdi:scale"
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  }
+                }
+              },
+              "docs": "A button to run the offset calibration. All options from [Button](https://esphome.io/components/button/index.html#config-button).\n\n*See also: [atm90e32 Button](https://esphome.io/components/sensor/atm90e32.html#button)*"
+            },
+            "clear_offset_calibration": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "button.BUTTON_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "atm90e32::ATM90E32ClearCalibrationButton",
+                      "parents": [
+                        "button::Button",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "icon": {
+                    "default": "mdi:chip"
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  }
+                }
+              },
+              "docs": "A button to clear the offset calibration. All options from [Button](https://esphome.io/components/button/index.html#config-button).\n\n*See also: [atm90e32 Button](https://esphome.io/components/sensor/atm90e32.html#button)*"
+            }
+          }
         }
       }
     }

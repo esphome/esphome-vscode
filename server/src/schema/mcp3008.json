@@ -13,12 +13,45 @@
                   "Component",
                   "spi::SPIDevice"
                 ]
-              }
+              },
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this MCP3008 component.\n\n*See also: [mcp3008 Component/Hub](https://esphome.io/components/sensor/mcp3008.html#component-hub)*"
             },
             "spi_id": {
               "key": "GeneratedID",
               "use_id_type": "spi::SPIComponent",
               "type": "use_id"
+            },
+            "data_rate": {
+              "key": "Optional",
+              "type": "enum",
+              "values": {
+                "80000000.0": null,
+                "40000000.0": null,
+                "20000000.0": null,
+                "10000000.0": null,
+                "8000000.0": null,
+                "5000000.0": null,
+                "4000000.0": null,
+                "2000000.0": null,
+                "1000000.0": null,
+                "200000.0": null,
+                "75000.0": null,
+                "1000.0": null
+              }
+            },
+            "spi_mode": {
+              "key": "Optional",
+              "type": "enum",
+              "values": {
+                "MODE0": null,
+                "MODE1": null,
+                "MODE2": null,
+                "MODE3": null,
+                "0": null,
+                "1": null,
+                "2": null,
+                "3": null
+              }
             },
             "cs_pin": {
               "key": "Required",
@@ -26,7 +59,8 @@
               "modes": [
                 "output"
               ],
-              "type": "pin"
+              "type": "pin",
+              "docs": "**int**: The SPI cable select pin to use.\n\n*See also: [mcp3008 Component/Hub](https://esphome.io/components/sensor/mcp3008.html#component-hub)*"
             }
           }
         },
@@ -52,9 +86,20 @@
                   "EntityBase",
                   "PollingComponent",
                   "Component",
-                  "voltage_sampler::VoltageSampler"
+                  "voltage_sampler::VoltageSampler",
+                  "Parented<mcp3008::MCP3008>",
+                  "Parented"
                 ]
               }
+            },
+            "unit_of_measurement": {
+              "default": "V"
+            },
+            "device_class": {
+              "default": "voltage"
+            },
+            "state_class": {
+              "default": "measurement"
             },
             "mcp3008_id": {
               "key": "GeneratedID",
@@ -65,7 +110,7 @@
             "number": {
               "key": "Required",
               "type": "integer",
-              "docs": "**int**: The pin number of the MCP3008\n\n*See also: [mcp3008 Sensor](https://esphome.io/components/sensor/mcp3008.html#sensor)*"
+              "docs": "**int**: The pin number of the MCP3008.\n\n*See also: [mcp3008 Sensor](https://esphome.io/components/sensor/mcp3008.html#sensor)*"
             },
             "reference_voltage": {
               "key": "Optional",
@@ -74,7 +119,7 @@
             },
             "update_interval": {
               "key": "Optional",
-              "default": "1s",
+              "default": "60s",
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `1s`.\n\n*See also: [mcp3008 Sensor](https://esphome.io/components/sensor/mcp3008.html#sensor)*"
             }
           }

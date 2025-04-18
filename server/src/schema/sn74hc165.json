@@ -31,7 +31,7 @@
                 "output"
               ],
               "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: Pin connected to SN74HC165 Clock (CLK) pin\n\n*See also: [SN74HC165 I/O Expander (shift register)](https://esphome.io/components/sn74hc165.html#configuration-variables)*"
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: Pin connected to SN74HC165 Clock (CLK) pin.\n\n*See also: [SN74HC165 I/O Expander (shift register)](https://esphome.io/components/sn74hc165.html#configuration-variables)*"
             },
             "load_pin": {
               "key": "Required",
@@ -40,7 +40,7 @@
                 "output"
               ],
               "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: Pin connected to SN74HC165 Load input (SH/LD) pin\n\n*See also: [SN74HC165 I/O Expander (shift register)](https://esphome.io/components/sn74hc165.html#configuration-variables)*"
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: Pin connected to SN74HC165 Load input (SH/LD) pin.\n\n*See also: [SN74HC165 I/O Expander (shift register)](https://esphome.io/components/sn74hc165.html#configuration-variables)*"
             },
             "clock_inhibit_pin": {
               "key": "Optional",
@@ -49,7 +49,7 @@
                 "output"
               ],
               "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: Pin connected to SN74HC165 Clock Inhibit (CLK INH) pin\n\n*See also: [SN74HC165 I/O Expander (shift register)](https://esphome.io/components/sn74hc165.html#configuration-variables)*"
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: Pin connected to SN74HC165 Clock Inhibit (CLK INH) pin. The use of it is optional, as it can be directly connected to ground.\n\n*See also: [SN74HC165 I/O Expander (shift register)](https://esphome.io/components/sn74hc165.html#configuration-variables)*"
             },
             "sr_count": {
               "key": "Optional",

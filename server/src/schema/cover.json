@@ -13,20 +13,24 @@
       "current_based": {
         "docs": "The `current_based` cover platform allows you to create covers with position control by using current sensors to detect the fully-open and fully-closed states. This is pretty useful when using motors with integrated mechanical endstops. During cover operation, the component monitors the current consumption to detect when the motor has stopped.\n\n*See also: [Current Based Cover](https://esphome.io/components/cover/current_based.html#current-based-cover)*"
       },
-      "custom": {
-        "docs": "This integration can be used to create custom covers in ESPHome using the C++ (Arduino) API.\n\n*See also: [Custom Cover](https://esphome.io/components/cover/custom.html#custom-cover)*"
-      },
+      "custom": {},
       "endstop": {
         "docs": "The `endstop` cover platform allows you to create covers with position control that have endstops at both ends of the cover to detect the fully-open and fully-closed states. When any of these endstops are reached, the cover is stopped (via `stop_action`) and the corresponding state is sent out.\n\n*See also: [Endstop Cover](https://esphome.io/components/cover/endstop.html#endstop-cover)*"
       },
       "feedback": {
         "docs": "The `feedback` cover platform allows you to create covers with position control that can optionally have feedback from sensors to detect the fully-open and fully-closed states (endstops), and from sensors to detect actual movement (opening/closing). In all the cases the current position is approximated with the time the cover has been moving in a direction.\n\n*See also: [Feedback Cover](https://esphome.io/components/cover/feedback.html#feedback-cover)*"
       },
+      "he60r": {
+        "docs": "The `he60r` cover platform allows you to control a HomEntry HE60R garage door opener. These units were made by Chamberlain and sold through Bunnings. It is *likely* that this component will also work with other older Chamberlain garage door openers. It is not currently compatible with newer Chamberlain units that use the Security+ 2.0 protocol.\n\n*See also: [HE60R Garage Door Opener](https://esphome.io/components/cover/he60r.html#he60r-garage-door-opener)*"
+      },
       "template": {
         "docs": "The `template` cover platform allows you to create simple covers out of just a few actions and a value lambda. Once defined, it will automatically appear in Home Assistant as a cover and can be controlled through the frontend.\n\n*See also: [Template Cover](https://esphome.io/components/cover/template.html#template-cover)*"
       },
       "time_based": {
-        "docs": "The `time_based` cover platform allows you to create covers with position control that do not have any position feedback. The state of the cover is thus always an assumed one, the current position is approximated with the time the cover has been moving in a direction.\n\n*See also: [Time Based Cover](https://esphome.io/components/cover/time_based.html#time-based-cover)*"
+        "docs": "The `time_based` cover platform allows you to create covers with position control that do not have any position feedback. The state of the cover is thus always an assumed one, the current position is approximated with the time the cover has been moving in a direction. The state of the cover can be restored at node reboot.\n\n*See also: [Time Based Cover](https://esphome.io/components/cover/time_based.html#time-based-cover)*"
+      },
+      "tormatic": {
+        "docs": "The `tormatic` cover platform allows you to control Tormatic and Novoferm garage door drives manufactured in 2016 onwards. The following models should be supported:\n\n*See also: [Tormatic/Novoferm Cover](https://esphome.io/components/cover/tormatic.html#tormatic-novoferm-cover)*"
       },
       "tuya": {
         "dependencies": [
@@ -44,6 +48,27 @@
             "core.MQTT_COMMAND_COMPONENT_SCHEMA"
           ],
           "config_vars": {
+            "web_server": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "web_server_id": {
+                    "key": "Optional",
+                    "use_id_type": "web_server::WebServer",
+                    "type": "use_id"
+                  },
+                  "sorting_weight": {
+                    "key": "Optional"
+                  },
+                  "sorting_group_id": {
+                    "key": "Optional",
+                    "use_id_type": "int",
+                    "type": "use_id"
+                  }
+                }
+              }
+            },
             "id": {
               "key": "GeneratedID",
               "id_type": {
@@ -52,7 +77,7 @@
                   "EntityBase"
                 ]
               },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Tuya Cover](https://esphome.io/components/cover/tuya.html#configuration-variables)*"
+              "docs": "**string**: Manually specify the ID for code generation. At least one of **id** and **name** must be specified.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#base-cover-configuration)*"
             },
             "mqtt_id": {
               "key": "Optional",
@@ -80,7 +105,7 @@
                 "shutter": null,
                 "window": null
               },
-              "docs": "**string**: The device class for the sensor. See [https://www.home-assistant.io/components/cover/](https://www.home-assistant.io/components/cover/) for a list of available options.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#base-cover-configuration)*"
+              "docs": "**string**: The device class for the sensor. See [https://www.home-assistant.io/integrations/cover/#device-class](https://www.home-assistant.io/integrations/cover/#device-class) for a list of available options.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#base-cover-configuration)*"
             },
             "position_command_topic": {
               "key": "Optional",
@@ -170,7 +195,7 @@
             "cover.COVER_ACTION_SCHEMA"
           ]
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) opens the cover with the given ID when executed.\n\n*See also: [`cover.open` Action](https://esphome.io/components/cover/index.html#cover-open-action)*"
+        "docs": "This [action](https://esphome.io/automations/actions.html#config-action) opens the cover with the given ID when executed.\n\n*See also: [`cover.open` Action](https://esphome.io/components/cover/index.html#cover-open-action)*"
       },
       "close": {
         "type": "schema",
@@ -179,7 +204,7 @@
             "cover.COVER_ACTION_SCHEMA"
           ]
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) closes the cover with the given ID when executed.\n\n*See also: [`cover.close` Action](https://esphome.io/components/cover/index.html#cover-close-action)*"
+        "docs": "This [action](https://esphome.io/automations/actions.html#config-action) closes the cover with the given ID when executed.\n\n*See also: [`cover.close` Action](https://esphome.io/components/cover/index.html#cover-close-action)*"
       },
       "stop": {
         "type": "schema",
@@ -188,7 +213,7 @@
             "cover.COVER_ACTION_SCHEMA"
           ]
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) stops the cover with the given ID when executed.\n\n*See also: [`cover.stop` Action](https://esphome.io/components/cover/index.html#cover-stop-action)*"
+        "docs": "This [action](https://esphome.io/automations/actions.html#config-action) stops the cover with the given ID when executed.\n\n*See also: [`cover.stop` Action](https://esphome.io/components/cover/index.html#cover-stop-action)*"
       },
       "toggle": {
         "type": "schema",
@@ -197,7 +222,7 @@
             "cover.COVER_ACTION_SCHEMA"
           ]
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) toggles the cover with the given ID when executed, cycling through the states close/stop/open/stop\u2026 This allows the cover to be controlled by a single push button.\n\n*See also: [`cover.toggle` Action](https://esphome.io/components/cover/index.html#cover-toggle-action)*"
+        "docs": "This [action](https://esphome.io/automations/actions.html#config-action) toggles the cover with the given ID when executed, cycling through the states close/stop/open/stop\u2026 This allows the cover to be controlled by a single push button.\n\n*See also: [`cover.toggle` Action](https://esphome.io/components/cover/index.html#cover-toggle-action)*"
       },
       "control": {
         "type": "schema",
@@ -206,7 +231,7 @@
             "cover.COVER_CONTROL_ACTION_SCHEMA"
           ]
         },
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) is a more generic version of the other cover actions and allows all cover attributes to be set.\n\n*See also: [`cover.control` Action](https://esphome.io/components/cover/index.html#cover-control-action)*"
+        "docs": "This [action](https://esphome.io/automations/actions.html#config-action) is a more generic version of the other cover actions and allows all cover attributes to be set.\n\n*See also: [`cover.control` Action](https://esphome.io/components/cover/index.html#cover-control-action)*"
       }
     }
   }

@@ -18,6 +18,9 @@
                   "PollingComponent",
                   "Component",
                   "display::DisplayBuffer",
+                  "display::Display",
+                  "PollingComponent",
+                  "Component",
                   "i2c::I2CDevice"
                 ]
               },
@@ -33,6 +36,9 @@
               "default": "61",
               "data_type": "hex_uint8_t",
               "docs": "**int**: Manually specify the [I\u00b2C](https://esphome.io/components/i2c.html#i2c) address of the display. Defaults to 0x3D.\n\n*See also: [ssd1327 Over I\u00b2C](https://esphome.io/components/display/ssd1327.html#configuration-variables)*"
+            },
+            "update_interval": {
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to re-draw the screen. Defaults to `5s`.\n\n*See also: [ssd1327 Over I\u00b2C](https://esphome.io/components/display/ssd1327.html#configuration-variables)*"
             }
           }
         },

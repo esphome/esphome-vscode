@@ -1,0 +1,64 @@
+{
+  "aic3204.audio_dac": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "aic3204::AIC3204",
+                "parents": [
+                  "audio_dac::AudioDac",
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              }
+            },
+            "i2c_id": {
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id",
+              "docs": "The ID of the [I\u00b2C bus](https://esphome.io/components/i2c.html#i2c) the AIC3204 is connected to.\n\n*See also: [AIC3204](https://esphome.io/components/audio_dac/aic3204.html#configuration-variables)*"
+            },
+            "address": {
+              "key": "Optional",
+              "default": "24",
+              "data_type": "hex_uint8_t",
+              "docs": "**int**: The I\u00b2C address of the driver. Defaults to `0x18`.\n\n*See also: [AIC3204](https://esphome.io/components/audio_dac/aic3204.html#configuration-variables)*"
+            }
+          },
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
+        }
+      }
+    }
+  },
+  "aic3204": {
+    "action": {
+      "set_auto_mute_mode": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "use_id_type": "aic3204::AIC3204",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the `aic3204` platform.\n\n*See also: [AIC3204](https://esphome.io/components/audio_dac/aic3204.html#aic3204-set-auto-mute-mode-action)*"
+            },
+            "mode": {
+              "key": "Required",
+              "templatable": true,
+              "type": "integer",
+              "docs": "**int, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The auto-mute mode to be used; must be in the range of 0 (auto-mute disabled) to 7.\n\n*See also: [AIC3204](https://esphome.io/components/audio_dac/aic3204.html#aic3204-set-auto-mute-mode-action)*"
+            }
+          }
+        },
+        "maybe": "mode",
+        "docs": "This action sets the auto-mute mode of the AIC3204. See page 111 in the [reference manual](https://www.ti.com/lit/ml/slaa557/slaa557.pdf?ts=1727495047647&ref_url=ti.com) for more information.\n\n*See also: [`aic3204.set_auto_mute_mode` Action](https://esphome.io/components/audio_dac/aic3204.html#aic3204-set-auto-mute-mode-action)*"
+      }
+    }
+  }
+}

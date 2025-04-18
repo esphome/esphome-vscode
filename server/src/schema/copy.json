@@ -296,6 +296,36 @@
       }
     }
   },
+  "copy.text": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "text.TEXT_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "id_type": {
+                "class": "copy::CopyText",
+                "parents": [
+                  "text::Text",
+                  "EntityBase",
+                  "Component"
+                ]
+              }
+            },
+            "source_id": {
+              "key": "Required",
+              "use_id_type": "text::Text",
+              "type": "use_id"
+            }
+          }
+        }
+      }
+    }
+  },
   "copy.text_sensor": {
     "schemas": {
       "CONFIG_SCHEMA": {

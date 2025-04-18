@@ -19,8 +19,7 @@
                   "sensor::Sensor",
                   "EntityBase"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for lambdas/multiple sensors.\n\n*See also: [TMP117 Temperature Sensor](https://esphome.io/components/sensor/tmp117.html#configuration-variables)*"
+              }
             },
             "unit_of_measurement": {
               "default": "\u00b0C"

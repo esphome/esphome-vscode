@@ -1,0 +1,129 @@
+{
+  "mcp4461": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "mcp4461::Mcp4461Component",
+                "parents": [
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              },
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n*See also: [MCP4461 Component](https://esphome.io/components/output/mcp4461.html#configuration-variables)*"
+            },
+            "disable_wiper_0": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean",
+              "docs": "**bool**: Disable wiper 0. Defaults to `false`.\n\n*See also: [MCP4461 Component](https://esphome.io/components/output/mcp4461.html#configuration-variables)*"
+            },
+            "disable_wiper_1": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean",
+              "docs": "**bool**: Disable wiper 1. Defaults to `false`.\n\n*See also: [MCP4461 Component](https://esphome.io/components/output/mcp4461.html#configuration-variables)*"
+            },
+            "disable_wiper_2": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean",
+              "docs": "**bool**: Disable wiper 2. Defaults to `false`.\n\n*See also: [MCP4461 Component](https://esphome.io/components/output/mcp4461.html#configuration-variables)*"
+            },
+            "disable_wiper_3": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean",
+              "docs": "**bool**: Disable wiper 3. Defaults to `false`.\n\n*See also: [MCP4461 Component](https://esphome.io/components/output/mcp4461.html#configuration-variables)*"
+            },
+            "i2c_id": {
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
+            },
+            "address": {
+              "key": "Optional",
+              "default": "44",
+              "data_type": "hex_uint8_t",
+              "docs": "**int**: Manually specify the I2C address of the digipot. Defaults to `0x2C`.\n\n*See also: [MCP4461 Component](https://esphome.io/components/output/mcp4461.html#configuration-variables)*"
+            }
+          },
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
+        },
+        "is_list": true
+      }
+    }
+  },
+  "mcp4461.output": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "output.FLOAT_OUTPUT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "id_type": {
+                "class": "mcp4461::Mcp4461Wiper",
+                "parents": [
+                  "output::FloatOutput",
+                  "output::BinaryOutput",
+                  "Parented<mcp4461::Mcp4461Component>",
+                  "Parented"
+                ]
+              },
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n*See also: [MCP4461 Output](https://esphome.io/components/output/mcp4461.html#id2)*"
+            },
+            "mcp4461_id": {
+              "key": "GeneratedID",
+              "use_id_type": "mcp4461::Mcp4461Component",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [MCP4461](https://esphome.io/components/output/mcp4461.html#id1). Use this if you have multiple MCP4461 ICs you want to use at the same time.\n\n*See also: [MCP4461 Output](https://esphome.io/components/output/mcp4461.html#id2)*"
+            },
+            "channel": {
+              "key": "Required",
+              "type": "enum",
+              "values": {
+                "A": null,
+                "B": null,
+                "C": null,
+                "D": null,
+                "E": null,
+                "F": null,
+                "G": null,
+                "H": null
+              },
+              "docs": "**string**: Choose the channel of this MCP4461 output component. One of `A`, `B`, `C`, `D`, `E`, `F`, `G` or `H`.\n\n*See also: [MCP4461 Output](https://esphome.io/components/output/mcp4461.html#id2)*"
+            },
+            "terminal_a": {
+              "key": "Optional",
+              "default": "True",
+              "type": "boolean"
+            },
+            "terminal_b": {
+              "key": "Optional",
+              "default": "True",
+              "type": "boolean"
+            },
+            "terminal_w": {
+              "key": "Optional",
+              "default": "True",
+              "type": "boolean"
+            },
+            "initial_value": {
+              "key": "Optional"
+            }
+          }
+        }
+      }
+    }
+  }
+}

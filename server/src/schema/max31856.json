@@ -19,8 +19,7 @@
                   "Component",
                   "spi::SPIDevice"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [MAX31856 Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31856.html#configuration-variables)*"
+              }
             },
             "unit_of_measurement": {
               "default": "\u00b0C"
@@ -36,13 +35,29 @@
             },
             "mains_filter": {
               "key": "Optional",
-              "default": "60HZ",
+              "default": "60Hz",
               "type": "enum",
               "values": {
-                "50HZ": null,
-                "60HZ": null
+                "50": null,
+                "60": null
               },
               "docs": "**string**: The mains power frequency to reject (`50 Hz` or `60 Hz`). Defaults to `60 Hz`.\n\n*See also: [MAX31856 Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31856.html#configuration-variables)*"
+            },
+            "thermocouple_type": {
+              "key": "Optional",
+              "default": "K",
+              "type": "enum",
+              "values": {
+                "B": null,
+                "E": null,
+                "J": null,
+                "K": null,
+                "N": null,
+                "R": null,
+                "S": null,
+                "T": null
+              },
+              "docs": "**string**: The type of thermocouple used. MAX31856 supports: B, E, J, K, N, R, S, and T . Defaults to `K`.\n\n*See also: [MAX31856 Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31856.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",
@@ -54,6 +69,38 @@
               "use_id_type": "spi::SPIComponent",
               "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [SPI Component](https://esphome.io/components/spi.html#spi) if you want to use multiple SPI buses.\n\n*See also: [MAX31856 Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31856.html#configuration-variables)*"
+            },
+            "data_rate": {
+              "key": "Optional",
+              "type": "enum",
+              "values": {
+                "80000000.0": null,
+                "40000000.0": null,
+                "20000000.0": null,
+                "10000000.0": null,
+                "8000000.0": null,
+                "5000000.0": null,
+                "4000000.0": null,
+                "2000000.0": null,
+                "1000000.0": null,
+                "200000.0": null,
+                "75000.0": null,
+                "1000.0": null
+              }
+            },
+            "spi_mode": {
+              "key": "Optional",
+              "type": "enum",
+              "values": {
+                "MODE0": null,
+                "MODE1": null,
+                "MODE2": null,
+                "MODE3": null,
+                "0": null,
+                "1": null,
+                "2": null,
+                "3": null
+              }
             },
             "cs_pin": {
               "key": "Required",

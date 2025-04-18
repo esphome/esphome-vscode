@@ -72,7 +72,7 @@
             "ezo_pmp.EZO_PMP_NO_ARGS_ACTION_SCHEMA"
           ]
         },
-        "docs": "Use this action in an [automations](https://esphome.io/guides/automations.html#automation) to have the peristaltic pump dose continuously at the [Maximum Flow Rate](https://esphome.io/components/ezo_pmp.html#ezo-pmp-max-flow-rate-sensor). The pump will automatically stop after 20 days of running in continuous mode.\n\n*See also: [`ezo_pmp.dose_continuously` Action](https://esphome.io/components/ezo_pmp.html#ezo-pmp-dose-continuously-action)*"
+        "docs": "Use this action in an [automations](https://esphome.io/automations/index.html#automation) to have the peristaltic pump dose continuously at the [Maximum Flow Rate](https://esphome.io/components/ezo_pmp.html#ezo-pmp-max-flow-rate-sensor). The pump will automatically stop after 20 days of running in continuous mode.\n\n*See also: [`ezo_pmp.dose_continuously` Action](https://esphome.io/components/ezo_pmp.html#ezo-pmp-dose-continuously-action)*"
       },
       "clear_total_volume_dosed": {
         "type": "schema",
@@ -123,11 +123,11 @@
             "volume": {
               "key": "Required",
               "templatable": true,
-              "docs": "**float, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The volume to dose in milliliters. If negative, pump will run in reverse.\n\n*See also: [Atlas Scientific Peristaltic Pump](https://esphome.io/components/ezo_pmp.html#ezo-pmp-dose-volume-action)*"
+              "docs": "**float, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The volume to dose in milliliters. If negative, pump will run in reverse.\n\n*See also: [Atlas Scientific Peristaltic Pump](https://esphome.io/components/ezo_pmp.html#ezo-pmp-dose-volume-action)*"
             }
           }
         },
-        "docs": "Use this action in an [automations](https://esphome.io/guides/automations.html#automation) to have the peristaltic pump dose an specific volume (in milliliters) at the [Maximum Flow Rate](https://esphome.io/components/ezo_pmp.html#ezo-pmp-max-flow-rate-sensor). If the volume is negative the pump will run backwards.\n\n*See also: [`ezo_pmp.dose_volume` Action](https://esphome.io/components/ezo_pmp.html#ezo-pmp-dose-volume-action)*"
+        "docs": "Use this action in an [automations](https://esphome.io/automations/index.html#automation) to have the peristaltic pump dose an specific volume (in milliliters) at the [Maximum Flow Rate](https://esphome.io/components/ezo_pmp.html#ezo-pmp-max-flow-rate-sensor). If the volume is negative the pump will run backwards.\n\n*See also: [`ezo_pmp.dose_volume` Action](https://esphome.io/components/ezo_pmp.html#ezo-pmp-dose-volume-action)*"
       },
       "dose_volume_over_time": {
         "type": "schema",
@@ -142,17 +142,17 @@
             "volume": {
               "key": "Required",
               "templatable": true,
-              "docs": "**float, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The volume to dose in milliliters. If negative, pump will run in reverse.\n\n*See also: [Atlas Scientific Peristaltic Pump](https://esphome.io/components/ezo_pmp.html#ezo-pmp-dose-volume-over-time-action)*"
+              "docs": "**float, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The volume to dose in milliliters. If negative, pump will run in reverse.\n\n*See also: [Atlas Scientific Peristaltic Pump](https://esphome.io/components/ezo_pmp.html#ezo-pmp-dose-volume-over-time-action)*"
             },
             "duration": {
               "key": "Required",
               "templatable": true,
               "type": "integer",
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The time (in minutes) the pump will take to dose the volume requested.\n\n*See also: [Atlas Scientific Peristaltic Pump](https://esphome.io/components/ezo_pmp.html#ezo-pmp-dose-volume-over-time-action)*"
+              "docs": "**int, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The time (in minutes) the pump will take to dose the volume requested.\n\n*See also: [Atlas Scientific Peristaltic Pump](https://esphome.io/components/ezo_pmp.html#ezo-pmp-dose-volume-over-time-action)*"
             }
           }
         },
-        "docs": "Use this action in an [automations](https://esphome.io/guides/automations.html#automation) to have the peristaltic pump dose an specific `volume` (in milliliters) over the provided `duration` (in minutes). At the end of the time period the pump will have dosed the specified `volume`. If the volume is negative the pump will run backwards.\n\n*See also: [`ezo_pmp.dose_volume_over_time` Action](https://esphome.io/components/ezo_pmp.html#ezo-pmp-dose-volume-over-time-action)*"
+        "docs": "Use this action in an [automations](https://esphome.io/automations/index.html#automation) to have the peristaltic pump dose an specific `volume` (in milliliters) over the provided `duration` (in minutes). At the end of the time period the pump will have dosed the specified `volume`. If the volume is negative the pump will run backwards.\n\n*See also: [`ezo_pmp.dose_volume_over_time` Action](https://esphome.io/components/ezo_pmp.html#ezo-pmp-dose-volume-over-time-action)*"
       },
       "dose_with_constant_flow_rate": {
         "type": "schema",
@@ -167,17 +167,17 @@
             "volume_per_minute": {
               "key": "Required",
               "templatable": true,
-              "docs": "**float, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The volume to dose in milliliters every minute. If negative, pump will run in reverse.\n\n*See also: [Atlas Scientific Peristaltic Pump](https://esphome.io/components/ezo_pmp.html#ezo-pmp-dose-with-constant-flow-rate-action)*"
+              "docs": "**float, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The volume to dose in milliliters every minute. If negative, pump will run in reverse.\n\n*See also: [Atlas Scientific Peristaltic Pump](https://esphome.io/components/ezo_pmp.html#ezo-pmp-dose-with-constant-flow-rate-action)*"
             },
             "duration": {
               "key": "Required",
               "templatable": true,
               "type": "integer",
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The time (in minutes) the pump will dose the volume requested every minute.\n\n*See also: [Atlas Scientific Peristaltic Pump](https://esphome.io/components/ezo_pmp.html#ezo-pmp-dose-with-constant-flow-rate-action)*"
+              "docs": "**int, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The time (in minutes) the pump will dose the volume requested every minute.\n\n*See also: [Atlas Scientific Peristaltic Pump](https://esphome.io/components/ezo_pmp.html#ezo-pmp-dose-with-constant-flow-rate-action)*"
             }
           }
         },
-        "docs": "Use this action in an [automations](https://esphome.io/guides/automations.html#automation) to have the peristaltic pump dose an specific `volume` (in milliliters) every minute for the provided `duration` (in minutes). At the end of the time period the pump will have dosed the specified `volume` times the `duration`. If the volume is negative the pump will run backwards.\n\n*See also: [`ezo_pmp.dose_with_constant_flow_rate` Action](https://esphome.io/components/ezo_pmp.html#ezo-pmp-dose-with-constant-flow-rate-action)*"
+        "docs": "Use this action in an [automations](https://esphome.io/automations/index.html#automation) to have the peristaltic pump dose an specific `volume` (in milliliters) every minute for the provided `duration` (in minutes). At the end of the time period the pump will have dosed the specified `volume` times the `duration`. If the volume is negative the pump will run backwards.\n\n*See also: [`ezo_pmp.dose_with_constant_flow_rate` Action](https://esphome.io/components/ezo_pmp.html#ezo-pmp-dose-with-constant-flow-rate-action)*"
       },
       "set_calibration_volume": {
         "type": "schema",
@@ -192,7 +192,7 @@
             "volume": {
               "key": "Required",
               "templatable": true,
-              "docs": "**float, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The volume measured as part of the calibration process.\n\n*See also: [Atlas Scientific Peristaltic Pump](https://esphome.io/components/ezo_pmp.html#ezo-pmp-set-calibration-volume-action)*"
+              "docs": "**float, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The volume measured as part of the calibration process.\n\n*See also: [Atlas Scientific Peristaltic Pump](https://esphome.io/components/ezo_pmp.html#ezo-pmp-set-calibration-volume-action)*"
             }
           }
         },
@@ -212,7 +212,7 @@
               "key": "Required",
               "templatable": true,
               "type": "integer",
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The new I2C address for the pump.\n\n*See also: [Atlas Scientific Peristaltic Pump](https://esphome.io/components/ezo_pmp.html#ezo-pmp-change-i2c-address-action)*"
+              "docs": "**int, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The new I2C address for the pump.\n\n*See also: [Atlas Scientific Peristaltic Pump](https://esphome.io/components/ezo_pmp.html#ezo-pmp-change-i2c-address-action)*"
             }
           }
         },

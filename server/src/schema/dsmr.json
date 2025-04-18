@@ -18,7 +18,7 @@
             },
             "decryption_key": {
               "key": "Optional",
-              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable), 32 characters, case insensitive**: The key to decrypt the telegrams. Used in Lux only.\n\n*See also: [dsmr Component/Hub](https://esphome.io/components/sensor/dsmr.html#component-hub)*"
+              "docs": "**string, [templatable](https://esphome.io/automations/templates.html#config-templatable), 32 characters, case insensitive**: The key to decrypt the telegrams. Used in Lux only.\n\n*See also: [dsmr Component/Hub](https://esphome.io/components/sensor/dsmr.html#component-hub)*"
             },
             "crc_check": {
               "key": "Optional",
@@ -119,7 +119,7 @@
                   }
                 }
               },
-              "docs": "Energy Consumed Luxembourg\n  * **name** (**Required**, string): The name for the energy_delivered_lux sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Energy Consumed Luxembourg\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "energy_delivered_tariff1": {
               "key": "Optional",
@@ -143,7 +143,7 @@
                   }
                 }
               },
-              "docs": "Energy Consumed Tariff 1.\n  * **name** (**Required**, string): The name for the energy_delivered_tariff1 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Energy Consumed Tariff 1.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "energy_delivered_tariff2": {
               "key": "Optional",
@@ -167,7 +167,7 @@
                   }
                 }
               },
-              "docs": "Energy Consumed Tariff 2.\n  * **name** (**Required**, string): The name for the energy_delivered_tariff2 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Energy Consumed Tariff 2.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "energy_returned_lux": {
               "key": "Optional",
@@ -191,7 +191,7 @@
                   }
                 }
               },
-              "docs": "Energy Produced Luxembourg\n  * **name** (**Required**, string): The name for the energy_returned_lux sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Energy Produced Luxembourg\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "energy_returned_tariff1": {
               "key": "Optional",
@@ -215,7 +215,7 @@
                   }
                 }
               },
-              "docs": "Energy Produced Tariff 1.\n  * **name** (**Required**, string): The name for the energy_returned_tariff1 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Energy Produced Tariff 1.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "energy_returned_tariff2": {
               "key": "Optional",
@@ -239,7 +239,7 @@
                   }
                 }
               },
-              "docs": "Energy Produced Tariff 2.\n  * **name** (**Required**, string): The name for the energy_returned_tariff2 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Energy Produced Tariff 2.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "total_imported_energy": {
               "key": "Optional",
@@ -250,7 +250,7 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "default": "kVArh"
+                    "default": "kVARh"
                   },
                   "accuracy_decimals": {
                     "default": "3"
@@ -267,7 +267,7 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "default": "kVArh"
+                    "default": "kVARh"
                   },
                   "accuracy_decimals": {
                     "default": "3"
@@ -297,7 +297,7 @@
                   }
                 }
               },
-              "docs": "Power Consumed.\n  * **name** (**Required**, string): The name for the power_delivered sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Power Consumed.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "power_returned": {
               "key": "Optional",
@@ -321,7 +321,7 @@
                   }
                 }
               },
-              "docs": "Power Produced.\n  * **name** (**Required**, string): The name for the power_returned sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Power Produced.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "reactive_power_delivered": {
               "key": "Optional",
@@ -332,7 +332,7 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "default": "kVAr"
+                    "default": "kVAR"
                   },
                   "accuracy_decimals": {
                     "default": "3"
@@ -352,7 +352,7 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "default": "kVAr"
+                    "default": "kVAR"
                   },
                   "accuracy_decimals": {
                     "default": "3"
@@ -404,7 +404,7 @@
                   }
                 }
               },
-              "docs": "Electricity Failures.\n  * **name** (**Required**, string): The name for the electricity_failures sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Electricity Failures.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "electricity_long_failures": {
               "key": "Optional",
@@ -419,7 +419,7 @@
                   }
                 }
               },
-              "docs": "Long Electricity Failures.\n  * **name** (**Required**, string): The name for the electricity_long_failures sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Long Electricity Failures.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "electricity_sags_l1": {
               "key": "Optional",
@@ -434,7 +434,7 @@
                   }
                 }
               },
-              "docs": "Number of voltage sags in phase L1.\n  * **name** (**Required**, string): The name for the electricity_sags_l1 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Number of voltage sags in phase L1.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "electricity_sags_l2": {
               "key": "Optional",
@@ -449,7 +449,7 @@
                   }
                 }
               },
-              "docs": "Number of voltage sags in phase L2.\n  * **name** (**Required**, string): The name for the electricity_sags_l2 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Number of voltage sags in phase L2.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "electricity_sags_l3": {
               "key": "Optional",
@@ -464,7 +464,7 @@
                   }
                 }
               },
-              "docs": "Number of voltage sags in phase L3.\n  * **name** (**Required**, string): The name for the electricity_sags_l3 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Number of voltage sags in phase L3.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "electricity_swells_l1": {
               "key": "Optional",
@@ -479,7 +479,7 @@
                   }
                 }
               },
-              "docs": "Number of voltage swells in phase L1.\n  * **name** (**Required**, string): The name for the electricity_swells_l1 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Number of voltage swells in phase L1.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "electricity_swells_l2": {
               "key": "Optional",
@@ -494,7 +494,7 @@
                   }
                 }
               },
-              "docs": "Number of voltage swells in phase L2.\n  * **name** (**Required**, string): The name for the electricity_swells_l2 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Number of voltage swells in phase L2.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "electricity_swells_l3": {
               "key": "Optional",
@@ -509,7 +509,7 @@
                   }
                 }
               },
-              "docs": "Number of voltage swells in phase L3.\n  * **name** (**Required**, string): The name for the electricity_swells_l3 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Number of voltage swells in phase L3.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "current_l1": {
               "key": "Optional",
@@ -533,7 +533,7 @@
                   }
                 }
               },
-              "docs": "Current Phase 1.\n  * **name** (**Required**, string): The name for the current_l1 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Current Phase 1.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "current_l2": {
               "key": "Optional",
@@ -557,7 +557,7 @@
                   }
                 }
               },
-              "docs": "Current Phase 2.\n  * **name** (**Required**, string): The name for the current_l2 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Current Phase 2.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "current_l3": {
               "key": "Optional",
@@ -581,7 +581,7 @@
                   }
                 }
               },
-              "docs": "Current Phase 3.\n  * **name** (**Required**, string): The name for the current_l3 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Current Phase 3.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "power_delivered_l1": {
               "key": "Optional",
@@ -605,7 +605,7 @@
                   }
                 }
               },
-              "docs": "Power Consumed Phase 1.\n  * **name** (**Required**, string): The name for the power_delivered_l1 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Power Consumed Phase 1.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "power_delivered_l2": {
               "key": "Optional",
@@ -629,7 +629,7 @@
                   }
                 }
               },
-              "docs": "Power Consumed Phase 2.\n  * **name** (**Required**, string): The name for the power_delivered_l2 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Power Consumed Phase 2.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "power_delivered_l3": {
               "key": "Optional",
@@ -653,7 +653,7 @@
                   }
                 }
               },
-              "docs": "Power Consumed Phase 3.\n  * **name** (**Required**, string): The name for the power_delivered_l3 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Power Consumed Phase 3.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "power_returned_l1": {
               "key": "Optional",
@@ -677,7 +677,7 @@
                   }
                 }
               },
-              "docs": "Power Produced Phase 1.\n  * **name** (**Required**, string): The name for the power_returned_l1 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Power Produced Phase 1.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "power_returned_l2": {
               "key": "Optional",
@@ -701,7 +701,7 @@
                   }
                 }
               },
-              "docs": "Power Produced Phase 2.\n  * **name** (**Required**, string): The name for the power_returned_l2 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Power Produced Phase 2.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "power_returned_l3": {
               "key": "Optional",
@@ -725,7 +725,7 @@
                   }
                 }
               },
-              "docs": "Power Produced Phase 3.\n  * **name** (**Required**, string): The name for the power_returned_l3 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Power Produced Phase 3.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "reactive_power_delivered_l1": {
               "key": "Optional",
@@ -736,7 +736,7 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "default": "kVAr"
+                    "default": "kVAR"
                   },
                   "accuracy_decimals": {
                     "default": "3"
@@ -756,7 +756,7 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "default": "kVAr"
+                    "default": "kVAR"
                   },
                   "accuracy_decimals": {
                     "default": "3"
@@ -776,7 +776,7 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "default": "kVAr"
+                    "default": "kVAR"
                   },
                   "accuracy_decimals": {
                     "default": "3"
@@ -796,7 +796,7 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "default": "kVAr"
+                    "default": "kVAR"
                   },
                   "accuracy_decimals": {
                     "default": "3"
@@ -816,7 +816,7 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "default": "kVAr"
+                    "default": "kVAR"
                   },
                   "accuracy_decimals": {
                     "default": "3"
@@ -836,7 +836,7 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "default": "kVAr"
+                    "default": "kVAR"
                   },
                   "accuracy_decimals": {
                     "default": "3"
@@ -869,7 +869,7 @@
                   }
                 }
               },
-              "docs": "Voltage Phase 1.\n  * **name** (**Required**, string): The name for the voltage_l1 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Voltage Phase 1.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "voltage_l2": {
               "key": "Optional",
@@ -893,7 +893,7 @@
                   }
                 }
               },
-              "docs": "Voltage Phase 2.\n  * **name** (**Required**, string): The name for the voltage_l2 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Voltage Phase 2.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "voltage_l3": {
               "key": "Optional",
@@ -917,7 +917,7 @@
                   }
                 }
               },
-              "docs": "Voltage Phase 3.\n  * **name** (**Required**, string): The name for the voltage_l3 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Voltage Phase 3.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "gas_delivered": {
               "key": "Optional",
@@ -941,7 +941,7 @@
                   }
                 }
               },
-              "docs": "Gas Consumed.\n  * **name** (**Required**, string): The name for the gas_delivered sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Gas Consumed.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "gas_delivered_be": {
               "key": "Optional",
@@ -965,7 +965,7 @@
                   }
                 }
               },
-              "docs": "Gas Consumed Belgium.\n  * **name** (**Required**, string): The name for the gas_delivered_be sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Gas Consumed Belgium.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "water_delivered": {
               "key": "Optional",
@@ -1012,7 +1012,7 @@
                   }
                 }
               },
-              "docs": "Current Average Quarterly Demand for Peak Tarrif Belgium.\n  * **name** (**Required**, string): The name for the active_energy_import_current_average_demand sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Current Average Quarterly Demand for Peak Tarrif Belgium.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "active_energy_import_maximum_demand_running_month": {
               "key": "Optional",
@@ -1036,7 +1036,7 @@
                   }
                 }
               },
-              "docs": "Current Month\u2019s Maximum Quarterly Demand for Peak Tarrif Belgium.\n  * **name** (**Required**, string): The name for the active_energy_import_maximum_demand_running_month sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "Current Month\u2019s Maximum Quarterly Demand for Peak Tarrif Belgium.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             },
             "active_energy_import_maximum_demand_last_13_months": {
               "key": "Optional",
@@ -1060,7 +1060,7 @@
                   }
                 }
               },
-              "docs": "13 Month Maximum Quarterly Demand for Peak Tarrif Belgium.\n  * **name** (**Required**, string): The name for the active_energy_import_maximum_demand_last_13_months sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
+              "docs": "13 Month Maximum Quarterly Demand for Peak Tarrif Belgium.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [dsmr Sensor](https://esphome.io/components/sensor/dsmr.html#sensor)*"
             }
           },
           "extends": [
@@ -1089,7 +1089,7 @@
                   "text_sensor.TEXT_SENSOR_SCHEMA"
                 ]
               },
-              "docs": "DSMR Identification\n  * **name** (**Required**, string): The name for the identification text sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+              "docs": "DSMR Identification\n  * All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
             "p1_version": {
               "key": "Optional",
@@ -1099,7 +1099,7 @@
                   "text_sensor.TEXT_SENSOR_SCHEMA"
                 ]
               },
-              "docs": "DSMR Version\n  * **name** (**Required**, string): The name for the p1_version text sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+              "docs": "DSMR Version\n  * All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
             "p1_version_be": {
               "key": "Optional",
@@ -1109,7 +1109,7 @@
                   "text_sensor.TEXT_SENSOR_SCHEMA"
                 ]
               },
-              "docs": "DSMR Version Belgium\n  * **name** (**Required**, string): The name for the p1_version_be text sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+              "docs": "DSMR Version Belgium\n  * All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
             "timestamp": {
               "key": "Optional",
@@ -1119,7 +1119,7 @@
                   "text_sensor.TEXT_SENSOR_SCHEMA"
                 ]
               },
-              "docs": "Timestamp\n  * **name** (**Required**, string): The name for the timestamp sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+              "docs": "Timestamp\n  * All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
             "electricity_tariff": {
               "key": "Optional",
@@ -1129,7 +1129,7 @@
                   "text_sensor.TEXT_SENSOR_SCHEMA"
                 ]
               },
-              "docs": "The current tariff. According to the specs value \u20180001\u2019 means \u2018normal tariff\u2019 and value \u20180002\u2019 means \u2018low tariff\u2019. Your meter may report differently.\n  * **name** (**Required**, string): The name for the electricity_tariff sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+              "docs": "The current tariff. According to the specs value \u20180001\u2019 means \u2018normal tariff\u2019 and value \u20180002\u2019 means \u2018low tariff\u2019. Your meter may report differently.\n  * All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
             "electricity_failure_log": {
               "key": "Optional",
@@ -1139,7 +1139,7 @@
                   "text_sensor.TEXT_SENSOR_SCHEMA"
                 ]
               },
-              "docs": "Electricity Failure Log\n  * **name** (**Required**, string): The name for the electricity_failure_log sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+              "docs": "Electricity Failure Log\n  * All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
             "message_short": {
               "key": "Optional",
@@ -1149,7 +1149,7 @@
                   "text_sensor.TEXT_SENSOR_SCHEMA"
                 ]
               },
-              "docs": "Message Short\n  * **name** (**Required**, string): The name for the message_short sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+              "docs": "Message Short\n  * All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
             "message_long": {
               "key": "Optional",
@@ -1159,7 +1159,7 @@
                   "text_sensor.TEXT_SENSOR_SCHEMA"
                 ]
               },
-              "docs": "Message Long\n  * **name** (**Required**, string): The name for the message_long sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+              "docs": "Message Long\n  * All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
             "gas_equipment_id": {
               "key": "Optional",
@@ -1169,7 +1169,7 @@
                   "text_sensor.TEXT_SENSOR_SCHEMA"
                 ]
               },
-              "docs": "Gas Equipment ID.\n  * **name** (**Required**, string): The name for the gas_equipment_id sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+              "docs": "Gas Equipment ID.\n  * All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
             "thermal_equipment_id": {
               "key": "Optional",
@@ -1188,7 +1188,7 @@
                   "text_sensor.TEXT_SENSOR_SCHEMA"
                 ]
               },
-              "docs": "Water Equipment ID\n  * **name** (**Required**, string): The name for the water_equipment_id sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+              "docs": "Water Equipment ID\n  * All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
             "sub_equipment_id": {
               "key": "Optional",
@@ -1198,7 +1198,7 @@
                   "text_sensor.TEXT_SENSOR_SCHEMA"
                 ]
               },
-              "docs": "Sub Equipment ID\n  * **name** (**Required**, string): The name for the sub_equipment_id sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+              "docs": "Sub Equipment ID\n  * All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             },
             "gas_delivered_text": {
               "key": "Optional",
@@ -1208,7 +1208,22 @@
                   "text_sensor.TEXT_SENSOR_SCHEMA"
                 ]
               },
-              "docs": "A text sensor which unformatted gas data. You need to apply a custom parsing of this value depending on your meter format.\n  * **name** (**Required**, string): The name for the p1_version text sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+              "docs": "A text sensor which unformatted gas data. You need to apply a custom parsing of this value depending on your meter format.\n  * All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
+            },
+            "telegram": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "internal": {
+                    "default": "True"
+                  }
+                }
+              },
+              "docs": "The (decrypted) unparsed telegram, marked as internal sensor. Can also be used to trigger an action based on the last values.\n  * All other options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [dsmr Text Sensor](https://esphome.io/components/sensor/dsmr.html#text-sensor)*"
             }
           },
           "extends": [

@@ -5,7 +5,7 @@
         "type": "schema",
         "schema": {
           "extends": [
-            "climate_ir.CLIMATE_IR_SCHEMA"
+            "climate_ir.CLIMATE_IR_WITH_RECEIVER_SCHEMA"
           ],
           "config_vars": {
             "id": {
@@ -16,12 +16,56 @@
                   "climate::Climate",
                   "EntityBase",
                   "Component",
-                  "remote_base::RemoteReceiverListener"
+                  "remote_base::RemoteReceiverListener",
+                  "remote_base::RemoteTransmittable"
                 ]
               }
             },
-            "receiver_id": {
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the remote_receiver if this platform supports receiver. see: [Using a Receiver](https://esphome.io/components/climate/climate_ir.html#ir-receiver-id).\n\n*See also: [None](https://esphome.io/components/climate/climate_ir.html#configuration-variables)*"
+            "set_fan_mode": {
+              "key": "Optional",
+              "default": "3levels",
+              "type": "enum",
+              "values": {
+                "quiet_4levels": null,
+                "4levels": null,
+                "3levels": null
+              }
+            },
+            "supports_dry": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean"
+            },
+            "supports_fan_only": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean"
+            },
+            "horizontal_default": {
+              "key": "Optional",
+              "default": "middle",
+              "type": "enum",
+              "values": {
+                "left": null,
+                "middle-left": null,
+                "middle": null,
+                "middle-right": null,
+                "right": null,
+                "split": null
+              }
+            },
+            "vertical_default": {
+              "key": "Optional",
+              "default": "middle",
+              "type": "enum",
+              "values": {
+                "auto": null,
+                "up": null,
+                "middle-up": null,
+                "middle": null,
+                "middle-down": null,
+                "down": null
+              }
             }
           }
         }

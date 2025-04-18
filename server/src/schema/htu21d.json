@@ -85,6 +85,17 @@
               },
               "docs": "The information for the heater sensor. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [HTU21D | Si7021 | SHT21 Temperature & Humidity Sensor](https://esphome.io/components/sensor/htu21d.html#configuration-variables)*"
             },
+            "model": {
+              "key": "Optional",
+              "default": "HTU21D",
+              "type": "enum",
+              "values": {
+                "HTU21D": null,
+                "SI7021": null,
+                "SHT21": null
+              },
+              "docs": "Possible values are HTU21D, SI7021, SHT21. Defaults to HTU21D.\n\n*See also: [HTU21D | Si7021 | SHT21 Temperature & Humidity Sensor](https://esphome.io/components/sensor/htu21d.html#configuration-variables)*"
+            },
             "update_interval": {
               "key": "Optional",
               "default": "60s",

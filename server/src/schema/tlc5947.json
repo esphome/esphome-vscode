@@ -85,10 +85,12 @@
             "id": {
               "key": "Required",
               "id_type": {
-                "class": "tlc5947::TLC5947::Channel",
+                "class": "tlc5947::TLC5947Channel",
                 "parents": [
                   "output::FloatOutput",
-                  "output::BinaryOutput"
+                  "output::BinaryOutput",
+                  "Parented<tlc5947::TLC5947>",
+                  "Parented"
                 ]
               },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this output component.\n\n*See also: [tlc5947 Output](https://esphome.io/components/output/tlc5947.html#id1)*"

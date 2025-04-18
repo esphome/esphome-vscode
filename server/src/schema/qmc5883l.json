@@ -43,7 +43,7 @@
               "key": "Optional",
               "default": "13",
               "data_type": "hex_uint8_t",
-              "docs": "**int**: Manually specify the  I\u00b2c address of the sensor. Defaults to `0x1E`.\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
+              "docs": "**int**: Manually specify the  I\u00b2c address of the sensor. Defaults to `0x0D`.\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
             },
             "range": {
               "key": "Optional",
@@ -105,6 +105,30 @@
                 }
               },
               "docs": "The heading of the sensor in degrees. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
+            },
+            "temperature": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "\u00b0C"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  },
+                  "device_class": {
+                    "default": "temperature"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  }
+                }
+              },
+              "docs": "The temperature of the sensor. Per the datasheet: \u201cTemperature sensor gain is factory-calibrated, but its offset has not been compensated, only relative temperature value is accurate\u201d. Above example has an offset that you need to calibrate. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [QMC5883L Magnetometer](https://esphome.io/components/sensor/qmc5883l.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",

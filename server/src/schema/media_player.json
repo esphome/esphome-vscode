@@ -6,6 +6,9 @@
           "i2s_audio"
         ],
         "docs": "The `i2s_audio` media player platform allows you to play media from webservers and web streams via the [I\u00b2S Audio Component](https://esphome.io/components/i2s_audio.html). This platform only works on ESP32 based chips.\n\n*See also: [I\u00b2S Audio Media Player](https://esphome.io/components/media_player/i2s_audio.html#i2s-audio-media-player)*"
+      },
+      "speaker": {
+        "docs": "The `speaker` media player platform allows you to play on-device and online audio media via [speaker components](https://esphome.io/components/speaker/index.html).\n\n*See also: [Speaker Audio Media Player](https://esphome.io/components/media_player/speaker.html#speaker-audio-media-player)*"
       }
     },
     "schemas": {
@@ -31,11 +34,36 @@
             "on_pause": {
               "key": "Optional",
               "type": "trigger"
+            },
+            "on_announcement": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "id": {
+              "docs": "**string**: Manually specify the ID for code generation. At least one of **id** and **name** must be specified.\n\n*See also: [Media Player Components](https://esphome.io/components/media_player/index.html#base-media-player-configuration)*"
             }
           }
         }
       },
       "MEDIA_PLAYER_ACTION_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "use_id_type": "media_player::MediaPlayer",
+              "type": "use_id"
+            },
+            "announcement": {
+              "key": "Optional",
+              "default": "False",
+              "templatable": true,
+              "type": "boolean"
+            }
+          }
+        }
+      },
+      "MEDIA_PLAYER_CONDITION_SCHEMA": {
         "type": "schema",
         "maybe": "id",
         "schema": {
@@ -63,6 +91,12 @@
             "media_url": {
               "key": "Required",
               "templatable": true
+            },
+            "announcement": {
+              "key": "Optional",
+              "default": "False",
+              "templatable": true,
+              "type": "boolean"
             }
           }
         },
@@ -142,20 +176,38 @@
       }
     },
     "condition": {
+      "is_announcing": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "media_player.MEDIA_PLAYER_CONDITION_SCHEMA"
+          ]
+        },
+        "docs": "This condition checks if the media player is playing an announcement.\n\n*See also: [`media_player.is_announcing` Condition](https://esphome.io/components/media_player/index.html#media-player-is-announcing-condition)*"
+      },
       "is_playing": {
         "type": "schema",
         "schema": {
           "extends": [
-            "media_player.MEDIA_PLAYER_ACTION_SCHEMA"
+            "media_player.MEDIA_PLAYER_CONDITION_SCHEMA"
           ]
         },
         "docs": "This condition checks if the media player is playing media.\n\n*See also: [`media_player.is_playing` Condition](https://esphome.io/components/media_player/index.html#media-player-is-playing-condition)*"
+      },
+      "is_paused": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "media_player.MEDIA_PLAYER_CONDITION_SCHEMA"
+          ]
+        },
+        "docs": "This condition checks if the media player is paused.\n\n*See also: [`media_player.is_paused` Condition](https://esphome.io/components/media_player/index.html#media-player-is-paused-condition)*"
       },
       "is_idle": {
         "type": "schema",
         "schema": {
           "extends": [
-            "media_player.MEDIA_PLAYER_ACTION_SCHEMA"
+            "media_player.MEDIA_PLAYER_CONDITION_SCHEMA"
           ]
         },
         "docs": "This condition checks if the media player is idle.\n\n*See also: [`media_player.is_idle` Condition](https://esphome.io/components/media_player/index.html#media-player-is-idle-condition)*"

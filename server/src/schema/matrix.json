@@ -1,0 +1,85 @@
+{
+  "matrix.lvgl": {
+    "action": {
+      "button": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "width": {
+              "key": "Optional",
+              "type": "integer",
+              "data_type": "positive_int"
+            },
+            "control": {
+              "key": "Optional",
+              "is_list": true,
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "hidden": {
+                    "key": "Optional",
+                    "type": "boolean"
+                  },
+                  "no_repeat": {
+                    "key": "Optional",
+                    "type": "boolean"
+                  },
+                  "disabled": {
+                    "key": "Optional",
+                    "type": "boolean"
+                  },
+                  "checkable": {
+                    "key": "Optional",
+                    "type": "boolean"
+                  },
+                  "checked": {
+                    "key": "Optional",
+                    "type": "boolean"
+                  },
+                  "click_trig": {
+                    "key": "Optional",
+                    "type": "boolean"
+                  },
+                  "popover": {
+                    "key": "Optional",
+                    "type": "boolean"
+                  },
+                  "recolor": {
+                    "key": "Optional",
+                    "type": "boolean"
+                  },
+                  "custom_1": {
+                    "key": "Optional",
+                    "type": "boolean"
+                  },
+                  "custom_2": {
+                    "key": "Optional",
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "id": {
+              "key": "Required",
+              "is_list": true,
+              "type": "schema",
+              "maybe": "id",
+              "schema": {
+                "config_vars": {
+                  "id": {
+                    "key": "Required",
+                    "use_id_type": "uint16_t",
+                    "type": "use_id"
+                  }
+                }
+              }
+            },
+            "selected": {
+              "key": "Optional"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -42,7 +42,7 @@
                   }
                 }
               },
-              "docs": "Temperature.\n  * **name** (**Required**, string): The name of the sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Manually specify the ID used for code generation.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [SHT4X Temperature and Humidity Sensor](https://esphome.io/components/sensor/sht4x.html#configuration-variables)*"
+              "docs": "Temperature.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [SHT4X Temperature and Humidity Sensor](https://esphome.io/components/sensor/sht4x.html#configuration-variables)*"
             },
             "humidity": {
               "key": "Optional",
@@ -69,7 +69,7 @@
                   }
                 }
               },
-              "docs": "Relative Humidity.\n  * **name** (**Required**, string): The name of the sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Manually specify the ID used for code generation.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [SHT4X Temperature and Humidity Sensor](https://esphome.io/components/sensor/sht4x.html#configuration-variables)*"
+              "docs": "Relative Humidity.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [SHT4X Temperature and Humidity Sensor](https://esphome.io/components/sensor/sht4x.html#configuration-variables)*"
             },
             "precision": {
               "key": "Optional",

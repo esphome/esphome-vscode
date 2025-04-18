@@ -10,10 +10,18 @@
               "id_type": {
                 "class": "esp32_ble_beacon::ESP32BLEBeacon",
                 "parents": [
-                  "Component"
+                  "Component",
+                  "esp32_ble::GAPEventHandler",
+                  "Parented<esp32_ble::ESP32BLE>",
+                  "Parented"
                 ]
               },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for code generation.\n\n*See also: [ESP32 Bluetooth Low Energy Beacon](https://esphome.io/components/esp32_ble_beacon.html#configuration-variables)*"
+            },
+            "ble_id": {
+              "key": "GeneratedID",
+              "use_id_type": "esp32_ble::ESP32BLE",
+              "type": "use_id"
             },
             "type": {
               "key": "Required",

@@ -1,0 +1,86 @@
+{
+  "tag": {
+    "action": {
+      "set_write_message": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "pn7160.SET_MESSAGE_ACTION_SCHEMA"
+          ]
+        }
+      },
+      "set_emulation_message": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "pn7160.SET_MESSAGE_ACTION_SCHEMA"
+          ]
+        }
+      },
+      "set_write_mode": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "pn7160.SIMPLE_ACTION_SCHEMA"
+          ]
+        }
+      },
+      "set_read_mode": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "pn7160.SIMPLE_ACTION_SCHEMA"
+          ]
+        }
+      },
+      "set_format_mode": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "pn7160.SIMPLE_ACTION_SCHEMA"
+          ]
+        }
+      },
+      "set_clean_mode": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "pn7160.SIMPLE_ACTION_SCHEMA"
+          ]
+        }
+      },
+      "polling_on": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "pn7160.SIMPLE_ACTION_SCHEMA"
+          ]
+        }
+      },
+      "polling_off": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "pn7160.SIMPLE_ACTION_SCHEMA"
+          ]
+        }
+      },
+      "emulation_on": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "pn7160.SIMPLE_ACTION_SCHEMA"
+          ]
+        }
+      },
+      "emulation_off": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "pn7160.SIMPLE_ACTION_SCHEMA"
+          ]
+        }
+      }
+    }
+  }
+}

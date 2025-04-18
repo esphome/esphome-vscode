@@ -19,8 +19,7 @@
                   "Component",
                   "i2c::I2CDevice"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [VL53L0X Time Of Flight Distance Sensor](https://esphome.io/components/sensor/vl53l0x.html#configuration-variables)*"
+              }
             },
             "unit_of_measurement": {
               "default": "m"

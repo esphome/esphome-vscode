@@ -40,6 +40,10 @@
               "type": "integer",
               "docs": "**int**: The release defines the sensitivity for touch detection and should be between 5 and 30. Defaults to 6.\n\n*See also: [mpr121 Component/Hub](https://esphome.io/components/binary_sensor/mpr121.html#configuration-variables)*"
             },
+            "max_touch_channel": {
+              "key": "Optional",
+              "type": "integer"
+            },
             "i2c_id": {
               "key": "GeneratedID",
               "use_id_type": "i2c::I2CBus",
@@ -58,6 +62,14 @@
         },
         "is_list": true
       }
+    },
+    "pin": {
+      "type": "schema",
+      "schema": {
+        "extends": [
+          "mpr121.MPR121_GPIO_PIN_SCHEMA"
+        ]
+      }
     }
   },
   "mpr121.binary_sensor": {
@@ -71,13 +83,12 @@
           "config_vars": {
             "id": {
               "id_type": {
-                "class": "mpr121::MPR121Channel",
+                "class": "mpr121::MPR121BinarySensor",
                 "parents": [
                   "binary_sensor::BinarySensor",
                   "EntityBase"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [mpr121 Binary Sensor](https://esphome.io/components/binary_sensor/mpr121.html#binary-sensor)*"
+              }
             },
             "mpr121_id": {
               "key": "GeneratedID",

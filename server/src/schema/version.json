@@ -23,8 +23,7 @@
                   "EntityBase",
                   "Component"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Version Text Sensor](https://esphome.io/components/text_sensor/version.html#configuration-variables)*"
+              }
             },
             "hide_timestamp": {
               "key": "Optional",

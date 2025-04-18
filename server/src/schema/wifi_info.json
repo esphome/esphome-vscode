@@ -31,6 +31,76 @@
                   "update_interval": {
                     "key": "Optional",
                     "default": "1s"
+                  },
+                  "address_0": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "text_sensor.TEXT_SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "entity_category": {
+                          "default": "diagnostic"
+                        }
+                      }
+                    }
+                  },
+                  "address_1": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "text_sensor.TEXT_SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "entity_category": {
+                          "default": "diagnostic"
+                        }
+                      }
+                    }
+                  },
+                  "address_2": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "text_sensor.TEXT_SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "entity_category": {
+                          "default": "diagnostic"
+                        }
+                      }
+                    }
+                  },
+                  "address_3": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "text_sensor.TEXT_SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "entity_category": {
+                          "default": "diagnostic"
+                        }
+                      }
+                    }
+                  },
+                  "address_4": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "text_sensor.TEXT_SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "entity_category": {
+                          "default": "diagnostic"
+                        }
+                      }
+                    }
                   }
                 }
               },

@@ -81,7 +81,7 @@
             },
             "ap": {
               "key": "Optional",
-              "docs": "Enable an access point mode on the node.\n  * **ssid** (*Optional*, string): The name of the access point to create. Leave empty to use the device name.\n  \n  * **password** (*Optional*, string): The password for the access point. Leave empty for no password.\n  \n  * **channel** (*Optional*, int): The channel the AP should operate on from 1 to 14. Defaults to 1.\n  \n  * **manual_ip** (*Optional*): Manually set the IP options for the AP. Same options as manual_ip for station mode.\n  \n  * **ap_timeout** (*Optional*, [Time](https://esphome.io/guides/configuration-types.html#config-time)): The time after which to enable the configured fallback hotspot. Defaults to `1min`.\n  \n  \n\n*See also: [WiFi Component](https://esphome.io/components/wifi.html#configuration-variables)*"
+              "docs": "Enable an access point mode on the node.\n  * **ssid** (*Optional*, string): The name of the access point to create. Leave empty to use the device name.\n  \n  * **password** (*Optional*, string): The password for the access point. Leave empty for no password.\n  \n  * **channel** (*Optional*, int): The channel the AP should operate on from 1 to 14. Defaults to 1.\n  \n  * **manual_ip** (*Optional*): Manually set the IP options for the AP. Same options as manual_ip for station mode.\n  \n  * **ap_timeout** (*Optional*, [Time](https://esphome.io/guides/configuration-types.html#config-time)): The time after which to enable the configured fallback hotspot. Can be disabled by setting this to `0s`, which requires manually starting the AP by other means (eg: from a button press). Defaults to `1min`.\n  \n  \n\n*See also: [WiFi Component](https://esphome.io/components/wifi.html#configuration-variables)*"
             },
             "domain": {
               "key": "Optional",
@@ -97,7 +97,7 @@
                   "core.positive_time_period_milliseconds"
                 ]
               },
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The amount of time to wait before rebooting when no WiFi connection exists. Can be disabled by setting this to `0s`, but note that the low level IP stack currently seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to `15min`.\n\n*See also: [WiFi Component](https://esphome.io/components/wifi.html#configuration-variables)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The amount of time to wait before rebooting when no WiFi connection exists. Can be disabled by setting this to `0s`, but note that the low level IP stack currently seems to have issues with WiFi where a full reboot is required to get the interface back working. Defaults to `15min`. Does not apply when in access point mode.\n\n*See also: [WiFi Component](https://esphome.io/components/wifi.html#configuration-variables)*"
             },
             "power_save_mode": {
               "key": "Optional",
@@ -147,6 +147,16 @@
               "default": "True",
               "type": "boolean",
               "docs": "**boolean**: If enabled, the WiFi interface will be enabled on boot. Defaults to `true`.\n\n*See also: [WiFi Component](https://esphome.io/components/wifi.html#configuration-variables)*"
+            },
+            "on_connect": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An action to be performed when a connection is established.\n\n*See also: [WiFi Component](https://esphome.io/components/wifi.html#configuration-variables)*"
+            },
+            "on_disconnect": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An action to be performed when the connection is dropped.\n\n*See also: [WiFi Component](https://esphome.io/components/wifi.html#configuration-variables)*"
             }
           }
         }
@@ -203,6 +213,18 @@
               "key": "Optional",
               "docs": "**string**: Path to a PEM encoded certificate to use when validating the authentication server.\n\n*See also: [Enterprise Authentication](https://esphome.io/components/wifi.html#enterprise-authentication)*"
             },
+            "ttls_phase_2": {
+              "key": "Optional",
+              "type": "enum",
+              "values": {
+                "pap": null,
+                "chap": null,
+                "mschap": null,
+                "mschapv2": null,
+                "eap": null
+              },
+              "docs": "**string**: The Phase 2 Authentication Method for EAP-TTLS. Can be `pap`, `eap`, `mschap`, `mschapv2` or `chap`, defaults to `mschapv2`.\n\n*See also: [Enterprise Authentication](https://esphome.io/components/wifi.html#enterprise-authentication)*"
+            },
             "certificate": {
               "key": "Optional",
               "docs": "**string**: Path to a PEM encoded certificate to use for EAP-TLS authentication.\n\n*See also: [Enterprise Authentication](https://esphome.io/components/wifi.html#enterprise-authentication)*"
@@ -257,14 +279,59 @@
       },
       "disable": {
         "docs": "This action turns off the WiFi interface on demand.\n\n*See also: [`wifi.disable` Action](https://esphome.io/components/wifi.html#wifi-disable-action)*"
+      },
+      "configure": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "ssid": {
+              "key": "Required",
+              "templatable": true
+            },
+            "password": {
+              "key": "Required",
+              "templatable": true
+            },
+            "save": {
+              "key": "Optional",
+              "default": "True",
+              "templatable": true,
+              "type": "boolean",
+              "docs": "**boolean, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: If set to `true`, the SSID and password will be saved in persistent memory. Defaults to `true`.\n\n*See also: [Enterprise Authentication](https://esphome.io/components/wifi.html#wifi-configure-action)*"
+            },
+            "timeout": {
+              "key": "Optional",
+              "default": "30000ms",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              },
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time), [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The time to wait for the connection to be established. Defaults to 30 seconds.\n\n*See also: [Enterprise Authentication](https://esphome.io/components/wifi.html#wifi-configure-action)*"
+            },
+            "on_connect": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An action to be performed when a connection is established.\n\n*See also: [Enterprise Authentication](https://esphome.io/components/wifi.html#wifi-configure-action)*"
+            },
+            "on_error": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An action to be performed when the connection fails.\n\n*See also: [Enterprise Authentication](https://esphome.io/components/wifi.html#wifi-configure-action)*"
+            }
+          }
+        },
+        "docs": "This action connects to an SSID and password, optionally saving it in persistent memory so that the next time the WiFi interface is enabled, it will connect to the stored access point.\n\n*See also: [`wifi.configure` Action](https://esphome.io/components/wifi.html#wifi-configure-action)*"
       }
     },
     "condition": {
       "connected": {
-        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) checks if the WiFi client is currently connected to a station.\n\n*See also: [`wifi.connected` Condition](https://esphome.io/components/wifi.html#wifi-connected-condition)*"
+        "docs": "This [Condition](https://esphome.io/automations/actions.html#config-condition) checks if the WiFi client is currently connected to a station.\n\n*See also: [`wifi.connected` Condition](https://esphome.io/components/wifi.html#wifi-connected-condition)*"
       },
       "enabled": {
-        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) checks if WiFi is currently enabled or not.\n\n*See also: [`wifi.enabled` Condition](https://esphome.io/components/wifi.html#wifi-enabled-condition)*"
+        "docs": "This [Condition](https://esphome.io/automations/actions.html#config-condition) checks if WiFi is currently enabled or not.\n\n*See also: [`wifi.enabled` Condition](https://esphome.io/components/wifi.html#wifi-enabled-condition)*"
       }
     }
   }

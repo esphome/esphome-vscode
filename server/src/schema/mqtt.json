@@ -20,6 +20,12 @@
               "type": "string",
               "docs": "**string**: The host of your MQTT broker.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
             },
+            "enable_on_boot": {
+              "key": "Optional",
+              "default": "True",
+              "type": "boolean",
+              "docs": "**boolean**: If enabled, MQTT will be enabled on boot. Defaults to `true`.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
+            },
             "port": {
               "key": "Optional",
               "default": "1883",
@@ -39,6 +45,12 @@
               "type": "string",
               "docs": "**string**: The password to use for authentication. Empty (the default) means no authentication.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
             },
+            "clean_session": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean",
+              "docs": "**boolean**: Whether the broker will clean the MQTT session after disconnect. Defaults to `false`.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
+            },
             "client_id": {
               "key": "Optional",
               "type": "string",
@@ -54,6 +66,16 @@
               "type": "string",
               "docs": "**string**: Only with `esp-idf`. CA certificate in PEM format. See [TLS with esp-idf (esp32)](https://esphome.io/components/mqtt.html#mqtt-tls-idf) for more information\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
             },
+            "client_certificate": {
+              "key": "Optional",
+              "type": "string",
+              "docs": "**string**: Only on `esp32`. Client certificate in PEM format.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
+            },
+            "client_certificate_key": {
+              "key": "Optional",
+              "type": "string",
+              "docs": "**string**: Only on `esp32`. Client private key in PEM format.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
+            },
             "skip_cert_cn_check": {
               "key": "Optional",
               "type": "boolean",
@@ -66,13 +88,19 @@
               "values": {
                 "CLEAN": null
               },
-              "docs": "**boolean**: If Home Assistant automatic discovery should be enabled. Defaults to `true`.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
+              "docs": "**boolean**: If Home Assistant automatic entity discovery should be enabled. Defaults to `true`.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
             },
             "discovery_retain": {
               "key": "Optional",
               "default": "True",
               "type": "boolean",
               "docs": "**boolean**: Whether to retain MQTT discovery messages so that entities are added automatically on Home Assistant restart. Defaults to `true`.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
+            },
+            "discover_ip": {
+              "key": "Optional",
+              "default": "True",
+              "type": "boolean",
+              "docs": "**boolean**: If Home Assistant automatic device discovery should be enabled. Defaults to `true`.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
             },
             "discovery_prefix": {
               "key": "Optional",
@@ -137,7 +165,7 @@
             },
             "topic_prefix": {
               "key": "Optional",
-              "docs": "**string**: The prefix used for all MQTT messages. Should not contain trailing slash. Defaults to `<APP_NAME>`.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
+              "docs": "**string**: The prefix used for all MQTT messages. Should not contain trailing slash. Defaults to `<APP_NAME>`. Use `null` to disable publishing or subscribing of any MQTT topic unless it is explicitly configured.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
             },
             "log_topic": {
               "key": "Optional",
@@ -195,12 +223,12 @@
             "on_connect": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when a connection to the broker is established.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An action to be performed when a connection to the broker is established.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
             },
             "on_disconnect": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when the connection to the broker is dropped.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An action to be performed when the connection to the broker is dropped.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
             },
             "on_message": {
               "key": "Optional",
@@ -227,7 +255,7 @@
                 }
               },
               "has_required_var": true,
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when a message on a specific MQTT topic is received. See [on_message Trigger](https://esphome.io/components/mqtt.html#mqtt-on-message).\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An action to be performed when a message on a specific MQTT topic is received. See [on_message Trigger](https://esphome.io/components/mqtt.html#mqtt-on-message).\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
             },
             "on_json_message": {
               "key": "Optional",
@@ -249,7 +277,13 @@
                 }
               },
               "has_required_var": true,
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when a JSON message on a specific MQTT topic is received. See [on_json_message Trigger](https://esphome.io/components/mqtt.html#mqtt-on-json-message).\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An action to be performed when a JSON message on a specific MQTT topic is received. See [on_json_message Trigger](https://esphome.io/components/mqtt.html#mqtt-on-json-message).\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
+            },
+            "publish_nan_as_none": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean",
+              "docs": "**bool**: Publish `None` instead of `NaN` to handle Unknown/Unavailable sensor states in Home Assistant. Defaults to `false`.\n\n*See also: [MQTT Client Component](https://esphome.io/components/mqtt.html#configuration-variables)*"
             }
           }
         }
@@ -303,25 +337,25 @@
             "topic": {
               "key": "Required",
               "templatable": true,
-              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The MQTT topic to publish the message.\n\n*See also: [on_json_message Trigger](https://esphome.io/components/mqtt.html#mqtt-publish-action)*"
+              "docs": "**string, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The MQTT topic to publish the message.\n\n*See also: [on_json_message Trigger](https://esphome.io/components/mqtt.html#mqtt-publish-action)*"
             },
             "payload": {
               "key": "Required",
               "templatable": true,
-              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The message content.\n\n*See also: [on_json_message Trigger](https://esphome.io/components/mqtt.html#mqtt-publish-action)*"
+              "docs": "**string, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The message content.\n\n*See also: [on_json_message Trigger](https://esphome.io/components/mqtt.html#mqtt-publish-action)*"
             },
             "qos": {
               "key": "Optional",
               "default": "0",
               "templatable": true,
-              "docs": "**int, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The [Quality of Service](https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels) level of the topic. Defaults to 0.\n\n*See also: [on_json_message Trigger](https://esphome.io/components/mqtt.html#mqtt-publish-action)*"
+              "docs": "**int, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The [Quality of Service](https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels) level of the topic. Defaults to 0.\n\n*See also: [on_json_message Trigger](https://esphome.io/components/mqtt.html#mqtt-publish-action)*"
             },
             "retain": {
               "key": "Optional",
               "default": "False",
               "templatable": true,
               "type": "boolean",
-              "docs": "**boolean, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: If the published message should have a retain flag on or not. Defaults to `false`.\n\n*See also: [on_json_message Trigger](https://esphome.io/components/mqtt.html#mqtt-publish-action)*"
+              "docs": "**boolean, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: If the published message should have a retain flag on or not. Defaults to `false`.\n\n*See also: [on_json_message Trigger](https://esphome.io/components/mqtt.html#mqtt-publish-action)*"
             }
           }
         },
@@ -339,11 +373,11 @@
             "topic": {
               "key": "Required",
               "templatable": true,
-              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The MQTT topic to publish the message.\n\n*See also: [on_json_message Trigger](https://esphome.io/components/mqtt.html#mqtt-publish-json-action)*"
+              "docs": "**string, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The MQTT topic to publish the message.\n\n*See also: [on_json_message Trigger](https://esphome.io/components/mqtt.html#mqtt-publish-json-action)*"
             },
             "payload": {
               "key": "Required",
-              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The message content.\n\n*See also: [on_json_message Trigger](https://esphome.io/components/mqtt.html#mqtt-publish-json-action)*"
+              "docs": "**[lambda](https://esphome.io/automations/templates.html#config-lambda)**: The message content.\n\n*See also: [on_json_message Trigger](https://esphome.io/components/mqtt.html#mqtt-publish-json-action)*"
             },
             "qos": {
               "key": "Optional",
@@ -361,6 +395,32 @@
           }
         },
         "docs": "Publish a JSON-formatted MQTT message on a topic using this action in automations.\n\n*See also: [`mqtt.publish_json` Action](https://esphome.io/components/mqtt.html#mqtt-publish-json-action)*"
+      },
+      "enable": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "use_id_type": "mqtt::MQTTClientComponent",
+              "type": "use_id"
+            }
+          }
+        },
+        "docs": "This action turns on the MQTT component on demand.\n\n*See also: [`mqtt.enable` Action](https://esphome.io/components/mqtt.html#mqtt-enable-action)*"
+      },
+      "disable": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "use_id_type": "mqtt::MQTTClientComponent",
+              "type": "use_id"
+            }
+          }
+        },
+        "docs": "This action turns off the MQTT component on demand.\n\n*See also: [`mqtt.disable` Action](https://esphome.io/components/mqtt.html#mqtt-disable-action)*"
       }
     },
     "condition": {
@@ -375,7 +435,7 @@
             }
           }
         },
-        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) checks if the MQTT client is currently connected to the MQTT broker.\n\n*See also: [`mqtt.connected` Condition](https://esphome.io/components/mqtt.html#mqtt-connected-condition)*"
+        "docs": "This [Condition](https://esphome.io/automations/actions.html#config-condition) checks if the MQTT client is currently connected to the MQTT broker.\n\n*See also: [`mqtt.connected` Condition](https://esphome.io/components/mqtt.html#mqtt-connected-condition)*"
       }
     }
   }

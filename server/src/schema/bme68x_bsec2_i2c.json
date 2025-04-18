@@ -1,0 +1,7 @@
+{
+  "bme68x_bsec2_i2c": {
+    "schemas": {
+      "CONFIG_SCHEMA": {}
+    }
+  }
+}

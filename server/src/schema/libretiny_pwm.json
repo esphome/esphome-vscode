@@ -55,11 +55,11 @@
               "key": "Required",
               "templatable": true,
               "type": "integer",
-              "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), float**: The frequency to set in hertz.\n\n*See also: [LibreTiny PWM Output](https://esphome.io/components/output/libretiny_pwm.html#output-libretiny-pwm-set-frequency-action)*"
+              "docs": "**[templatable](https://esphome.io/automations/templates.html#config-templatable), float**: The frequency to set in hertz.\n\n*See also: [LibreTiny PWM Output](https://esphome.io/components/output/libretiny_pwm.html#output-libretiny-pwm-set-frequency-action)*"
             }
           }
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to manually change the frequency of a LibreTiny PWM channel at runtime. Use cases include controlling a passive buzzer (for pitch control).\n\n*See also: [`output.libretiny_pwm.set_frequency` Action](https://esphome.io/components/output/libretiny_pwm.html#output-libretiny-pwm-set-frequency-action)*"
+        "docs": "This [Action](https://esphome.io/automations/actions.html#config-action) allows you to manually change the frequency of a LibreTiny PWM channel at runtime. Use cases include controlling a passive buzzer (for pitch control).\n\n*See also: [`output.libretiny_pwm.set_frequency` Action](https://esphome.io/components/output/libretiny_pwm.html#output-libretiny-pwm-set-frequency-action)*"
       }
     }
   }

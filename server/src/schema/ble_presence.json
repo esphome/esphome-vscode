@@ -18,16 +18,19 @@
                   "Component",
                   "esp32_ble_tracker::ESPBTDeviceListener"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [ESP32 Bluetooth Low Energy Device](https://esphome.io/components/binary_sensor/ble_presence.html#configuration-variables)*"
+              }
             },
             "mac_address": {
               "key": "Optional",
-              "docs": "**MAC Address**: The MAC address to track for this binary sensor. Note that exactly one of `mac_address`, `service_uuid` or `ibeacon_uuid` must be present.\n\n*See also: [ESP32 Bluetooth Low Energy Device](https://esphome.io/components/binary_sensor/ble_presence.html#configuration-variables)*"
+              "docs": "**MAC Address**: The MAC address to track for this binary sensor. Note that exactly one of `mac_address`, `irk`, `service_uuid` or `ibeacon_uuid` must be present.\n\n*See also: [ESP32 Bluetooth Low Energy Device](https://esphome.io/components/binary_sensor/ble_presence.html#configuration-variables)*"
+            },
+            "irk": {
+              "key": "Optional",
+              "docs": "**16 byte hex string**: The Identity Resolving Key (IRK) to track for this binary sensor. Note that exactly one of `mac_address`, `irk`, `service_uuid` or `ibeacon_uuid` must be present.\n\n*See also: [ESP32 Bluetooth Low Energy Device](https://esphome.io/components/binary_sensor/ble_presence.html#configuration-variables)*"
             },
             "service_uuid": {
               "key": "Optional",
-              "docs": "**string**: 16 bit, 32 bit, or 128 bit BLE Service UUID which can be tracked if the device randomizes the MAC address. Note that exactly one of `mac_address`, `service_uuid` or `ibeacon_uuid` must be present.\n\n*See also: [ESP32 Bluetooth Low Energy Device](https://esphome.io/components/binary_sensor/ble_presence.html#configuration-variables)*"
+              "docs": "**string**: 16 bit, 32 bit, or 128 bit BLE Service UUID which can be tracked if the device randomizes the MAC address. Note that exactly one of `mac_address`, `irk`, `service_uuid` or `ibeacon_uuid` must be present.\n\n*See also: [ESP32 Bluetooth Low Energy Device](https://esphome.io/components/binary_sensor/ble_presence.html#configuration-variables)*"
             },
             "ibeacon_major": {
               "key": "Optional",
@@ -43,12 +46,23 @@
             },
             "ibeacon_uuid": {
               "key": "Optional",
-              "docs": "**string**: The [universally unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier) to identify the beacon that needs to be tracked. Note that exactly one of `mac_address`, `service_uuid` or `ibeacon_uuid` must be present.\n\n*See also: [ESP32 Bluetooth Low Energy Device](https://esphome.io/components/binary_sensor/ble_presence.html#configuration-variables)*"
+              "docs": "**string**: The [universally unique identifier](https://en.wikipedia.org/wiki/Universally_unique_identifier) to identify the beacon that needs to be tracked. Note that exactly one of `mac_address`, `irk`, `service_uuid` or `ibeacon_uuid` must be present.\n\n*See also: [ESP32 Bluetooth Low Energy Device](https://esphome.io/components/binary_sensor/ble_presence.html#configuration-variables)*"
+            },
+            "timeout": {
+              "key": "Optional",
+              "default": "5min",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.time_period_dict"
+                ]
+              },
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The delay after last detecting the device before publishing not present state. The default is 5 minutes.\n\n*See also: [ESP32 Bluetooth Low Energy Device](https://esphome.io/components/binary_sensor/ble_presence.html#configuration-variables)*"
             },
             "min_rssi": {
               "key": "Optional",
               "type": "integer",
-              "docs": "**int**: at which minimum RSSI level would the component report the device be precent\n\n*See also: [ESP32 Bluetooth Low Energy Device](https://esphome.io/components/binary_sensor/ble_presence.html#configuration-variables)*"
+              "docs": "**int**: at which minimum RSSI level would the component report the device be present.\n\n*See also: [ESP32 Bluetooth Low Energy Device](https://esphome.io/components/binary_sensor/ble_presence.html#configuration-variables)*"
             },
             "esp32_ble_id": {
               "key": "GeneratedID",

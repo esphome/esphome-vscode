@@ -13,48 +13,39 @@
               }
             },
             "red": {
-              "key": "Optional",
-              "docs": "**percentage**: The percentage of the red component. Defaults to `100%`.\n\n*See also: [Color](https://esphome.io/components/display/index.html#color)*"
+              "key": "Optional"
             },
             "red_int": {
               "key": "Optional",
               "type": "integer",
-              "data_type": "uint8_t",
-              "docs": "**integer**: The brightness of the red component on a scale of `0` to `255`. Defaults to `255`.\n\n*See also: [Color](https://esphome.io/components/display/index.html#color)*"
+              "data_type": "uint8_t"
             },
             "green": {
-              "key": "Optional",
-              "docs": "**percentage**: The percentage of the green component. Defaults to `100%`.\n\n*See also: [Color](https://esphome.io/components/display/index.html#color)*"
+              "key": "Optional"
             },
             "green_int": {
               "key": "Optional",
               "type": "integer",
-              "data_type": "uint8_t",
-              "docs": "**integer**: The brightness of the green component on a scale of `0` to `255`. Defaults to `255`.\n\n*See also: [Color](https://esphome.io/components/display/index.html#color)*"
+              "data_type": "uint8_t"
             },
             "blue": {
-              "key": "Optional",
-              "docs": "**percentage**: The percentage of the blue component. Defaults to `100%`.\n\n*See also: [Color](https://esphome.io/components/display/index.html#color)*"
+              "key": "Optional"
             },
             "blue_int": {
               "key": "Optional",
               "type": "integer",
-              "data_type": "uint8_t",
-              "docs": "**integer**: The brightness of the blue component on a scale of `0` to `255`. Defaults to `255`.\n\n*See also: [Color](https://esphome.io/components/display/index.html#color)*"
+              "data_type": "uint8_t"
             },
             "white": {
-              "key": "Optional",
-              "docs": "**percentage**: The percentage of the white component. Defaults to `100%`.\n\n*See also: [Color](https://esphome.io/components/display/index.html#color)*"
+              "key": "Optional"
             },
             "white_int": {
               "key": "Optional",
               "type": "integer",
-              "data_type": "uint8_t",
-              "docs": "**integer**: The brightness of the white component on a scale of `0` to `255`. Defaults to `255`.\n\n*See also: [Color](https://esphome.io/components/display/index.html#color)*"
+              "data_type": "uint8_t"
             },
             "hex": {
-              "key": "Required",
-              "docs": "**string**: The color in hexadecimal representation. Defaults to `FFFFFF`.\n\n*See also: [Color](https://esphome.io/components/display/index.html#color)*"
+              "key": "Optional"
             }
           },
           "extends": [

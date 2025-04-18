@@ -1,0 +1,62 @@
+{
+  "jsn_sr04t.sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "sensor.SENSOR_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "id_type": {
+                "class": "jsn_sr04t::Jsnsr04tComponent",
+                "parents": [
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "PollingComponent",
+                  "Component",
+                  "uart::UARTDevice"
+                ]
+              }
+            },
+            "unit_of_measurement": {
+              "default": "m"
+            },
+            "icon": {
+              "default": "mdi:arrow-expand-vertical"
+            },
+            "accuracy_decimals": {
+              "default": "3"
+            },
+            "state_class": {
+              "default": "measurement"
+            },
+            "update_interval": {
+              "key": "Optional",
+              "default": "60s",
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`. Not applicable in mode 1.\n\n*See also: [JSN-SR04T Waterproof Ultrasonic Range Finder](https://esphome.io/components/sensor/jsn_sr04t.html#configuration-variables)*"
+            },
+            "uart_id": {
+              "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the [UART bus](https://esphome.io/components/uart.html#uart) you wish to use for this sensor. Use this if you want to use multiple UART buses at once.\n\n*See also: [JSN-SR04T Waterproof Ultrasonic Range Finder](https://esphome.io/components/sensor/jsn_sr04t.html#configuration-variables)*"
+            },
+            "model": {
+              "key": "Optional",
+              "default": "jsn_sr04t",
+              "type": "enum",
+              "values": {
+                "jsn_sr04t": null,
+                "aj_sr04m": null
+              },
+              "docs": "Sensor model. Available options: `jsn_sr04t` (default) and `aj_sr04m`.\n\n*See also: [JSN-SR04T Waterproof Ultrasonic Range Finder](https://esphome.io/components/sensor/jsn_sr04t.html#configuration-variables)*"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "dallas_temp.sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "sensor.SENSOR_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "id_type": {
+                "class": "dallas_temp::DallasTemperatureSensor",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "sensor::Sensor",
+                  "EntityBase",
+                  "one_wire::OneWireDevice"
+                ]
+              }
+            },
+            "unit_of_measurement": {
+              "default": "\u00b0C"
+            },
+            "accuracy_decimals": {
+              "default": "1"
+            },
+            "device_class": {
+              "default": "temperature"
+            },
+            "state_class": {
+              "default": "measurement"
+            },
+            "resolution": {
+              "key": "Optional",
+              "default": "12",
+              "type": "integer",
+              "docs": "**int**: An optional resolution from 9 to 12. Higher means more accurate. Defaults to the maximum for most Dallas temperature sensors: 12.\n\n*See also: [Dallas Temperature Sensor](https://esphome.io/components/sensor/dallas_temp.html#configuration-variables)*"
+            },
+            "one_wire_id": {
+              "key": "GeneratedID",
+              "use_id_type": "one_wire::OneWireBus",
+              "type": "use_id",
+              "docs": "**[1-Wire Bus](https://esphome.io/components/one_wire.html#one-wire)**: The ID of the 1-Wire bus to use. Required if there is more than one bus.\n\n*See also: [Dallas Temperature Sensor](https://esphome.io/components/sensor/dallas_temp.html#configuration-variables)*"
+            },
+            "address": {
+              "key": "Optional",
+              "data_type": "hex_uint64_t",
+              "docs": "**int**: The address of the sensor. Required if there is more than one device on the bus.\n\n*See also: [Dallas Temperature Sensor](https://esphome.io/components/sensor/dallas_temp.html#configuration-variables)*"
+            },
+            "update_interval": {
+              "key": "Optional",
+              "default": "60s",
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval that the sensors should be checked. Defaults to 60 seconds.\n\n*See also: [Dallas Temperature Sensor](https://esphome.io/components/sensor/dallas_temp.html#configuration-variables)*"
+            }
+          }
+        }
+      }
+    }
+  }
+}

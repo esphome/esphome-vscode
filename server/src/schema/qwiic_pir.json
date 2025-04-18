@@ -1,0 +1,62 @@
+{
+  "qwiic_pir.binary_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "binary_sensor.BINARY_SENSOR_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "id_type": {
+                "class": "qwiic_pir::QwiicPIRComponent",
+                "parents": [
+                  "Component",
+                  "i2c::I2CDevice",
+                  "binary_sensor::BinarySensor",
+                  "EntityBase"
+                ]
+              }
+            },
+            "device_class": {
+              "default": "motion"
+            },
+            "debounce": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.time_period_dict"
+                ]
+              },
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Only valid when using `NATIVE` debounce mode. Configures the debounce time on the sensor to reduce noise and false detections. Defaults to `1ms`.\n\n*See also: [Qwiic PIR Motion Binary Sensor](https://esphome.io/components/binary_sensor/qwiic_pir.html#configuration-variables)*"
+            },
+            "debounce_mode": {
+              "key": "Optional",
+              "default": "HYBRID",
+              "type": "enum",
+              "values": {
+                "RAW": null,
+                "NATIVE": null,
+                "HYBRID": null
+              },
+              "docs": "**enum**: How the component debounces the motion sensor\u2019s signal. Must be one of `HYBRID`, `NATIVE`, or `RAW`. See [Debounce Modes](https://esphome.io/components/binary_sensor/qwiic_pir.html#debounce-modes) for details. Defaults to `HYBRID`.\n\n*See also: [Qwiic PIR Motion Binary Sensor](https://esphome.io/components/binary_sensor/qwiic_pir.html#configuration-variables)*"
+            },
+            "i2c_id": {
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
+            },
+            "address": {
+              "key": "Optional",
+              "default": "18",
+              "data_type": "hex_uint8_t"
+            }
+          }
+        }
+      }
+    }
+  }
+}

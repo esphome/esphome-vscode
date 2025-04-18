@@ -17,13 +17,12 @@
                   "EntityBase",
                   "Component"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Endstop Cover](https://esphome.io/components/cover/endstop.html#configuration-variables)*"
+              }
             },
             "stop_action": {
               "key": "Required",
               "type": "trigger",
-              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: The action that should be performed when the remote requests the cover to be closed or an endstop is reached.\n\n*See also: [Endstop Cover](https://esphome.io/components/cover/endstop.html#configuration-variables)*"
+              "docs": "**[Action](https://esphome.io/automations/actions.html#config-action)**: The action that should be performed when the remote requests the cover to stop or an endstop is reached.\n\n*See also: [Endstop Cover](https://esphome.io/components/cover/endstop.html#configuration-variables)*"
             },
             "open_endstop": {
               "key": "Required",
@@ -34,7 +33,7 @@
             "open_action": {
               "key": "Required",
               "type": "trigger",
-              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: The action that should be performed when the remote requests the cover to be opened.\n\n*See also: [Endstop Cover](https://esphome.io/components/cover/endstop.html#configuration-variables)*"
+              "docs": "**[Action](https://esphome.io/automations/actions.html#config-action)**: The action that should be performed when the remote requests the cover to be opened.\n\n*See also: [Endstop Cover](https://esphome.io/components/cover/endstop.html#configuration-variables)*"
             },
             "open_duration": {
               "key": "Required",
@@ -49,7 +48,7 @@
             "close_action": {
               "key": "Required",
               "type": "trigger",
-              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: The action that should be performed when the remote requests the cover to be closed.\n\n*See also: [Endstop Cover](https://esphome.io/components/cover/endstop.html#configuration-variables)*"
+              "docs": "**[Action](https://esphome.io/automations/actions.html#config-action)**: The action that should be performed when the remote requests the cover to be closed.\n\n*See also: [Endstop Cover](https://esphome.io/components/cover/endstop.html#configuration-variables)*"
             },
             "close_endstop": {
               "key": "Required",

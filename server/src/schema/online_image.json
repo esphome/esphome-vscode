@@ -1,0 +1,101 @@
+{
+  "online_image": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "image.IMAGE_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "id_type": {
+                "class": "online_image::OnlineImage",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "image::Image"
+                ]
+              },
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The image to update the URL for.\n\n*See also: [Online Image Component](https://esphome.io/components/online_image.html#actions)*"
+            },
+            "http_request_id": {
+              "key": "GeneratedID",
+              "use_id_type": "http_request::HttpRequestComponent",
+              "type": "use_id"
+            },
+            "url": {
+              "key": "Required",
+              "docs": "**url**: The new URL to download the image from.\n\n*See also: [Online Image Component](https://esphome.io/components/online_image.html#actions)*"
+            },
+            "format": {
+              "key": "Required",
+              "type": "enum",
+              "values": {
+                "BMP": null,
+                "JPEG": null,
+                "PNG": null,
+                "JPG": null
+              }
+            },
+            "placeholder": {
+              "key": "Optional",
+              "use_id_type": "image::Image",
+              "type": "use_id"
+            },
+            "buffer_size": {
+              "key": "Optional",
+              "default": "65536",
+              "type": "integer"
+            },
+            "on_download_finished": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_error": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "update_interval": {
+              "key": "Optional",
+              "default": "never"
+            }
+          }
+        },
+        "is_list": true
+      }
+    },
+    "action": {
+      "release": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "use_id_type": "online_image::OnlineImage",
+              "type": "use_id"
+            }
+          }
+        },
+        "maybe": "id"
+      },
+      "set_url": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "use_id_type": "online_image::OnlineImage",
+              "type": "use_id"
+            },
+            "url": {
+              "key": "Required",
+              "templatable": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

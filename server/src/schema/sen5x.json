@@ -94,7 +94,7 @@
                   }
                 }
               },
-              "docs": "The information for the **Weight Concentration** sensor for fine particles up to 1\u03bcm. Readings in \u00b5g/m\u00b3.\n  * **name** (**Required**, string): The name for this sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in automation and lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#configuration-variables)*"
+              "docs": "The information for the **Weight Concentration** sensor for fine particles up to 1\u03bcm. Readings in \u00b5g/m\u00b3.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#configuration-variables)*"
             },
             "pm_2_5": {
               "key": "Optional",
@@ -121,7 +121,7 @@
                   }
                 }
               },
-              "docs": "The information for the **Weight Concentration** sensor for fine particles up to 2.5\u03bcm. Readings in \u00b5g/m\u00b3.\n  * **name** (**Required**, string): The name for this sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in automation and lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#configuration-variables)*"
+              "docs": "The information for the **Weight Concentration** sensor for fine particles up to 2.5\u03bcm. Readings in \u00b5g/m\u00b3.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#configuration-variables)*"
             },
             "pm_4_0": {
               "key": "Optional",
@@ -145,7 +145,7 @@
                   }
                 }
               },
-              "docs": "The information for the **Weight Concentration** sensor for coarse particles up to 4\u03bcm. Readings in \u00b5g/m\u00b3.\n  * **name** (**Required**, string): The name for this sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in automation and lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#configuration-variables)*"
+              "docs": "The information for the **Weight Concentration** sensor for coarse particles up to 4\u03bcm. Readings in \u00b5g/m\u00b3.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#configuration-variables)*"
             },
             "pm_10_0": {
               "key": "Optional",
@@ -172,7 +172,7 @@
                   }
                 }
               },
-              "docs": "The information for the **Weight Concentration** sensor for coarse particles up to 10\u03bcm. Readings in \u00b5g/m\u00b3.\n  * **name** (**Required**, string): The name for this sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in automation and lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#configuration-variables)*"
+              "docs": "The information for the **Weight Concentration** sensor for coarse particles up to 10\u03bcm. Readings in \u00b5g/m\u00b3.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#configuration-variables)*"
             },
             "auto_cleaning_interval": {
               "key": "Optional",
@@ -194,14 +194,14 @@
                     "default": "0"
                   },
                   "device_class": {
-                    "default": "volatile_organic_compounds"
+                    "default": "aqi"
                   },
                   "state_class": {
                     "default": "measurement"
                   }
                 }
               },
-              "docs": "VOC Index. Note only available with Sen54 or Sen55. The sensor will be ignored on unsupported models.\n  * **name** (**Required**, string): The name of the sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Manually specify the ID used for code generation.\n  \n  * **algorithm_tuning** (*Optional*): The VOC algorithm can be customized by tuning 6 different parameters. For more details see [Engineering Guidelines for SEN5x](https://sensirion.com/media/documents/25AB572C/62B463AA/Sensirion_Engineering_Guidelines_SEN5x.pdf)\n    * **index_offset** (*Optional*): VOC index representing typical (average) conditions. Allowed values are in range 1..250. The default value is 100.\n    \n    * **learning_time_offset_hours** (*Optional*): Time constant to estimate the VOC algorithm offset from the history in hours. Past events will be forgotten after about twice the  learning time. Allowed values are in range 1..1000. The default value is 12 hour\n    \n    * **learning_time_gain_hours** (*Optional*): Time constant to estimate the VOC algorithm gain from the history in hours. Past events will be forgotten after about twice the learning time. Allowed values are in range 1..1000. The default value is 12 hours.\n    \n    * **gating_max_duration_minutes** (*Optional*): Maximum duration of gating in minutes (freeze of estimator during high VOC index signal). Zero disables the gating. Allowed values are in range 0..3000. The default value is 180 minutes\n    \n    * **std_initial** (*Optional*): Initial estimate for standard deviation. Lower value boosts events during initial learning period, but may result in larger device-todevice variations. Allowed values are in range 10..5000. The default value is 50.\n    \n    * **gain_factor** (*Optional*): Gain factor to amplify or to attenuate the VOC index output. Allowed values are in range 1..1000. The default value is 230.\n    \n    \n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#configuration-variables)*"
+              "docs": "VOC Index. Note only available with Sen54 or Sen55. The sensor will be ignored on unsupported models.\n  * **algorithm_tuning** (*Optional*): The VOC algorithm can be customized by tuning 6 different parameters. For more details see [Engineering Guidelines for SEN5x](https://sensirion.com/media/documents/25AB572C/62B463AA/Sensirion_Engineering_Guidelines_SEN5x.pdf)\n    * **index_offset** (*Optional*): VOC index representing typical (average) conditions. Allowed values are in range 1..250. The default value is 100.\n    \n    * **learning_time_offset_hours** (*Optional*): Time constant to estimate the VOC algorithm offset from the history in hours. Past events will be forgotten after about twice the  learning time. Allowed values are in range 1..1000. The default value is 12 hour\n    \n    * **learning_time_gain_hours** (*Optional*): Time constant to estimate the VOC algorithm gain from the history in hours. Past events will be forgotten after about twice the learning time. Allowed values are in range 1..1000. The default value is 12 hours.\n    \n    * **gating_max_duration_minutes** (*Optional*): Maximum duration of gating in minutes (freeze of estimator during high VOC index signal). Zero disables the gating. Allowed values are in range 0..3000. The default value is 180 minutes\n    \n    * **std_initial** (*Optional*): Initial estimate for standard deviation. Lower value boosts events during initial learning period, but may result in larger device-todevice variations. Allowed values are in range 10..5000. The default value is 50.\n    \n    * **gain_factor** (*Optional*): Gain factor to amplify or to attenuate the VOC index output. Allowed values are in range 1..1000. The default value is 230.\n    \n    \n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#configuration-variables)*"
             },
             "nox": {
               "key": "Optional",
@@ -219,14 +219,14 @@
                     "default": "0"
                   },
                   "device_class": {
-                    "default": "nitrous_oxide"
+                    "default": "aqi"
                   },
                   "state_class": {
                     "default": "measurement"
                   }
                 }
               },
-              "docs": "NOx Index. Note: Only available with Sen55. The sensor will be ignored on unsupported models.\n  * **name** (**Required**, string): The name of the sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Manually specify the ID used for code generation.\n  \n  * **algorithm_tuning** (*Optional*): The NOx algorithm can be customized by tuning 5 different parameters.For more details see [Engineering Guidelines for SEN5x](https://sensirion.com/media/documents/25AB572C/62B463AA/Sensirion_Engineering_Guidelines_SEN5x.pdf)\n    * **index_offset** (*Optional*): NOx index representing typical (average) conditions. Allowed values are in range 1..250. The default value is 100.\n    \n    * **learning_time_offset_hours** (*Optional*): Time constant to estimate the NOx algorithm offset from the history in hours. Past events will be forgotten after about twice the  learning time. Allowed values are in range 1..1000. The default value is 12 hour\n    \n    * **learning_time_gain_hours** (*Optional*): Time constant to estimate the NOx algorithm gain from the history in hours. Past events will be forgotten after about twice the learning time. Allowed values are in range 1..1000. The default value is 12 hours.\n    \n    * **gating_max_duration_minutes** (*Optional*): Maximum duration of gating in minutes (freeze of estimator during high NOx index signal). Zero disables the gating. Allowed values are in range 0..3000. The default value is 180 minutes\n    \n    * **std_initial** (*Optional*): The initial estimate for standard deviation parameter has no impact for NOx. This parameter is still in place for consistency reasons with the VOC tuning parameters command. This parameter must always be set to 50.\n    \n    * **gain_factor** (*Optional*): Gain factor to amplify or to attenuate the VOC index output. Allowed values are in range 1..1000. The default value is 230.\n    \n    \n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#configuration-variables)*"
+              "docs": "NOx Index. Note: Only available with Sen55. The sensor will be ignored on unsupported models.\n  * **algorithm_tuning** (*Optional*): The NOx algorithm can be customized by tuning 5 different parameters.For more details see [Engineering Guidelines for SEN5x](https://sensirion.com/media/documents/25AB572C/62B463AA/Sensirion_Engineering_Guidelines_SEN5x.pdf)\n    * **index_offset** (*Optional*): NOx index representing typical (average) conditions. Allowed values are in range 1..250. The default value is 100.\n    \n    * **learning_time_offset_hours** (*Optional*): Time constant to estimate the NOx algorithm offset from the history in hours. Past events will be forgotten after about twice the  learning time. Allowed values are in range 1..1000. The default value is 12 hour\n    \n    * **learning_time_gain_hours** (*Optional*): Time constant to estimate the NOx algorithm gain from the history in hours. Past events will be forgotten after about twice the learning time. Allowed values are in range 1..1000. The default value is 12 hours.\n    \n    * **gating_max_duration_minutes** (*Optional*): Maximum duration of gating in minutes (freeze of estimator during high NOx index signal). Zero disables the gating. Allowed values are in range 0..3000. The default value is 180 minutes\n    \n    * **std_initial** (*Optional*): The initial estimate for standard deviation parameter has no impact for NOx. This parameter is still in place for consistency reasons with the VOC tuning parameters command. This parameter must always be set to 50.\n    \n    * **gain_factor** (*Optional*): Gain factor to amplify or to attenuate the VOC index output. Allowed values are in range 1..1000. The default value is 230.\n    \n    \n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#configuration-variables)*"
             },
             "store_baseline": {
               "key": "Optional",
@@ -263,7 +263,7 @@
                   }
                 }
               },
-              "docs": "Temperature.Note only available with Sen54 or Sen55. The sensor will be ignored on unsupported models.\n  * **name** (**Required**, string): The name of the sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Manually specify the ID used for code generation.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#configuration-variables)*"
+              "docs": "Temperature.Note only available with Sen54 or Sen55. The sensor will be ignored on unsupported models.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#configuration-variables)*"
             },
             "humidity": {
               "key": "Optional",
@@ -290,7 +290,7 @@
                   }
                 }
               },
-              "docs": "Relative Humidity. Note only available with Sen54 or Sen55. The sensor will be ignored on unsupported models.\n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#configuration-variables)*"
+              "docs": "Relative Humidity. Note only available with Sen54 or Sen55. The sensor will be ignored on unsupported models.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#configuration-variables)*"
             },
             "temperature_compensation": {
               "key": "Optional",
@@ -305,7 +305,7 @@
                   "normalized_offset_slope": {
                     "key": "Optional",
                     "default": "0",
-                    "docs": "Normalized temperature offset slope in percent. Defaults to `0`\n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#configuration-variables)*"
+                    "docs": "Normalized temperature offset slope. Defaults to `0`\n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#configuration-variables)*"
                   },
                   "time_constant": {
                     "key": "Optional",
@@ -315,7 +315,7 @@
                   }
                 }
               },
-              "docs": "These parameters allow to compensate temperature effects of the design-in at customer side by applying a custom temperature offset to the ambient temperature.The compensated ambient temperature is calculated as follows:T_Ambient_Compensated = T_Ambient + (slope*T_Ambient) + offsetWhere slope and offset are the values set with this command, smoothed with the specified time constant. The time constant is how fast the slope and offset are applied. After the specified value in seconds, 63% of the new slope and offset are applied. More details about the tuning of these parameters are included in the application note [Temperature Acceleration and Compensation Instructions for SEN5x.](https://sensirion.com/media/documents/9B9DE2A7/61E957EB/Sensirion_Temperature_Acceleration_and_Compensation_Instructions_SEN.pdf)\n  * **offset** (*Optional*): Temperature offset [\u00b0C]. Defaults to `0`\n  \n  * **normalized_offset_slope** (*Optional*): Normalized temperature offset slope in percent. Defaults to `0`\n  \n  * **time_constant** (*Optional*): Time constant in seconds. Defaults to `0`\n  \n  \n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#configuration-variables)*"
+              "docs": "These parameters allow to compensate temperature effects of the design-in at customer side by applying a custom temperature offset to the ambient temperature.The compensated ambient temperature is calculated as follows:T_Ambient_Compensated = T_Ambient + (slope*T_Ambient) + offsetWhere slope and offset are the values set with this command, smoothed with the specified time constant. The time constant is how fast the slope and offset are applied. After the specified value in seconds, 63% of the new slope and offset are applied. More details about the tuning of these parameters are included in the application note [Temperature Acceleration and Compensation Instructions for SEN5x.](https://sensirion.com/media/documents/9B9DE2A7/61E957EB/Sensirion_Temperature_Acceleration_and_Compensation_Instructions_SEN.pdf)\n  * **offset** (*Optional*): Temperature offset [\u00b0C]. Defaults to `0`\n  \n  * **normalized_offset_slope** (*Optional*): Normalized temperature offset slope. Defaults to `0`\n  \n  * **time_constant** (*Optional*): Time constant in seconds. Defaults to `0`\n  \n  \n\n*See also: [Sen5x Series Environmental sensor](https://esphome.io/components/sensor/sen5x.html#configuration-variables)*"
             },
             "acceleration_mode": {
               "key": "Optional",
@@ -364,7 +364,7 @@
           }
         },
         "maybe": "id",
-        "docs": "This [action](https://esphome.io/guides/automations.html#config-action) manually starts fan-cleaning.\n\n*See also: [`sen5x.start_fan_autoclean` Action](https://esphome.io/components/sensor/sen5x.html#sen5x-start-fan-autoclean-action)*"
+        "docs": "This [action](https://esphome.io/automations/actions.html#config-action) manually starts fan-cleaning.\n\n*See also: [`sen5x.start_fan_autoclean` Action](https://esphome.io/components/sensor/sen5x.html#sen5x-start-fan-autoclean-action)*"
       }
     }
   }

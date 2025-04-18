@@ -1,17 +1,44 @@
 {
   "touchscreen": {
     "components": {
+      "axs15231": {
+        "docs": "The `axs15231` touchscreen platform allows using the touch screen controllers based on the AXS15231 chip with ESPHome. An [I\u00b2C](https://esphome.io/components/i2c.html#i2c) bus is required to be set up in your configuration for this touchscreen to work.\n\n*See also: [AXS15231 Touch Screen Controller](https://esphome.io/components/touchscreen/axs15231.html#axs15231-touch-screen-controller)*"
+      },
+      "chsc6x": {
+        "docs": "The `chsc6x` touchscreen platform allows using the touch screen controllers based on the chsc6x chip with ESPHome. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this touchscreen to work.\n\n*See also: [chsc6x Touch Screen Controller](https://esphome.io/components/touchscreen/chsc6x.html#chsc6x-touch-screen-controller)*"
+      },
+      "cst226": {
+        "docs": "The `cst226` touchscreen platform allows using the touch screen controllers based on the cst226 chip with ESPHome. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this touchscreen to work.\n\n*See also: [cst226 Touch Screen Controller](https://esphome.io/components/touchscreen/cst226.html#cst226-touch-screen-controller)*"
+      },
+      "cst816": {
+        "docs": "The `cst816` touchscreen platform allows using the touch screen controllers based on the CST816 series of chips with ESPHome. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this touchscreen to work.\n\n*See also: [cst816 Touch Screen Controller](https://esphome.io/components/touchscreen/cst816.html#cst816-touch-screen-controller)*"
+      },
       "ektf2232": {
         "dependencies": [
           "i2c"
         ],
         "docs": "The `ektf2232` component allows using the touchscreen controller found in the [Inkplate 6 Plus](https://esphome.io/components/display/inkplate6.html) with ESPHome. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [EKTF2232 Touchscreen Controller](https://esphome.io/components/touchscreen/ektf2232.html#ektf2232-touchscreen-controller)*"
       },
+      "ft5x06": {
+        "docs": "The `ft5x06` touchscreen platform allows using the touch screen controllers based on the ft5x06 chip with ESPHome. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this touchscreen to work.\n\n*See also: [FT5X06 Touch Screen Controller](https://esphome.io/components/touchscreen/ft5x06.html#ft5x06-touch-screen-controller)*"
+      },
+      "ft63x6": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `ft63x6` component allows using the touchscreen controller found in [Seeed Studio\u2019s WT32-SC01](https://www.seeedstudio.com/ESP32-Development-board-WT32-SC01-p-4735.html) with ESPHome. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [FT63X6 Touchscreen Controller](https://esphome.io/components/touchscreen/ft63x6.html#ft63x6-touchscreen-controller)*"
+      },
+      "gt911": {
+        "docs": "The `gt911` touchscreen platform allows using the touch screen controllers based on the gt911 chip with ESPHome. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this touchscreen to work.\n\n*See also: [gt911 Touch Screen Controller](https://esphome.io/components/touchscreen/gt911.html#gt911-touch-screen-controller)*"
+      },
       "lilygo_t5_47": {
         "dependencies": [
           "i2c"
         ],
         "docs": "The `liygo_t5_47` touchscreen platform allows using the touchscreen controller for the Lilygo T5 4.7\u201d e-Paper Display with ESPHome. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this touchscreen to work.\n\n*See also: [Lilygo T5 4.7\u201d Touchscreen](https://esphome.io/components/touchscreen/lilygo_t5_47.html#lilygo-t5-4-7-touchscreen)*"
+      },
+      "sdl": {
+        "docs": "The `sdl` touchscreen platform allows emulating a touch screen by using the mouse with the `sdl` display driver. The `sdl` display component must be configured to use this.\n\n*See also: [SDL2 Touch Screen Emulator](https://esphome.io/components/touchscreen/sdl.html#sdl2-touch-screen-emulator)*"
       },
       "tt21100": {
         "dependencies": [
@@ -23,26 +50,118 @@
         "dependencies": [
           "spi"
         ],
-        "docs": "The `xpt2046` touchscreen platform allows using the touch screen controllers based on the XPT2046 chip ([datasheet](https://datasheetspdf.com/pdf-file/746665/XPTEK/XPT2046/1), [AZ-Delivery](https://www.az-delivery.de/en/products/2-4-tft-lcd-touch-display)) with ESPHome. Many cheap LCD displays contain this controller. The [SPI](https://esphome.io/components/spi.html#spi) is required to be set up in your configuration for this sensor to work.\n\n*See also: [XPT2046 Touch Screen Controller (Updated version)](https://esphome.io/components/touchscreen/xpt2046.html#xpt2046-touch-screen-controller-updated-version)*"
+        "docs": "The `xpt2046` touchscreen platform allows using the resistive touch screen controllers based on the XPT2046 chip ([datasheet](https://datasheetspdf.com/pdf-file/746665/XPTEK/XPT2046/1), [AZ-Delivery](https://www.az-delivery.de/en/products/2-4-tft-lcd-touch-display)) with ESPHome. Many cheap LCD displays contain this controller. The [SPI](https://esphome.io/components/spi.html#spi) is required to be set up in your configuration for this sensor to work.\n\n*See also: [XPT2046 Touch Screen Controller (Updated version)](https://esphome.io/components/touchscreen/xpt2046.html#xpt2046-touch-screen-controller-updated-version)*"
       }
     },
     "schemas": {
+      "CALIBRATION_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "x_min": {
+              "key": "Required",
+              "type": "integer",
+              "docs": "**int**: The raw value corresponding to the left (or top if `swap_xy` is specified) edge of the touchscreen. See [Calibration](https://esphome.io/components/touchscreen/index.html#touchscreen-calibration) for the process to calibrate the touchscreen.\n\n*See also: [XPT2046 Touch Screen Controller (Updated version)](https://esphome.io/components/touchscreen/xpt2046.html#configuration-variables)*"
+            },
+            "x_max": {
+              "key": "Required",
+              "type": "integer",
+              "docs": "**int**: The raw value corresponding to the right (or bottom if `swap_xy` is specified) edge of the touchscreen.\n\n*See also: [XPT2046 Touch Screen Controller (Updated version)](https://esphome.io/components/touchscreen/xpt2046.html#configuration-variables)*"
+            },
+            "y_min": {
+              "key": "Required",
+              "type": "integer",
+              "docs": "**int**: The raw value corresponding to the top (or left if `swap_xy` is specified) edge of the touchscreen.\n\n*See also: [XPT2046 Touch Screen Controller (Updated version)](https://esphome.io/components/touchscreen/xpt2046.html#configuration-variables)*"
+            },
+            "y_max": {
+              "key": "Required",
+              "type": "integer",
+              "docs": "**int**: The raw value corresponding to the bottom (or right if `swap_xy` is specified) edge of the touchscreen.\n\n*See also: [XPT2046 Touch Screen Controller (Updated version)](https://esphome.io/components/touchscreen/xpt2046.html#configuration-variables)*"
+            }
+          }
+        }
+      },
       "TOUCHSCREEN_SCHEMA": {
         "type": "schema",
         "schema": {
           "config_vars": {
             "display": {
               "key": "GeneratedID",
-              "use_id_type": "display::DisplayBuffer",
+              "use_id_type": "display::Display",
               "type": "use_id",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The display to use. If only one display is available, this can be omitted.\n\n*See also: [Touchscreen Components](https://esphome.io/components/touchscreen/index.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The display to use this touchscreen with.\n\n*See also: [Touchscreen Components](https://esphome.io/components/touchscreen/index.html#configuration-variables)*"
+            },
+            "transform": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "swap_xy": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean",
+                    "docs": "**boolean**: If true, exchange the x and y axes.\n\n*See also: [Touchscreen Components](https://esphome.io/components/touchscreen/index.html#configuration-variables)*"
+                  },
+                  "mirror_x": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean",
+                    "docs": "**boolean**: If true, mirror the x axis.\n\n*See also: [Touchscreen Components](https://esphome.io/components/touchscreen/index.html#configuration-variables)*"
+                  },
+                  "mirror_y": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean",
+                    "docs": "**boolean**: If true, mirror the y axis.\n\n*See also: [Touchscreen Components](https://esphome.io/components/touchscreen/index.html#configuration-variables)*"
+                  }
+                }
+              },
+              "docs": "Transform the touchscreen presentation using hardware. All defaults are `false`.\n  * **swap_xy** (*Optional*, boolean): If true, exchange the x and y axes.\n  \n  * **mirror_x** (*Optional*, boolean): If true, mirror the x axis.\n  \n  * **mirror_y** (*Optional*, boolean): If true, mirror the y axis.\n  \n  \n\n*See also: [Touchscreen Components](https://esphome.io/components/touchscreen/index.html#configuration-variables)*"
+            },
+            "touch_timeout": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              },
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: A timeout for touchscreens that do not report the end of touch. The default varies depending on the touchscreen.\n\n*See also: [Touchscreen Components](https://esphome.io/components/touchscreen/index.html#configuration-variables)*"
+            },
+            "calibration": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "touchscreen.CALIBRATION_SCHEMA"
+                ]
+              },
+              "docs": "Some touchscreens require calibration on a per-device basis.\n  * **x_min** (**Required**, int): The raw value corresponding to the left (or top if `swap_xy` is specified) edge of the touchscreen. See [Calibration](https://esphome.io/components/touchscreen/index.html#touchscreen-calibration) for the process to calibrate the touchscreen.\n  \n  * **x_max** (**Required**, int): The raw value corresponding to the right (or bottom if `swap_xy` is specified) edge of the touchscreen.\n  \n  * **y_min** (**Required**, int): The raw value corresponding to the top (or left if `swap_xy` is specified) edge of the touchscreen.\n  \n  * **y_max** (**Required**, int): The raw value corresponding to the bottom (or right if `swap_xy` is specified) edge of the touchscreen.\n  \n  \n\n*See also: [Touchscreen Components](https://esphome.io/components/touchscreen/index.html#configuration-variables)*"
             },
             "on_touch": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the touchscreen is touched. See [on_touch Trigger](https://esphome.io/components/touchscreen/index.html#touchscreen-on-touch).\n\n*See also: [Touchscreen Components](https://esphome.io/components/touchscreen/index.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when the touchscreen is touched. See [on_touch Trigger](https://esphome.io/components/touchscreen/index.html#touchscreen-on-touch).\n\n*See also: [Touchscreen Components](https://esphome.io/components/touchscreen/index.html#configuration-variables)*"
+            },
+            "on_update": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when the touchscreen is touched. See [on_update Trigger](https://esphome.io/components/touchscreen/index.html#touchscreen-on-update).\n\n*See also: [Touchscreen Components](https://esphome.io/components/touchscreen/index.html#configuration-variables)*"
+            },
+            "on_release": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when the touchscreen is no longer touched. See [on_release Trigger](https://esphome.io/components/touchscreen/index.html#touchscreen-on-release).\n\n*See also: [Touchscreen Components](https://esphome.io/components/touchscreen/index.html#configuration-variables)*"
+            },
+            "update_interval": {
+              "key": "Optional",
+              "default": "50ms",
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The touchscreen polling interval - used only if an interrupt pin is not in use. Defaults to `50ms`.\n\n*See also: [Touchscreen Components](https://esphome.io/components/touchscreen/index.html#configuration-variables)*"
             }
-          }
+          },
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
         }
       }
     }
@@ -68,40 +187,51 @@
                   "Parented<touchscreen::Touchscreen>",
                   "Parented"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id1)*"
+              }
             },
             "touchscreen_id": {
               "key": "GeneratedID",
               "use_id_type": "touchscreen::Touchscreen",
               "type": "use_id",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the touchscreen.\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id1)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the touchscreen.\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id5)*"
+            },
+            "use_raw": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean"
             },
             "x_min": {
               "key": "Required",
               "type": "integer",
-              "docs": "**int**: Left coordinate of the screen area to be detected as the virtual button.\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id1)*"
+              "docs": "**int**: Left coordinate of the screen area to be detected as the virtual button.\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id5)*"
             },
             "x_max": {
               "key": "Required",
               "type": "integer",
-              "docs": "**int**: Right coordinate of the screen area to be detected as the virtual button.\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id1)*"
+              "docs": "**int**: Right coordinate of the screen area to be detected as the virtual button.\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id5)*"
             },
             "y_min": {
               "key": "Required",
               "type": "integer",
-              "docs": "**int**: Top coordinate of the screen area to be detected as the virtual button.\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id1)*"
+              "docs": "**int**: Top coordinate of the screen area to be detected as the virtual button.\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id5)*"
             },
             "y_max": {
               "key": "Required",
               "type": "integer",
-              "docs": "**int**: Bottom coordinate of the screen area to be detected as the virtual button.\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id1)*"
+              "docs": "**int**: Bottom coordinate of the screen area to be detected as the virtual button.\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id5)*"
             },
             "page_id": {
               "key": "Optional",
               "use_id_type": "display::DisplayPage",
               "type": "use_id",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Only trigger this binary sensor if the display is showing this page.\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id1)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Only trigger this binary sensor if the display is showing this page. Cannot be used with `pages`.\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id5)*"
+            },
+            "pages": {
+              "key": "Optional",
+              "is_list": true,
+              "use_id_type": "display::DisplayPage",
+              "type": "use_id",
+              "docs": "**list of [ID](https://esphome.io/guides/configuration-types.html#config-id)**: Only trigger this binary sensor if the display is showing one of these pages. Cannot be used with `page_id`.\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id5)*"
             }
           }
         }

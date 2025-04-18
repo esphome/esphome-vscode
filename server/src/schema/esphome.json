@@ -16,15 +16,19 @@
               "type": "string",
               "docs": "**string**: This is the name sent to the frontend. It is used by Home Assistant as the integration name, device name, and is automatically prefixed to entities where necessary.\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
             },
+            "area": {
+              "key": "Optional",
+              "default": "",
+              "type": "string",
+              "docs": "**string**: This is the area sent to the frontend. It is used by Home Assistant as the area / zone which the node belongs to.\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+            },
             "comment": {
               "key": "Optional",
-              "type": "string",
-              "docs": "**string**: Additional text information about this node. Only for display in UI.\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              "type": "string"
             },
             "build_path": {
               "key": "Required",
-              "type": "string",
-              "docs": "**string**: Customize where ESPHome will store the build files for your node. By default, ESPHome puts the PlatformIO project it uses to build the firmware in the `.esphome/build/<NODE>` directory, but you can customize this behavior using this option.\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              "type": "string"
             },
             "platformio_options": {
               "key": "String",
@@ -37,8 +41,7 @@
                     "type": "string"
                   }
                 }
-              },
-              "docs": "**mapping**: Additional options to pass over to PlatformIO in the platformio.ini file. See [platformio_options](https://esphome.io/components/esphome.html#esphome-platformio-options).\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              }
             },
             "on_boot": {
               "key": "Optional",
@@ -47,15 +50,13 @@
                 "config_vars": {
                   "priority": {
                     "key": "Optional",
-                    "default": "600.0",
-                    "docs": "**float**: The priority to execute your custom initialization code. A higher value means a high priority and thus also your code being executed earlier. Please note this is an ESPHome-internal value and any change will not be marked as a breaking change. Defaults to `600`. Priorities (you can use any value between them too):\n  * `800.0`: This is where all hardware initialization of vital components is executed. For example setting switches to their initial state.\n  \n  * `600.0`: This is where most sensors are set up.\n  \n  * `250.0`: At this priority, WiFi is initialized.\n  \n  * `200.0`: Network connections like MQTT/native API are set up at this priority.\n  \n  * `-100.0`: At this priority, pretty much everything should already be initialized.\n  \n  \n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#on-boot)*"
+                    "default": "600.0"
                   },
                   "then": {
                     "type": "trigger"
                   }
                 }
-              },
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the node starts. See [on_boot](https://esphome.io/components/esphome.html#esphome-on-boot).\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              }
             },
             "on_shutdown": {
               "key": "Optional",
@@ -64,39 +65,38 @@
                 "config_vars": {
                   "priority": {
                     "key": "Optional",
-                    "default": "600.0",
-                    "docs": "**float**: The priority to execute your custom shutdown code. A higher value means a high priority and in case of shutdown triggers that the code is executed **later**. Priority is used primarily for the initialization order of components. Shutdowns for these components are handled in *reverse* order, such that e.g. sensors (600) are shutdown before the hardware components (800) they depend on. Please note this is an ESPHome-internal value and any change will not be marked as a breaking change. Defaults to `600`. For priority values refer to the list in the [on_boot](https://esphome.io/components/esphome.html#esphome-on-boot) section.\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#on-shutdown)*"
+                    "default": "600.0"
                   },
                   "then": {
                     "type": "trigger"
                   }
                 }
-              },
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform right before the node shuts down. See [on_shutdown](https://esphome.io/components/esphome.html#esphome-on-shutdown).\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              }
             },
             "on_loop": {
               "key": "Optional",
-              "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform on each `loop()` iteration. See [on_loop](https://esphome.io/components/esphome.html#esphome-on-loop).\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              "type": "trigger"
             },
             "includes": {
               "key": "Optional",
               "default": "[]",
-              "is_list": true,
-              "docs": "**list of files**: A list of C/C++ files to include in the main (auto-generated) sketch file for custom components. The paths in this list are relative to the directory where the YAML configuration file is in. See [includes](https://esphome.io/components/esphome.html#esphome-includes).\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              "is_list": true
             },
             "libraries": {
               "key": "Optional",
               "default": "[]",
               "is_list": true,
-              "type": "string",
-              "docs": "**list of libraries**: A list of libraries to include in the project. See [libraries](https://esphome.io/components/esphome.html#esphome-libraries).\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              "type": "string"
             },
             "name_add_mac_suffix": {
               "key": "Optional",
               "default": "False",
-              "type": "boolean",
-              "docs": "**boolean**: Appends the last 3 bytes of the mac address of the device to the name in the form `<name>-aabbcc`. Defaults to `false`. See [Adding the MAC address as a suffix to the device name](https://esphome.io/components/esphome.html#esphome-mac-suffix).\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              "type": "boolean"
+            },
+            "debug_scheduler": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean"
             },
             "project": {
               "key": "Optional",
@@ -105,29 +105,76 @@
                 "config_vars": {
                   "name": {
                     "key": "Required",
-                    "type": "string",
-                    "docs": "**string**: Name of the project\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+                    "type": "string"
                   },
                   "version": {
                     "key": "Required",
-                    "type": "string",
-                    "docs": "**string**: Version of the project\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+                    "type": "string"
+                  },
+                  "on_update": {
+                    "key": "Optional",
+                    "type": "trigger"
                   }
                 }
-              },
-              "docs": "ESPHome Creator\u2019s Project information. See [Project information](https://esphome.io/components/esphome.html#esphome-creators-project).\n  * **name** (**Required**, string): Name of the project\n  \n  * **version** (**Required**, string): Version of the project\n  \n  \n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              }
             },
             "min_version": {
               "key": "Optional",
-              "default": "2023.9.3",
-              "docs": "**string**: The minimum ESPHome version required to compile this configuration. See [Minimum ESPHome version](https://esphome.io/components/esphome.html#esphome-min-version).\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              "default": "2025.5.0-dev"
             },
             "compile_process_limit": {
               "key": "Optional",
-              "type": "integer",
-              "docs": "**int**: The maximum number of simultaneous compile processes to run. Defaults to the number of cores of the CPU which is also the maximum you can set.\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#configuration-variables)*"
+              "type": "integer"
             }
           }
+        }
+      }
+    }
+  },
+  "esphome.ota": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "esphome::ESPHomeOTAComponent",
+                "parents": [
+                  "ota::OTAComponent",
+                  "Component"
+                ]
+              },
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [ESPHome OTA Updates](https://esphome.io/components/ota/esphome.html#configuration-variables)*"
+            },
+            "version": {
+              "key": "Optional",
+              "default": "2",
+              "type": "enum",
+              "values": {
+                "1": null,
+                "2": null
+              },
+              "docs": "**int**: Version of OTA protocol to use. Version 2 is more stable. To downgrade to legacy ESPHome, the device should be updated with OTA version 1 first. Defaults to `2`.\n\n*See also: [ESPHome OTA Updates](https://esphome.io/components/ota/esphome.html#configuration-variables)*"
+            },
+            "port": {
+              "key": "Optional",
+              "default": "8266",
+              "type": "integer",
+              "data_type": "port",
+              "docs": "**int**: The port to use for OTA updates. Defaults:\n  * `3232` for the ESP32\n  \n  * `8266` for the ESP8266\n  \n  * `2040` for the RP2040\n  \n  * `8892` for Beken chips\n  \n  \n\n*See also: [ESPHome OTA Updates](https://esphome.io/components/ota/esphome.html#configuration-variables)*"
+            },
+            "password": {
+              "key": "Optional",
+              "type": "string",
+              "docs": "**string**: The password to use for updates.\n\n*See also: [ESPHome OTA Updates](https://esphome.io/components/ota/esphome.html#configuration-variables)*"
+            }
+          },
+          "extends": [
+            "ota.BASE_OTA_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ]
         }
       }
     }
@@ -191,10 +238,22 @@
           ]
         }
       },
+      "positive_time_period_nanoseconds": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "core.time_period_dict"
+          ]
+        }
+      },
       "MQTT_COMPONENT_SCHEMA": {
         "type": "schema",
         "schema": {
           "config_vars": {
+            "qos": {
+              "key": "Optional",
+              "docs": "**int**: The [Quality of Service]([https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels/](https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels/)) level for publishing. Defaults to 0.\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
+            },
             "retain": {
               "key": "Optional",
               "type": "boolean",
@@ -205,9 +264,13 @@
               "type": "boolean",
               "docs": "**boolean**: Manually enable/disable discovery for a component. Defaults to the global default.\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
             },
+            "subscribe_qos": {
+              "key": "Optional",
+              "docs": "**int**: The [Quality of Service]([https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels/](https://www.hivemq.com/blog/mqtt-essentials-part-6-mqtt-quality-of-service-levels/)) level advertised in discovery for subscribing (only if discovery is enabled). Defaults to 0.\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
+            },
             "state_topic": {
               "key": "Optional",
-              "docs": "**string**: The topic to publish state updates to. Defaults to `<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/state`.\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
+              "docs": "**string**: The topic to publish state updates to. Defaults to `<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/state`.ESPHome will always publish a manually configured state topic, even if the component is internal. Use `null` to disable publishing the component\u2019s state.\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
             },
             "availability": {
               "key": "Optional",
@@ -251,7 +314,7 @@
           "config_vars": {
             "command_topic": {
               "key": "Optional",
-              "docs": "**string**: The topic to subscribe to for commands from the remote. Defaults to `<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/command`.\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
+              "docs": "**string**: The topic to subscribe to for commands from the remote. Defaults to `<TOPIC_PREFIX>/<COMPONENT_TYPE>/<COMPONENT_NAME>/command`.ESPHome will always subscribe to a manually configured command topic, even if the component is internal. Use `null` to disable subscribing to the component\u2019s command topic.\n\n*See also: [MQTT Component Base Configuration](https://esphome.io/components/mqtt.html#mqtt-component-base-configuration)*"
             },
             "command_retain": {
               "key": "Optional",
@@ -270,27 +333,51 @@
           "config_vars": {
             "name": {
               "key": "Optional",
-              "type": "string",
-              "docs": "**string**: The name for the binary sensor.\n\n*See also: [touchscreen Binary Sensor](https://esphome.io/components/touchscreen/index.html#id1)*"
+              "docs": "**string**: The name for the valve. At least one of **id** and **name** must be specified.\n   > If you have a [friendly_name](https://esphome.io/components/esphome.html#esphome-configuration-variables) set for your device and you want the valve to use that name, you can set `name: None`.\n\n*See also: [Valve Component](https://esphome.io/components/valve/index.html#base-valve-configuration)*"
             },
             "internal": {
               "key": "Optional",
               "type": "boolean",
-              "docs": "**boolean**: Mark this component as internal. Internal components will not be exposed to the frontend (like Home Assistant). Only specifying an `id` without a `name` will implicitly set this to true.\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#base-text-sensor-configuration)*"
+              "docs": "**boolean**: Mark this component as internal. Internal components will not be exposed to the frontend (like Home Assistant). Only specifying an `id` without a `name` will implicitly set this to true.\n\n*See also: [Valve Component](https://esphome.io/components/valve/index.html#base-valve-configuration)*"
             },
             "disabled_by_default": {
               "key": "Optional",
               "default": "False",
               "type": "boolean",
-              "docs": "**boolean**: If true, then this entity should not be added to any client\u2019s frontend, (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI). Requires Home Assistant 2021.9 or newer. Defaults to `false`.\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#base-text-sensor-configuration)*"
+              "docs": "**boolean**: If true, this entity should not be added to any client\u2019s frontend, (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI). Defaults to `false`.\n\n*See also: [Valve Component](https://esphome.io/components/valve/index.html#base-valve-configuration)*"
             },
             "icon": {
               "key": "Optional",
-              "docs": "**icon**: Manually set the icon to use for the sensor in the frontend.\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#base-text-sensor-configuration)*"
+              "docs": "**icon**: Manually set the icon to use for the valve in the frontend.\n\n*See also: [Valve Component](https://esphome.io/components/valve/index.html#base-valve-configuration)*"
             },
             "entity_category": {
               "key": "Optional",
-              "docs": "**string**: The category of the entity. See [https://developers.home-assistant.io/docs/core/entity/#generic-properties](https://developers.home-assistant.io/docs/core/entity/#generic-properties) for a list of available options. Requires Home Assistant 2021.11 or newer. Set to `\"\"` to remove the default entity category.\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#base-text-sensor-configuration)*"
+              "docs": "**string**: The category of the entity. See [https://developers.home-assistant.io/docs/core/entity/#generic-properties](https://developers.home-assistant.io/docs/core/entity/#generic-properties) for a list of available options. Set to `\"\"` to remove the default entity category.\n\n*See also: [Valve Component](https://esphome.io/components/valve/index.html#base-valve-configuration)*"
+            }
+          }
+        }
+      },
+      "GIT_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "url": {
+              "key": "Required"
+            },
+            "ref": {
+              "key": "Optional"
+            },
+            "username": {
+              "key": "Optional",
+              "type": "string"
+            },
+            "password": {
+              "key": "Optional",
+              "type": "string"
+            },
+            "path": {
+              "key": "Optional",
+              "type": "string"
             }
           }
         }
@@ -299,32 +386,14 @@
         "type": "typed",
         "types": {
           "git": {
-            "config_vars": {
-              "url": {
-                "key": "Required",
-                "docs": "**url**: HTTP git repository url. See [Git](https://esphome.io/components/external_components.html#external-components-git).\n\n*See also: [External Components](https://esphome.io/components/external_components.html#external-components)*"
-              },
-              "ref": {
-                "key": "Optional",
-                "docs": "**string**: Git ref (branch or tag). If not specified the default branch is used.\n\n*See also: [External Components](https://esphome.io/components/external_components.html#external-components)*"
-              },
-              "username": {
-                "key": "Optional",
-                "type": "string",
-                "docs": "**string**: Username for the Git server, if one is required\n\n*See also: [External Components](https://esphome.io/components/external_components.html#external-components)*"
-              },
-              "password": {
-                "key": "Optional",
-                "type": "string",
-                "docs": "**string**: Password for the Git server, if one is required\n\n*See also: [External Components](https://esphome.io/components/external_components.html#external-components)*"
-              }
-            }
+            "extends": [
+              "core.GIT_SCHEMA"
+            ]
           },
           "local": {
             "config_vars": {
               "path": {
-                "key": "Required",
-                "docs": "Path to use when using local components. See [Local](https://esphome.io/components/external_components.html#external-components-local).\n\n*See also: [External Components](https://esphome.io/components/external_components.html#external-components)*"
+                "key": "Required"
               }
             }
           }
@@ -340,6 +409,8 @@
       "alarm_control_panel": {
         "docs": "Configuration variables:\n\n*See also: [Alarm Control Panel Component](https://esphome.io/components/alarm_control_panel/index.html#alarm-control-panel-component)*"
       },
+      "audio_adc": {},
+      "audio_dac": {},
       "binary_sensor": {
         "docs": "With ESPHome you can use different types of binary sensors. They will automatically appear in the Home Assistant front-end and have several configuration options.\n\n*See also: [Binary Sensor Component](https://esphome.io/components/binary_sensor/index.html#binary-sensor-component)*"
       },
@@ -347,7 +418,7 @@
         "docs": "To attach a physical button to ESPHome, see [GPIO Binary Sensor](https://esphome.io/components/binary_sensor/gpio.html).\n\n*See also: [Button Component](https://esphome.io/components/button/index.html#button-component)*"
       },
       "canbus": {
-        "docs": "Each canbus platform extends this configuration schema.\n\n*See also: [Base CAN Bus Configuration](https://esphome.io/components/canbus.html#base-can-bus-configuration)*"
+        "docs": "The Controller Area Network (CAN) bus is a serial bus protocol to connect individual systems and sensors as an alternative to conventional multi-wire looms. It allows automotive components to communicate on a single or dual-wire data bus at speeds up to 1Mbps.\n\n*See also: [CAN Bus](https://esphome.io/components/canbus/index.html#can-bus)*"
       },
       "climate": {
         "docs": "ESPHome has support for climate devices. Climate devices can represent different types of hardware, but the defining factor is that climate devices have a settable target temperature and can be put in different modes like `HEAT`, `COOL`, `HEAT_COOL` or `OFF`.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-component)*"
@@ -355,12 +426,16 @@
       "cover": {
         "docs": "The `cover` component is a generic representation of covers in ESPHome. A cover can (currently) either be *closed* or *open* and supports three types of commands: *open*, *close* and *stop*.\n\n*See also: [Cover Component](https://esphome.io/components/cover/index.html#cover-component)*"
       },
+      "datetime": {},
       "display": {},
+      "event": {
+        "docs": "ESPHome supports the creation of event entities in Home Assistant. These entities allow for the triggering of custom events within the Home Assistant ecosystem, enabling complex automations and integrations. An event entity is represented as a stateless entity associated with a device that has a pre-defined set of event types which can be triggered in Home Assistant via automations.\n\n*See also: [Event Component](https://esphome.io/components/event/index.html#event-component)*"
+      },
       "fan": {
         "docs": "With the `fan` domain you can create components that appear as fans in the Home Assistant frontend. A fan can be switched on or off, optionally has a speed between 1 and the maximum supported speed of the fan, and can have an oscillation and direction output.\n\n*See also: [Fan Component](https://esphome.io/components/fan/index.html#fan-component)*"
       },
       "light": {
-        "docs": "The `light` domain in ESPHome lets you create lights that will automatically be shown in Home Assistant\u2019s frontend and have many features such as RGB colors, transitions, flashing and effects.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#light-component)*"
+        "docs": "In ESPHome, `light` components allow you to create lights usable from Home Assistant\u2019s frontend and have many features such as colors, transitions and even effects.\n\n*See also: [Light Component](https://esphome.io/components/light/index.html#light-component)*"
       },
       "lock": {
         "docs": "The `lock` domain includes all platforms that should function like a lock with lock/unlock actions.\n\n*See also: [Lock Component](https://esphome.io/components/lock/index.html#lock-component)*"
@@ -374,27 +449,38 @@
       "number": {
         "docs": "ESPHome has support for components to create a number entity. A number entity is like a sensor that can read a value from a device, but is useful when that value can be set by the user/frontend.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-component)*"
       },
+      "one_wire": {},
+      "ota": {},
       "output": {
         "docs": "Each output platform extends this configuration schema.\n\n*See also: [Base Output Configuration](https://esphome.io/components/output/index.html#base-output-configuration)*"
       },
       "select": {
         "docs": "ESPHome has support for components to create a select entity. A select entity is basically an option list that can be set by either yaml, hardware or the user/frontend.\n\n*See also: [Select Component](https://esphome.io/components/select/index.html#select-component)*"
       },
-      "speaker": {},
+      "speaker": {
+        "docs": "The `speaker` domain contains common functionality shared across the speaker platforms.\n\n*See also: [Speaker Components](https://esphome.io/components/speaker/index.html#speaker-components)*"
+      },
       "stepper": {
         "docs": "The `stepper` component allows you to use stepper motors with ESPHome. Currently only the A4988 stepper driver ([datasheet](https://www.pololu.com/file/0J450/a4988_DMOS_microstepping_driver_with_translator.pdf)) and ULN2003 ([datasheet](http://www.ti.com/lit/ds/symlink/uln2003a.pdf)) are supported.\n\n*See also: [Stepper Component](https://esphome.io/components/stepper/index.html#stepper-component)*"
       },
       "switch": {
         "docs": "The `switch` domain includes all platforms that should show up like a switch and can only be turned ON or OFF.\n\n*See also: [Switch Component](https://esphome.io/components/switch/index.html#switch-component)*"
       },
+      "text": {
+        "docs": "ESPHome has support for components to create a text entity. A text entity is like a `text_sensor` that can read a value from a device, but is useful when that value can be set by the user/frontend.\n\n*See also: [Text Component](https://esphome.io/components/text/index.html#text-component)*"
+      },
       "text_sensor": {
         "docs": "Text sensors are a lot like normal [sensors](https://esphome.io/components/sensor/index.html). But where the \u201cnormal\u201d sensors only represent sensors that output **numbers**, this component can represent any *text*.\n\n*See also: [Text Sensor Component](https://esphome.io/components/text_sensor/index.html#text-sensor-component)*"
       },
       "time": {
-        "docs": "The `time` component allows you to set up real time clock time sources for ESPHome. You can then get the current time in [lambdas](https://esphome.io/guides/automations.html#config-lambda).\n\n*See also: [Time Component](https://esphome.io/components/time/index.html#time-component)*"
+        "docs": "The `time` component allows you to set up real time clock time sources for ESPHome. You can then get the current time in [lambdas](https://esphome.io/automations/templates.html#config-lambda).\n\n*See also: [Time Component](https://esphome.io/components/time/index.html#time-component)*"
       },
       "touchscreen": {
-        "docs": "The `touchscreen` component holds the base code for most touchscreen components available in ESPHome and is responsible for passing the touch events to `binary_sensors` with the `touchscreen` platform.\n\n*See also: [Touchscreen Components](https://esphome.io/components/touchscreen/index.html#touchscreen-components)*"
+        "docs": "The `touchscreen` component contains the base code for most touchscreen driver components available in ESPHome and is responsible for passing the touch events to `binary_sensors` with the `touchscreen` platform. It is also used by the LVGL component.\n\n*See also: [Touchscreen Components](https://esphome.io/components/touchscreen/index.html#touchscreen-components)*"
+      },
+      "update": {},
+      "valve": {
+        "docs": "The `valve` component is a generic representation of valves in ESPHome. A valve can (currently) either be *closed* or *open* and supports three commands: *open*, *close* and *stop*.\n\n*See also: [Valve Component](https://esphome.io/components/valve/index.html#valve-component)*"
       }
     },
     "components": {
@@ -402,7 +488,7 @@
         "docs": "Here you specify some core information that ESPHome needs to create firmwares. Most importantly, this is the section of the configuration where you specify the **name** of the node.\n\n*See also: [ESPHome Core Configuration](https://esphome.io/components/esphome.html#esphome-core-configuration)*"
       },
       "esp32": {
-        "docs": "This is an alternative base framework for ESP32 chips, and recommended for variants of the ESP32 like ESP32S2, ESP32S3, ESP32C3 and single-core ESP32 chips.\n\n*See also: [ESP-IDF framework](https://esphome.io/components/esp32.html#esp-idf-framework)*"
+        "docs": "This is an alternative base framework for ESP32 chips; it is recommended for variants of the ESP32 like ESP32S2, ESP32S3, ESP32C3 and single-core ESP32 chips.\n\n*See also: [ESP-IDF framework](https://esphome.io/components/esp32.html#esp-idf-framework)*"
       },
       "esp8266": {
         "docs": "This component contains platform-specific options for the ESP8266 platform.\n\n*See also: [ESP8266 Platform](https://esphome.io/components/esp8266.html#esp8266-platform)*"
@@ -424,6 +510,12 @@
         ],
         "docs": "The `ads1115` domain creates a global hub so that you can later create individual sensors using the [ADS1115 Sensor Platform](https://esphome.io/components/sensor/ads1115.html#ads1115-sensor). To use this hub, first setup the [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) and connect the sensor to the pins specified there.\n\n*See also: [ads1115 Component/Hub](https://esphome.io/components/sensor/ads1115.html#component-hub)*"
       },
+      "ads1118": {
+        "dependencies": [
+          "spi"
+        ],
+        "docs": "ADS1118 4-Channel 16-Bit A/D Converter ([datasheet](https://www.ti.com/lit/ds/symlink/ads1118.pdf)) The `ads1118` domain creates a global hub so that you can later create individual sensors using the [ADS1118 Sensor Platform](https://esphome.io/components/sensor/ads1118.html#ads1118-sensor). It uses the [SPI Bus](https://esphome.io/components/spi.html#spi) for communication.\n\n*See also: [ads1118 Component/Hub](https://esphome.io/components/sensor/ads1118.html#component-hub)*"
+      },
       "airthings_ble": {
         "dependencies": [
           "esp32_ble_tracker"
@@ -433,7 +525,7 @@
         "dependencies": [
           "display"
         ],
-        "docs": "Allows to use animated images on displays. Animation inherits all options from the image component. It adds additional lambda methods: `next_frame()`, `prev_frame()` and `set_frame()` to change the shown picture of a gif.\n\n*See also: [Animation](https://esphome.io/components/display/index.html#animation)*"
+        "docs": "Allows to use animated images on displays. Animation inherits all options from the image component. It adds additional lambda methods: `next_frame()`, `prev_frame()` and `set_frame()` to change the shown picture of a gif.\n\n*See also: [Animation](https://esphome.io/components/animation.html#animation)*"
       },
       "apds9960": {
         "dependencies": [
@@ -445,21 +537,34 @@
         "dependencies": [
           "network"
         ],
-        "docs": "The ESPHome native API is used to communicate with clients directly, with a highly-optimized network protocol. Currently, only the ESPHome tool and Home Assistant use this native API.\n\n*See also: [Native API Component](https://esphome.io/components/api.html#native-api-component)*"
+        "docs": "The ESPHome native API is used to communicate with clients directly, with a highly-optimized network protocol. Currently, only the ESPHome tool, Home Assistant and ioBroker use this native API.\n\n*See also: [Native API Component](https://esphome.io/components/api.html#native-api-component)*"
       },
       "as3935_i2c": {
         "dependencies": [
           "i2c"
         ],
-        "docs": "The `as3935_i2c` sensor platform allows you to use your AS3935 sensor ([AliExpress](https://de.aliexpress.com/af/as3935.html?SearchText=as3935), [AMS_AS3935](https://ams.com/as3935)) in order to get notified when a thunderstorm is getting close.\n\n*See also: [as3935 Over I\u00b2C](https://esphome.io/components/sensor/as3935.html#over-i2c)*"
+        "docs": "The `as3935_i2c` sensor platform allows you to use your AS3935 sensor ([AMS_AS3935](https://ams.com/as3935)) in order to get notified when a thunderstorm is getting close.\n\n*See also: [as3935 Over I\u00b2C](https://esphome.io/components/sensor/as3935.html#over-i2c)*"
       },
       "as3935_spi": {
         "dependencies": [
           "spi"
         ],
-        "docs": "The `as3935_spi` sensor platform allows you to use your AS3935 sensor ([AliExpress](https://de.aliexpress.com/af/as3935.html?SearchText=as3935), [AMS_AS3935](https://ams.com/as3935)) in order to get notified when a thunderstorm is getting close.\n\n*See also: [as3935 Over SPI](https://esphome.io/components/sensor/as3935.html#over-spi)*"
+        "docs": "The `as3935_spi` sensor platform allows you to use your AS3935 sensor ([AMS_AS3935](https://ams.com/as3935)) in order to get notified when a thunderstorm is getting close.\n\n*See also: [as3935 Over SPI](https://esphome.io/components/sensor/as3935.html#over-spi)*"
+      },
+      "as5600": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `as5600` sensor platform you to use your AS5600 ([datasheet](https://ams.com/documents/20143/36005/AS5600_DS000365_5-00.pdf/649ee61c-8f9a-20df-9e10-43173a3eb323), [AMS](https://ams.com/en/as5600)) or AS5600L ([datasheet](https://ams.com/documents/20143/36005/AS5600L_DS000545_3-00.pdf/7ade6878-7a32-2294-b88d-479d50fab6de), [AMS](https://ams.com/en/as5600l)) 12-bit magnetic position sensor with ESPHome. Individual sensors will be added using the [AS5600 Sensor Platform](https://esphome.io/components/sensor/as5600.html#as5600-sensor). To use this hub, first setup the [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) and connect the sensor to the pins specified there.\n\n*See also: [as5600 Component/Hub](https://esphome.io/components/sensor/as5600.html#component-hub)*"
       },
       "async_tcp": {},
+      "at581x": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "You need to have the hub component (`at581x:` entry) defined to be able to change the sensor\u2019s settings, get it listed as an motion entity or being able to turn on/off the radio frequency emmission. A [GPIO Binary Sensor](https://esphome.io/components/binary_sensor/gpio.html) alone could be sufficient if you only want to determine presence/occupancy. When you define `at581x:` you\u2019ll need to have a `i2c:` entry in your configuration with both the SDA and SCL pins defined.\n\n*See also: [at581x Component/Hub](https://esphome.io/components/at581x.html#component-hub)*"
+      },
+      "audio": {},
       "bedjet": {
         "dependencies": [
           "ble_client"
@@ -467,7 +572,7 @@
         "docs": "This component is a global hub that maintains the connection to the BedJet device and delegates status updates to individual platform components.\n\n*See also: [bedjet Component/Hub](https://esphome.io/components/climate/bedjet.html#component-hub)*"
       },
       "bk72xx": {
-        "docs": "This component contains platform-specific options for the [LibreTiny](https://docs.libretiny.eu/) platform. It provides support for the following microcontrollers:\n\n*See also: [LibreTiny Platform](https://esphome.io/components/libretiny.html#libretiny-platform)*"
+        "docs": "This component contains platform-specific options for the [LibreTiny](https://docs.libretiny.eu/) platform. It provides support for the following microcontrollers, commonly used in Tuya devices, amongst others:\n\n*See also: [LibreTiny Platform](https://esphome.io/components/libretiny.html#libretiny-platform)*"
       },
       "ble_client": {
         "dependencies": [
@@ -486,7 +591,12 @@
         "dependencies": [
           "i2c"
         ],
-        "docs": "The `bme680_bsec` sensor platform allows you to use your BME680 ([datasheet](https://cdn-shop.adafruit.com/product-files/3660/BME680.pdf), [Adafruit](https://www.adafruit.com/product/3660)) temperature, pressure and humidity and gas sensors with ESPHome via the Bosch Sensortec Environmental Cluster (BSEC) software library. The use of Bosch\u2019s proprietary algorithms provide an Index for Air Quality (IAQ) measurement derived from the gas resistance sensor\u2019s response to specific Volatile Organic Compounds (VOC). The BSEC software also provides estimated values for CO\u2082 and Breath Volatile Organic Compounds (b-VOC) using a correlation between VOC and CO\u2082 in a human\u2019s exhaled breath.\n\n*See also: [bme680_bsec Component/Hub](https://esphome.io/components/sensor/bme680_bsec.html#component-hub)*"
+        "docs": "The `bme680_bsec` sensor platform allows you to use your BME680 ([datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bme680-ds001.pdf), [Adafruit](https://www.adafruit.com/product/3660), [Pimoroni](https://shop.pimoroni.com/products/bme680-breakout)) temperature, pressure and humidity and gas sensors with ESPHome via the Bosch Sensortec Environmental Cluster (BSEC) software library. The use of Bosch\u2019s proprietary algorithms provide an Index for Air Quality (IAQ) measurement derived from the gas resistance sensor\u2019s response to specific Volatile Organic Compounds (VOC). The BSEC software also provides estimated values for CO\u2082 and Breath Volatile Organic Compounds (b-VOC) using a correlation between VOC and CO\u2082 in a human\u2019s exhaled breath.\n\n*See also: [bme680_bsec Component/Hub](https://esphome.io/components/sensor/bme680_bsec.html#component-hub)*"
+      },
+      "bme68x_bsec2_i2c": {
+        "dependencies": [
+          "i2c"
+        ]
       },
       "bp1658cj": {
         "docs": "The BP1658CJ component represents a BP1658CJ LED driver chain in ESPHome. Communication is done with two GPIO pins (DATA and CLK).\n\n*See also: [bp1658cj Component/Hub](https://esphome.io/components/output/bp1658cj.html#component-hub)*"
@@ -494,6 +604,7 @@
       "bp5758d": {
         "docs": "The BP5758D component represents a BP5758D LED driver chain in ESPHome. Communication is done with two GPIO pins (DATA and CLK).\n\n*See also: [bp5758d Component/Hub](https://esphome.io/components/output/bp5758d.html#component-hub)*"
       },
+      "bytebuffer": {},
       "cap1188": {
         "dependencies": [
           "i2c"
@@ -509,21 +620,21 @@
       "cd74hc4067": {
         "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: The I/O pins connected to the S0 to S3 channel selection pins\n\n*See also: [cd74hc4067 Component/Hub](https://esphome.io/components/sensor/cd74hc4067.html#component-hub)*"
       },
-      "color": {
-        "docs": "When using RGB-capable displays in ESPHome you may wish to use custom colors. A `color` component exists for just this purpose:\n\n*See also: [Color](https://esphome.io/components/display/index.html#color)*"
+      "ch422g": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The CH422G component allows you to use the **CH422G** I/O expander in ESPHome. It uses an [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) for communication. The I\u00b2C address is not configurable as the CH422G has a separate address for each internal register.\n\n*See also: [CH422G I/O Expander](https://esphome.io/components/ch422g.html#ch422g-i-o-expander)*"
       },
-      "custom_component": {
-        "docs": "This integration can be used to create generic custom components in ESPHome using the C++ (Arduino) API. This integration should be used in cases where none of ESPHome\u2019s abstraction layers (for example the \u201csensor\u201d, \u201cbinary sensor\u201d, \u201cswitch\u201d, etc concepts) work well for your integration.\n\n*See also: [Generic Custom Component](https://esphome.io/custom/custom_component.html#generic-custom-component)*"
-      },
+      "color": {},
+      "custom_component": {},
       "dac7678": {
         "dependencies": [
           "i2c"
         ],
         "docs": "The DAC7678 component represents a DAC7678 12-bit 8 channel DAC with internal reference ([datasheet](https://www.ti.com/lit/ds/symlink/dac7678.pdf)) in ESPHome. It uses the [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) for communication.\n\n*See also: [dac7678 Component/Hub](https://esphome.io/components/output/dac7678.html#component-hub)*"
       },
-      "dallas": {
-        "docs": "The `dallas` component allows you to use your [DS18b20](https://www.adafruit.com/product/374) ([datasheet](https://datasheets.maximintegrated.com/en/ds/DS18B20.pdf)) and similar 1-Wire temperature sensors.\n\n*See also: [dallas Component/Hub](https://esphome.io/components/sensor/dallas.html#component-hub)*"
-      },
+      "dallas": {},
       "daly_bms": {
         "dependencies": [
           "uart"
@@ -545,13 +656,19 @@
         "docs": "The `deep_sleep` component can be used to automatically enter a deep sleep mode on the ESP8266/ESP32 after a certain amount of time. This is especially useful with nodes that operate on batteries and therefore need to conserve as much energy as possible.\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-component)*"
       },
       "demo": {
-        "docs": "The `demo` integration can be used for testing to generate sample instances of many different integrations (sensors, lights, \u2026)\n\n*See also: [Demo Integration](https://esphome.io/components/demo.html#demo-integration)*"
+        "docs": "The `demo` component can be used for testing to generate sample instances of many different components (sensors, lights, \u2026)\n\n*See also: [Demo Component](https://esphome.io/components/demo.html#demo-component)*"
       },
       "dfplayer": {
         "dependencies": [
           "uart"
         ],
         "docs": "The `dfplayer` ([datasheet](https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299)), component allows you to play sound and music stored in an SD card or USB flash drive.\n\n*See also: [DF-Player mini](https://esphome.io/components/dfplayer.html#df-player-mini)*"
+      },
+      "dfrobot_sen0395": {
+        "dependencies": [
+          "uart"
+        ],
+        "docs": "The [DFRobot mmWave Radar](https://wiki.dfrobot.com/mmWave_Radar_Human_Presence_Detection_SKU_SEN0395) (aka `SEN0395`) is a 24GHz radar which can be used for human presence detection. It can detect tiny movements and compared to a PIR sensor **it can detect presence continuously**. This can be useful, for example, to turn the lights on when you enter a room, keep them on as long as you are there (without waving your hands at the sensor) and turn them off almost immediately after you leave the room.\n\n*See also: [DFRobot mmWave Radar](https://esphome.io/components/dfrobot_sen0395.html#dfrobot-mmwave-radar)*"
       },
       "dsmr": {
         "dependencies": [
@@ -562,8 +679,13 @@
       "e131": {
         "dependencies": [
           "network"
+        ]
+      },
+      "emc2101": {
+        "dependencies": [
+          "i2c"
         ],
-        "docs": "The [E1.31 Effect](https://esphome.io/components/light/index.html#e131-light-effect) requires a component hub for the `e131` light effect.\n\n*See also: [E1.31 Component](https://esphome.io/components/light/index.html#e1-31-component)*"
+        "docs": "**int**: Manually specify the I\u00b2C address of the sensor. Defaults to `0x4C`.\n\n*See also: [EMC2101 Component](https://esphome.io/components/emc2101.html#emc2101-component)*"
       },
       "esp32_ble": {
         "dependencies": [
@@ -581,7 +703,7 @@
         "dependencies": [
           "esp32"
         ],
-        "docs": "The `esp32_ble_server` component in ESPHome sets up a simple BLE GATT server that exposes the device name, manufacturer and board. This component allows other components to create their own services to expose data and control.\n\n*See also: [BLE Server](https://esphome.io/components/esp32_ble_server.html#ble-server)*"
+        "docs": "The `esp32_ble_server` component in ESPHome sets up a  BLE GATT server that exposes the device name, manufacturer and board. BLE GATT services and characteristics can be added to the server to expose data and control.\n\n*See also: [BLE Server](https://esphome.io/components/esp32_ble_server.html#ble-server)*"
       },
       "esp32_ble_tracker": {
         "dependencies": [
@@ -606,7 +728,7 @@
           "wifi",
           "esp32"
         ],
-        "docs": "The `esp32_improv` component in ESPHome implements the open [Improv standard](https://www.improv-wifi.com/) for configuring Wi-Fi on an ESP32 device by using Bluetooth Low Energy to receive the credentials.\n\n*See also: [Improv via BLE](https://esphome.io/components/esp32_improv.html#improv-via-ble)*"
+        "docs": "The `esp32_improv` component in ESPHome implements the open [Improv standard](https://www.improv-wifi.com/) for configuring Wi-Fi on an ESP32 device by using Bluetooth Low Energy (BLE) to receive the credentials.\n\n*See also: [Improv via BLE](https://esphome.io/components/esp32_improv.html#improv-via-ble)*"
       },
       "esp32_touch": {
         "dependencies": [
@@ -620,6 +742,7 @@
         ],
         "docs": "This ESPHome component enables *wired* Ethernet connections for ESP32s.\n\n*See also: [Ethernet Component](https://esphome.io/components/ethernet.html#ethernet-component)*"
       },
+      "event_emitter": {},
       "exposure_notifications": {
         "dependencies": [
           "esp32_ble_tracker"
@@ -642,13 +765,16 @@
         "docs": "The reader can be powered by the 3.3V output of an NodeMCU. As the communication with the reader is done using UART (default baud rate is 57600), you need to have an [UART bus](https://esphome.io/components/uart.html#uart) in your configuration with the `rx_pin` connected to the reader\u2019s `TX` and the `tx_pin` connected to the reader\u2019s `RX`.\n\n*See also: [fingerprint_grow Component/Hub](https://esphome.io/components/fingerprint_grow.html#component-hub)*"
       },
       "font": {
+        "docs": "ESPHome\u2019s graphical rendering engine also has a powerful font drawer which integrates seamlessly into the system. You have the option to use **any** OpenType/TrueType (`.ttf`, `.otf`, `.woff`) font file at **any** size, as well as fixed-size [PCF](https://en.wikipedia.org/wiki/Portable_Compiled_Format) and [BDF](https://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format) bitmap fonts.\n\n*See also: [Font Renderer Component](https://esphome.io/components/font.html#font-renderer-component)*"
+      },
+      "gdk101": {
         "dependencies": [
-          "display"
+          "i2c"
         ],
-        "docs": "The rendering engine also has a powerful font drawer which integrates seamlessly into ESPHome. Whereas in most Arduino display projects you have to use one of a few pre-defined fonts in very specific sizes, with ESPHome you have the option to use **any** TrueType (`.ttf`) font file at **any** size, as well as fixed-size [PCF](https://en.wikipedia.org/wiki/Portable_Compiled_Format) and [BDF](https://en.wikipedia.org/wiki/Glyph_Bitmap_Distribution_Format) bitmap fonts! Granted the reason for it is actually not having to worry about the licensing of font files :)\n\n*See also: [Fonts](https://esphome.io/components/display/index.html#fonts)*"
+        "docs": "**int**: Manually specify the I\u00b2C address of the sensor. Defaults to `0x18` (`A0` and `A1` shorted). The address is made up using the state of `A0` as bit 1 and the state of `A1` as bit 2, so a total of four addresses is possible.\n\n*See also: [gdk101 Component/Hub](https://esphome.io/components/sensor/gdk101.html#component-hub)*"
       },
       "globals": {
-        "docs": "In some cases you might require to share a global variable across multiple lambdas. For example, global variables can be used to store the state of a garage door.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#global-variables)*"
+        "docs": "In some cases you might need to share a global variable across multiple lambdas. For example, global variables can be used to store the state of a garage door.\n\n*See also: [Global Variables](https://esphome.io/components/globals.html#global-variables)*"
       },
       "gp8403": {
         "dependencies": [
@@ -667,7 +793,10 @@
           "display",
           "sensor"
         ],
-        "docs": "You can display a graph of a sensor value(s) using this component. The states used for the graph are stored in memory at the time the sensor updates and will be lost when the device reboots.\n\n*See also: [Graph Component](https://esphome.io/components/display/index.html#graph-component)*"
+        "docs": "You can display a graph of a sensor value(s) using this component. The states used for the graph are stored in memory at the time the sensor updates and will be lost when the device reboots.\n\n*See also: [Graph Component](https://esphome.io/components/graph.html#graph-component)*"
+      },
+      "graphical_display_menu": {
+        "docs": "The component provides an infrastructure for setting up a hierarchical menu on graphical displays. This offers the user an interactive method to display labels, control entities like `switch`, `select`, `number`  available locally on the ESPHome node, without the requirement of a network connection.\n\n*See also: [Graphical Display Menu](https://esphome.io/components/display_menu/graphical_display_menu.html#graphical-display-menu)*"
       },
       "grove_tb6612fng": {
         "dependencies": [
@@ -675,15 +804,23 @@
         ],
         "docs": "The Grove TBB6612FNG a runs over  I\u00b2C bus and has the capability to control DC and Stepper motors. At the current stage of implementation only DC motor is implemented.\n\n*See also: [Grove TB6612FNG Motor Drive](https://esphome.io/components/grove_tb6612fng.html#grove-tb6612fng-motor-drive)*"
       },
-      "host": {},
+      "host": {
+        "docs": "The `host` platform allows ESPHome configurations to be compiled and run on a desktop computer. This is known to work on MacOS and Linux. On Windows [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) (Windows Subsystem for Linux) can be used to create a Linux environment that will run ESPHome.\n\n*See also: [Host Platform](https://esphome.io/components/host.html#host-platform)*"
+      },
       "http_request": {
         "dependencies": [
           "network"
         ],
-        "docs": "The `http_request` component lets you make HTTP/HTTPS requests. First, you need to setup a component:\n\n*See also: [HTTP Request](https://esphome.io/components/http_request.html#http-request)*"
+        "docs": "The `http_request` component lets you make HTTP/HTTPS requests. To do so, you need to add it to your device\u2019s configuration:\n\n*See also: [HTTP Request](https://esphome.io/components/http_request.html#http-request)*"
       },
       "i2c": {
         "docs": "This component sets up the I\u00b2C bus for your ESP32 or ESP8266. In order for these components to work correctly, you need to define the I\u00b2C bus in your configuration. Please note the ESP will enable its internal 10k\u2126 pullup resistors for these pins, so you usually don\u2019t need to put on external ones. You can use multiple devices on one I\u00b2C bus as each device is given a unique address for communicating between it and the ESP. You can do this by hopping wires from the two lines (SDA and SCL) from each device board to the next device board or by connecting the wires from each device back to the two I\u00b2C pins on the ESP.\n\n*See also: [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c-bus)*"
+      },
+      "i2c_device": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "General-purpose I\u00b2C device component that can be used to communicate with hardware not supported by a specific component. It allows selection of the I\u00b2C address. Reads and writes on the device can be performed with lambdas. For example:\n\n*See also: [Generic I\u00b2C device component:](https://esphome.io/components/i2c_device.html#generic-i2c-device-component)*"
       },
       "i2s_audio": {
         "dependencies": [
@@ -695,7 +832,7 @@
         "dependencies": [
           "display"
         ],
-        "docs": "Use this component to store graphical images on the device, you can then draw the images on compatible displays.\n\n*See also: [Images](https://esphome.io/components/display/index.html#images)*"
+        "docs": "Use this component to store graphical images on the device, you can then draw the images on compatible displays.\n\n*See also: [Images](https://esphome.io/components/image.html#images)*"
       },
       "improv_serial": {
         "dependencies": [
@@ -705,11 +842,13 @@
         "docs": "The `improv_serial` component in ESPHome implements the open [Improv standard](https://www.improv-wifi.com/) for configuring Wi-Fi on an ESPHome device by using a serial connection to the device, eg. USB.\n\n*See also: [Improv via Serial](https://esphome.io/components/improv_serial.html#improv-via-serial)*"
       },
       "interval": {
-        "docs": "This component allows you to run actions at fixed time intervals. For example if you want to toggle a switch every minute, you can use this component. Please note that it\u2019s possible to achieve the same thing with the [time.on_time](https://esphome.io/components/time/index.html#time-on-time) trigger, but this technique is more light-weight and user-friendly.\n\n*See also: [interval Component](https://esphome.io/guides/automations.html#interval-component)*"
+        "docs": "This component allows you to run actions at fixed time intervals. For example, if you want to toggle a switch every minute, you can use this component. Please note that it\u2019s possible to achieve the same thing with the [time.on_time](https://esphome.io/components/time/index.html#time-on-time) trigger, but this technique is more light-weight and user-friendly.\n\n*See also: [Interval Component](https://esphome.io/components/interval.html#interval-component)*"
       },
-      "json": {},
+      "json": {
+        "docs": "The `json` component enables ESPHome to work with JSON data in automations, sensors, and HTTP requests. This is particularly useful for:\n\n*See also: [json Component](https://esphome.io/components/json.html#json-component)*"
+      },
       "key_collector": {
-        "docs": "The `key_collector` component collects key presses from components like [Matrix keypad](https://esphome.io/components/matrix_keypad.html#matrix-keypad) or `wiegand`. It allows you to process key sequences and treat them as one, for example to allow inputting of a PIN code or a passkey. The component outputs the result of the keypress sequence as a variable usable in automations.\n\n*See also: [Key collector component](https://esphome.io/components/key_collector.html#key-collector-component)*"
+        "docs": "The `key_collector` component collects key presses from components like [Matrix keypad](https://esphome.io/components/matrix_keypad.html#matrix-keypad), [Wiegand keypad](https://esphome.io/components/wiegand.html) or LVGL [Button Matrix](https://esphome.io/components/lvgl/widgets.html#lvgl-widget-buttonmatrix), [Keyboard](https://esphome.io/components/lvgl/widgets.html#lvgl-widget-keyboard) widgets. It allows you to process key sequences and treat them as one, for example to allow inputting of a PIN code or a passkey. The component outputs the result of the keypress sequence as a variable usable in automations.\n\n*See also: [Key collector component](https://esphome.io/components/key_collector.html#key-collector-component)*"
       },
       "lcd_menu": {
         "docs": "The component provides an infrastructure for setting up a hierarchical menu on character based LCD displays. This offers the user an interactive method to display labels, control entities like `switch`, `select`, `number`  available locally on the ESPHome node, without the requirement of a network connection.\n\n*See also: [LCD Menu](https://esphome.io/components/display_menu/lcd_menu.html#lcd-menu)*"
@@ -718,15 +857,37 @@
         "dependencies": [
           "uart"
         ],
-        "docs": "The `ld2410` sensor platform allows you to use HI-LINK LD2410 motion and presence sensor ([datasheet and user manual](https://drive.google.com/drive/folders/1p4dhbEJA3YubyIjIIC7wwVsSo8x29Fq-?spm=a2g0o.detail.1000023.17.93465697yFwVxH)) with ESPHome.\n\n*See also: [ld2410 Component/Hub](https://esphome.io/components/sensor/ld2410.html#component-hub)*"
+        "docs": "The `ld2410` sensor platform allows you to use HI-LINK LD2410 motion and presence sensors with ESPHome. There are three variants with similar communication protocols:\n\n*See also: [ld2410 Component/Hub](https://esphome.io/components/sensor/ld2410.html#component-hub)*"
+      },
+      "ld2420": {
+        "dependencies": [
+          "uart"
+        ]
+      },
+      "ld2450": {
+        "dependencies": [
+          "uart"
+        ]
       },
       "libretiny": {},
       "lightwaverf": {
         "docs": "The `LightWaveRF` light platform creates a module to dump and send commands to light switches\n\n*See also: [LightWaveRF](https://esphome.io/components/lightwaverf.html#lightwaverf)*"
       },
       "logger": {
-        "docs": "The logger component automatically logs all log messages through the serial port and through MQTT topics (if there is an MQTT client in the configuration). By default, all logs with a severity `DEBUG` or higher will be shown. Increasing the log level severity (to e.g `INFO` or `WARNING`) can help with the performance of the application and memory size.\n\n*See also: [Logger Component](https://esphome.io/components/logger.html#logger-component)*"
+        "docs": "The logger component automatically logs all log messages through the serial port and through MQTT topics (if there is an MQTT client in the configuration). By default, all logs with a severity `DEBUG` or higher will be shown. Increasing the log level severity (to e.g `INFO` or `WARN`) can help with the performance of the application and memory size.\n\n*See also: [Logger Component](https://esphome.io/components/logger.html#logger-component)*"
       },
+      "lvgl": {
+        "dependencies": [
+          "display"
+        ]
+      },
+      "m5stack_8angle": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `m5stack_8angle` platform allows to use the [m5angle]([https://docs.m5stack.com/en/unit/UNIT%208Angle](https://docs.m5stack.com/en/unit/UNIT%208Angle)) input device with ESPHome. It has 8 knobs, a switch and can individually drive 9 RGB LEDs.\n\n*See also: [m5stack_8angle Component/Hub](https://esphome.io/components/sensor/m5stack_8angle.html#component-hub)*"
+      },
+      "mapping": {},
       "matrix_keypad": {
         "docs": "The `matrix_keypad` component allows you to integrate pads which have the keys connected at the intersection points of the rows and columns of a matrix.\n\n*See also: [Matrix keypad](https://esphome.io/components/matrix_keypad.html#matrix-keypad)*"
       },
@@ -778,6 +939,12 @@
         ],
         "docs": "The MCP3204 component allows you to use MCP3204 or MCP3208 12-Bit A/D Converter ([datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/21298e.pdf)) in ESPHome. The MCP3204 is a 4-channel and MCP3208 is an 8-channel device. It uses the [SPI Bus](https://esphome.io/components/spi.html#spi) for communication.\n\n*See also: [mcp3204 Component/Hub](https://esphome.io/components/sensor/mcp3204.html#component-hub)*"
       },
+      "mcp4461": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The MCP4461 output component enables the use of an 8\u2011bit external quad digital potentiometer/rheostat via I\u00b2C. See the [MCP4461 Datasheet](https://www.microchip.com/en-us/product/mcp4461) for more information.\n\n*See also: [MCP4461 Component](https://esphome.io/components/output/mcp4461.html#mcp4461-component)*"
+      },
       "mcp4728": {
         "dependencies": [
           "i2c"
@@ -790,14 +957,26 @@
         ],
         "docs": "The `mdns` component makes the node announce itself on the local network using the multicast DNS (mDNS) protocol.\n\n*See also: [mDNS Component](https://esphome.io/components/mdns.html#mdns-component)*"
       },
+      "micronova": {
+        "dependencies": [
+          "uart"
+        ],
+        "docs": "**[Pin](https://esphome.io/guides/configuration-types.html#config-pin)**: Output pin to be used to switch the line between RX and TX.\n\n*See also: [micronova Component/Hub](https://esphome.io/components/micronova.html#component-hub)*"
+      },
+      "micro_wake_word": {
+        "dependencies": [
+          "microphone"
+        ],
+        "docs": "ESPHome implements an on-device wake word detection framework from [microWakeWord](https://github.com/kahrendt/microWakeWord). This repository/library allows you to create a custom wake word for your ESPHome device.\n\n*See also: [Micro Wake Word](https://esphome.io/components/micro_wake_word.html#micro-wake-word)*"
+      },
       "modbus": {
         "dependencies": [
           "uart"
         ],
-        "docs": "The Modbus protocol is used by many consumer and industrial devices for communication. This component allows components in ESPHome to communicate to those devices. Modbus requires a [UART Bus](https://esphome.io/components/uart.html#uart) to communicate.\n\n*See also: [Modbus Component](https://esphome.io/components/modbus.html#modbus-component)*"
+        "docs": "The Modbus protocol is used by many consumer and industrial devices for communication. This component allows components in ESPHome to communicate to those devices via RTU protocol. You can access the coils, inputs, holding, read registers from your devices as sensors, switches, selects, numbers or various other ESPHome components and present them to your favorite Home Automation system. You can even write them as binary or float ouptputs from ESPHome.\n\n*See also: [Modbus Component](https://esphome.io/components/modbus.html#modbus-component)*"
       },
       "modbus_controller": {
-        "docs": "The `modbus_controller` component creates a RS485 connection to control a modbus device\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#modbus-controller)*"
+        "docs": "The `modbus_controller` component creates a RS485 connection to either:\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#modbus-controller)*"
       },
       "mopeka_ble": {
         "dependencies": [
@@ -816,19 +995,30 @@
         ],
         "docs": "With the MQTT Message schema you can tell ESPHome how a specific MQTT message should be sent. It is used in several places like last will and birth messages or MQTT log options.\n\n*See also: [MQTTMessage](https://esphome.io/components/mqtt.html#mqttmessage)*"
       },
+      "msa3xx": {
+        "dependencies": [
+          "i2c"
+        ]
+      },
       "my9231": {
         "docs": "The MY9231/MY9291 component represents a MY9231/MY9291 LED driver chain ([MY9231 description](http://www.my-semi.com.tw/file/MY9231_BF_0.91.pdf), [MY9291 description](http://www.my-semi.com.tw/file/MY9291_BF_0.91.pdf)) in ESPHome. Communication is done with two GPIO pins (DI and DCKI) and multiple driver chips can be chained. There are two models with different number of output channels (MY9291 with 4 channels and MY9231 with 3 channels). They are popular driver chips used in smart light bulbs:\n\n*See also: [my9231 Component/Hub](https://esphome.io/components/output/my9231.html#component-hub)*"
       },
       "network": {
         "docs": "The network component is a global configuration for all types of networks (WiFi, Ethernet).\n\n*See also: [Network component](https://esphome.io/components/network.html#network-component)*"
       },
-      "ota": {
+      "online_image": {
         "dependencies": [
-          "network"
+          "display",
+          "http_request"
         ],
-        "docs": "With the OTA (Over The Air) update component you can upload your firmware binaries to your node without having to use a USB cable for uploads. ESPHome natively supports this through its `run` and `upload` helper scripts.\n\n*See also: [OTA Update Component](https://esphome.io/components/ota.html#ota-update-component)*"
+        "docs": "With this component you can define images that will be downloaded, decoded and drawn at runtime.\n\n*See also: [Online Image Component](https://esphome.io/components/online_image.html#online-image-component)*"
       },
-      "packages": {},
+      "opentherm": {
+        "docs": "OpenTherm (OT) is a standard communications protocol used in central heating systems for the communication between central heating appliances and a thermostatic controller. As a standard, OpenTherm is independent of any single manufacturer. A controller from manufacturer A can in principle be used to control a boiler from manufacturer B.\n\n*See also: [OpenTherm](https://esphome.io/components/opentherm.html#opentherm)*"
+      },
+      "packages": {
+        "docs": "When you have many ESPHome devices (or are producing and distributing them at scale), a common need tends to surface: configuration modularization. You\u2019ll likely want to break your configuration into common (groups of) elements, building it into reusable pieces which can subsequently be used by many/all devices. Only unique pieces of your configuration remain in any given device\u2019s YAML configuration file.\n\n*See also: [Packages](https://esphome.io/components/packages.html#packages)*"
+      },
       "pca6416a": {
         "dependencies": [
           "i2c"
@@ -839,7 +1029,7 @@
         "dependencies": [
           "i2c"
         ],
-        "docs": "The PCA9554 component allows you to use **PCA9554**, **PCA9554A** or **PCA9536** I/O expanders in ESPHome. It uses [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) for communication.\n\n*See also: [PCA9554 I/O Expander](https://esphome.io/components/pca9554.html#pca9554-i-o-expander)*"
+        "docs": "The PCA9554 component allows you to use a variety of Texas Instrument I/O expanders in ESPHome using the [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) for communication.\n\n*See also: [PCA9554 I/O Expander](https://esphome.io/components/pca9554.html#pca9554-i-o-expander)*"
       },
       "pca9685": {
         "dependencies": [
@@ -872,6 +1062,21 @@
         ],
         "docs": "The `pn532_spi` component allows you to use PN532 NFC/RFID controllers ([datasheet](https://cdn-shop.adafruit.com/datasheets/pn532ds.pdf), [Adafruit](https://www.adafruit.com/product/364)) with ESPHome. This component is a global hub that establishes the connection to the PN532 via [SPI](https://esphome.io/components/spi.html#spi) and outputs its data. Using the [PN532 binary sensors](https://esphome.io/components/binary_sensor/pn532.html#pn532-tag) you can then create individual binary sensors that track if an NFC/RFID tag is currently detected by the PN532.\n\n*See also: [pn532 Over SPI](https://esphome.io/components/binary_sensor/pn532.html#over-spi)*"
       },
+      "pn7150_i2c": {
+        "dependencies": [
+          "i2c"
+        ]
+      },
+      "pn7160_i2c": {
+        "dependencies": [
+          "i2c"
+        ]
+      },
+      "pn7160_spi": {
+        "dependencies": [
+          "spi"
+        ]
+      },
       "power_supply": {
         "docs": "The `power_supply` component allows you to have a high power mode for certain outputs. For example, if you\u2019re using an [ATX power supply](https://en.wikipedia.org/wiki/ATX) to power your LED strips, you usually don\u2019t want to have the power supply on all the time while the output is not on. The power supply component can be attached to any [Output Component](https://esphome.io/components/output/index.html#output) and will automatically switch on if any of the outputs are on. Furthermore, it also has a cooldown time that keeps the power supply on for a while after the last output has been disabled.\n\n*See also: [Power Supply Component](https://esphome.io/components/power_supply.html#power-supply-component)*"
       },
@@ -880,13 +1085,22 @@
         "docs": "The `prometheus` component enables an HTTP endpoint for the [Web Server Component](https://esphome.io/components/web_server.html) in order to integrate a [Prometheus](https://prometheus.io/) installation.\n\n*See also: [Prometheus Component](https://esphome.io/components/prometheus.html#prometheus-component)*"
       },
       "psram": {
+        "dependencies": [
+          "esp32"
+        ],
         "docs": "This component enables and configures PSRAM if/when available on ESP32 modules/boards. It is automatically loaded and enabled by components that require it.\n\n*See also: [PSRAM](https://esphome.io/components/psram.html#psram)*"
+      },
+      "pylontech": {
+        "dependencies": [
+          "uart"
+        ],
+        "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this Pylontech component.\n\n*See also: [pylontech Component/Hub](https://esphome.io/components/pylontech.html#component-hub)*"
       },
       "qr_code": {
         "dependencies": [
           "display"
         ],
-        "docs": "Use this component to generate a QR-code containing a string on the device, which can then be drawn on compatible displays.\n\n*See also: [QR Code Component](https://esphome.io/components/display/index.html#qr-code-component)*"
+        "docs": "Use this component to generate a QR-code containing a string on the device, which can then be drawn on compatible displays.\n\n*See also: [QR Code Component](https://esphome.io/components/qr_code.html#qr-code-component)*"
       },
       "radon_eye_ble": {
         "dependencies": [
@@ -912,10 +1126,10 @@
         "docs": "The `rdm6300` component allows you to use RDM6300 NFC/RFID controllers ([datasheet](https://elty.pl/upload/download/RFID/RDM630-Spec.pdf), [iTead](https://www.itead.cc/rdm6300.html)) with ESPHome. This component is a global hub that establishes the connection to the RDM6300 via [UART](https://esphome.io/components/uart.html#uart) and translates the received data. Using the [RDM6300 binary sensors](https://esphome.io/components/binary_sensor/rdm6300.html#rdm6300-tag) you can then create individual binary sensors that track if an NFC/RFID tag is currently detected by the RDM6300.\n\n*See also: [rdm6300 Component/Hub](https://esphome.io/components/binary_sensor/rdm6300.html#component-hub)*"
       },
       "remote_receiver": {
-        "docs": "The `remote_receiver` component lets you receive and decode any remote signal, these can for example be infrared remotes or 433MHz signals.\n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#remote-receiver)*"
+        "docs": "The `remote_receiver` component lets you receive and decode various common remote control signals, such as infrared or 433 MHz radio frequency (RF) signals.\n\n*See also: [Remote Receiver](https://esphome.io/components/remote_receiver.html#remote-receiver)*"
       },
       "remote_transmitter": {
-        "docs": "The `remote_transmitter` component lets you send digital packets to control devices in your home. For example this includes infrared data or 433MHz RF signals.\n\n*See also: [Remote Transmitter](https://esphome.io/components/remote_transmitter.html#remote-transmitter)*"
+        "docs": "The `remote_transmitter` component lets you send various common remote control signals, such as infrared or 433 MHz radio frequency (RF) signals.\n\n*See also: [Remote Transmitter](https://esphome.io/components/remote_transmitter.html#remote-transmitter)*"
       },
       "rf_bridge": {
         "dependencies": [
@@ -935,8 +1149,29 @@
           "esp32_ble_tracker"
         ]
       },
+      "safe_mode": {
+        "docs": "Sometimes hardware and/or software doesn\u2019t behave as expected. ESPHome supports a \u201csafe mode\u201d to help recover from repeated boot failures/reboot loops. After a specified number (the default is ten) of boot failures, the safe mode may be invoked; in this mode, all components are disabled except serial logging, network (Wi-Fi or Ethernet) and the OTA component(s). In most cases, this will temporarily mitigate the issue, allowing you a chance to correct it, perhaps by uploading a new binary.\n\n*See also: [Safe Mode](https://esphome.io/components/safe_mode.html#safe-mode)*"
+      },
       "script": {
-        "docs": "With the `script:` component you can define a list of steps in a central place, and then execute the script with a single call.\n\n*See also: [script Component](https://esphome.io/guides/automations.html#script-component)*"
+        "docs": "ESPHome\u2019s `script` component allows you to define a list of steps (actions) in a central place. You can then execute the script from nearly anywhere in your device\u2019s configuration with a single call.\n\n*See also: [Script Component](https://esphome.io/components/script.html#script-component)*"
+      },
+      "seeed_mr24hpc1": {
+        "dependencies": [
+          "uart"
+        ],
+        "docs": "The `seeed_mr24hpc1` platform allows you to use Seeed Studio 24GHz mmWave Sensor - Human Static Presence Module Lite ([Product Page](https://www.seeedstudio.com/24GHz-mmWave-Sensor-Human-Static-Presence-Module-Lite-p-5524.html)) and Seeed Studio mmWave Human Detection Sensor Kit ([Product Page](https://www.seeedstudio.com/mmWave-Human-Detection-Sensor-Kit-p-5773.html)) with ESPHome.\n\n*See also: [seeed_mr24hpc1 Component/Hub](https://esphome.io/components/seeed_mr24hpc1.html#component-hub)*"
+      },
+      "seeed_mr60bha2": {
+        "dependencies": [
+          "uart"
+        ],
+        "docs": "The `seeed_mr60bha2` platform allows you to use Seeed Studio MR60BHA2 60GHz mmWave Fall Detection Sensor Kit with XIAO ESP32C6 ([Product Page](https://www.seeedstudio.com/MR60BHA2-60GHz-mmWave-Sensor-Breathing-and-Heartbeat-Module-p-5945.html)) with ESPHome.\n\n*See also: [seeed_mr60bha2 Component/Hub](https://esphome.io/components/seeed_mr60bha2.html#component-hub)*"
+      },
+      "seeed_mr60fda2": {
+        "dependencies": [
+          "uart"
+        ],
+        "docs": "The `seeed_mr60fda2` platform allows you to use Seeed Studio\u2019s MR60FDA2 60GHz mmWave Fall Detection Sensor Kit with XIAO ESP32C6 ([Product Page](https://www.seeedstudio.com/MR60FDA2-60GHz-mmWave-Sensor-Fall-Detection-Module-p-5946.html)) with ESPHome.\n\n*See also: [seeed_mr60fda2 Component/Hub](https://esphome.io/components/seeed_mr60fda2.html#component-hub)*"
       },
       "servo": {
         "docs": "The `servo` component allows you to use servo motors with ESPHome. Servos are motor controllers that contain all the electronics necessary for driving the motor and provide a simple PWM interface to control the motor.\n\n*See also: [Servo Component](https://esphome.io/components/servo.html#servo-component)*"
@@ -963,13 +1198,13 @@
         "dependencies": [
           "uart"
         ],
-        "docs": "The `SML` component connects to smart meters which use the *Smart Message Language* (SML) protocol.\n\n*See also: [SML (Smart Message Language)](https://esphome.io/components/sml.html#sml-smart-message-language)*"
+        "docs": "As the communciation with the sensor is done using UART, you need to have the [UART bus](https://esphome.io/components/uart.html#uart) in your configuration. The interface parameters should be set to 9600/8N1 or 9600/7E1 depending on your smart meter. If you see checksum errors in the log try changing the interface parameter.\n\n*See also: [sml Component/Hub](https://esphome.io/components/sml.html#component-hub)*"
       },
       "sn74hc165": {
         "docs": "The SN74HC165 component allows you to use SN74HC165 shift registers as I/O expanders (Input only, use SN74HC595 for outputs) ([datasheet](https://www.ti.com/lit/ds/symlink/sn74hc165.pdf)) in ESPHome. It uses 3 wires (optionally 4) for communication.\n\n*See also: [SN74HC165 I/O Expander (shift register)](https://esphome.io/components/sn74hc165.html#sn74hc165-i-o-expander-shift-register)*"
       },
       "sn74hc595": {
-        "docs": "The SN74HC595 component allows you to use SN74HC595 shift registers as I/O expanders ([datasheet](http://www.ti.com/lit/ds/symlink/sn74hc595.pdf), [SparkFun](https://www.sparkfun.com/products/13699)) in ESPHome. It uses 3 wires (optionally 4) for communication.\n\n*See also: [SN74HC595 I/O Expander (shift register)](https://esphome.io/components/sn74hc595.html#sn74hc595-i-o-expander-shift-register)*"
+        "docs": "The SN74HC595 component allows you to use SN74HC595 shift registers as I/O expanders ([datasheet](http://www.ti.com/lit/ds/symlink/sn74hc595.pdf), [SparkFun](https://www.sparkfun.com/products/13699)) in ESPHome. It uses 3 wires (optionally 4) for communication. Optionally, it can be added to a SPI bus to allow sharing pins with other components.\n\n*See also: [SN74HC595 I/O Expander (shift register)](https://esphome.io/components/sn74hc595.html#sn74hc595-i-o-expander-shift-register)*"
       },
       "socket": {},
       "spi": {
@@ -984,12 +1219,26 @@
       "sprinkler": {
         "docs": "The `sprinkler` controller component aims to behave like a sprinkler/irrigation valve controller, much like those made by companies such as Rain Bird or Hunter. It does so by automating control of a number of [switch](https://esphome.io/components/switch/index.html#config-switch) components, each of which would typically be used to control an individual electric valve via a relay or other switching device. It provides a number of features you\u2019d expect of a sprinkler controller, including:\n\n*See also: [Sprinkler Controller](https://esphome.io/components/sprinkler.html#sprinkler-controller)*"
       },
+      "statsd": {
+        "dependencies": [
+          "network"
+        ],
+        "docs": "StatsD is a [protocol](https://github.com/statsd/statsd/blob/master/docs/metric_types.md) to send metrics to a Daemon to store and aggregate them. Today there are many monitoring solutions that support receiving metrics via the StatsD protocol.\n\n*See also: [StatsD](https://esphome.io/components/statsd.html#statsd)*"
+      },
       "status_led": {
         "docs": "The `status_led` hooks into all ESPHome components and can indicate the status of the device. Specifically, it will:\n\n*See also: [Status LED](https://esphome.io/components/status_led.html#status-led)*"
       },
-      "substitutions": {},
+      "substitutions": {
+        "docs": "ESPHome has a powerful way to reduce repetition in configuration files: substitutions. With substitutions, you can have a single generic source file for all nodes of one kind and substitute expressions in as required.\n\n*See also: [Substitutions](https://esphome.io/components/substitutions.html#substitutions)*"
+      },
       "sun": {
         "docs": "The `sun` component allows you to track the sun\u2019s position in the sky. Calculations are done every 60 seconds.\n\n*See also: [Sun](https://esphome.io/components/sun.html#sun)*"
+      },
+      "sun_gtil2": {
+        "dependencies": [
+          "uart"
+        ],
+        "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this component.\n\n*See also: [sun_gtil2 Component/Hub](https://esphome.io/components/sun_gtil2.html#component-hub)*"
       },
       "sx1509": {
         "dependencies": [
@@ -1003,8 +1252,14 @@
         ],
         "docs": "The TCA9548A component allows you to use TCA9548A as a I\u00b2C multiplexer ([datasheet](https://www.ti.com/lit/ds/symlink/tca9548a.pdf), [AdaFruit](https://learn.adafruit.com/adafruit-tca9548a-1-to-8-i2c-multiplexer-breakout)) in ESPHome. It uses [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) for communication.\n\n*See also: [TCA9548A I\u00b2C Multiplexer](https://esphome.io/components/tca9548a.html#tca9548a-i2c-multiplexer)*"
       },
+      "tca9555": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The TCA9555 component allows you to use TCA955 I/O expanders ([datasheet](https://www.ti.com/lit/ds/symlink/tca9555.pdf)) in ESPHome. It uses [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) for communication.\n\n*See also: [TCA9555 I/O Expander](https://esphome.io/components/tca9555.html#tca9555-i-o-expander)*"
+      },
       "teleinfo": {
-        "docs": "The `teleinfo` component allows you to retrieve data from a French electrical counter using Teleinformation ([datasheet](https://www.enedis.fr/sites/default/files/Enedis-NOI-CPT_54E.pdf)). It works with Linky electrical counter but also legacy EDF electrical counter.\n\n*See also: [teleinfo Component/Hub](https://esphome.io/components/sensor/teleinfo.html#component-hub)*"
+        "docs": "The `teleinfo` component allows you to retrieve data from a French electrical counter using Teleinformation ([datasheet](https://www.enedis.fr/media/2035/download)). It works with Linky electrical counter but also legacy EDF electrical counter.\n\n*See also: [teleinfo Component/Hub](https://esphome.io/components/sensor/teleinfo.html#component-hub)*"
       },
       "tlc59208f": {
         "dependencies": [
@@ -1015,8 +1270,11 @@
       "tlc5947": {
         "docs": "This component represents a chain of [TLC5947 24-Channel, 12-Bit PWM LED Drivers](https://www.ti.com/lit/ds/symlink/tlc5947.pdf), which is used e.g. on this [board from Adafruit](https://www.adafruit.com/product/1429).\n\n*See also: [tlc5947 Component/Hub](https://esphome.io/components/output/tlc5947.html#component-hub)*"
       },
+      "tlc5971": {
+        "docs": "This component represents a chain of [TLC5971 12-Channel, 16-Bit PWM LED Drivers](https://www.ti.com/lit/ds/symlink/tlc5971.pdf), which is used e.g. on this [board from Adafruit](https://www.adafruit.com/product/1455).\n\n*See also: [tlc5971 Component/Hub](https://esphome.io/components/output/tlc5971.html#component-hub)*"
+      },
       "tm1651": {
-        "docs": "The `tm1651` display platform allows you to use battery display units based on TM1651 chip, like [this one](https://aliexpress.com/item/32811491559.html) with ESPHome. Currently integration supports level and brightness setting. All updates can be made via lambda expressions.\n\n*See also: [TM1651 Battery Display](https://esphome.io/components/tm1651.html#tm1651-battery-display)*"
+        "docs": "The `tm1651` display platform allows you to use battery display units based on the TM1651 chip such as [this one](https://www.aliexpress.com/item/32811491559.html) with ESPHome. This component supports the level and brightness settings. All updates can be made via lambda expressions.\n\n*See also: [TM1651 Battery Display](https://esphome.io/components/tm1651.html#tm1651-battery-display)*"
       },
       "ttp229_bsf": {
         "docs": "The configuration is made up of two parts: The central component, and individual Binary sensors per channel.\n\n*See also: [ttp229_bsf Component](https://esphome.io/components/binary_sensor/ttp229.html#ttp229-bsf-component)*"
@@ -1035,6 +1293,18 @@
       },
       "uart": {
         "docs": "UART is a common serial protocol for a lot of devices. For example, when uploading a binary to your ESP you have probably used UART to access the chip. UART (or for Arduino often also called Serial) usually consists of 2 pins:\n\n*See also: [UART Bus](https://esphome.io/components/uart.html#uart-bus)*"
+      },
+      "udp": {
+        "dependencies": [
+          "network"
+        ],
+        "docs": "The purpose of this component is to allow ESPHome nodes to directly communicate with each over an IP network. It permits the state of sensors and binary sensors to be broadcast via UDP packets to other nodes on the same LAN, or to specific IP addresses (which may be in remote, but reachable networks).\n\n*See also: [UDP Component](https://esphome.io/components/udp.html#udp-component)*"
+      },
+      "uponor_smatrix": {
+        "dependencies": [
+          "uart"
+        ],
+        "docs": "The Uponor Smatrix component allows you to integrate an Uponor Smatrix Base Pulse underfloor heating control system in ESPHome without the need for an Smatrix Pulse Com R-208 communication module. It directly communicates with the controller and thermostats via the RS485 thermostat bus.\n\n*See also: [Uponor Smatrix Base Pulse Underfloor Heating](https://esphome.io/components/uponor_smatrix.html#uponor-smatrix-base-pulse-underfloor-heating)*"
       },
       "vbus": {
         "dependencies": [
@@ -1066,10 +1336,49 @@
       },
       "wireguard": {
         "dependencies": [
-          "time",
-          "esp32"
+          "time"
         ],
-        "docs": "[WireGuard\u00ae](https://www.wireguard.org/) is an extremely simple yet fast and modern VPN that utilizes state-of-the-art cryptography. This component uses a **custom** implementation not developed by original authors and currently available for **ESP32 platform only**.\n\n*See also: [WireGuard Component](https://esphome.io/components/wireguard.html#wireguard-component)*"
+        "docs": "[WireGuard\u00ae](https://www.wireguard.org/) is an extremely simple yet fast and modern VPN that utilizes state-of-the-art cryptography. This component uses a **custom** implementation not developed by original authors and currently available for ESP32, ESP8266 and BK72xx microcontrollers *only*.\n\n*See also: [WireGuard Component](https://esphome.io/components/wireguard.html#wireguard-component)*"
+      },
+      "wk2132_i2c": {
+        "dependencies": [
+          "i2c"
+        ]
+      },
+      "wk2132_spi": {
+        "dependencies": [
+          "spi"
+        ]
+      },
+      "wk2168_i2c": {
+        "dependencies": [
+          "i2c"
+        ]
+      },
+      "wk2168_spi": {
+        "dependencies": [
+          "spi"
+        ]
+      },
+      "wk2204_i2c": {
+        "dependencies": [
+          "i2c"
+        ]
+      },
+      "wk2204_spi": {
+        "dependencies": [
+          "spi"
+        ]
+      },
+      "wk2212_i2c": {
+        "dependencies": [
+          "i2c"
+        ]
+      },
+      "wk2212_spi": {
+        "dependencies": [
+          "spi"
+        ]
       },
       "wled": {},
       "xiaomi_ble": {
@@ -1098,36 +1407,39 @@
           "extends": [
             "core.positive_time_period_milliseconds"
           ]
-        },
-        "docs": "This action delays the execution of the next action in the action list by a specified time period.\n\n*See also: [`delay` Action](https://esphome.io/guides/automations.html#delay-action)*"
+        }
       },
       "if": {
         "type": "schema",
         "schema": {
           "config_vars": {
             "condition": {
-              "key": "Required",
+              "key": "Optional",
               "type": "registry",
-              "registry": "condition",
-              "docs": "**[All Conditions](https://esphome.io/guides/automations.html#config-condition)**: The condition to check which branch to take. See [Conditions](https://esphome.io/guides/automations.html#config-condition).\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#if-action)*"
+              "registry": "condition"
+            },
+            "any": {
+              "key": "Optional"
+            },
+            "all": {
+              "key": "Optional",
+              "type": "registry",
+              "registry": "condition"
             },
             "then": {
               "key": "Optional",
               "is_list": true,
               "type": "registry",
-              "registry": "action",
-              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: The action to perform if the condition evaluates to true. Defaults to doing nothing.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#if-action)*"
+              "registry": "action"
             },
             "else": {
               "key": "Optional",
               "is_list": true,
               "type": "registry",
-              "registry": "action",
-              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: The action to perform if the condition evaluates to false. Defaults to doing nothing.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#if-action)*"
+              "registry": "action"
             }
           }
-        },
-        "docs": "This action first evaluated a certain condition (`if:`) and then either executes the `then:` branch or the `else:` branch depending on the output of the condition.\n\n*See also: [`if` Action](https://esphome.io/guides/automations.html#if-action)*"
+        }
       },
       "while": {
         "type": "schema",
@@ -1136,19 +1448,16 @@
             "condition": {
               "key": "Required",
               "type": "registry",
-              "registry": "condition",
-              "docs": "The condition to check whether to execute. See [Conditions](https://esphome.io/guides/automations.html#config-condition).\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#while-action)*"
+              "registry": "condition"
             },
             "then": {
               "key": "Required",
               "is_list": true,
               "type": "registry",
-              "registry": "action",
-              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: The action to perform until the condition evaluates to false.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#while-action)*"
+              "registry": "action"
             }
           }
-        },
-        "docs": "This action is similar to the [if](https://esphome.io/guides/automations.html#if-action) Action. The `while` action executes a block until a given condition evaluates to false.\n\n*See also: [`while` Action](https://esphome.io/guides/automations.html#while-action)*"
+        }
       },
       "repeat": {
         "type": "schema",
@@ -1158,19 +1467,16 @@
               "key": "Required",
               "templatable": true,
               "type": "integer",
-              "data_type": "positive_not_null_int",
-              "docs": "**int**: The number of times the action should be repeated.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#repeat-action)*"
+              "data_type": "positive_not_null_int"
             },
             "then": {
               "key": "Required",
               "is_list": true,
               "type": "registry",
-              "registry": "action",
-              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: The action to repeat.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#repeat-action)*"
+              "registry": "action"
             }
           }
-        },
-        "docs": "This action allows you to repeat a block a given number of times. For example, the automation below will flash the light five times.\n\n*See also: [`repeat` Action](https://esphome.io/guides/automations.html#repeat-action)*"
+        }
       },
       "wait_until": {
         "type": "schema",
@@ -1180,8 +1486,7 @@
             "condition": {
               "key": "Required",
               "type": "registry",
-              "registry": "condition",
-              "docs": "The condition to wait to become true. See [Conditions](https://esphome.io/guides/automations.html#config-condition).\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#wait-until-action)*"
+              "registry": "condition"
             },
             "timeout": {
               "key": "Optional",
@@ -1191,16 +1496,12 @@
                 "extends": [
                   "core.positive_time_period_milliseconds"
                 ]
-              },
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Time to wait before timing out. Defaults to never timing out.\n\n*See also: [Global Variables](https://esphome.io/guides/automations.html#wait-until-action)*"
+              }
             }
           }
-        },
-        "docs": "This action allows your automations to wait until a condition evaluates to true. (So this is just a shorthand way of writing a `while` action with an empty `then` block.)\n\n*See also: [`wait_until` Action](https://esphome.io/guides/automations.html#wait-until-action)*"
+        }
       },
-      "lambda": {
-        "docs": "This action executes an arbitrary piece of C++ code (see [Lambda](https://esphome.io/guides/automations.html#config-lambda)).\n\n*See also: [`lambda` Action](https://esphome.io/guides/automations.html#lambda-action)*"
-      }
+      "lambda": {}
     },
     "condition": {
       "and": {
@@ -1213,13 +1514,26 @@
         "type": "registry",
         "registry": "condition"
       },
+      "all": {
+        "is_list": true,
+        "type": "registry",
+        "registry": "condition"
+      },
+      "any": {
+        "is_list": true,
+        "type": "registry",
+        "registry": "condition"
+      },
       "not": {
         "type": "registry",
         "registry": "condition"
       },
-      "lambda": {
-        "docs": "This condition performs an arbitrary piece of C++ code (see [Lambda](https://esphome.io/guides/automations.html#config-lambda)) and can be used to create conditional flow in actions.\n\n*See also: [`lambda` Condition](https://esphome.io/guides/automations.html#lambda-condition)*"
+      "xor": {
+        "is_list": true,
+        "type": "registry",
+        "registry": "condition"
       },
+      "lambda": {},
       "for": {
         "type": "schema",
         "schema": {
@@ -1232,31 +1546,30 @@
                 "extends": [
                   "core.positive_time_period_milliseconds"
                 ]
-              },
-              "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), [Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time for which the condition has to have been true.\n\n*See also: [script Component](https://esphome.io/guides/automations.html#for-condition)*"
+              }
             },
             "condition": {
               "key": "Required",
               "type": "registry",
-              "registry": "condition",
-              "docs": "**[Condition](https://esphome.io/guides/automations.html#config-condition)**: The condition to check.\n\n*See also: [script Component](https://esphome.io/guides/automations.html#for-condition)*"
+              "registry": "condition"
             }
           },
           "extends": [
             "core.COMPONENT_SCHEMA"
           ]
-        },
-        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) allows you to check if a given condition has been true for at least a given amount of time.\n\n*See also: [`for` Condition](https://esphome.io/guides/automations.html#for-condition)*"
+        }
       }
     },
     "pins": [
       "esp32",
       "esp8266",
       "bk72xx",
+      "ch422g",
       "host",
       "max6956",
       "mcp23xxx",
       "mcp23016",
+      "mpr121",
       "pca6416a",
       "pca9554",
       "pcf8574",
@@ -1265,6 +1578,11 @@
       "sn74hc165",
       "sn74hc595",
       "sx1509",
+      "tca9555",
+      "wk2168_i2c",
+      "wk2168_spi",
+      "wk2212_i2c",
+      "wk2212_spi",
       "xl9535"
     ]
   }

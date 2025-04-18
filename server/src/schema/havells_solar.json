@@ -296,7 +296,7 @@
                 ],
                 "config_vars": {
                   "unit_of_measurement": {
-                    "default": "VAR"
+                    "default": "var"
                   },
                   "accuracy_decimals": {
                     "default": "2"

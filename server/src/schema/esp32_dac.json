@@ -29,7 +29,7 @@
                 "output"
               ],
               "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin to use DAC on. Only GPIO25 and GPIO26 are supported.\n\n*See also: [ESP32 DAC](https://esphome.io/components/output/esp32_dac.html#configuration-variables)*"
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin to use DAC on. See above for valid pin numbers.\n\n*See also: [ESP32 DAC](https://esphome.io/components/output/esp32_dac.html#configuration-variables)*"
             }
           }
         }

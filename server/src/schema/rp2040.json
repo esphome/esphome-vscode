@@ -52,17 +52,16 @@
           "number": {
             "key": "Required"
           },
+          "allow_other_uses": {
+            "key": "Optional",
+            "type": "boolean"
+          },
           "mode": {
             "key": "Optional",
             "default": "{}",
-            "type": "schema",
+            "type": "pin",
             "schema": {
               "config_vars": {
-                "analog": {
-                  "key": "Optional",
-                  "default": "False",
-                  "type": "boolean"
-                },
                 "input": {
                   "key": "Optional",
                   "default": "False",
@@ -87,9 +86,15 @@
                   "key": "Optional",
                   "default": "False",
                   "type": "boolean"
+                },
+                "analog": {
+                  "key": "Optional",
+                  "default": "False",
+                  "type": "boolean"
                 }
               }
-            }
+            },
+            "modes": []
           },
           "inverted": {
             "key": "Optional",

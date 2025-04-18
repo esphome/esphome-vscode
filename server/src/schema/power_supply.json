@@ -33,7 +33,7 @@
                   "core.positive_time_period_milliseconds"
                 ]
               },
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time that the power supply needs for startup. The output component will wait for this period of time after turning on the PSU and before switching the output on. Defaults to `20ms`.\n\n*See also: [Power Supply Component](https://esphome.io/components/power_supply.html#configuration-variables)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time that the power supply needs for startup. The output component will wait for this period of time after turning on the PSU and before switching the output on. Defaults to `20ms`. Maximum of less than `5s`.\n\n*See also: [Power Supply Component](https://esphome.io/components/power_supply.html#configuration-variables)*"
             },
             "keep_on_time": {
               "key": "Optional",
@@ -45,6 +45,12 @@
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time the power supply should be kept enabled after the last output that used it has been switch off. Defaults to `10s`.\n\n*See also: [Power Supply Component](https://esphome.io/components/power_supply.html#configuration-variables)*"
+            },
+            "enable_on_boot": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean",
+              "docs": "**bool**: If the power supply should be enabled when the power supply component is setup. Defaults to false. The startup delay will be applied (other component setup will be blocked until the delay has elapsed.) This is useful for power supplies that will never be turned off and avoids the need to specifically configure the power supply in a different component.\n\n*See also: [Power Supply Component](https://esphome.io/components/power_supply.html#configuration-variables)*"
             }
           },
           "extends": [

@@ -17,8 +17,7 @@
                   "EntityBase",
                   "Component"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [GPIO Binary Sensor](https://esphome.io/components/binary_sensor/gpio.html#configuration-variables)*"
+              }
             },
             "pin": {
               "key": "Required",
@@ -30,6 +29,39 @@
               "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin to periodically check.\n\n*See also: [GPIO Binary Sensor](https://esphome.io/components/binary_sensor/gpio.html#configuration-variables)*"
             }
           }
+        }
+      }
+    }
+  },
+  "gpio.one_wire": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "gpio::GPIOOneWireBus",
+                "parents": [
+                  "one_wire::OneWireBus",
+                  "Component"
+                ]
+              }
+            },
+            "pin": {
+              "key": "Required",
+              "schema": true,
+              "internal": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin"
+            }
+          },
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
         }
       }
     }
@@ -102,8 +134,7 @@
                   "EntityBase",
                   "Component"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [GPIO Switch](https://esphome.io/components/switch/gpio.html#configuration-variables)*"
+              }
             },
             "pin": {
               "key": "Required",

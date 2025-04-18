@@ -4,17 +4,77 @@
       "CONFIG_SCHEMA": {
         "type": "schema",
         "schema": {
-          "extends": [
-            "touchscreen.TOUCHSCREEN_SCHEMA",
-            "core.COMPONENT_SCHEMA"
-          ],
           "config_vars": {
+            "display": {
+              "key": "GeneratedID",
+              "use_id_type": "display::Display",
+              "type": "use_id"
+            },
+            "transform": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "swap_xy": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean"
+                  },
+                  "mirror_x": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean"
+                  },
+                  "mirror_y": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "touch_timeout": {
+              "key": "Optional",
+              "default": "250ms",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "calibration": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "touchscreen.CALIBRATION_SCHEMA"
+                ]
+              }
+            },
+            "on_touch": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_update": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_release": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "update_interval": {
+              "key": "Optional",
+              "default": "50ms"
+            },
             "id": {
               "key": "GeneratedID",
               "id_type": {
                 "class": "lilygo_t5_47::LilygoT547Touchscreen",
                 "parents": [
                   "touchscreen::Touchscreen",
+                  "PollingComponent",
                   "Component",
                   "i2c::I2CDevice"
                 ]
@@ -41,7 +101,10 @@
               "default": "90",
               "data_type": "hex_uint8_t"
             }
-          }
+          },
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
         }
       }
     }

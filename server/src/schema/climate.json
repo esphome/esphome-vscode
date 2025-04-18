@@ -17,21 +17,16 @@
         ],
         "docs": "The `climate` platform exposes the BedJet\u2019s climate-related functionality, including setting the mode and target temperature.\n\n*See also: [bedjet Climate](https://esphome.io/components/climate/bedjet.html#bedjet-climate)*"
       },
-      "climate_ir_lg": {
-        "docs": "Additional configuration is available for this platform\n\n*See also: [climate_ir_lg Climate](https://esphome.io/components/climate/climate_ir.html#climate-ir-lg-climate)*"
-      },
+      "climate_ir_lg": {},
       "coolix": {},
-      "custom": {
-        "docs": "This integration can be used to create custom climate devices in ESPHome using the C++ (Arduino) API.\n\n*See also: [Custom Climate](https://esphome.io/components/climate/custom.html#custom-climate)*"
-      },
+      "custom": {},
       "daikin": {},
-      "daikin_brc": {
-        "docs": "The Daikin BRC remotes are used by the ceiling cassette model of Daikin heatpumps.\n\n*See also: [daikin_brc Climate](https://esphome.io/components/climate/climate_ir.html#daikin-brc-climate)*"
-      },
-      "delonghi": {
-        "docs": "Currently supports the protocol used by some Delonghi portable units\n\n*See also: [delonghi Climate](https://esphome.io/components/climate/climate_ir.html#delonghi-climate)*"
-      },
+      "daikin_arc": {},
+      "daikin_brc": {},
+      "delonghi": {},
+      "emmeti": {},
       "fujitsu_general": {},
+      "gree": {},
       "haier": {
         "dependencies": [
           "climate",
@@ -50,10 +45,9 @@
         "docs": "The `midea` component creates a Midea air conditioner climate device.\n\n*See also: [Midea Air Conditioner](https://esphome.io/components/climate/midea.html#midea-air-conditioner)*"
       },
       "midea_ac": {},
-      "midea_ir": {
-        "docs": "These air conditioners support two protocols: Midea and Coolix. Therefore, when using an IR receiver, it considers both protocols and publishes the received states.\n\n*See also: [midea_ir Climate](https://esphome.io/components/climate/climate_ir.html#midea-ir-climate)*"
-      },
+      "midea_ir": {},
       "mitsubishi": {},
+      "noblex": {},
       "pid": {
         "docs": "The `pid` climate platform allows you to regulate a value with a [PID controller](https://en.wikipedia.org/wiki/PID_controller).\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#pid-climate)*"
       },
@@ -61,22 +55,22 @@
       "thermostat": {
         "docs": "The `thermostat` climate platform allows you to control a climate control system in much the same manner as a physical thermostat. Its operation is similar to the [Bang-Bang](https://esphome.io/components/climate/bang_bang.html) controller; a sensor measures a value (the air temperature) and the controller will try to keep this value within a range defined by the set point(s). To do this, the controller can activate devices like a heating unit and/or a cooling unit to change the value observed by the sensor. When configured for both heating and cooling, it is essentially two [Bang-Bang](https://esphome.io/components/climate/bang_bang.html) controllers in one; it differs, however, in that interaction with the thermostat component is nearly identical to that of a real thermostat.\n\n*See also: [Thermostat Climate Controller](https://esphome.io/components/climate/thermostat.html#thermostat-climate-controller)*"
       },
-      "toshiba": {
-        "docs": "Additional configuration is available for this model.\n\n*See also: [toshiba Climate](https://esphome.io/components/climate/climate_ir.html#toshiba-climate)*"
-      },
+      "toshiba": {},
       "tuya": {
         "dependencies": [
           "tuya"
         ],
         "docs": "The `tuya` climate platform creates a climate device from a tuya component.\n\n*See also: [Tuya Climate](https://esphome.io/components/climate/tuya.html#tuya-climate)*"
       },
-      "whirlpool": {
-        "docs": "Additional configuration is available for this model.\n\n*See also: [whirlpool Climate](https://esphome.io/components/climate/climate_ir.html#whirlpool-climate)*"
+      "uponor_smatrix": {
+        "dependencies": [
+          "uponor_smatrix"
+        ]
       },
-      "whynter": {
-        "docs": "Additional configuration is available for this platform\n\n*See also: [whynter Climate](https://esphome.io/components/climate/climate_ir.html#whynter-climate)*"
-      },
-      "yashima": {}
+      "whirlpool": {},
+      "whynter": {},
+      "yashima": {},
+      "zhlt01": {}
     },
     "schemas": {
       "VISUAL_TEMPERATURE_STEP_SCHEMA": {
@@ -84,12 +78,10 @@
         "schema": {
           "config_vars": {
             "target_temperature": {
-              "key": "Required",
-              "docs": "**float**: The granularity for target temperature\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#base-climate-configuration)*"
+              "key": "Required"
             },
             "current_temperature": {
-              "key": "Required",
-              "docs": "**float**: The granularity for current temperature\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#base-climate-configuration)*"
+              "key": "Required"
             }
           }
         }
@@ -102,6 +94,27 @@
             "core.MQTT_COMMAND_COMPONENT_SCHEMA"
           ],
           "config_vars": {
+            "web_server": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "web_server_id": {
+                    "key": "Optional",
+                    "use_id_type": "web_server::WebServer",
+                    "type": "use_id"
+                  },
+                  "sorting_weight": {
+                    "key": "Optional"
+                  },
+                  "sorting_group_id": {
+                    "key": "Optional",
+                    "use_id_type": "int",
+                    "type": "use_id"
+                  }
+                }
+              }
+            },
             "id": {
               "key": "GeneratedID",
               "id_type": {
@@ -109,7 +122,8 @@
                 "parents": [
                   "EntityBase"
                 ]
-              }
+              },
+              "docs": "**string**: Manually specify the ID for code generation. At least one of **id** and **name** must be specified.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#base-climate-configuration)*"
             },
             "mqtt_id": {
               "key": "Optional",
@@ -137,17 +151,19 @@
                   },
                   "temperature_step": {
                     "key": "Optional",
-                    "type": "schema",
-                    "schema": {
-                      "extends": [
-                        "climate.VISUAL_TEMPERATURE_STEP_SCHEMA"
-                      ]
-                    },
                     "docs": "**float**: The granularity with which the target temperature can be controlled. Can be a single number, or split as below:\n  * **target_temperature** (**Required**, float): The granularity for target temperature\n  \n  * **current_temperature** (**Required**, float): The granularity for current temperature\n  \n  \n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#base-climate-configuration)*"
+                  },
+                  "min_humidity": {
+                    "key": "Optional",
+                    "docs": "**percentage**: The minimum humidity the climate device can reach. Used to set the range of the frontend gauge.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#base-climate-configuration)*"
+                  },
+                  "max_humidity": {
+                    "key": "Optional",
+                    "docs": "**percentage**: The maximum humidity the climate device can reach. Used to set the range of the frontend gauge.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#base-climate-configuration)*"
                   }
                 }
               },
-              "docs": "Visual settings for the climate device - these do not affect operation and are solely for controlling how the climate device shows up in the frontend.\n  * **min_temperature** (*Optional*, float): The minimum temperature the climate device can reach. Used to set the range of the frontend gauge.\n  \n  * **max_temperature** (*Optional*, float): The maximum temperature the climate device can reach. Used to set the range of the frontend gauge.\n  \n  * **temperature_step** (*Optional*, float): The granularity with which the target temperature can be controlled. Can be a single number, or split as below:\n    * **target_temperature** (**Required**, float): The granularity for target temperature\n    \n    * **current_temperature** (**Required**, float): The granularity for current temperature\n    \n    \n  \n  \n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#base-climate-configuration)*"
+              "docs": "Visual settings for the climate device - these do not affect operation and are solely for controlling how the climate device shows up in the frontend.\n  * **min_temperature** (*Optional*, float): The minimum temperature the climate device can reach. Used to set the range of the frontend gauge.\n  \n  * **max_temperature** (*Optional*, float): The maximum temperature the climate device can reach. Used to set the range of the frontend gauge.\n  \n  * **temperature_step** (*Optional*, float): The granularity with which the target temperature can be controlled. Can be a single number, or split as below:\n    * **target_temperature** (**Required**, float): The granularity for target temperature\n    \n    * **current_temperature** (**Required**, float): The granularity for current temperature\n    \n    \n  \n  * **min_humidity** (*Optional*, percentage): The minimum humidity the climate device can reach. Used to set the range of the frontend gauge.\n  \n  * **max_humidity** (*Optional*, percentage): The maximum humidity the climate device can reach. Used to set the range of the frontend gauge.\n  \n  \n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#base-climate-configuration)*"
             },
             "action_state_topic": {
               "key": "Optional",
@@ -162,6 +178,10 @@
             "current_temperature_state_topic": {
               "key": "Optional",
               "docs": "**string**: The topic to publish current temperature changes to.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#base-climate-configuration)*"
+            },
+            "current_humidity_state_topic": {
+              "key": "Optional",
+              "docs": "**string**: The topic to publish current humidity changes to.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#base-climate-configuration)*"
             },
             "fan_mode_command_topic": {
               "key": "Optional",
@@ -219,6 +239,14 @@
               "key": "Optional",
               "docs": "**string**: The topic to publish lower target temperature changes to.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#base-climate-configuration)*"
             },
+            "target_humidity_command_topic": {
+              "key": "Optional",
+              "docs": "**string**: The topic to receive target humidity commands on.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#base-climate-configuration)*"
+            },
+            "target_humidity_state_topic": {
+              "key": "Optional",
+              "docs": "**string**: The topic to publish target humidity changes to.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#base-climate-configuration)*"
+            },
             "on_control": {
               "key": "Optional",
               "type": "trigger"
@@ -267,22 +295,27 @@
                   "docs": "The device is should adjust the temperature dynamically. For example based on a schedule, or learned behavior."
                 }
               },
-              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Put the climate device in a specific mode. One of\n  * `OFF` - The device is manually set to off, the device is inactive.\n  \n  * `AUTO` - The device is should adjust the temperature dynamically. For example based on a schedule, or learned behavior.\n  \n  * `HEAT` - The device is set to heat to reach a target temperature.\n  \n  * `COOL` - The device is set to cool to reach a target temperature.\n  \n  * `HEAT_COOL` - The device should heat/cool to maintain a target temperature.\n  \n  * `FAN_ONLY` - The device only has the fan enabled, no heating or cooling is taking place.\n  \n  * `DRY` - The device is set to dry/humidity mode.\n  \n  \n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
+              "docs": "**string, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: Put the climate device in a specific mode. One of\n  * `OFF` - The device is manually set to off, the device is inactive.\n  \n  * `AUTO` - The device is should adjust the temperature dynamically. For example based on a schedule, or learned behavior.\n  \n  * `HEAT` - The device is set to heat to reach a target temperature.\n  \n  * `COOL` - The device is set to cool to reach a target temperature.\n  \n  * `HEAT_COOL` - The device should heat/cool to maintain a target temperature.\n  \n  * `FAN_ONLY` - The device only has the fan enabled, no heating or cooling is taking place.\n  \n  * `DRY` - The device is set to dry/humidity mode.\n  \n  \n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
             },
             "target_temperature": {
               "key": "Optional",
               "templatable": true,
-              "docs": "**float, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Set the target temperature of a climate device.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
+              "docs": "**float, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: Set the target temperature of a climate device.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
             },
             "target_temperature_low": {
               "key": "Optional",
               "templatable": true,
-              "docs": "**float, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Set the lower target temperature of a climate device with a two-point target temperature.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
+              "docs": "**float, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: Set the lower target temperature of a climate device with a two-point target temperature.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
             },
             "target_temperature_high": {
               "key": "Optional",
               "templatable": true,
-              "docs": "**float, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Set the higher target temperature of a climate device with a two-point target temperature.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
+              "docs": "**float, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: Set the higher target temperature of a climate device with a two-point target temperature.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
+            },
+            "target_humidity": {
+              "key": "Optional",
+              "templatable": true,
+              "docs": "**float, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: Set the target humidity of a climate device.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
             },
             "fan_mode": {
               "key": "Optional",
@@ -300,13 +333,13 @@
                 "DIFFUSE": null,
                 "QUIET": null
               },
-              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Set the fan mode of the climate device. One of `ON`, `OFF`, `AUTO`, `LOW`, `MEDIUM`, `HIGH`, `MIDDLE`, `FOCUS`, `DIFFUSE`, `QUIET`.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
+              "docs": "**string, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: Set the fan mode of the climate device. One of `ON`, `OFF`, `AUTO`, `LOW`, `MEDIUM`, `HIGH`, `MIDDLE`, `FOCUS`, `DIFFUSE`, `QUIET`.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
             },
             "custom_fan_mode": {
               "key": "Optional",
               "templatable": true,
               "type": "string",
-              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Set one of the supported custom_fan_modes of the climate device.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
+              "docs": "**string, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: Set one of the supported custom_fan_modes of the climate device.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
             },
             "preset": {
               "key": "Optional",
@@ -322,13 +355,13 @@
                 "SLEEP": null,
                 "ACTIVITY": null
               },
-              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Set the preset of the climate device. One of `ECO`, `AWAY`, `BOOST`, `COMFORT`, `HOME`, `SLEEP`, `ACTIVITY`.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
+              "docs": "**string, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: Set the preset of the climate device. One of `ECO`, `AWAY`, `BOOST`, `COMFORT`, `HOME`, `SLEEP`, `ACTIVITY`.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
             },
             "custom_preset": {
               "key": "Optional",
               "templatable": true,
               "type": "string",
-              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Set one of the supported custom_presets of the climate device.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
+              "docs": "**string, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: Set one of the supported custom_presets of the climate device.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
             },
             "swing_mode": {
               "key": "Optional",
@@ -340,7 +373,7 @@
                 "VERTICAL": null,
                 "HORIZONTAL": null
               },
-              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Set the swing mode of the climate device. One of `OFF`, `BOTH`, `VERTICAL`, `HORIZONTAL`.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
+              "docs": "**string, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: Set the swing mode of the climate device. One of `OFF`, `BOTH`, `VERTICAL`, `HORIZONTAL`.\n\n*See also: [Climate Component](https://esphome.io/components/climate/index.html#climate-control-action)*"
             }
           }
         }
@@ -354,7 +387,7 @@
             "climate.CLIMATE_CONTROL_ACTION_SCHEMA"
           ]
         },
-        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) for setting parameters for climate devices.\n\n*See also: [`climate.control` Action](https://esphome.io/components/climate/index.html#climate-control-action)*"
+        "docs": "This is an [Action](https://esphome.io/automations/actions.html#config-action) for setting parameters for climate devices.\n\n*See also: [`climate.control` Action](https://esphome.io/components/climate/index.html#climate-control-action)*"
       }
     }
   }

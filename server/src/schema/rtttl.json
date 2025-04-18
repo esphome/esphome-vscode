@@ -16,15 +16,24 @@
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Rtttl Buzzer](https://esphome.io/components/rtttl.html#configuration-variables)*"
             },
             "output": {
-              "key": "Required",
+              "key": "Optional",
               "use_id_type": "output::FloatOutput",
-              "type": "use_id",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id of the [float output](https://esphome.io/components/output/index.html#output) to use for this buzzer.\n\n*See also: [Rtttl Buzzer](https://esphome.io/components/rtttl.html#configuration-variables)*"
+              "type": "use_id"
+            },
+            "speaker": {
+              "key": "Optional",
+              "use_id_type": "speaker::Speaker",
+              "type": "use_id"
+            },
+            "gain": {
+              "key": "Optional",
+              "default": "0.6",
+              "docs": "**Percentage**: With this value you can set the volume of the sound.\n\n*See also: [Rtttl Buzzer](https://esphome.io/components/rtttl.html#configuration-variables)*"
             },
             "on_finished_playback": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when playback is finished.\n\n*See also: [Rtttl Buzzer](https://esphome.io/components/rtttl.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An action to be performed when playback is finished.\n\n*See also: [Rtttl Buzzer](https://esphome.io/components/rtttl.html#configuration-variables)*"
             }
           },
           "extends": [
@@ -49,7 +58,7 @@
               "key": "Required",
               "templatable": true,
               "type": "string",
-              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The rtttl string.\n\n*See also: [Rtttl Buzzer](https://esphome.io/components/rtttl.html#rtttl-play-action)*"
+              "docs": "**string, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The rtttl string.\n\n*See also: [Rtttl Buzzer](https://esphome.io/components/rtttl.html#rtttl-play-action)*"
             }
           }
         },

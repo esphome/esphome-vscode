@@ -1,85 +1,50 @@
 {
   "ota": {
+    "components": {
+      "esphome": {
+        "dependencies": [
+          "network"
+        ],
+        "docs": "ESPHome\u2019s Over-The-Air (OTA) platform allows you to remotely install modified/updated firmware binaries onto your ESPHome devices over their network (Wi-Fi or Ethernet) interface.\n\n*See also: [ESPHome OTA Updates](https://esphome.io/components/ota/esphome.html#esphome-ota-updates)*"
+      },
+      "http_request": {
+        "dependencies": [
+          "network",
+          "http_request"
+        ],
+        "docs": "The OTA (Over The Air) via HTTP Request update component allows your devices to install updated firmware on their own. To use it, in your device\u2019s configuration, you specify a URL from which the device will download the binary file (firmware). To trigger the update, an ESPHome [action](https://esphome.io/automations/actions.html#config-action) is used which initiates the download and installation of the new firmware. Once complete, the device is rebooted, invoking the new firmware.\n\n*See also: [OTA Update via HTTP Request](https://esphome.io/components/ota/http_request.html#ota-update-via-http-request)*"
+      }
+    },
     "schemas": {
-      "CONFIG_SCHEMA": {
+      "BASE_OTA_SCHEMA": {
         "type": "schema",
         "schema": {
           "config_vars": {
-            "id": {
-              "key": "GeneratedID",
-              "id_type": {
-                "class": "ota::OTAComponent",
-                "parents": [
-                  "Component"
-                ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [OTA Update Component](https://esphome.io/components/ota.html#configuration-variables)*"
-            },
-            "safe_mode": {
-              "key": "Optional",
-              "default": "True",
-              "type": "boolean",
-              "docs": "**boolean**: Whether to enable safe mode. Defaults to `true`.\n\n*See also: [OTA Update Component](https://esphome.io/components/ota.html#configuration-variables)*"
-            },
-            "port": {
-              "key": "Optional",
-              "default": "8266",
-              "type": "integer",
-              "data_type": "port",
-              "docs": "**int**: The port to use for OTA updates. Defaults:\n  * `3232` for the ESP32\n  \n  * `8266` for the ESP8266\n  \n  * `2040` for the RP2040\n  \n  \n\n*See also: [OTA Update Component](https://esphome.io/components/ota.html#configuration-variables)*"
-            },
-            "password": {
-              "key": "Optional",
-              "type": "string",
-              "docs": "**string**: The password to use for updates.\n\n*See also: [OTA Update Component](https://esphome.io/components/ota.html#configuration-variables)*"
-            },
-            "reboot_timeout": {
-              "key": "Optional",
-              "default": "5min",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "core.positive_time_period_milliseconds"
-                ]
-              },
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The amount of time to wait before rebooting when in safe mode. Defaults to `5min`.\n\n*See also: [OTA Update Component](https://esphome.io/components/ota.html#configuration-variables)*"
-            },
-            "num_attempts": {
-              "key": "Optional",
-              "default": "10",
-              "type": "integer",
-              "data_type": "positive_not_null_int",
-              "docs": "**int**: The number of attempts to wait before entering safe mode. Defaults to `10`.\n\n*See also: [OTA Update Component](https://esphome.io/components/ota.html#configuration-variables)*"
-            },
             "on_state_change": {
               "key": "Optional",
-              "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when an OTA update state change happens. See [on_state_change](https://esphome.io/components/ota.html#ota-on-state-change).\n\n*See also: [OTA Update Component](https://esphome.io/components/ota.html#configuration-variables)*"
+              "type": "trigger"
+            },
+            "on_abort": {
+              "key": "Optional",
+              "type": "trigger"
             },
             "on_begin": {
               "key": "Optional",
-              "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed when an OTA update is started. See [on_begin](https://esphome.io/components/ota.html#ota-on-begin).\n\n*See also: [OTA Update Component](https://esphome.io/components/ota.html#configuration-variables)*"
-            },
-            "on_error": {
-              "key": "Optional",
-              "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed after a failed OTA update. See [on_error](https://esphome.io/components/ota.html#ota-on-error).\n\n*See also: [OTA Update Component](https://esphome.io/components/ota.html#configuration-variables)*"
-            },
-            "on_progress": {
-              "key": "Optional",
-              "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed (multiple times) during an OTA update. See [on_progress](https://esphome.io/components/ota.html#ota-on-progress).\n\n*See also: [OTA Update Component](https://esphome.io/components/ota.html#configuration-variables)*"
+              "type": "trigger"
             },
             "on_end": {
               "key": "Optional",
-              "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An action to be performed after a successful OTA update. See [on_end](https://esphome.io/components/ota.html#ota-on-end).\n\n*See also: [OTA Update Component](https://esphome.io/components/ota.html#configuration-variables)*"
+              "type": "trigger"
+            },
+            "on_error": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_progress": {
+              "key": "Optional",
+              "type": "trigger"
             }
-          },
-          "extends": [
-            "core.COMPONENT_SCHEMA"
-          ]
+          }
         }
       }
     }

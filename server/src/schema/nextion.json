@@ -104,6 +104,39 @@
           }
         }
       }
+    },
+    "action": {
+      "publish": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "use_id_type": "nextion::NextionSensor",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the Nextion sensor.\n\n*See also: [Nextion Sensor Component](https://esphome.io/components/sensor/nextion.html#sensor-nextion-publish-action)*"
+            },
+            "state": {
+              "key": "Required",
+              "templatable": true,
+              "docs": "**string, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The float state to publish.\n\n*See also: [Nextion Sensor Component](https://esphome.io/components/sensor/nextion.html#sensor-nextion-publish-action)*"
+            },
+            "publish_state": {
+              "key": "Optional",
+              "default": "true",
+              "templatable": true,
+              "type": "boolean"
+            },
+            "send_to_nextion": {
+              "key": "Optional",
+              "default": "true",
+              "templatable": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "docs": "You can also publish a state to a Nextion sensor from elsewhere in your YAML file with the `sensor.nextion.publish` action.\n\n*See also: [`sensor.nextion.publish` Action](https://esphome.io/components/sensor/nextion.html#sensor-nextion-publish-action)*"
+      }
     }
   },
   "nextion.binary_sensor": {
@@ -171,12 +204,43 @@
             "variable_name": {
               "key": "Optional",
               "docs": "**string**: The name of the Nextion variable. Any value over `0` is considered to be **on**\n\n*See also: [Nextion Binary Sensor Component](https://esphome.io/components/binary_sensor/nextion.html#configuration-variables)*"
-            },
-            "name": {
-              "docs": "**string**: The name of the sensor.\n\n*See also: [Nextion Binary Sensor Component](https://esphome.io/components/binary_sensor/nextion.html#configuration-variables)*"
             }
           }
         }
+      }
+    },
+    "action": {
+      "publish": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "use_id_type": "nextion::NextionBinarySensor",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the Nextion switch.\n\n*See also: [Nextion Binary Sensor Component](https://esphome.io/components/binary_sensor/nextion.html#binary-sensor-nextion-publish-action)*"
+            },
+            "state": {
+              "key": "Required",
+              "templatable": true,
+              "type": "boolean",
+              "docs": "**string, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The boolean state to publish.\n\n*See also: [Nextion Binary Sensor Component](https://esphome.io/components/binary_sensor/nextion.html#binary-sensor-nextion-publish-action)*"
+            },
+            "publish_state": {
+              "key": "Optional",
+              "default": "true",
+              "templatable": true,
+              "type": "boolean"
+            },
+            "send_to_nextion": {
+              "key": "Optional",
+              "default": "true",
+              "templatable": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "docs": "You can also publish a state to a Nextion binary sensor from elsewhere in your YAML file with the `binary_sensor.nextion.publish` action.\n\n*See also: [`binary_sensor.nextion.publish` Action](https://esphome.io/components/binary_sensor/nextion.html#binary-sensor-nextion-publish-action)*"
       }
     }
   },
@@ -204,33 +268,41 @@
             },
             "tft_url": {
               "key": "Optional",
-              "type": "string",
-              "docs": "**string**: The URL to download the TFT file from for updates. See [Nextion Upload](https://esphome.io/components/display/nextion.html#nextion-upload-tft).\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+              "docs": "**string**: The URL from which to download the TFT file for display firmware updates (Nextion OTA). See [Nextion Upload](https://esphome.io/components/display/nextion.html#nextion-upload-tft).\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
             },
             "brightness": {
               "key": "Optional",
-              "default": "1.0",
-              "docs": "**percentage**: Set display brightness in %. Defaults to `100%`\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+              "docs": "**percentage**: When specified, the display brightness will be set to this value at boot.\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
             },
             "on_setup": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: An action to be performed after ESPHome connects to the Nextion. See [Nextion Automation](https://esphome.io/components/display/nextion.html#nextion-on-setup).\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+              "docs": "**[Action](https://esphome.io/automations/actions.html#config-action)**: An action to be performed after ESPHome connects to the Nextion. See [Nextion Automation](https://esphome.io/components/display/nextion.html#nextion-on-setup).\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
             },
             "on_sleep": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: An action to be performed when the Nextion goes to sleep. See [Nextion Automation](https://esphome.io/components/display/nextion.html#nextion-on-sleep).\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+              "docs": "**[Action](https://esphome.io/automations/actions.html#config-action)**: An action to be performed when the Nextion goes to sleep. See [Nextion Automation](https://esphome.io/components/display/nextion.html#nextion-on-sleep).\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
             },
             "on_wake": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: An action to be performed when the Nextion wakes up. See [Nextion Automation](https://esphome.io/components/display/nextion.html#nextion-on-sleep).\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+              "docs": "**[Action](https://esphome.io/automations/actions.html#config-action)**: An action to be performed when the Nextion wakes up. See [Nextion Automation](https://esphome.io/components/display/nextion.html#nextion-on-sleep).\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
             },
             "on_page": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Action](https://esphome.io/guides/automations.html#config-action)**: An action to be performed after a page change. See [Nextion Automation](https://esphome.io/components/display/nextion.html#nextion-on-page).\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+              "docs": "**[Action](https://esphome.io/automations/actions.html#config-action)**: An action to be performed after a page change. See [Nextion Automation](https://esphome.io/components/display/nextion.html#nextion-on-page).\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+            },
+            "on_touch": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Action](https://esphome.io/automations/actions.html#config-action)**: An action to be performed after a touch event (press or release). See [Nextion Automation](https://esphome.io/components/display/nextion.html#nextion-on-touch).\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+            },
+            "on_buffer_overflow": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Action](https://esphome.io/automations/actions.html#config-action)**: An action to be performed when the Nextion reports a buffer overflow. See [Nextion Automation](https://esphome.io/components/display/nextion.html#nextion-on-buffer-overflow).\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
             },
             "touch_sleep_timeout": {
               "key": "Optional",
@@ -240,17 +312,34 @@
             "wake_up_page": {
               "key": "Optional",
               "type": "integer",
-              "data_type": "positive_int",
-              "docs": "**int**: Sets the page to display after waking up\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+              "data_type": "uint8_t",
+              "docs": "**int**: Sets the page to display after waking up.\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+            },
+            "start_up_page": {
+              "key": "Optional",
+              "type": "integer",
+              "data_type": "uint8_t",
+              "docs": "**int**: Sets the page to display when ESPHome connects to the Nextion. (The Nextion will display page 0 upon start-up by default).\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
             },
             "auto_wake_on_touch": {
               "key": "Optional",
               "default": "True",
               "type": "boolean",
-              "docs": "**boolean**: Sets if Nextion should auto-wake from sleep when touch press occurs.\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+              "docs": "**boolean**: If set to `true`, the Nextion will be configured to wake from sleep when touched.\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+            },
+            "exit_reparse_on_start": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean",
+              "docs": "**boolean**: Request the Nextion exit Active Reparse Mode before setup of the display. Defaults to `false`.\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+            },
+            "skip_connection_handshake": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean",
+              "docs": "**boolean**: Sets whether the initial display connection handshake process is skipped. When set to `true`, the connection will be established without performing the handshake. This can be useful when using Nextion Simulator. Defaults to `false`.\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
             },
             "update_interval": {
-              "key": "Optional",
               "default": "5s",
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to call the lambda to update the display. Defaults to `5s`.\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
             },
@@ -258,7 +347,26 @@
               "key": "GeneratedID",
               "use_id_type": "uart::UARTComponent",
               "type": "use_id",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the [UART bus](https://esphome.io/components/uart.html#uart) you wish to use for this display. Use this if you want to use multiple UART buses at once.\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the [UART Bus](https://esphome.io/components/uart.html#uart) you wish to use for this display. Specify this when you have multiple UART configurations.\n\n*See also: [Nextion TFT LCD Display](https://esphome.io/components/display/nextion.html#configuration-variables)*"
+            }
+          }
+        }
+      }
+    },
+    "action": {
+      "set_brightness": {
+        "type": "schema",
+        "maybe": "brightness",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "use_id_type": "nextion::Nextion",
+              "type": "use_id"
+            },
+            "brightness": {
+              "key": "Required",
+              "templatable": true
             }
           }
         }
@@ -313,15 +421,46 @@
               "use_id_type": "Color",
               "type": "use_id",
               "docs": "**[Color](https://esphome.io/components/display/index.html#config-color)**: The background color when pressed\n\n*See also: [Nextion Switch Component](https://esphome.io/components/switch/nextion.html#configuration-variables)*"
-            },
-            "name": {
-              "docs": "**string**: The name of the sensor.\n\n*See also: [Nextion Switch Component](https://esphome.io/components/switch/nextion.html#configuration-variables)*"
             }
           },
           "extends": [
             "nextion.sensor.CONFIG_SENSOR_COMPONENT_SCHEMA"
           ]
         }
+      }
+    },
+    "action": {
+      "publish": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "use_id_type": "nextion::NextionSwitch",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the Nextion switch.\n\n*See also: [Nextion Switch Component](https://esphome.io/components/switch/nextion.html#switch-nextion-publish-action)*"
+            },
+            "state": {
+              "key": "Required",
+              "templatable": true,
+              "type": "boolean",
+              "docs": "**string, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The boolean state to publish.\n\n*See also: [Nextion Switch Component](https://esphome.io/components/switch/nextion.html#switch-nextion-publish-action)*"
+            },
+            "publish_state": {
+              "key": "Optional",
+              "default": "true",
+              "templatable": true,
+              "type": "boolean"
+            },
+            "send_to_nextion": {
+              "key": "Optional",
+              "default": "true",
+              "templatable": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "docs": "You can also publish a state to a Nextion switch from elsewhere in your YAML file with the `switch.nextion.publish` action.\n\n*See also: [`switch.nextion.publish` Action](https://esphome.io/components/switch/nextion.html#switch-nextion-publish-action)*"
       }
     }
   },
@@ -379,12 +518,43 @@
               "key": "Optional",
               "type": "integer",
               "docs": "**int**: The font id for the component\n\n*See also: [Nextion Text Sensor Component](https://esphome.io/components/text_sensor/nextion.html#configuration-variables)*"
-            },
-            "name": {
-              "docs": "**string**: The name of the sensor.\n\n*See also: [Nextion Text Sensor Component](https://esphome.io/components/text_sensor/nextion.html#configuration-variables)*"
             }
           }
         }
+      }
+    },
+    "action": {
+      "publish": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "use_id_type": "nextion::NextionTextSensor",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the Nextion text sensor.\n\n*See also: [Nextion Text Sensor Component](https://esphome.io/components/text_sensor/nextion.html#text-sensor-nextion-publish-action)*"
+            },
+            "state": {
+              "key": "Required",
+              "templatable": true,
+              "type": "string",
+              "docs": "**string, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The string to publish.\n\n*See also: [Nextion Text Sensor Component](https://esphome.io/components/text_sensor/nextion.html#text-sensor-nextion-publish-action)*"
+            },
+            "publish_state": {
+              "key": "Optional",
+              "default": "true",
+              "templatable": true,
+              "type": "boolean"
+            },
+            "send_to_nextion": {
+              "key": "Optional",
+              "default": "true",
+              "templatable": true,
+              "type": "boolean"
+            }
+          }
+        },
+        "docs": "You can also publish a state to a Nextion text sensor from elsewhere in your YAML file with the `text_sensor.nextion.publish` action.\n\n*See also: [`text_sensor.nextion.publish` Action](https://esphome.io/components/text_sensor/nextion.html#text-sensor-nextion-publish-action)*"
       }
     }
   }

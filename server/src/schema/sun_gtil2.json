@@ -1,0 +1,241 @@
+{
+  "sun_gtil2": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "sun_gtil2::SunGTIL2",
+                "parents": [
+                  "Component",
+                  "uart::UARTDevice"
+                ]
+              },
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this component.\n\n*See also: [sun_gtil2 Component/Hub](https://esphome.io/components/sun_gtil2.html#configuration-variables)*"
+            },
+            "uart_id": {
+              "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
+              "docs": "The UART Bus ID for receiving messages sent from the inverter\u2019s controller to the display.\n\n*See also: [sun_gtil2 Component/Hub](https://esphome.io/components/sun_gtil2.html#configuration-variables)*"
+            }
+          }
+        },
+        "is_list": true
+      }
+    }
+  },
+  "sun_gtil2.sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "sun_gtil2_id": {
+              "key": "GeneratedID",
+              "use_id_type": "sun_gtil2::SunGTIL2",
+              "type": "use_id",
+              "docs": "Manually specify the ID of the sun_gtil2 instance if there are multiple.\n\n*See also: [sun_gtil2 Sensor](https://esphome.io/components/sun_gtil2.html#id1)*"
+            },
+            "ac_voltage": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "V"
+                  },
+                  "icon": {
+                    "default": "mdi:flash"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  },
+                  "device_class": {
+                    "default": "voltage"
+                  }
+                }
+              },
+              "docs": "The grid voltage measured by the inverter. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [sun_gtil2 Sensor](https://esphome.io/components/sun_gtil2.html#id1)*"
+            },
+            "dc_voltage": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "V"
+                  },
+                  "icon": {
+                    "default": "mdi:flash"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  },
+                  "device_class": {
+                    "default": "voltage"
+                  }
+                }
+              },
+              "docs": "The voltage of your DC source. (battery or solar panels) All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [sun_gtil2 Sensor](https://esphome.io/components/sun_gtil2.html#id1)*"
+            },
+            "ac_power": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "W"
+                  },
+                  "icon": {
+                    "default": "mdi:flash"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  },
+                  "device_class": {
+                    "default": "power"
+                  }
+                }
+              },
+              "docs": "The inverter\u2019s output power. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [sun_gtil2 Sensor](https://esphome.io/components/sun_gtil2.html#id1)*"
+            },
+            "dc_power": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "W"
+                  },
+                  "icon": {
+                    "default": "mdi:flash"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  },
+                  "device_class": {
+                    "default": "power"
+                  }
+                }
+              },
+              "docs": "The inverter\u2019s input power. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [sun_gtil2 Sensor](https://esphome.io/components/sun_gtil2.html#id1)*"
+            },
+            "limiter_power": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "W"
+                  },
+                  "icon": {
+                    "default": "mdi:flash"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  },
+                  "device_class": {
+                    "default": "power"
+                  }
+                }
+              },
+              "docs": "The power measured by the inverter\u2019s \u201cInternal\u201d limiter. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [sun_gtil2 Sensor](https://esphome.io/components/sun_gtil2.html#id1)*"
+            },
+            "temperature": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "\u00b0C"
+                  },
+                  "icon": {
+                    "default": "mdi:thermometer"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  },
+                  "device_class": {
+                    "default": "temperature"
+                  }
+                }
+              },
+              "docs": "The temperature of your inverter\u2019s heatsink. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [sun_gtil2 Sensor](https://esphome.io/components/sun_gtil2.html#id1)*"
+            }
+          },
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
+        }
+      }
+    }
+  },
+  "sun_gtil2.text_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "sun_gtil2_id": {
+              "key": "GeneratedID",
+              "use_id_type": "sun_gtil2::SunGTIL2",
+              "type": "use_id",
+              "docs": "Manually specify the ID of the sun_gtil2 instance if there are multiple.\n\n*See also: [sun_gtil2 Text Sensor](https://esphome.io/components/sun_gtil2.html#id2)*"
+            },
+            "state": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {}
+                }
+              },
+              "docs": "The inverter\u2019s state. All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n\n*See also: [sun_gtil2 Text Sensor](https://esphome.io/components/sun_gtil2.html#id2)*"
+            },
+            "serial_number": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {}
+                }
+              },
+              "docs": "The inverter\u2019s serial number. All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n\n*See also: [sun_gtil2 Text Sensor](https://esphome.io/components/sun_gtil2.html#id2)*"
+            }
+          },
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
+        }
+      }
+    }
+  }
+}

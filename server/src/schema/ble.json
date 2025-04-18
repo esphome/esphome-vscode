@@ -1,0 +1,11 @@
+{
+  "ble": {
+    "action": {
+      "enable": {},
+      "disable": {}
+    },
+    "condition": {
+      "enabled": {}
+    }
+  }
+}

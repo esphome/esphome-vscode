@@ -41,7 +41,7 @@
                   }
                 }
               },
-              "docs": "The information for the temperature sensor.\n  * **name** (**Required**, string): The name for the temperature sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
+              "docs": "The information for the temperature sensor.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
             },
             "humidity": {
               "key": "Optional",
@@ -65,7 +65,7 @@
                   }
                 }
               },
-              "docs": "The information for the humidity sensor\n  * **name** (**Required**, string): The name for the humidity sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
+              "docs": "The information for the humidity sensor\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
             },
             "pressure": {
               "key": "Optional",
@@ -89,7 +89,7 @@
                   }
                 }
               },
-              "docs": "The information for the pressure sensor.\n  * **name** (**Required**, string): The name for the pressure sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
+              "docs": "The information for the pressure sensor.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
             },
             "acceleration": {
               "key": "Optional",
@@ -113,7 +113,7 @@
                   }
                 }
               },
-              "docs": "The information for the acceleration sensor.\n  * **name** (**Required**, string): The name for the acceleration sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
+              "docs": "The information for the acceleration sensor.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
             },
             "acceleration_x": {
               "key": "Optional",
@@ -137,7 +137,7 @@
                   }
                 }
               },
-              "docs": "The information for the acceleration x sensor.\n  * **name** (**Required**, string): The name for the acceleration x sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
+              "docs": "The information for the acceleration x sensor.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
             },
             "acceleration_y": {
               "key": "Optional",
@@ -161,7 +161,7 @@
                   }
                 }
               },
-              "docs": "The information for the acceleration y sensor.\n  * **name** (**Required**, string): The name for the acceleration y sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
+              "docs": "The information for the acceleration y sensor.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
             },
             "acceleration_z": {
               "key": "Optional",
@@ -185,7 +185,7 @@
                   }
                 }
               },
-              "docs": "The information for the acceleration z sensor.\n  * **name** (**Required**, string): The name for the acceleration z sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
+              "docs": "The information for the acceleration z sensor.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
             },
             "battery_voltage": {
               "key": "Optional",
@@ -212,7 +212,7 @@
                   }
                 }
               },
-              "docs": "The information for the battery voltage sensor.\n  * **name** (**Required**, string): The name for the battery voltage sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
+              "docs": "The information for the battery voltage sensor.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
             },
             "tx_power": {
               "key": "Optional",
@@ -239,7 +239,7 @@
                   }
                 }
               },
-              "docs": "The information for the transmit power sensor\n  * **name** (**Required**, string): The name for the transmit power sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * Only available if RAWv2 protocol is used.\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
+              "docs": "The information for the transmit power sensor\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * Only available if RAWv2 protocol is used.\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
             },
             "movement_counter": {
               "key": "Optional",
@@ -260,7 +260,7 @@
                   }
                 }
               },
-              "docs": "The information for the movement count sensor\n  * **name** (**Required**, string): The name for the movement count sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * Only available if RAWv2 protocol is used.\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
+              "docs": "The information for the movement count sensor\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * Only available if RAWv2 protocol is used.\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
             },
             "measurement_sequence_number": {
               "key": "Optional",
@@ -281,7 +281,7 @@
                   }
                 }
               },
-              "docs": "The information for the measurement sequence number sensor\n  * **name** (**Required**, string): The name for the measurement sequence number sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * Only available if RAWv2 protocol is used.\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
+              "docs": "The information for the measurement sequence number sensor\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  * Only available if RAWv2 protocol is used.\n  \n  \n\n*See also: [RuuviTag Open Source BLE Sensor](https://esphome.io/components/sensor/ruuvitag.html#configuration-variables)*"
             }
           },
           "extends": [

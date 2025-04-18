@@ -184,7 +184,7 @@
               "key": "Optional",
               "default": "True",
               "type": "boolean",
-              "docs": "**boolean**: Whether to automatically clear the display data before each lambda call, or to keep the existing display content (must overwrite explicitly, e.g., only on data change). Defaults to `true`.\n\n*See also: [PVVX MiThermometer Display](https://esphome.io/components/display/pvvx_mithermometer.html#configuration-variables)*"
+              "docs": "**boolean**: Whether to automatically clear the display data before each lambda call, or to keep the existing display content (must overwrite explicitly, e.g., only on data change). Defaults to `true` if a lambda or pages are configured, false otherwise.\n\n*See also: [PVVX MiThermometer Display](https://esphome.io/components/display/pvvx_mithermometer.html#configuration-variables)*"
             },
             "disconnect_delay": {
               "key": "Optional",
@@ -209,7 +209,6 @@
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time periode for which the pvvx device should display the information. Defaults to `5min`.\n\n*See also: [PVVX MiThermometer Display](https://esphome.io/components/display/pvvx_mithermometer.html#configuration-variables)*"
             },
             "update_interval": {
-              "key": "Optional",
               "default": "60s",
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to transmit the display data. Defaults to `60s`.\n\n*See also: [PVVX MiThermometer Display](https://esphome.io/components/display/pvvx_mithermometer.html#configuration-variables)*"
             }

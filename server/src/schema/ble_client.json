@@ -25,30 +25,36 @@
               "key": "Optional",
               "type": "string"
             },
+            "auto_connect": {
+              "key": "Optional",
+              "default": "True",
+              "type": "boolean",
+              "docs": "**boolean**: If true the device will be automatically connected when found by the [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html). Defaults to true.\n\n*See also: [BLE Client](https://esphome.io/components/ble_client.html#configuration-variables)*"
+            },
             "on_connect": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the client connects to a device. See [on_connect](https://esphome.io/components/ble_client.html#ble-client-on-connect).\n\n*See also: [BLE Client](https://esphome.io/components/ble_client.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when the client connects to a device. See [on_connect](https://esphome.io/components/ble_client.html#ble-client-on-connect).\n\n*See also: [BLE Client](https://esphome.io/components/ble_client.html#configuration-variables)*"
             },
             "on_disconnect": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when the client disconnects from a device. See [on_disconnect](https://esphome.io/components/ble_client.html#ble-client-on-disconnect).\n\n*See also: [BLE Client](https://esphome.io/components/ble_client.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when the client disconnects from a device. See [on_disconnect](https://esphome.io/components/ble_client.html#ble-client-on-disconnect).\n\n*See also: [BLE Client](https://esphome.io/components/ble_client.html#configuration-variables)*"
             },
             "on_passkey_request": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to enter the passkey required by the other BLE device. See [on_passkey_request](https://esphome.io/components/ble_client.html#ble-client-on-passkey-request).\n\n*See also: [BLE Client](https://esphome.io/components/ble_client.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to enter the passkey required by the other BLE device. See [on_passkey_request](https://esphome.io/components/ble_client.html#ble-client-on-passkey-request).\n\n*See also: [BLE Client](https://esphome.io/components/ble_client.html#configuration-variables)*"
             },
             "on_passkey_notification": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to display the passkey to the user. See [on_passkey_notification](https://esphome.io/components/ble_client.html#ble-client-on-passkey-notification).\n\n*See also: [BLE Client](https://esphome.io/components/ble_client.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to display the passkey to the user. See [on_passkey_notification](https://esphome.io/components/ble_client.html#ble-client-on-passkey-notification).\n\n*See also: [BLE Client](https://esphome.io/components/ble_client.html#configuration-variables)*"
             },
             "on_numeric_comparison_request": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to compare the passkeys shown on the two BLE devices. See [on_numeric_comparison_request](https://esphome.io/components/ble_client.html#ble-client-on-numeric-comparison-request).\n\n*See also: [BLE Client](https://esphome.io/components/ble_client.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to compare the passkeys shown on the two BLE devices. See [on_numeric_comparison_request](https://esphome.io/components/ble_client.html#ble-client-on-numeric-comparison-request).\n\n*See also: [BLE Client](https://esphome.io/components/ble_client.html#configuration-variables)*"
             },
             "esp32_ble_id": {
               "key": "GeneratedID",
@@ -74,9 +80,40 @@
             }
           }
         }
+      },
+      "BLE_CONNECT_ACTION_SCHEMA": {
+        "type": "schema",
+        "maybe": "id",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "use_id_type": "ble_client::BLEClient",
+              "type": "use_id"
+            }
+          }
+        }
       }
     },
     "action": {
+      "disconnect": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "ble_client.BLE_CONNECT_ACTION_SCHEMA"
+          ]
+        },
+        "docs": "This action disconnects a device that was connected with the `ble_client.connect` action. Execution of the automation block sequence resumes after the disconnect has completed.\n\n*See also: [`ble_client.disconnect` Action](https://esphome.io/components/ble_client.html#ble-client-disconnect-action)*"
+      },
+      "connect": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "ble_client.BLE_CONNECT_ACTION_SCHEMA"
+          ]
+        },
+        "docs": "This action is useful only for devices with `auto_connect: false` and allows a connection to be made from within an automation. Once connected other actions like `ble_write` can be used. This is useful where a BLE server needs only to be interacted with occasionally, and thus does not need a constant connection held.\n\n*See also: [`ble_client.connect` Action](https://esphome.io/components/ble_client.html#ble-client-connect-action)*"
+      },
       "ble_write": {
         "type": "schema",
         "schema": {
@@ -100,11 +137,11 @@
               "templatable": true,
               "is_list": true,
               "data_type": "hex_uint8_t",
-              "docs": "**Array of bytes or [lambda](https://esphome.io/guides/automations.html#config-lambda)**: The value to be written.\n\n*See also: [BLE Client](https://esphome.io/components/ble_client.html#ble-client-ble-write-action)*"
+              "docs": "**Array of bytes or [lambda](https://esphome.io/automations/templates.html#config-lambda)**: The value to be written.\n\n*See also: [BLE Client](https://esphome.io/components/ble_client.html#ble-client-ble-write-action)*"
             }
           }
         },
-        "docs": "This action triggers a write to a specified BLE characteristic. The write is attempted in a best-effort fashion and will only succeed if the `ble_client`\u2019s  connection has been established and the peripheral exposes the expected BLE service and characteristic.\n\n*See also: [`ble_client.ble_write` Action](https://esphome.io/components/ble_client.html#ble-client-ble-write-action)*"
+        "docs": "This action triggers a write to a specified BLE characteristic. The write is attempted in a best-effort fashion and will only succeed if the `ble_client`\u2019s  connection has been established and the peripheral exposes the expected BLE service and characteristic. Execution of the automation block sequence resumes after the write has completed. A write failure will *not* stop execution of succeeding actions (this allows a disconnect to be executed, for example.)\n\n*See also: [`ble_client.ble_write` Action](https://esphome.io/components/ble_client.html#ble-client-ble-write-action)*"
       },
       "numeric_comparison_reply": {
         "type": "schema",
@@ -209,7 +246,7 @@
               },
               "lambda": {
                 "key": "Optional",
-                "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to use for converting a raw data reading to a sensor value. See [Raw Data Parsing Lambda](https://esphome.io/components/sensor/ble_client.html#ble-sensor-lambda) for more information.\n\n*See also: [BLE Client Sensor](https://esphome.io/components/sensor/ble_client.html#configuration-variables)*"
+                "docs": "**[lambda](https://esphome.io/automations/templates.html#config-lambda)**: The lambda to use for converting a raw data reading to a sensor value. See [Raw Data Parsing Lambda](https://esphome.io/components/sensor/ble_client.html#ble-sensor-lambda) for more information.\n\n*See also: [BLE Client Sensor](https://esphome.io/components/sensor/ble_client.html#configuration-variables)*"
               },
               "notify": {
                 "key": "Optional",
@@ -220,7 +257,7 @@
               "on_notify": {
                 "key": "Optional",
                 "type": "trigger",
-                "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a notify message is received from the device. See [on_notify](https://esphome.io/components/sensor/ble_client.html#ble-sensor-on-notify).\n\n*See also: [BLE Client Sensor](https://esphome.io/components/sensor/ble_client.html#configuration-variables)*"
+                "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when a notify message is received from the device. See [on_notify](https://esphome.io/components/sensor/ble_client.html#ble-sensor-on-notify).\n\n*See also: [BLE Client Sensor](https://esphome.io/components/sensor/ble_client.html#configuration-variables)*"
               }
             }
           },
@@ -346,8 +383,7 @@
                   "Component",
                   "ble_client::BLEClientNode"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID to use for code generation, and for reference by dependent components.\n\n*See also: [BLE Client Switch](https://esphome.io/components/switch/ble_client.html#configuration-variables)*"
+              }
             },
             "icon": {
               "default": "mdi:bluetooth"
@@ -378,8 +414,7 @@
                   "Component",
                   "ble_client::BLEClientNode"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID to use for code generation, and for reference by dependent components.\n\n*See also: [BLE Client Text Sensor](https://esphome.io/components/text_sensor/ble_client.html#configuration-variables)*"
+              }
             },
             "service_uuid": {
               "key": "Required",
@@ -402,7 +437,7 @@
             "on_notify": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a notify message is received from the device. See [on_notify](https://esphome.io/components/text_sensor/ble_client.html#ble-text-sensor-on-notify).\n\n*See also: [BLE Client Text Sensor](https://esphome.io/components/text_sensor/ble_client.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when a notify message is received from the device. See [on_notify](https://esphome.io/components/text_sensor/ble_client.html#ble-text-sensor-on-notify).\n\n*See also: [BLE Client Text Sensor](https://esphome.io/components/text_sensor/ble_client.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",

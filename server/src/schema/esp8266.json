@@ -215,17 +215,17 @@
             "key": "Required",
             "docs": "**pin**: The pin number.\n\n*See also: [Configuration Types](https://esphome.io/guides/configuration-types.html#pin-schema)*"
           },
+          "allow_other_uses": {
+            "key": "Optional",
+            "type": "boolean",
+            "docs": "**boolean**: If the pin is also specified elsewhere in the configuration. By default multiple uses of the same pin will be flagged as an error. This option will suppress the error and is intended for rare cases where a pin is shared between multiple components. Defaults to `false`.\n\n*See also: [Configuration Types](https://esphome.io/guides/configuration-types.html#pin-schema)*"
+          },
           "mode": {
             "key": "Optional",
             "default": "{}",
-            "type": "schema",
+            "type": "pin",
             "schema": {
               "config_vars": {
-                "analog": {
-                  "key": "Optional",
-                  "default": "False",
-                  "type": "boolean"
-                },
                 "input": {
                   "key": "Optional",
                   "default": "False",
@@ -255,9 +255,15 @@
                   "default": "False",
                   "type": "boolean",
                   "docs": "**boolean**: Activate internal pulldown resistors on the pin.\n\n*See also: [Configuration Types](https://esphome.io/guides/configuration-types.html#pin-schema)*"
+                },
+                "analog": {
+                  "key": "Optional",
+                  "default": "False",
+                  "type": "boolean"
                 }
               }
             },
+            "modes": [],
             "docs": "**string or mapping**: Configures the pin to behave in different modes like input or output. The default value depends on the context. Accepts either a shorthand string or a mapping where each feature can be individually enabled/disabled:\n  * **input** (*Optional*, boolean): If true, configure the pin as an input.\n  \n  * **output** (*Optional*, boolean): If true, configure the pin as an output.\n  \n  * **pullup** (*Optional*, boolean): Activate internal pullup resistors on the pin.\n  \n  * **pulldown** (*Optional*, boolean): Activate internal pulldown resistors on the pin.\n  \n  * **open_drain** (*Optional*, boolean): Set the pin to open-drain (as opposed to push-pull). The active pin state will then result in a high-impedance state.\n  \n  For compatibility some shorthand modes can also be used.\n  * `INPUT`\n  \n  * `OUTPUT`\n  \n  * `OUTPUT_OPEN_DRAIN`\n  \n  * `ANALOG`\n  \n  * `INPUT_PULLUP`\n  \n  * `INPUT_PULLDOWN`\n  \n  * `INPUT_OUTPUT_OPEN_DRAIN`\n  \n  \n\n*See also: [Configuration Types](https://esphome.io/guides/configuration-types.html#pin-schema)*"
           },
           "inverted": {

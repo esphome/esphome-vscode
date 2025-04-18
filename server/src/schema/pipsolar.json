@@ -1446,8 +1446,7 @@
                 "extends": [
                   "binary_sensor.BINARY_SENSOR_SCHEMA"
                 ]
-              },
-              "docs": "warnung low pv energy\n\n*See also: [pipsolar Binary Sensor](https://esphome.io/components/pipsolar.html#id2)*"
+              }
             },
             "warning_high_ac_input_during_bus_soft_start": {
               "key": "Optional",
@@ -1762,11 +1761,11 @@
               "key": "Required",
               "templatable": true,
               "data_type": "positive_float",
-              "docs": "**percentage, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The target level.\n\n*See also: [pipsolar Output](https://esphome.io/components/pipsolar.html#output-pipsolar-set-level-action)*"
+              "docs": "**percentage, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The target level.\n\n*See also: [pipsolar Output](https://esphome.io/components/pipsolar.html#output-pipsolar-set-level-action)*"
             }
           }
         },
-        "docs": "To use your outputs in [automations](https://esphome.io/guides/automations.html#automation) or templates, you can use this action to set the target level of the output.\n\n*See also: [`output.pipsolar.set_level` Action](https://esphome.io/components/pipsolar.html#output-pipsolar-set-level-action)*"
+        "docs": "To use your outputs in [automations](https://esphome.io/automations/index.html#automation) or templates, you can use this action to set the target level of the output.\n\n*See also: [`output.pipsolar.set_level` Action](https://esphome.io/components/pipsolar.html#output-pipsolar-set-level-action)*"
       }
     }
   },
@@ -1847,6 +1846,16 @@
                 ]
               },
               "docs": "output source priority battery\n\n*See also: [pipsolar Switch](https://esphome.io/components/pipsolar.html#id4)*"
+            },
+            "output_source_priority_hybrid": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "pipsolar.switch.PIPSWITCH_SCHEMA"
+                ]
+              },
+              "docs": "output source priority hybrid\n\n*See also: [pipsolar Switch](https://esphome.io/components/pipsolar.html#id4)*"
             },
             "input_voltage_range": {
               "key": "Optional",

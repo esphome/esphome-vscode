@@ -1,0 +1,74 @@
+{
+  "datetime": {
+    "components": {
+      "template": {
+        "docs": "The `template` datetime platform allows you to create a datetime with templated values using [lambdas](https://esphome.io/automations/templates.html#config-lambda).\n\n*See also: [Template Datetime](https://esphome.io/components/datetime/template.html#template-datetime)*"
+      }
+    },
+    "schemas": {
+      "_DATETIME_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "core.ENTITY_BASE_SCHEMA",
+            "core.MQTT_COMMAND_COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "on_value": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "time_id": {
+              "key": "Optional",
+              "use_id_type": "time::RealTimeClock",
+              "type": "use_id"
+            },
+            "web_server": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "web_server_id": {
+                    "key": "Optional",
+                    "use_id_type": "web_server::WebServer",
+                    "type": "use_id"
+                  },
+                  "sorting_weight": {
+                    "key": "Optional"
+                  },
+                  "sorting_group_id": {
+                    "key": "Optional",
+                    "use_id_type": "int",
+                    "type": "use_id"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "datetime.datetime": {
+    "action": {
+      "set": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "use_id_type": "datetime::DateTimeEntity",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the datetime to set.\n\n*See also: [Datetime Component](https://esphome.io/components/datetime/index.html#datetime-datetime-set-action)*"
+            },
+            "datetime": {
+              "key": "Required",
+              "docs": "**string, datetime parts, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The value to set the datetime to.\n\n*See also: [Datetime Component](https://esphome.io/components/datetime/index.html#datetime-datetime-set-action)*"
+            }
+          }
+        },
+        "docs": "This is an [Action](https://esphome.io/automations/actions.html#config-action) for setting a datetime datetime state. The `datetime` provided can be in one of 3 formats:\n\n*See also: [`datetime.datetime.set` Action](https://esphome.io/components/datetime/index.html#datetime-datetime-set-action)*"
+      }
+    }
+  }
+}

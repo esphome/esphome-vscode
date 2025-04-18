@@ -72,7 +72,12 @@
             },
             "has_pulldowns": {
               "key": "Optional",
-              "type": "boolean"
+              "type": "boolean",
+              "docs": "**boolean**: For pads where the column lines have external pulldowns. Defaults to `false`.\n\n*See also: [Component](https://esphome.io/components/matrix_keypad.html#component)*"
+            },
+            "on_key": {
+              "key": "Optional",
+              "type": "trigger"
             }
           }
         },

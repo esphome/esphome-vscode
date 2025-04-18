@@ -1,7 +1,18 @@
 {
   "host": {
     "schemas": {
-      "CONFIG_SCHEMA": {}
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "mac_address": {
+              "key": "Optional",
+              "default": "98:35:69:ab:f6:79",
+              "docs": "**MAC address**: A dummy MAC address to use when communicating with HA.\n\n*See also: [Host Platform](https://esphome.io/components/host.html#configuration-variables)*"
+            }
+          }
+        }
+      }
     },
     "pin": {
       "type": "schema",
@@ -20,10 +31,14 @@
           "number": {
             "key": "Required"
           },
+          "allow_other_uses": {
+            "key": "Optional",
+            "type": "boolean"
+          },
           "mode": {
             "key": "Optional",
             "default": "{}",
-            "type": "schema",
+            "type": "pin",
             "schema": {
               "config_vars": {
                 "input": {
@@ -52,12 +67,39 @@
                   "type": "boolean"
                 }
               }
-            }
+            },
+            "modes": []
           },
           "inverted": {
             "key": "Optional",
             "default": "False",
             "type": "boolean"
+          }
+        }
+      }
+    }
+  },
+  "host.time": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "time.TIME_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "host::HostTime",
+                "parents": [
+                  "time::RealTimeClock",
+                  "PollingComponent",
+                  "Component"
+                ]
+              }
+            }
           }
         }
       }

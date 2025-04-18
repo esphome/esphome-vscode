@@ -5,8 +5,7 @@
         "type": "schema",
         "schema": {
           "extends": [
-            "touchscreen.TOUCHSCREEN_SCHEMA",
-            "core.COMPONENT_SCHEMA"
+            "touchscreen.TOUCHSCREEN_SCHEMA"
           ],
           "config_vars": {
             "id": {
@@ -15,6 +14,7 @@
                 "class": "ektf2232::EKTF2232Touchscreen",
                 "parents": [
                   "touchscreen::Touchscreen",
+                  "PollingComponent",
                   "Component",
                   "i2c::I2CDevice"
                 ]

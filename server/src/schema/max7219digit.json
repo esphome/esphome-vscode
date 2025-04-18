@@ -14,10 +14,13 @@
               "id_type": {
                 "class": "max7219digit::MAX7219Component",
                 "parents": [
+                  "spi::SPIDevice",
+                  "display::DisplayBuffer",
+                  "display::Display",
                   "PollingComponent",
                   "Component",
-                  "spi::SPIDevice",
-                  "display::DisplayBuffer"
+                  "PollingComponent",
+                  "Component"
                 ]
               },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [MAX7219 Digit Display](https://esphome.io/components/display/max7219digit.html#configuration-variables)*"
@@ -128,7 +131,6 @@
               "docs": "**boolean**: Flip the horizontal axis on the screen. Defaults to `false`.\n\n*See also: [MAX7219 Digit Display](https://esphome.io/components/display/max7219digit.html#configuration-variables)*"
             },
             "update_interval": {
-              "key": "Optional",
               "default": "500ms",
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to re-draw the screen. Defaults to `1s`.\n\n*See also: [MAX7219 Digit Display](https://esphome.io/components/display/max7219digit.html#configuration-variables)*"
             },
@@ -137,6 +139,38 @@
               "use_id_type": "spi::SPIComponent",
               "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [SPI Component](https://esphome.io/components/spi.html#spi) if you want to use multiple SPI buses.\n\n*See also: [MAX7219 Digit Display](https://esphome.io/components/display/max7219digit.html#configuration-variables)*"
+            },
+            "data_rate": {
+              "key": "Optional",
+              "type": "enum",
+              "values": {
+                "80000000.0": null,
+                "40000000.0": null,
+                "20000000.0": null,
+                "10000000.0": null,
+                "8000000.0": null,
+                "5000000.0": null,
+                "4000000.0": null,
+                "2000000.0": null,
+                "1000000.0": null,
+                "200000.0": null,
+                "75000.0": null,
+                "1000.0": null
+              }
+            },
+            "spi_mode": {
+              "key": "Optional",
+              "type": "enum",
+              "values": {
+                "MODE0": null,
+                "MODE1": null,
+                "MODE2": null,
+                "MODE3": null,
+                "0": null,
+                "1": null,
+                "2": null,
+                "3": null
+              }
             },
             "cs_pin": {
               "key": "Required",

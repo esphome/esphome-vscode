@@ -21,7 +21,7 @@
             "on_tag": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a tag is read. See [Over I\u00b2C](https://esphome.io/components/binary_sensor/pn532.html#pn532-on-tag).\n\n*See also: [pn532 Over I\u00b2C](https://esphome.io/components/binary_sensor/pn532.html#id1)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when a tag is read. See [Over I\u00b2C](https://esphome.io/components/binary_sensor/pn532.html#pn532-on-tag).\n\n*See also: [pn532 Over I\u00b2C](https://esphome.io/components/binary_sensor/pn532.html#id1)*"
             },
             "on_finished_write": {
               "key": "Optional",
@@ -30,7 +30,7 @@
             "on_tag_removed": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a tag is removed. See [on_tag_removed](https://esphome.io/components/binary_sensor/pn532.html#pn532-on-tag-removed).\n\n*See also: [pn532 Over SPI](https://esphome.io/components/binary_sensor/pn532.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when a tag is removed. See [on_tag_removed](https://esphome.io/components/binary_sensor/pn532.html#pn532-on-tag-removed).\n\n*See also: [pn532 Over SPI](https://esphome.io/components/binary_sensor/pn532.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",
@@ -75,8 +75,7 @@
                   "binary_sensor::BinarySensor",
                   "EntityBase"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [pn532 Binary Sensor](https://esphome.io/components/binary_sensor/pn532.html#id2)*"
+              }
             },
             "pn532_id": {
               "key": "GeneratedID",

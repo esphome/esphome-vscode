@@ -1,0 +1,5 @@
+{
+  "bme280_i2c.sensor": {
+    "schemas": {}
+  }
+}

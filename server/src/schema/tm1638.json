@@ -86,8 +86,6 @@
               "docs": "**int**: The intensity with which the TM1638 should drive the outputs. Range is from 0 (least intense) to 7 (the default).  This setting will affect the 7 segment display and the 8 individual LED lights.\n\n*See also: [TM1638 7 Segment Display Keypad & LED Module](https://esphome.io/components/display/tm1638.html#configuration-variables)*"
             },
             "update_interval": {
-              "key": "Optional",
-              "default": "1s",
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to re-draw the screen. Defaults to `1s`.\n\n*See also: [TM1638 7 Segment Display Keypad & LED Module](https://esphome.io/components/display/tm1638.html#configuration-variables)*"
             }
           }

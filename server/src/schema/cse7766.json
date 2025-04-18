@@ -10,7 +10,6 @@
               "id_type": {
                 "class": "cse7766::CSE7766Component",
                 "parents": [
-                  "PollingComponent",
                   "Component",
                   "uart::UARTDevice"
                 ]
@@ -110,12 +109,76 @@
                   }
                 }
               },
-              "docs": "Use the total energy value of the sensor in Wh. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [CSE7766 Power Sensor](https://esphome.io/components/sensor/cse7766.html#configuration-variables)*"
+              "docs": "Use the total (active) energy value of the sensor in Wh. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [CSE7766 Power Sensor](https://esphome.io/components/sensor/cse7766.html#configuration-variables)*"
             },
-            "update_interval": {
+            "apparent_power": {
               "key": "Optional",
-              "default": "60s",
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n*See also: [CSE7766 Power Sensor](https://esphome.io/components/sensor/cse7766.html#configuration-variables)*"
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "VA"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  },
+                  "device_class": {
+                    "default": "apparent_power"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  }
+                }
+              },
+              "docs": "Use the apparent power value of the sensor in VA. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [CSE7766 Power Sensor](https://esphome.io/components/sensor/cse7766.html#configuration-variables)*"
+            },
+            "reactive_power": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "var"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  },
+                  "device_class": {
+                    "default": "reactive_power"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  }
+                }
+              },
+              "docs": "Use the reactive power value of the sensor in VAR. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [CSE7766 Power Sensor](https://esphome.io/components/sensor/cse7766.html#configuration-variables)*"
+            },
+            "power_factor": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "accuracy_decimals": {
+                    "default": "2"
+                  },
+                  "device_class": {
+                    "default": "power_factor"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  }
+                }
+              },
+              "docs": "Use the power factor value of the sensor. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [CSE7766 Power Sensor](https://esphome.io/components/sensor/cse7766.html#configuration-variables)*"
             },
             "uart_id": {
               "key": "GeneratedID",
@@ -123,10 +186,7 @@
               "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Component](https://esphome.io/components/uart.html#uart) if you want to use multiple UART buses.\n\n*See also: [CSE7766 Power Sensor](https://esphome.io/components/sensor/cse7766.html#configuration-variables)*"
             }
-          },
-          "extends": [
-            "core.COMPONENT_SCHEMA"
-          ]
+          }
         }
       }
     }

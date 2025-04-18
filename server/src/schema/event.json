@@ -1,0 +1,115 @@
+{
+  "event": {
+    "components": {
+      "template": {
+        "docs": "The `template` event platform enables you to define events that trigger specific automations or actions within Home Assistant. These custom events can be utilized to orchestrate complex behaviors across your smart home ecosystem based on conditions or sequences defined in your ESPHome configuration.\n\n*See also: [Template Event](https://esphome.io/components/event/template.html#template-event)*"
+      }
+    },
+    "schemas": {
+      "EVENT_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "core.ENTITY_BASE_SCHEMA",
+            "core.MQTT_COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "web_server": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "web_server_id": {
+                    "key": "Optional",
+                    "use_id_type": "web_server::WebServer",
+                    "type": "use_id"
+                  },
+                  "sorting_weight": {
+                    "key": "Optional"
+                  },
+                  "sorting_group_id": {
+                    "key": "Optional",
+                    "use_id_type": "int",
+                    "type": "use_id"
+                  }
+                }
+              }
+            },
+            "mqtt_id": {
+              "key": "Optional",
+              "id_type": {
+                "class": "mqtt::MQTTEventComponent",
+                "parents": [
+                  "mqtt::MQTTComponent",
+                  "Component"
+                ]
+              }
+            },
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "event::Event",
+                "parents": [
+                  "EntityBase"
+                ]
+              },
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation. At least one of **id** and **name** must be specified.\n\n*See also: [Event Component](https://esphome.io/components/event/index.html#base-event-configuration)*"
+            },
+            "device_class": {
+              "key": "Optional",
+              "type": "enum",
+              "values": {
+                "button": {
+                  "docs": "For remote control buttons."
+                },
+                "doorbell": {
+                  "docs": "Specifically for buttons that are used as a doorbell."
+                },
+                "": null,
+                "motion": {
+                  "docs": "For motion events detected by a motion sensor."
+                }
+              },
+              "docs": "**string**: The device class for the event. The following device classes are supported by event entities:\n  * None: Generic event. This is the default and doesn\u2019t need to be set.\n  \n  * `button`: For remote control buttons.\n  \n  * `doorbell`: Specifically for buttons that are used as a doorbell.\n  \n  * `motion`: For motion events detected by a motion sensor.\n  \n  See [https://www.home-assistant.io/integrations/event/#device-class](https://www.home-assistant.io/integrations/event/#device-class) for a list of available options.\n\n*See also: [Event Component](https://esphome.io/components/event/index.html#base-event-configuration)*"
+            },
+            "on_event": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when an event is triggered.\n\n*See also: [Event Component](https://esphome.io/components/event/index.html#base-event-configuration)*"
+            }
+          }
+        }
+      },
+      "TRIGGER_EVENT_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "use_id_type": "event::Event",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the event.\n\n*See also: [Event Component](https://esphome.io/components/event/index.html#event-trigger-action)*"
+            },
+            "event_type": {
+              "key": "Required",
+              "templatable": true,
+              "type": "string",
+              "docs": "**string**: The type of event to trigger.\n\n*See also: [Event Component](https://esphome.io/components/event/index.html#event-trigger-action)*"
+            }
+          }
+        }
+      }
+    },
+    "action": {
+      "trigger": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "event.TRIGGER_EVENT_SCHEMA"
+          ]
+        },
+        "docs": "This action allows for the triggering of an event from within an automation.\n\n*See also: [`event.trigger` Action](https://esphome.io/components/event/index.html#event-trigger-action)*"
+      }
+    }
+  }
+}

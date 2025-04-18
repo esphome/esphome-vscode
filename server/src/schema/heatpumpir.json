@@ -16,7 +16,8 @@
                   "climate::Climate",
                   "EntityBase",
                   "Component",
-                  "remote_base::RemoteReceiverListener"
+                  "remote_base::RemoteReceiverListener",
+                  "remote_base::RemoteTransmittable"
                 ]
               }
             },
@@ -39,6 +40,7 @@
                 "greeyan": null,
                 "greeyac": null,
                 "greeyt": null,
+                "greeyap": null,
                 "hisense_aud": null,
                 "hitachi": null,
                 "hyundai": null,
@@ -57,6 +59,7 @@
                 "mitsubishi_sez": null,
                 "panasonic_ckp": null,
                 "panasonic_dke": null,
+                "panasonic_eke": null,
                 "panasonic_jke": null,
                 "panasonic_lke": null,
                 "panasonic_nke": null,
@@ -65,7 +68,17 @@
                 "sharp": null,
                 "toshiba_daiseikai": null,
                 "toshiba": null,
-                "zhlt01": null
+                "zhlt01": null,
+                "nibe": null,
+                "carrier_qlima_1": null,
+                "carrier_qlima_2": null,
+                "samsung_aqv12msan": null,
+                "zhjg01": null,
+                "airway": null,
+                "bgh_aud": null,
+                "panasonic_altdke": null,
+                "vaillantvai8": null,
+                "r51m": null
               }
             },
             "horizontal_default": {

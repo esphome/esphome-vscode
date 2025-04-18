@@ -31,8 +31,7 @@
                   "Component",
                   "i2c::I2CDevice"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [MAX44009 Ambient Light Sensor](https://esphome.io/components/sensor/max44009.html#configuration-variables)*"
+              }
             },
             "mode": {
               "key": "Optional",

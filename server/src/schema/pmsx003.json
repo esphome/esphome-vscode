@@ -44,6 +44,9 @@
                   },
                   "device_class": {
                     "default": "pm1"
+                  },
+                  "state_class": {
+                    "default": "measurement"
                   }
                 }
               },
@@ -68,6 +71,9 @@
                   },
                   "device_class": {
                     "default": "pm25"
+                  },
+                  "state_class": {
+                    "default": "measurement"
                   }
                 }
               },
@@ -92,6 +98,9 @@
                   },
                   "device_class": {
                     "default": "pm10"
+                  },
+                  "state_class": {
+                    "default": "measurement"
                   }
                 }
               },
@@ -113,6 +122,9 @@
                   },
                   "accuracy_decimals": {
                     "default": "0"
+                  },
+                  "device_class": {
+                    "default": "pm1"
                   },
                   "state_class": {
                     "default": "measurement"
@@ -138,6 +150,9 @@
                   "accuracy_decimals": {
                     "default": "0"
                   },
+                  "device_class": {
+                    "default": "pm25"
+                  },
                   "state_class": {
                     "default": "measurement"
                   }
@@ -162,6 +177,9 @@
                   "accuracy_decimals": {
                     "default": "0"
                   },
+                  "device_class": {
+                    "default": "pm10"
+                  },
                   "state_class": {
                     "default": "measurement"
                   }
@@ -185,6 +203,9 @@
                   },
                   "accuracy_decimals": {
                     "default": "0"
+                  },
+                  "state_class": {
+                    "default": "measurement"
                   }
                 }
               },
@@ -206,6 +227,9 @@
                   },
                   "accuracy_decimals": {
                     "default": "0"
+                  },
+                  "state_class": {
+                    "default": "measurement"
                   }
                 }
               },
@@ -227,6 +251,9 @@
                   },
                   "accuracy_decimals": {
                     "default": "0"
+                  },
+                  "state_class": {
+                    "default": "measurement"
                   }
                 }
               },
@@ -248,6 +275,9 @@
                   },
                   "accuracy_decimals": {
                     "default": "0"
+                  },
+                  "state_class": {
+                    "default": "measurement"
                   }
                 }
               },
@@ -269,6 +299,9 @@
                   },
                   "accuracy_decimals": {
                     "default": "0"
+                  },
+                  "state_class": {
+                    "default": "measurement"
                   }
                 }
               },
@@ -290,6 +323,9 @@
                   },
                   "accuracy_decimals": {
                     "default": "0"
+                  },
+                  "state_class": {
+                    "default": "measurement"
                   }
                 }
               },

@@ -16,6 +16,17 @@
               },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this `pca9554` component.\n\n*See also: [PCA9554 I/O Expander](https://esphome.io/components/pca9554.html#configuration-variables)*"
             },
+            "pin_count": {
+              "key": "Optional",
+              "default": "8",
+              "type": "enum",
+              "values": {
+                "4": null,
+                "8": null,
+                "16": null
+              },
+              "docs": "**int**: The number of bits implemented in the expander. Defaults to 8. This should be set to 16 when using a PCA9535 and 4 when using a PCA95367.\n\n*See also: [PCA9554 I/O Expander](https://esphome.io/components/pca9554.html#configuration-variables)*"
+            },
             "i2c_id": {
               "key": "GeneratedID",
               "use_id_type": "i2c::I2CBus",

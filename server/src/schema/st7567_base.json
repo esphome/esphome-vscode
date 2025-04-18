@@ -1,0 +1,49 @@
+{
+  "st7567_base": {
+    "schemas": {
+      "ST7567_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "display.FULL_DISPLAY_SCHEMA",
+            "core.COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "reset_pin": {
+              "key": "Optional",
+              "schema": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin"
+            },
+            "invert_colors": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean"
+            },
+            "transform": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "mirror_x": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean"
+                  },
+                  "mirror_y": {
+                    "key": "Optional",
+                    "default": "False",
+                    "type": "boolean"
+                  }
+                }
+              }
+            },
+            "update_interval": {}
+          }
+        }
+      }
+    }
+  }
+}

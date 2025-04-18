@@ -50,6 +50,9 @@
               ],
               "type": "pin",
               "docs": "**[pin](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: Optionally set the pin you have `R/W` (`05`) hooked up to. You can also just permanently connect that pin to `GND`.\n\n*See also: [lcd_gpio Component](https://esphome.io/components/display/lcd_display.html#id1)*"
+            },
+            "update_interval": {
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to re-draw the screen. Defaults to `1s`.\n\n*See also: [lcd_gpio Component](https://esphome.io/components/display/lcd_display.html#id1)*"
             }
           }
         }

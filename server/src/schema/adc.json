@@ -19,8 +19,7 @@
                   "Component",
                   "voltage_sampler::VoltageSampler"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Analog To Digital Sensor](https://esphome.io/components/sensor/adc.html#configuration-variables)*"
+              }
             },
             "unit_of_measurement": {
               "default": "V"
@@ -57,9 +56,27 @@
                 "2.5db": null,
                 "6db": null,
                 "11db": null,
+                "12db": null,
                 "auto": null
               },
               "docs": "Only on ESP32. Specify the ADC attenuation to use. See [ESP32 Attenuation](https://esphome.io/components/sensor/adc.html#adc-esp32-attenuation). Defaults to `0db`.\n\n*See also: [Analog To Digital Sensor](https://esphome.io/components/sensor/adc.html#configuration-variables)*"
+            },
+            "samples": {
+              "key": "Optional",
+              "default": "1",
+              "type": "integer",
+              "docs": "The amount of ADC readings to take per sensor update. On the ESP32 this value is ignored if `attenuation` is set to `auto`. Defaults to `1`.\n\n*See also: [Analog To Digital Sensor](https://esphome.io/components/sensor/adc.html#configuration-variables)*"
+            },
+            "sampling_mode": {
+              "key": "Optional",
+              "default": "avg",
+              "type": "enum",
+              "values": {
+                "avg": null,
+                "min": null,
+                "max": null
+              },
+              "docs": "Sampling method to use when multiple samples are taken.\n  * `avg` average of all samples (**Default**)\n  \n  * `min` minimal value from all samples\n  \n  * `max` maximal value from all samples\n  \n  \n\n*See also: [Analog To Digital Sensor](https://esphome.io/components/sensor/adc.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",

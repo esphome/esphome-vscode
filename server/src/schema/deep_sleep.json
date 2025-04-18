@@ -154,7 +154,7 @@
                   "core.positive_time_period_milliseconds"
                 ]
               },
-              "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), [Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time duration to stay in deep sleep mode.\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-enter-action)*"
+              "docs": "**[templatable](https://esphome.io/automations/templates.html#config-templatable), [Time](https://esphome.io/guides/configuration-types.html#config-time)**: The time duration to stay in deep sleep mode.\n\n*See also: [Deep Sleep Component](https://esphome.io/components/deep_sleep.html#deep-sleep-enter-action)*"
             },
             "until": {
               "key": "Optional",

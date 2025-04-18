@@ -59,7 +59,8 @@
                 "WS2812": null,
                 "WS2812B": null,
                 "SK6812": null,
-                "SM16703": null
+                "SM16703": null,
+                "CUSTOM": null
               }
             },
             "is_rgbw": {

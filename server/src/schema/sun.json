@@ -41,7 +41,7 @@
                   }
                 }
               },
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform at sunrise when the sun crosses a specified angle.\n  * **elevation** (*Optional*, float): The elevation to cross. Defaults to -0.833\u00b0 (the horizon, slightly less than 0\u00b0 to compensate for atmospheric refraction).\n  \n  \n\n*See also: [Sun](https://esphome.io/components/sun.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform at sunrise when the sun crosses a specified angle.\n  * **elevation** (*Optional*, float): The elevation to cross. Defaults to -0.833\u00b0 (the horizon, slightly less than 0\u00b0 to compensate for atmospheric refraction).\n  \n  \n\n*See also: [Sun](https://esphome.io/components/sun.html#configuration-variables)*"
             },
             "on_sunset": {
               "key": "Optional",
@@ -58,7 +58,7 @@
                   }
                 }
               },
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform at sunset when the sun crosses a specified angle.\n  * **elevation** (*Optional*, float): The elevation to cross. Defaults to -0.833\u00b0 (the horizon, slightly less than 0\u00b0 to compensate for atmospheric refraction).\n  \n  \n\n*See also: [Sun](https://esphome.io/components/sun.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform at sunset when the sun crosses a specified angle.\n  * **elevation** (*Optional*, float): The elevation to cross. Defaults to -0.833\u00b0 (the horizon, slightly less than 0\u00b0 to compensate for atmospheric refraction).\n  \n  \n\n*See also: [Sun](https://esphome.io/components/sun.html#configuration-variables)*"
             }
           }
         }
@@ -120,8 +120,7 @@
                   "PollingComponent",
                   "Component"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [sun Sensor](https://esphome.io/components/sun.html#sun-sensor)*"
+              }
             },
             "unit_of_measurement": {
               "default": "\u00b0"
@@ -174,8 +173,7 @@
                   "PollingComponent",
                   "Component"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [sun Text Sensor](https://esphome.io/components/sun.html#sun-text-sensor)*"
+              }
             },
             "sun_id": {
               "key": "GeneratedID",

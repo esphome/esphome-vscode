@@ -1,0 +1,64 @@
+{
+  "cst816.touchscreen": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "touchscreen.TOUCHSCREEN_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "cst816::CST816Touchscreen",
+                "parents": [
+                  "touchscreen::Touchscreen",
+                  "PollingComponent",
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              },
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually set the ID of this touchscreen.\n\n*See also: [cst816 Touch Screen Controller](https://esphome.io/components/touchscreen/cst816.html#configuration-variables)*"
+            },
+            "interrupt_pin": {
+              "key": "Optional",
+              "schema": true,
+              "internal": true,
+              "modes": [
+                "input"
+              ],
+              "type": "pin",
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The touch detection pin.\n\n*See also: [cst816 Touch Screen Controller](https://esphome.io/components/touchscreen/cst816.html#configuration-variables)*"
+            },
+            "reset_pin": {
+              "key": "Optional",
+              "schema": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin",
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The chip reset pin.\n\n*See also: [cst816 Touch Screen Controller](https://esphome.io/components/touchscreen/cst816.html#configuration-variables)*"
+            },
+            "skip_probe": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean",
+              "docs": "**boolean**: Skip reading the chip ID on startup. May be required for some variants (e.g. CST816S) that do not respond to i2c commands except after touches are registered. Defaults to false.\n\n*See also: [cst816 Touch Screen Controller](https://esphome.io/components/touchscreen/cst816.html#configuration-variables)*"
+            },
+            "i2c_id": {
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
+            },
+            "address": {
+              "key": "Optional",
+              "default": "21",
+              "data_type": "hex_uint8_t"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -35,27 +35,6 @@
                 ]
               }
             },
-            "nitrogen_dioxide": {
-              "key": "Optional",
-              "type": "schema",
-              "schema": {
-                "extends": [
-                  "sensor.SENSOR_SCHEMA"
-                ],
-                "config_vars": {
-                  "unit_of_measurement": {
-                    "default": "ppm"
-                  },
-                  "accuracy_decimals": {
-                    "default": "2"
-                  },
-                  "state_class": {
-                    "default": "measurement"
-                  }
-                }
-              },
-              "docs": "All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor)\n\n*See also: [MiCS 4514 Gas Sensor](https://esphome.io/components/sensor/mics_4514.html#configuration-variables)*"
-            },
             "carbon_monoxide": {
               "key": "Optional",
               "type": "schema",
@@ -97,6 +76,16 @@
               "docs": "All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor)\n\n*See also: [MiCS 4514 Gas Sensor](https://esphome.io/components/sensor/mics_4514.html#configuration-variables)*"
             },
             "ammonia": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "mics_4514.sensor.common_sensor_schema"
+                ]
+              },
+              "docs": "All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor)\n\n*See also: [MiCS 4514 Gas Sensor](https://esphome.io/components/sensor/mics_4514.html#configuration-variables)*"
+            },
+            "nitrogen_dioxide": {
               "key": "Optional",
               "type": "schema",
               "schema": {

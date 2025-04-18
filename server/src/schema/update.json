@@ -1,0 +1,107 @@
+{
+  "update": {
+    "components": {
+      "http_request": {
+        "dependencies": [
+          "ota.http_request"
+        ],
+        "docs": "This platform allows you to manage the deployment of updates to your ESPHome devices. It works by reading a [JSON manifest file](https://esphome.io/components/update/http_request.html#update-http-request-manifest-format) and using it to determine the presence of an update.\n\n*See also: [Managed Updates via HTTP Request](https://esphome.io/components/update/http_request.html#managed-updates-via-http-request)*"
+      }
+    },
+    "schemas": {
+      "UPDATE_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "core.ENTITY_BASE_SCHEMA",
+            "core.MQTT_COMMAND_COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "web_server": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "web_server_id": {
+                    "key": "Optional",
+                    "use_id_type": "web_server::WebServer",
+                    "type": "use_id"
+                  },
+                  "sorting_weight": {
+                    "key": "Optional"
+                  },
+                  "sorting_group_id": {
+                    "key": "Optional",
+                    "use_id_type": "int",
+                    "type": "use_id"
+                  }
+                }
+              }
+            },
+            "mqtt_id": {
+              "key": "Optional",
+              "id_type": {
+                "class": "mqtt::MQTTUpdateComponent",
+                "parents": [
+                  "mqtt::MQTTComponent",
+                  "Component"
+                ]
+              }
+            },
+            "device_class": {
+              "key": "Optional",
+              "type": "enum",
+              "values": {
+                "": null,
+                "firmware": null
+              }
+            },
+            "on_update_available": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "entity_category": {
+              "default": "config"
+            }
+          }
+        }
+      }
+    },
+    "action": {
+      "perform": {
+        "type": "schema",
+        "maybe": "id",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "use_id_type": "update::UpdateEntity",
+              "type": "use_id"
+            },
+            "force_update": {
+              "key": "Optional",
+              "default": "False",
+              "templatable": true,
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "condition": {
+      "is_available": {
+        "type": "schema",
+        "maybe": "id",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "use_id_type": "update::UpdateEntity",
+              "type": "use_id"
+            }
+          }
+        }
+      }
+    }
+  }
+}

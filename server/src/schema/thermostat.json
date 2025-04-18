@@ -24,6 +24,11 @@
               "use_id_type": "sensor::Sensor",
               "type": "use_id"
             },
+            "humidity_sensor": {
+              "key": "Optional",
+              "use_id_type": "sensor::Sensor",
+              "type": "use_id"
+            },
             "idle_action": {
               "key": "Required",
               "type": "trigger"

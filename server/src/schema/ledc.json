@@ -40,6 +40,10 @@
               "key": "Optional",
               "type": "integer",
               "docs": "**int**: Manually set the [LEDC channel](https://docs.espressif.com/projects/esp-idf/en/latest/api-reference/peripherals/ledc.html#configure-channel) to use. Two adjacent channels share the same timer. Defaults to an automatic selection.\n\n*See also: [ESP32 LEDC Output](https://esphome.io/components/output/ledc.html#configuration-variables)*"
+            },
+            "phase_angle": {
+              "key": "Optional",
+              "docs": "**float**: Set a phase angle to the other channel of this timer. Range 0-360\u00b0, defaults to 0\u00b0\n\n*See also: [ESP32 LEDC Output](https://esphome.io/components/output/ledc.html#configuration-variables)*"
             }
           }
         }
@@ -59,11 +63,11 @@
             "frequency": {
               "key": "Required",
               "templatable": true,
-              "docs": "**[templatable](https://esphome.io/guides/automations.html#config-templatable), float**: The frequency to set in hertz.\n\n*See also: [ESP32 LEDC Output](https://esphome.io/components/output/ledc.html#output-ledc-set-frequency-action)*"
+              "docs": "**[templatable](https://esphome.io/automations/templates.html#config-templatable), float**: The frequency to set in hertz.\n\n*See also: [ESP32 LEDC Output](https://esphome.io/components/output/ledc.html#output-ledc-set-frequency-action)*"
             }
           }
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to manually change the frequency of an LEDC channel at runtime. Use cases include controlling a passive buzzer (for pitch control).\n\n*See also: [`output.ledc.set_frequency` Action](https://esphome.io/components/output/ledc.html#output-ledc-set-frequency-action)*"
+        "docs": "This [Action](https://esphome.io/automations/actions.html#config-action) allows you to manually change the frequency of an LEDC channel at runtime. Use cases include controlling a passive buzzer (for pitch control).\n\n*See also: [`output.ledc.set_frequency` Action](https://esphome.io/components/output/ledc.html#output-ledc-set-frequency-action)*"
       }
     }
   }

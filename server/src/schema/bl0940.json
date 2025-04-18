@@ -104,6 +104,9 @@
                   },
                   "device_class": {
                     "default": "energy"
+                  },
+                  "state_class": {
+                    "default": "total_increasing"
                   }
                 }
               },

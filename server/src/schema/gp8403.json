@@ -75,11 +75,7 @@
             },
             "channel": {
               "key": "Required",
-              "type": "enum",
-              "values": {
-                "0": null,
-                "1": null
-              },
+              "type": "integer",
               "docs": "**int**: The channel of the GP8403 to use. Must be `0` or `1`.\n\n*See also: [gp8403 Output](https://esphome.io/components/output/gp8403.html#output)*"
             }
           }

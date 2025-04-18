@@ -54,6 +54,17 @@
               "key": "Optional",
               "default": "1.0",
               "docs": "**float**: Manually specify the initial potentiometer value, between `0.01` and `1.0`. Defaults to `1.0`.\n\n*See also: [X9C Potentiometer Output](https://esphome.io/components/output/x9c.html#configuration-variables)*"
+            },
+            "step_delay": {
+              "key": "Optional",
+              "default": "1us",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_microseconds"
+                ]
+              },
+              "docs": "**int**: Manually specify the delay between steps (in microseconds) between `1us` and `100us`. Defaults to `1us`.\n\n*See also: [X9C Potentiometer Output](https://esphome.io/components/output/x9c.html#configuration-variables)*"
             }
           }
         }

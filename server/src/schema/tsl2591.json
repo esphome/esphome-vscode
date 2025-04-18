@@ -36,7 +36,7 @@
                   }
                 }
               },
-              "docs": "The reading for the infrared sensor.\n  * **name** (**Required**, string): The name for the sensor.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [TSL2591 Ambient Light Sensor](https://esphome.io/components/sensor/tsl2591.html#configuration-variables)*"
+              "docs": "The reading for the infrared sensor.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [TSL2591 Ambient Light Sensor](https://esphome.io/components/sensor/tsl2591.html#configuration-variables)*"
             },
             "visible": {
               "key": "Optional",
@@ -57,7 +57,7 @@
                   }
                 }
               },
-              "docs": "The reading for visible light.\n  * **name** (**Required**, string): The name for the sensor.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [TSL2591 Ambient Light Sensor](https://esphome.io/components/sensor/tsl2591.html#configuration-variables)*"
+              "docs": "The reading for visible light.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [TSL2591 Ambient Light Sensor](https://esphome.io/components/sensor/tsl2591.html#configuration-variables)*"
             },
             "full_spectrum": {
               "key": "Optional",
@@ -78,7 +78,7 @@
                   }
                 }
               },
-              "docs": "The reading for the full spectrum sensor.\n  * **name** (**Required**, string): The name for the sensor.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [TSL2591 Ambient Light Sensor](https://esphome.io/components/sensor/tsl2591.html#configuration-variables)*"
+              "docs": "The reading for the full spectrum sensor.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [TSL2591 Ambient Light Sensor](https://esphome.io/components/sensor/tsl2591.html#configuration-variables)*"
             },
             "calculated_lux": {
               "key": "Optional",
@@ -105,7 +105,7 @@
                   }
                 }
               },
-              "docs": "The value of the calculated lux.\n  * **name** (**Required**, string): The name for the sensor.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [TSL2591 Ambient Light Sensor](https://esphome.io/components/sensor/tsl2591.html#configuration-variables)*"
+              "docs": "The value of the calculated lux.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [TSL2591 Ambient Light Sensor](https://esphome.io/components/sensor/tsl2591.html#configuration-variables)*"
             },
             "actual_gain": {
               "key": "Optional",
@@ -129,7 +129,7 @@
                   }
                 }
               },
-              "docs": "The value of gain used for reported values. Particularly useful when gain is set to \u201cauto\u201d.\n  * **name** (**Required**, string): The name for the sensor.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [TSL2591 Ambient Light Sensor](https://esphome.io/components/sensor/tsl2591.html#configuration-variables)*"
+              "docs": "The value of gain used for reported values. Particularly useful when gain is set to \u201cauto\u201d.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [TSL2591 Ambient Light Sensor](https://esphome.io/components/sensor/tsl2591.html#configuration-variables)*"
             },
             "integration_time": {
               "key": "Optional",

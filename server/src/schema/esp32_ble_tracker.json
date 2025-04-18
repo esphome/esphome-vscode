@@ -24,6 +24,13 @@
               "use_id_type": "esp32_ble::ESP32BLE",
               "type": "use_id"
             },
+            "max_connections": {
+              "key": "Optional",
+              "default": "3",
+              "type": "integer",
+              "data_type": "positive_int",
+              "docs": "**int**: The maximum number of BLE connection slots to use. Each configured slot consumes ~1KB of RAM. It is recommended not to exceed `5` connection slots to avoid memory issues. Defaults to `3`. This can only be adjusted when using the `esp-idf` framework up to a maximum of `9`. This value cannot exceed the total number of `connection_slots` for the [Bluetooth Proxy](https://esphome.io/components/bluetooth_proxy.html) component combined with the total configured [BLE Client](https://esphome.io/components/ble_client.html) instances.\n\n*See also: [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html#configuration-variables)*"
+            },
             "scan_parameters": {
               "key": "Optional",
               "default": "{}",
@@ -86,15 +93,14 @@
                 "config_vars": {
                   "mac_address": {
                     "key": "Optional",
-                    "is_list": true,
-                    "docs": "**list of MAC Address**: The MAC address to filter for this automation.\n\n*See also: [on_ble_advertise Trigger](https://esphome.io/components/esp32_ble_tracker.html#on-ble-advertise-trigger)*"
+                    "is_list": true
                   },
                   "then": {
                     "type": "trigger"
                   }
                 }
               },
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a Bluetooth advertising is received. See [on_ble_advertise Trigger](https://esphome.io/components/esp32_ble_tracker.html#esp32-ble-tracker-on-ble-advertise).\n\n*See also: [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when a Bluetooth advertising is received. See [on_ble_advertise Trigger](https://esphome.io/components/esp32_ble_tracker.html#esp32-ble-tracker-on-ble-advertise).\n\n*See also: [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html#configuration-variables)*"
             },
             "on_ble_service_data_advertise": {
               "key": "Optional",
@@ -102,12 +108,10 @@
               "schema": {
                 "config_vars": {
                   "mac_address": {
-                    "key": "Optional",
-                    "docs": "**MAC Address**: The MAC address to filter for this automation.\n\n*See also: [on_ble_service_data_advertise Trigger](https://esphome.io/components/esp32_ble_tracker.html#on-ble-service-data-advertise-trigger)*"
+                    "key": "Optional"
                   },
                   "service_uuid": {
-                    "key": "Required",
-                    "docs": "**string**: 16 bit, 32 bit, or 128 bit BLE Service UUID.\n\n*See also: [on_ble_service_data_advertise Trigger](https://esphome.io/components/esp32_ble_tracker.html#on-ble-service-data-advertise-trigger)*"
+                    "key": "Required"
                   },
                   "then": {
                     "type": "trigger"
@@ -115,7 +119,7 @@
                 }
               },
               "has_required_var": true,
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a Bluetooth advertising with service data is received. See [on_ble_service_data_advertise Trigger](https://esphome.io/components/esp32_ble_tracker.html#esp32-ble-tracker-on-ble-service-data-advertise).\n\n*See also: [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when a Bluetooth advertising with service data is received. See [on_ble_service_data_advertise Trigger](https://esphome.io/components/esp32_ble_tracker.html#esp32-ble-tracker-on-ble-service-data-advertise).\n\n*See also: [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html#configuration-variables)*"
             },
             "on_ble_manufacturer_data_advertise": {
               "key": "Optional",
@@ -123,12 +127,10 @@
               "schema": {
                 "config_vars": {
                   "mac_address": {
-                    "key": "Optional",
-                    "docs": "**MAC Address**: The MAC address to filter for this automation.\n\n*See also: [on_ble_manufacturer_data_advertise Trigger](https://esphome.io/components/esp32_ble_tracker.html#on-ble-manufacturer-data-advertise-trigger)*"
+                    "key": "Optional"
                   },
                   "manufacturer_id": {
-                    "key": "Required",
-                    "docs": "**string**: 16 bit, 32 bit, or 128 bit BLE Manufacturer ID.\n\n*See also: [on_ble_manufacturer_data_advertise Trigger](https://esphome.io/components/esp32_ble_tracker.html#on-ble-manufacturer-data-advertise-trigger)*"
+                    "key": "Required"
                   },
                   "then": {
                     "type": "trigger"
@@ -136,12 +138,12 @@
                 }
               },
               "has_required_var": true,
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a Bluetooth advertising with manufacturer data is received. See [on_ble_manufacturer_data_advertise Trigger](https://esphome.io/components/esp32_ble_tracker.html#esp32-ble-tracker-on-ble-manufacturer-data-advertise).\n\n*See also: [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when a Bluetooth advertising with manufacturer data is received. See [on_ble_manufacturer_data_advertise Trigger](https://esphome.io/components/esp32_ble_tracker.html#esp32-ble-tracker-on-ble-manufacturer-data-advertise).\n\n*See also: [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html#configuration-variables)*"
             },
             "on_scan_end": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a BLE scan has completed (the duration of the scan). This works with continuous set to true or false.\n\n*See also: [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when a BLE scan has completed (the duration of the scan). This works with continuous set to true or false.\n\n*See also: [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html#configuration-variables)*"
             }
           },
           "extends": [
@@ -176,12 +178,10 @@
               "key": "Optional",
               "default": "False",
               "templatable": true,
-              "type": "boolean",
-              "docs": "**boolean**: Whether to start the scan in continuous mode. Defaults to `false`\n\n*See also: [on_scan_end Trigger](https://esphome.io/components/esp32_ble_tracker.html#esp32-ble-tracker-start-scan-action)*"
+              "type": "boolean"
             }
           }
-        },
-        "docs": "Start a Bluetooth scan. If there is a scan already in progress, then the action is ignored.\n\n*See also: [`esp32_ble_tracker.start_scan` Action](https://esphome.io/components/esp32_ble_tracker.html#esp32-ble-tracker-start-scan-action)*"
+        }
       },
       "stop_scan": {
         "type": "schema",
@@ -194,8 +194,7 @@
             }
           }
         },
-        "maybe": "id",
-        "docs": "Stops the bluetooth scanning. It can be started again with the above start scan action.\n\n*See also: [`esp32_ble_tracker.stop_scan` Action](https://esphome.io/components/esp32_ble_tracker.html#esp32-ble-tracker-stop-scan-action)*"
+        "maybe": "id"
       }
     }
   }

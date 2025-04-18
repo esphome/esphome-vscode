@@ -1,0 +1,8 @@
+{
+  "one_wire": {
+    "components": {
+      "gpio": {}
+    },
+    "schemas": {}
+  }
+}

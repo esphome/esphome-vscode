@@ -18,8 +18,7 @@
                   "PollingComponent",
                   "Component"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [ESP32 Hall Sensor](https://esphome.io/components/sensor/esp32_hall.html#configuration-variables)*"
+              }
             },
             "unit_of_measurement": {
               "default": "\u00b5T"

@@ -19,8 +19,7 @@
                   "Component",
                   "i2c::I2CDevice"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n*See also: [TEE501 Temperature Sensor](https://esphome.io/components/sensor/tee501.html#configuration-variables)*"
+              }
             },
             "unit_of_measurement": {
               "default": "\u00b0C"

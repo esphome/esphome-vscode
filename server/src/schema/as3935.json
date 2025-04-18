@@ -83,6 +83,18 @@
               "default": "0",
               "type": "integer",
               "docs": "**int**: This setting will add capacitance to the series RLC antenna on the product to help tune its resonance. The datasheet specifies being within 3.5 percent of 500kHz to get optimal lightning detection and distance sensing. It\u2019s possible to add up to 120pF in steps of 8pF to the antenna. Defaults to `0`.\n\n*See also: [as3935 Over I\u00b2C](https://esphome.io/components/sensor/as3935.html#id1)*"
+            },
+            "tune_antenna": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean",
+              "docs": "**boolean**: Start sensor in antenna tuning mode. It will emit oscillator frequency to be read on the INT pin. Please follow AS3935 documentation. Note that while this mode is enabled, lightings will not be detected. It should be used for initial calibration only, in order to determine correct value of `capacitance` and/or `div_ratio` parameters. Defaults to `False`.\n\n*See also: [as3935 Over I\u00b2C](https://esphome.io/components/sensor/as3935.html#id1)*"
+            },
+            "calibration": {
+              "key": "Optional",
+              "default": "True",
+              "type": "boolean",
+              "docs": "**boolean**: Enable/disable oscillator calibration on startup. It is recommended to perform antenna tuning procedure first and adjust parameters, so that RLC antenna resonance is tuned within optimal range. Defaults to `True`.\n\n*See also: [as3935 Over I\u00b2C](https://esphome.io/components/sensor/as3935.html#id1)*"
             }
           }
         }
@@ -119,7 +131,7 @@
                   }
                 }
               },
-              "docs": "Distance in km to the front of the storm and not the distance to a lightning strike.\n  * **name** (**Required**, string): The name for the distance sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [as3935 Sensor](https://esphome.io/components/sensor/as3935.html#sensor)*"
+              "docs": "Distance in km to the front of the storm and not the distance to a lightning strike. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [as3935 Sensor](https://esphome.io/components/sensor/as3935.html#sensor)*"
             },
             "lightning_energy": {
               "key": "Optional",
@@ -137,7 +149,7 @@
                   }
                 }
               },
-              "docs": "Lightning energy value. According to the datasheet this is only a pure value that doesn\u2019t have any physical meaning.\n  * **name** (**Required**, string): The name for the lightning energy sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [as3935 Sensor](https://esphome.io/components/sensor/as3935.html#sensor)*"
+              "docs": "Lightning energy value. According to the datasheet this is only a pure value that doesn\u2019t have any physical meaning. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [as3935 Sensor](https://esphome.io/components/sensor/as3935.html#sensor)*"
             }
           },
           "extends": [

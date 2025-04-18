@@ -19,6 +19,9 @@
         ],
         "docs": "The preferred way to get time in ESPHome is using Home Assistant. With the `homeassistant` time platform, the [native API](https://esphome.io/components/api.html) connection to Home Assistant will be used to periodically synchronize the current time.\n\n*See also: [Home Assistant Time Source](https://esphome.io/components/time/homeassistant.html#home-assistant-time-source)*"
       },
+      "host": {
+        "docs": "All options from [Base Time Configuration](https://esphome.io/components/time/index.html#base-time-config).\n\n*See also: [Host Time Source](https://esphome.io/components/time/host.html#host-time-source)*"
+      },
       "pcf85063": {
         "dependencies": [
           "i2c"
@@ -90,12 +93,12 @@
                 }
               },
               "has_required_var": true,
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: Automation to run at specific intervals using a cron-like syntax. See [on_time Trigger](https://esphome.io/components/time/index.html#time-on-time).\n\n*See also: [Time Component](https://esphome.io/components/time/index.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: Automation to run at specific intervals using a cron-like syntax. See [on_time Trigger](https://esphome.io/components/time/index.html#time-on-time).\n\n*See also: [Time Component](https://esphome.io/components/time/index.html#configuration-variables)*"
             },
             "on_time_sync": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: Automation to run when the time source could be (re-)synchronized.. See [on_time_sync Trigger](https://esphome.io/components/time/index.html#time-on-time-sync).\n\n*See also: [Time Component](https://esphome.io/components/time/index.html#configuration-variables)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: Automation to run when the time source could be (re-)synchronized.. See [on_time_sync Trigger](https://esphome.io/components/time/index.html#time-on-time-sync).\n\n*See also: [Time Component](https://esphome.io/components/time/index.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",
@@ -123,7 +126,29 @@
             }
           }
         },
-        "docs": "This [Condition](https://esphome.io/guides/automations.html#config-condition) checks if time has been set and is valid.\n\n*See also: [`time.has_time` Condition](https://esphome.io/components/time/index.html#time-has-time-condition)*"
+        "docs": "This [Condition](https://esphome.io/automations/actions.html#config-condition) checks if time has been set and is valid.\n\n*See also: [`time.has_time` Condition](https://esphome.io/components/time/index.html#time-has-time-condition)*"
+      }
+    }
+  },
+  "time.datetime": {
+    "action": {
+      "set": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "use_id_type": "datetime::TimeEntity",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the datetime to set.\n\n*See also: [Datetime Component](https://esphome.io/components/datetime/index.html#datetime-time-set-action)*"
+            },
+            "time": {
+              "key": "Required",
+              "docs": "**string, time parts, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The value to set the datetime to.\n\n*See also: [Datetime Component](https://esphome.io/components/datetime/index.html#datetime-time-set-action)*"
+            }
+          }
+        },
+        "docs": "This is an [Action](https://esphome.io/automations/actions.html#config-action) for setting a datetime time state. The `time` provided can be in one of 3 formats:\n\n*See also: [`datetime.time.set` Action](https://esphome.io/components/datetime/index.html#datetime-time-set-action)*"
       }
     }
   }

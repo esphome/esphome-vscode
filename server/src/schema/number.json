@@ -4,17 +4,41 @@
       "copy": {
         "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The number that should be mirrored.\n\n*See also: [Copy Number](https://esphome.io/components/copy.html#copy-number)*"
       },
+      "homeassistant": {
+        "dependencies": [
+          "api"
+        ],
+        "docs": "The `homeassistant` number platform allows you to create a number that is synchronized with Home Assistant. Min, Max and Step are not configurable for this platform because they are taken from the Home Assistant entity.\n\n*See also: [Home Assistant Number](https://esphome.io/components/number/homeassistant.html#home-assistant-number)*"
+      },
       "ld2410": {
         "docs": "The `ld2410` number allows you to control the configuration of your [LD2410 Sensor.\n\n*See also: [ld2410 Number](https://esphome.io/components/sensor/ld2410.html#number)*"
       },
+      "ld2420": {
+        "docs": "**presence_timeout** (*Optional*): The time in seconds during which the occupied state (presence) will persist after presence is no longer detected. Any energy detection within the time window restarts the countdown from this value. Defaults to 120s. **Required** when `min_gate_distance` and `max_gate_distance` is specified. May contain any options from [Number](https://esphome.io/components/number/index.html#config-number).\n\n*See also: [ld2420 Number](https://esphome.io/components/sensor/ld2420.html#number)*"
+      },
+      "ld2450": {
+        "docs": "The `ld2450` number allows you to control the presence timeout and zone area configuration of your [LD2450 Sensor.\n\n*See also: [ld2450 Number](https://esphome.io/components/sensor/ld2450.html#number)*"
+      },
+      "lvgl": {
+        "docs": "The `lvgl` number platform creates a number component from an LVGL widget and requires [LVGL](https://esphome.io/components/lvgl/index.html) to be configured.\n\n*See also: [LVGL Number](https://esphome.io/components/number/lvgl.html#lvgl-number)*"
+      },
+      "micronova": {},
       "modbus_controller": {
         "dependencies": [
           "modbus_controller"
         ],
         "docs": "The `modbus_controller` platform creates a Number from a modbus_controller. When the Number is updated a modbus write command is created sent to the device.\n\n*See also: [Modbus Controller Number](https://esphome.io/components/number/modbus_controller.html#modbus-controller-number)*"
       },
+      "opentherm": {
+        "dependencies": [
+          "opentherm"
+        ]
+      },
+      "seeed_mr24hpc1": {
+        "docs": "The `seeed_mr24hpc1` number allows you to control the configuration.\n\n*See also: [seeed_mr24hpc1 Number](https://esphome.io/components/seeed_mr24hpc1.html#number)*"
+      },
       "template": {
-        "docs": "The `template` number platform allows you to create a number with templated values using [lambdas](https://esphome.io/guides/automations.html#config-lambda).\n\n*See also: [Template Number](https://esphome.io/components/number/template.html#template-number)*"
+        "docs": "The `template` number platform allows you to create a number with templated values using [lambdas](https://esphome.io/automations/templates.html#config-lambda).\n\n*See also: [Template Number](https://esphome.io/components/number/template.html#template-number)*"
       },
       "tuya": {
         "dependencies": [
@@ -32,6 +56,27 @@
             "core.MQTT_COMMAND_COMPONENT_SCHEMA"
           ],
           "config_vars": {
+            "web_server": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "web_server_id": {
+                    "key": "Optional",
+                    "use_id_type": "web_server::WebServer",
+                    "type": "use_id"
+                  },
+                  "sorting_weight": {
+                    "key": "Optional"
+                  },
+                  "sorting_group_id": {
+                    "key": "Optional",
+                    "use_id_type": "int",
+                    "type": "use_id"
+                  }
+                }
+              }
+            },
             "mqtt_id": {
               "key": "Optional",
               "id_type": {
@@ -45,7 +90,7 @@
             "on_value": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a new value is published. See [on_value](https://esphome.io/components/number/index.html#number-on-value).\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#base-number-configuration)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when a new value is published. See [on_value](https://esphome.io/components/number/index.html#number-on-value).\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#base-number-configuration)*"
             },
             "on_value_range": {
               "key": "Optional",
@@ -68,12 +113,12 @@
                 }
               },
               "has_required_var": true,
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a published value transition from outside to a range to inside. See [on_value_range](https://esphome.io/components/number/index.html#number-on-value-range).\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#base-number-configuration)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when a published value transition from outside to a range to inside. See [on_value_range](https://esphome.io/components/number/index.html#number-on-value-range).\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#base-number-configuration)*"
             },
             "unit_of_measurement": {
               "key": "Optional",
               "type": "string",
-              "docs": "**string**: Manually set the unit of measurement for the number. Requires Home Assistant Core 2021.12 or newer.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#base-number-configuration)*"
+              "docs": "**string**: Manually set the unit of measurement for the number.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#base-number-configuration)*"
             },
             "mode": {
               "key": "Optional",
@@ -84,7 +129,7 @@
                 "BOX": null,
                 "SLIDER": null
               },
-              "docs": "**string**: Defines how the number should be displayed in the frontend. See [https://developers.home-assistant.io/docs/core/entity/number/#properties](https://developers.home-assistant.io/docs/core/entity/number/#properties) for a list of available options. Requires Home Assistant Core 2021.12 or newer. Defaults to `\"auto\"`.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#base-number-configuration)*"
+              "docs": "**string**: Defines how the number should be displayed in the frontend. See [https://developers.home-assistant.io/docs/core/entity/number/#properties](https://developers.home-assistant.io/docs/core/entity/number/#properties) for a list of available options. Defaults to `\"auto\"`.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#base-number-configuration)*"
             },
             "device_class": {
               "key": "Optional",
@@ -96,6 +141,7 @@
                 "battery": null,
                 "carbon_dioxide": null,
                 "carbon_monoxide": null,
+                "conductivity": null,
                 "current": null,
                 "data_rate": null,
                 "data_size": null,
@@ -134,12 +180,16 @@
                 "volatile_organic_compounds_parts": null,
                 "voltage": null,
                 "volume": null,
+                "volume_flow_rate": null,
                 "volume_storage": null,
                 "water": null,
                 "weight": null,
                 "wind_speed": null
               },
-              "docs": "**string**: The device class for the number. See [https://developers.home-assistant.io/docs/core/entity/number/#available-device-classes](https://developers.home-assistant.io/docs/core/entity/number/#available-device-classes) for a list of available options.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#base-number-configuration)*"
+              "docs": "**string**: The device class for the number. See [https://www.home-assistant.io/integrations/number/#device-class](https://www.home-assistant.io/integrations/number/#device-class) for a list of available options.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#base-number-configuration)*"
+            },
+            "id": {
+              "docs": "**string**: Manually specify the ID for code generation. At least one of **id** and **name** must be specified.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#base-number-configuration)*"
             }
           }
         }
@@ -189,7 +239,7 @@
             "value": {
               "key": "Required",
               "templatable": true,
-              "docs": "**float, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: The value to set the number to.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-set-action)*"
+              "docs": "**float, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: The value to set the number to.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-set-action)*"
             }
           }
         },
@@ -212,18 +262,18 @@
                 "TO_MIN": null,
                 "TO_MAX": null
               },
-              "docs": "**string, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: What operation to perform on the number component. One of `TO_MIN`, `TO_MAX`, `DECREMENT` or `INCREMENT` (case insensitive). When writing a lambda for this field, then return one of the following enum values: `NUMBER_OP_TO_MIN`, `NUMBER_OP_TO_MAX`, `NUMBER_OP_DECREMENT` or `NUMBER_OP_INCREMENT`.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-operation-action)*"
+              "docs": "**string, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: What operation to perform on the number component. One of `TO_MIN`, `TO_MAX`, `DECREMENT` or `INCREMENT` (case insensitive). When writing a lambda for this field, then return one of the following enum values: `NUMBER_OP_TO_MIN`, `NUMBER_OP_TO_MAX`, `NUMBER_OP_DECREMENT` or `NUMBER_OP_INCREMENT`.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-operation-action)*"
             },
             "cycle": {
               "key": "Optional",
               "default": "True",
               "templatable": true,
               "type": "boolean",
-              "docs": "**bool, [templatable](https://esphome.io/guides/automations.html#config-templatable)**: Can be used with `DECREMENT` or `INCREMENT` to specify whether or not to wrap around the value when respectively the minimum or maximum value of the number is exceeded.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-operation-action)*"
+              "docs": "**bool, [templatable](https://esphome.io/automations/templates.html#config-templatable)**: Can be used with `DECREMENT` or `INCREMENT` to specify whether or not to wrap around the value when respectively the minimum or maximum value of the number is exceeded.\n\n*See also: [Number Component](https://esphome.io/components/number/index.html#number-operation-action)*"
             }
           }
         },
-        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) that can be used to perform an operation on a number component (set to minimum or maximum value, decrement, increment), using a generic templatable action call.\n\n*See also: [`number.operation` Action](https://esphome.io/components/number/index.html#number-operation-action)*"
+        "docs": "This is an [Action](https://esphome.io/automations/actions.html#config-action) that can be used to perform an operation on a number component (set to minimum or maximum value, decrement, increment), using a generic templatable action call.\n\n*See also: [`number.operation` Action](https://esphome.io/components/number/index.html#number-operation-action)*"
       },
       "to_max": {
         "type": "schema",
@@ -243,7 +293,7 @@
             }
           }
         },
-        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) seting a number to its maximum value (given a number component that has a maximum value defined for it.\n\n*See also: [`number.to_max` Action](https://esphome.io/components/number/index.html#number-to-max-action)*"
+        "docs": "This is an [Action](https://esphome.io/automations/actions.html#config-action) seting a number to its maximum value (given a number component that has a maximum value defined for it.\n\n*See also: [`number.to_max` Action](https://esphome.io/components/number/index.html#number-to-max-action)*"
       },
       "to_min": {
         "type": "schema",
@@ -263,7 +313,7 @@
             }
           }
         },
-        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) seting a number to its minimum value, given a number component that has a minimum value defined for it.\n\n*See also: [`number.to_min` Action](https://esphome.io/components/number/index.html#number-to-min-action)*"
+        "docs": "This is an [Action](https://esphome.io/automations/actions.html#config-action) seting a number to its minimum value, given a number component that has a minimum value defined for it.\n\n*See also: [`number.to_min` Action](https://esphome.io/components/number/index.html#number-to-min-action)*"
       },
       "decrement": {
         "type": "schema",
@@ -289,7 +339,7 @@
             }
           }
         },
-        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) for decrementing a number value by its step size (default: 1).\n\n*See also: [`number.decrement` Action](https://esphome.io/components/number/index.html#number-decrement-action)*"
+        "docs": "This is an [Action](https://esphome.io/automations/actions.html#config-action) for decrementing a number value by its step size (default: 1).\n\n*See also: [`number.decrement` Action](https://esphome.io/components/number/index.html#number-decrement-action)*"
       },
       "increment": {
         "type": "schema",
@@ -315,7 +365,7 @@
             }
           }
         },
-        "docs": "This is an [Action](https://esphome.io/guides/automations.html#config-action) for incrementing a number value by its step size (default: 1).\n\n*See also: [`number.increment` Action](https://esphome.io/components/number/index.html#number-increment-action)*"
+        "docs": "This is an [Action](https://esphome.io/automations/actions.html#config-action) for incrementing a number value by its step size (default: 1).\n\n*See also: [`number.increment` Action](https://esphome.io/components/number/index.html#number-increment-action)*"
       }
     },
     "condition": {

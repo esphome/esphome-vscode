@@ -51,7 +51,7 @@
                   }
                 }
               },
-              "docs": "The information for the voltage sensor\n  * **name** (**Required**, string): The name for the voltage sensor.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [MAX9611/9612 High Side Current+Voltage+Temperature Sensor](https://esphome.io/components/sensor/max9611.html#configuration-variables)*"
+              "docs": "The information for the voltage sensor\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [MAX9611/9612 High Side Current+Voltage+Temperature Sensor](https://esphome.io/components/sensor/max9611.html#configuration-variables)*"
             },
             "current": {
               "key": "Optional",
@@ -75,7 +75,7 @@
                   }
                 }
               },
-              "docs": "The information for the current sensor, scaled by the gain factor and multiplied by voltage\n  * **name** (**Required**, string): The name for the current sensor.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [MAX9611/9612 High Side Current+Voltage+Temperature Sensor](https://esphome.io/components/sensor/max9611.html#configuration-variables)*"
+              "docs": "The information for the current sensor, scaled by the gain factor and multiplied by voltage\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [MAX9611/9612 High Side Current+Voltage+Temperature Sensor](https://esphome.io/components/sensor/max9611.html#configuration-variables)*"
             },
             "power": {
               "key": "Optional",
@@ -99,7 +99,7 @@
                   }
                 }
               },
-              "docs": "The information for the power sensor\n  * **name** (**Required**, string): The name for the power sensor.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [MAX9611/9612 High Side Current+Voltage+Temperature Sensor](https://esphome.io/components/sensor/max9611.html#configuration-variables)*"
+              "docs": "The information for the power sensor\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [MAX9611/9612 High Side Current+Voltage+Temperature Sensor](https://esphome.io/components/sensor/max9611.html#configuration-variables)*"
             },
             "temperature": {
               "key": "Optional",
@@ -123,7 +123,7 @@
                   }
                 }
               },
-              "docs": "The information for the temperature sensor\n  * **name** (**Required**, string): The name for the temperature sensor.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [MAX9611/9612 High Side Current+Voltage+Temperature Sensor](https://esphome.io/components/sensor/max9611.html#configuration-variables)*"
+              "docs": "The information for the temperature sensor\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [MAX9611/9612 High Side Current+Voltage+Temperature Sensor](https://esphome.io/components/sensor/max9611.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",

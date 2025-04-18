@@ -1,0 +1,364 @@
+{
+  "ade7880.sensor": {
+    "schemas": {
+      "POWER_CHANNEL_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "ade7880::PowerChannel",
+                "parents": []
+              }
+            },
+            "name": {
+              "key": "Optional",
+              "type": "string"
+            },
+            "voltage": {
+              "key": "Optional",
+              "type": "schema",
+              "maybe": "name",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "V"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  },
+                  "device_class": {
+                    "default": "voltage"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  }
+                }
+              }
+            },
+            "current": {
+              "key": "Optional",
+              "type": "schema",
+              "maybe": "name",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "A"
+                  },
+                  "accuracy_decimals": {
+                    "default": "2"
+                  },
+                  "device_class": {
+                    "default": "current"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  }
+                }
+              }
+            },
+            "active_power": {
+              "key": "Optional",
+              "type": "schema",
+              "maybe": "name",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "W"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  },
+                  "device_class": {
+                    "default": "power"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  }
+                }
+              }
+            },
+            "apparent_power": {
+              "key": "Optional",
+              "type": "schema",
+              "maybe": "name",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "VA"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  },
+                  "device_class": {
+                    "default": "apparent_power"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  }
+                }
+              }
+            },
+            "power_factor": {
+              "key": "Optional",
+              "type": "schema",
+              "maybe": "name",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "%"
+                  },
+                  "accuracy_decimals": {
+                    "default": "0"
+                  },
+                  "device_class": {
+                    "default": "power_factor"
+                  },
+                  "state_class": {
+                    "default": "measurement"
+                  }
+                }
+              }
+            },
+            "forward_active_energy": {
+              "key": "Optional",
+              "type": "schema",
+              "maybe": "name",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "Wh"
+                  },
+                  "accuracy_decimals": {
+                    "default": "2"
+                  },
+                  "device_class": {
+                    "default": "energy"
+                  },
+                  "state_class": {
+                    "default": "total_increasing"
+                  }
+                }
+              }
+            },
+            "reverse_active_energy": {
+              "key": "Optional",
+              "type": "schema",
+              "maybe": "name",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "VARh"
+                  },
+                  "accuracy_decimals": {
+                    "default": "2"
+                  },
+                  "device_class": {
+                    "default": "energy"
+                  },
+                  "state_class": {
+                    "default": "total_increasing"
+                  }
+                }
+              }
+            },
+            "calibration": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "current_gain": {
+                    "key": "Required",
+                    "type": "integer"
+                  },
+                  "voltage_gain": {
+                    "key": "Required",
+                    "type": "integer"
+                  },
+                  "power_gain": {
+                    "key": "Required",
+                    "type": "integer"
+                  },
+                  "phase_angle": {
+                    "key": "Required",
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "ade7880::ADE7880",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              }
+            },
+            "frequency": {
+              "key": "Optional",
+              "default": "50Hz"
+            },
+            "irq0_pin": {
+              "key": "Optional",
+              "schema": true,
+              "internal": true,
+              "modes": [
+                "input"
+              ],
+              "type": "pin"
+            },
+            "irq1_pin": {
+              "key": "Required",
+              "schema": true,
+              "internal": true,
+              "modes": [
+                "input"
+              ],
+              "type": "pin"
+            },
+            "reset_pin": {
+              "key": "Optional",
+              "schema": true,
+              "internal": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin"
+            },
+            "phase_a": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "ade7880.sensor.POWER_CHANNEL_SCHEMA"
+                ]
+              }
+            },
+            "phase_b": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "ade7880.sensor.POWER_CHANNEL_SCHEMA"
+                ]
+              }
+            },
+            "phase_c": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "ade7880.sensor.POWER_CHANNEL_SCHEMA"
+                ]
+              }
+            },
+            "neutral": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "ade7880::NeutralChannel",
+                      "parents": []
+                    }
+                  },
+                  "name": {
+                    "key": "Optional",
+                    "type": "string"
+                  },
+                  "current": {
+                    "key": "Required",
+                    "type": "schema",
+                    "maybe": "name",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "unit_of_measurement": {
+                          "default": "A"
+                        },
+                        "accuracy_decimals": {
+                          "default": "2"
+                        },
+                        "device_class": {
+                          "default": "current"
+                        },
+                        "state_class": {
+                          "default": "measurement"
+                        }
+                      }
+                    }
+                  },
+                  "calibration": {
+                    "key": "Required",
+                    "type": "schema",
+                    "schema": {
+                      "config_vars": {
+                        "current_gain": {
+                          "key": "Required",
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "update_interval": {
+              "key": "Optional",
+              "default": "60s"
+            },
+            "i2c_id": {
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
+            },
+            "address": {
+              "key": "Optional",
+              "default": "56",
+              "data_type": "hex_uint8_t"
+            }
+          },
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
+        }
+      }
+    }
+  }
+}

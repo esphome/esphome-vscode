@@ -277,7 +277,7 @@
                       "default": "energy"
                     },
                     "state_class": {
-                      "default": "measurement"
+                      "default": "total_increasing"
                     }
                   }
                 }
@@ -578,7 +578,7 @@
                       "default": "energy"
                     },
                     "state_class": {
-                      "default": "measurement"
+                      "default": "total_increasing"
                     }
                   }
                 }
@@ -879,7 +879,7 @@
                       "default": "energy"
                     },
                     "state_class": {
-                      "default": "measurement"
+                      "default": "total_increasing"
                     }
                   }
                 }
@@ -1111,7 +1111,7 @@
                       "default": "energy"
                     },
                     "state_class": {
-                      "default": "measurement"
+                      "default": "total_increasing"
                     }
                   }
                 }
@@ -1409,7 +1409,7 @@
                       "default": "energy"
                     },
                     "state_class": {
-                      "default": "measurement"
+                      "default": "total_increasing"
                     }
                   }
                 }
@@ -1544,7 +1544,7 @@
                 "docs": "A list of [Sensor](https://esphome.io/components/sensor/index.html#config-sensor) definitions that include a `lambda` to do the decoding and return a `float` value.\n\n*See also: [custom VBus sensors](https://esphome.io/components/vbus.html#custom-vbus-sensors)*"
               },
               "lambda": {
-                "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: Code to parse a value from the incoming data packets and return it. The data packet is in a `std::vector<uint8_t>` called `x`.\n\n*See also: [custom VBus sensors](https://esphome.io/components/vbus.html#custom-vbus-sensors)*"
+                "docs": "**[lambda](https://esphome.io/automations/templates.html#config-lambda)**: Code to parse a value from the incoming data packets and return it. The data packet is in a `std::vector<uint8_t>` called `x`.\n\n*See also: [custom VBus sensors](https://esphome.io/components/vbus.html#custom-vbus-sensors)*"
               }
             }
           }
@@ -2182,7 +2182,7 @@
                 "docs": "A list of [Binary Sensor](https://esphome.io/components/binary_sensor/index.html#config-binary-sensor) definitions that include a `lambda` to do the decoding and return a `bool` value.\n\n*See also: [custom VBus binary sensors](https://esphome.io/components/vbus.html#custom-vbus-binary-sensors)*"
               },
               "lambda": {
-                "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: Code to parse a value from the incoming data packets and return it. The data packet is in a `std::vector<uint8_t>` called `x`.\n\n*See also: [custom VBus binary sensors](https://esphome.io/components/vbus.html#custom-vbus-binary-sensors)*"
+                "docs": "**[lambda](https://esphome.io/automations/templates.html#config-lambda)**: Code to parse a value from the incoming data packets and return it. The data packet is in a `std::vector<uint8_t>` called `x`.\n\n*See also: [custom VBus binary sensors](https://esphome.io/components/vbus.html#custom-vbus-binary-sensors)*"
               }
             }
           }

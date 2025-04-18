@@ -20,7 +20,7 @@
               "key": "Optional",
               "default": "False",
               "type": "boolean",
-              "docs": "**boolean**: Set if the ADS1115 should continuously measure voltages or only measure them when an update is called. Please enable this for the [CT Clamp Current Sensor](https://esphome.io/components/sensor/ct_clamp.html) integration. Defaults to `off`.\n\n*See also: [ads1115 Component/Hub](https://esphome.io/components/sensor/ads1115.html#configuration-variables)*"
+              "docs": "**boolean**: Set if the ADS1115 should continuously measure voltages or only measure them when an update is called. Please enable this for the [CT Clamp Current Sensor](https://esphome.io/components/sensor/ct_clamp.html) component. Defaults to `off`.\n\n*See also: [ads1115 Component/Hub](https://esphome.io/components/sensor/ads1115.html#configuration-variables)*"
             },
             "i2c_id": {
               "key": "GeneratedID",
@@ -61,8 +61,7 @@
                   "Component",
                   "voltage_sampler::VoltageSampler"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [ads1115 Sensor](https://esphome.io/components/sensor/ads1115.html#id1)*"
+              }
             },
             "unit_of_measurement": {
               "default": "V"
@@ -99,6 +98,15 @@
             },
             "gain": {
               "key": "Required",
+              "type": "enum",
+              "values": {
+                "6.144": null,
+                "4.096": null,
+                "2.048": null,
+                "1.024": null,
+                "0.512": null,
+                "0.256": null
+              },
               "docs": "**float**: The gain of this sensor.\n\n*See also: [ads1115 Sensor](https://esphome.io/components/sensor/ads1115.html#id1)*"
             },
             "resolution": {
@@ -110,6 +118,22 @@
                 "12_BITS": null
               },
               "docs": "**string**: the resolution of this sensor. Defaults to `16 bits`.\n\n*See also: [ads1115 Sensor](https://esphome.io/components/sensor/ads1115.html#id1)*"
+            },
+            "sample_rate": {
+              "key": "Optional",
+              "default": "860",
+              "type": "enum",
+              "values": {
+                "8": null,
+                "16": null,
+                "32": null,
+                "64": null,
+                "128": null,
+                "250": null,
+                "475": null,
+                "860": null
+              },
+              "docs": "**int**: The sample rate of this sensor. Defaults to `860`.\n\n*See also: [ads1115 Sensor](https://esphome.io/components/sensor/ads1115.html#id1)*"
             },
             "update_interval": {
               "key": "Optional",

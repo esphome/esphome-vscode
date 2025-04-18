@@ -1,0 +1,38 @@
+{
+  "ade7953_i2c.sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "ade7953_i2c::AdE7953I2c",
+                "parents": [
+                  "ade7953_base::ADE7953",
+                  "PollingComponent",
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              }
+            },
+            "i2c_id": {
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id"
+            },
+            "address": {
+              "key": "Optional",
+              "default": "56",
+              "data_type": "hex_uint8_t"
+            }
+          },
+          "extends": [
+            "ade7953_base.ADE7953_CONFIG_SCHEMA"
+          ]
+        }
+      }
+    }
+  }
+}

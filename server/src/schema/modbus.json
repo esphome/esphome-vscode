@@ -13,7 +13,18 @@
                   "Component",
                   "uart::UARTDevice"
                 ]
-              }
+              },
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Modbus Component](https://esphome.io/components/modbus.html#configuration-variables)*"
+            },
+            "role": {
+              "key": "Optional",
+              "default": "client",
+              "type": "enum",
+              "values": {
+                "client": null,
+                "server": null
+              },
+              "docs": "**string**: The role of this component, `client` or `server`. Defaults to `client`.\n\n*See also: [Modbus Component](https://esphome.io/components/modbus.html#configuration-variables)*"
             },
             "flow_control_pin": {
               "key": "Optional",
@@ -33,7 +44,7 @@
                   "core.positive_time_period_milliseconds"
                 ]
               },
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Time in milliseconds before a new modbus command is sent if an answer from a previous command is pending. Defaults to 250 ms. If multiple modbus devices are attached increasing this value can help avoiding to to overlapping reads. When 2 devices are sending a command at the same the response read from uart can\u2019t be assigned to the proper design. This value defines the maximum queuing time for a command before it is send anyways.\n\n*See also: [Modbus Component](https://esphome.io/components/modbus.html#configuration-variables)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: Time in milliseconds before the next ModBUS command is sent when an answer from a previous command has not yet started (i.e. when to timeout and assume no response is coming). Defaults to 250 ms. Set this value to the maximum time required for the slowest device on the bus to begin responding (time to first byte). If a device starts responding within this time, the next command will be queued and sent after the response is finished, no matter how long the response.\n\n*See also: [Modbus Component](https://esphome.io/components/modbus.html#configuration-variables)*"
             },
             "disable_crc": {
               "key": "Optional",
@@ -44,7 +55,8 @@
             "uart_id": {
               "key": "GeneratedID",
               "use_id_type": "uart::UARTComponent",
-              "type": "use_id"
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Component](https://esphome.io/components/uart.html#uart) if you want to use multiple UART buses.\n\n*See also: [Modbus Component](https://esphome.io/components/modbus.html#configuration-variables)*"
             }
           },
           "extends": [

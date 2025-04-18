@@ -1,0 +1,94 @@
+{
+  "mixer.speaker": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "mixer_speaker::MixerSpeaker",
+                "parents": [
+                  "Component"
+                ]
+              }
+            },
+            "output_speaker": {
+              "key": "Required",
+              "use_id_type": "speaker::Speaker",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The [speaker](https://esphome.io/components/speaker/index.html) to output the mixed audio.\n\n*See also: [Mixer Speaker](https://esphome.io/components/speaker/mixer.html#configuration-variables)*"
+            },
+            "source_speakers": {
+              "key": "Required",
+              "is_list": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "speaker.SPEAKER_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "mixer_speaker::SourceSpeaker",
+                      "parents": [
+                        "Component",
+                        "speaker::Speaker"
+                      ]
+                    }
+                  },
+                  "buffer_duration": {
+                    "key": "Optional",
+                    "default": "100ms",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "core.positive_time_period_milliseconds"
+                      ]
+                    },
+                    "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The duration of the internal ring buffer. Larger values can reduce stuttering but use more memory. Defaults to `100ms`.\n\n*See also: [Mixer Speaker](https://esphome.io/components/speaker/mixer.html#configuration-variables)*"
+                  },
+                  "timeout": {
+                    "key": "Optional",
+                    "default": "500ms",
+                    "type": "enum",
+                    "schema": {
+                      "extends": [
+                        "core.positive_time_period_milliseconds"
+                      ]
+                    },
+                    "values": {
+                      "never": null
+                    },
+                    "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: How long to wait after finishing playback before releasing the bus. Set to `never` to never stop the speaker due to a timeout. Defaults to `500ms`.\n\n*See also: [Mixer Speaker](https://esphome.io/components/speaker/mixer.html#configuration-variables)*"
+                  },
+                  "bits_per_sample": {
+                    "default": "16"
+                  }
+                }
+              },
+              "docs": "**list**: A list of source speaker inputs. Must have at least 2 and at most 8 speakers.\n  * **buffer_duration** (*Optional*, [Time](https://esphome.io/guides/configuration-types.html#config-time)): The duration of the internal ring buffer. Larger values can reduce stuttering but use more memory. Defaults to `100ms`.\n  \n  * **timeout** (*Optional*, [Time](https://esphome.io/guides/configuration-types.html#config-time)): How long to wait after finishing playback before releasing the bus. Set to `never` to never stop the speaker due to a timeout. Defaults to `500ms`.\n  \n  * All other options from [Speaker Component](https://esphome.io/components/speaker/index.html#config-speaker).\n  \n  \n\n*See also: [Mixer Speaker](https://esphome.io/components/speaker/mixer.html#configuration-variables)*"
+            },
+            "num_channels": {
+              "key": "Optional",
+              "type": "integer",
+              "docs": "**positive integer**: The number of audio channels to send to the output speaker. Either `1` or `2`. Defaults to the output speaker\u2019s number of channels.\n\n*See also: [Mixer Speaker](https://esphome.io/components/speaker/mixer.html#configuration-variables)*"
+            },
+            "queue_mode": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean",
+              "docs": "**boolean**: Enables queue mode. If enabled, audio isn\u2019t mixed but instead each source speaker\u2019s audio is played successively, starting with the first listed source speaker.\n\n*See also: [Mixer Speaker](https://esphome.io/components/speaker/mixer.html#configuration-variables)*"
+            },
+            "task_stack_in_psram": {
+              "key": "Optional",
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    }
+  }
+}

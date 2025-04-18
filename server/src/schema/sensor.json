@@ -7,6 +7,12 @@
         ],
         "docs": "This sensor allows you to use A01NYUB waterproof ultrasonic sensor by DFRobot ([datasheet](https://wiki.dfrobot.com/A01NYUB%20Waterproof%20Ultrasonic%20Sensor%20SKU:%20SEN0313)) with ESPHome to measure distances. This sensor can measure ranges between 28 centimeters and 750 centimeters with a resolution of 1 milimeter.\n\n*See also: [A01NYUB Waterproof Ultrasonic Sensor](https://esphome.io/components/sensor/a01nyub.html#a01nyub-waterproof-ultrasonic-sensor)*"
       },
+      "a02yyuw": {
+        "dependencies": [
+          "uart"
+        ],
+        "docs": "This sensor allows you to use A02YYUW waterproof ultrasonic sensor by DFRobot ([datasheet](https://wiki.dfrobot.com/_A02YYUW_Waterproof_Ultrasonic_Sensor_SKU_SEN0311)) with ESPHome to measure distances. This sensor can measure ranges between 3 centimeters and 450 centimeters with a resolution of 1 milimeter.\n\n*See also: [A02YYUW Waterproof Ultrasonic Sensor](https://esphome.io/components/sensor/a02yyuw.html#a02yyuw-waterproof-ultrasonic-sensor)*"
+      },
       "absolute_humidity": {
         "docs": "The `absolute_humidity` platform allows you to calculate absolute humidity from air temperature and relative humidity.\n\n*See also: [Absolute Humidity](https://esphome.io/components/sensor/absolute_humidity.html#absolute-humidity)*"
       },
@@ -19,11 +25,22 @@
         ],
         "docs": "The `adc128s102` sensor allows you to use your ADC128S102 12-Bit A/D Converter sensors with ESPHome. First, setup a [ADC128S102 Hub](https://esphome.io/components/sensor/adc128s102.html#adc128s102-component) for your ADC128S102 sensor and then use this sensor platform to create individual sensors that will report the voltage to Home Assistant.\n\n*See also: [adc128s102 Sensor](https://esphome.io/components/sensor/adc128s102.html#sensor)*"
       },
-      "ade7953": {
+      "ade7880": {
         "dependencies": [
           "i2c"
         ],
-        "docs": "This page is incomplete and could use some work. If you want to contribute, please read the [contributing guide](https://esphome.io/guides/contributing.html). This page is missing:\n\n*See also: [ADE7953 Power Sensor](https://esphome.io/components/sensor/ade7953.html#ade7953-power-sensor)*"
+        "docs": "The `ade7880` sensor platform allows you to use ADE7880 voltage/current/power sensors ([datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/ADE7880.pdf)) with ESPHome. This sensor chip is commonly found in Shelly 3EM and 3EM Pro devices.\n\n*See also: [ADE7880 Power Sensor](https://esphome.io/components/sensor/ade7880.html#ade7880-power-sensor)*"
+      },
+      "ade7953": {},
+      "ade7953_i2c": {
+        "dependencies": [
+          "i2c"
+        ]
+      },
+      "ade7953_spi": {
+        "dependencies": [
+          "spi"
+        ]
       },
       "ads1115": {
         "dependencies": [
@@ -31,11 +48,23 @@
         ],
         "docs": "The `ads1115` sensor allows you to use your ADS1115 sigma-delta ADC sensors ([datasheet](http://www.ti.com/lit/ds/symlink/ads1115.pdf), [Adafruit_ADS1115](https://www.adafruit.com/product/1085)) or your ADS1015 sigma-delta ADC sensors ([datasheet](http://www.ti.com/lit/ds/symlink/ads1015.pdf), [Adafruit_ADS1015](https://www.adafruit.com/product/1083)) with ESPHome. First, setup an [ADS1115 Hub](https://esphome.io/components/sensor/ads1115.html#ads1115-component) for your ADS1115 sensor and then use this sensor platform to create individual sensors that will report the voltage to Home Assistant.\n\n*See also: [ads1115 Sensor](https://esphome.io/components/sensor/ads1115.html#sensor)*"
       },
+      "ads1118": {
+        "dependencies": [
+          "ads1118"
+        ],
+        "docs": "The `ads1118` sensor allows you to use your ADS1118 delta-sigma ADC sensors ([datasheet](https://www.ti.com/lit/ds/symlink/ads1118.pdf)) with ESPHome. First, setup an [ADS1118 Hub](https://esphome.io/components/sensor/ads1118.html#ads1118-component) for your ADS1118 sensor and then use this sensor platform to create individual sensors that will report the voltage.\n\n*See also: [ads1118 Sensor](https://esphome.io/components/sensor/ads1118.html#sensor)*"
+      },
+      "ags10": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `ags10` sensor platform VOC sensor allows you to use your ASAIR AGS10 ([datasheet](http://www.aosong.com/userfiles/files/Datasheet%20AGS10.pdf), [ASAIR](http://www.aosong.com/en/products-86.html) ) sensors with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [AGS10 Volatile Organic Compound (VOC) Sensor](https://esphome.io/components/sensor/ags10.html#ags10-volatile-organic-compound-voc-sensor)*"
+      },
       "aht10": {
         "dependencies": [
           "i2c"
         ],
-        "docs": "The `aht10` Temperature+Humidity sensor allows you to use your AHT10 ([datasheet](http://www.aosong.com/userfiles/files/media/aht10%E8%A7%84%E6%A0%BC%E4%B9%A6v1_1%EF%BC%8820191015%EF%BC%89.pdf)), AHT20 ([datasheet](https://cdn-learn.adafruit.com/assets/assets/000/091/676/original/AHT20-datasheet-2020-4-16.pdf?1591047915)), AHT21 ([datasheet](https://asairsensors.com/wp-content/uploads/2021/09/Data-Sheet-AHT21-Humidity-and-Temperature-Sensor-ASAIR-V1.0.03.pdf)) [I\u00b2C](https://esphome.io/components/i2c.html#i2c)-based sensor with ESPHome.\n\n*See also: [AHT10 Temperature+Humidity Sensor](https://esphome.io/components/sensor/aht10.html#aht10-temperature-humidity-sensor)*"
+        "docs": "The `aht10` Temperature+Humidity sensor allows you to use your AHT10 ([datasheet](http://www.aosong.com/userfiles/files/media/aht10%E8%A7%84%E6%A0%BC%E4%B9%A6v1_1%EF%BC%8820191015%EF%BC%89.pdf)), AHT20 ([datasheet](https://cdn-learn.adafruit.com/assets/assets/000/091/676/original/AHT20-datasheet-2020-4-16.pdf?1591047915)) or AHT30 ([datasheet](https://eleparts.co.kr/data/goods_attach/202306/good-pdf-12751003-1.pdf)) [I\u00b2C](https://esphome.io/components/i2c.html#i2c)-based sensor with ESPHome.\n\n*See also: [AHT10 Temperature+Humidity Sensor](https://esphome.io/components/sensor/aht10.html#aht10-temperature-humidity-sensor)*"
       },
       "airthings_wave_mini": {
         "dependencies": [
@@ -52,6 +81,12 @@
       "alpha3": {
         "docs": "The `alpha3` component allows you to monitor a Grundfos Alpha3 Model B circulator pump over BLE.\n\n*See also: [Grundfos Alpha3](https://esphome.io/components/sensor/alpha3.html#grundfos-alpha3)*"
       },
+      "am2315c": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `am2315c` Temperature+Humidity sensor allows you to use your AM2315C ([datasheet](https://cdn-shop.adafruit.com/product-files/5182/5182_AM2315C.pdf)) I\u00b2C-based sensor with ESPHome.\n\n*See also: [AM2315C Temperature+Humidity Sensor](https://esphome.io/components/sensor/am2315c.html#am2315c-temperature-humidity-sensor)*"
+      },
       "am2320": {
         "dependencies": [
           "i2c"
@@ -61,23 +96,36 @@
       "am43": {
         "docs": "The `am43` sensor platform allows you to read the light and battery sensors on an AM43 BLE cover motor. The platform connects to the device over the ESP32\u2019s BLE peripheral.\n\n*See also: [AM43 Sensor](https://esphome.io/components/sensor/am43.html#am43-sensor)*"
       },
+      "apds9306": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `apds9306` sensor component allows you to use APDS9306 ambient light sensors ([datasheet](https://docs.broadcom.com/doc/AV02-4755EN), [Broadcom](https://www.broadcom.com/products/optical-sensors/ambient-light-photo-sensors/apds-9306-065)) with ESPHome. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [APDS9306 Sensor](https://esphome.io/components/sensor/apds9306.html#apds9306-sensor)*"
+      },
       "apds9960": {
         "dependencies": [
           "apds9960"
         ],
         "docs": "The `apds9960` sensor allows you to use your [APDS9960 Sensor to perform different measurements.\n\n*See also: [apds9960 Sensor](https://esphome.io/components/sensor/apds9960.html#sensor)*"
       },
+      "arduino_port_expander": {},
       "as3935": {
         "dependencies": [
           "as3935"
         ],
         "docs": "A sensor platform to read lightning data\n\n*See also: [as3935 Sensor](https://esphome.io/components/sensor/as3935.html#sensor)*"
       },
+      "as5600": {
+        "dependencies": [
+          "as5600"
+        ],
+        "docs": "The `as5600` sensor allows you to publish the angle/position measurement from your AS5600 with ESPHome. First, setup an [AS5600 Hub](https://esphome.io/components/sensor/as5600.html#as5600-component) for your AS5600 sensor and then use this sensor platform to create individual sensors that will report the position to Home Assistant.\n\n*See also: [as5600 Sensor](https://esphome.io/components/sensor/as5600.html#sensor)*"
+      },
       "as7341": {
         "dependencies": [
           "i2c"
         ],
-        "docs": "The `as7341` sensor platform allows you to use your AS7341 spectral color sensor ([datasheet](https://ams.com/documents/20143/36005/AS7341_DS000504_3-00.pdf/5eca1f59-46e2-6fc5-daf5-d71ad90c9b2b), [Adafruit](https://www.adafruit.com/product/4698)) with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [AS7341 Spectral Color Sensor](https://esphome.io/components/sensor/as7341.html#as7341-spectral-color-sensor)*"
+        "docs": "The `as7341` sensor platform allows you to use your AS7341 spectral color sensor ([datasheet](https://look.ams-osram.com/m/24266a3e584de4db/original/AS7341-DS000504.pdf), [Adafruit](https://www.adafruit.com/product/4698)) with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [AS7341 Spectral Color Sensor](https://esphome.io/components/sensor/as7341.html#as7341-spectral-color-sensor)*"
       },
       "atc_mithermometer": {
         "dependencies": [
@@ -88,7 +136,13 @@
         "docs": "The `atm90e26` sensor platform allows you to use your ATM90E26 voltage/current and power sensors ([datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-46002-SE-M90E26-Datasheet.pdf)) with ESPHome. This sensor is found in the [DitroniX GTEM ESP32](https://ditronix.net/wiki/gtem-esp32-atm90e26-sdk-v1-specification/) energy meter and other devices.\n\n*See also: [ATM90E26 Power Sensor](https://esphome.io/components/sensor/atm90e26.html#atm90e26-power-sensor)*"
       },
       "atm90e32": {
-        "docs": "The `atm90e32` sensor platform allows you to use your ATM90E32 voltage/current and power sensors ([datasheet](http://ww1.microchip.com/downloads/en/devicedoc/Atmel-46003-SE-M90E32AS-Datasheet.pdf)) with ESPHome. This sensor is commonly found in CircuitSetup 2 and 6 channel energy meters.\n\n*See also: [ATM90E32 Power Sensor](https://esphome.io/components/sensor/atm90e32.html#atm90e32-power-sensor)*"
+        "docs": "The `atm90e32` sensor platform allows you to use your ATM90E32 voltage/current and power sensors ([datasheet](http://ww1.microchip.com/downloads/en/devicedoc/Atmel-46003-SE-M90E32AS-Datasheet.pdf)) with ESPHome. This sensor is commonly found in CircuitSetup 2 and 6 channel energy meters and the [Gelidus Research](https://www.gelidus.ca/) 2 channel power meter.\n\n*See also: [ATM90E32 Power Sensor](https://esphome.io/components/sensor/atm90e32.html#atm90e32-power-sensor)*"
+      },
+      "bedjet": {
+        "dependencies": [
+          "bedjet"
+        ],
+        "docs": "The `sensor` platform exposes the BedJet\u2019s various temperature readings as sensors.\n\n*See also: [bedjet Sensor](https://esphome.io/components/climate/bedjet.html#bedjet-sensor)*"
       },
       "bh1750": {
         "dependencies": [
@@ -100,6 +154,12 @@
         "dependencies": [
           "binary_sensor"
         ]
+      },
+      "bl0906": {
+        "dependencies": [
+          "uart"
+        ],
+        "docs": "The `bl0906` sensor platform allows you to use your BL0906 voltage/current/power and energy sensors with ESPHome. This sensor is commonly found in [Athom EM2 Energy Meter](https://www.athom.tech/blank-1/2-ch-energy-meter-made-for-esphome) and [Athom EM6 Energy Meter](https://www.athom.tech/blank-1/6-ch-energy-meter-made-for-esphome)\n\n*See also: [Belling BL0906 Energy Monitor](https://esphome.io/components/sensor/bl0906.html#belling-bl0906-energy-monitor)*"
       },
       "bl0939": {
         "dependencies": [
@@ -131,11 +191,15 @@
         ],
         "docs": "The `ble_rssi` sensor platform lets you track the RSSI value or signal strength of a BLE device. See [the binary sensor setup](https://esphome.io/components/binary_sensor/ble_presence.html#esp32-ble-tracker-setting-up-devices) for instructions for setting up this platform.\n\n*See also: [ESP32 Bluetooth Low Energy RSSI Sensor](https://esphome.io/components/sensor/ble_rssi.html#esp32-bluetooth-low-energy-rssi-sensor)*"
       },
-      "bme280": {
+      "bme280_i2c": {
         "dependencies": [
           "i2c"
-        ],
-        "docs": "The `bme280` sensor platform allows you to use your BME280 ([datasheet](https://cdn-shop.adafruit.com/datasheets/BST-BME280_DS001-10.pdf), [Adafruit](https://www.adafruit.com/product/2652)) temperature, pressure and humidity sensors with ESPHome. The sensor is used in *Forced Mode* where measurement is performed and then the sensor returns to sleep mode until next measurement. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [BME280 Temperature+Pressure+Humidity Sensor](https://esphome.io/components/sensor/bme280.html#bme280-temperature-pressure-humidity-sensor)*"
+        ]
+      },
+      "bme280_spi": {
+        "dependencies": [
+          "spi"
+        ]
       },
       "bme680": {
         "dependencies": [
@@ -149,6 +213,12 @@
         ],
         "docs": "Configuration variables:\n\n*See also: [bme680_bsec Sensor](https://esphome.io/components/sensor/bme680_bsec.html#sensor)*"
       },
+      "bme68x_bsec2": {
+        "dependencies": [
+          "bme68x_bsec2"
+        ],
+        "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the `bme68x_bsec2_i2c` component sensors will refer to. Useful when multiple devices are present in your configuration.\n\n*See also: [bme68x_bsec2 Sensor](https://esphome.io/components/sensor/bme68x_bsec2.html#sensor)*"
+      },
       "bmi160": {
         "dependencies": [
           "i2c"
@@ -161,17 +231,27 @@
         ],
         "docs": "The BMP085 sensor platform allows you to use your BMP085 ([datasheet](https://www.sparkfun.com/datasheets/Components/General/BST-BMP085-DS000-05.pdf), [Adafruit](https://www.adafruit.com/product/391)) and BMP180 ([datasheet](https://cdn-shop.adafruit.com/datasheets/BST-BMP180-DS000-09.pdf), [Adafruit](https://www.adafruit.com/product/1603)) temperature and pressure sensors with ESPHome. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [BMP085 Temperature+Pressure Sensor](https://esphome.io/components/sensor/bmp085.html#bmp085-temperature-pressure-sensor)*"
       },
-      "bmp280": {
+      "bmp280": {},
+      "bmp280_i2c": {
         "dependencies": [
           "i2c"
-        ],
-        "docs": "The `bmp280` sensor platform allows you to use your BMP280 ([datasheet](https://cdn-shop.adafruit.com/datasheets/BST-BMP280-DS001-11.pdf), [Adafruit](https://www.adafruit.com/product/2651)) temperature and pressure sensors with ESPHome. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [BMP280 Temperature+Pressure Sensor](https://esphome.io/components/sensor/bmp280.html#bmp280-temperature-pressure-sensor)*"
+        ]
       },
-      "bmp3xx": {
+      "bmp280_spi": {
+        "dependencies": [
+          "spi"
+        ]
+      },
+      "bmp3xx": {},
+      "bmp3xx_i2c": {
         "dependencies": [
           "i2c"
-        ],
-        "docs": "The `bmp3xx` sensor platform allows you to use your BMP388 or BMP390 ([datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bmp390-ds002.pdf), [BMP390 product page](https://www.bosch-sensortec.com/products/environmental-sensors/pressure-sensors/bmp390/)) temperature and pressure sensors with ESPHome. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) bus is required to be set up in your configuration for this sensor to work.\n\n*See also: [BMP388 / BMP390 Temperature+Pressure Sensor](https://esphome.io/components/sensor/bmp3xx.html#bmp388-bmp390-temperature-pressure-sensor)*"
+        ]
+      },
+      "bmp3xx_spi": {
+        "dependencies": [
+          "spi"
+        ]
       },
       "bmp581": {
         "dependencies": [
@@ -197,6 +277,9 @@
         ],
         "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The source sensor to measure voltage values from, e.g. [ADC sensor](https://esphome.io/components/sensor/adc.html).\n\n*See also: [cd74hc4067 Sensor](https://esphome.io/components/sensor/cd74hc4067.html#sensor)*"
       },
+      "combination": {
+        "docs": "The `combination` sensor platform allows you to combine the state of several sensors into one. To use this sensor, specify the combination type and add your source sensors.\n\n*See also: [Combine the state of several sensors](https://esphome.io/components/sensor/combination.html#combine-the-state-of-several-sensors)*"
+      },
       "copy": {
         "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The sensor that should be mirrored.\n\n*See also: [Copy Sensor](https://esphome.io/components/copy.html#copy-sensor)*"
       },
@@ -216,16 +299,15 @@
         "dependencies": [
           "uart"
         ],
-        "docs": "The `cse7766` sensor platform allows you to use your CSE7766 voltage/current and power sensors ([datasheet](https://itead.cc/wp-content/uploads/2022/05/CSE7766.pdf)) sensors with ESPHome. This sensor is commonly found in Sonoff POW R2. CSE7759B is similar to CSE7766 and works with this integration.\n\n*See also: [CSE7766 Power Sensor](https://esphome.io/components/sensor/cse7766.html#cse7766-power-sensor)*"
+        "docs": "The `cse7766` sensor platform allows you to use your CSE7766 voltage/current and power sensors ([datasheet](https://itead.cc/wp-content/uploads/2022/05/CSE7766.pdf)) sensors with ESPHome. This sensor is commonly found in Sonoff POW R2. CSE7759B is similar to CSE7766 and works with this component.\n\n*See also: [CSE7766 Power Sensor](https://esphome.io/components/sensor/cse7766.html#cse7766-power-sensor)*"
       },
       "ct_clamp": {
         "docs": "The Current Transformer Clamp (`ct_clamp`) sensor allows you to hook up a CT Clamp to an analog voltage sensor (like the [ADC sensor](https://esphome.io/components/sensor/adc.html)) and convert the readings to measured single phase AC current.\n\n*See also: [CT Clamp Current Sensor](https://esphome.io/components/sensor/ct_clamp.html#ct-clamp-current-sensor)*"
       },
-      "custom": {
-        "docs": "While I do try to keep the ESPHome configuration options as stable as possible and back-port them, the ESPHome API is less stable. If something in the APIs needs to be changed in order for something else to work, I will do so.\n\n*See also: [Custom Sensor Component](https://esphome.io/components/sensor/custom.html#custom-sensor-component)*"
-      },
-      "dallas": {
-        "docs": "The `dallas` sensor allows you to use DS18B20 and similar sensors. First, you need to define a [dallas sensor component](https://esphome.io/components/sensor/dallas.html#dallas-component). The dallas sensor component (or \u201chub\u201d) is an internal model that defines which pins the DS18B20 sensors are connected to. This is because with these sensors you can actually connect multiple sensors to a single pin and use them all at once.\n\n*See also: [dallas Sensor](https://esphome.io/components/sensor/dallas.html#sensor)*"
+      "custom": {},
+      "dallas": {},
+      "dallas_temp": {
+        "docs": "The `dallas_temp` component allows you to use [DS18B20](https://www.adafruit.com/product/374) ([datasheet](https://datasheets.maximintegrated.com/en/ds/DS18B20.pdf)) and similar 1-Wire temperature sensors.  A [1-Wire bus](https://esphome.io/components/one_wire.html#one-wire) is required to be set up in your configuration for this sensor to work.\n\n*See also: [Dallas Temperature Sensor](https://esphome.io/components/sensor/dallas_temp.html#dallas-temperature-sensor)*"
       },
       "daly_bms": {
         "docs": "A sensor platform to read BMS data\n\n*See also: [daly_bms Sensor](https://esphome.io/components/sensor/daly_bms.html#sensor)*"
@@ -258,13 +340,29 @@
         "docs": "The duty cycle sensor allows you to measure for what percentage of time a signal on a GPIO pin is HIGH or LOW.\n\n*See also: [Duty Cycle Sensor](https://esphome.io/components/sensor/duty_cycle.html#duty-cycle-sensor)*"
       },
       "duty_time": {
-        "docs": "The `duty_time` sensor allows you to track the total duty time of the some object, for example, a light bulb, in seconds. Able to calculate the last turn-on time when an optional sensor `last_time` is included in the configuration.\n\n*See also: [Duty Time](https://esphome.io/components/sensor/duty_time.html#duty-time)*"
+        "docs": "The `duty_time` sensor allows you to track the total duty time of some object, for example, a light bulb, in seconds. Able to calculate the last turn-on time when an optional sensor `last_time` is included in the configuration.\n\n*See also: [Duty Time](https://esphome.io/components/sensor/duty_time.html#duty-time)*"
       },
       "ee895": {
         "dependencies": [
           "i2c"
         ],
         "docs": "The `ee895` sensor platform allows you to use your EE895 CO\u2082 ([datasheet](https://www.epluse.com/fileadmin/data/product/ee895/BA_EE895.pdf), [E+E EE895](https://www.epluse.com/products/co2-measurement/co2-modules-and-probes/ee895/)) sensor with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work. We recommend the use of pull up resistors.\n\n*See also: [EE895 CO\u2082, Temperature and Pressure Sensor](https://esphome.io/components/sensor/ee895.html#ee895-co2-temperature-and-pressure-sensor)*"
+      },
+      "emc2101": {
+        "dependencies": [
+          "emc2101"
+        ]
+      },
+      "ens160": {},
+      "ens160_i2c": {
+        "dependencies": [
+          "i2c"
+        ]
+      },
+      "ens160_spi": {
+        "dependencies": [
+          "spi"
+        ]
       },
       "ens210": {
         "dependencies": [
@@ -293,7 +391,7 @@
         "dependencies": [
           "fingerprint_grow"
         ],
-        "docs": "**fingerprint_count**: The number of enrolled fingerprints stored on the reader.\n\n*See also: [fingerprint_grow Sensor](https://esphome.io/components/fingerprint_grow.html#sensor)*"
+        "docs": "**fingerprint_count**: The number of enrolled fingerprints stored on the reader. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [fingerprint_grow Sensor](https://esphome.io/components/fingerprint_grow.html#sensor)*"
       },
       "fs3000": {
         "dependencies": [
@@ -307,8 +405,29 @@
         ],
         "docs": "The `gcja5` sensor platform allows you to use your Panasonic SN-GCJA5 laser based particulate matter sensor ([datasheet](https://na.industrial.panasonic.com/products/sensors/air-quality-gas-flow-sensors/lineup/laser-type-pm-sensor/series/123557/model/123559)) sensors with ESPHome.\n\n*See also: [Panasonic SN-GCJA5 Particulate Matter Sensor](https://esphome.io/components/sensor/gcja5.html#panasonic-sn-gcja5-particulate-matter-sensor)*"
       },
+      "gdk101": {
+        "dependencies": [
+          "gdk101"
+        ],
+        "docs": "A sensor platform to radiation data\n\n*See also: [gdk101 Sensor](https://esphome.io/components/sensor/gdk101.html#sensor)*"
+      },
+      "gp2y1010au0f": {
+        "dependencies": [
+          "output"
+        ],
+        "docs": "The `gp2y1010au0f` sensor platform allows you to use your Sharp GP2Y1010AU0F particulate matter sensor with ESPHome.\n\n*See also: [Sharp GP2Y1010AU0F PM2.5 Sensor](https://esphome.io/components/sensor/gp2y1010au0f.html#sharp-gp2y1010au0f-pm2-5-sensor)*"
+      },
+      "grove_gas_mc_v2": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `grove_gas_mc_v2` sensor platform allows you to use your [Grove Multichannel Gas Sensor V2](https://wiki.seeedstudio.com/Grove-Multichannel-Gas-Sensor-V2) with ESPHome. It exposes 4 different gas sensors for qualitatively measuring Nitrogen Dioxide (NO2), Carbon Monoxide (CO), Ethanol (C2H5OH), and Volatile Organic Compounds (VOCs).\n\n*See also: [Grove Multichannel Gas Sensor V2](https://esphome.io/components/sensor/grove_gas_mc_v2.html#grove-multichannel-gas-sensor-v2)*"
+      },
       "growatt_solar": {
         "docs": "The `Growatt Inverter` sensor platform allows you to use growatt inverter data reading on modbus with ESPHome.\n\n*See also: [Growatt Solar](https://esphome.io/components/sensor/growatt_solar.html#growatt-solar)*"
+      },
+      "haier": {
+        "docs": "Additional sensors for Haier Climate device. **These sensors are supported only by the hOn protocol**.\n\n*See also: [Haier Climate Sensors](https://esphome.io/components/sensor/haier.html#haier-climate-sensors)*"
       },
       "havells_solar": {
         "docs": "The `Havells Inverter` sensor platform allows you to use Havells inverter data reading on modbus ([website](https://www.havells.com/en/consumer/solar/solar-on-grid-inverter-and-solutions/solar-on-grid-inverter.html)) with ESPHome.\n\n*See also: [Havells Solar](https://esphome.io/components/sensor/havells_solar.html#havells-solar)*"
@@ -320,7 +439,7 @@
         "docs": "The HDC1080 Temperature+Humidity sensor allows you to use your HDC1080 ([datasheet](http://www.ti.com/lit/ds/symlink/hdc1080.pdf), [Adafruit](https://www.adafruit.com/product/2635)) sensors with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [HDC1080 Temperature+Humidity Sensor](https://esphome.io/components/sensor/hdc1080.html#hdc1080-temperature-humidity-sensor)*"
       },
       "hlw8012": {
-        "docs": "The `hlw8012` sensor platform allows you to use your HLW8012 voltage/current and power sensors ([datasheet](https://github.com/xoseperez/hlw8012/blob/master/docs/HLW8012.pdf)) sensors with ESPHome. This sensor is commonly found in Sonoff POWs. CSE7759 and BL0937 are similar to HLW8012 and work with this integration. Beware that CSE7759B is different and should be used with the [CSE7766](https://esphome.io/components/sensor/cse7766.html) integration.\n\n*See also: [HLW8012 Power Sensor](https://esphome.io/components/sensor/hlw8012.html#hlw8012-power-sensor)*"
+        "docs": "The `hlw8012` sensor platform allows you to use your HLW8012 voltage/current and power sensors ([datasheet](https://github.com/xoseperez/hlw8012/blob/master/docs/HLW8012.pdf)) sensors with ESPHome. This sensor is commonly found in Sonoff POWs. CSE7759 and BL0937 are similar to HLW8012 and work with this component. Beware that CSE7759B is different and should be used with the [CSE7766](https://esphome.io/components/sensor/cse7766.html) component.\n\n*See also: [HLW8012 Power Sensor](https://esphome.io/components/sensor/hlw8012.html#hlw8012-power-sensor)*"
       },
       "hm3301": {
         "dependencies": [
@@ -346,6 +465,18 @@
         ],
         "docs": "The `honeywellabp` sensor platform allows you to use your Honeywell ABP ([website](https://sps.honeywell.com/us/en/products/sensing-and-iot/sensors/pressure-sensors/board-mount-pressure-sensors/basic-abp-series), [datasheet](https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/basic-abp-series/documents/sps-siot-basic-board-mount-pressure-abp-series-datasheet-32305128-ciid-155789.pdf?download=false), [Mouser](https://www.mouser.ca/new/honeywell/honeywell-abp-pressure-sensors/)) pressure and temperature sensors with ESPHome. The [SPI](https://esphome.io/components/spi.html#spi) is required to be set up in your configuration for this sensor to work\n\n*See also: [Honeywell ABP Pressure Sensors](https://esphome.io/components/sensor/honeywellabp.html#honeywell-abp-pressure-sensors)*"
       },
+      "honeywellabp2_i2c": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `honeywellabp2_i2c` sensor platform allows you to use your Honeywell ABP ([website](https://sps.honeywell.com/us/en/products/advanced-sensing-technologies/healthcare-sensing/board-mount-pressure-sensors/basic-abp2-series), [datasheet](https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/pressure-sensors/board-mount-pressure-sensors/basic-abp2-series/documents/sps-siot-abp2-series-datasheet-32350268-en.pdf?download=false)) pressure and temperature sensors with ESPHome. The [I2C](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work\n\n*See also: [Honeywell ABP 2 Pressure Sensors](https://esphome.io/components/sensor/honeywellabp2_i2c.html#honeywell-abp-2-pressure-sensors)*"
+      },
+      "honeywell_hih_i2c": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "Honeywell HumidIcon (I2C HIH series) Temperature & Humidity sensors with ESPHome ([website](https://sps.honeywell.com/us/en/products/advanced-sensing-technologies/healthcare-sensing/humidity-with-temperature-sensors), [datasheet](https://prod-edam.honeywell.com/content/dam/honeywell-edam/sps/siot/en-us/products/sensors/humidity-with-temperature-sensors/common/documents/sps-siot-humidity-sensors-line-guide-009034-7-en-ciid-54931.pdf?download=false)). The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [Honeywell HumidIcon (I2C HIH series) Temperature & Humidity Sensor](https://esphome.io/components/sensor/honeywell_hih_i2c.html#honeywell-humidicon-i2c-hih-series-temperature-humidity-sensor)*"
+      },
       "hrxl_maxsonar_wr": {
         "dependencies": [
           "uart"
@@ -364,17 +495,29 @@
         ],
         "docs": "The HTU21D Temperature & Humidity component allows you to use HTU21D, Si7021 and SHT21 sensors with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [HTU21D | Si7021 | SHT21 Temperature & Humidity Sensor](https://esphome.io/components/sensor/htu21d.html#htu21d-si7021-sht21-temperature-humidity-sensor)*"
       },
+      "htu31d": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The HTU31D Temperature & Humidity component allows you to use HTU31D sensors with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [HTU31D Temperature & Humidity Sensor](https://esphome.io/components/sensor/htu31d.html#htu31d-temperature-humidity-sensor)*"
+      },
       "hx711": {
         "docs": "The `hx711` sensor platform allows you to use your HX711 load cell amplifier ([datasheet](https://www.mouser.com/ds/2/813/hx711_english-1022875.pdf), [SparkFun](https://www.sparkfun.com/products/13879)) with ESPHome\n\n*See also: [HX711 Load Cell Amplifier](https://esphome.io/components/sensor/hx711.html#hx711-load-cell-amplifier)*"
       },
       "hydreon_rgxx": {
-        "docs": "The `hydreon_rgxx` sensor platform allows you to use rain sensors by Hydreon. Currently supported are the RG-9 and RG-15 ([rainsensors](https://rainsensors.com/products/model-comparison/)) sensors. These optical rain sensors use a UART connection at 3.3V. The [UART](https://esphome.io/components/uart.html#uart) is required to be set up in your configuration for this sensor to work.\n\n*See also: [Hydreon Rain Sensor](https://esphome.io/components/sensor/hydreon_rgxx.html#hydreon-rain-sensor)*"
+        "docs": "The `hydreon_rgxx` sensor platform allows you to use rain sensors by Hydreon. Currently supported are the RG-9 and RG-15 sensors ([model comparison](https://rainsensors.com/products/model-comparison/)).\n\n*See also: [Hydreon Rain Sensor](https://esphome.io/components/sensor/hydreon_rgxx.html#hydreon-rain-sensor)*"
       },
       "hyt271": {
         "dependencies": [
           "i2c"
         ],
         "docs": "The HYT271 Temperature & Humidity sensors with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [HYT271 Temperature & Humidity Sensor](https://esphome.io/components/sensor/hyt271.html#hyt271-temperature-humidity-sensor)*"
+      },
+      "iaqcore": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The AMS iAQ-Core sensor allows you to use your ([datasheet](https://www.sciosense.com/wp-content/uploads/documents/iaQ-Core-Datasheet.pdf)) sensors with ESPHome.\n\n*See also: [AMS iAQ-Core Indoor Air Quality Sensor](https://esphome.io/components/sensor/iaqcore.html#ams-iaq-core-indoor-air-quality-sensor)*"
       },
       "ina219": {
         "dependencies": [
@@ -394,6 +537,16 @@
         ],
         "docs": "The `ina260` sensor platform allows you to use your INA260 DC Current and Power Sensor ([datasheet](https://www.ti.com/lit/ds/symlink/ina260.pdf), [Adafruit](https://www.adafruit.com/product/4226)) sensors with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [INA260 DC Current and Power sensor](https://esphome.io/components/sensor/ina260.html#ina260-dc-current-and-power-sensor)*"
       },
+      "ina2xx_i2c": {
+        "dependencies": [
+          "i2c"
+        ]
+      },
+      "ina2xx_spi": {
+        "dependencies": [
+          "spi"
+        ]
+      },
       "ina3221": {
         "dependencies": [
           "i2c"
@@ -410,10 +563,20 @@
         "docs": "The `integration` sensor is a helper sensor that can integrate values from other sensors over time. This can for example be useful to integrate the values of a water flow sensor (in m^3/s) over time (result is in m^3).\n\n*See also: [Integration Sensor](https://esphome.io/components/sensor/integration.html#integration-sensor)*"
       },
       "internal_temperature": {
-        "docs": "The `internal_temperature` sensor platform allows you to use the integrated temperature sensor of the ESP32 and RP2040 chip.\n\n*See also: [Internal Temperature Sensor](https://esphome.io/components/sensor/internal_temperature.html#internal-temperature-sensor)*"
+        "docs": "The `internal_temperature` sensor platform allows you to use the integrated temperature sensor of the ESP32, RP2040 and BK72XX chip.\n\n*See also: [Internal Temperature Sensor](https://esphome.io/components/sensor/internal_temperature.html#internal-temperature-sensor)*"
       },
-      "kalman_combinator": {
-        "docs": "The `kalman_combinator` sensor platform allows you to filter one or several sensors into one with a reduced error. If using a single sensor as data source, it acts like a [exponential_moving_average](https://esphome.io/components/sensor/index.html#sensor-filter-exponential-moving-average) filter. With multiple sensors, it combines their values based on their respective standard deviation.\n\n*See also: [Kalman filter-based sensor fusion](https://esphome.io/components/sensor/kalman_combinator.html#kalman-filter-based-sensor-fusion)*"
+      "jsn_sr04t": {
+        "dependencies": [
+          "uart"
+        ],
+        "docs": "This sensor allows you to use the JSN-SR04T and AJ_SR04M Waterproof Ultrasonic Range Finder **in Mode 1 and 2** with ESPHome to measure distances. This sensor can measure ranges between 25 centimeters and 600 centimeters with a resolution of 1 millimeter.\n\n*See also: [JSN-SR04T Waterproof Ultrasonic Range Finder](https://esphome.io/components/sensor/jsn_sr04t.html#jsn-sr04t-waterproof-ultrasonic-range-finder)*"
+      },
+      "kalman_combinator": {},
+      "kamstrup_kmp": {
+        "dependencies": [
+          "uart"
+        ],
+        "docs": "The Kamstrup Meter Protocol (KMP) is used by certain Kamstrup utility meters and can be used to read measurements from the meter.\n\n*See also: [Kamstrup Meter Protocol [KMP]](https://esphome.io/components/sensor/kamstrup_kmp.html#kamstrup-meter-protocol-kmp)*"
       },
       "kmeteriso": {
         "dependencies": [
@@ -430,17 +593,50 @@
         ],
         "docs": "The `ld2410` sensor allows you to use your [LD2410 Sensor to perform different measurements.\n\n*See also: [ld2410 Sensor](https://esphome.io/components/sensor/ld2410.html#sensor)*"
       },
+      "ld2420": {
+        "docs": "The `ld2420` sensor allows you to use your [LD2420 24Ghz mmWave Radar Sensor to approximate the distance between the sensor and an object moving within its field of detection.\n\n*See also: [ld2420 Sensor](https://esphome.io/components/sensor/ld2420.html#sensor)*"
+      },
+      "ld2450": {
+        "dependencies": [
+          "ld2450"
+        ],
+        "docs": "The `ld2450` sensor provides you with information about the states and attributes of detected targets.\n\n*See also: [ld2450 Sensor](https://esphome.io/components/sensor/ld2450.html#sensor)*"
+      },
       "ltr390": {
         "dependencies": [
           "i2c"
         ],
         "docs": "The `ltr390` sensor platform  allows you to use your LTR390 UV and ambient light sensor ([datasheet](https://optoelectronics.liteon.com/upload/download/DS86-2015-0004/LTR-390UV_Final_%20DS_V1%201.pdf), [Adafruit](https://www.adafruit.com/product/4831)) with ESPHome.\n\n*See also: [LTR390 UV and Ambient Light Sensor](https://esphome.io/components/sensor/ltr390.html#ltr390-uv-and-ambient-light-sensor)*"
       },
+      "ltr501": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `ltr501` sensor platform allows you to use a range of LiteOn ambient light and proximity sensors with ESPHome.\n\n*See also: [Lite-On Ambient Light & Proximity Sensors](https://esphome.io/components/sensor/ltr501.html#lite-on-ambient-light-proximity-sensors)*"
+      },
+      "ltr_als_ps": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `ltr_als_ps` sensor platform allows you to use a range of LiteOn ambient light and proximity sensors with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [Lite-On Ambient Light & Proximity Sensors](https://esphome.io/components/sensor/ltr_als_ps.html#lite-on-ambient-light-proximity-sensors)*"
+      },
+      "lvgl": {
+        "docs": "The `lvgl` sensor platform creates a sensor component from an LVGL widget and requires [LVGL](https://esphome.io/components/lvgl/index.html) to be configured.\n\n*See also: [LVGL Sensor](https://esphome.io/components/sensor/lvgl.html#lvgl-sensor)*"
+      },
+      "m5stack_8angle": {
+        "docs": "The `m5stack_8angle` platform allows to use the [m5angle]([https://docs.m5stack.com/en/unit/UNIT%208Angle](https://docs.m5stack.com/en/unit/UNIT%208Angle)) input device with ESPHome. It has 8 knobs, a switch and can individually drive 9 RGB LEDs.\n\n*See also: [M5Stack Unit 8 Angle](https://esphome.io/components/sensor/m5stack_8angle.html#m5stack-unit-8-angle)*"
+      },
+      "max17043": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The MAX17043 platform allows you to use a MAX17043 to more accurately monitor the remaining capacity of a LIPO battery ([datasheet](https://www.analog.com/en/products/max17043.html#documentation), [DFRobot](https://www.dfrobot.com/product-1734.html)) in ESPHome. It uses the [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) for communication (the address is fixed at 0x36).\n\n*See also: [Analog Devices MAX17043 battery fuel gauge](https://esphome.io/components/sensor/max17043.html#analog-devices-max17043-battery-fuel-gauge)*"
+      },
       "max31855": {
         "docs": "The `max31855` temperature sensor allows you to use your MAX31855 thermocouple temperature sensor ([datasheet](https://datasheets.maximintegrated.com/en/ds/MAX31855.pdf)) with ESPHome\n\n*See also: [MAX31855 K-Type Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31855.html#max31855-k-type-thermocouple-temperature-sensor)*"
       },
       "max31856": {
-        "docs": "The `MAX31856` temperature sensor allows you to use your MAX31856 Thermocouple temperature sensor ([datasheet](https://datasheets.maximintegrated.com/en/ds/MAX31856.pdf)) with ESPHome. Although the chip supports multiple thermocouple types, this component only implements the `K` type.\n\n*See also: [MAX31856 Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31856.html#max31856-thermocouple-temperature-sensor)*"
+        "docs": "The `MAX31856` temperature sensor allows you to use your MAX31856 Thermocouple temperature sensor ([datasheet](https://datasheets.maximintegrated.com/en/ds/MAX31856.pdf)) with ESPHome.\n\n*See also: [MAX31856 Thermocouple Temperature Sensor](https://esphome.io/components/sensor/max31856.html#max31856-thermocouple-temperature-sensor)*"
       },
       "max31865": {
         "dependencies": [
@@ -493,6 +689,7 @@
         ],
         "docs": "The `mhz19` sensor platform allows you to use MH-Z19 CO_2 and temperature sensors ([Revspace](https://revspace.nl/MHZ19)) with ESPHome. The CO_2 measurement also works with the MH-Z16 and MH-Z14 sensors.\n\n*See also: [MH-Z19 CO_2 and Temperature Sensor](https://esphome.io/components/sensor/mhz19.html#mh-z19-co-2-and-temperature-sensor)*"
       },
+      "micronova": {},
       "mics_4514": {
         "dependencies": [
           "i2c"
@@ -517,6 +714,12 @@
         ],
         "docs": "The `mmc5603` allows you to use your MMC5603 triple-axis magnetometers ([datasheet](https://cdn-learn.adafruit.com/assets/assets/000/113/957/original/MMC5603NJ_RevB_7-12-18.pdf?1659554945), [Adafruit](https://www.adafruit.com/product/5579)) with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [MMC5603 Magnetometer](https://esphome.io/components/sensor/mmc5603.html#mmc5603-magnetometer)*"
       },
+      "mmc5983": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `mmc5983` component allows you to use your MMC5983 triple-axis magnetometer ([datasheet](https://www.memsic.com/Public/Uploads/uploadfile/files/20220119/MMC5983MADatasheetRevA.pdf), [SparkFun](https://www.sparkfun.com/products/19921)) with ESPHome.\n\n*See also: [MMC5983 Magnetometer](https://esphome.io/components/sensor/mmc5983.html#mmc5983-magnetometer)*"
+      },
       "modbus_controller": {
         "dependencies": [
           "modbus_controller"
@@ -527,7 +730,7 @@
         "dependencies": [
           "esp32_ble_tracker"
         ],
-        "docs": "The `mopeka_pro_check` sensor platform lets you track the output of Mopeka Pro Check LP, Mopeka Pro Plus, or Lippert Propane Tank Sensors,   Bluetooth Low Energy devices using the [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html). This component will track the tank level, distance, temperature, and battery percentage of a Mopeka Pro Check LP or Mopeka Pro Plus Residential BLE device every time the sensor sends out a BLE broadcast.\n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#mopeka-pro-check-ble-sensor)*"
+        "docs": "The `mopeka_pro_check` sensor platform lets you track the output of Mopeka Pro Check LP, Mopeka Pro Plus, Mopeka Pro Universal or Lippert Propane Tank Sensors,   Bluetooth Low Energy devices using the [ESP32 Bluetooth Low Energy Tracker Hub](https://esphome.io/components/esp32_ble_tracker.html). This component will track the tank level, distance, temperature, battery percentage, and sensor reading quality of a device every time the sensor sends out a BLE broadcast.  There are additional configuration options to control handling of poor quality readings and reporting reading quality issues.\n\n*See also: [Mopeka Pro Check BLE Sensor](https://esphome.io/components/sensor/mopeka_pro_check.html#mopeka-pro-check-ble-sensor)*"
       },
       "mopeka_std_check": {
         "dependencies": [
@@ -565,11 +768,41 @@
         ],
         "docs": "The `ms5611` sensor platform allows you to use your MS5611 atmospheric pressure sensors ([hobbytronics](http://www.hobbytronics.co.uk/ms5611-altitude-sensor)) temperature and pressure sensors with ESPHome. The [I\u00b2C](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [MS5611 Atmospheric Pressure Sensor](https://esphome.io/components/sensor/ms5611.html#ms5611-atmospheric-pressure-sensor)*"
       },
+      "ms8607": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `ms8607` sensor platform allows you to use your MS8607 ([datasheet](https://www.te.com/commerce/DocumentDelivery/DDEController?Action=srchrtrv&DocNm=MS8607-02BA01&DocType=DS&DocLang=English), [Adafruit](https://www.adafruit.com/product/4716)) temperature, pressure and humidity sensors with ESPHome. An [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [MS8607 Temperature+Pressure+Humidity Sensor](https://esphome.io/components/sensor/ms8607.html#ms8607-temperature-pressure-humidity-sensor)*"
+      },
+      "msa3xx": {
+        "dependencies": [
+          "msa3xx"
+        ],
+        "docs": "Acceleration data is available through sensors configuration. You can use shorthand notation like `acceleration_x: \"Acceleration X\"` or use regular notation. For regular notation only the **name** is required. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [msa3xx Sensor](https://esphome.io/components/sensor/msa3xx.html#sensor)*"
+      },
+      "nau7802": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `nau7802` sensor platform allows you to use your NAU7802 ADC ([datasheet](https://www.nuvoton.com/resource-files/NAU7802%20Data%20Sheet%20V1.7.pdf), [Adafruit](https://www.adafruit.com/product/4538)) with ESPHome. This ADC is typically used with strain gauges to act as a weight sensor.\n\n*See also: [NAU7802 24-bit ADC](https://esphome.io/components/sensor/nau7802.html#nau7802-24-bit-adc)*"
+      },
       "nextion": {
         "docs": "The `nextion` sensor platform supports integers or floats (Xfloat). It can be a component, a variable or a waveform in the Nextion display. It is best to set the component\u2019s vscope to global in the Nextion Editor. This way the component will be available if the page is shown or not.\n\n*See also: [Nextion Sensor Component](https://esphome.io/components/sensor/nextion.html#nextion-sensor-component)*"
       },
+      "npi19": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `npi19` sensor platform allows you to use your NPI-19 ([datasheet](https://www.amphenol-sensors.com/hubfs/AAS-920-699F-NovaSensor-NPI-19-I2C-061322-web.pdf), [product page](https://www.amphenol-sensors.com/en/novasensor/pressure-sensors/3358-npi-19-i2c)) pressure sensors with ESPHome.\n\n*See also: [NPI-19 Pressure Sensor](https://esphome.io/components/sensor/npi19.html#npi-19-pressure-sensor)*"
+      },
       "ntc": {
         "docs": "The `ntc` platform is a helper sensor that allows you to convert resistance readings from a NTC thermistor to temperature readings.\n\n*See also: [NTC Sensor](https://esphome.io/components/sensor/ntc.html#ntc-sensor)*"
+      },
+      "opentherm": {
+        "dependencies": [
+          "opentherm"
+        ],
+        "docs": "The boiler can also report several numerical values, which are available through sensors. Your boiler may not support all of these values, in which case there won\u2019t be any value published to that sensor. The following sensors are available:\n\n*See also: [opentherm Sensor](https://esphome.io/components/opentherm.html#sensor)*"
       },
       "pid": {
         "docs": "Additionally, the PID climate platform provides an optional sensor platform to monitor the calculated PID parameters to help finding good PID values.\n\n*See also: [pid Sensor](https://esphome.io/components/climate/pid.html#pid-sensor)*"
@@ -585,6 +818,11 @@
           "uart"
         ],
         "docs": "The `pm1006` sensor platform allows you to use Cubic PM1006 particulate matter sensors ([datasheet](http://www.jdscompany.co.kr/download.asp?gubun=07&filename=PM1006_LED_PARTICLE_SENSOR_MODULE_SPECIFICATIONS.pdf)) with ESPHome.\n\n*See also: [PM1006 Particulate Matter Sensor](https://esphome.io/components/sensor/pm1006.html#pm1006-particulate-matter-sensor)*"
+      },
+      "pm2005": {
+        "dependencies": [
+          "i2c"
+        ]
       },
       "pmsa003i": {
         "dependencies": [
@@ -608,7 +846,7 @@
         "docs": "The pulse counter sensor allows you to count the number of pulses and the frequency of a signal on any pin.\n\n*See also: [Pulse Counter Sensor](https://esphome.io/components/sensor/pulse_counter.html#pulse-counter-sensor)*"
       },
       "pulse_meter": {
-        "docs": "The pulse meter sensor allows you to count the number and frequency of pulses on any pin. It is intended to be a drop-in replacement for [integration sensor](https://esphome.io/components/sensor/pulse_counter.html), but offering better resolution. It measures the time between rising edges on a pin, for each pulse it outputs the frequency in pulses/min.\n\n*See also: [Pulse Meter Sensor](https://esphome.io/components/sensor/pulse_meter.html#pulse-meter-sensor)*"
+        "docs": "The pulse meter sensor allows you to count the number and frequency of pulses on any pin. It is intended to be a drop-in replacement for the [pulse counter component](https://esphome.io/components/sensor/pulse_counter.html). Rather than counting pulses over a fixed time interval, the pulse meter sensor measures the time between pulses. The precise manner in which this is done depends on the `internal_filter_mode` option. This leads to a higher resolution, especially for low pulse rates, as the pulse counter sensor is limited by the number of pulses within a time interval.\n\n*See also: [Pulse Meter Sensor](https://esphome.io/components/sensor/pulse_meter.html#pulse-meter-sensor)*"
       },
       "pulse_width": {
         "docs": "The `pulse_width` sensor allows you to measure how long a given digital signal is HIGH. For example this can be used to measure PWM signals to transmit some value over a simple protocol. The unit of measurement for this sensor is seconds.\n\n*See also: [Pulse Width Sensor](https://esphome.io/components/sensor/pulse_width.html#pulse-width-sensor)*"
@@ -617,6 +855,9 @@
         "dependencies": [
           "esp32_ble_tracker"
         ]
+      },
+      "pylontech": {
+        "docs": "All values are reported for every Pylontech battery individually.\n\n*See also: [pylontech Sensor](https://esphome.io/components/pylontech.html#sensor)*"
       },
       "pzem004t": {
         "dependencies": [
@@ -670,7 +911,7 @@
         "dependencies": [
           "i2c"
         ],
-        "docs": "The `scd4x` sensor platform  allows you to use your Sensirion SCD4X CO\u2082 ([datasheet](https://sensirion.com/media/documents/C4B87CE6/627C2DCD/CD_DS_SCD40_SCD41_Datasheet_D1.pdf)) sensors with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [SCD4X CO\u2082, Temperature and Relative Humidity Sensor](https://esphome.io/components/sensor/scd4x.html#scd4x-co2-temperature-and-relative-humidity-sensor)*"
+        "docs": "The `scd4x` sensor platform  allows you to use your Sensirion SCD4X CO\u2082 ([datasheet](https://sensirion.com/media/documents/48C4B7FB/66E05452/CD_DS_SCD4x_Datasheet_D1.pdf)) sensors with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [SCD4X CO\u2082, Temperature and Relative Humidity Sensor](https://esphome.io/components/sensor/scd4x.html#scd4x-co2-temperature-and-relative-humidity-sensor)*"
       },
       "sdm_meter": {
         "docs": "The `sdm_meter` sensor platform allows you to use Eastron SDM modbus energy monitors ([website](http://www.eastrongroup.com/product_detail.php?id=170&menu1=&menu2=)) with ESPHome.\n\n*See also: [Eastron SDM Energy Monitor](https://esphome.io/components/sensor/sdm_meter.html#eastron-sdm-energy-monitor)*"
@@ -686,6 +927,15 @@
           "uart"
         ],
         "docs": "The `sds011` sensor platform allows you to use SDS011 particulate matter sensors ([datasheet](https://nettigo.pl/attachments/398)) with ESPHome.\n\n*See also: [SDS011 Particulate Matter Sensor](https://esphome.io/components/sensor/sds011.html#sds011-particulate-matter-sensor)*"
+      },
+      "seeed_mr24hpc1": {
+        "docs": "The `seeed_mr24hpc1` sensor allows you to perform different measurements.\n\n*See also: [seeed_mr24hpc1 Sensor](https://esphome.io/components/seeed_mr24hpc1.html#sensor)*"
+      },
+      "seeed_mr60bha2": {
+        "dependencies": [
+          "seeed_mr60bha2"
+        ],
+        "docs": "The `seeed_mr60bha2` sensor allows you to perform different measurements.\n\n*See also: [seeed_mr60bha2 Sensor](https://esphome.io/components/seeed_mr60bha2.html#sensor)*"
       },
       "selec_meter": {
         "docs": "The `selec_meter` sensor platform allows you to use Selec Modbus energy monitors ([website](https://www.selec.com/product-details/energy-meter-direct-operated-em2m)) with ESPHome.\n\n*See also: [Selec Energy Monitor](https://esphome.io/components/sensor/selec_meter.html#selec-energy-monitor)*"
@@ -714,6 +964,12 @@
         ],
         "docs": "The `senseair` sensor platform allows you to use SenseAir CO_2 sensor ([website](https://senseair.com/products/size-counts/s8-residential/)) with ESPHome.\n\n*See also: [SenseAir CO_2 Sensor](https://esphome.io/components/sensor/senseair.html#senseair-co-2-sensor)*"
       },
+      "sfa30": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `sfa30` sensor platform  allows you to use your Sensirion SFA30 Formaldehyde ([datasheet](https://sensirion.com/media/documents/DEB1C6D6/63D92360/Sensirion_formaldehyde_sensors_datasheet_SFA30.pdf)) sensors with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work. This sensor supports both UART and I\u00b2C communication. However, at the moment only I\u00b2C communication is implemented.\n\n*See also: [SFA30 Formaldehyde Sensor](https://esphome.io/components/sensor/sfa30.html#sfa30-formaldehyde-sensor)*"
+      },
       "sgp30": {
         "dependencies": [
           "i2c"
@@ -731,7 +987,7 @@
         "dependencies": [
           "i2c"
         ],
-        "docs": "The `sht3xd` sensor platform Temperature+Humidity sensor allows you to use your Sensirion SHT31-D/SHT3x ([datasheet](https://cdn-shop.adafruit.com/product-files/2857/Sensirion_Humidity_SHT3x_Datasheet_digital-767294.pdf), [Adafruit](https://www.adafruit.com/product/2857) ) sensors with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [SHT3X-D Temperature+Humidity Sensor](https://esphome.io/components/sensor/sht3xd.html#sht3x-d-temperature-humidity-sensor)*"
+        "docs": "The `sht3xd` sensor platform Temperature+Humidity sensor allows you to use your Sensirion SHT31-D/SHT3x ([datasheet](https://cdn-shop.adafruit.com/product-files/2857/Sensirion_Humidity_SHT3x_Datasheet_digital-767294.pdf), [Adafruit](https://www.adafruit.com/product/2857) ) and SHT85 ([datasheet](https://sensirion.com/media/documents/4B40CEF3/640B2346/Sensirion_Humidity_Sensors_SHT85_Datasheet.pdf), [Sensirion](https://sensirion.com/products/catalog/SHT85/) ) sensors with Esphome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [SHT3X-D Temperature+Humidity Sensor](https://esphome.io/components/sensor/sht3xd.html#sht3x-d-temperature-humidity-sensor)*"
       },
       "sht4x": {
         "dependencies": [
@@ -758,7 +1014,7 @@
         "docs": "The `sm300d2` sensor platform allows you to use the SM300D2 7-in-1 Air Quality Sensor with ESPHome.\n\n*See also: [SM300D2 7-in-1 Air Quality Sensor](https://esphome.io/components/sensor/sm300d2.html#sm300d2-7-in-1-air-quality-sensor)*"
       },
       "sml": {
-        "docs": "**obis_code** (*Required*, string): Specify the OBIS code you want to retrieve data for from the device. The format must be (A-B:C.D.E, e.g. 1-0:1.8.0)\n\n*See also: [sml Sensor](https://esphome.io/components/sml.html#sensor)*"
+        "docs": "**string**: Specify the OBIS code you want to retrieve data for from the device. The format must be (A-B:C.D.E, e.g. 1-0:1.8.0)\n\n*See also: [sml Sensor](https://esphome.io/components/sml.html#sensor)*"
       },
       "smt100": {
         "dependencies": [
@@ -784,11 +1040,20 @@
         ],
         "docs": "Additionally, the sun component exposes its values over a sensor platform.\n\n*See also: [sun Sensor](https://esphome.io/components/sun.html#sun-sensor)*"
       },
+      "sun_gtil2": {
+        "docs": "**sun_gtil2_id** (*Optional*): Manually specify the ID of the sun_gtil2 instance if there are multiple.\n\n*See also: [sun_gtil2 Sensor](https://esphome.io/components/sun_gtil2.html#sensor)*"
+      },
       "t6615": {
         "dependencies": [
           "uart"
         ],
         "docs": "The `t6615` sensor platform allows you to use T6613 and T6615 family sensors ([amphenol](https://amphenol-sensors.com/en/telaire/co2/525-co2-sensor-modules/319-t6615)) with ESPHome. T6613 sensors are unreferenced and require ABC to calibrate daily, while the T6615 sensors have a sealed reference gas and do not require ABC calibration. All ppm ranges are supported by this platform.\n\n*See also: [T6613/15 CO2 Sensors](https://esphome.io/components/sensor/t6615.html#t6613-15-co2-sensors)*"
+      },
+      "tc74": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The TC74 sensor platform allows you to use your TC74 ([datasheet](https://ww1.microchip.com/downloads/en/DeviceDoc/21462D.pdf), [Adafruit](https://www.adafruit.com/product/4375)) temperature sensors with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work.\n\n*See also: [TC74 Temperature Sensor](https://esphome.io/components/sensor/tc74.html#tc74-temperature-sensor)*"
       },
       "tcs34725": {
         "dependencies": [
@@ -805,8 +1070,14 @@
       "teleinfo": {
         "docs": "**string**: Specify the tag you want to retrieve from the Teleinformation.\n\n*See also: [teleinfo Sensor](https://esphome.io/components/sensor/teleinfo.html#sensor)*"
       },
+      "tem3200": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `tem3200` sensor platform allows you to use your TE-M3200 ([datasheet](https://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Data+Sheet%7FM3200%7FA20%7Fpdf%7FEnglish%7FENG_DS_M3200_A20.pdf), [product page](https://www.te.com/en/product-CAT-PTT0068.html)) pressure sensors with ESPHome.\n\n*See also: [TE-M3200 Pressure Sensor](https://esphome.io/components/sensor/tem3200.html#te-m3200-pressure-sensor)*"
+      },
       "template": {
-        "docs": "The `template` sensor platform allows you to create a sensor with templated values using [lambdas](https://esphome.io/guides/automations.html#config-lambda).\n\n*See also: [Template Sensor](https://esphome.io/components/sensor/template.html#template-sensor)*"
+        "docs": "The `template` sensor platform allows you to create a sensor with templated values using [lambdas](https://esphome.io/automations/templates.html#config-lambda).\n\n*See also: [Template Sensor](https://esphome.io/components/sensor/template.html#template-sensor)*"
       },
       "tmp102": {
         "dependencies": [
@@ -830,7 +1101,7 @@
         "dependencies": [
           "i2c"
         ],
-        "docs": "The `tof10120` sensor platform allows you to use TOF10120 optical time of flight sensor ([datasheet](https://github.com/simpleiot/reference/blob/master/sensors/TOF10120_english.pdf)) with ESPHome to measure distances. The sensor works optically by emitting short infrared pulses and measuring the time it takes the light to be reflected back.\n\n*See also: [TOF10120 Time Of Flight Distance Sensor](https://esphome.io/components/sensor/tof10120.html#tof10120-time-of-flight-distance-sensor)*"
+        "docs": "The `tof10120` sensor platform allows you to use TOF10120 optical time of flight sensor ([datasheet](https://github.com/SoyM/TOF10120/blob/master/TOF10120.pdf)) with ESPHome to measure distances. The sensor works optically by emitting short infrared pulses and measuring the time it takes the light to be reflected back.\n\n*See also: [TOF10120 Time Of Flight Distance Sensor](https://esphome.io/components/sensor/tof10120.html#tof10120-time-of-flight-distance-sensor)*"
       },
       "total_daily_energy": {
         "dependencies": [
@@ -857,7 +1128,13 @@
         "docs": "The `tuya` sensor platform creates a sensor from a tuya component and requires [Tuya MCU](https://esphome.io/components/tuya.html) to be configured.\n\n*See also: [Tuya Sensor](https://esphome.io/components/sensor/tuya.html#tuya-sensor)*"
       },
       "tx20": {
-        "docs": "The `tx20` sensor platform allows you to use your TX20/TX23 ([Amazon](https://www.amazon.de/Technoline-Tx-20/dp/B01HXZ3KLA), [lacrosse_tx23](https://www.lacrossetechnology.com/tx23-wind-sensor)) wind direction and speed sensors with ESPHome. The only required pin is the black or brown cable (which is used to transmit data.) The red cable should be connected to VCC (3.3V), green initiates the data transfer when connected to GND and should therefore be directly connected to GND and the yellow cable should be always connected to ground. The difference from the TX20 to the TX23 seems to be that the green cable does not matter any more and the wind sensor is just sending a datagram every 2 seconds - pretty much the same as when the green cable was connected to GND in the TX20.\n\n*See also: [TX20/TX23 Wind Speed/Direction Sensor](https://esphome.io/components/sensor/tx20.html#tx20-tx23-wind-speed-direction-sensor)*"
+        "docs": "The `tx20` sensor platform allows you to use your TX20/TX23 wind direction and speed sensors with ESPHome. The only required pin is the black or brown cable (which is used to transmit data.) The red cable should be connected to VCC (3.3V), green initiates the data transfer when connected to GND and should therefore be directly connected to GND and the yellow cable should be always connected to ground. The difference from the TX20 to the TX23 seems to be that the green cable does not matter any more and the wind sensor is just sending a datagram every 2 seconds - pretty much the same as when the green cable was connected to GND in the TX20.\n\n*See also: [TX20/TX23 Wind Speed/Direction Sensor](https://esphome.io/components/sensor/tx20.html#tx20-tx23-wind-speed-direction-sensor)*"
+      },
+      "udp": {
+        "dependencies": [
+          "udp"
+        ],
+        "docs": "The `udp` sensor platform allows you to receive numeric sensor data directly from another ESPHome node.\n\n*See also: [UDP Sensor](https://esphome.io/components/sensor/udp.html#udp-sensor)*"
       },
       "ufire_ec": {
         "dependencies": [
@@ -869,16 +1146,33 @@
         "dependencies": [
           "i2c"
         ],
-        "docs": "The `ufire_ise` sensor platform allows you to use your uFire ISE pH sensor with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work. It required also to have an temperature sensor in the liquit tank; this can be on the same board or external sensor linked to the uFire ISE pH configuration.\n\n*See also: [uFire ISE pH sensor](https://esphome.io/components/sensor/ufire_ise.html#ufire-ise-ph-sensor)*"
+        "docs": "The `ufire_ise` sensor platform allows you to use your uFire ISE pH sensor with ESPHome. The [I\u00b2C Bus](https://esphome.io/components/i2c.html#i2c) is required to be set up in your configuration for this sensor to work. It required also to have an temperature sensor in the liquid tank; this can be on the same board or external sensor linked to the uFire ISE pH configuration.\n\n*See also: [uFire ISE pH sensor](https://esphome.io/components/sensor/ufire_ise.html#ufire-ise-ph-sensor)*"
       },
       "ultrasonic": {
         "docs": "The ultrasonic distance sensor allows you to use simple ultrasonic sensors like the HC-SR04 ([datasheet](https://www.electroschematics.com/wp-content/uploads/2013/07/HC-SR04-datasheet-version-2.pdf), [SparkFun](https://www.sparkfun.com/products/13959)) with ESPHome to measure distances. These sensors usually can\u2019t measure anything more than about two meters and may sometimes make some annoying clicking sounds.\n\n*See also: [Ultrasonic Distance Sensor](https://esphome.io/components/sensor/ultrasonic.html#ultrasonic-distance-sensor)*"
+      },
+      "uponor_smatrix": {
+        "dependencies": [
+          "uponor_smatrix"
+        ]
       },
       "uptime": {
         "docs": "The `uptime` sensor allows you to track the time the ESP has stayed up for in seconds. Time rollovers are automatically handled.\n\n*See also: [Uptime Sensor](https://esphome.io/components/sensor/uptime.html#uptime-sensor)*"
       },
       "vbus": {
         "docs": "Devices on a VBus are identified with a source address. There can be multiple devices on the same bus, each device type has a different address.\n\n*See also: [`custom` VBus sensors](https://esphome.io/components/vbus.html#custom-vbus-sensors)*"
+      },
+      "veml3235": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `veml3235` sensor platform allows you to use the Vishay VEML3235 ambient light sensor with ESPHome. Communication with the device is over [I\u00b2C](https://esphome.io/components/i2c.html#i2c), which must be present in your configuration.\n\n*See also: [VEML3235 Ambient Light Sensor](https://esphome.io/components/sensor/veml3235.html#veml3235-ambient-light-sensor)*"
+      },
+      "veml7700": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The `veml7700` sensor platform allows you to use the Vishay VEML7700 and VEML6030 ambient light sensors with ESPHome. Communication with the device is over [I\u00b2C](https://esphome.io/components/i2c.html#i2c), which must be present in your configuration. VEML7700 and VEML6030 are basically the same but in different packages. The VEML7700 uses a fixed address of `0x10`, while the smaller VEML6030 can be configured to use either `0x10` or `0x48`.\n\n*See also: [VEML7700 and VEML6030 Ambient Light Sensors](https://esphome.io/components/sensor/veml7700.html#veml7700-and-veml6030-ambient-light-sensors)*"
       },
       "vl53l0x": {
         "dependencies": [
@@ -896,6 +1190,12 @@
         "dependencies": [
           "wireguard"
         ]
+      },
+      "xgzp68xx": {
+        "dependencies": [
+          "i2c"
+        ],
+        "docs": "The XGZP68xx Differential Pressure sensor allows you to use digital differential pressure sensors such as the 6899D ([datasheet](https://cfsensor.com/wp-content/uploads/2022/11/XGZP6899D-Pressure-Sensor-V2.8.pdf)) or 6897D Series ([datasheet](https://cfsensor.com/wp-content/uploads/2022/11/XGZP6897D-Pressure-Sensor-V2.7.pdf)) sensors with ESPHome. The sensors pressure ranges are specified in the datasheets.\n\n*See also: [CFSensor XGZP68xx Series Differential Pressure Sensor](https://esphome.io/components/sensor/xgzp68xx.html#cfsensor-xgzp68xx-series-differential-pressure-sensor)*"
       },
       "xiaomi_cgd1": {
         "dependencies": [
@@ -922,6 +1222,12 @@
           "esp32_ble_tracker"
         ]
       },
+      "xiaomi_hhccjcy10": {
+        "dependencies": [
+          "esp32_ble_tracker"
+        ],
+        "docs": "MiFlora, tuya (pink) version, measures temperature, moisture, ambient light and nutrient levels in the soil.\n\n*See also: [HHCCJCY10 Xiaomi MiFlora (Pink version)](https://esphome.io/components/sensor/xiaomi_hhccjcy10.html#hhccjcy10-xiaomi-miflora-pink-version)*"
+      },
       "xiaomi_hhccpot002": {
         "dependencies": [
           "esp32_ble_tracker"
@@ -933,6 +1239,11 @@
         ]
       },
       "xiaomi_lywsd02": {
+        "dependencies": [
+          "esp32_ble_tracker"
+        ]
+      },
+      "xiaomi_lywsd02mmc": {
         "dependencies": [
           "esp32_ble_tracker"
         ]
@@ -988,6 +1299,27 @@
             "core.MQTT_COMPONENT_SCHEMA"
           ],
           "config_vars": {
+            "web_server": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "web_server_id": {
+                    "key": "Optional",
+                    "use_id_type": "web_server::WebServer",
+                    "type": "use_id"
+                  },
+                  "sorting_weight": {
+                    "key": "Optional"
+                  },
+                  "sorting_group_id": {
+                    "key": "Optional",
+                    "use_id_type": "int",
+                    "type": "use_id"
+                  }
+                }
+              }
+            },
             "mqtt_id": {
               "key": "Optional",
               "id_type": {
@@ -1006,7 +1338,7 @@
                   "EntityBase"
                 ]
               },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Set the ID of this sensor for use in lambdas.\n\n*See also: [sim800l Sensor](https://esphome.io/components/sim800l.html#sensor)*"
+              "docs": "**string**: Manually specify the ID for code generation. At least one of **id** and **name** must be specified.\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
             },
             "unit_of_measurement": {
               "key": "Optional",
@@ -1028,6 +1360,7 @@
                 "battery": null,
                 "carbon_dioxide": null,
                 "carbon_monoxide": null,
+                "conductivity": null,
                 "current": null,
                 "data_rate": null,
                 "data_size": null,
@@ -1068,12 +1401,13 @@
                 "volatile_organic_compounds_parts": null,
                 "voltage": null,
                 "volume": null,
+                "volume_flow_rate": null,
                 "volume_storage": null,
                 "water": null,
                 "weight": null,
                 "wind_speed": null
               },
-              "docs": "**string**: The device class for the sensor. See [https://developers.home-assistant.io/docs/core/entity/sensor/#available-device-classes](https://developers.home-assistant.io/docs/core/entity/sensor/#available-device-classes) for a list of available options. Set to `\"\"` to remove the default device class of a sensor.\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
+              "docs": "**string**: The device class for the sensor. See [https://www.home-assistant.io/integrations/sensor/#device-class](https://www.home-assistant.io/integrations/sensor/#device-class) for a list of available options. Set to `\"\"` to remove the default device class of a sensor.\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
             },
             "state_class": {
               "key": "Optional",
@@ -1086,6 +1420,7 @@
               },
               "docs": "**string**: The state class for the sensor. See [https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes](https://developers.home-assistant.io/docs/core/entity/sensor/#available-state-classes) for a list of available options. Set to `\"\"` to remove the default state class of a sensor.\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
             },
+            "entity_category": {},
             "force_update": {
               "key": "Optional",
               "default": "False",
@@ -1112,12 +1447,12 @@
             "on_value": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a new value is published. See [on_value](https://esphome.io/components/sensor/index.html#sensor-on-value).\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when a new value is published. See [on_value](https://esphome.io/components/sensor/index.html#sensor-on-value).\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
             },
             "on_raw_value": {
               "key": "Optional",
               "type": "trigger",
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a raw value is received that hasn\u2019t passed through any filters. See [on_raw_value](https://esphome.io/components/sensor/index.html#sensor-on-raw-value).\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when a raw value is received that hasn\u2019t passed through any filters. See [on_raw_value](https://esphome.io/components/sensor/index.html#sensor-on-raw-value).\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
             },
             "on_value_range": {
               "key": "Optional",
@@ -1140,7 +1475,7 @@
                 }
               },
               "has_required_var": true,
-              "docs": "**[Automation](https://esphome.io/guides/automations.html#automation)**: An automation to perform when a published value transition from outside to a range to inside. See [on_value_range](https://esphome.io/components/sensor/index.html#sensor-on-value-range).\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when a published value transition from outside to a range to inside. See [on_value_range](https://esphome.io/components/sensor/index.html#sensor-on-value-range).\n\n*See also: [Sensor Component](https://esphome.io/components/sensor/index.html#base-sensor-configuration)*"
             }
           }
         }
@@ -1354,7 +1689,8 @@
             },
             "value": {
               "key": "Optional",
-              "default": "nan"
+              "default": "nan",
+              "templatable": true
             }
           }
         }
@@ -1372,6 +1708,12 @@
               "key": "Optional",
               "default": "NaN",
               "docs": "**float**: The upper bound of the range.\n\n*See also: [clamp](https://esphome.io/components/sensor/index.html#clamp)*"
+            },
+            "ignore_out_of_range": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean",
+              "docs": "**bool**: If true, ignores all sensor values out of the range. Defaults to `false`.\n\n*See also: [clamp](https://esphome.io/components/sensor/index.html#clamp)*"
             }
           }
         }
@@ -1410,12 +1752,15 @@
     },
     "filter": {
       "offset": {
-        "docs": "Adds a constant value to each sensor value.\n\n*See also: [`offset`](https://esphome.io/components/sensor/index.html#offset)*"
+        "templatable": true,
+        "docs": "Adds a value to each sensor value. The value may be a constant or a lambda returning a float.\n\n*See also: [`offset`](https://esphome.io/components/sensor/index.html#offset)*"
       },
       "multiply": {
-        "docs": "Multiplies each value by a constant value.\n\n*See also: [`multiply`](https://esphome.io/components/sensor/index.html#multiply)*"
+        "templatable": true,
+        "docs": "Multiplies each value by a templatable value.\n\n*See also: [`multiply`](https://esphome.io/components/sensor/index.html#multiply)*"
       },
       "filter_out": {
+        "templatable": true,
         "docs": "**number**: Filter out specific values to be displayed. For example to filter out the value `85.0`\n\n*See also: [`filter_out`](https://esphome.io/components/sensor/index.html#filter-out)*"
       },
       "quantile": {
@@ -1425,7 +1770,7 @@
             "sensor.QUANTILE_SCHEMA"
           ]
         },
-        "docs": "A [simple moving quantile](https://en.wikipedia.org/wiki/Quantile) over the last few values. This can be used to filter outliers from the received sensor data. A large window size will make the filter slow to react to input changes.\n\n*See also: [`quantile`](https://esphome.io/components/sensor/index.html#quantile)*"
+        "docs": "A [simple moving quantile](https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/quantile.htm) over the last few values. This can be used to filter outliers from the received sensor data. A large window size will make the filter slow to react to input changes.\n\n*See also: [`quantile`](https://esphome.io/components/sensor/index.html#quantile)*"
       },
       "median": {
         "type": "schema",
@@ -1475,7 +1820,7 @@
             "sensor.EXPONENTIAL_AVERAGE_SCHEMA"
           ]
         },
-        "docs": "A simple [exponential moving average](https://www.itl.nist.gov/div898/software/dataplot/refman2/auxillar/quantile.htm) over the last few values. It can be used to have a short update interval on the sensor but only push out an average on a specific interval (thus increasing resolution).\n\n*See also: [`exponential_moving_average`](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
+        "docs": "A simple [exponential moving average](https://en.wikipedia.org/wiki/Moving_average#Exponential_moving_average) over the last few values. It can be used to have a short update interval on the sensor but only push out an average on a specific interval (thus increasing resolution).\n\n*See also: [`exponential_moving_average`](https://esphome.io/components/sensor/index.html#exponential-moving-average)*"
       },
       "throttle_average": {
         "type": "schema",
@@ -1502,7 +1847,7 @@
         "type": "registry",
         "is_list": true,
         "registry": "sensor.filter",
-        "docs": "Pass forward a value with the first child filter that returns. Above example will only pass forward values that are *either* at least 1s old or are if the absolute difference is at least 5.0.\n\n*See also: [`or`](https://esphome.io/components/sensor/index.html#or)*"
+        "docs": "Pass forward a value with the first child filter that returns. Below example will only pass forward values that are *either* at least 1s old or are if the absolute difference is at least 5.0.\n\n*See also: [`or`](https://esphome.io/components/sensor/index.html#or)*"
       },
       "throttle": {
         "type": "schema",
@@ -1529,7 +1874,7 @@
             "sensor.TIMEOUT_SCHEMA"
           ]
         },
-        "docs": "After the first value has been sent, if no subsequent value is published within the `specified time period`, send a value which defaults to `NaN`. Especially useful when data is derived from some other communication channel, e.g. a serial port, which can potentially be interrupted.\n\n*See also: [`timeout`](https://esphome.io/components/sensor/index.html#timeout)*"
+        "docs": "After the first value has been sent, if no subsequent value is published within the `specified time period`, send a templatable value which defaults to `NaN`. Especially useful when data is derived from some other communication channel, e.g. a serial port, which can potentially be interrupted.\n\n*See also: [`timeout`](https://esphome.io/components/sensor/index.html#timeout)*"
       },
       "debounce": {
         "type": "schema",
@@ -1588,7 +1933,35 @@
             "sensor.CLAMP_SCHEMA"
           ]
         },
-        "docs": "Limits the value to the range between `min_value` and `max_value`. Sensor values outside these bounds will be set to `min_value` or `max_value`, respectively. If `min_value` is not set, there is no lower bound, if `max_value` is not set there is no upper bound.\n\n*See also: [`clamp`](https://esphome.io/components/sensor/index.html#clamp)*"
+        "docs": "Limits the value to the range between `min_value` and `max_value`. By default, sensor values outside these bounds will be set to `min_value` or `max_value`, respectively. If `ignore_out_of_range` is true, then sensor values outside those bounds will be ignored. If `min_value` is not set, there is no lower bound; if `max_value` is not set there is no upper bound.\n\n*See also: [`clamp`](https://esphome.io/components/sensor/index.html#clamp)*"
+      },
+      "round": {
+        "type": "schema",
+        "maybe": "accuracy_decimals",
+        "schema": {
+          "config_vars": {
+            "accuracy_decimals": {
+              "key": "Required",
+              "type": "integer",
+              "data_type": "uint8_t"
+            }
+          }
+        },
+        "docs": "Rounds the value to the given decimal places.\n\n*See also: [`round`](https://esphome.io/components/sensor/index.html#round)*"
+      },
+      "round_to_multiple_of": {
+        "type": "schema",
+        "maybe": "multiple",
+        "schema": {
+          "config_vars": {
+            "multiple": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {}
+            }
+          }
+        },
+        "docs": "Rounds the value to the nearest multiple. Takes a float greater than zero.\n\n*See also: [`round_to_multiple_of`](https://esphome.io/components/sensor/index.html#round-to-multiple-of)*"
       }
     }
   }

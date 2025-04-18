@@ -18,19 +18,19 @@
             },
             "gain": {
               "key": "Optional",
-              "default": "2_5X",
+              "default": "1X",
               "type": "enum",
               "values": {
                 "1X": null,
-                "1_33X": null,
+                "1_25X": null,
                 "1_67X": null,
                 "2X": null,
                 "2_5X": null,
                 "3X": null,
-                "4X": null,
+                "3_75X": null,
                 "5X": null
               },
-              "docs": "**int**: Specify the gain. Defaults to `2_5X`. Must be one of\n  * `1X`\n  \n  * `1_33X`\n  \n  * `1_67X`\n  \n  * `2X`\n  \n  * `2_5X`\n  \n  * `3X`\n  \n  * `4X`\n  \n  * `5X`\n  \n  \n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
+              "docs": "**int**: Sets the analog gain. Defaults to `1X`. Must be one of\n  * `1X`\n  \n  * `1_25X`\n  \n  * `1_67X`\n  \n  * `2X`\n  \n  * `2_5X`\n  \n  * `3X`\n  \n  * `3_75X`\n  \n  * `5X`\n  \n  \n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
             },
             "drdy_pin": {
               "key": "Optional",
@@ -43,7 +43,7 @@
             },
             "oversampling": {
               "key": "Optional",
-              "default": "2",
+              "default": "0",
               "type": "integer",
               "docs": "**int**: On-chip oversampling. Defaults to `2`. Must be between `0` and `3`.\n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
             },
@@ -75,19 +75,19 @@
                   },
                   "resolution": {
                     "key": "Optional",
-                    "default": "19BIT",
+                    "default": "DIV_4",
                     "type": "enum",
                     "values": {
-                      "16BIT": null,
-                      "17BIT": null,
-                      "18BIT": null,
-                      "19BIT": null
+                      "DIV_8": null,
+                      "DIV_4": null,
+                      "DIV_2": null,
+                      "DIV_1": null
                     },
-                    "docs": "**int**: Set resolution. Defaults to `19BIT`. Must be one of:\n  * `16BIT`\n  \n  * `17BIT`\n  \n  * `18BIT`\n  \n  * `19BIT`\n  \n  \n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
+                    "docs": "**int**: Specify which part of the full 19-bit value to read. Defaults to `DIV_4`. Must be one of:\n  * `DIV_8`\n  \n  * `DIV_4`\n  \n  * `DIV_2`\n  \n  * `DIV_1`\n  \n  \n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
                   }
                 }
               },
-              "docs": "The information for the x-axis.\n  * **name** (**Required**, string): The name for the x-axis sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * **resolution** (*Optional*, int): Set resolution. Defaults to `19BIT`. Must be one of:\n    * `16BIT`\n    \n    * `17BIT`\n    \n    * `18BIT`\n    \n    * `19BIT`\n    \n    \n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
+              "docs": "The information for the x-axis.\n  * **resolution** (*Optional*, int): Specify which part of the full 19-bit value to read. Defaults to `DIV_4`. Must be one of:\n    * `DIV_8`\n    \n    * `DIV_4`\n    \n    * `DIV_2`\n    \n    * `DIV_1`\n    \n    \n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
             },
             "y_axis": {
               "key": "Optional",
@@ -111,19 +111,19 @@
                   },
                   "resolution": {
                     "key": "Optional",
-                    "default": "19BIT",
+                    "default": "DIV_4",
                     "type": "enum",
                     "values": {
-                      "16BIT": null,
-                      "17BIT": null,
-                      "18BIT": null,
-                      "19BIT": null
+                      "DIV_8": null,
+                      "DIV_4": null,
+                      "DIV_2": null,
+                      "DIV_1": null
                     },
-                    "docs": "**int**: Set resolution. Defaults to `19BIT`. Must be one of:\n  * `16BIT`\n  \n  * `17BIT`\n  \n  * `18BIT`\n  \n  * `19BIT`\n  \n  \n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
+                    "docs": "**int**: Specify which part of the full 19-bit value to read. Defaults to `DIV_4`. Must be one of:\n  * `DIV_8`\n  \n  * `DIV_4`\n  \n  * `DIV_2`\n  \n  * `DIV_1`\n  \n  \n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
                   }
                 }
               },
-              "docs": "The information for the y-axis.\n  * **name** (**Required**, string): The name for the y-axis sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * **resolution** (*Optional*, int): Set resolution. Defaults to `19BIT`. Must be one of:\n    * `16BIT`\n    \n    * `17BIT`\n    \n    * `18BIT`\n    \n    * `19BIT`\n    \n    \n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
+              "docs": "The information for the y-axis.\n  * **resolution** (*Optional*, int): Specify which part of the full 19-bit value to read. Defaults to `DIV_4`. Must be one of:\n    * `DIV_8`\n    \n    * `DIV_4`\n    \n    * `DIV_2`\n    \n    * `DIV_1`\n    \n    \n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
             },
             "z_axis": {
               "key": "Optional",
@@ -147,19 +147,34 @@
                   },
                   "resolution": {
                     "key": "Optional",
-                    "default": "16BIT",
+                    "default": "DIV_4",
                     "type": "enum",
                     "values": {
-                      "16BIT": null,
-                      "17BIT": null,
-                      "18BIT": null,
-                      "19BIT": null
+                      "DIV_8": null,
+                      "DIV_4": null,
+                      "DIV_2": null,
+                      "DIV_1": null
                     },
-                    "docs": "**int**: Set resolution. Defaults to `16BIT`. Must be one of:\n  * `16BIT`\n  \n  * `17BIT`\n  \n  * `18BIT`\n  \n  * `19BIT`\n  \n  \n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
+                    "docs": "**int**: Specify which part of the full 19-bit value to read. Defaults to `DIV_4`. Must be one of:\n  * `DIV_8`\n  \n  * `DIV_4`\n  \n  * `DIV_2`\n  \n  * `DIV_1`\n  \n  \n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
                   }
                 }
               },
-              "docs": "The information for the z-axis.\n  * **name** (**Required**, string): The name for the z-axis sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * **resolution** (*Optional*, int): Set resolution. Defaults to `16BIT`. Must be one of:\n    * `16BIT`\n    \n    * `17BIT`\n    \n    * `18BIT`\n    \n    * `19BIT`\n    \n    \n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
+              "docs": "The information for the z-axis.\n  * **resolution** (*Optional*, int): Specify which part of the full 19-bit value to read. Defaults to `DIV_4`. Must be one of:\n    * `DIV_8`\n    \n    * `DIV_4`\n    \n    * `DIV_2`\n    \n    * `DIV_1`\n    \n    \n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
+            },
+            "temperature_compensation": {
+              "key": "Optional",
+              "default": "False",
+              "docs": "**bool**: On-chip temperature compensation. Defaults to `false`. When enabled, the resolution options `DIV_8` and `DIV_4` cannot be used.\n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
+            },
+            "hallconf": {
+              "key": "Optional",
+              "default": "12",
+              "type": "enum",
+              "values": {
+                "12": null,
+                "0": null
+              },
+              "docs": "**int**: Modifies the hall plate spinning (2-phase vs 4-phase). Defaults to `0xC`. Must be `0xC` or `0x0`.\n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
             },
             "temperature": {
               "key": "Optional",
@@ -189,7 +204,7 @@
                   }
                 }
               },
-              "docs": "Built-in temperature sensor.\n  * **name** (**Required**, string): The name for the temperature sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * **oversampling** (*Optional*, int): On-chip oversampling for the temperature sensor. Defaults to `0`. Must be between `0` and `3`.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
+              "docs": "Built-in temperature sensor.\n  * **oversampling** (*Optional*, int): On-chip oversampling for the temperature sensor. Defaults to `0`. Must be between `0` and `3`.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [MLX90393 Triple-axis Magnetometer](https://esphome.io/components/sensor/mlx90393.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",

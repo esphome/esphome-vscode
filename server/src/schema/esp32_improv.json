@@ -10,21 +10,15 @@
               "id_type": {
                 "class": "esp32_improv::ESP32ImprovComponent",
                 "parents": [
-                  "Component",
-                  "esp32_ble_server::BLEServiceComponent"
+                  "Component"
                 ]
               }
-            },
-            "ble_server_id": {
-              "key": "GeneratedID",
-              "use_id_type": "esp32_ble_server::BLEServer",
-              "type": "use_id"
             },
             "authorizer": {
               "key": "Required",
               "use_id_type": "binary_sensor::BinarySensor",
               "type": "use_id",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: A [binary sensor](https://esphome.io/components/binary_sensor/index.html) to authorize with. Also accepts `none`/`false` to skip authorization.\n\n*See also: [Improv via BLE](https://esphome.io/components/esp32_improv.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: A [binary sensor](https://esphome.io/components/binary_sensor/index.html) to authorize with. Also accepts `none` to skip authorization.\n\n*See also: [Improv via BLE](https://esphome.io/components/esp32_improv.html#configuration-variables)*"
             },
             "status_indicator": {
               "key": "Optional",
@@ -53,6 +47,42 @@
                 ]
               },
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The amount of time until authorization times out and needs to be re-authorized. Defaults to `1min`.\n\n*See also: [Improv via BLE](https://esphome.io/components/esp32_improv.html#configuration-variables)*"
+            },
+            "wifi_timeout": {
+              "key": "Optional",
+              "default": "1min",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              },
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The amount of time to wait before starting the Improv service after Wi-Fi is no longer connected. Defaults to `1min`.\n\n*See also: [Improv via BLE](https://esphome.io/components/esp32_improv.html#configuration-variables)*"
+            },
+            "on_provisioned": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An action to be performed when provisioning has completed. See [on_provisioned](https://esphome.io/components/esp32_improv.html#improv-on-provisioned).\n\n*See also: [Improv via BLE](https://esphome.io/components/esp32_improv.html#configuration-variables)*"
+            },
+            "on_provisioning": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An action to be performed when the device begins the provisioning process. See [on_provisioning](https://esphome.io/components/esp32_improv.html#improv-on-provisioning).\n\n*See also: [Improv via BLE](https://esphome.io/components/esp32_improv.html#configuration-variables)*"
+            },
+            "on_start": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An action to be performed when Improv is waiting for authorization and/or upon authorization. See [on_start](https://esphome.io/components/esp32_improv.html#improv-on-start).\n\n*See also: [Improv via BLE](https://esphome.io/components/esp32_improv.html#configuration-variables)*"
+            },
+            "on_state": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An action to be performed when an Improv state change happens. See [on_state](https://esphome.io/components/esp32_improv.html#improv-on-state).\n\n*See also: [Improv via BLE](https://esphome.io/components/esp32_improv.html#configuration-variables)*"
+            },
+            "on_stop": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An action to be performed when Improv has stopped. See [on_stop](https://esphome.io/components/esp32_improv.html#improv-on-stop).\n\n*See also: [Improv via BLE](https://esphome.io/components/esp32_improv.html#configuration-variables)*"
             }
           },
           "extends": [

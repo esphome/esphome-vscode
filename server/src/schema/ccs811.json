@@ -41,7 +41,7 @@
                   }
                 }
               },
-              "docs": "The eCO_2 data from the sensor in parts per million (ppm).\n  * **name** (**Required**, string): The name for the CO_2 sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [CCS811 eCO_2 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/ccs811.html#configuration-variables)*"
+              "docs": "The eCO_2 data from the sensor in parts per million (ppm).\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [CCS811 eCO_2 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/ccs811.html#configuration-variables)*"
             },
             "tvoc": {
               "key": "Required",
@@ -68,7 +68,7 @@
                   }
                 }
               },
-              "docs": "The information for the total volatile organic compound sensor in parts per billion (ppb).\n  * **name** (**Required**, string): The name for the tvoc sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [CCS811 eCO_2 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/ccs811.html#configuration-variables)*"
+              "docs": "The information for the total volatile organic compound sensor in parts per billion (ppb).\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [CCS811 eCO_2 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/ccs811.html#configuration-variables)*"
             },
             "version": {
               "key": "Optional",
@@ -83,7 +83,7 @@
                   }
                 }
               },
-              "docs": "This sensor reports the firmware (\u2018application\u2019) version in text, with the internal hex representation of the version number behind it, so version 1.0.0 will be reported as \u20181.0.0 (0x1000)\u2019.\n  * **name** (**Required**, string): The name for the version sensor.\n  \n  \n\n*See also: [CCS811 eCO_2 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/ccs811.html#configuration-variables)*"
+              "docs": "This sensor reports the firmware (\u2018application\u2019) version in text, with the internal hex representation of the version number behind it, so version 1.0.0 will be reported as \u20181.0.0 (0x1000)\u2019.\n  * All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n  \n  \n\n*See also: [CCS811 eCO_2 and Volatile Organic Compound Sensor](https://esphome.io/components/sensor/ccs811.html#configuration-variables)*"
             },
             "baseline": {
               "key": "Optional",

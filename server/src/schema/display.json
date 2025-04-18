@@ -9,14 +9,14 @@
         "dependencies": [
           "spi"
         ],
-        "docs": "ILI9341\n\n*See also: [ILI9xxx TFT LCD Series](https://esphome.io/components/display/ili9xxx.html#ili9xxx-tft-lcd-series)*"
+        "docs": "GC9A01A\n\n*See also: [ILI9xxx TFT LCD Series](https://esphome.io/components/display/ili9xxx.html#ili9xxx-tft-lcd-series)*"
       },
       "inkplate6": {
         "dependencies": [
           "i2c",
           "esp32"
         ],
-        "docs": "All-in-one e-paper display `Inkplate 6`, `Inkplate 10` and `Inkplate 6 Plus`.\n\n*See also: [Inkplate 6, 10 and 6 Plus](https://esphome.io/components/display/inkplate6.html#inkplate-6-10-and-6-plus)*"
+        "docs": "All-in-one e-paper display `Inkplate 5`, `Inkplate 6`, `Inkplate 10` and `Inkplate 6 Plus`.\n\n*See also: [Inkplate 5, 6, 10 and 6 Plus](https://esphome.io/components/display/inkplate6.html#inkplate-5-6-10-and-6-plus)*"
       },
       "lcd_gpio": {
         "docs": "The `lcd_gpio` version of this component addresses the screen directly and does not employ a GPIO expander module. Each of the data pins of the LCD needs a dedicated GPIO pin on the ESP. Connecting the screen this way offers faster refresh, especially in conjunction with an [LCD Menu](https://esphome.io/components/display_menu/lcd_menu.html#lcd-menu).\n\n*See also: [lcd_gpio Component](https://esphome.io/components/display/lcd_display.html#lcd-gpio-component)*"
@@ -31,13 +31,13 @@
         "dependencies": [
           "spi"
         ],
-        "docs": "The `max7219` display platform allows you to use MAX7219 7-segment display drivers ( [datasheet](https://datasheets.maximintegrated.com/en/ds/MAX7219-MAX7221.pdf), [hobbycomponents](https://hobbycomponents.com/displays/597-max7219-8-digit-seven-segment-display-module)) with ESPHome. Please note that this integration is *only* for 7-segment display, not matrix configurations.\n\n*See also: [MAX7219 7-Segment Display](https://esphome.io/components/display/max7219.html#max7219-7-segment-display)*"
+        "docs": "The `max7219` display platform allows you to use MAX7219 7-segment display drivers ( [datasheet](https://datasheets.maximintegrated.com/en/ds/MAX7219-MAX7221.pdf), [hobbycomponents](https://hobbycomponents.com/displays/597-max7219-8-digit-seven-segment-display-module)) with ESPHome. Please note that this component is *only* for 7-segment display, not matrix configurations.\n\n*See also: [MAX7219 7-Segment Display](https://esphome.io/components/display/max7219.html#max7219-7-segment-display)*"
       },
       "max7219digit": {
         "dependencies": [
           "spi"
         ],
-        "docs": "The `max7219` display platform allows you to use MAX7219 digit with ESPHome. Please note that this integration is *only* for the digit \u201cmatrix\u201d display, for the 7 segment display see [MAX7219 7-Segment Display](https://esphome.io/components/display/max7219.html).\n\n*See also: [MAX7219 Digit Display](https://esphome.io/components/display/max7219digit.html#max7219-digit-display)*"
+        "docs": "The `max7219` display platform allows you to use MAX7219 digit with ESPHome. Please note that this component is *only* for the digit \u201cmatrix\u201d display, for the 7 segment display see [MAX7219 7-Segment Display](https://esphome.io/components/display/max7219.html).\n\n*See also: [MAX7219 Digit Display](https://esphome.io/components/display/max7219digit.html#max7219-digit-display)*"
       },
       "nextion": {
         "dependencies": [
@@ -56,6 +56,22 @@
           "ble_client"
         ],
         "docs": "The `pvvx_mithermometer` display platform allows you to use devices running the [ATC_MiThermometer firmware](https://github.com/pvvx/ATC_MiThermometer) by pvvx as display drivers with ESPHome.\n\n*See also: [PVVX MiThermometer Display](https://esphome.io/components/display/pvvx_mithermometer.html#pvvx-mithermometer-display)*"
+      },
+      "qspi_amoled": {},
+      "qspi_dbi": {
+        "dependencies": [
+          "spi"
+        ],
+        "docs": "This display driver supports AMOLED and LCD displays with quad SPI interfaces, using the MIPI DBI interface.\n\n*See also: [Quad SPI Displays](https://esphome.io/components/display/qspi_dbi.html#quad-spi-displays)*"
+      },
+      "rpi_dpi_rgb": {
+        "dependencies": [
+          "esp32"
+        ],
+        "docs": "This display driver supports displays with 16 bit parallel interfaces, often referred to as \u201cRPI_DPI_RGB\u201d type. These have a parallel interface but no SPI interface and require no configuration of the driver chip.\n\n*See also: [RPI_DPI_RGB Display Driver](https://esphome.io/components/display/rpi_dpi_rgb.html#rpi-dpi-rgb-display-driver)*"
+      },
+      "sdl": {
+        "docs": "The `sdl` display platform allows you to use create an ESPHome display on a desktop system running Linux or MacOS. This is particularly useful for designing display layouts, since compiling and running a host binary is much faster than compiling for and flashing a microcontroller target system.\n\n*See also: [SDL2 Display on host platform](https://esphome.io/components/display/sdl.html#sdl2-display-on-host-platform)*"
       },
       "ssd1306_i2c": {
         "dependencies": [
@@ -101,6 +117,23 @@
         ],
         "docs": "The `ssd1351_spi` display platform allows you to use SSD1351 ([datasheet](https://cdn-shop.adafruit.com/datasheets/SSD1351-Revision+1.3.pdf), [Adafruit 128x128](https://www.adafruit.com/product/1431), [Adafruit 128x96](https://www.adafruit.com/product/1673), [Waveshare 128x128](https://www.waveshare.com/product/displays/lcd-oled/lcd-oled-3/1.5inch-rgb-oled-module.htm)) displays with ESPHome. This component is for displays that are connected via the 4-Wire [SPI bus](https://esphome.io/components/spi.html#spi).\n\n*See also: [ssd1351_spi Component](https://esphome.io/components/display/ssd1351.html#ssd1351-spi-component)*"
       },
+      "st7567_i2c": {
+        "dependencies": [
+          "i2c"
+        ]
+      },
+      "st7567_spi": {
+        "dependencies": [
+          "spi"
+        ]
+      },
+      "st7701s": {
+        "dependencies": [
+          "spi",
+          "esp32"
+        ],
+        "docs": "This display driver supports displays with 16 bit parallel interfaces, often referred to as \u201cRGB\u201d. It currently supports the ST7701S chip.\n\n*See also: [ST7701S Display Driver](https://esphome.io/components/display/st7701s.html#st7701s-display-driver)*"
+      },
       "st7735": {
         "dependencies": [
           "spi"
@@ -132,7 +165,7 @@
         "dependencies": [
           "spi"
         ],
-        "docs": "The `waveshare_epaper` display platform allows you to use some E-Paper displays sold by [Waveshare](https://www.waveshare.com/product/displays/e-paper.htm) with ESPHome. The 2.13\u201d [TTGO module](https://github.com/lewisxhe/TTGO-EPaper-Series) with an ESP32 on the board is supported as well. Depending on your specific revision of the board you might need to try out the `-b73` or `-b1` version (see below). The 1.54\u201d [Good Display gdew0154m09](https://www.good-display.com/product/206.html) as used in the [M5Stack Core Ink](https://shop.m5stack.com/products/m5stack-esp32-core-ink-development-kit1-54-elnk-display) is also supported. Similar modules sold by other vendors might also work but not have been tested yet. Currently only single-color E-Ink displays are implemented and of those only a few modules.\n\n*See also: [Waveshare E-Paper Display](https://esphome.io/components/display/waveshare_epaper.html#waveshare-e-paper-display)*"
+        "docs": "The `waveshare_epaper` display platform allows you to use some E-Paper displays sold by [Waveshare](https://www.waveshare.com/product/displays/e-paper.htm) with ESPHome. The 2.13\u201d [TTGO module](https://github.com/lewisxhe/TTGO-EPaper-Series) and the [Waveshare Cloud Module](https://www.waveshare.com/wiki/2.13inch_e-Paper_Cloud_Module) with an ESP32 on the board are supported as well. Depending on your specific revision of the TTGO board you might need to try out the `-b73` or `-b1` version (see below). The 1.54\u201d [Good Display gdew0154m09](https://www.good-display.com/product/206.html) as used in the [M5Stack Core Ink](https://shop.m5stack.com/products/m5stack-esp32-core-ink-development-kit1-54-elnk-display) is also supported. Similar modules sold by other vendors might also work but not have been tested yet.\n\n*See also: [Waveshare E-Paper Display](https://esphome.io/components/display/waveshare_epaper.html#waveshare-e-paper-display)*"
       }
     },
     "schemas": {
@@ -142,9 +175,17 @@
           "config_vars": {
             "lambda": {
               "key": "Optional",
-              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: The lambda to use for rendering the content on the display. See [Display Rendering Engine](https://esphome.io/components/display/index.html#display-engine) for more information.\n\n*See also: [Waveshare E-Paper Display](https://esphome.io/components/display/waveshare_epaper.html#configuration-variables)*"
+              "docs": "**[lambda](https://esphome.io/automations/templates.html#config-lambda)**: The lambda to use for rendering the content on the display. See [Display Rendering Engine](https://esphome.io/components/display/index.html#display-engine) for more information.\n\n*See also: [Waveshare E-Paper Display](https://esphome.io/components/display/waveshare_epaper.html#configuration-variables)*"
+            },
+            "update_interval": {
+              "key": "Optional",
+              "default": "1s",
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to re-draw the screen. Defaults to `5s`.\n\n*See also: [ST7701S Display Driver](https://esphome.io/components/display/st7701s.html#configuration-variables)*"
             }
-          }
+          },
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
         }
       },
       "FULL_DISPLAY_SCHEMA": {
@@ -201,9 +242,12 @@
             },
             "auto_clear_enabled": {
               "key": "Optional",
-              "default": "True",
-              "type": "boolean",
-              "docs": "**boolean**: Whether to automatically clear the display in each loop (\u2018\u2019true\u2019\u2019, default), or to keep the existing display content (must overwrite explicitly, e.g., only on data change).\n\n*See also: [ILI9xxx TFT LCD Series](https://esphome.io/components/display/ili9xxx.html#configuration-variables)*"
+              "default": "unspecified",
+              "docs": "**boolean**: If the display should be cleared before each update. Defaults to `true` if a lambda or pages are configured, false otherwise.\n\n*See also: [ST7701S Display Driver](https://esphome.io/components/display/st7701s.html#configuration-variables)*"
+            },
+            "show_test_card": {
+              "key": "Optional",
+              "type": "boolean"
             }
           }
         }
@@ -217,7 +261,7 @@
           "config_vars": {
             "id": {
               "key": "GeneratedID",
-              "use_id_type": "display::DisplayBuffer",
+              "use_id_type": "display::Display",
               "type": "use_id"
             },
             "page_id": {

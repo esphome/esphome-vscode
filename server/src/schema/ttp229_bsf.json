@@ -59,8 +59,7 @@
                   "binary_sensor::BinarySensor",
                   "EntityBase"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [ttp229_bsf Binary Sensor](https://esphome.io/components/binary_sensor/ttp229.html#ttp229-bsf-binary-sensor)*"
+              }
             },
             "ttp229_id": {
               "key": "GeneratedID",

@@ -87,6 +87,58 @@
           ]
         }
       }
+    },
+    "action": {
+      "enable": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "use_id_type": "wireguard::Wireguard",
+              "type": "use_id"
+            }
+          }
+        }
+      },
+      "disable": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "use_id_type": "wireguard::Wireguard",
+              "type": "use_id"
+            }
+          }
+        }
+      }
+    },
+    "condition": {
+      "peer_online": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "use_id_type": "wireguard::Wireguard",
+              "type": "use_id"
+            }
+          }
+        }
+      },
+      "enabled": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "use_id_type": "wireguard::Wireguard",
+              "type": "use_id"
+            }
+          }
+        }
+      }
     }
   },
   "wireguard.sensor": {
@@ -143,6 +195,50 @@
                 "config_vars": {
                   "device_class": {
                     "default": "connectivity"
+                  }
+                }
+              }
+            },
+            "enabled": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "binary_sensor.BINARY_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "entity_category": {
+                    "default": "diagnostic"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "wireguard.text_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "wireguard_id": {
+              "key": "GeneratedID",
+              "use_id_type": "wireguard::Wireguard",
+              "type": "use_id"
+            },
+            "address": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "entity_category": {
+                    "default": "diagnostic"
                   }
                 }
               }

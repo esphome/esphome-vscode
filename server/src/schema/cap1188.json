@@ -73,8 +73,7 @@
                   "binary_sensor::BinarySensor",
                   "EntityBase"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [cap1188 Binary Sensor](https://esphome.io/components/binary_sensor/cap1188.html#binary-sensor)*"
+              }
             },
             "cap1188_id": {
               "key": "GeneratedID",

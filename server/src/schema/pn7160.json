@@ -1,0 +1,136 @@
+{
+  "pn7160": {
+    "schemas": {
+      "SIMPLE_ACTION_SCHEMA": {
+        "type": "schema",
+        "maybe": "id",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "use_id_type": "pn7160::PN7160",
+              "type": "use_id"
+            }
+          }
+        }
+      },
+      "SET_MESSAGE_ACTION_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "use_id_type": "pn7160::PN7160",
+              "type": "use_id"
+            },
+            "message": {
+              "key": "Required",
+              "templatable": true,
+              "type": "string"
+            },
+            "include_android_app_record": {
+              "key": "Optional",
+              "default": "True",
+              "type": "boolean"
+            }
+          }
+        }
+      },
+      "PN7160_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "pn7160::PN7160",
+                "parents": [
+                  "nfc::Nfcc",
+                  "Component"
+                ]
+              }
+            },
+            "on_emulated_tag_scan": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_finished_write": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_tag": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "on_tag_removed": {
+              "key": "Optional",
+              "type": "trigger"
+            },
+            "dwl_req_pin": {
+              "key": "Optional",
+              "schema": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin"
+            },
+            "irq_pin": {
+              "key": "Required",
+              "schema": true,
+              "modes": [
+                "input"
+              ],
+              "type": "pin"
+            },
+            "ven_pin": {
+              "key": "Required",
+              "schema": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin"
+            },
+            "wkup_req_pin": {
+              "key": "Optional",
+              "schema": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin"
+            },
+            "emulation_message": {
+              "key": "Optional",
+              "type": "string"
+            },
+            "tag_ttl": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            }
+          },
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
+        }
+      }
+    },
+    "condition": {
+      "is_writing": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "use_id_type": "pn7160::PN7160",
+              "type": "use_id"
+            }
+          }
+        }
+      }
+    }
+  }
+}

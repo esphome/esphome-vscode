@@ -43,6 +43,9 @@
               "default": "100",
               "type": "integer",
               "docs": "**int**: Set the number of supported discrete speed levels. The value is used to calculate the percentages for each speed. E.g. `2` means that you have 50% and 100% while `100` will allow 1% increments in the output. Defaults to `100`.\n\n*See also: [Speed Fan](https://esphome.io/components/fan/speed.html#configuration-variables)*"
+            },
+            "preset_modes": {
+              "key": "Optional"
             }
           }
         }

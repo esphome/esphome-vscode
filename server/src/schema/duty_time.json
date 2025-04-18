@@ -47,7 +47,7 @@
             },
             "lambda": {
               "key": "Optional",
-              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: Lambda that will be called in a loop to get the current state of the tracked object. *May not be used with* `sensor`.\n\n*See also: [Duty Time](https://esphome.io/components/sensor/duty_time.html#configuration-variables)*"
+              "docs": "**[lambda](https://esphome.io/automations/templates.html#config-lambda)**: Lambda that will be called in a loop to get the current state of the tracked object. *May not be used with* `sensor`.\n\n*See also: [Duty Time](https://esphome.io/components/sensor/duty_time.html#configuration-variables)*"
             },
             "restore": {
               "key": "Optional",

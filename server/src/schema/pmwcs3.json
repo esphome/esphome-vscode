@@ -141,8 +141,7 @@
             "id": {
               "key": "GeneratedID",
               "use_id_type": "pmwcs3::PMWCS3Component",
-              "type": "use_id",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The ID of the pmwcs3 sensor.\n\n*See also: [PMWCS3 Capacitive Soil Moisture and Temperature Sensor](https://esphome.io/components/sensor/pmwcs3.html#pmwcs3-newi2caddress-action)*"
+              "type": "use_id"
             }
           }
         }

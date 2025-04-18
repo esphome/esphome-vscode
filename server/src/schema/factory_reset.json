@@ -18,8 +18,7 @@
                   "EntityBase",
                   "Component"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Factory Reset Button](https://esphome.io/components/button/factory_reset.html#configuration-variables)*"
+              }
             },
             "icon": {
               "default": "mdi:restart-alert"
@@ -54,8 +53,7 @@
                   "EntityBase",
                   "Component"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Factory Reset Switch](https://esphome.io/components/switch/factory_reset.html#configuration-variables)*"
+              }
             },
             "icon": {
               "default": "mdi:restart-alert"

@@ -1,0 +1,247 @@
+{
+  "seeed_mr60fda2": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "seeed_mr60fda2::MR60FDA2Component",
+                "parents": [
+                  "Component",
+                  "uart::UARTDevice"
+                ]
+              },
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for this [Seeed Studio MR60FDA2 60GHz mmWave Fall Detection Sensor Kit component if you need multiple components.\n\n*See also: [seeed_mr60fda2 Component/Hub](https://esphome.io/components/seeed_mr60fda2.html#configuration-variables)*"
+            },
+            "uart_id": {
+              "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Component](https://esphome.io/components/uart.html#uart) if you want to use multiple UART buses.\n\n*See also: [seeed_mr60fda2 Component/Hub](https://esphome.io/components/seeed_mr60fda2.html#configuration-variables)*"
+            }
+          },
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
+        },
+        "is_list": true
+      }
+    }
+  },
+  "seeed_mr60fda2.binary_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "mr60fda2_id": {
+              "key": "GeneratedID",
+              "use_id_type": "seeed_mr60fda2::MR60FDA2Component",
+              "type": "use_id"
+            },
+            "people_exist": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "binary_sensor.BINARY_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:motion-sensor"
+                  },
+                  "device_class": {
+                    "default": "occupancy"
+                  }
+                }
+              },
+              "docs": "If true when target (person) is detected. All options from [Binary Sensor](https://esphome.io/components/binary_sensor/index.html#config-binary-sensor).\n\n*See also: [seeed_mr60fda2 Binary Sensor](https://esphome.io/components/seeed_mr60fda2.html#id1)*"
+            },
+            "fall_detected": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "binary_sensor.BINARY_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:emergency"
+                  },
+                  "device_class": {
+                    "default": "safety"
+                  }
+                }
+              },
+              "docs": "An indication of whether the radar has detected a fall. All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n\n*See also: [seeed_mr60fda2 Binary Sensor](https://esphome.io/components/seeed_mr60fda2.html#id1)*"
+            }
+          }
+        }
+      }
+    }
+  },
+  "seeed_mr60fda2.button": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "mr60fda2_id": {
+              "key": "GeneratedID",
+              "use_id_type": "seeed_mr60fda2::MR60FDA2Component",
+              "type": "use_id"
+            },
+            "get_radar_parameters": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "button.BUTTON_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "seeed_mr60fda2::GetRadarParametersButton",
+                      "parents": [
+                        "button::Button",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "entity_category": {
+                    "default": ""
+                  },
+                  "device_class": {
+                    "default": "update"
+                  }
+                }
+              }
+            },
+            "factory_reset": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "button.BUTTON_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "seeed_mr60fda2::ResetRadarButton",
+                      "parents": [
+                        "button::Button",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "entity_category": {
+                    "default": "diagnostic"
+                  },
+                  "device_class": {
+                    "default": "restart"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "seeed_mr60fda2.select": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "mr60fda2_id": {
+              "key": "GeneratedID",
+              "use_id_type": "seeed_mr60fda2::MR60FDA2Component",
+              "type": "use_id"
+            },
+            "install_height": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "select.SELECT_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "id_type": {
+                      "class": "seeed_mr60fda2::InstallHeightSelect",
+                      "parents": [
+                        "select::Select",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  },
+                  "icon": {
+                    "default": "mdi:axis-z-arrow"
+                  }
+                }
+              }
+            },
+            "height_threshold": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "select.SELECT_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "id_type": {
+                      "class": "seeed_mr60fda2::HeightThresholdSelect",
+                      "parents": [
+                        "select::Select",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  },
+                  "icon": {
+                    "default": "mdi:axis-z-arrow"
+                  }
+                }
+              }
+            },
+            "sensitivity": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "select.SELECT_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "id_type": {
+                      "class": "seeed_mr60fda2::SensitivitySelect",
+                      "parents": [
+                        "select::Select",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

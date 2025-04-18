@@ -17,7 +17,10 @@
                   "PollingComponent",
                   "Component",
                   "spi::SPIDevice",
-                  "display::DisplayBuffer"
+                  "display::DisplayBuffer",
+                  "display::Display",
+                  "PollingComponent",
+                  "Component"
                 ]
               },
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
@@ -31,9 +34,10 @@
                 "ADAFRUIT_RR_280X240": null,
                 "ADAFRUIT_S2_TFT_FEATHER_240X135": null,
                 "LILYGO_T-EMBED_170X320": null,
+                "WAVESHARE_1.47IN_172X320": null,
                 "CUSTOM": null
               },
-              "docs": "**string**: The display model to use. One of the following options:\n  * `TTGO TDisplay 135x240`\n  \n  * `Adafruit Funhouse 240x240`\n  \n  * `Adafruit RR 280x240` (round-rectangular display \u2013 some pixels are \u201cdeleted\u201d from corners to form rounded shape)\n  \n  * `Adafruit S2 TFT FEATHER 240X135`\n  \n  * `LILYGO T-Embed 170X320`\n  \n  * `Custom` For other displays not listed above\n  \n  \n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
+              "docs": "**string**: The display model to use. One of the following options:\n  * `TTGO TDisplay 135x240`\n  \n  * `Adafruit Funhouse 240x240`\n  \n  * `Adafruit RR 280x240` (round-rectangular display \u2013 some pixels are \u201cdeleted\u201d from corners to form rounded shape)\n  \n  * `Adafruit S2 TFT FEATHER 240X135`\n  \n  * `LILYGO T-Embed 170X320`\n  \n  * `Waveshare 1.47in 172X320` (round-rectangular display \u2013 some pixels are \u201cdeleted\u201d from corners to form rounded shape)\n  \n  * `Custom` For other displays not listed above\n  \n  \n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
             },
             "reset_pin": {
               "key": "Optional",
@@ -55,12 +59,12 @@
             },
             "backlight_pin": {
               "key": "Optional",
+              "type": "pin",
               "schema": true,
               "modes": [
                 "output"
               ],
-              "type": "pin",
-              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The display\u2019s backlight pin. May be required depending on the hardware configuration.\n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
+              "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The display\u2019s backlight pin. May be required depending on the hardware configuration. To disable a preset backlight pin (e.g. if controlled by another component) set this to `no`.\n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
             },
             "power_supply": {
               "key": "Optional",
@@ -95,7 +99,6 @@
               "docs": "**int**: When `model` is set to \u201cCustom\u201d, use this to specify the display\u2019s horizontal offset in pixels. This option may not be specified when the `model` is not set to \u201cCustom\u201d. Defaults depends `model`.\n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
             },
             "update_interval": {
-              "key": "Optional",
               "default": "5s",
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to re-draw the screen. Defaults to `5s`.\n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
             },
@@ -103,6 +106,40 @@
               "key": "GeneratedID",
               "use_id_type": "spi::SPIComponent",
               "type": "use_id"
+            },
+            "data_rate": {
+              "key": "Optional",
+              "type": "enum",
+              "values": {
+                "80000000.0": null,
+                "40000000.0": null,
+                "20000000.0": null,
+                "10000000.0": null,
+                "8000000.0": null,
+                "5000000.0": null,
+                "4000000.0": null,
+                "2000000.0": null,
+                "1000000.0": null,
+                "200000.0": null,
+                "75000.0": null,
+                "1000.0": null
+              },
+              "docs": "**frequency**: The SPI data rate (default 20MHz.) Can be reduced if required, e.g. to compensate for long data cables.\n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
+            },
+            "spi_mode": {
+              "key": "Optional",
+              "type": "enum",
+              "values": {
+                "MODE0": null,
+                "MODE1": null,
+                "MODE2": null,
+                "MODE3": null,
+                "0": null,
+                "1": null,
+                "2": null,
+                "3": null
+              },
+              "docs": "**0-3**: The SPI clock mode to use (default: `mode0`.) The ST7789V datasheet specifies mode 0, but some displays appear to require mode 3. This should be one of `mode0`, `mode1`, `mode2` or `mode3` (or just a digit from 0-3.)\n\n*See also: [ST7789V TFT LCD](https://esphome.io/components/display/st7789v.html#configuration-variables)*"
             },
             "cs_pin": {
               "key": "Optional",

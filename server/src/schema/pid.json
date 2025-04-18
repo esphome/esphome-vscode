@@ -104,6 +104,12 @@
               "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The sensor that is used to measure the current temperature.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
             },
+            "humidity_sensor": {
+              "key": "Optional",
+              "use_id_type": "sensor::Sensor",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: If specified, this sensor is used to measure the current humidity. This is used for information only and does not influence temperature control.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
+            },
             "default_target_temperature": {
               "key": "Required",
               "docs": "**float**: The default target temperature (setpoint) for the control algorithm. This can be dynamically set in the frontend later.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
@@ -185,12 +191,12 @@
                   "min_integral": {
                     "key": "Optional",
                     "default": "-1",
-                    "docs": "**float**: The maximum value of the integral term multiplied by `ki` to prevent windup. Defaults to `-1`.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
+                    "docs": "**float**: The minimum value of the integral term multiplied by `ki` to prevent windup. Defaults to `-1`.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
                   },
                   "max_integral": {
                     "key": "Optional",
                     "default": "1",
-                    "docs": "**float**: The minimum value of the integral term multiplied by `ki` to prevent windup. Defaults to `1`.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
+                    "docs": "**float**: The maximum value of the integral term multiplied by `ki` to prevent windup. Defaults to `1`.\n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
                   },
                   "derivative_averaging_samples": {
                     "key": "Optional",
@@ -206,7 +212,7 @@
                   }
                 }
               },
-              "docs": "Control parameters of the PID controller.\n  * **kp** (**Required**, float): The factor for the proportional term of the PID controller.\n  \n  * **ki** (*Optional*, float): The factor for the integral term of the PID controller. Defaults to `0`.\n  \n  * **kd** (*Optional*, float): The factor for the derivative term of the PID controller. Defaults to `0`.\n  \n  * **min_integral** (*Optional*, float): The maximum value of the integral term multiplied by `ki` to prevent windup. Defaults to `-1`.\n  \n  * **max_integral** (*Optional*, float): The minimum value of the integral term multiplied by `ki` to prevent windup. Defaults to `1`.\n  \n  * **starting_integral_term** (*Optional*, float): Set the initial output, by priming the integral term. This is useful for when your system is rebooted and you don\u2019t want to wait for it to get back equilibrium.\n  \n  * **output_averaging_samples** (*Optional*, int): average the output over this many samples. PID controllers can be quite sensitive to small changes on the input sensor. By averaging the last X output samples, the temperature can be more stable. However, the larger the sampling window, the less responsive the PID controller. Defaults to `1` which is no sampling/averaging.\n  \n  * **derivative_averaging_samples** (*Optional*, int): average the derivative term over this many samples. Many controllers don\u2019t use the derivative term because it is sensitive to slight changes in the input sensor. By taking an average of the derivative term it might become more useful for you. Most PID controllers call this derivative filtering. The derivative term is used to pre-act so don\u2019t filter too much. Defaults to `1` which is no sampling/averaging.\n  \n  \n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
+              "docs": "Control parameters of the PID controller.\n  * **kp** (**Required**, float): The factor for the proportional term of the PID controller.\n  \n  * **ki** (*Optional*, float): The factor for the integral term of the PID controller. Defaults to `0`.\n  \n  * **kd** (*Optional*, float): The factor for the derivative term of the PID controller. Defaults to `0`.\n  \n  * **min_integral** (*Optional*, float): The minimum value of the integral term multiplied by `ki` to prevent windup. Defaults to `-1`.\n  \n  * **max_integral** (*Optional*, float): The maximum value of the integral term multiplied by `ki` to prevent windup. Defaults to `1`.\n  \n  * **starting_integral_term** (*Optional*, float): Set the initial output, by priming the integral term. This is useful for when your system is rebooted and you don\u2019t want to wait for it to get back equilibrium.\n  \n  * **output_averaging_samples** (*Optional*, int): average the output over this many samples. PID controllers can be quite sensitive to small changes on the input sensor. By averaging the last X output samples, the temperature can be more stable. However, the larger the sampling window, the less responsive the PID controller. Defaults to `1` which is no sampling/averaging.\n  \n  * **derivative_averaging_samples** (*Optional*, int): average the derivative term over this many samples. Many controllers don\u2019t use the derivative term because it is sensitive to slight changes in the input sensor. By taking an average of the derivative term it might become more useful for you. Most PID controllers call this derivative filtering. The derivative term is used to pre-act so don\u2019t filter too much. Defaults to `1` which is no sampling/averaging.\n  \n  \n\n*See also: [PID Climate](https://esphome.io/components/climate/pid.html#configuration-variables)*"
             }
           }
         }

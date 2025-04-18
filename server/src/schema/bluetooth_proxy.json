@@ -24,6 +24,12 @@
               "key": "Optional",
               "type": "boolean"
             },
+            "connection_slots": {
+              "key": "Optional",
+              "default": "3",
+              "type": "integer",
+              "data_type": "positive_int"
+            },
             "connections": {
               "key": "Optional",
               "is_list": true,

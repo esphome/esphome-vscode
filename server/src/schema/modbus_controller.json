@@ -16,6 +16,12 @@
                 ]
               }
             },
+            "allow_duplicate_commands": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean",
+              "docs": "**boolean**: Whether to allow duplicate commands in the queue. Defaults to `false`.\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#configuration-variables)*"
+            },
             "command_throttle": {
               "key": "Optional",
               "default": "0ms",
@@ -25,14 +31,82 @@
                   "core.positive_time_period_milliseconds"
                 ]
               },
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: minimum time in between 2 requests to the device. Default is 0ms Because some modbus devices limit the rate of requests the interval between sending requests to the device can be modified.\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#configuration-variables)*"
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: minimum time in between 2 requests to the device. Default is `0ms`. Some Modbus slave devices limit the rate of requests from the master, so this allows the interval between requests to be altered.\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#configuration-variables)*"
+            },
+            "max_cmd_retries": {
+              "key": "Optional",
+              "default": "4",
+              "type": "integer",
+              "data_type": "positive_int",
+              "docs": "**integer**: How many times a command will be retried if no response is received. It doesn\u2019t include the initial transmition. Defaults to 4.\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#configuration-variables)*"
             },
             "offline_skip_updates": {
               "key": "Optional",
               "default": "0",
               "type": "integer",
               "data_type": "positive_int",
-              "docs": "**integer**: When a controller doesn\u2019t respond to a command, it is marked as offline, you can specify how many updates will be skipped while it is offline. If using a bus with multiple controllers, this avoids waiting for timeouts allowing to read other controllers in the same bus. When the controller responds to a command, it\u2019ll be marked online again.\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#configuration-variables)*"
+              "docs": "**integer**: When a slave doesn\u2019t respond to a command, it is marked as offline, you can specify how many updates will be skipped while it is offline. If using a bus with multiple slaves, this avoids waiting for timeouts allowing to read other slaves in the same bus. When the slave responds to a command, it\u2019ll be marked online again.\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#configuration-variables)*"
+            },
+            "server_registers": {
+              "key": "Optional",
+              "is_list": true,
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "modbus_controller::ServerRegister",
+                      "parents": []
+                    }
+                  },
+                  "address": {
+                    "key": "Required",
+                    "type": "integer",
+                    "data_type": "positive_int"
+                  },
+                  "value_type": {
+                    "key": "Optional",
+                    "default": "U_WORD",
+                    "type": "enum",
+                    "values": {
+                      "RAW": null,
+                      "U_WORD": null,
+                      "S_WORD": null,
+                      "U_DWORD": null,
+                      "U_DWORD_R": null,
+                      "S_DWORD": null,
+                      "S_DWORD_R": null,
+                      "U_QWORD": null,
+                      "U_QWORD_R": null,
+                      "S_QWORD": null,
+                      "S_QWORD_R": null,
+                      "FP32": null,
+                      "FP32_R": null
+                    }
+                  },
+                  "read_lambda": {
+                    "key": "Required",
+                    "docs": "**[lambda](https://esphome.io/automations/templates.html#config-lambda)**: Lambda that returns the value of this register.\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#configuration-variables)*"
+                  }
+                }
+              },
+              "docs": "A list of registers that are responded to when acting as a server. - **address** (**Required**, integer): start address of the first register in a range - **value_type** (*Optional*): datatype of the mod_bus register data. The default data type for ModBUS is a 16 bit integer in big endian format (MSB first)\n  * `U_WORD`: unsigned 16 bit integer from 1 register = 16bit\n  \n  * `S_WORD`: signed 16 bit integer from 1 register = 16bit\n  \n  * `U_DWORD`: unsigned 32 bit integer from 2 registers = 32bit\n  \n  * `S_DWORD`: signed 32 bit integer from 2 registers = 32bit\n  \n  * `U_DWORD_R`: unsigned 32 bit integer from 2 registers low word first\n  \n  * `S_DWORD_R`: signed 32 bit integer from 2 registers low word first\n  \n  * `U_QWORD`: unsigned 64 bit integer from 4 registers = 64bit\n  \n  * `S_QWORD`: signed 64 bit integer from 4 registers = 64bit\n  \n  * `U_QWORD_R`: unsigned 64 bit integer from 4 registers low word first\n  \n  * `S_QWORD_R`: signed 64 bit integer from 4 registers low word first\n  \n  * `FP32`: 32 bit IEEE 754 floating point from 2 registers\n  \n  * `FP32_R`: 32 bit IEEE 754 floating point - same as FP32 but low word first\n  \n  Defaults to `U_WORD`.\n  * **read_lambda** (**Required**, [lambda](https://esphome.io/automations/templates.html#config-lambda)): Lambda that returns the value of this register.\n  \n  \n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#configuration-variables)*"
+            },
+            "on_command_sent": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when a modbus command has been sent. See [on_command_sent](https://esphome.io/components/modbus_controller.html#modbus-controller-on-command-sent)\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#configuration-variables)*"
+            },
+            "on_online": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when a modbus controller goes online. See [on_online](https://esphome.io/components/modbus_controller.html#modbus-controller-on-online)\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#configuration-variables)*"
+            },
+            "on_offline": {
+              "key": "Optional",
+              "type": "trigger",
+              "docs": "**[Automation](https://esphome.io/automations/index.html#automation)**: An automation to perform when a modbus controller goes offline. See [on_offline](https://esphome.io/components/modbus_controller.html#modbus-controller-on-offline)\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",
@@ -43,13 +117,13 @@
               "key": "GeneratedID",
               "use_id_type": "modbus::Modbus",
               "type": "use_id",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the modbus hub.\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the `modbus` hub.\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#configuration-variables)*"
             },
             "address": {
               "key": "Optional",
               "default": "1",
               "data_type": "hex_uint8_t",
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The modbus address of the device Specify the modbus device address of the.\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#configuration-variables)*"
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The Modbus address of the slave device.\n\n*See also: [Modbus Controller](https://esphome.io/components/modbus_controller.html#configuration-variables)*"
             }
           },
           "extends": [
@@ -71,19 +145,19 @@
               "key": "Optional",
               "type": "integer",
               "data_type": "positive_int",
-              "docs": "**int**: start address of the first register in a range\n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
+              "docs": "**int**: start address of the first register in a range (can be decimal or hexadecimal).\n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
             },
             "custom_command": {
               "key": "Optional",
               "is_list": true,
               "data_type": "hex_uint8_t",
-              "docs": "**list of bytes**: raw bytes for modbus command. This allows using non-standard commands. If `custom_command` is used `address` and `register_type` can\u2019t be used. custom command must contain all required bytes including the modbus device address. The crc is automatically calculated and appended to the command. See [Using custom_command](https://esphome.io/components/sensor/modbus_controller.html#modbus-custom-command) how to use `custom_command`\n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
+              "docs": "**list of bytes**: raw bytes for modbus command. This allows using non-standard commands. If `custom_command` is used `address` and `register_type` can\u2019t be used. custom command must contain all required bytes including the modbus device address. The crc is automatically calculated and appended to the command. See [Using custom_command](https://esphome.io/components/modbus_controller.html#modbus-custom-command) how to use `custom_command`\n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
             },
             "offset": {
               "key": "Optional",
               "type": "integer",
               "data_type": "positive_int",
-              "docs": "**int**: not required in most cases offset from start address in bytes. If more than one register is read a modbus read registers command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type\n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
+              "docs": "**int**: Offset from start address in bytes (only required for uncommon response encodings). If more than one register is written in a command this value is used to find the start of this datapoint relative to start address. The component calculates the size of the range based on offset and size of the value type. The value for offset depends on the register type.\n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
             },
             "byte_offset": {
               "key": "Optional",
@@ -94,7 +168,7 @@
               "key": "Optional",
               "default": "4294967295",
               "data_type": "hex_uint32_t",
-              "docs": "**int**: Some values are packed in a response. The bitmask is used to determined if the result is true or false.\n\n*See also: [Modbus Controller Switch](https://esphome.io/components/switch/modbus_controller.html#configuration-variables)*"
+              "docs": "**int**: Some values are packed in a response. The bitmask is used to determined if the result is true or false. See [Bitmasks](https://esphome.io/components/modbus_controller.html#bitmasks).\n\n*See also: [Modbus Controller Switch](https://esphome.io/components/switch/modbus_controller.html#configuration-variables)*"
             },
             "skip_updates": {
               "key": "Optional",
@@ -111,7 +185,7 @@
             },
             "lambda": {
               "key": "Optional",
-              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: Lambda to be evaluated every update interval to get the new value of the sensor. It is called after the encoding according to **raw_encode**.Parameters passed into the lambda\n  * **x** (std:string): The parsed value of the modbus data according to **raw_encode**\n  \n  * **data** (std::vector<uint8_t): vector containing the complete raw modbus response bytes for this sensor *note:* because the response contains data for all registers in the same range you have to use `data[item->offset]` to get the first response byte for your sensor.\n  \n  * **item** (const pointer to a SensorItem derived object):  The sensor object itself.\n  \n  Possible return values for the lambda:\n  * `return <std::string>;` the new value for the sensor.\n  \n  * `return {};` uses the parsed value for the state (same as `return x;`).\n  \n  \n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
+              "docs": "**[lambda](https://esphome.io/automations/templates.html#config-lambda)**: Lambda to be evaluated every update interval to get the new value of the sensor. It is called after the encoding according to **raw_encode**.Parameters passed into the lambda\n  * **x** (std:string): The parsed value of the modbus data according to **raw_encode**\n  \n  * **data** (std::vector<uint8_t>): vector containing the complete raw modbus response bytes for this sensor *note:* because the response contains data for all registers in the same range you have to use `data[item->offset]` to get the first response byte for your sensor.\n  \n  * **item** (const pointer to a SensorItem derived object):  The sensor object itself.\n  \n  Possible return values for the lambda:\n  * `return <std::string>;` the new value for the sensor.\n  \n  * `return {};` uses the parsed value for the state (same as `return x;`).\n  \n  \n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
             },
             "response_size": {
               "key": "Optional",
@@ -145,8 +219,7 @@
                   "EntityBase",
                   "modbus_controller::SensorItem"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Modbus Controller Sensor](https://esphome.io/components/sensor/modbus_controller.html#configuration-variables)*"
+              }
             },
             "register_type": {
               "key": "Optional",
@@ -154,19 +227,19 @@
               "values": {
                 "custom": null,
                 "coil": {
-                  "docs": "coils are also called discrete output. Coils are 1-bit registers (on/off values) that are used to control discrete outputs. Read and Write access. Modbus function code 1 (Read Coil Status) will be used"
+                  "docs": "Coils are 1-bit registers (ON/OFF values) that are used to control discrete outputs. They may be read and/or written. Modbus *Function Code 1 (Read Coil Status)* will be used."
                 },
                 "holding": {
-                  "docs": "Holding Registers - Holding registers are the most universal 16-bit register. Read and Write access. Modbus function code 3 (Read Holding Registers) will be used."
+                  "docs": "Holding Registers - Holding registers are the most universal 16-bit register. They may be read and/or written. Modbus *Function Code 3 (Read Holding Registers)* will be used."
                 },
                 "discrete_input": {
-                  "docs": "discrete input register (read only coil) are similar to coils but can only be read. Modbus function code 2 (Read Input Status) will be used."
+                  "docs": "discrete input register (read only coil) are similar to coils but can only be read. Modbus *Function Code 2 (Read Input Status)* will be used."
                 },
                 "read": {
-                  "docs": "Read Input Registers - registers are 16-bit registers used for input, and may only be read. Modbus function code 4 (Read Input Registers) will be used."
+                  "docs": "Read Input Registers - registers are 16-bit registers used for input, and may only be read. Modbus *Function Code 4 (Read Input Registers)* will be used."
                 }
               },
-              "docs": "type of the modbus register.\n  * `coil`: coils are also called discrete output. Coils are 1-bit registers (on/off values) that are used to control discrete outputs. Read and Write access. Modbus function code 1 (Read Coil Status) will be used\n  \n  * `discrete_input`: discrete input register (read only coil) are similar to coils but can only be read. Modbus function code 2 (Read Input Status) will be used.\n  \n  * `holding`: Holding Registers - Holding registers are the most universal 16-bit register. Read and Write access. Modbus function code 3 (Read Holding Registers) will be used.\n  \n  * `read`: Read Input Registers - registers are 16-bit registers used for input, and may only be read. Modbus function code 4 (Read Input Registers) will be used.\n  \n  \n\n*See also: [Modbus Controller Sensor](https://esphome.io/components/sensor/modbus_controller.html#configuration-variables)*"
+              "docs": "type of the modbus register.\n  * `coil`: Coils are 1-bit registers (ON/OFF values) that are used to control discrete outputs. They may be read and/or written. Modbus *Function Code 1 (Read Coil Status)* will be used.\n  \n  * `discrete_input`: discrete input register (read only coil) are similar to coils but can only be read. Modbus *Function Code 2 (Read Input Status)* will be used.\n  \n  * `holding`: Holding Registers - Holding registers are the most universal 16-bit register. They may be read and/or written. Modbus *Function Code 3 (Read Holding Registers)* will be used.\n  \n  * `read`: Read Input Registers - registers are 16-bit registers used for input, and may only be read. Modbus *Function Code 4 (Read Input Registers)* will be used.\n  \n  \n\n*See also: [Modbus Controller Sensor](https://esphome.io/components/sensor/modbus_controller.html#configuration-variables)*"
             },
             "value_type": {
               "key": "Optional",
@@ -211,14 +284,14 @@
                   "docs": "32 bit IEEE 754 floating point - same as FP32 but low word first"
                 }
               },
-              "docs": "datatype of the mod_bus register data. The default data type for modbus is a 16 bit integer in big endian format (MSB first)\n  * `U_WORD`: unsigned 16 bit integer from 1 register = 16bit\n  \n  * `S_WORD`: signed 16 bit integer from 1 register = 16bit\n  \n  * `U_DWORD`: unsigned 32 bit integer from 2 registers = 32bit\n  \n  * `S_DWORD`: signed 32 bit integer from 2 registers = 32bit\n  \n  * `U_DWORD_R`: unsigned 32 bit integer from 2 registers low word first\n  \n  * `S_DWORD_R`: signed 32 bit integer from 2 registers low word first\n  \n  * `U_QWORD`: unsigned 64 bit integer from 4 registers = 64bit\n  \n  * `S_QWORD`: signed 64 bit integer from 4 registers = 64bit\n  \n  * `U_QWORD_R`: unsigned 64 bit integer from 4 registers low word first\n  \n  * `S_QWORD_R`: signed 64 bit integer from 4 registers low word first\n  \n  * `FP32`: 32 bit IEEE 754 floating point from 2 registers\n  \n  * `FP32_R`: 32 bit IEEE 754 floating point - same as FP32 but low word first\n  \n  \n\n*See also: [Modbus Controller Sensor](https://esphome.io/components/sensor/modbus_controller.html#configuration-variables)*"
+              "docs": "data type of the modbus register data. The default data type for modbus is a 16 bit integer in big endian format (MSB first).\n  * `U_WORD`: unsigned 16 bit integer from 1 register = 16bit\n  \n  * `S_WORD`: signed 16 bit integer from 1 register = 16bit\n  \n  * `U_DWORD`: unsigned 32 bit integer from 2 registers = 32bit\n  \n  * `S_DWORD`: signed 32 bit integer from 2 registers = 32bit\n  \n  * `U_DWORD_R`: unsigned 32 bit integer from 2 registers low word first\n  \n  * `S_DWORD_R`: signed 32 bit integer from 2 registers low word first\n  \n  * `U_QWORD`: unsigned 64 bit integer from 4 registers = 64bit\n  \n  * `S_QWORD`: signed 64 bit integer from 4 registers = 64bit\n  \n  * `U_QWORD_R`: unsigned 64 bit integer from 4 registers low word first\n  \n  * `S_QWORD_R`: signed 64 bit integer from 4 registers low word first\n  \n  * `FP32`: 32 bit IEEE 754 floating point from 2 registers\n  \n  * `FP32_R`: 32 bit IEEE 754 floating point - same as FP32 but low word first\n  \n  \n\n*See also: [Modbus Controller Sensor](https://esphome.io/components/sensor/modbus_controller.html#configuration-variables)*"
             },
             "register_count": {
               "key": "Optional",
               "default": "0",
               "type": "integer",
               "data_type": "positive_int",
-              "docs": "only required for uncommon response encodings or to [optimize modbus communications](https://esphome.io/components/sensor/modbus_controller.html#modbus-register-count) The number of registers this data point spans. Overrides the defaults determined by `value_type`. If no value for `register_count` is provided, it is calculated based on the register type.The default size for 1 register is 16 bits (1 Word). Some devices are not adhering to this convention and have registers larger than 16 bits.  In this case `register_count` and  `response_size` must be set. For example, if your modbus device uses 1 registers for a FP32 value instead the default of two set `register_count: 1` and `response_size: 4`.\n\n*See also: [Modbus Controller Sensor](https://esphome.io/components/sensor/modbus_controller.html#configuration-variables)*"
+              "docs": "**int**: The number of consecutive registers this read request should span or skip in a single command. Default is 1. See [Optimizing modbus communications](https://esphome.io/components/modbus_controller.html#modbus-register-count) for more details.\n\n*See also: [Modbus Controller Sensor](https://esphome.io/components/sensor/modbus_controller.html#configuration-variables)*"
             }
           }
         }
@@ -245,8 +318,7 @@
                   "EntityBase",
                   "modbus_controller::SensorItem"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Modbus Controller Binary Sensor](https://esphome.io/components/binary_sensor/modbus_controller.html#configuration-variables)*"
+              }
             },
             "register_type": {
               "key": "Optional",
@@ -254,19 +326,19 @@
               "values": {
                 "custom": null,
                 "coil": {
-                  "docs": "Function 01 (01hex) Read Coils - Reads the ON/OFF status of discrete coils in the device."
+                  "docs": "Coils are 1-bit registers (ON/OFF values) that are used to control discrete outputs. Read and Write access. Modbus *Function Code 1 (Read Coil Status)* will be used."
                 },
                 "holding": {
-                  "docs": "Function 03 (03hex) Read Holding Registers - Read the binary contents of holding registers in the device."
+                  "docs": "Holding Registers - Holding registers are the most universal 16-bit register. Read and Write access. Modbus *Function Code 3 (Read Holding Registers)* will be used."
                 },
                 "discrete_input": {
-                  "docs": "Function 02(02hex) - Reads the ON/OFF status of discrete inputs in the device."
+                  "docs": "discrete input register (read only coil) are similar to coils but can only be read. Modbus *Function Code 2 (Read Input Status)* will be used."
                 },
                 "read": {
-                  "docs": "Function 04 (04hex) Read Input Registers - Read the binary contents of input registers in the device."
+                  "docs": "Read Input Registers - registers are 16-bit registers used for input, and may only be read. Modbus *Function Code 4 (Read Input Registers)* will be used."
                 }
               },
-              "docs": "type of the modbus register.\n  * `coil`: Function 01 (01hex) Read Coils - Reads the ON/OFF status of discrete coils in the device.\n  \n  * `discrete_input`: Function 02(02hex) - Reads the ON/OFF status of discrete inputs in the device.\n  \n  * `holding`: Function 03 (03hex) Read Holding Registers - Read the binary contents of holding registers in the device.\n  \n  * `read`: Function 04 (04hex) Read Input Registers - Read the binary contents of input registers in the device.\n  \n  \n\n*See also: [Modbus Controller Binary Sensor](https://esphome.io/components/binary_sensor/modbus_controller.html#configuration-variables)*"
+              "docs": "type of the modbus register.\n  * `coil`: Coils are 1-bit registers (ON/OFF values) that are used to control discrete outputs. Read and Write access. Modbus *Function Code 1 (Read Coil Status)* will be used.\n  \n  * `discrete_input`: discrete input register (read only coil) are similar to coils but can only be read. Modbus *Function Code 2 (Read Input Status)* will be used.\n  \n  * `holding`: Holding Registers - Holding registers are the most universal 16-bit register. Read and Write access. Modbus *Function Code 3 (Read Holding Registers)* will be used.\n  \n  * `read`: Read Input Registers - registers are 16-bit registers used for input, and may only be read. Modbus *Function Code 4 (Read Input Registers)* will be used.\n  \n  \n\n*See also: [Modbus Controller Binary Sensor](https://esphome.io/components/binary_sensor/modbus_controller.html#configuration-variables)*"
             }
           }
         }
@@ -293,8 +365,7 @@
                   "EntityBase",
                   "modbus_controller::SensorItem"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Modbus Controller Number](https://esphome.io/components/number/modbus_controller.html#configuration-variables)*"
+              }
             },
             "register_type": {
               "key": "Optional",
@@ -325,11 +396,11 @@
                 "FP32": null,
                 "FP32_R": null
               },
-              "docs": "datatype of the mod_bus register data. The default data type for modbus is a 16 bit integer in big endian format (MSB first)\n  * `U_WORD` (unsigned 16 bit integer from 1 register = 16bit)\n  \n  * `S_WORD` (signed 16 bit integer from 1 register = 16bit)\n  \n  * `U_DWORD` (unsigned 32 bit integer from 2 registers = 32bit)\n  \n  * `S_DWORD` (signed 32 bit integer from 2 registers = 32bit)\n  \n  * `U_DWORD_R` (unsigned 32 bit integer from 2 registers low word first)\n  \n  * `S_DWORD_R` (signed 32 bit integer from 2 registers low word first)\n  \n  * `U_QWORD` (unsigned 64 bit integer from 4 registers = 64bit)\n  \n  * `S_QWORD` (unsigned 64 bit integer from 4 registers = 64bit)\n  \n  * `U_QWORD_R` (unsigned 64 bit integer from 4 registers low word first)\n  \n  * `U_QWORD_R` signed 64 bit integer from 4 registers low word first)\n  \n  * `FP32` (32 bit IEEE 754 floating point from 2 registers)\n  \n  * `FP32_R` (32 bit IEEE 754 floating point - same as FP32 but low word first)\n  \n  \n\n*See also: [Modbus Controller Number](https://esphome.io/components/number/modbus_controller.html#configuration-variables)*"
+              "docs": "datatype of the modbus register data. The default data type for modbus is a 16 bit integer in big endian format (MSB first):\n  * `U_WORD` (unsigned 16 bit integer from 1 register = 16bit)\n  \n  * `S_WORD` (signed 16 bit integer from 1 register = 16bit)\n  \n  * `U_DWORD` (unsigned 32 bit integer from 2 registers = 32bit)\n  \n  * `S_DWORD` (signed 32 bit integer from 2 registers = 32bit)\n  \n  * `U_DWORD_R` (unsigned 32 bit integer from 2 registers low word first)\n  \n  * `S_DWORD_R` (signed 32 bit integer from 2 registers low word first)\n  \n  * `U_QWORD` (unsigned 64 bit integer from 4 registers = 64bit)\n  \n  * `S_QWORD` (signed 64 bit integer from 4 registers = 64bit)\n  \n  * `U_QWORD_R` (unsigned 64 bit integer from 4 registers low word first)\n  \n  * `S_QWORD_R` (signed 64 bit integer from 4 registers low word first)\n  \n  * `FP32` (32 bit IEEE 754 floating point from 2 registers)\n  \n  * `FP32_R` (32 bit IEEE 754 floating point - same as FP32 but low word first)\n  \n  \n\n*See also: [Modbus Controller Number](https://esphome.io/components/number/modbus_controller.html#configuration-variables)*"
             },
             "write_lambda": {
               "key": "Optional",
-              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: Lambda called before send. Lambda is evaluated before the modbus write command is created.Parameters passed into the lambda\n  * **x** (float): The float value to be sent to the modbus device\n  \n  * **payload** (`std::vector<uint16_t>&payload`): empty vector for the payload. The lambda can add 16 bit raw modbus register words. *note:* because the response contains data for all registers in the same range you have to use `data[item->offset]` to get the first response byte for your sensor.\n  \n  * **item** (const pointer to a SensorItem derived object):  The sensor object itself.\n  \n  Possible return values for the lambda:\n  * `return <FLOATING_POINT_NUMBER>;` the new value for the sensor.\n  \n  * `return <anything>; and fill payload with data` if the payload is added from the lambda then these 16 bit words will be sent\n  \n  * `return {};` if you don\u2019t want write the command to the device (or do it from the lambda).\n  \n  \n\n*See also: [Modbus Controller Number](https://esphome.io/components/number/modbus_controller.html#configuration-variables)*"
+              "docs": "**[lambda](https://esphome.io/automations/templates.html#config-lambda)**: Lambda called before send. Lambda is evaluated before the modbus write command is created.Parameters passed into the lambda\n  * **x** (float): The float value to be sent to the modbus device\n  \n  * **payload** (`std::vector<uint16_t>&payload`): empty vector for the payload. The lambda can add 16 bit raw modbus register words. *note:* because the response contains data for all registers in the same range you have to use `data[item->offset]` to get the first response byte for your sensor.\n  \n  * **item** (const pointer to a SensorItem derived object):  The sensor object itself.\n  \n  Possible return values for the lambda:\n  * `return <FLOATING_POINT_NUMBER>;` the new value for the sensor.\n  \n  * `return <anything>; and fill payload with data` if the payload is added from the lambda then these 16 bit words will be sent\n  \n  * `return {};` if you don\u2019t want write the command to the device (or do it from the lambda).\n  \n  \n\n*See also: [Modbus Controller Number](https://esphome.io/components/number/modbus_controller.html#configuration-variables)*"
             },
             "max_value": {
               "key": "Optional",
@@ -345,7 +416,7 @@
               "key": "Optional",
               "default": "1",
               "data_type": "positive_float",
-              "docs": "**float**: The granularity with which the number can be set. Defaults to 1\n\n*See also: [Modbus Controller Number](https://esphome.io/components/number/modbus_controller.html#configuration-variables)*"
+              "docs": "**float**: The granularity with which the number can be set. Defaults to 1.\n\n*See also: [Modbus Controller Number](https://esphome.io/components/number/modbus_controller.html#configuration-variables)*"
             },
             "multiply": {
               "key": "Optional",
@@ -356,7 +427,7 @@
               "key": "Optional",
               "default": "False",
               "type": "boolean",
-              "docs": "**boolean**: By default the modbus command `Preset Single Registers` (function code 6) is used for setting the holding register if only 1 register is set. If your device only supports `Preset Multiple Registers` (function code 16) set this option to true.\n\n*See also: [Modbus Controller Number](https://esphome.io/components/number/modbus_controller.html#configuration-variables)*"
+              "docs": "**boolean**: By default the modbus command *Function Code 6 (Preset Single Registers)* is used for setting the holding register if only one register is set. If your device only supports *Function Code 16 (Preset Multiple Registers)* set this option to `true`.\n\n*See also: [Modbus Controller Number](https://esphome.io/components/number/modbus_controller.html#configuration-variables)*"
             }
           }
         }
@@ -383,18 +454,15 @@
                     "output::BinaryOutput",
                     "modbus_controller::SensorItem"
                   ]
-                },
-                "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Modbus Controller Output](https://esphome.io/components/output/modbus_controller.html#configuration-variables)*"
+                }
               },
               "write_lambda": {
-                "key": "Optional",
-                "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: Lambda is evaluated before the modbus write command is created. The value is passed in as `float x` and an empty vector is passed in as `std::vector<uint16_t>&payload`. You can directly define the payload by adding data to payload then the return value is ignored and the content of payload is used.Parameters passed into the lambda\n  * **x** (float): The float value to be sent to the modbus device for `register_type: holding`\n  \n  * **x** (bool): The boolean value to be sent to the modbus device for `register_type: coil`\n  \n  * **payload** (``std::vector<uint16_t>&payload``):\n    * for `register_type: holding`: empty vector for the payload. The lamdba can add 16 bit raw modbus register words.\n    \n    * for `register_type: coil`: empty vector for the payload. If payload is set in the lambda it is sent as a custom command and must include all required bytes for a modbus request note: because the response contains data for all registers in the same range you have to use `data[item->offset]` to get the first response byte for your sensor.\n    \n    \n  \n  * **item** (const pointer to a SensorItem derived object):  The sensor object itself.\n  \n  Possible return values for the lambda:\n  * `return <FLOATING_POINT_NUMBER / BOOL>;` the new value for the sensor.\n  \n  * `return <anything>; and fill payload with data` if the payload is added from the lambda then these 16 bit words will be sent\n  \n  * `return {};` if you don\u2019t want write the command to the device (or do it from the lambda).\n  \n  \n\n*See also: [Modbus Controller Output](https://esphome.io/components/output/modbus_controller.html#configuration-variables)*"
+                "key": "Optional"
               },
               "use_write_multiple": {
                 "key": "Optional",
                 "default": "False",
-                "type": "boolean",
-                "docs": "**boolean**: By default the modbus command `Preset Single Registers` (function code 6) is used for setting the holding register if only 1 register is set. If your device only supports `Preset Multiple Registers` (function code 16) set this option to true.\n\n*See also: [Modbus Controller Output](https://esphome.io/components/output/modbus_controller.html#configuration-variables)*"
+                "type": "boolean"
               }
             }
           },
@@ -414,8 +482,7 @@
                     "output::BinaryOutput",
                     "modbus_controller::SensorItem"
                   ]
-                },
-                "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Modbus Controller Output](https://esphome.io/components/output/modbus_controller.html#configuration-variables)*"
+                }
               },
               "value_type": {
                 "key": "Optional",
@@ -436,28 +503,24 @@
                   "FP32": null,
                   "FP32_R": null
                 },
-                "docs": "data type of the modbus register data. The default data type for modbus is a 16 bit integer in big endian format (MSB first)\n  * `U_WORD` (unsigned 16 bit integer from 1 register = 16bit)\n  \n  * `S_WORD` (signed 16 bit integer from 1 register = 16bit)\n  \n  * `U_DWORD` (unsigned 32 bit integer from 2 registers = 32bit)\n  \n  * `S_DWORD` (signed 32 bit integer from 2 registers = 32bit)\n  \n  * `U_DWORD_R` (unsigned 32 bit integer from 2 registers low word first)\n  \n  * `S_DWORD_R` (signed 32 bit integer from 2 registers low word first)\n  \n  * `U_QWORD` (unsigned 64 bit integer from 4 registers = 64bit)\n  \n  * `S_QWORD` (signed 64 bit integer from 4 registers = 64bit)\n  \n  * `U_QWORD_R` (unsigned 64 bit integer from 4 registers low word first)\n  \n  * `S_QWORD_R` signed 64 bit integer from 4 registers low word first)\n  \n  * `FP32` (32 bit IEEE 754 floating point from 2 registers)\n  \n  * `FP32_R` (32 bit IEEE 754 floating point - same as FP32 but low word first)\n  \n  \n\n*See also: [Modbus Controller Output](https://esphome.io/components/output/modbus_controller.html#configuration-variables)*"
+                "docs": "data type of the modbus register data. The default data type for modbus is a 16 bit integer in big endian format (MSB first).\n  * `U_WORD` (unsigned 16 bit integer from 1 register = 16bit)\n  \n  * `S_WORD` (signed 16 bit integer from 1 register = 16bit)\n  \n  * `U_DWORD` (unsigned 32 bit integer from 2 registers = 32bit)\n  \n  * `S_DWORD` (signed 32 bit integer from 2 registers = 32bit)\n  \n  * `U_DWORD_R` (unsigned 32 bit integer from 2 registers low word first)\n  \n  * `S_DWORD_R` (signed 32 bit integer from 2 registers low word first)\n  \n  * `U_QWORD` (unsigned 64 bit integer from 4 registers = 64bit)\n  \n  * `S_QWORD` (signed 64 bit integer from 4 registers = 64bit)\n  \n  * `U_QWORD_R` (unsigned 64 bit integer from 4 registers low word first)\n  \n  * `S_QWORD_R` signed 64 bit integer from 4 registers low word first)\n  \n  * `FP32` (32 bit IEEE 754 floating point from 2 registers)\n  \n  * `FP32_R` (32 bit IEEE 754 floating point - same as FP32 but low word first)\n  \n  \n\n*See also: [Modbus Controller Output](https://esphome.io/components/output/modbus_controller.html#configuration-variables)*"
               },
               "write_lambda": {
-                "key": "Optional",
-                "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: Lambda is evaluated before the modbus write command is created. The value is passed in as `float x` and an empty vector is passed in as `std::vector<uint16_t>&payload`. You can directly define the payload by adding data to payload then the return value is ignored and the content of payload is used.Parameters passed into the lambda\n  * **x** (float): The float value to be sent to the modbus device for `register_type: holding`\n  \n  * **x** (bool): The boolean value to be sent to the modbus device for `register_type: coil`\n  \n  * **payload** (``std::vector<uint16_t>&payload``):\n    * for `register_type: holding`: empty vector for the payload. The lamdba can add 16 bit raw modbus register words.\n    \n    * for `register_type: coil`: empty vector for the payload. If payload is set in the lambda it is sent as a custom command and must include all required bytes for a modbus request note: because the response contains data for all registers in the same range you have to use `data[item->offset]` to get the first response byte for your sensor.\n    \n    \n  \n  * **item** (const pointer to a SensorItem derived object):  The sensor object itself.\n  \n  Possible return values for the lambda:\n  * `return <FLOATING_POINT_NUMBER / BOOL>;` the new value for the sensor.\n  \n  * `return <anything>; and fill payload with data` if the payload is added from the lambda then these 16 bit words will be sent\n  \n  * `return {};` if you don\u2019t want write the command to the device (or do it from the lambda).\n  \n  \n\n*See also: [Modbus Controller Output](https://esphome.io/components/output/modbus_controller.html#configuration-variables)*"
+                "key": "Optional"
               },
               "multiply": {
                 "key": "Optional",
-                "default": "1.0",
-                "docs": "**float**: multiply the new value with this factor before sending the requests. Ignored if lambda is defined. Only valid for `register_type: holding`.\n\n*See also: [Modbus Controller Output](https://esphome.io/components/output/modbus_controller.html#configuration-variables)*"
+                "default": "1.0"
               },
               "use_write_multiple": {
                 "key": "Optional",
                 "default": "False",
-                "type": "boolean",
-                "docs": "**boolean**: By default the modbus command `Preset Single Registers` (function code 6) is used for setting the holding register if only 1 register is set. If your device only supports `Preset Multiple Registers` (function code 16) set this option to true.\n\n*See also: [Modbus Controller Output](https://esphome.io/components/output/modbus_controller.html#configuration-variables)*"
+                "type": "boolean"
               }
             }
           }
         },
-        "typed_key": "register_type",
-        "docs": "`coil` to create a binary outout or `holding` to create a float output.\n\n*See also: [Modbus Controller Output](https://esphome.io/components/output/modbus_controller.html#configuration-variables)*"
+        "typed_key": "register_type"
       }
     }
   },
@@ -480,8 +543,7 @@
                   "EntityBase",
                   "modbus_controller::SensorItem"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#configuration-variables)*"
+              }
             },
             "modbus_controller_id": {
               "key": "GeneratedID",
@@ -492,7 +554,7 @@
               "key": "Required",
               "type": "integer",
               "data_type": "positive_int",
-              "docs": "**int**: The start address of the first or only register of the Select.\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#configuration-variables)*"
+              "docs": "**int**: The start address of the first or only register of the Select  (can be decimal or hexadecimal).\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#configuration-variables)*"
             },
             "value_type": {
               "key": "Optional",
@@ -517,14 +579,14 @@
               "key": "Optional",
               "type": "integer",
               "data_type": "positive_int",
-              "docs": "The number of registers which are used for this Select. Only required for uncommon response encodings or to [optimize modbus communications](https://esphome.io/components/sensor/modbus_controller.html#modbus-register-count). Overrides the defaults determined by `value_type`.\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#configuration-variables)*"
+              "docs": "**int**: The number of consecutive registers this read request should span or skip in a single command. Default is 1. See [Optimizing modbus communications](https://esphome.io/components/modbus_controller.html#modbus-register-count) for more details.\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#configuration-variables)*"
             },
             "skip_updates": {
               "key": "Optional",
               "default": "0",
               "type": "integer",
               "data_type": "positive_int",
-              "docs": "**int**: By default all sensors of a modbus_controller are updated together. For data points that don\u2019t change very frequently updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle. Defaults to `0`. Note: The modbus_controller merges several registers into groups which are updated together. For each group the smallest update cycle is used.\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#configuration-variables)*"
+              "docs": "**int**: By default, all sensors of a modbus_controller are updated together. For data points that don\u2019t change very frequently, updates can be skipped. A value of 5 would only update this sensor range in every 5th update cycle. Note: The modbus_controller groups components by address ranges to reduce number of transactions. All components with the same starting address will be updated in one request. `skip_updates` applies for *all* components in the same range.\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#configuration-variables)*"
             },
             "force_new_range": {
               "key": "Optional",
@@ -540,7 +602,7 @@
               "key": "Optional",
               "default": "False",
               "type": "boolean",
-              "docs": "**boolean**: By default the modbus command `Preset Single Registers` (function code 6) is used for setting the holding register if only 1 register is set. If your device only supports *Preset Multiple Registers* (function code 16) set this option to `true`. Defaults to `false`.\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#configuration-variables)*"
+              "docs": "**boolean**: By default the modbus command *Function Code 6 (Preset Single Registers)* is used for setting the holding register if only one register is set. If your device only supports *Function Code 16 (Preset Multiple Registers)* set this option to `true`.\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#configuration-variables)*"
             },
             "optimistic": {
               "key": "Optional",
@@ -550,11 +612,11 @@
             },
             "lambda": {
               "key": "Optional",
-              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: Lambda to be evaluated every update interval to get the current option of the select.Parameters passed into lambda\n  * **x** (`int64_t`): The parsed integer value of the modbus data.\n  \n  * **data** (`const std::vector<uint8_t>&`): vector containing the complete raw modbus response bytes for this sensor. Note: because the response contains data for all registers in the same range you have to use `data[item->offset]` to get the first response byte for your sensor.\n  \n  * **item** (`ModbusSelect*const`):  The sensor object itself.\n  \n  Possible return values for the lambda:\n  * `return <std::string>;` The new option for this Select.\n  \n  * `return {};` Use default mapping (see `optionsmap`).\n  \n  \n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#configuration-variables)*"
+              "docs": "**[lambda](https://esphome.io/automations/templates.html#config-lambda)**: Lambda to be evaluated every update interval to get the current option of the select.Parameters passed into lambda\n  * **x** (`int64_t`): The parsed integer value of the modbus data.\n  \n  * **data** (`const std::vector<uint8_t>&`): vector containing the complete raw modbus response bytes for this sensor. Note: because the response contains data for all registers in the same range you have to use `data[item->offset]` to get the first response byte for your sensor.\n  \n  * **item** (`ModbusSelect*const`):  The sensor object itself.\n  \n  Possible return values for the lambda:\n  * `return <std::string>;` The new option for this Select.\n  \n  * `return {};` Use default mapping (see `optionsmap`).\n  \n  \n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#configuration-variables)*"
             },
             "write_lambda": {
               "key": "Optional",
-              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: Lambda to be evaluated on every update of the Sensor, before the new value is written to the modbus registers.\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#configuration-variables)*"
+              "docs": "**[lambda](https://esphome.io/automations/templates.html#config-lambda)**: Lambda to be evaluated on every update of the Sensor, before the new value is written to the modbus registers.\n\n*See also: [Modbus Controller Select](https://esphome.io/components/select/modbus_controller.html#configuration-variables)*"
             }
           }
         }
@@ -597,30 +659,37 @@
                   "EntityBase",
                   "modbus_controller::SensorItem"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Modbus Controller Switch](https://esphome.io/components/switch/modbus_controller.html#configuration-variables)*"
+              }
             },
             "register_type": {
               "key": "Optional",
               "type": "enum",
               "values": {
                 "custom": null,
-                "coil": null,
-                "holding": null,
-                "discrete_input": null,
-                "read": null
+                "coil": {
+                  "docs": "Coils are 1-bit registers (on/off values) that are used to control discrete outputs. They may be read and/or written. Modbus *Function Code 1 (Read Coil Status)* will be used."
+                },
+                "holding": {
+                  "docs": "Holding Registers - Holding registers are the most universal 16-bit register. They may be read and/or written. Modbus *Function Code 3 (Read Holding Registers)* will be used."
+                },
+                "discrete_input": {
+                  "docs": "discrete input register (read only coil) are similar to coils but can only be read. Modbus *Function Code 2 (Read Input Status)* will be used."
+                },
+                "read": {
+                  "docs": "Read Input Registers - registers are 16-bit registers used for input, and may only be read. Modbus *Function Code 4 (Read Input Registers)* will be used."
+                }
               },
-              "docs": "type of the modbus register.\n\n*See also: [Modbus Controller Switch](https://esphome.io/components/switch/modbus_controller.html#configuration-variables)*"
+              "docs": "type of the modbus register.\n  * `coil`: Coils are 1-bit registers (on/off values) that are used to control discrete outputs. They may be read and/or written. Modbus *Function Code 1 (Read Coil Status)* will be used.\n  \n  * `discrete_input`: discrete input register (read only coil) are similar to coils but can only be read. Modbus *Function Code 2 (Read Input Status)* will be used.\n  \n  * `holding`: Holding Registers - Holding registers are the most universal 16-bit register. They may be read and/or written. Modbus *Function Code 3 (Read Holding Registers)* will be used.\n  \n  * `read`: Read Input Registers - registers are 16-bit registers used for input, and may only be read. Modbus *Function Code 4 (Read Input Registers)* will be used.\n  \n  \n\n*See also: [Modbus Controller Switch](https://esphome.io/components/switch/modbus_controller.html#configuration-variables)*"
             },
             "use_write_multiple": {
               "key": "Optional",
               "default": "False",
               "type": "boolean",
-              "docs": "**boolean**: By default the modbus command `Force Single Coil` (function code 5) is used to send state changes to the device. If your device only supports `Force Multiple Coils` (function code 15) set this option to true.\n\n*See also: [Modbus Controller Switch](https://esphome.io/components/switch/modbus_controller.html#configuration-variables)*"
+              "docs": "**boolean**: By default the modbus command *Function Code 6 (Preset Single Registers)* is used for setting the holding register if only one register is set. If your device only supports *Function Code 16 (Preset Multiple Registers)* set this option to `true`.\n\n*See also: [Modbus Controller Switch](https://esphome.io/components/switch/modbus_controller.html#configuration-variables)*"
             },
             "write_lambda": {
               "key": "Optional",
-              "docs": "**[lambda](https://esphome.io/guides/automations.html#config-lambda)**: Lambda called before send. Lambda is evaluated before the modbus write command is created.Parameters passed into the lambda\n  * **x** (float): The float value to be sent to the modbus device\n  \n  * **payload** (`std::vector<uint8_t>&payload`): empty vector for the payload. If payload is set in the lambda it is sent as a custom command and must include all required bytes for a modbus request *note:* because the response contains data for all registers in the same range you have to use `data[item->offset]` to get the first response byte for your sensor.\n  \n  * **item** (const pointer to a Switch derived object):  The sensor object itself.\n  \n  Possible return values for the lambda:\n  * `return <true / false>;` the new value for the sensor.\n  \n  * `return <anything>; and fill payload with data` if the payload is added from the lambda then these bytes will be sent.\n  \n  * `return {};` in the case the lambda handles the sending of the value itself.\n  \n  \n\n*See also: [Modbus Controller Switch](https://esphome.io/components/switch/modbus_controller.html#configuration-variables)*"
+              "docs": "**[lambda](https://esphome.io/automations/templates.html#config-lambda)**: Lambda called before send. Lambda is evaluated before the modbus write command is created.Parameters passed into the lambda\n  * **x** (float): The float value to be sent to the modbus device\n  \n  * **payload** (`std::vector<uint8_t>&payload`): empty vector for the payload. If payload is set in the lambda it is sent as a custom command and must include all required bytes for a modbus request *note:* because the response contains data for all registers in the same range you have to use `data[item->offset]` to get the first response byte for your sensor.\n  \n  * **item** (const pointer to a Switch derived object):  The sensor object itself.\n  \n  Possible return values for the lambda:\n  * `return <true / false>;` the new value for the sensor.\n  \n  * `return <anything>; and fill payload with data` if the payload is added from the lambda then these bytes will be sent.\n  \n  * `return {};` in the case the lambda handles the sending of the value itself.\n  \n  \n\n*See also: [Modbus Controller Switch](https://esphome.io/components/switch/modbus_controller.html#configuration-variables)*"
             }
           }
         }
@@ -647,8 +716,7 @@
                   "EntityBase",
                   "modbus_controller::SensorItem"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
+              }
             },
             "register_type": {
               "key": "Optional",
@@ -656,34 +724,34 @@
               "values": {
                 "custom": null,
                 "coil": {
-                  "docs": "coils are also called discrete outout. Coils are 1-bit registers (on/off values) that are used to control discrete outputs. Read and Write access"
+                  "docs": "Coils are 1-bit registers (on/off values) that are used to control discrete outputs. They may be read and/or written. Modbus *Function Code 1 (Read Coil Status)* will be used."
                 },
                 "holding": {
-                  "docs": "Holding Registers - Holding registers are the most universal 16-bit register. Read and Write access"
+                  "docs": "Holding Registers - Holding registers are the most universal 16-bit register. They may be read and/or written. Modbus *Function Code 3 (Read Holding Registers)* will be used."
                 },
                 "discrete_input": {
-                  "docs": "discrete input register (read only coil) are similar to coils but can only be read."
+                  "docs": "discrete input register (read only coil) are similar to coils but can only be read. Modbus *Function Code 2 (Read Input Status)* will be used."
                 },
                 "read": {
-                  "docs": "Read Input Registers - registers are 16-bit registers used for input, and may only be read"
+                  "docs": "Read Input Registers - registers are 16-bit registers used for input, and may only be read. Modbus *Function Code 4 (Read Input Registers)* will be used."
                 }
               },
-              "docs": "type of the modbus register.\n  * `coil`: coils are also called discrete outout. Coils are 1-bit registers (on/off values) that are used to control discrete outputs. Read and Write access\n  \n  * `discrete_input`: discrete input register (read only coil) are similar to coils but can only be read.\n  \n  * `holding`: Holding Registers - Holding registers are the most universal 16-bit register. Read and Write access\n  \n  * `read`: Read Input Registers - registers are 16-bit registers used for input, and may only be read\n  \n  \n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
+              "docs": "type of the modbus register.\n  * `coil`: Coils are 1-bit registers (on/off values) that are used to control discrete outputs. They may be read and/or written. Modbus *Function Code 1 (Read Coil Status)* will be used.\n  \n  * `discrete_input`: discrete input register (read only coil) are similar to coils but can only be read. Modbus *Function Code 2 (Read Input Status)* will be used.\n  \n  * `holding`: Holding Registers - Holding registers are the most universal 16-bit register. They may be read and/or written. Modbus *Function Code 3 (Read Holding Registers)* will be used.\n  \n  * `read`: Read Input Registers - registers are 16-bit registers used for input, and may only be read. Modbus *Function Code 4 (Read Input Registers)* will be used.\n  \n  \n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
             },
             "register_count": {
               "key": "Optional",
               "default": "0",
               "type": "integer",
               "data_type": "positive_int",
-              "docs": "The number of registers this data point spans. Default is 1\n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
+              "docs": "**int**: The number of consecutive registers this read request should span or skip in a single command. Default is 1. See [Optimizing modbus communications](https://esphome.io/components/modbus_controller.html#modbus-register-count) for more details.\n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
             },
             "response_size": {
               "default": "2",
-              "docs": "Number of bytes of the response\n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
+              "docs": "Number of bytes of the response.\n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
             },
             "raw_encode": {
               "key": "Optional",
-              "default": "NONE",
+              "default": "ANSI",
               "type": "enum",
               "values": {
                 "NONE": {
@@ -693,10 +761,13 @@
                   "docs": "2 byte hex string. 0x2011 will be sent as \u201c2011\u201d."
                 },
                 "COMMA": {
-                  "docs": "Byte values as integers, delimited by a coma. 0x2011 will be sent as \u201c32,17\u201d"
+                  "docs": "Byte values as integers, delimited by a coma. 0x2011 will be sent as \u201c32,17\u201d."
+                },
+                "ANSI": {
+                  "docs": "Each byte is treated as an `ANSI` character. All control characters are ignored."
                 }
               },
-              "docs": "**enum**: If the response is binary it can\u2019t be published directly. Since a text sensor only publishes strings the binary data can be encoded\n  * `NONE`: Don\u2019t encode data.\n  \n  * `HEXBYTES`:  2 byte hex string. 0x2011 will be sent as \u201c2011\u201d.\n  \n  * `COMMA`: Byte values as integers, delimited by a coma. 0x2011 will be sent as \u201c32,17\u201d\n  \n  \n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
+              "docs": "**enum**: If the response is binary it can\u2019t be published directly. Since a text sensor only publishes strings the binary data can be encoded. Defaults to `ANSI`. Possible encodings are:\n  * `NONE`: Don\u2019t encode data.\n  \n  * `HEXBYTES`:  2 byte hex string. 0x2011 will be sent as \u201c2011\u201d.\n  \n  * `COMMA`: Byte values as integers, delimited by a coma. 0x2011 will be sent as \u201c32,17\u201d.\n  \n  * `ANSI`: Each byte is treated as an `ANSI` character. All control characters are ignored.\n  \n  \n\n*See also: [Modbus Controller Text Sensor](https://esphome.io/components/text_sensor/modbus_controller.html#configuration-variables)*"
             }
           }
         }

@@ -17,8 +17,7 @@
                   "EntityBase",
                   "Component"
                 ]
-              },
-              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation.\n\n*See also: [Integration Sensor](https://esphome.io/components/sensor/integration.html#configuration-variables)*"
+              }
             },
             "sensor": {
               "key": "Required",
@@ -72,7 +71,7 @@
             }
           }
         },
-        "docs": "This [Action](https://esphome.io/guides/automations.html#config-action) allows you to reset the value of the integration sensor to zero. For example this can be used to reset the integration sensor to zero at midnight with a time-based automation.\n\n*See also: [`sensor.integration.reset` Action](https://esphome.io/components/sensor/integration.html#sensor-integration-reset-action)*"
+        "docs": "This [Action](https://esphome.io/automations/actions.html#config-action) allows you to reset the value of the integration sensor to zero. For example this can be used to reset the integration sensor to zero at midnight with a time-based automation.\n\n*See also: [`sensor.integration.reset` Action](https://esphome.io/components/sensor/integration.html#sensor-integration-reset-action)*"
       }
     }
   }

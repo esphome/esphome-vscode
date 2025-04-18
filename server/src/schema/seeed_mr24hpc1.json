@@ -1,0 +1,836 @@
+{
+  "seeed_mr24hpc1": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "seeed_mr24hpc1::MR24HPC1Component",
+                "parents": [
+                  "Component",
+                  "uart::UARTDevice"
+                ]
+              },
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for this [Seeed Studio MR24HPC1 mmWave (Kit) component if you need multiple components.\n\n*See also: [seeed_mr24hpc1 Component/Hub](https://esphome.io/components/seeed_mr24hpc1.html#configuration-variables)*"
+            },
+            "uart_id": {
+              "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Component](https://esphome.io/components/uart.html#uart) if you want to use multiple UART buses.\n\n*See also: [seeed_mr24hpc1 Component/Hub](https://esphome.io/components/seeed_mr24hpc1.html#configuration-variables)*"
+            }
+          },
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
+        },
+        "is_list": true
+      }
+    }
+  },
+  "seeed_mr24hpc1.sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "mr24hpc1_id": {
+              "key": "GeneratedID",
+              "use_id_type": "seeed_mr24hpc1::MR24HPC1Component",
+              "type": "use_id"
+            },
+            "custom_presence_of_detection": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "m"
+                  },
+                  "icon": {
+                    "default": "mdi:signal-distance-variant"
+                  },
+                  "accuracy_decimals": {
+                    "default": "2"
+                  },
+                  "device_class": {
+                    "default": "distance"
+                  }
+                }
+              },
+              "docs": "**float**: Valid only for [underlying open functions](https://esphome.io/components/seeed_mr24hpc1.html#seeed-mr24hpc1-open-function). Radar detects human breath at a straight line distance, usually no more than 3 metres. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [seeed_mr24hpc1 Sensor](https://esphome.io/components/seeed_mr24hpc1.html#seeed-mr24hpc1-spatial-mtion)*"
+            },
+            "movement_signs": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:human-greeting-variant"
+                  }
+                }
+              },
+              "docs": "**int**: A value calculated by a built-in algorithm to determine if someone is moving in the current environment. When the value is 0, the radar determines that no one is present in the environment. When the value is 1, the radar determines that someone is present in the environment and is stationary. When the value is greater than 1, the radar determines that someone is present in the environment and is in motion. The larger the value, the stronger the motion. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [seeed_mr24hpc1 Sensor](https://esphome.io/components/seeed_mr24hpc1.html#seeed-mr24hpc1-spatial-mtion)*"
+            },
+            "custom_motion_distance": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "m"
+                  },
+                  "icon": {
+                    "default": "mdi:signal-distance-variant"
+                  },
+                  "accuracy_decimals": {
+                    "default": "2"
+                  }
+                }
+              },
+              "docs": "**float**: Valid only for [underlying open functions](https://esphome.io/components/seeed_mr24hpc1.html#seeed-mr24hpc1-open-function). Distance in meters of detected moving target. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [seeed_mr24hpc1 Sensor](https://esphome.io/components/seeed_mr24hpc1.html#seeed-mr24hpc1-spatial-mtion)*"
+            },
+            "custom_spatial_static_value": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:counter"
+                  },
+                  "device_class": {
+                    "default": "energy"
+                  }
+                }
+              },
+              "docs": "**int**: Valid only for [underlying open functions](https://esphome.io/components/seeed_mr24hpc1.html#seeed-mr24hpc1-open-function). Electromagnetic waves are present in the environment, with a low change in frequency when no one is present. The value of the overall space electromagnetic wave reflection weakly floating when there is someone breathing in the space (chest breathing micromotion). The output range for this value is 0-250. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [seeed_mr24hpc1 Sensor](https://esphome.io/components/seeed_mr24hpc1.html#seeed-mr24hpc1-spatial-mtion)*"
+            },
+            "custom_spatial_motion_value": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:counter"
+                  },
+                  "device_class": {
+                    "default": "energy"
+                  }
+                }
+              },
+              "docs": "**int**: Valid only for [underlying open functions](https://esphome.io/components/seeed_mr24hpc1.html#seeed-mr24hpc1-open-function). Motion amplitude values, different motion amplitudes cause different electromagnetic wave frequency changes. The output range for this value is 0-250. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [seeed_mr24hpc1 Sensor](https://esphome.io/components/seeed_mr24hpc1.html#seeed-mr24hpc1-spatial-mtion)*"
+            },
+            "custom_motion_speed": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "m/s"
+                  },
+                  "icon": {
+                    "default": "mdi:run-fast"
+                  },
+                  "accuracy_decimals": {
+                    "default": "2"
+                  },
+                  "device_class": {
+                    "default": "speed"
+                  }
+                }
+              },
+              "docs": "**float**: Valid only for [underlying open functions](https://esphome.io/components/seeed_mr24hpc1.html#seeed-mr24hpc1-open-function). The magnitude of the speed of the target movement is determined in real time. Approaching radar speed is positive, away is negative. When there is no movement speed, the value is 0, and the speed gear is in 0.5m/s increments. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [seeed_mr24hpc1 Sensor](https://esphome.io/components/seeed_mr24hpc1.html#seeed-mr24hpc1-spatial-mtion)*"
+            },
+            "custom_mode_num": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:counter"
+                  }
+                }
+              },
+              "docs": "**int**: The custom mode number that the radar is currently in. If it is not in custom mode, then the value is 0. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [seeed_mr24hpc1 Sensor](https://esphome.io/components/seeed_mr24hpc1.html#seeed-mr24hpc1-spatial-mtion)*"
+            }
+          }
+        }
+      }
+    }
+  },
+  "seeed_mr24hpc1.binary_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "mr24hpc1_id": {
+              "key": "GeneratedID",
+              "use_id_type": "seeed_mr24hpc1::MR24HPC1Component",
+              "type": "use_id"
+            },
+            "has_target": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "binary_sensor.BINARY_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:motion-sensor"
+                  },
+                  "device_class": {
+                    "default": "occupancy"
+                  }
+                }
+              },
+              "docs": "If true target detect either still or in movement. All options from [Binary Sensor](https://esphome.io/components/binary_sensor/index.html#config-binary-sensor).\n\n*See also: [seeed_mr24hpc1 Binary Sensor](https://esphome.io/components/seeed_mr24hpc1.html#id1)*"
+            }
+          }
+        }
+      }
+    }
+  },
+  "seeed_mr24hpc1.button": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "mr24hpc1_id": {
+              "key": "GeneratedID",
+              "use_id_type": "seeed_mr24hpc1::MR24HPC1Component",
+              "type": "use_id"
+            },
+            "restart": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "button.BUTTON_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "seeed_mr24hpc1::RestartButton",
+                      "parents": [
+                        "button::Button",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "icon": {
+                    "default": "mdi:restart-alert"
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  },
+                  "device_class": {
+                    "default": "restart"
+                  }
+                }
+              }
+            },
+            "custom_set_end": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "button.BUTTON_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "seeed_mr24hpc1::CustomSetEndButton",
+                      "parents": [
+                        "button::Button",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "icon": {
+                    "default": "mdi:cog"
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "seeed_mr24hpc1.number": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "mr24hpc1_id": {
+              "key": "GeneratedID",
+              "use_id_type": "seeed_mr24hpc1::MR24HPC1Component",
+              "type": "use_id"
+            },
+            "sensitivity": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "number.NUMBER_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "seeed_mr24hpc1::SensitivityNumber",
+                      "parents": [
+                        "number::Number",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "icon": {
+                    "default": "mdi:archive-check-outline"
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  }
+                }
+              },
+              "docs": "**int**: Valid only in [standard mode](https://esphome.io/components/seeed_mr24hpc1.html#seeed-mr24hpc1-standard-mode). Used to adjust the sensitivity of the radar. The sensitivity setting adjusts the detection distance of the sensor for human body in static state. There are 3 levels for sensitivity setting, with the default level being sensitivity 3. All options from [Number](https://esphome.io/components/number/index.html#config-number).\n\n*See also: [seeed_mr24hpc1 Number](https://esphome.io/components/seeed_mr24hpc1.html#seeed-mr24hpc1-custom-mode)*"
+            },
+            "custom_mode": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "number.NUMBER_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "seeed_mr24hpc1::CustomModeNumber",
+                      "parents": [
+                        "number::Number",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "icon": {
+                    "default": "mdi:cog"
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  }
+                }
+              }
+            },
+            "existence_threshold": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "number.NUMBER_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "seeed_mr24hpc1::ExistenceThresholdNumber",
+                      "parents": [
+                        "number::Number",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  }
+                }
+              }
+            },
+            "motion_threshold": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "number.NUMBER_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "seeed_mr24hpc1::MotionThresholdNumber",
+                      "parents": [
+                        "number::Number",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  }
+                }
+              }
+            },
+            "motion_trigger": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "number.NUMBER_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "seeed_mr24hpc1::MotionTriggerTimeNumber",
+                      "parents": [
+                        "number::Number",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "icon": {
+                    "default": "mdi:camera-timer"
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  },
+                  "unit_of_measurement": {
+                    "default": "ms"
+                  }
+                }
+              }
+            },
+            "motion_to_rest": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "number.NUMBER_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "seeed_mr24hpc1::MotionToRestTimeNumber",
+                      "parents": [
+                        "number::Number",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "icon": {
+                    "default": "mdi:camera-timer"
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  },
+                  "unit_of_measurement": {
+                    "default": "ms"
+                  }
+                }
+              }
+            },
+            "custom_unman_time": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "number.NUMBER_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "seeed_mr24hpc1::CustomUnmanTimeNumber",
+                      "parents": [
+                        "number::Number",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "icon": {
+                    "default": "mdi:camera-timer"
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  },
+                  "unit_of_measurement": {
+                    "default": "s"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "seeed_mr24hpc1.select": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "mr24hpc1_id": {
+              "key": "GeneratedID",
+              "use_id_type": "seeed_mr24hpc1::MR24HPC1Component",
+              "type": "use_id"
+            },
+            "scene_mode": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "select.SELECT_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "id_type": {
+                      "class": "seeed_mr24hpc1::SceneModeSelect",
+                      "parents": [
+                        "select::Select",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  },
+                  "icon": {
+                    "default": "mdi:hoop-house"
+                  }
+                }
+              }
+            },
+            "unman_time": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "select.SELECT_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "id_type": {
+                      "class": "seeed_mr24hpc1::UnmanTimeSelect",
+                      "parents": [
+                        "select::Select",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  },
+                  "icon": {
+                    "default": "mdi:timeline-clock"
+                  }
+                }
+              }
+            },
+            "existence_boundary": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "select.SELECT_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "id_type": {
+                      "class": "seeed_mr24hpc1::ExistenceBoundarySelect",
+                      "parents": [
+                        "select::Select",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  }
+                }
+              }
+            },
+            "motion_boundary": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "select.SELECT_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "id_type": {
+                      "class": "seeed_mr24hpc1::MotionBoundarySelect",
+                      "parents": [
+                        "select::Select",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "seeed_mr24hpc1.switch": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "mr24hpc1_id": {
+              "key": "GeneratedID",
+              "use_id_type": "seeed_mr24hpc1::MR24HPC1Component",
+              "type": "use_id"
+            },
+            "underlying_open_function": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "switch._SWITCH_SCHEMA"
+                ],
+                "config_vars": {
+                  "restore_mode": {
+                    "key": "Optional",
+                    "default": "ALWAYS_OFF",
+                    "type": "enum",
+                    "values": {
+                      "RESTORE_DEFAULT_OFF": null,
+                      "RESTORE_DEFAULT_ON": null,
+                      "ALWAYS_OFF": null,
+                      "ALWAYS_ON": null,
+                      "RESTORE_INVERTED_DEFAULT_OFF": null,
+                      "RESTORE_INVERTED_DEFAULT_ON": null,
+                      "DISABLED": null
+                    }
+                  },
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "seeed_mr24hpc1::UnderlyOpenFunctionSwitch",
+                      "parents": [
+                        "switch_::Switch",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  },
+                  "device_class": {
+                    "default": "switch"
+                  },
+                  "icon": {
+                    "default": "mdi:electric-switch"
+                  }
+                }
+              },
+              "docs": "Enable/disable **underlying open function**. When this switch is off, it indicates that it is currently in **standard mode**. Defaults to off (standard mode). Turning on this feature allows you to observe more information about the environment and is recommended to use it again in complex environments where the basic functionality is not sufficient. When this function is turned on, the stationary/motion and approach/away judgement of the basic function will be disabled. Notice this requires more resources and is not recommended to be enabled when not necessary. All options from [Switch](https://esphome.io/components/switch/index.html#config-switch).\n\n*See also: [seeed_mr24hpc1 Switch](https://esphome.io/components/seeed_mr24hpc1.html#id3)*"
+            }
+          }
+        }
+      }
+    }
+  },
+  "seeed_mr24hpc1.text_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "mr24hpc1_id": {
+              "key": "GeneratedID",
+              "use_id_type": "seeed_mr24hpc1::MR24HPC1Component",
+              "type": "use_id"
+            },
+            "heart_beat": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:connection"
+                  },
+                  "entity_category": {
+                    "default": "diagnostic"
+                  }
+                }
+              },
+              "docs": "Sensor operating status indicator. All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n\n*See also: [seeed_mr24hpc1 Text Sensor](https://esphome.io/components/seeed_mr24hpc1.html#id6)*"
+            },
+            "product_model": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:information-outline"
+                  },
+                  "entity_category": {
+                    "default": "diagnostic"
+                  }
+                }
+              },
+              "docs": "The product model. All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n\n*See also: [seeed_mr24hpc1 Text Sensor](https://esphome.io/components/seeed_mr24hpc1.html#id6)*"
+            },
+            "product_id": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:information-outline"
+                  },
+                  "entity_category": {
+                    "default": "diagnostic"
+                  }
+                }
+              },
+              "docs": "The product ID. All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n\n*See also: [seeed_mr24hpc1 Text Sensor](https://esphome.io/components/seeed_mr24hpc1.html#id6)*"
+            },
+            "hardware_model": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:information-outline"
+                  },
+                  "entity_category": {
+                    "default": "diagnostic"
+                  }
+                }
+              },
+              "docs": "The hardware model. All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n\n*See also: [seeed_mr24hpc1 Text Sensor](https://esphome.io/components/seeed_mr24hpc1.html#id6)*"
+            },
+            "hardware_version": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:information-outline"
+                  },
+                  "entity_category": {
+                    "default": "diagnostic"
+                  }
+                }
+              },
+              "docs": "The hardware version. All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n\n*See also: [seeed_mr24hpc1 Text Sensor](https://esphome.io/components/seeed_mr24hpc1.html#id6)*"
+            },
+            "keep_away": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:walk"
+                  },
+                  "entity_category": {
+                    "default": "diagnostic"
+                  }
+                }
+              },
+              "docs": "Indicator for detecting objects approaching or moving away. All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n\n*See also: [seeed_mr24hpc1 Text Sensor](https://esphome.io/components/seeed_mr24hpc1.html#id6)*"
+            },
+            "motion_status": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:human-greeting"
+                  },
+                  "entity_category": {
+                    "default": "diagnostic"
+                  }
+                }
+              },
+              "docs": "An indicator that detects the movement or stationarity of an object. All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n\n*See also: [seeed_mr24hpc1 Text Sensor](https://esphome.io/components/seeed_mr24hpc1.html#id6)*"
+            },
+            "custom_mode_end": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:account-check"
+                  },
+                  "entity_category": {
+                    "default": "diagnostic"
+                  }
+                }
+              },
+              "docs": "Used to indicate whether or not the current radar is in a customised mode amongst the setup functions. There are three main statuses: \u201cNot in custom mode\u201d, \u201cSetup in progress\u2026\u201d and \u201cSet Success!\u201d. All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n\n*See also: [seeed_mr24hpc1 Text Sensor](https://esphome.io/components/seeed_mr24hpc1.html#id6)*"
+            }
+          }
+        }
+      }
+    }
+  }
+}

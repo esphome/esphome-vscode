@@ -1,0 +1,73 @@
+{
+  "characteristic.ble_server": {
+    "action": {
+      "set_value": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "use_id_type": "esp32_ble_server::BLECharacteristic",
+              "type": "use_id"
+            },
+            "value": {
+              "key": "Required",
+              "type": "schema",
+              "maybe": "data",
+              "schema": {
+                "config_vars": {
+                  "data": {
+                    "key": "Required",
+                    "type": "integer"
+                  },
+                  "type": {
+                    "key": "Optional",
+                    "type": "enum",
+                    "values": {
+                      "uint8_t": null,
+                      "uint16_t": null,
+                      "uint32_t": null,
+                      "uint64_t": null,
+                      "int8_t": null,
+                      "int16_t": null,
+                      "int32_t": null,
+                      "int64_t": null,
+                      "float": null,
+                      "double": null,
+                      "string": null
+                    }
+                  },
+                  "string_encoding": {
+                    "key": "Optional",
+                    "default": "utf_8"
+                  },
+                  "endianness": {
+                    "key": "Optional",
+                    "default": "LITTLE",
+                    "type": "enum",
+                    "values": {
+                      "LITTLE": null,
+                      "BIG": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "notify": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "use_id_type": "esp32_ble_server::BLECharacteristic",
+              "type": "use_id"
+            }
+          }
+        }
+      }
+    }
+  }
+}

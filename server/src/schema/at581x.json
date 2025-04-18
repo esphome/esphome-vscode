@@ -1,0 +1,220 @@
+{
+  "at581x": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "at581x::AT581XComponent",
+                "parents": [
+                  "Component",
+                  "i2c::I2CDevice"
+                ]
+              },
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID used for code generation. Necessary if you want to define multiple instances of this component.\n\n*See also: [at581x Component/Hub](https://esphome.io/components/at581x.html#configuration-variables)*"
+            },
+            "i2c_id": {
+              "key": "GeneratedID",
+              "use_id_type": "i2c::I2CBus",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [I\u00b2C Bus](https://esphome.io/components/i2c.html) if you want to use multiple I2C buses.\n\n*See also: [at581x Component/Hub](https://esphome.io/components/at581x.html#configuration-variables)*"
+            },
+            "address": {
+              "key": "Optional",
+              "default": "40",
+              "data_type": "hex_uint8_t"
+            }
+          },
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
+        },
+        "is_list": true
+      }
+    },
+    "action": {
+      "reset": {
+        "type": "schema",
+        "maybe": "id",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "use_id_type": "at581x::AT581XComponent",
+              "type": "use_id"
+            }
+          }
+        }
+      },
+      "settings": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "Required",
+              "use_id_type": "at581x::AT581XComponent",
+              "type": "use_id"
+            },
+            "hw_frontend_reset": {
+              "key": "Optional",
+              "templatable": true,
+              "type": "boolean"
+            },
+            "frequency": {
+              "key": "Optional",
+              "default": "5800MHz",
+              "templatable": true,
+              "type": "enum",
+              "values": {
+                "5696000000.0": null,
+                "5715000000.0": null,
+                "5730000000.0": null,
+                "5748000000.0": null,
+                "5765000000.0": null,
+                "5784000000.0": null,
+                "5800000000.0": null,
+                "5819000000.0": null,
+                "5836000000.0": null,
+                "5851000000.0": null,
+                "5869000000.0": null,
+                "5888000000.0": null
+              }
+            },
+            "sensing_distance": {
+              "key": "Optional",
+              "default": "823",
+              "templatable": true,
+              "type": "integer"
+            },
+            "poweron_selfcheck_time": {
+              "key": "Optional",
+              "default": "2000ms",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "power_consumption": {
+              "key": "Optional",
+              "default": "70uA",
+              "templatable": true,
+              "type": "enum",
+              "values": {
+                "4.8e-05": null,
+                "5.6e-05": null,
+                "6.3e-05": null,
+                "7e-05": null,
+                "7.7e-05": null,
+                "9.1e-05": null,
+                "0.000105": null,
+                "0.000115": null,
+                "4e-05": null,
+                "4.4e-05": null,
+                "4.7e-05": null,
+                "5.1e-05": null,
+                "5.4e-05": null,
+                "6.1e-05": null,
+                "6.8e-05": null,
+                "7.8e-05": null
+              }
+            },
+            "protect_time": {
+              "key": "Optional",
+              "default": "1000ms",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "trigger_base": {
+              "key": "Optional",
+              "default": "500ms",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "trigger_keep": {
+              "key": "Optional",
+              "default": "1500ms",
+              "templatable": true,
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "stage_gain": {
+              "key": "Optional",
+              "default": "3",
+              "templatable": true,
+              "type": "integer"
+            }
+          }
+        }
+      }
+    }
+  },
+  "at581x.switch": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "switch._SWITCH_SCHEMA"
+          ],
+          "config_vars": {
+            "restore_mode": {
+              "key": "Optional",
+              "default": "ALWAYS_OFF",
+              "type": "enum",
+              "values": {
+                "RESTORE_DEFAULT_OFF": null,
+                "RESTORE_DEFAULT_ON": null,
+                "ALWAYS_OFF": null,
+                "ALWAYS_ON": null,
+                "RESTORE_INVERTED_DEFAULT_OFF": null,
+                "RESTORE_INVERTED_DEFAULT_ON": null,
+                "DISABLED": null
+              }
+            },
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "at581x::RFSwitch",
+                "parents": [
+                  "switch_::Switch",
+                  "EntityBase"
+                ]
+              }
+            },
+            "device_class": {
+              "default": "switch"
+            },
+            "icon": {
+              "default": "mdi:wifi"
+            },
+            "at581x_id": {
+              "key": "GeneratedID",
+              "use_id_type": "at581x::AT581XComponent",
+              "type": "use_id"
+            }
+          }
+        }
+      }
+    }
+  }
+}

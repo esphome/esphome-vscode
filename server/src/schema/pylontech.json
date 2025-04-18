@@ -1,0 +1,334 @@
+{
+  "pylontech": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "pylontech::PylontechComponent",
+                "parents": [
+                  "PollingComponent",
+                  "Component",
+                  "uart::UARTDevice"
+                ]
+              },
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: The id to use for this Pylontech component.\n\n*See also: [pylontech Component/Hub](https://esphome.io/components/pylontech.html#configuration-variables)*"
+            },
+            "update_interval": {
+              "key": "Optional",
+              "default": "60s",
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to check the sensor. Defaults to `60s`.\n\n*See also: [pylontech Component/Hub](https://esphome.io/components/pylontech.html#configuration-variables)*"
+            },
+            "uart_id": {
+              "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id",
+              "docs": "The uart Bus ID\n\n*See also: [pylontech Component/Hub](https://esphome.io/components/pylontech.html#configuration-variables)*"
+            }
+          },
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
+        },
+        "is_list": true
+      },
+      "PYLONTECH_COMPONENT_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "pylontech_id": {
+              "key": "GeneratedID",
+              "use_id_type": "pylontech::PylontechComponent",
+              "type": "use_id",
+              "docs": "Manually specify the ID of the pylontech instance if there are multiple.\n\n*See also: [pylontech Text Sensor](https://esphome.io/components/pylontech.html#id2)*"
+            },
+            "battery": {
+              "key": "Required",
+              "type": "integer",
+              "schema": {},
+              "docs": "Which battery to monitor. 1 stands for the main battery, 2..16 for child batteries.\n\n*See also: [pylontech Text Sensor](https://esphome.io/components/pylontech.html#id2)*"
+            }
+          }
+        }
+      }
+    }
+  },
+  "pylontech.sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "pylontech.PYLONTECH_COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "pylontech::PylontechSensor",
+                "parents": [
+                  "Component"
+                ]
+              }
+            },
+            "voltage": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "V"
+                  },
+                  "accuracy_decimals": {
+                    "default": "3"
+                  },
+                  "device_class": {
+                    "default": "voltage"
+                  }
+                }
+              },
+              "docs": "Voltage of the battery. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [pylontech Sensor](https://esphome.io/components/pylontech.html#id1)*"
+            },
+            "current": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "A"
+                  },
+                  "accuracy_decimals": {
+                    "default": "3"
+                  },
+                  "device_class": {
+                    "default": "current"
+                  }
+                }
+              },
+              "docs": "Current flowing into the battery. Negative when discharging. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [pylontech Sensor](https://esphome.io/components/pylontech.html#id1)*"
+            },
+            "temperature": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "\u00b0C"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  },
+                  "device_class": {
+                    "default": "temperature"
+                  }
+                }
+              },
+              "docs": "Temperature. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [pylontech Sensor](https://esphome.io/components/pylontech.html#id1)*"
+            },
+            "temperature_low": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "\u00b0C"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  },
+                  "device_class": {
+                    "default": "temperature"
+                  }
+                }
+              },
+              "docs": "Historic minimum temperature. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [pylontech Sensor](https://esphome.io/components/pylontech.html#id1)*"
+            },
+            "temperature_high": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "\u00b0C"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  },
+                  "device_class": {
+                    "default": "temperature"
+                  }
+                }
+              },
+              "docs": "Historic maximum temperature. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [pylontech Sensor](https://esphome.io/components/pylontech.html#id1)*"
+            },
+            "voltage_low": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "V"
+                  },
+                  "accuracy_decimals": {
+                    "default": "3"
+                  },
+                  "device_class": {
+                    "default": "voltage"
+                  }
+                }
+              },
+              "docs": "Voltage of the lowest cell. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [pylontech Sensor](https://esphome.io/components/pylontech.html#id1)*"
+            },
+            "voltage_high": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "V"
+                  },
+                  "accuracy_decimals": {
+                    "default": "3"
+                  },
+                  "device_class": {
+                    "default": "voltage"
+                  }
+                }
+              },
+              "docs": "Voltage of the highest cell. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [pylontech Sensor](https://esphome.io/components/pylontech.html#id1)*"
+            },
+            "coulomb": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "%"
+                  },
+                  "accuracy_decimals": {
+                    "default": "0"
+                  },
+                  "device_class": {
+                    "default": "battery"
+                  }
+                }
+              },
+              "docs": "State of Charge in percent. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [pylontech Sensor](https://esphome.io/components/pylontech.html#id1)*"
+            },
+            "mos_temperature": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "unit_of_measurement": {
+                    "default": "\u00b0C"
+                  },
+                  "accuracy_decimals": {
+                    "default": "1"
+                  },
+                  "device_class": {
+                    "default": "temperature"
+                  }
+                }
+              },
+              "docs": "Temperature of the mosfets. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [pylontech Sensor](https://esphome.io/components/pylontech.html#id1)*"
+            }
+          }
+        }
+      }
+    }
+  },
+  "pylontech.text_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "pylontech.PYLONTECH_COMPONENT_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "pylontech::PylontechTextSensor",
+                "parents": [
+                  "Component"
+                ]
+              }
+            },
+            "base_state": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ]
+              },
+              "docs": "Base state. Usually reads `Dischg`, `Charge` or `Idle`. All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n\n*See also: [pylontech Text Sensor](https://esphome.io/components/pylontech.html#id2)*"
+            },
+            "voltage_state": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ]
+              },
+              "docs": "Voltage state. Usually reads `Normal`. All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n\n*See also: [pylontech Text Sensor](https://esphome.io/components/pylontech.html#id2)*"
+            },
+            "current_state": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ]
+              },
+              "docs": "Current state. Usually reads `Normal`. All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n\n*See also: [pylontech Text Sensor](https://esphome.io/components/pylontech.html#id2)*"
+            },
+            "temperature_state": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ]
+              },
+              "docs": "Temperature state. Usually reads `Normal`. All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n\n*See also: [pylontech Text Sensor](https://esphome.io/components/pylontech.html#id2)*"
+            }
+          }
+        }
+      }
+    }
+  }
+}

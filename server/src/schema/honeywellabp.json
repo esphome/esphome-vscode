@@ -48,7 +48,7 @@
                   }
                 }
               },
-              "docs": "The information for the pressure sensor.\n  * **name** (**Required**, string): The name for the pressure sensor.\n  \n  * **min_pressure** (**Required**, int or float): Minimum pressure for the pressure sensor, default unit `psi`.\n  \n  * **max_pressure** (**Required**, int or float): Maximum pressure for the pressure sensor, default unit `psi`.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Honeywell ABP Pressure Sensors](https://esphome.io/components/sensor/honeywellabp.html#configuration-variables)*"
+              "docs": "The information for the pressure sensor.\n  * **min_pressure** (**Required**, int or float): Minimum pressure for the pressure sensor, default unit `psi`.\n  \n  * **max_pressure** (**Required**, int or float): Maximum pressure for the pressure sensor, default unit `psi`.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Honeywell ABP Pressure Sensors](https://esphome.io/components/sensor/honeywellabp.html#configuration-variables)*"
             },
             "temperature": {
               "key": "Optional",
@@ -72,7 +72,7 @@
                   }
                 }
               },
-              "docs": "The information for the temperature sensor.\n  * **name** (**Required**, string): The name for the temperature sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Honeywell ABP Pressure Sensors](https://esphome.io/components/sensor/honeywellabp.html#configuration-variables)*"
+              "docs": "The information for the temperature sensor.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [Honeywell ABP Pressure Sensors](https://esphome.io/components/sensor/honeywellabp.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",
@@ -83,6 +83,38 @@
               "key": "GeneratedID",
               "use_id_type": "spi::SPIComponent",
               "type": "use_id"
+            },
+            "data_rate": {
+              "key": "Optional",
+              "type": "enum",
+              "values": {
+                "80000000.0": null,
+                "40000000.0": null,
+                "20000000.0": null,
+                "10000000.0": null,
+                "8000000.0": null,
+                "5000000.0": null,
+                "4000000.0": null,
+                "2000000.0": null,
+                "1000000.0": null,
+                "200000.0": null,
+                "75000.0": null,
+                "1000.0": null
+              }
+            },
+            "spi_mode": {
+              "key": "Optional",
+              "type": "enum",
+              "values": {
+                "MODE0": null,
+                "MODE1": null,
+                "MODE2": null,
+                "MODE3": null,
+                "0": null,
+                "1": null,
+                "2": null,
+                "3": null
+              }
             },
             "cs_pin": {
               "key": "Required",

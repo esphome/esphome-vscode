@@ -94,8 +94,6 @@
               "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The pin you have the DIO line hooked up to.\n\n*See also: [TM1637 7-Segment Display](https://esphome.io/components/display/tm1637.html#configuration-variables)*"
             },
             "update_interval": {
-              "key": "Optional",
-              "default": "1s",
               "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to re-draw the screen. Defaults to `1s`.\n\n*See also: [TM1637 7-Segment Display](https://esphome.io/components/display/tm1637.html#configuration-variables)*"
             }
           }

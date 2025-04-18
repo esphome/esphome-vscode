@@ -1,0 +1,416 @@
+{
+  "qspi_dbi.display": {
+    "schemas": {
+      "BASE_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "extends": [
+            "display.FULL_DISPLAY_SCHEMA"
+          ],
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "qspi_dbi::QspiDbi",
+                "parents": [
+                  "display::Display",
+                  "PollingComponent",
+                  "Component",
+                  "display::DisplayBuffer",
+                  "display::Display",
+                  "PollingComponent",
+                  "Component",
+                  "Component",
+                  "spi::SPIDevice"
+                ]
+              }
+            },
+            "init_sequence": {
+              "key": "Optional",
+              "is_list": true
+            },
+            "dimensions": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "width": {
+                    "key": "Required"
+                  },
+                  "height": {
+                    "key": "Required"
+                  },
+                  "offset_height": {
+                    "key": "Optional",
+                    "default": "0"
+                  },
+                  "offset_width": {
+                    "key": "Optional",
+                    "default": "0"
+                  }
+                }
+              }
+            },
+            "draw_from_origin": {
+              "key": "Optional",
+              "default": "False",
+              "type": "boolean"
+            },
+            "reset_pin": {
+              "key": "Optional",
+              "schema": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin"
+            },
+            "enable_pin": {
+              "key": "Optional",
+              "schema": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin"
+            },
+            "brightness": {
+              "key": "Optional",
+              "default": "208",
+              "type": "integer"
+            },
+            "spi_id": {
+              "key": "GeneratedID",
+              "use_id_type": "spi::QuadSPIComponent",
+              "type": "use_id"
+            },
+            "data_rate": {
+              "key": "Optional",
+              "default": "10000000.0",
+              "type": "enum",
+              "values": {
+                "80000000.0": null,
+                "40000000.0": null,
+                "20000000.0": null,
+                "10000000.0": null,
+                "8000000.0": null,
+                "5000000.0": null,
+                "4000000.0": null,
+                "2000000.0": null,
+                "1000000.0": null,
+                "200000.0": null,
+                "75000.0": null,
+                "1000.0": null
+              }
+            },
+            "spi_mode": {
+              "key": "Optional",
+              "default": "MODE0",
+              "type": "enum",
+              "values": {
+                "MODE0": null,
+                "MODE1": null,
+                "MODE2": null,
+                "MODE3": null,
+                "0": null,
+                "1": null,
+                "2": null,
+                "3": null
+              }
+            },
+            "cs_pin": {
+              "key": "Optional",
+              "schema": true,
+              "modes": [
+                "output"
+              ],
+              "type": "pin"
+            }
+          }
+        }
+      },
+      "CONFIG_SCHEMA": {
+        "type": "typed",
+        "types": {
+          "RM67162": {
+            "extends": [
+              "qspi_dbi.display.BASE_SCHEMA"
+            ],
+            "config_vars": {
+              "invert_colors": {
+                "key": "Optional",
+                "default": "False",
+                "type": "boolean"
+              },
+              "color_order": {
+                "key": "Optional",
+                "default": "RGB",
+                "type": "enum",
+                "values": {
+                  "RGB": null,
+                  "BGR": null
+                }
+              },
+              "draw_rounding": {
+                "key": "Optional",
+                "default": "2"
+              },
+              "transform": {
+                "key": "Optional",
+                "type": "schema",
+                "schema": {
+                  "config_vars": {
+                    "mirror_x": {
+                      "key": "Optional",
+                      "default": "False",
+                      "type": "boolean"
+                    },
+                    "mirror_y": {
+                      "key": "Optional",
+                      "default": "False",
+                      "type": "boolean"
+                    },
+                    "swap_xy": {
+                      "key": "Optional",
+                      "default": "False",
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "RM690B0": {
+            "extends": [
+              "qspi_dbi.display.BASE_SCHEMA"
+            ],
+            "config_vars": {
+              "invert_colors": {
+                "key": "Optional",
+                "default": "False",
+                "type": "boolean"
+              },
+              "color_order": {
+                "key": "Optional",
+                "default": "RGB",
+                "type": "enum",
+                "values": {
+                  "RGB": null,
+                  "BGR": null
+                }
+              },
+              "draw_rounding": {
+                "key": "Optional",
+                "default": "2"
+              },
+              "transform": {
+                "key": "Optional",
+                "type": "schema",
+                "schema": {
+                  "config_vars": {
+                    "mirror_x": {
+                      "key": "Optional",
+                      "default": "False",
+                      "type": "boolean"
+                    },
+                    "mirror_y": {
+                      "key": "Optional",
+                      "default": "False",
+                      "type": "boolean"
+                    },
+                    "swap_xy": {
+                      "key": "Optional",
+                      "default": "False",
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "AXS15231": {
+            "extends": [
+              "qspi_dbi.display.BASE_SCHEMA"
+            ],
+            "config_vars": {
+              "invert_colors": {
+                "key": "Optional",
+                "default": "False",
+                "type": "boolean"
+              },
+              "color_order": {
+                "key": "Optional",
+                "default": "RGB",
+                "type": "enum",
+                "values": {
+                  "RGB": null,
+                  "BGR": null
+                }
+              },
+              "draw_rounding": {
+                "key": "Optional",
+                "default": "8"
+              },
+              "transform": {
+                "key": "Optional",
+                "type": "schema",
+                "schema": {
+                  "config_vars": {
+                    "mirror_x": {
+                      "key": "Optional",
+                      "default": "False",
+                      "type": "boolean"
+                    },
+                    "mirror_y": {
+                      "key": "Optional",
+                      "default": "False",
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "JC4832W535": {
+            "extends": [
+              "qspi_dbi.display.BASE_SCHEMA"
+            ],
+            "config_vars": {
+              "invert_colors": {
+                "key": "Optional",
+                "default": "False",
+                "type": "boolean"
+              },
+              "color_order": {
+                "key": "Optional",
+                "default": "RGB",
+                "type": "enum",
+                "values": {
+                  "RGB": null,
+                  "BGR": null
+                }
+              },
+              "draw_rounding": {
+                "key": "Optional",
+                "default": "8"
+              },
+              "transform": {
+                "key": "Optional",
+                "type": "schema",
+                "schema": {
+                  "config_vars": {
+                    "mirror_x": {
+                      "key": "Optional",
+                      "default": "False",
+                      "type": "boolean"
+                    },
+                    "mirror_y": {
+                      "key": "Optional",
+                      "default": "False",
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "JC3636W518": {
+            "extends": [
+              "qspi_dbi.display.BASE_SCHEMA"
+            ],
+            "config_vars": {
+              "invert_colors": {
+                "key": "Optional",
+                "default": "True",
+                "type": "boolean"
+              },
+              "color_order": {
+                "key": "Optional",
+                "default": "RGB",
+                "type": "enum",
+                "values": {
+                  "RGB": null,
+                  "BGR": null
+                }
+              },
+              "draw_rounding": {
+                "key": "Optional",
+                "default": "2"
+              },
+              "transform": {
+                "key": "Optional",
+                "type": "schema",
+                "schema": {
+                  "config_vars": {
+                    "mirror_x": {
+                      "key": "Optional",
+                      "default": "False",
+                      "type": "boolean"
+                    },
+                    "mirror_y": {
+                      "key": "Optional",
+                      "default": "False",
+                      "type": "boolean"
+                    },
+                    "swap_xy": {
+                      "key": "Optional",
+                      "default": "False",
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "CUSTOM": {
+            "extends": [
+              "qspi_dbi.display.BASE_SCHEMA"
+            ],
+            "config_vars": {
+              "invert_colors": {
+                "key": "Optional",
+                "default": "False",
+                "type": "boolean"
+              },
+              "color_order": {
+                "key": "Optional",
+                "default": "RGB",
+                "type": "enum",
+                "values": {
+                  "RGB": null,
+                  "BGR": null
+                }
+              },
+              "draw_rounding": {
+                "key": "Optional",
+                "default": "2"
+              },
+              "transform": {
+                "key": "Optional",
+                "type": "schema",
+                "schema": {
+                  "config_vars": {
+                    "mirror_x": {
+                      "key": "Optional",
+                      "default": "False",
+                      "type": "boolean"
+                    },
+                    "mirror_y": {
+                      "key": "Optional",
+                      "default": "False",
+                      "type": "boolean"
+                    },
+                    "swap_xy": {
+                      "key": "Optional",
+                      "default": "False",
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "typed_key": "model"
+      }
+    }
+  }
+}

@@ -38,7 +38,7 @@
                   }
                 }
               },
-              "docs": "The information for the temperature sensor.\n  * **name** (**Required**, string): The name for the temperature sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [AHT10 Temperature+Humidity Sensor](https://esphome.io/components/sensor/aht10.html#configuration-variables)*"
+              "docs": "The information for the temperature sensor.\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [AHT10 Temperature+Humidity Sensor](https://esphome.io/components/sensor/aht10.html#configuration-variables)*"
             },
             "humidity": {
               "key": "Optional",
@@ -62,7 +62,21 @@
                   }
                 }
               },
-              "docs": "The information for the humidity sensor\n  * **name** (**Required**, string): The name for the humidity sensor.\n  \n  * **id** (*Optional*, [ID](https://esphome.io/guides/configuration-types.html#config-id)): Set the ID of this sensor for use in lambdas.\n  \n  * All other options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [AHT10 Temperature+Humidity Sensor](https://esphome.io/components/sensor/aht10.html#configuration-variables)*"
+              "docs": "The information for the humidity sensor\n  * All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n  \n  \n\n*See also: [AHT10 Temperature+Humidity Sensor](https://esphome.io/components/sensor/aht10.html#configuration-variables)*"
+            },
+            "variant": {
+              "key": "Optional",
+              "default": "AHT10",
+              "type": "enum",
+              "values": {
+                "AHT10": {
+                  "docs": "For AHT10 devices."
+                },
+                "AHT20": {
+                  "docs": "For AHT20 and AHT30 devices."
+                }
+              },
+              "docs": "**enum**: Set the variant of the device in use. Defaults to `AHT10`.\n  * `AHT10` - For AHT10 devices.\n  \n  * `AHT20` - For AHT20 and AHT30 devices.\n  \n  \n\n*See also: [AHT10 Temperature+Humidity Sensor](https://esphome.io/components/sensor/aht10.html#configuration-variables)*"
             },
             "update_interval": {
               "key": "Optional",

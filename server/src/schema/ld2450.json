@@ -1,0 +1,1559 @@
+{
+  "ld2450": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "id": {
+              "key": "GeneratedID",
+              "id_type": {
+                "class": "ld2450::LD2450Component",
+                "parents": [
+                  "Component",
+                  "uart::UARTDevice"
+                ]
+              }
+            },
+            "throttle": {
+              "key": "Optional",
+              "default": "1000ms",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "core.positive_time_period_milliseconds"
+                ]
+              }
+            },
+            "uart_id": {
+              "key": "GeneratedID",
+              "use_id_type": "uart::UARTComponent",
+              "type": "use_id"
+            }
+          },
+          "extends": [
+            "core.COMPONENT_SCHEMA"
+          ]
+        },
+        "is_list": true
+      }
+    }
+  },
+  "ld2450.sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "ld2450_id": {
+              "key": "GeneratedID",
+              "use_id_type": "ld2450::LD2450Component",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for the [LD2450 Sensor component.\n\n*See also: [ld2450 Sensor](https://esphome.io/components/sensor/ld2450.html#id2)*"
+            },
+            "target_count": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:account-group"
+                  }
+                }
+              },
+              "docs": "**int**: Total targets detected, whether they are stationary or in motion. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [ld2450 Sensor](https://esphome.io/components/sensor/ld2450.html#id2)*"
+            },
+            "still_target_count": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:human-greeting-proximity"
+                  }
+                }
+              },
+              "docs": "**int**: Count of stationary targets. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [ld2450 Sensor](https://esphome.io/components/sensor/ld2450.html#id2)*"
+            },
+            "moving_target_count": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "sensor.SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:account-switch"
+                  }
+                }
+              },
+              "docs": "**int**: Count of moving targets. All options from [Sensor](https://esphome.io/components/sensor/index.html#config-sensor).\n\n*See also: [ld2450 Sensor](https://esphome.io/components/sensor/ld2450.html#id2)*"
+            },
+            "target_1": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "x": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        },
+                        "icon": {
+                          "default": "mdi:alpha-x-box-outline"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        }
+                      }
+                    }
+                  },
+                  "y": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        },
+                        "icon": {
+                          "default": "mdi:alpha-y-box-outline"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        }
+                      }
+                    }
+                  },
+                  "speed": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "unit_of_measurement": {
+                          "default": "mm/s"
+                        },
+                        "icon": {
+                          "default": "mdi:speedometer-slow"
+                        },
+                        "device_class": {
+                          "default": "speed"
+                        }
+                      }
+                    }
+                  },
+                  "angle": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "unit_of_measurement": {
+                          "default": "\u00b0"
+                        },
+                        "icon": {
+                          "default": "mdi:format-text-rotation-angle-up"
+                        }
+                      }
+                    }
+                  },
+                  "distance": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        },
+                        "icon": {
+                          "default": "mdi:map-marker-distance"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        }
+                      }
+                    }
+                  },
+                  "resolution": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        },
+                        "icon": {
+                          "default": "mdi:relation-zero-or-one-to-zero-or-one"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "target_2": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "x": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        },
+                        "icon": {
+                          "default": "mdi:alpha-x-box-outline"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        }
+                      }
+                    }
+                  },
+                  "y": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        },
+                        "icon": {
+                          "default": "mdi:alpha-y-box-outline"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        }
+                      }
+                    }
+                  },
+                  "speed": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "unit_of_measurement": {
+                          "default": "mm/s"
+                        },
+                        "icon": {
+                          "default": "mdi:speedometer-slow"
+                        },
+                        "device_class": {
+                          "default": "speed"
+                        }
+                      }
+                    }
+                  },
+                  "angle": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "unit_of_measurement": {
+                          "default": "\u00b0"
+                        },
+                        "icon": {
+                          "default": "mdi:format-text-rotation-angle-up"
+                        }
+                      }
+                    }
+                  },
+                  "distance": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        },
+                        "icon": {
+                          "default": "mdi:map-marker-distance"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        }
+                      }
+                    }
+                  },
+                  "resolution": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        },
+                        "icon": {
+                          "default": "mdi:relation-zero-or-one-to-zero-or-one"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "target_3": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "x": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        },
+                        "icon": {
+                          "default": "mdi:alpha-x-box-outline"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        }
+                      }
+                    }
+                  },
+                  "y": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        },
+                        "icon": {
+                          "default": "mdi:alpha-y-box-outline"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        }
+                      }
+                    }
+                  },
+                  "speed": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "unit_of_measurement": {
+                          "default": "mm/s"
+                        },
+                        "icon": {
+                          "default": "mdi:speedometer-slow"
+                        },
+                        "device_class": {
+                          "default": "speed"
+                        }
+                      }
+                    }
+                  },
+                  "angle": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "unit_of_measurement": {
+                          "default": "\u00b0"
+                        },
+                        "icon": {
+                          "default": "mdi:format-text-rotation-angle-up"
+                        }
+                      }
+                    }
+                  },
+                  "distance": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        },
+                        "icon": {
+                          "default": "mdi:map-marker-distance"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        }
+                      }
+                    }
+                  },
+                  "resolution": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        },
+                        "icon": {
+                          "default": "mdi:relation-zero-or-one-to-zero-or-one"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "zone_1": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "target_count": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "icon": {
+                          "default": "mdi:map-marker-account"
+                        }
+                      }
+                    }
+                  },
+                  "still_target_count": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "icon": {
+                          "default": "mdi:map-marker-account"
+                        }
+                      }
+                    }
+                  },
+                  "moving_target_count": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "icon": {
+                          "default": "mdi:map-marker-account"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "zone_2": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "target_count": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "icon": {
+                          "default": "mdi:map-marker-account"
+                        }
+                      }
+                    }
+                  },
+                  "still_target_count": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "icon": {
+                          "default": "mdi:map-marker-account"
+                        }
+                      }
+                    }
+                  },
+                  "moving_target_count": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "icon": {
+                          "default": "mdi:map-marker-account"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "zone_3": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "target_count": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "icon": {
+                          "default": "mdi:map-marker-account"
+                        }
+                      }
+                    }
+                  },
+                  "still_target_count": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "icon": {
+                          "default": "mdi:map-marker-account"
+                        }
+                      }
+                    }
+                  },
+                  "moving_target_count": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "sensor.SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "icon": {
+                          "default": "mdi:map-marker-account"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "id": {
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for this [LD2450 Sensor component.\n\n*See also: [Component](https://esphome.io/components/sensor/ld2450.html#configuration-variables)*"
+            },
+            "uart_id": {
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [UART Component](https://esphome.io/components/uart.html#uart) to use. Required if you have multiple UARTs configured.\n\n*See also: [Component](https://esphome.io/components/sensor/ld2450.html#configuration-variables)*"
+            }
+          }
+        }
+      }
+    }
+  },
+  "ld2450.binary_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "ld2450_id": {
+              "key": "GeneratedID",
+              "use_id_type": "ld2450::LD2450Component",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for the [LD2450 Sensor component.\n\n*See also: [ld2450 Binary Sensor](https://esphome.io/components/sensor/ld2450.html#id1)*"
+            },
+            "has_target": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "binary_sensor.BINARY_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:shield-account"
+                  },
+                  "device_class": {
+                    "default": "occupancy"
+                  }
+                }
+              },
+              "docs": "True if either target is still or in movement. All options from [Binary Sensor](https://esphome.io/components/binary_sensor/index.html#config-binary-sensor).\n\n*See also: [ld2450 Binary Sensor](https://esphome.io/components/sensor/ld2450.html#id1)*"
+            },
+            "has_moving_target": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "binary_sensor.BINARY_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:target-account"
+                  },
+                  "device_class": {
+                    "default": "motion"
+                  }
+                }
+              },
+              "docs": "True if a moving target is detected. All options from [Binary Sensor](https://esphome.io/components/binary_sensor/index.html#config-binary-sensor).\n\n*See also: [ld2450 Binary Sensor](https://esphome.io/components/sensor/ld2450.html#id1)*"
+            },
+            "has_still_target": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "binary_sensor.BINARY_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:meditation"
+                  },
+                  "device_class": {
+                    "default": "occupancy"
+                  }
+                }
+              },
+              "docs": "True if a still target is detected. All options from [Binary Sensor](https://esphome.io/components/binary_sensor/index.html#config-binary-sensor).\n\n*See also: [ld2450 Binary Sensor](https://esphome.io/components/sensor/ld2450.html#id1)*"
+            }
+          }
+        }
+      }
+    }
+  },
+  "ld2450.button": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "ld2450_id": {
+              "key": "GeneratedID",
+              "use_id_type": "ld2450::LD2450Component",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for the [LD2450 Sensor component.\n\n*See also: [ld2450 Button](https://esphome.io/components/sensor/ld2450.html#id5)*"
+            },
+            "factory_reset": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "button.BUTTON_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "ld2450::ResetButton",
+                      "parents": [
+                        "button::Button",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "icon": {
+                    "default": "mdi:restart-alert"
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  },
+                  "device_class": {
+                    "default": "restart"
+                  }
+                }
+              },
+              "docs": "Resets the `ld2450` to its factory default configuration/values. All options from [Button](https://esphome.io/components/button/index.html#config-button).\n\n*See also: [ld2450 Button](https://esphome.io/components/sensor/ld2450.html#id5)*"
+            },
+            "restart": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "button.BUTTON_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "ld2450::RestartButton",
+                      "parents": [
+                        "button::Button",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "icon": {
+                    "default": "mdi:restart"
+                  },
+                  "entity_category": {
+                    "default": "diagnostic"
+                  },
+                  "device_class": {
+                    "default": "restart"
+                  }
+                }
+              },
+              "docs": "Restart the `ld2450` device. All options from [Button](https://esphome.io/components/button/index.html#config-button).\n\n*See also: [ld2450 Button](https://esphome.io/components/sensor/ld2450.html#id5)*"
+            }
+          }
+        }
+      }
+    }
+  },
+  "ld2450.number": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "ld2450_id": {
+              "key": "GeneratedID",
+              "use_id_type": "ld2450::LD2450Component",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for the [LD2450 Sensor component.\n\n*See also: [ld2450 Number](https://esphome.io/components/sensor/ld2450.html#id4)*"
+            },
+            "presence_timeout": {
+              "key": "Required",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "number.NUMBER_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "ld2450::PresenceTimeoutNumber",
+                      "parents": [
+                        "number::Number",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "icon": {
+                    "default": "mdi:timelapse"
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  },
+                  "unit_of_measurement": {
+                    "default": "s"
+                  }
+                }
+              },
+              "docs": "**int**: The duration, in seconds, for which the [presence states](https://esphome.io/components/sensor/ld2450.html#ld2450-binary-sensors) will persist even after the detection is cleared. Default is `5` seconds. All options from [Number](https://esphome.io/components/number/index.html#config-number).\n\n*See also: [ld2450 Number](https://esphome.io/components/sensor/ld2450.html#id4)*"
+            },
+            "zone_1": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "x1": {
+                    "key": "Required",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "number.NUMBER_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "id": {
+                          "key": "GeneratedID",
+                          "id_type": {
+                            "class": "ld2450::ZoneCoordinateNumber",
+                            "parents": [
+                              "number::Number",
+                              "EntityBase"
+                            ]
+                          }
+                        },
+                        "icon": {
+                          "default": "mdi:arrow-top-left-bold-box-outline"
+                        },
+                        "entity_category": {
+                          "default": "config"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        },
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        }
+                      }
+                    }
+                  },
+                  "y1": {
+                    "key": "Required",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "number.NUMBER_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "id": {
+                          "key": "GeneratedID",
+                          "id_type": {
+                            "class": "ld2450::ZoneCoordinateNumber",
+                            "parents": [
+                              "number::Number",
+                              "EntityBase"
+                            ]
+                          }
+                        },
+                        "icon": {
+                          "default": "mdi:arrow-top-left"
+                        },
+                        "entity_category": {
+                          "default": "config"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        },
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        }
+                      }
+                    }
+                  },
+                  "x2": {
+                    "key": "Required",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "number.NUMBER_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "id": {
+                          "key": "GeneratedID",
+                          "id_type": {
+                            "class": "ld2450::ZoneCoordinateNumber",
+                            "parents": [
+                              "number::Number",
+                              "EntityBase"
+                            ]
+                          }
+                        },
+                        "icon": {
+                          "default": "mdi:arrow-bottom-right-bold-box-outline"
+                        },
+                        "entity_category": {
+                          "default": "config"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        },
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        }
+                      }
+                    }
+                  },
+                  "y2": {
+                    "key": "Required",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "number.NUMBER_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "id": {
+                          "key": "GeneratedID",
+                          "id_type": {
+                            "class": "ld2450::ZoneCoordinateNumber",
+                            "parents": [
+                              "number::Number",
+                              "EntityBase"
+                            ]
+                          }
+                        },
+                        "icon": {
+                          "default": "mdi:arrow-bottom-right"
+                        },
+                        "entity_category": {
+                          "default": "config"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        },
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "zone_2": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "x1": {
+                    "key": "Required",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "number.NUMBER_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "id": {
+                          "key": "GeneratedID",
+                          "id_type": {
+                            "class": "ld2450::ZoneCoordinateNumber",
+                            "parents": [
+                              "number::Number",
+                              "EntityBase"
+                            ]
+                          }
+                        },
+                        "icon": {
+                          "default": "mdi:arrow-top-left-bold-box-outline"
+                        },
+                        "entity_category": {
+                          "default": "config"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        },
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        }
+                      }
+                    }
+                  },
+                  "y1": {
+                    "key": "Required",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "number.NUMBER_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "id": {
+                          "key": "GeneratedID",
+                          "id_type": {
+                            "class": "ld2450::ZoneCoordinateNumber",
+                            "parents": [
+                              "number::Number",
+                              "EntityBase"
+                            ]
+                          }
+                        },
+                        "icon": {
+                          "default": "mdi:arrow-top-left"
+                        },
+                        "entity_category": {
+                          "default": "config"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        },
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        }
+                      }
+                    }
+                  },
+                  "x2": {
+                    "key": "Required",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "number.NUMBER_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "id": {
+                          "key": "GeneratedID",
+                          "id_type": {
+                            "class": "ld2450::ZoneCoordinateNumber",
+                            "parents": [
+                              "number::Number",
+                              "EntityBase"
+                            ]
+                          }
+                        },
+                        "icon": {
+                          "default": "mdi:arrow-bottom-right-bold-box-outline"
+                        },
+                        "entity_category": {
+                          "default": "config"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        },
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        }
+                      }
+                    }
+                  },
+                  "y2": {
+                    "key": "Required",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "number.NUMBER_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "id": {
+                          "key": "GeneratedID",
+                          "id_type": {
+                            "class": "ld2450::ZoneCoordinateNumber",
+                            "parents": [
+                              "number::Number",
+                              "EntityBase"
+                            ]
+                          }
+                        },
+                        "icon": {
+                          "default": "mdi:arrow-bottom-right"
+                        },
+                        "entity_category": {
+                          "default": "config"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        },
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "zone_3": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "x1": {
+                    "key": "Required",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "number.NUMBER_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "id": {
+                          "key": "GeneratedID",
+                          "id_type": {
+                            "class": "ld2450::ZoneCoordinateNumber",
+                            "parents": [
+                              "number::Number",
+                              "EntityBase"
+                            ]
+                          }
+                        },
+                        "icon": {
+                          "default": "mdi:arrow-top-left-bold-box-outline"
+                        },
+                        "entity_category": {
+                          "default": "config"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        },
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        }
+                      }
+                    }
+                  },
+                  "y1": {
+                    "key": "Required",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "number.NUMBER_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "id": {
+                          "key": "GeneratedID",
+                          "id_type": {
+                            "class": "ld2450::ZoneCoordinateNumber",
+                            "parents": [
+                              "number::Number",
+                              "EntityBase"
+                            ]
+                          }
+                        },
+                        "icon": {
+                          "default": "mdi:arrow-top-left"
+                        },
+                        "entity_category": {
+                          "default": "config"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        },
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        }
+                      }
+                    }
+                  },
+                  "x2": {
+                    "key": "Required",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "number.NUMBER_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "id": {
+                          "key": "GeneratedID",
+                          "id_type": {
+                            "class": "ld2450::ZoneCoordinateNumber",
+                            "parents": [
+                              "number::Number",
+                              "EntityBase"
+                            ]
+                          }
+                        },
+                        "icon": {
+                          "default": "mdi:arrow-bottom-right-bold-box-outline"
+                        },
+                        "entity_category": {
+                          "default": "config"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        },
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        }
+                      }
+                    }
+                  },
+                  "y2": {
+                    "key": "Required",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "number.NUMBER_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "id": {
+                          "key": "GeneratedID",
+                          "id_type": {
+                            "class": "ld2450::ZoneCoordinateNumber",
+                            "parents": [
+                              "number::Number",
+                              "EntityBase"
+                            ]
+                          }
+                        },
+                        "icon": {
+                          "default": "mdi:arrow-bottom-right"
+                        },
+                        "entity_category": {
+                          "default": "config"
+                        },
+                        "device_class": {
+                          "default": "distance"
+                        },
+                        "unit_of_measurement": {
+                          "default": "mm"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "ld2450.select": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "ld2450_id": {
+              "key": "GeneratedID",
+              "use_id_type": "ld2450::LD2450Component",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for the [LD2450 Sensor component.\n\n*See also: [ld2450 Select](https://esphome.io/components/sensor/ld2450.html#ld2450-light-function)*"
+            },
+            "baud_rate": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "select.SELECT_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "id_type": {
+                      "class": "ld2450::BaudRateSelect",
+                      "parents": [
+                        "select::Select",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  },
+                  "icon": {
+                    "default": "mdi:thermometer"
+                  }
+                }
+              },
+              "docs": "Control the UART serial port baud rate. Defaults to `256000`. Once changed, all sensors will stop working until a fresh install with an updated [UART Component](https://esphome.io/components/uart.html#uart) configuration. All options from [Select](https://esphome.io/components/select/index.html#config-select).\n\n*See also: [ld2450 Select](https://esphome.io/components/sensor/ld2450.html#ld2450-light-function)*"
+            },
+            "zone_type": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "select.SELECT_SCHEMA"
+                ],
+                "config_vars": {
+                  "id": {
+                    "id_type": {
+                      "class": "ld2450::ZoneTypeSelect",
+                      "parents": [
+                        "select::Select",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  },
+                  "icon": {
+                    "default": "mdi:thermometer"
+                  }
+                }
+              },
+              "docs": "Control the zone detection modes. It can be set to `Disabled`, `Detection` or `Filter`. Selecting the `Disabled` option will disable zone area detection. `Detection` mode is used to detect only targets in the specified area, while `Filter` mode can be used to exclude an area from detection. All options from [Select](https://esphome.io/components/select/index.html#config-select).\n\n*See also: [ld2450 Select](https://esphome.io/components/sensor/ld2450.html#ld2450-light-function)*"
+            }
+          }
+        }
+      }
+    }
+  },
+  "ld2450.switch": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "ld2450_id": {
+              "key": "GeneratedID",
+              "use_id_type": "ld2450::LD2450Component",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for the [LD2450 Sensor component if you are using multiple components.\n\n*See also: [ld2450 Switch](https://esphome.io/components/sensor/ld2450.html#ld2450-engineering-mode)*"
+            },
+            "bluetooth": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "switch._SWITCH_SCHEMA"
+                ],
+                "config_vars": {
+                  "restore_mode": {
+                    "key": "Optional",
+                    "default": "ALWAYS_OFF",
+                    "type": "enum",
+                    "values": {
+                      "RESTORE_DEFAULT_OFF": null,
+                      "RESTORE_DEFAULT_ON": null,
+                      "ALWAYS_OFF": null,
+                      "ALWAYS_ON": null,
+                      "RESTORE_INVERTED_DEFAULT_OFF": null,
+                      "RESTORE_INVERTED_DEFAULT_ON": null,
+                      "DISABLED": null
+                    }
+                  },
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "ld2450::BluetoothSwitch",
+                      "parents": [
+                        "switch_::Switch",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  },
+                  "device_class": {
+                    "default": "switch"
+                  },
+                  "icon": {
+                    "default": "mdi:bluetooth"
+                  }
+                }
+              },
+              "docs": "Turn on/off the bluetooth adapter. Defaults to `true`. All options from [Switch](https://esphome.io/components/switch/index.html#config-switch).\n\n*See also: [ld2450 Switch](https://esphome.io/components/sensor/ld2450.html#ld2450-engineering-mode)*"
+            },
+            "multi_target": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "switch._SWITCH_SCHEMA"
+                ],
+                "config_vars": {
+                  "restore_mode": {
+                    "key": "Optional",
+                    "default": "ALWAYS_OFF",
+                    "type": "enum",
+                    "values": {
+                      "RESTORE_DEFAULT_OFF": null,
+                      "RESTORE_DEFAULT_ON": null,
+                      "ALWAYS_OFF": null,
+                      "ALWAYS_ON": null,
+                      "RESTORE_INVERTED_DEFAULT_OFF": null,
+                      "RESTORE_INVERTED_DEFAULT_ON": null,
+                      "DISABLED": null
+                    }
+                  },
+                  "id": {
+                    "key": "GeneratedID",
+                    "id_type": {
+                      "class": "ld2450::MultiTargetSwitch",
+                      "parents": [
+                        "switch_::Switch",
+                        "EntityBase"
+                      ]
+                    }
+                  },
+                  "entity_category": {
+                    "default": "config"
+                  },
+                  "device_class": {
+                    "default": "switch"
+                  },
+                  "icon": {
+                    "default": "mdi:pulse"
+                  }
+                }
+              },
+              "docs": "Turn on/off the Multi Target Tracking option. The initial state set based on the corresponding setting as read from LD2450 module at boot. All options from [Switch](https://esphome.io/components/switch/index.html#config-switch).\n\n*See also: [ld2450 Switch](https://esphome.io/components/sensor/ld2450.html#ld2450-engineering-mode)*"
+            }
+          }
+        }
+      }
+    }
+  },
+  "ld2450.text_sensor": {
+    "schemas": {
+      "CONFIG_SCHEMA": {
+        "type": "schema",
+        "schema": {
+          "config_vars": {
+            "ld2450_id": {
+              "key": "GeneratedID",
+              "use_id_type": "ld2450::LD2450Component",
+              "type": "use_id",
+              "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID for the [LD2450 Sensor component.\n\n*See also: [ld2450 Text Sensor](https://esphome.io/components/sensor/ld2450.html#id6)*"
+            },
+            "version": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:chip"
+                  },
+                  "entity_category": {
+                    "default": "diagnostic"
+                  }
+                }
+              },
+              "docs": "The `ld2450` firmware version. All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n\n*See also: [ld2450 Text Sensor](https://esphome.io/components/sensor/ld2450.html#id6)*"
+            },
+            "mac_address": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "extends": [
+                  "text_sensor.TEXT_SENSOR_SCHEMA"
+                ],
+                "config_vars": {
+                  "icon": {
+                    "default": "mdi:bluetooth"
+                  },
+                  "entity_category": {
+                    "default": "diagnostic"
+                  }
+                }
+              },
+              "docs": "The `ld2450` Bluetooth MAC address. All options from [Text Sensor](https://esphome.io/components/text_sensor/index.html#config-text-sensor).\n\n*See also: [ld2450 Text Sensor](https://esphome.io/components/sensor/ld2450.html#id6)*"
+            },
+            "target_1": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "direction": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "text_sensor.TEXT_SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "icon": {
+                          "default": "mdi:sign-direction"
+                        },
+                        "entity_category": {
+                          "default": ""
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "target_2": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "direction": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "text_sensor.TEXT_SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "icon": {
+                          "default": "mdi:sign-direction"
+                        },
+                        "entity_category": {
+                          "default": ""
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "target_3": {
+              "key": "Optional",
+              "type": "schema",
+              "schema": {
+                "config_vars": {
+                  "direction": {
+                    "key": "Optional",
+                    "type": "schema",
+                    "schema": {
+                      "extends": [
+                        "text_sensor.TEXT_SENSOR_SCHEMA"
+                      ],
+                      "config_vars": {
+                        "icon": {
+                          "default": "mdi:sign-direction"
+                        },
+                        "entity_category": {
+                          "default": ""
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

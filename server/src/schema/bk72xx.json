@@ -31,7 +31,7 @@
                 "RTL8710B": null,
                 "RTL8720C": null
               },
-              "docs": "**boolean**: The family of LibreTiny-supported microcontrollers that is used on this board. One of `bk7231n`, `bk7231t`, `rtl8710b`, `rtl8720c`, `bk7251`, `bk7231q`. Defaults to the variant that is detected from the board, if a board that\u2019s unknown to ESPHome is used, this option is mandatory. **It\u2019s recommended not to include this option**.\n\n*See also: [LibreTiny Platform](https://esphome.io/components/libretiny.html#configuration-variables)*"
+              "docs": "**string**: The family of LibreTiny-supported microcontrollers that is used on this board. One of `bk7231n`, `bk7231t`, `rtl8710b`, `rtl8720c`, `bk7251`, `bk7231q`. Defaults to the variant that is detected from the board, if a board that\u2019s unknown to ESPHome is used, this option is mandatory. **It\u2019s recommended not to include this option**.\n\n*See also: [LibreTiny Platform](https://esphome.io/components/libretiny.html#configuration-variables)*"
             },
             "framework": {
               "key": "Optional",

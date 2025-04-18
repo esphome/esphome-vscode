@@ -18,6 +18,9 @@
                   "PollingComponent",
                   "Component",
                   "display::DisplayBuffer",
+                  "display::Display",
+                  "PollingComponent",
+                  "Component",
                   "spi::SPIDevice"
                 ]
               },
@@ -38,6 +41,38 @@
               "type": "use_id",
               "docs": "**[ID](https://esphome.io/guides/configuration-types.html#config-id)**: Manually specify the ID of the [SPI Component](https://esphome.io/components/spi.html#spi) if you want to use multiple SPI buses.\n\n*See also: [ssd1327 Over SPI](https://esphome.io/components/display/ssd1327.html#id1)*"
             },
+            "data_rate": {
+              "key": "Optional",
+              "type": "enum",
+              "values": {
+                "80000000.0": null,
+                "40000000.0": null,
+                "20000000.0": null,
+                "10000000.0": null,
+                "8000000.0": null,
+                "5000000.0": null,
+                "4000000.0": null,
+                "2000000.0": null,
+                "1000000.0": null,
+                "200000.0": null,
+                "75000.0": null,
+                "1000.0": null
+              }
+            },
+            "spi_mode": {
+              "key": "Optional",
+              "type": "enum",
+              "values": {
+                "MODE0": null,
+                "MODE1": null,
+                "MODE2": null,
+                "MODE3": null,
+                "0": null,
+                "1": null,
+                "2": null,
+                "3": null
+              }
+            },
             "cs_pin": {
               "key": "Optional",
               "schema": true,
@@ -46,6 +81,9 @@
               ],
               "type": "pin",
               "docs": "**[Pin Schema](https://esphome.io/guides/configuration-types.html#config-pin-schema)**: The Chip Select (CS) pin.\n\n*See also: [ssd1327 Over SPI](https://esphome.io/components/display/ssd1327.html#id1)*"
+            },
+            "update_interval": {
+              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to re-draw the screen. Defaults to `5s`.\n\n*See also: [ssd1327 Over SPI](https://esphome.io/components/display/ssd1327.html#id1)*"
             }
           }
         },

@@ -31,11 +31,7 @@
                 }
               }
             },
-            "update_interval": {
-              "key": "Optional",
-              "default": "1s",
-              "docs": "**[Time](https://esphome.io/guides/configuration-types.html#config-time)**: The interval to re-draw the screen. Defaults to `1s`.\n\n*See also: [lcd_gpio Component](https://esphome.io/components/display/lcd_display.html#id1)*"
-            }
+            "update_interval": {}
           }
         }
       }
