@@ -18,5 +18,11 @@ module.exports = withDefaults({
 	externals: {
 		bufferutil: "bufferutil",
 		"utf-8-validate": "utf-8-validate",
+	},
+	resolve:
+	{
+		fallback:{
+			'@aws-sdk/client-s3': false
+		}
 	}
 });

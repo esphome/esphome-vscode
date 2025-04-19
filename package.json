@@ -95,7 +95,6 @@
   "devDependencies": {
     "@types/mocha": "8.2.2",
     "@types/node": "^12.20.33",
-    "@types/unzipper": "^0.10.11",
     "@typescript-eslint/parser": "^4.16.1",
     "eslint": "^7.2.0",
     "merge-options": "^3.0.4",
@@ -112,8 +111,5 @@
   "mocha": {
     "files": "server/test/**/*.ts",
     "require": "ts-node/register"
-  },
-  "dependencies": {
-    "unzipper": "^0.12.3"
   }
 }
