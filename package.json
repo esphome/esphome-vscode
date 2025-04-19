@@ -2,7 +2,7 @@
   "name": "esphome-vscode",
   "displayName": "ESPHome",
   "description": "Provide instant validation of ESPHome configuration files",
-  "version": "2023.9.0",
+  "version": "2025.4.0",
   "engines": {
     "vscode": "^1.63.0"
   },
@@ -20,6 +20,12 @@
   ],
   "main": "./client/out/extension",
   "contributes": {
+    "commands": [
+      {
+        "command": "esphome.otaUpload",
+        "title": "ESPHome: Compile and upload OTA"
+      }
+    ],
     "taskDefinitions": [
       {
         "type": "esphome"
