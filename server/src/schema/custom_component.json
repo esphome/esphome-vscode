@@ -1,9 +1,0 @@
-{
-  "custom_component": {
-    "schemas": {
-      "CONFIG_SCHEMA": {
-        "is_list": true
-      }
-    }
-  }
-}

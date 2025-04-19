@@ -10,6 +10,7 @@ import {
 } from "vscode-languageserver-types";
 
 import { ESPHomeSchema } from "./esphome-schema";
+import { ensureSchemaAvailable } from "./schema-fetcher";
 
 export {
   Position,
@@ -19,7 +20,8 @@ export {
 } from "vscode-languageserver-types";
 
 export const coreSchema = new ESPHomeSchema(async (name: string) => {
-  const jsonPath = path.join(__dirname, `schema/${name}.json`);
+  const schemaPath = await ensureSchemaAvailable();
+  const jsonPath = path.join(schemaPath, `schema/${name}.json`);
   const fileContents = fs.readFileSync(jsonPath, "utf-8");
   return JSON.parse(fileContents);
 });
