@@ -3,6 +3,7 @@ import * as unzipper from "unzipper";
 import * as https from "https";
 import * as os from "os";
 import * as fs from "fs";
+import { version } from "./ESPHomeConnectionSource";
 
 const SCHEMA_REPOSITORY = "esphome/esphome-schema";
 
@@ -89,24 +90,64 @@ function unzip(zipFile: string, dest: string): Promise<void> {
     .promise();
 }
 
-function getSuitableTag(schemaTags: any): string {
-  // TODO: Match with connected ESPHome version
-  // just get latest on the list
-  const tagRef = schemaTags[schemaTags.length - 1].ref;
-  const tag = tagRef.substring(tagRef.lastIndexOf("/") + 1);
-  return tag;
+function semverCompare(a: string, b: string): number {
+  const pa = a.split(".").map(Number);
+  const pb = b.split(".").map(Number);
+  for (let i = 0; i < Math.max(pa.length, pb.length); i++) {
+    const na = pa[i] ?? 0;
+    const nb = pb[i] ?? 0;
+    if (na !== nb) return na - nb;
+  }
+  return 0;
+}
+
+async function getSuitableTag(): Promise<string> {
+  const connection_version = await version();
+
+  console.log(`Connected version: ${connection_version}. Matching schema`);
+  if (connection_version.endsWith("dev")) {
+    return "dev";
+  }
+
+  const schemaTags = await getSchemaTags();
+
+  // Extract just the version strings
+  const versions = schemaTags.map((tag: any) => {
+    const ref = tag.ref;
+    return ref.substring(ref.lastIndexOf("/") + 1);
+  });
+
+  // Sort versions using semver rules
+  versions.sort((a: string, b: string) => semverCompare(a, b));
+
+  // Try to find exact match
+  if (versions.includes(connection_version)) {
+    return connection_version;
+  }
+
+  // Find the next newer
+  const newer = versions.find(
+    (v: string) => semverCompare(v, connection_version) > 0,
+  );
+  if (newer) return newer;
+
+  // Else, find the latest lower
+  const older = [...versions]
+    .reverse()
+    .find((v) => semverCompare(v, connection_version) < 0);
+  if (older) return older;
+
+  throw new Error("No suitable schema tag found");
 }
 
 var schemaAvailablePromise: Promise<string>;
 export function ensureSchemaAvailable(): Promise<string> {
   if (schemaAvailablePromise == undefined) {
     schemaAvailablePromise = new Promise((resolve, reject) => {
-      getSchemaTags().then((schemaTags) => {
-        const tag = getSuitableTag(schemaTags);
-        console.log("Using schema tag " + tag);
+      getSuitableTag().then((tag) => {
         const baseDir = getBaseDir();
         const schemaPath = path.join(baseDir, `esphome-schema-${tag}`);
-        if (fs.existsSync(schemaPath)) {
+        if (fs.existsSync(schemaPath) && tag !== "dev") {
           console.log(`Using cached schema at ${schemaPath}`);
           resolve(schemaPath);
           return;
@@ -114,12 +155,13 @@ export function ensureSchemaAvailable(): Promise<string> {
 
         const cachePath = path.join(baseDir, "schemas");
         const zipPath = path.join(cachePath, tag + ".zip");
-        console.log(`Downloading to ${zipPath}`);
+        const download_url =
+          tag == "dev"
+            ? `https://github.com/${SCHEMA_REPOSITORY}/archive/refs/heads/dev.zip`
+            : `https://github.com/${SCHEMA_REPOSITORY}/archive/refs/tags/${tag}.zip`;
+        console.log(`Downloading ${download_url} to ${zipPath}`);
         fs.mkdirSync(cachePath, { recursive: true });
-        downloadFile(
-          `https://github.com/${SCHEMA_REPOSITORY}/archive/refs/tags/${tag}.zip`,
-          zipPath,
-        )
+        downloadFile(download_url, zipPath)
           .then(() => {
             console.log("Schema zip downloaded. Extracting...");
             unzip(zipPath, baseDir)
