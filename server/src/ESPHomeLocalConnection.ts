@@ -1,10 +1,11 @@
 import * as ChildProcess from "child_process";
 import * as process from "process";
 import { ESPHomeConnection } from "./ESPHomeConnection";
-import { MESSAGE_RESULT } from "./esphome_types";
+import { MESSAGE_STD_ERR_OUT } from "./esphome_types";
 
 export class ESPHomeLocalConnection extends ESPHomeConnection {
   private process!: ChildProcess.ChildProcess;
+  private killed = false;
 
   constructor() {
     super();
@@ -12,7 +13,7 @@ export class ESPHomeLocalConnection extends ESPHomeConnection {
 
   sendMessageInternal(msg: any): void {
     let send = JSON.stringify(msg) + "\n";
-    // console.log(`Sending ${send}`);
+
     // todo check process is alive
     if (this.process.stdin !== null) {
       this.process.stdin.write(send);
@@ -46,12 +47,11 @@ export class ESPHomeLocalConnection extends ESPHomeConnection {
     }
     if (this.process.stderr !== null) {
       this.process.stderr.on("data", (data) => {
-        console.log(data.toString());
+        console.error("StdErr:" + data.toString());
 
         this.handleMessage({
-          type: MESSAGE_RESULT,
-          validation_errors: [],
-          yaml_errors: [],
+          type: MESSAGE_STD_ERR_OUT,
+          std_err: data.toString(),
         });
       });
     }
@@ -60,8 +60,10 @@ export class ESPHomeLocalConnection extends ESPHomeConnection {
     });
     this.process.on("exit", (code, signal) => {
       console.log("Got exit: ", code, signal);
+      this.connect();
     });
     this.process.on("error", (args) => {
+      if (this.killed) return;
       if (args.message.startsWith("spawn esphome")) {
         const errorMessage =
           "Could not execute ESPHome. Make sure you can run ESPHome from the command line.";
@@ -72,6 +74,7 @@ export class ESPHomeLocalConnection extends ESPHomeConnection {
   }
 
   disconnect(): void {
+    this.killed = true;
     this.process.kill();
   }
 }

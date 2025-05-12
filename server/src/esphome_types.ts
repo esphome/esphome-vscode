@@ -3,6 +3,8 @@ export const MESSAGE_FILE_RESPONSE = "file_response";
 export const MESSAGE_RESULT = "result";
 export const MESSAGE_CHECK_FILE = "check_file_exists";
 export const MESSAGE_CHECK_DIRECTORY = "check_directory_exists";
+export const MESSAGE_VERSION = "version";
+export const MESSAGE_STD_ERR_OUT = "std_err_out";
 
 export interface EsphomeRange {
   document: string;
@@ -31,6 +33,10 @@ export interface MessageResult {
   validation_errors: ValidationError[];
   yaml_errors: YamlValidationError[];
 }
+export interface MessageStdErrOut {
+  type: typeof MESSAGE_STD_ERR_OUT;
+  std_err: string;
+}
 
 export interface MessageCheckFileExists {
   type: typeof MESSAGE_CHECK_FILE;
@@ -42,8 +48,15 @@ export interface MessageCheckDirectoryExists {
   path: string;
 }
 
+export interface MessageVersion {
+  type: typeof MESSAGE_VERSION;
+  value: string;
+}
+
 export type MessageTypes =
   | MessageReadFile
   | MessageResult
   | MessageCheckFileExists
-  | MessageCheckDirectoryExists;
+  | MessageCheckDirectoryExists
+  | MessageVersion
+  | MessageStdErrOut;
