@@ -47,7 +47,7 @@ export class ESPHomeDashboardConnection extends ESPHomeConnection {
     this.ws.on("error", (err: Error) => {
       console.log("Cannot connect to ESPHome dashboard" + err);
       console.error(
-        `Cannot connect to ESPHome dashboard. Make sure you can access '${httpUri}' and have set the option 'leave_front_door_open': true`
+        `Cannot connect to ESPHome dashboard. Make sure you can access '${httpUri}' and have set the option 'leave_front_door_open': true`,
       );
     });
     this.ws.on("message", (data) => {

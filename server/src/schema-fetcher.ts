@@ -30,7 +30,7 @@ function getSchemaTags(): Promise<any> {
               reject(e);
             }
           });
-        }
+        },
       )
       .on("error", reject);
   });
@@ -63,7 +63,7 @@ function downloadFile(url: string, dest: string): Promise<void> {
 
         if (res.statusCode !== 200) {
           return reject(
-            new Error(`Failed to download file: ${res.statusCode}`)
+            new Error(`Failed to download file: ${res.statusCode}`),
           );
         }
 
@@ -73,9 +73,9 @@ function downloadFile(url: string, dest: string): Promise<void> {
           file.close((err) => {
             if (err) reject(err);
             else resolve();
-          })
+          }),
         );
-      }
+      },
     );
 
     request.on("error", reject);
@@ -118,7 +118,7 @@ export function ensureSchemaAvailable(): Promise<string> {
         fs.mkdirSync(cachePath, { recursive: true });
         downloadFile(
           `https://github.com/${SCHEMA_REPOSITORY}/archive/refs/tags/${tag}.zip`,
-          zipPath
+          zipPath,
         )
           .then(() => {
             console.log("Schema zip downloaded. Extracting...");

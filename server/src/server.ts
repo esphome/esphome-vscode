@@ -89,7 +89,7 @@ connection.onInitialized(async () => {
     // Register for all configuration changes.
     connection.client.register(
       DidChangeConfigurationNotification.type,
-      undefined
+      undefined,
     );
   }
   if (hasWorkspaceFolderCapability) {
@@ -105,7 +105,7 @@ connection.onInitialized(async () => {
   const validation = new Validation(
     fileAccessor,
     esphomeConnection,
-    sendDiagnostics
+    sendDiagnostics,
   );
 
   documents.onDidOpen((e) => validation.onDocumentChange(e));

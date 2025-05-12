@@ -39,7 +39,7 @@ export class ESPHomeLocalConnection extends ESPHomeConnection {
           this.handleMessage(msg);
         } catch (e) {
           console.log(
-            `Error handling response: data: ${typeof data}: '${data?.toString()}' ${e}`
+            `Error handling response: data: ${typeof data}: '${data?.toString()}' ${e}`,
           );
         }
       });

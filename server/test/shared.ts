@@ -7,7 +7,7 @@ import { CompletionsHandler } from "../src/completions-handler";
 
 export const testCompletionHaveLabels = (
   result: CompletionItem[],
-  labelSet: string[]
+  labelSet: string[],
 ) => {
   let count = 0;
   for (var c of labelSet) {
@@ -16,8 +16,8 @@ export const testCompletionHaveLabels = (
     } else {
       assert.fail(
         `expected label '${c}' in result, got instead: ${JSON.stringify(
-          result
-        )}`
+          result,
+        )}`,
       );
     }
   }
@@ -25,7 +25,7 @@ export const testCompletionHaveLabels = (
 };
 export const testCompletionDoesNotHaveLabels = (
   result: CompletionItem[],
-  labelSet: string[]
+  labelSet: string[],
 ) => {
   for (var c of labelSet) {
     if (result.find((x) => x.label === c)) {
@@ -38,7 +38,7 @@ const documents = new ESPHomeDocuments();
 const x = new CompletionsHandler(documents);
 export const getCompletionsFor = async (
   yamlString: string,
-  position?: Position
+  position?: Position,
 ) => {
   yamlString = yamlString.trimStart();
   if (position === undefined) {

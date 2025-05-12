@@ -8,7 +8,7 @@ describe("typed schema", () => {
       `
 esp32:
   framework:
-    `
+    `,
     );
     expect(result.length).to.be.equal(1);
     testCompletionHaveLabels(result, ["type"]);
@@ -19,7 +19,7 @@ esp32:
       `
 esp32:
   framework:
-    type: `
+    type: `,
     );
     expect(result.length).to.be.equal(2);
     testCompletionHaveLabels(result, ["esp-idf", "arduino"]);
@@ -32,7 +32,7 @@ esp32:
   framework:
     type: esp-idf
     `,
-      { line: 3, character: 4 }
+      { line: 3, character: 4 },
     );
     testCompletionHaveLabels(result, ["advanced", "version", "source"]);
   });
@@ -44,7 +44,7 @@ esp32:
   framework:
     type: arduino
     `,
-      { line: 3, character: 4 }
+      { line: 3, character: 4 },
     );
     expect(result.length).to.be.equal(3);
     testCompletionHaveLabels(result, ["version"]);
@@ -57,7 +57,7 @@ media_player:
   - platform: i2s_audio
     dac_type: internal
     `,
-      { line: 3, character: 4 }
+      { line: 3, character: 4 },
     );
     testCompletionHaveLabels(result, ["mode"]);
   });

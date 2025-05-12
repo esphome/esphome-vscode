@@ -23,7 +23,7 @@ i2c:
 ads1115:
   address: 23
   i2c_id:  `,
-      { line: 6, character: 10 }
+      { line: 6, character: 10 },
     );
     testCompletionHaveLabels(result, ["i2c_one", "i2c_two"]);
   });

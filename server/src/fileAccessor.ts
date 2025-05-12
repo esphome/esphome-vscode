@@ -10,11 +10,11 @@ export interface FileAccessor {
   getFilesInFolder(subFolder: string): string[];
   getFilesInFolderRelativeFrom(
     subFolder: string,
-    relativeFrom: string
+    relativeFrom: string,
   ): string[];
   getFilesInFolderRelativeFromAsFileUri(
     subFolder: string,
-    relativeFrom: string
+    relativeFrom: string,
   ): string[];
   getRelativePath(relativeFrom: string, filename: string): string;
   getRelativePathAsFileUri(relativeFrom: string, filename: string): string;
@@ -60,7 +60,7 @@ export class VsCodeFileAccessor implements FileAccessor {
 
   public getFilesInFolder(
     subFolder: string,
-    file_list: string[] = []
+    file_list: string[] = [],
   ): string[] {
     subFolder = path.normalize(subFolder);
 
@@ -90,7 +90,7 @@ export class VsCodeFileAccessor implements FileAccessor {
 
   public getFilesInFolderRelativeFrom(
     subFolder: string,
-    relativeFrom: string
+    relativeFrom: string,
   ): string[] {
     relativeFrom = this.dealtWithRelativeFrom(relativeFrom);
 
@@ -101,7 +101,7 @@ export class VsCodeFileAccessor implements FileAccessor {
 
   public getFilesInFolderRelativeFromAsFileUri(
     subFolder: string,
-    relativeFrom: string
+    relativeFrom: string,
   ): string[] {
     const files = this.getFilesInFolderRelativeFrom(subFolder, relativeFrom);
     return files.map((f) => vscodeUri.URI.file(f).toString());
@@ -118,10 +118,10 @@ export class VsCodeFileAccessor implements FileAccessor {
 
   public getRelativePathAsFileUri = (
     relativeFrom: string,
-    filename: string
+    filename: string,
   ): string => {
     return vscodeUri.URI.file(
-      this.getRelativePath(relativeFrom, filename)
+      this.getRelativePath(relativeFrom, filename),
     ).toString();
   };
 }

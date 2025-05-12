@@ -25,7 +25,7 @@ wifi:
     if (isMap(map)) {
       // @ts-ignore
       expect(doc.yaml?.contents.items[0].value.items[0].value.tag).to.equal(
-        "!secret"
+        "!secret",
       );
     }
   });
@@ -51,7 +51,7 @@ api:
 
     const contents = hover?.contents as MarkupContent;
     expect(contents?.value).to.include(
-      "**string**: The name (or [service set identifier](https://www.lifewire.com/definition-of-service-set-identifier-816547)) of the WiFi access point your device should connect to"
+      "**string**: The name (or [service set identifier](https://www.lifewire.com/definition-of-service-set-identifier-816547)) of the WiFi access point your device should connect to",
     );
   });
 
@@ -77,7 +77,7 @@ api:
     const contents = hover?.contents as MarkupContent;
     expect(contents?.value).to.not.include("api");
     expect(contents?.value).to.include(
-      "WPA2_EAP Enterprise Authentication is supported on ESP32s and ESP8266s. In order to configure this feature you must use the"
+      "WPA2_EAP Enterprise Authentication is supported on ESP32s and ESP8266s. In order to configure this feature you must use the",
     );
   });
 });

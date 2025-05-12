@@ -8,7 +8,7 @@ describe("completion-sensors", () => {
       `
 sensor:
   - platform: sgp4x
-    `
+    `,
     );
     testCompletionHaveLabels(result, ["id", "voc", "compensation"]);
   });

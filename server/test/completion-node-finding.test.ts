@@ -33,7 +33,7 @@ can
 
 esphome:
     `,
-      { line: 0, character: 3 }
+      { line: 0, character: 3 },
     );
     testCompletionHaveLabels(result, ["esphome", "wifi"]);
   });
@@ -42,7 +42,7 @@ esphome:
     const result = await getCompletionsFor(
       `
 sensor:
-  - platform: `
+  - platform: `,
     );
     testCompletionHaveLabels(result, ["adc", "dallas", "dht"]);
   });
@@ -52,7 +52,7 @@ sensor:
       `
 canbus:
   - platform: esp32_can
-    tx_p`
+    tx_p`,
     );
     testCompletionHaveLabels(result, ["tx_pin", "rx_pin"]);
   });
@@ -64,7 +64,7 @@ canbus:
     tx_p
 
 esphome:`,
-      { line: 2, character: 8 }
+      { line: 2, character: 8 },
     );
     testCompletionHaveLabels(result, ["tx_pin", "rx_pin"]);
   });
@@ -74,7 +74,7 @@ esphome:`,
       `
 esphome:
   `,
-      { line: 1, character: 2 }
+      { line: 1, character: 2 },
     );
     testCompletionHaveLabels(result, ["name", "on_boot", "project"]);
   });
@@ -94,7 +94,7 @@ esphome:
 esphome:
   project:
     `,
-      { line: 2, character: 2 }
+      { line: 2, character: 2 },
     );
     testCompletionHaveLabels(result, ["name", "on_boot"]);
     testCompletionDoesNotHaveLabels(result, ["project"]);
@@ -107,7 +107,7 @@ esphome:
   project:
     name:
     `,
-      { line: 3, character: 4 }
+      { line: 3, character: 4 },
     );
     expect(result).to.be.lengthOf(1);
     testCompletionHaveLabels(result, ["version"]);
@@ -127,7 +127,7 @@ esphome:
 esphome:
   on_boot:
     `,
-      { line: 2, character: 4 }
+      { line: 2, character: 4 },
     );
     testCompletionHaveLabels(result, ["then", "priority"]);
   });
@@ -138,7 +138,7 @@ esphome:
 esphome:
   on_boot:
     then:
-    `
+    `,
     );
     testCompletionHaveLabels(result, ["priority"]);
   });
@@ -149,7 +149,7 @@ esphome:
 esphome:
   on_loop:
     `,
-      { line: 2, character: 4 }
+      { line: 2, character: 4 },
     );
     testCompletionHaveLabels(result, ["delay", "if"]);
   });
@@ -160,7 +160,7 @@ esphome:
   on_loop:
     then:
       `,
-      { line: 3, character: 6 }
+      { line: 3, character: 6 },
     );
     testCompletionHaveLabels(result, [
       "delay",
@@ -181,7 +181,7 @@ esphome:
     priority: 100
     then:
       `,
-      { line: 4, character: 6 }
+      { line: 4, character: 6 },
     );
     testCompletionHaveLabels(result, ["delay", "if"]);
   });
@@ -192,7 +192,7 @@ esphome:
 esphome:
   on_loop:
     - delay: 3s
-    `
+    `,
     );
     testCompletionHaveLabels(result, ["delay", "if"]);
   });
@@ -204,7 +204,7 @@ esphome:
   on_loop:
     then:
       - delay: 3s
-      `
+      `,
     );
     testCompletionHaveLabels(result, ["delay", "if"]);
   });
@@ -215,7 +215,7 @@ esphome:
 esphome:
   on_loop:
     if:
-    `
+    `,
     );
     assert(result.length === 0, "expected 0 results");
   });
@@ -227,7 +227,7 @@ esphome:
   on_loop:
     if:
       `,
-      { line: 3, character: 6 }
+      { line: 3, character: 6 },
     );
     testCompletionHaveLabels(result, ["condition", "then", "else"]);
   });
@@ -239,7 +239,7 @@ esphome:
   on_loop:
     - if:
         `,
-      { line: 3, character: 8 }
+      { line: 3, character: 8 },
     );
     testCompletionHaveLabels(result, ["condition", "then", "else"]);
   });
@@ -254,7 +254,7 @@ esphome:
         days: 1
         hours: 3
         `,
-      { line: 6, character: 8 }
+      { line: 6, character: 8 },
     );
     testCompletionHaveLabels(result, ["minutes", "seconds"]);
     testCompletionDoesNotHaveLabels(result, ["days", "hours"]);
@@ -270,7 +270,7 @@ esphome:
       days: 1
       hours: 3
       `,
-      { line: 6, character: 6 }
+      { line: 6, character: 6 },
     );
     testCompletionHaveLabels(result, ["minutes", "seconds"]);
     testCompletionDoesNotHaveLabels(result, ["days", "hours"]);
@@ -284,7 +284,7 @@ esphome:
     if:
       then:
         `,
-      { line: 4, character: 8 }
+      { line: 4, character: 8 },
     );
     testCompletionHaveLabels(result, ["delay", "if"]);
   });
@@ -297,7 +297,7 @@ esphome:
     if:
       condition:
         `,
-      { line: 4, character: 8 }
+      { line: 4, character: 8 },
     );
     testCompletionHaveLabels(result, ["and", "for", "or"]);
   });
@@ -307,7 +307,7 @@ esphome:
       `
 sensor:
   `,
-      { line: 1, character: 2 }
+      { line: 1, character: 2 },
     );
     expect(result.length).to.be.equal(1);
     testCompletionHaveLabels(result, ["platform"]);
@@ -319,7 +319,7 @@ sensor:
 sensor:
   platform: dallas
   `,
-      { line: 2, character: 2 }
+      { line: 2, character: 2 },
     );
     testCompletionHaveLabels(result, ["dallas_id", "device_class"]);
   });
@@ -330,7 +330,7 @@ sensor:
 sensor:
   - platform: dallas
     `,
-      { line: 2, character: 4 }
+      { line: 2, character: 4 },
     );
     testCompletionHaveLabels(result, ["dallas_id", "device_class"]);
   });
@@ -341,7 +341,7 @@ sensor:
 sensor:
   platform: dallas
   device_class: `,
-      { line: 2, character: 16 }
+      { line: 2, character: 16 },
     );
     testCompletionHaveLabels(result, ["aqi", "power"]);
   });
@@ -351,7 +351,7 @@ sensor:
 sensor:
   - platform: dallas
     device_class: `,
-      { line: 2, character: 18 }
+      { line: 2, character: 18 },
     );
     testCompletionHaveLabels(result, ["aqi", "power"]);
   });
@@ -363,7 +363,7 @@ logger:
   level: DEBUG
   on_message:
     level: `,
-      { line: 3, character: 11 }
+      { line: 3, character: 11 },
     );
     testCompletionHaveLabels(result, ["DEBUG", "ERROR"]);
   });
@@ -375,7 +375,7 @@ logger:
   level: DEBUG
   on_message:
     - level: `,
-      { line: 3, character: 13 }
+      { line: 3, character: 13 },
     );
     testCompletionHaveLabels(result, ["DEBUG", "ERROR"]);
   });
@@ -385,7 +385,7 @@ logger:
       `
 esphome:
   name_add_mac_suffix: `,
-      { line: 1, character: 23 }
+      { line: 1, character: 23 },
     );
     testCompletionHaveLabels(result, ["True", "False"]);
   });
@@ -397,7 +397,7 @@ sensor:
   - platform: template
     filters:
       `,
-      { line: 3, character: 6 }
+      { line: 3, character: 6 },
     );
     testCompletionHaveLabels(result, ["delta", "median"]);
   });
@@ -409,7 +409,7 @@ binary_sensor:
   - platform: template
     filters:
       `,
-      { line: 3, character: 6 }
+      { line: 3, character: 6 },
     );
     testCompletionHaveLabels(result, ["delayed_on", "invert"]);
   });
@@ -421,7 +421,7 @@ light:
   - platform: binary
     effects:
       `,
-      { line: 3, character: 6 }
+      { line: 3, character: 6 },
     );
     testCompletionHaveLabels(result, ["strobe", "automation"]);
   });
@@ -433,7 +433,7 @@ light:
   - platform: fastled_clockless
     effects:
       `,
-      { line: 3, character: 6 }
+      { line: 3, character: 6 },
     );
     testCompletionHaveLabels(result, [
       "strobe",
@@ -451,7 +451,7 @@ sensor:
       median:
         send_every:
         `,
-      { line: 5, character: 8 }
+      { line: 5, character: 8 },
     );
     testCompletionHaveLabels(result, ["window_size", "send_first_at"]);
     expect(result).to.be.lengthOf(2);
@@ -466,7 +466,7 @@ sensor:
       - median:
           send_every:
           `,
-      { line: 5, character: 10 }
+      { line: 5, character: 10 },
     );
     testCompletionHaveLabels(result, ["window_size", "send_first_at"]);
     expect(result).to.be.lengthOf(2);
@@ -482,7 +482,7 @@ esp8266:
 output:
   - platform: template
     `,
-      { line: 6, character: 4 }
+      { line: 6, character: 4 },
     );
     testCompletionHaveLabels(result, ["type"]);
     expect(result).to.be.lengthOf(1);
@@ -499,7 +499,7 @@ output:
   - platform: gpio
     pin:
       `,
-      { line: 7, character: 6 }
+      { line: 7, character: 6 },
     );
     testCompletionHaveLabels(result, ["number", "mode"]);
     testCompletionDoesNotHaveLabels(result, ["drive_strength"]);
@@ -516,7 +516,7 @@ output:
   - platform: gpio
     pin:
       `,
-      { line: 7, character: 6 }
+      { line: 7, character: 6 },
     );
     testCompletionHaveLabels(result, ["number", "mode", "drive_strength"]);
   });
@@ -530,7 +530,7 @@ esp32:
 logger:
   bau`);
     expect(
-      result.find((r) => r.label === "baud_rate")?.insertText
+      result.find((r) => r.label === "baud_rate")?.insertText,
     ).to.be.string("baud_rate: ${0:115200}");
   });
 
@@ -544,7 +544,7 @@ esp32:
 interval:
   interval: 1h
   `,
-      { line: 6, character: 2 }
+      { line: 6, character: 2 },
     );
     testCompletionHaveLabels(result, ["then"]);
     testCompletionDoesNotHaveLabels(result, ["interval"]);
@@ -669,8 +669,9 @@ esphome:
   on_loop:
     `);
 
-    const matchCount = result.filter((c) => c.label === "sim800l.connect")
-      .length;
+    const matchCount = result.filter(
+      (c) => c.label === "sim800l.connect",
+    ).length;
     if (matchCount !== 1) {
       assert.fail(`expected 1 match but found ${matchCount} instead`);
     }
@@ -682,7 +683,7 @@ i2c:
   `);
 
     assert(
-      result.find((r) => r.label === "frequency")?.insertText?.startsWith("- ")
+      result.find((r) => r.label === "frequency")?.insertText?.startsWith("- "),
     );
   });
 
@@ -694,7 +695,7 @@ i2c:
     assert(
       result
         .find((r) => r.label === "frequency")
-        ?.insertText?.startsWith("frequency")
+        ?.insertText?.startsWith("frequency"),
     );
   });
   it("registry add dash", async () => {
@@ -705,7 +706,7 @@ esphome:
     `);
 
     assert(
-      result.find((r) => r.label === "delay")?.insertText?.startsWith("- ")
+      result.find((r) => r.label === "delay")?.insertText?.startsWith("- "),
     );
   });
 
@@ -717,7 +718,7 @@ esphome:
     - `);
 
     assert(
-      result.find((r) => r.label === "delay")?.insertText?.startsWith("delay")
+      result.find((r) => r.label === "delay")?.insertText?.startsWith("delay"),
     );
   });
 
