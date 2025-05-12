@@ -1,5 +1,9 @@
 # Changelog
 
+## V2025.4.1 - 2025-5-12
+
+- Use schema version from connected ESPHome (dev or tagged release)
+
 ## V2025.4.0 - 2025-4-19
 
 - Use schema from github esphome/esphome-schema
