@@ -13,7 +13,7 @@ let OtaUploadTask = new vscode.Task(
     "${relativeFile}",
     "--device",
     "OTA",
-  ])
+  ]),
 );
 
 class EsphomeTaskProvider implements vscode.TaskProvider {
@@ -48,7 +48,7 @@ class EsphomeTaskProvider implements vscode.TaskProvider {
         vscode.TaskScope.Workspace,
         definition.task,
         "esphome",
-        new vscode.ShellExecution(`${definition.task}`)
+        new vscode.ShellExecution(`${definition.task}`),
       );
     }
     console.log("returning undefined resolved task");
@@ -71,7 +71,7 @@ export function addTasks(context: vscode.ExtensionContext) {
   console.log("creating provider: ", workspaceRoot);
   const esphomeTaskProvider = vscode.tasks.registerTaskProvider(
     EsphomeTaskProvider.EsphomeType,
-    new EsphomeTaskProvider(workspaceRoot)
+    new EsphomeTaskProvider(workspaceRoot),
   );
 
   const esphomeOtaStatusBarCommandId = "esphome.otaUpload";
@@ -80,13 +80,13 @@ export function addTasks(context: vscode.ExtensionContext) {
     esphomeOtaStatusBarCommandId,
     () => {
       vscode.tasks.executeTask(OtaUploadTask);
-    }
+    },
   );
 
   // Add taskbar icon for OTA
   // create a new status bar item that we can now manage
   const esphomeOtaStatusBarItem = vscode.window.createStatusBarItem(
-    vscode.StatusBarAlignment.Left
+    vscode.StatusBarAlignment.Left,
   );
   esphomeOtaStatusBarItem.command = esphomeOtaStatusBarCommandId;
 

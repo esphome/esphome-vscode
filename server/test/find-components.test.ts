@@ -23,7 +23,7 @@ i2c:
   id: i2c_one
 
 spi:
-  id: spi_one`)
+  id: spi_one`),
     );
 
     assert.include(result, "i2c_one");
@@ -37,7 +37,7 @@ spi:
       getYamlDoc(`
 i2c:
   - id: i2c_one
-  - id: i2c_two`)
+  - id: i2c_two`),
     );
 
     assert.include(result, "i2c_one");
@@ -53,7 +53,7 @@ light:
   platform: binary
   id: light_1
   output: gpio_relay_1
-`)
+`),
     );
 
     assert.include(result, "light_1");
@@ -72,7 +72,7 @@ light:
     id: light_2
     name: "Luz mesa cocina"
     output: gpio_relay_2
-`)
+`),
     );
 
     assert.include(result, "light_1");
@@ -97,7 +97,7 @@ sensor:
       id: test_dht_temp
     humidity:
       id: test_dht_humidity
-`)
+`),
     );
 
     assert.include(result, "test_dht_temp");
@@ -113,7 +113,7 @@ script:
   - id: s1
     then:
       - delay: 1s
-`)
+`),
     );
 
     assert.include(result, "s1");
@@ -127,7 +127,7 @@ script:
   id: s1
   then:
     - delay: 1s
-`)
+`),
     );
 
     assert.include(result, "s1");
@@ -148,7 +148,7 @@ sensor:
     sensors:
       name: "My Custom Sensor"
       id: a_custom_sensor
-`)
+`),
     );
 
     assert.include(result, "a_custom_sensor");
@@ -171,7 +171,7 @@ sensor:
         id: a_custom_sensor
       - name: "My Custom Sensor B"
         id: b_custom_sensor
-`)
+`),
     );
 
     assert.include(result, "a_custom_sensor", "b_custom_sensor");
@@ -191,7 +191,7 @@ binary_sensor:
     binary_sensors:
       name: "My Custom Binary Sensor"
       id: a_custom_binary_sensor
-`)
+`),
     );
 
     assert.include(result, "a_custom_binary_sensor");
@@ -213,7 +213,7 @@ output:
     outputs:
       - id: custom_output_id_1
       - id: custom_output_id_2
-`)
+`),
     );
 
     assert.include(result, "custom_output_id_1", "custom_output_id_2");

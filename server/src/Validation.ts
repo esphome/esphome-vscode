@@ -21,8 +21,8 @@ export class Validation {
     private connection: ESPHomeConnection,
     private sendDiagnostics: (
       fileUri: string,
-      diagnostics: Diagnostic[]
-    ) => void
+      diagnostics: Diagnostic[],
+    ) => void,
   ) {
     connection.onResponse((m) => this.handleESPHomeMessage(m));
   }
@@ -58,9 +58,9 @@ export class Validation {
           error.range.start_line,
           error.range.start_col,
           error.range.end_line,
-          error.range.end_col
+          error.range.end_col,
         ),
-        message
+        message,
       );
     } else {
       this.addError(this.validating_uri!, Range.create(1, 0, 1, 2), message);
@@ -86,7 +86,7 @@ export class Validation {
             line_number,
             col_number,
             line_number,
-            col_number + 1
+            col_number + 1,
           );
 
           this.addError(uri, range, message);
@@ -104,7 +104,7 @@ export class Validation {
       ? file_path
       : this.fileAccessor.getRelativePath(
           vscodeUri.URI.parse(this.validating_uri!).fsPath,
-          file_path
+          file_path,
         );
     const uri_string = vscodeUri.URI.file(absolute_path).toString();
     return uri_string;
@@ -134,7 +134,7 @@ export class Validation {
             this.addError(
               this.validating_uri!,
               Range.create(0, 0, 1, 0),
-              `Could not open '${msg.path}': ${e}`
+              `Could not open '${msg.path}': ${e}`,
             );
             this.connection.sendMessage({
               type: "file_response",
@@ -149,7 +149,7 @@ export class Validation {
           msg.yaml_errors.forEach((e) => this.handleYamlError(e));
 
           this.diagnosticCollection.forEach((diagnostics, uri) =>
-            this.sendDiagnostics(uri, diagnostics)
+            this.sendDiagnostics(uri, diagnostics),
           );
 
           this.validating_uri = null;
@@ -204,7 +204,7 @@ export class Validation {
           return;
         }
         console.log(
-          "Timeout waiting for previous validation to complete. Discarding."
+          "Timeout waiting for previous validation to complete. Discarding.",
         );
       }
       this.validating_uri = e.document.uri;

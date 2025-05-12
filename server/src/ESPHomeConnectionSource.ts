@@ -36,7 +36,7 @@ export class ESPHomeConnectionSource extends ESPHomeConnection {
         return;
       }
       console.log(
-        `Configuring ESPHome with dashboard validation at ${config.dashboardUri}...`
+        `Configuring ESPHome with dashboard validation at ${config.dashboardUri}...`,
       );
 
       this.relay = new ESPHomeDashboardConnection(config.dashboardUri);
