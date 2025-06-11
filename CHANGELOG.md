@@ -1,10 +1,14 @@
 # Changelog
 
-## V2025.4.1 - 2025-5-12
+## v2025.4.2 - 2025-5-14
+
+- Retrieve schema from schema.esphome.io ☁️
+
+## v2025.4.1 - 2025-5-12
 
 - Use schema version from connected ESPHome (dev or tagged release)
 
-## V2025.4.0 - 2025-4-19
+## v2025.4.0 - 2025-4-19
 
 - Use schema from github esphome/esphome-schema
 
