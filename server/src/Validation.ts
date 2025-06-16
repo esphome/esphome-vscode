@@ -68,16 +68,29 @@ export class Validation {
   }
 
   private handleYamlError(error: YamlValidationError) {
-    let skip = 3;
+    // expect pair of lines with
+    // - error message
+    // - location
     let message = "";
-    error.message.split("\n").forEach((line: string) => {
-      if (--skip > 0) {
-        return;
-      }
+    const error_lines = error.message.split("\n");
+    if (error_lines.length % 2 != 0) {
+      if (this.validating_uri)
+        this.addError(
+          this.validating_uri,
+          Range.create(1, 0, 1, 1),
+          error.message,
+        );
+      else console.error("unknown: " + error.message);
+      return;
+    }
+
+    error_lines.forEach((line: string) => {
       if (message === "") {
         message = line;
       } else {
-        let location = line.match(/in "([^"]*)", line (\d*), column (\d*):/);
+        let location = line
+          .trimStart()
+          .match(/in "([^"]*)", line (\d*), column (\d*)/);
         if (location) {
           const uri = this.getUriStringForValidationPath(location[1]);
           const line_number = parseInt(location[2]) - 1;
@@ -91,10 +104,15 @@ export class Validation {
 
           this.addError(uri, range, message);
         } else {
-          console.log("unknown location " + line + " -- " + location);
+          if (this.validating_uri)
+            this.addError(
+              this.validating_uri,
+              Range.create(1, 0, 1, 1),
+              message + " " + line,
+            );
+          else console.error("unknown: " + error.message);
         }
         message = "";
-        skip = 3;
       }
     });
   }
@@ -130,14 +148,36 @@ export class Validation {
               content: docText,
             });
           } catch (e) {
-            // won't validate as an include file is missing
+            // if this is trying to get secrets.yaml from a directory other than validating_uri directory,
+            // it is expected that when the file does not exists it will try to load a secrets.yaml from
+            // the same folder where validating_uri is. See https://github.com/esphome/esphome/pull/5604
+            if (
+              vscodeUri.Utils.basename(vscodeUri.URI.parse(uri)) ==
+                "secrets.yaml" &&
+              this.validating_uri &&
+              vscodeUri.Utils.dirname(vscodeUri.URI.parse(uri)) !=
+                vscodeUri.Utils.dirname(
+                  vscodeUri.URI.parse(this.validating_uri),
+                )
+            )
+              return this.handleESPHomeMessage({
+                type: MESSAGE_READ_FILE,
+                path: vscodeUri.Utils.joinPath(
+                  vscodeUri.Utils.dirname(
+                    vscodeUri.URI.parse(this.validating_uri),
+                  ),
+                  "secrets.yaml",
+                ).fsPath,
+              });
+
+            // general case: won't validate as an include file is missing
             this.addError(
               this.validating_uri!,
               Range.create(0, 0, 1, 0),
               `Could not open '${msg.path}': ${e}`,
             );
             this.connection.sendMessage({
-              type: "file_response",
+              type: MESSAGE_FILE_RESPONSE,
               content: "",
             });
           }
