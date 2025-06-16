@@ -68,16 +68,29 @@ export class Validation {
   }
 
   private handleYamlError(error: YamlValidationError) {
-    let skip = 3;
+    // expect pair of lines with
+    // - error message
+    // - location
     let message = "";
-    error.message.split("\n").forEach((line: string) => {
-      if (--skip > 0) {
-        return;
-      }
+    const error_lines = error.message.split("\n");
+    if (error_lines.length % 2 != 0) {
+      if (this.validating_uri)
+        this.addError(
+          this.validating_uri,
+          Range.create(1, 0, 1, 1),
+          error.message,
+        );
+      else console.error("unknown: " + error.message);
+      return;
+    }
+
+    error_lines.forEach((line: string) => {
       if (message === "") {
         message = line;
       } else {
-        let location = line.match(/in "([^"]*)", line (\d*), column (\d*):/);
+        let location = line
+          .trimStart()
+          .match(/in "([^"]*)", line (\d*), column (\d*)/);
         if (location) {
           const uri = this.getUriStringForValidationPath(location[1]);
           const line_number = parseInt(location[2]) - 1;
