@@ -1,7 +1,7 @@
 import { Diagnostic, Range } from "vscode-languageserver-protocol";
 import { TextDocumentChangeEvent } from "vscode-languageserver";
 import { DocumentUri, TextDocument } from "vscode-languageserver-textdocument";
-import { ESPHomeConnection } from "./ESPHomeConnection";
+import { ESPHomeConnection } from "./connection";
 import {
   MessageTypes,
   MESSAGE_FILE_RESPONSE,
@@ -9,8 +9,8 @@ import {
   MESSAGE_RESULT,
   ValidationError as ESPHomeValidationError,
   YamlValidationError,
-} from "./esphome_types";
-import { FileAccessor } from "./fileAccessor";
+} from "./types";
+import { FileAccessor } from "./file-accessor";
 import * as vscodeUri from "vscode-uri";
 import path = require("path");
 

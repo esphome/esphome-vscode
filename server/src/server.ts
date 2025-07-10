@@ -10,10 +10,10 @@ import {
 } from "vscode-languageserver/node";
 
 import { TextDocument } from "vscode-languageserver-textdocument";
-import { Validation } from "./Validation";
-import { VsCodeFileAccessor } from "./fileAccessor";
-import { ESPHomeConnectionSource } from "./ESPHomeConnectionSource";
-import { ESPHomeSettings } from "./ESPHomeSettings";
+import { Validation } from "./validation";
+import { VsCodeFileAccessor } from "./file-accessor";
+import { ESPHomeConnectionSource } from "./connection-source";
+import { ESPHomeSettings } from "./settings";
 import { HoverHandler } from "./hover-handler";
 import { ESPHomeDocuments } from "./esphome-document";
 import { TextBuffer } from "./utils/text-buffer";

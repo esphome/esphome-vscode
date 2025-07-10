@@ -3,7 +3,7 @@ import * as unzipper from "unzipper";
 import * as https from "https";
 import * as os from "os";
 import * as fs from "fs";
-import { version } from "./ESPHomeConnectionSource";
+import { version } from "./connection-source";
 
 function getBaseDir(): string {
   const base = path.join(os.homedir(), ".esphome-language-server");

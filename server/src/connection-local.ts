@@ -1,7 +1,7 @@
 import * as ChildProcess from "child_process";
 import * as process from "process";
-import { ESPHomeConnection } from "./ESPHomeConnection";
-import { MESSAGE_STD_ERR_OUT } from "./esphome_types";
+import { ESPHomeConnection } from "./connection";
+import { MESSAGE_STD_ERR_OUT } from "./types";
 
 export class ESPHomeLocalConnection extends ESPHomeConnection {
   private process!: ChildProcess.ChildProcess;

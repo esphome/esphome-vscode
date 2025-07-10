@@ -1,8 +1,8 @@
-import { ESPHomeDashboardConnection } from "./ESPHomeDashboardConnection";
-import { ESPHomeLocalConnection } from "./ESPHomeLocalConnection";
-import { ESPHomeSettings } from "./ESPHomeSettings";
-import { MESSAGE_VERSION, MessageTypes } from "./esphome_types";
-import { ESPHomeConnection } from "./ESPHomeConnection";
+import { ESPHomeDashboardConnection } from "./connection-dashboard";
+import { ESPHomeLocalConnection } from "./connection-local";
+import { ESPHomeSettings } from "./settings";
+import { MESSAGE_VERSION, MessageTypes } from "./types";
+import { ESPHomeConnection } from "./connection";
 
 // This class checks configuration settings and decides which connection to use
 // The same base ESPHomeConnection is used for this.

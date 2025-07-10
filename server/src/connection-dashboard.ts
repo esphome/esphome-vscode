@@ -1,5 +1,5 @@
 import * as WebSocket from "ws";
-import { ESPHomeConnection } from "./ESPHomeConnection";
+import { ESPHomeConnection } from "./connection";
 
 export class ESPHomeDashboardConnection extends ESPHomeConnection {
   private ws!: WebSocket;

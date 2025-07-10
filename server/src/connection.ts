@@ -1,4 +1,4 @@
-import { MessageTypes } from "./esphome_types";
+import { MessageTypes } from "./types";
 
 export abstract class ESPHomeConnection {
   private handleMessage_!: (msg: MessageTypes) => void;
