@@ -1,0 +1,76 @@
+name: 🐞 Bug report
+description: Report a problem with the ESPHome VSCode extension
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please fill out all fields to help us reproduce and fix the issue. Issues missing details may be closed.
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      description: Which OS are you using to run VSCode?
+      options:
+        - Windows
+        - macOS
+        - Linux
+    validations:
+      required: true
+
+  - type: input
+    id: extension_version
+    attributes:
+      label: ESPHome VSCode Extension Version
+      description: You can find this in the Extensions sidebar in VSCode (e.g. `v2025.7.1`)
+      placeholder: e.g. v2025.7.1
+    validations:
+      required: true
+
+  - type: dropdown
+    id: backend_type
+    attributes:
+      label: ESPHome Backend
+      description: Are you using a local ESPHome install or connecting to the ESPHome Device Builder?
+      options:
+        - Local ESPHome
+        - ESPHome Device Builder
+    validations:
+      required: true
+
+  - type: input
+    id: esphome_version
+    attributes:
+      label: ESPHome Version
+      description: |
+        Open the **OUTPUT** panel in VSCode (bottom of the window), then select **"ESPHome Language Server"** from the dropdown in the top-right.
+        The ESPHome version should be displayed at the top (e.g. `ESPHome v2025.6.2`).
+      placeholder: e.g. v2025.6.2
+    validations:
+      required: true
+
+  - type: textarea
+    id: issue_description
+    attributes:
+      label: What happened?
+      description: Describe what you expected to happen and what actually happened.
+      placeholder: |
+        Steps to reproduce...
+        1. ...
+        2. ...
+        Expected behavior...
+        Actual behavior...
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs or output
+      description: |
+        Copy any errors shown in the OUTPUT panel under "ESPHome Language Server", or anything unusual in the UI.
+      render: shell
+    validations:
+      required: false
