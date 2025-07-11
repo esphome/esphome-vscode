@@ -6,10 +6,14 @@ import { getTextDoc } from "./sample-esphome-yaml";
 import { isMap } from "yaml";
 import { HoverHandler } from "../src/hover-handler";
 import { MarkupContent } from "vscode-languageserver-types";
+import { setVersion } from "../src/connection-source";
 
 const documents = new ESPHomeDocuments();
 
 describe("custom tags", () => {
+  before(async function () {
+    setVersion("dev");
+  });
   it("parse secrets", async () => {
     const yaml = `
 wifi:
