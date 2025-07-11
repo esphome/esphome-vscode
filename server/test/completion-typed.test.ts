@@ -1,8 +1,12 @@
 import "mocha";
 import { expect } from "chai";
 import { getCompletionsFor, testCompletionHaveLabels } from "./shared";
+import { setVersion } from "../src/connection-source";
 
 describe("typed schema", () => {
+  before(async function () {
+    setVersion("dev");
+  });
   it("ask type only", async () => {
     const result = await getCompletionsFor(
       `
@@ -46,7 +50,7 @@ esp32:
     `,
       { line: 3, character: 4 },
     );
-    expect(result.length).to.be.equal(3);
+    expect(result.length).to.be.equal(4);
     testCompletionHaveLabels(result, ["version"]);
   });
 
@@ -102,6 +106,6 @@ speaker:
   - platform: i2s_audio
     dac_type: external
     `);
-    testCompletionHaveLabels(result, ["mode", "i2s_dout_pin"]);
+    testCompletionHaveLabels(result, ["i2s_mode", "i2s_dout_pin"]);
   });
 });

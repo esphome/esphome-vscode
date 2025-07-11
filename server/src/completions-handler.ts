@@ -292,7 +292,7 @@ export class CompletionsHandler {
   ): Promise<CompletionItem[]> {
     if (cv.is_list && isNumber(path[pathIndex])) {
       if (isSeq(pathNode)) {
-        pathNode = pathNode.get(path[pathIndex]) as any as YAMLMap;
+        pathNode = (pathNode.get(path[pathIndex]) as any) as YAMLMap;
       }
       pathIndex++;
     }

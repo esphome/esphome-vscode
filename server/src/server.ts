@@ -10,10 +10,10 @@ import {
 } from "vscode-languageserver/node";
 
 import { TextDocument } from "vscode-languageserver-textdocument";
-import { Validation } from "./Validation";
-import { VsCodeFileAccessor } from "./fileAccessor";
-import { ESPHomeConnectionSource } from "./ESPHomeConnectionSource";
-import { ESPHomeSettings } from "./ESPHomeSettings";
+import { Validation } from "./validation";
+import { VsCodeFileAccessor } from "./file-accessor";
+import { ESPHomeConnectionSource } from "./connection-source";
+import { ESPHomeSettings } from "./settings";
 import { HoverHandler } from "./hover-handler";
 import { ESPHomeDocuments } from "./esphome-document";
 import { TextBuffer } from "./utils/text-buffer";
@@ -45,6 +45,7 @@ const sendDiagnostics = (uri: string, diagnostics: Diagnostic[]) => {
 let fileAccessor: VsCodeFileAccessor;
 
 const esphomeConnection = new ESPHomeConnectionSource();
+let pythonPath = "";
 
 connection.onInitialize((params: InitializeParams) => {
   let capabilities = params.capabilities;
@@ -80,6 +81,7 @@ connection.onInitialize((params: InitializeParams) => {
   }
 
   fileAccessor = new VsCodeFileAccessor(documents);
+  pythonPath = params.initializationOptions?.pythonPath;
 
   return result;
 });
@@ -98,9 +100,7 @@ connection.onInitialized(async () => {
     });
   }
 
-  const config = await getSettings();
-
-  esphomeConnection.configure(config);
+  esphomeConnection.configure(await getSettings());
 
   const validation = new Validation(
     fileAccessor,
@@ -136,16 +136,15 @@ connection.onInitialized(async () => {
   });
 });
 
-function getSettings(): Thenable<ESPHomeSettings> {
-  if (!hasConfigurationCapability) {
-    return Promise.resolve(globalSettings);
-  }
-  const result = connection.workspace.getConfiguration({
-    scopeUri: ".",
-    section: "esphome",
-  });
+async function getSettings(): Promise<ESPHomeSettings> {
+  let settings = !hasConfigurationCapability
+    ? globalSettings
+    : await connection.workspace.getConfiguration({
+        scopeUri: ".",
+        section: "esphome",
+      });
 
-  return result;
+  return { ...settings, pythonPath };
 }
 
 // The global settings, used when the `workspace/configuration` request is not supported by the client.
@@ -155,13 +154,7 @@ const defaultSettings: ESPHomeSettings = { validator: "local" };
 let globalSettings: ESPHomeSettings = defaultSettings;
 
 connection.onDidChangeConfiguration(async (change) => {
-  if (hasConfigurationCapability) {
-    esphomeConnection.configure(await getSettings());
-  } else {
-    globalSettings = <ESPHomeSettings>(
-      (change.settings.esphome || defaultSettings)
-    );
-  }
+  esphomeConnection.configure(await getSettings());
 });
 
 // Only keep settings for open documents, and clear diagnostics.

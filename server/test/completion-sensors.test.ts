@@ -1,9 +1,12 @@
 import "mocha";
-import { expect } from "chai";
 import { getCompletionsFor, testCompletionHaveLabels } from "./shared";
+import { setVersion } from "../src/connection-source";
 
 describe("completion-sensors", () => {
-  it("list sgp4x memebers", async () => {
+  before(async function () {
+    setVersion("dev");
+  });
+  it("list sgp4x members", async () => {
     const result = await getCompletionsFor(
       `
 sensor:

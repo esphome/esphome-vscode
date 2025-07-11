@@ -1,13 +1,17 @@
 import "mocha";
 import { assert, expect } from "chai";
-import { esphomeDoc4 } from "./sample-esphome-yaml";
 import {
   getCompletionsFor,
   testCompletionDoesNotHaveLabels,
   testCompletionHaveLabels,
 } from "./shared";
+import { setVersion } from "../src/connection-source";
 
 describe("complete", () => {
+  before(async function () {
+    setVersion("dev");
+  });
+
   it("empty file lists esphome, wifi and others", async () => {
     const result = await getCompletionsFor("");
     testCompletionHaveLabels(result, ["esphome", "wifi"]);
@@ -109,15 +113,24 @@ esphome:
     `,
       { line: 3, character: 4 },
     );
-    expect(result).to.be.lengthOf(1);
+    expect(result).to.be.lengthOf(2);
     testCompletionHaveLabels(result, ["version"]);
   });
 
   it("esphome project props, full project dict, no suggestions", async () => {
-    const result = await getCompletionsFor(esphomeDoc4, {
-      line: 4,
-      character: 4,
-    });
+    const result = await getCompletionsFor(
+      `
+esphome:
+  project:
+    name:
+    version:
+    on_update:
+    `,
+      {
+        line: 5,
+        character: 4,
+      },
+    );
     assert(result.length === 0, "expected 0 results");
   });
 
@@ -317,29 +330,29 @@ sensor:
     const result = await getCompletionsFor(
       `
 sensor:
-  platform: dallas
+  platform: dallas_temp
   `,
       { line: 2, character: 2 },
     );
-    testCompletionHaveLabels(result, ["dallas_id", "device_class"]);
+    testCompletionHaveLabels(result, ["one_wire_id", "device_class"]);
   });
 
   it("sensor props in list", async () => {
     const result = await getCompletionsFor(
       `
 sensor:
-  - platform: dallas
+  - platform: dallas_temp
     `,
       { line: 2, character: 4 },
     );
-    testCompletionHaveLabels(result, ["dallas_id", "device_class"]);
+    testCompletionHaveLabels(result, ["one_wire_id", "device_class"]);
   });
 
   it("sensor device enum no list", async () => {
     const result = await getCompletionsFor(
       `
 sensor:
-  platform: dallas
+  platform: dallas_temp
   device_class: `,
       { line: 2, character: 16 },
     );
@@ -349,7 +362,7 @@ sensor:
     const result = await getCompletionsFor(
       `
 sensor:
-  - platform: dallas
+  - platform: dallas_temp
     device_class: `,
       { line: 2, character: 18 },
     );
@@ -669,9 +682,8 @@ esphome:
   on_loop:
     `);
 
-    const matchCount = result.filter(
-      (c) => c.label === "sim800l.connect",
-    ).length;
+    const matchCount = result.filter((c) => c.label === "sim800l.connect")
+      .length;
     if (matchCount !== 1) {
       assert.fail(`expected 1 match but found ${matchCount} instead`);
     }

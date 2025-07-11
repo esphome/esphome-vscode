@@ -12,7 +12,7 @@ module.exports = function withDefaults(/**@type WebpackConfig*/ extConfig) {
     mode: "none", // this leaves the source code as close as possible to the original (when packaging we set this to 'production')
     target: "node", // extensions run in a node context
     node: {
-      __dirname: false, // leave the __dirname-behaviour intact
+      __dirname: false, // leave the __dirname-behavior intact
     },
     resolve: {
       mainFields: ["module", "main"],
@@ -44,7 +44,7 @@ module.exports = function withDefaults(/**@type WebpackConfig*/ extConfig) {
 
     output: {
       filename: "[name].js",
-      path: path.join(extConfig.context, "out"),
+      path: path.join(extConfig.context || "", "out"),
       libraryTarget: "commonjs",
     },
     // yes, really source maps

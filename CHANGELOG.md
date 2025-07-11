@@ -1,5 +1,10 @@
 # Changelog
 
+## v2025.6.0 - 2025-6-16
+
+- Fixes YAML errors not reporting on right location
+- Fixes secrets.yaml not loading when using packages in other directories.
+
 ## v2025.4.2 - 2025-5-14
 
 - Retrieve schema from schema.esphome.io ☁️

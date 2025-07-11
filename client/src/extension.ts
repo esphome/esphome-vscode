@@ -1,10 +1,5 @@
-/* --------------------------------------------------------------------------------------------
- * Copyright (c) Microsoft Corporation. All rights reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- * ------------------------------------------------------------------------------------------ */
-
 import * as path from "path";
-import { workspace, ExtensionContext } from "vscode";
+import { workspace, ExtensionContext, extensions } from "vscode";
 
 import {
   LanguageClient,
@@ -17,7 +12,7 @@ import { addTasks } from "./EsphomeTaskProvider";
 
 let client: LanguageClient;
 
-export function activate(context: ExtensionContext) {
+export async function activate(context: ExtensionContext) {
   // The server is implemented in node
   let serverModule = context.asAbsolutePath(
     path.join("server", "out", "server.js"),
@@ -37,6 +32,16 @@ export function activate(context: ExtensionContext) {
     },
   };
 
+  // try to send the selected python interpreter path, for local esphome in virtual environment
+  const pythonExt = extensions.getExtension("ms-python.python");
+  await pythonExt?.activate();
+  const pythonApi = pythonExt?.exports;
+  const interpreterPath = (
+    await pythonApi?.environments.resolveEnvironment(
+      pythonApi.environments.getActiveEnvironmentPath().path,
+    )
+  )?.executable?.uri?.fsPath;
+
   // Options to control the language client
   let clientOptions: LanguageClientOptions = {
     // Register the server for plain text documents
@@ -46,6 +51,9 @@ export function activate(context: ExtensionContext) {
       fileEvents: workspace.createFileSystemWatcher("**/.clientrc"),
     },
     revealOutputChannelOn: RevealOutputChannelOn.Never,
+    initializationOptions: {
+      pythonPath: interpreterPath,
+    },
   };
 
   // Create the language client and start the client.

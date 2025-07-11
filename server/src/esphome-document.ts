@@ -189,12 +189,13 @@ export class ESPHomeDocument {
           if (isString(pathIndex)) {
             if (cv.type === "schema" || cv.type === "trigger") {
               if (cv.schema !== undefined) {
-                const schema_cv: ConfigVar | undefined =
-                  await coreSchema.findConfigVar(
-                    cv.schema,
-                    pathIndex,
-                    this.yaml,
-                  );
+                const schema_cv:
+                  | ConfigVar
+                  | undefined = await coreSchema.findConfigVar(
+                  cv.schema,
+                  pathIndex,
+                  this.yaml,
+                );
                 if (schema_cv !== undefined) {
                   cv = schema_cv;
                   continue;

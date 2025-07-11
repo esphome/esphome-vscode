@@ -4,6 +4,7 @@ import { CompletionItem, Position } from "../src/editor-shims";
 import { ESPHomeDocuments } from "../src/esphome-document";
 import { TextBuffer } from "../src/utils/text-buffer";
 import { CompletionsHandler } from "../src/completions-handler";
+import { setVersion } from "../src/connection-source";
 
 export const testCompletionHaveLabels = (
   result: CompletionItem[],
@@ -36,6 +37,7 @@ export const testCompletionDoesNotHaveLabels = (
 
 const documents = new ESPHomeDocuments();
 const x = new CompletionsHandler(documents);
+
 export const getCompletionsFor = async (
   yamlString: string,
   position?: Position,
