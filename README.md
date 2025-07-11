@@ -8,14 +8,20 @@ This plugin provides validation, completion and hover help for ESPHome Yaml file
 
 The plugin validates against ESPHome itself, so you will get the same errors. You can connect to ESPHome in two different ways:
 
-1. Use the **ESPHome Dashboard**, this can be the ESPHome running in Home Assistant, in that case you will need to configure the add on to 'leave the front door open' and also give a tcp port in the addon for external access (in case you are only accessing via Ingress).
+1. Use the **ESPHome Dashboard**, this can be the ESPHome running in Home Assistant, in that case you will need to configure the add on to `leave_front_door_open` and also give a tcp port in the addon for external access (in case you are only accessing via Ingress).
 
 2. Use a **local installation of ESPHome**, if you can run esphome in your terminal, then you can use this option.
+   If you have installed esphome in a virtual environment, then make sure you also have the Python extension in vscode. This will allow you to select the Python
+   interpreter, this is the python executable inside your venv folder. Once you do this you should be able to run esphome command from the integrated terminal.
+   Also the extension will pick up the venv folder and run esphome from there.
+   If this does not work the fallback option it to have esphome in your global path, i.e. if you can run esphome in a regular terminal without loading a venv
+   the extension will work with this.
 
-To select an option use VSCode built in settings editor and search for `ESPHome`. As this extension is under development for changes of these options to take effect you will have to reload VSCode window. If it doesn't seem to work try to reload VSCode window again.
+To select an option use VSCode built in settings editor and search for `ESPHome`. Changing this settings requires reload of the extension.
 
-Completion and hover help works with local data in the extension, so you will get this functionality even if the
-connection with ESPHome is not made.
+Completion and hover help needs to pull schema from https://schema.esphome.io. The schemas are versioned so the extension will first connect to you dashboard or local
+ESPHome to retrieve the version you are using and then try to pull the best available matching version.
+For the dev version it will pull the schemas dev version daily.
 
 ### Selecting the ESPHome language
 
