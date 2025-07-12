@@ -710,6 +710,19 @@ i2c:
         ?.insertText?.startsWith("frequency"),
     );
   });
+
+  it("list dont add dash twice 2", async () => {
+    const result = await getCompletionsFor(`
+i2c:
+  -`);
+
+    assert(
+      result
+        .find((r) => r.label === "frequency")
+        ?.insertText?.startsWith(" frequency"),
+    );
+  });
+
   it("registry add dash", async () => {
     const result = await getCompletionsFor(`
 esphome:

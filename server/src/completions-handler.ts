@@ -556,25 +556,23 @@ export class CompletionsHandler {
     throw new Error("Unexpected path traverse.");
   }
 
-  private arrayItemPrefixed(key: string): string {
-    // prefix only if not prefixed already
-    if (
-      this.position.character > 1 &&
-      this.lineContent.substring(
-        this.position.character - 2,
-        this.position.character,
-      ) === "- "
-    )
-      return key + ": ";
-    return "- " + key + ": ";
-  }
-
   private async getConfigVars(
     schema: Schema,
     node: YAMLMap | null,
     isList = false,
   ): Promise<CompletionItem[]> {
     const ret: CompletionItem[] = [];
+
+    let prefix = "";
+    if (isList) {
+      const dashPos = this.lineContent.indexOf("-");
+      if (dashPos >= 0 && dashPos < this.position.character) {
+        // there is a dash already, do we need a space?
+        if (dashPos - this.position.character == -1) prefix = " ";
+      }
+      // there is no dash on the line already, add it
+      else prefix = "- ";
+    }
 
     for await (const [prop, config] of coreSchema.iterConfigVars(
       schema,
@@ -585,7 +583,7 @@ export class CompletionsHandler {
         continue;
       }
 
-      let insertText = isList ? this.arrayItemPrefixed(prop) : prop + ": ";
+      let insertText = prefix + prop + ": ";
       let triggerSuggest = false;
       let snippet = false;
 
@@ -876,6 +874,15 @@ export class CompletionsHandler {
   private async addRegistry(
     configVar: ConfigVarRegistry,
   ): Promise<CompletionItem[]> {
+    let prefix = "";
+    const dashPos = this.lineContent.indexOf("-");
+    if (dashPos >= 0 && dashPos < this.position.character) {
+      // there is a dash already, do we need a space?
+      if (dashPos - this.position.character == -1) prefix = " ";
+    }
+    // there is no dash on the line already, add it
+    else prefix = "- ";
+
     const result: CompletionItem[] = [];
     for await (const [value, props] of await coreSchema.getRegistry(
       configVar.registry,
@@ -884,7 +891,7 @@ export class CompletionsHandler {
       if (configVar.filter && !configVar.filter.includes(value)) {
         continue;
       }
-      let insertText = this.arrayItemPrefixed(value);
+      let insertText = prefix + value + ": ";
       const completeCv = await coreSchema.getConfigVarComplete2(props);
       if (!completeCv.maybe) {
         insertText += "\n    ";
