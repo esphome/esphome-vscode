@@ -19,6 +19,7 @@ import { ESPHomeDocuments } from "./esphome-document";
 import { TextBuffer } from "./utils/text-buffer";
 import { CompletionsHandler } from "./completions-handler";
 import { DefinitionHandler } from "./definition-handler";
+import { DocumentSymbolHandler } from './document-symbol-handler';
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -70,6 +71,7 @@ connection.onInitialize((params: InitializeParams) => {
         workDoneProgress: false,
       },
       definitionProvider: true,
+      documentSymbolProvider: true,
     },
   };
   if (hasWorkspaceFolderCapability) {
@@ -134,6 +136,15 @@ connection.onInitialized(async () => {
     esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
     return definitionHandler.getDefinition(p.textDocument.uri, p.position);
   });
+
+  const documentSymbolHandler = new DocumentSymbolHandler(esphomeDocuments);
+  connection.onDocumentSymbol((p) => {
+    const doc = documents.get(p.textDocument.uri);
+    if (!doc) return;
+    esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
+    return documentSymbolHandler.getDocumentSymbols(p.textDocument.uri);
+  });
+
 });
 
 async function getSettings(): Promise<ESPHomeSettings> {
