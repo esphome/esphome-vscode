@@ -101,15 +101,7 @@ export class DocumentSymbolHandler {
             children = this.parseNode(doc, valueNode);
         }
 
-        return {
-            name,
-            kind,
-            detail,
-            range: fullRange,
-            selectionRange: keyRange,
-            children,
-        }
-
+        return DocumentSymbol.create(name, detail, kind, fullRange, keyRange, children)
     }
 
     /**
@@ -132,7 +124,7 @@ export class DocumentSymbolHandler {
         const detail = "";
         const children: DocumentSymbol[] = this.parseNode(doc, item);   // Recursively parse children, if any
 
-        return { name, kind, detail, range, selectionRange, children };
+        return DocumentSymbol.create(name, detail, kind, range, selectionRange, children)
     }
 
     // HELPER FUNCTIONS
