@@ -1,6 +1,6 @@
 import { DocumentSymbol, SymbolKind, Range } from "vscode-languageserver-types";
 import { ESPHomeDocument, ESPHomeDocuments } from "./esphome-document";
-import { isMap, isScalar, Node, Pair, Range as YamlRange } from "yaml";
+import { isMap, isScalar, isSeq, Node, Pair, YAMLSeq, Range as YamlRange } from "yaml";
 
 /**
  * Handles the extraction and parsing of {@linkcode DocumentSymbol}s from {@linkcode ESPHomeDocument}s
@@ -40,7 +40,7 @@ export class DocumentSymbolHandler {
     }
 
     /**
-     * Parses a yaml node and extracts {@link DocumentSymbol document symbols} from its key-value pairs.
+     * Delegates the parsing logic to the appropriate function based on the node's type (`Map` or `Sequence`)
      * @param doc - The {@linkcode ESPHomeDocument} being processed
      * @param node - The yaml node to parse
      * @returns An array of {@linkcode DocumentSymbol} extracted from the node
@@ -51,6 +51,13 @@ export class DocumentSymbolHandler {
         if (isMap(node)) {
             for (const item of node.items) {
                 const symbol = this.createSymbol(doc, item);
+                if (symbol) {
+                    symbols.push(symbol);
+                }
+            }
+        } else if (isSeq(node)) {
+            for (let index = 0; index < node.items.length; index++) {
+                const symbol = this.createSequenceSymbol(doc, node, index);
                 if (symbol) {
                     symbols.push(symbol);
                 }
@@ -71,15 +78,33 @@ export class DocumentSymbolHandler {
             return null;
         }
 
-        const { key } = pair;
+        const keyNode = pair.key as Node;
+        const valueNode = pair.value as Node;
 
-        const name = key.value as string;
-        const keyRange = this.getRange(doc, key as Node);
-
-        let fullRange = keyRange;
-        let children: DocumentSymbol[] = [];
-        let kind = SymbolKind.Property;
+        const name = pair.key.value as string;
+        let kind: SymbolKind = SymbolKind.Field;
         let detail = "";
+        let children: DocumentSymbol[] = [];
+
+        const keyRange = this.getRange(doc, keyNode);
+        let fullRange = keyRange; // Default to keyRange, but expand to include value if possible
+        if (valueNode?.range) {
+            fullRange = {
+                start: keyRange.start,
+                end: doc.text.getPosition(valueNode.range[1])
+            }
+        }
+
+        if (isScalar(valueNode)) {
+            detail = String(valueNode.value);
+        } else {
+            if (isMap(valueNode)) {
+                kind = SymbolKind.Object;
+            } else if (isSeq(valueNode)) {
+                kind = SymbolKind.Array;
+            }
+            children = this.parseNode(doc, valueNode);
+        }
 
         return {
             name,
@@ -92,7 +117,31 @@ export class DocumentSymbolHandler {
 
     }
 
+    /**
+     * Creates a {@link DocumentSymbol document symbol} for an item within a {@link YAMLSeq YAML sequence}.
+     * @param doc - The {@linkcode ESPHomeDocument} being processed
+     * @param node - The {@link YAMLSeq YAML sequence} node containing the item
+     * @param index - The index of the item within the sequence
+     * @returns A {@linkcode DocumentSymbol} representing the sequence item, or `null` if the item doesn't exist
+     */
+    private createSequenceSymbol(doc: ESPHomeDocument, node: YAMLSeq, index: number): DocumentSymbol | null {
+        const item = node.items[index] as Node;
+        if (!item) {
+            return null;
+        }
+
+        let name = this.getIdentifier(item) ?? `[${index}]`;
+        let kind: SymbolKind = SymbolKind.Field;
+        const range = this.getRange(doc, item);
+        let selectionRange = range;
+        const detail = "";
+        const children: DocumentSymbol[] = this.parseNode(doc, item);   // Recursively parse children, if any
+
+        return { name, kind, detail, range, selectionRange, children };
+    }
+
     // HELPER FUNCTIONS
+    // ----------------
 
     /**
      * Converts a yaml node's {@linkcode YamlRange Range} to a LSP {@linkcode Range} object.
@@ -111,6 +160,27 @@ export class DocumentSymbolHandler {
         return {
             start: doc.text.getPosition(node.range[0]),
             end: doc.text.getPosition(node.range[1])
+        }
+    }
+
+    /**
+     * Extracts an identifier from a YAML node
+     * 
+     * - For scalar nodes, returns the string value of the node as is.
+     * - For map nodes, searches for a pair with key `id`, `name`, or `platform`
+     *   and returns the string value of that pair if found.
+     * 
+     * @param node - The YAML node to extract an identifier from
+     * @returns The identifier as a string, or undefined if no identifier could be extracted
+     */
+    private getIdentifier(node: Node): string | undefined {
+        if (isScalar(node)) {
+            return String(node.value);
+        } else if (isMap(node)) {
+            const idPair = node.items.find(item => isScalar(item.key) && ['id', 'name', 'platform'].includes(item.key.value as string))
+            if (idPair && isScalar(idPair.value)) {
+                return String(idPair.value.value)
+            }
         }
     }
 }
