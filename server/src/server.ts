@@ -136,15 +136,14 @@ connection.onInitialized(async () => {
     esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
     return definitionHandler.getDefinition(p.textDocument.uri, p.position);
   });
+});
 
-  const documentSymbolHandler = new DocumentSymbolHandler(esphomeDocuments);
-  connection.onDocumentSymbol((p) => {
-    const doc = documents.get(p.textDocument.uri);
-    if (!doc) return;
-    esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
-    return documentSymbolHandler.getDocumentSymbols(p.textDocument.uri);
-  });
-
+const documentSymbolHandler = new DocumentSymbolHandler(esphomeDocuments);
+connection.onDocumentSymbol((p) => {
+  const doc = documents.get(p.textDocument.uri);
+  if (!doc) return;
+  esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
+  return documentSymbolHandler.getDocumentSymbols(p.textDocument.uri);
 });
 
 async function getSettings(): Promise<ESPHomeSettings> {
