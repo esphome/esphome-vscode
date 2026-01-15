@@ -82,7 +82,7 @@ export class DocumentSymbolHandler {
         const valueNode = pair.value as Node;
 
         const name = pair.key.value as string;
-        let kind: SymbolKind = SymbolKind.Field;
+        let kind: SymbolKind = this.getSymbolKind(name, valueNode);
         let detail = "";
         let children: DocumentSymbol[] = [];
 
@@ -98,11 +98,6 @@ export class DocumentSymbolHandler {
         if (isScalar(valueNode)) {
             detail = String(valueNode.value);
         } else {
-            if (isMap(valueNode)) {
-                kind = SymbolKind.Object;
-            } else if (isSeq(valueNode)) {
-                kind = SymbolKind.Array;
-            }
             children = this.parseNode(doc, valueNode);
         }
 
@@ -131,7 +126,7 @@ export class DocumentSymbolHandler {
         }
 
         let name = this.getIdentifier(item) ?? `[${index}]`;
-        let kind: SymbolKind = SymbolKind.Field;
+        let kind: SymbolKind = this.getSymbolKind(name, item);
         const range = this.getRange(doc, item);
         let selectionRange = range;
         const detail = "";
@@ -182,5 +177,105 @@ export class DocumentSymbolHandler {
                 return String(idPair.value.value)
             }
         }
+    }
+
+    /**
+     * Maps ESPHome configuration keys to their corresponding symbol kinds for document symbol representation.
+     * 
+     * This map categorizes various ESPHome YAML configuration options by semantic type:
+     * - **Classes**: Core components like esphome, esp32, esp8266, logger, ota, and time
+     * - **Interfaces**: Communication protocols and services (wifi, api, web_server, mqtt, ethernet, captive_portal, i2c, spi)
+     * - **Constants**: Connection parameters (ssid, password, port, host)
+     * - **Functions**: Executable blocks (action, lambda)
+     * - **Events**: Triggered actions (script, update_interval)
+     * - **Classes**: Hardware interfaces (sensor, switch, light, binary_sensor, fan, display)
+     * - **Fields**: Common attributes (id, name, pin)
+     * - etc.
+     */
+    keyToSymbolMap: Map<string, SymbolKind> = new Map([
+        ['esphome', SymbolKind.Class],
+        ['esp32', SymbolKind.Class],
+        ['esp8266', SymbolKind.Class],
+        ['logger', SymbolKind.Class],
+        ['ota', SymbolKind.Class],
+        ['time', SymbolKind.Class],
+
+        ['board', SymbolKind.Enum],
+
+        ['wifi', SymbolKind.Interface],
+        ['api', SymbolKind.Interface],
+        ['web_server', SymbolKind.Interface],
+        ['mqtt', SymbolKind.Interface],
+        ['ethernet', SymbolKind.Interface],
+        ['captive_portal', SymbolKind.Interface],
+        ['ssid', SymbolKind.Constant],
+        ['password', SymbolKind.Constant],
+        ['port', SymbolKind.Constant],
+        ['host', SymbolKind.Constant],
+
+        ['i2c', SymbolKind.Interface],
+        ['spi', SymbolKind.Interface],
+
+        ['script', SymbolKind.Event],
+        ['action', SymbolKind.Function],
+        ['lambda', SymbolKind.Function],
+        ['update_interval', SymbolKind.Event],
+
+        ['sensor', SymbolKind.Class],
+        ['switch', SymbolKind.Class],
+        ['light', SymbolKind.Class],
+        ['binary_sensor', SymbolKind.Class],
+        ['fan', SymbolKind.Class],
+        ['display', SymbolKind.Class],
+
+        ['id', SymbolKind.Field],
+        ['name', SymbolKind.Field],
+        ['platform', SymbolKind.EnumMember],
+        ['pin', SymbolKind.Interface],
+        ['type', SymbolKind.EnumMember],
+
+        ['substitutions', SymbolKind.Namespace],
+        ['packages', SymbolKind.Package],
+        ['widgets', SymbolKind.Struct],
+        ['font', SymbolKind.TypeParameter],
+    ]);
+
+    /**
+     * Determines the appropriate {@linkcode SymbolKind} for a given node based on its name and structure.
+     * @param name - The name of the symbol
+     * @param node - The YAML node to analyze
+     * @returns The determined {@linkcode SymbolKind} for the given node
+     */
+    private getSymbolKind(name: string, node: Node): SymbolKind {
+        // If the name starts with "on_", consider it an `Event`
+        if (name.startsWith("on_")) {
+            return SymbolKind.Event;
+        }
+
+        // Lookup special key-names in the map
+        if (this.keyToSymbolMap.has(name)) {
+            return this.keyToSymbolMap.get(name)!;
+        }
+
+        // If not special, fallback to the node's value's type
+        if (isMap(node)) {
+            return SymbolKind.Object;
+        } else if (isSeq(node)) {
+            return SymbolKind.Array;
+        } else if (isScalar(node)) {
+            switch (typeof node.value) {
+                case 'string':
+                    return SymbolKind.String;
+                case 'number':
+                    return SymbolKind.Number;
+                case 'boolean':
+                    return SymbolKind.Boolean;
+                default:
+                    return SymbolKind.Variable;
+            }
+        }
+
+        // Default fallback
+        return SymbolKind.Field;
     }
 }
