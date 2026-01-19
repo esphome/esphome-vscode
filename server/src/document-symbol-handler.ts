@@ -174,7 +174,7 @@ export class DocumentSymbolHandler {
     /**
      * Maps ESPHome configuration keys to their corresponding symbol kinds for document symbol representation.
      * 
-     * This map categorizes various ESPHome YAML configuration options by semantic type:
+     * This map categorizes various ESPHome YAML configuration options by logical type:
      * - **Classes**: Core components like esphome, esp32, esp8266, logger, ota, and time
      * - **Interfaces**: Communication protocols and services (wifi, api, web_server, mqtt, ethernet, captive_portal, i2c, spi)
      * - **Constants**: Connection parameters (ssid, password, port, host)
@@ -200,13 +200,13 @@ export class DocumentSymbolHandler {
         ['mqtt', SymbolKind.Interface],
         ['ethernet', SymbolKind.Interface],
         ['captive_portal', SymbolKind.Interface],
+        ['i2c', SymbolKind.Interface],
+        ['spi', SymbolKind.Interface],
+
         ['ssid', SymbolKind.Constant],
         ['password', SymbolKind.Constant],
         ['port', SymbolKind.Constant],
         ['host', SymbolKind.Constant],
-
-        ['i2c', SymbolKind.Interface],
-        ['spi', SymbolKind.Interface],
 
         ['script', SymbolKind.Event],
         ['action', SymbolKind.Function],
@@ -222,9 +222,10 @@ export class DocumentSymbolHandler {
 
         ['id', SymbolKind.Field],
         ['name', SymbolKind.Field],
-        ['platform', SymbolKind.EnumMember],
         ['pin', SymbolKind.Interface],
+
         ['type', SymbolKind.EnumMember],
+        ['platform', SymbolKind.EnumMember],
 
         ['substitutions', SymbolKind.Namespace],
         ['packages', SymbolKind.Package],
