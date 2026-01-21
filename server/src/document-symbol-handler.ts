@@ -174,6 +174,9 @@ export class DocumentSymbolHandler {
         }
     }
 
+    // SYMBOLS MAP
+    // -----------
+
     /**
      * Maps ESPHome configuration keys to their corresponding symbol kinds for document symbol representation.
      * 
@@ -187,49 +190,42 @@ export class DocumentSymbolHandler {
      * - **Fields**: Common attributes (id, name, pin)
      * - etc.
      */
-    keyToSymbolMap: Map<string, SymbolKind> = new Map([
-        ['esphome', SymbolKind.Class],
-        ['esp32', SymbolKind.Class],
-        ['esp8266', SymbolKind.Class],
-        ['logger', SymbolKind.Class],
-        ['ota', SymbolKind.Class],
-        ['time', SymbolKind.Class],
+    private readonly keyToSymbolMap: ReadonlyMap<string, SymbolKind> = new Map([
+        // Core components
+        ...['esphome', 'esp32', 'esp8266',
+            'logger', 'ota', 'time',
+            'sensor', 'switch', 'light', 'binary_sensor', 'fan', 'display']
+            .map(k => [k, SymbolKind.Class] as const),
 
+        // Communication protocols
+        ...['wifi', 'api', 'web_server', 'mqtt', 'ethernet', 'captive_portal',
+            'i2c', 'spi', 'pin']
+            .map(k => [k, SymbolKind.Interface] as const),
+
+        // Constants
+        ...['ssid', 'password', 'port', 'host']
+            .map(k => [k, SymbolKind.Constant] as const),
+
+        // Functions
+        ...['action', 'lambda']
+            .map(k => [k, SymbolKind.Function] as const),
+
+        // Events
+        ...['script', 'update_interval']
+            .map(k => [k, SymbolKind.Event] as const),
+
+        // Enums
         ['board', SymbolKind.Enum],
 
-        ['wifi', SymbolKind.Interface],
-        ['api', SymbolKind.Interface],
-        ['web_server', SymbolKind.Interface],
-        ['mqtt', SymbolKind.Interface],
-        ['ethernet', SymbolKind.Interface],
-        ['captive_portal', SymbolKind.Interface],
-        ['i2c', SymbolKind.Interface],
-        ['spi', SymbolKind.Interface],
+        // Enum members
+        ...['type', 'platform']
+            .map(k => [k, SymbolKind.EnumMember] as const),
 
-        ['ssid', SymbolKind.Constant],
-        ['password', SymbolKind.Constant],
-        ['port', SymbolKind.Constant],
-        ['host', SymbolKind.Constant],
+        // Fields
+        ...['id', 'name']
+            .map(k => [k, SymbolKind.Field] as const),
 
-        ['script', SymbolKind.Event],
-        ['action', SymbolKind.Function],
-        ['lambda', SymbolKind.Function],
-        ['update_interval', SymbolKind.Event],
-
-        ['sensor', SymbolKind.Class],
-        ['switch', SymbolKind.Class],
-        ['light', SymbolKind.Class],
-        ['binary_sensor', SymbolKind.Class],
-        ['fan', SymbolKind.Class],
-        ['display', SymbolKind.Class],
-
-        ['id', SymbolKind.Field],
-        ['name', SymbolKind.Field],
-        ['pin', SymbolKind.Interface],
-
-        ['type', SymbolKind.EnumMember],
-        ['platform', SymbolKind.EnumMember],
-
+        // Others
         ['substitutions', SymbolKind.Namespace],
         ['packages', SymbolKind.Package],
         ['widgets', SymbolKind.Struct],
