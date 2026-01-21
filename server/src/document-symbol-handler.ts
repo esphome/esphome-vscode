@@ -33,7 +33,7 @@ export class DocumentSymbolHandler {
             return this.parseNode(doc, doc.yaml.contents);
 
         } catch (error) {
-            console.error("DocumentSymbol: " + error);
+            console.error(`Failed to get document symbols for ${uri}:`, error);
         }
 
         return [];
@@ -78,8 +78,11 @@ export class DocumentSymbolHandler {
             return null;
         }
 
-        const keyNode = pair.key as Node;
-        const valueNode = pair.value as Node;
+        const keyNode = pair.key as Node | null;
+        const valueNode = pair.value as Node | null;
+        if (!keyNode || !valueNode) {
+            return null;
+        }
 
         const name = pair.key.value as string;
         let kind: SymbolKind = this.getSymbolKind(name, valueNode);
@@ -88,7 +91,7 @@ export class DocumentSymbolHandler {
 
         const keyRange = this.getRange(doc, keyNode);
         let fullRange = keyRange; // Default to keyRange, but expand to include value if possible
-        if (valueNode?.range) {
+        if (valueNode.range) {
             fullRange = {
                 start: keyRange.start,
                 end: doc.text.getPosition(valueNode.range[1])
@@ -112,7 +115,7 @@ export class DocumentSymbolHandler {
      * @returns A {@linkcode DocumentSymbol} representing the sequence item, or `null` if the item doesn't exist
      */
     private createSequenceSymbol(doc: ESPHomeDocument, node: YAMLSeq, index: number): DocumentSymbol | null {
-        const item = node.items[index] as Node;
+        const item = node.items[index] as Node | null;
         if (!item) {
             return null;
         }
