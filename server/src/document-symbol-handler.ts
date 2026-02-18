@@ -157,8 +157,8 @@ export class DocumentSymbolHandler {
      * Extracts an identifier from a YAML node
      * 
      * - For scalar nodes, returns the string value of the node as is.
-     * - For map nodes, searches for a pair with key `id`, `name`, or `platform`
-     *   and returns the string value of that pair if found.
+     * - For map nodes, searches for a pair with key `id`, `name`, or `platform`.
+     *   Returns the value of the **first** matching key it encounters in the YAML map order.
      * 
      * @param node - The YAML node to extract an identifier from
      * @returns The identifier as a string, or undefined if no identifier could be extracted
