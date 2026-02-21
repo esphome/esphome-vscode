@@ -1,7 +1,12 @@
 import "mocha";
 import { getCompletionsFor, testCompletionHaveLabels } from "./shared";
+import { setVersion } from "../src/connection-source";
 
 describe("complete_ids", () => {
+  before(async function () {
+    setVersion("dev");
+  });
+
   it("i2c_ids", async () => {
     const result = await getCompletionsFor(`
 i2c:

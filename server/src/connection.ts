@@ -1,4 +1,4 @@
-import { MessageTypes } from "./esphome_types";
+import { MessageTypes } from "./types";
 
 export abstract class ESPHomeConnection {
   private handleMessage_!: (msg: MessageTypes) => void;
@@ -8,7 +8,7 @@ export abstract class ESPHomeConnection {
     console.log("send " + JSON.stringify(msg).substring(0, 150));
     this.sendMessageInternal(msg);
   }
-  abstract connect(): void;
+  abstract connect(): Promise<void>;
   abstract disconnect(): void;
   private _isConnected: boolean = false;
   public get isConnected(): boolean {

@@ -3,7 +3,7 @@ import * as unzipper from "unzipper";
 import * as https from "https";
 import * as os from "os";
 import * as fs from "fs";
-import { version } from "./ESPHomeConnectionSource";
+import { version } from "./connection-source";
 
 function getBaseDir(): string {
   const base = path.join(os.homedir(), ".esphome-language-server");
@@ -75,9 +75,29 @@ const retrieveSchema = async (): Promise<string> => {
   const baseDir = getBaseDir();
   fs.mkdirSync(baseDir, { recursive: true });
   let schemaPath = path.join(baseDir, tag);
-  if (fs.existsSync(schemaPath) && tag !== "dev") {
-    console.log(`Using cached schema at ${schemaPath}`);
-    return schemaPath;
+  if (fs.existsSync(schemaPath)) {
+    if (tag != "dev") {
+      console.log(`Using cached schema at ${schemaPath}`);
+      return schemaPath;
+    }
+    // dev schema builds daily, download if file is older than 6 hours
+    let esphomeSchemaPath = path.join(schemaPath, "schema", "esphome.json");
+    if (fs.existsSync(esphomeSchemaPath)) {
+      const stats = fs.statSync(esphomeSchemaPath);
+      const modifiedTime = stats.mtime;
+      const ageMs = Date.now() - modifiedTime.getTime();
+      const TIMEOUT_HOURS = 12;
+      if (ageMs > TIMEOUT_HOURS * (60 * 60 * 1000)) {
+        console.log(
+          `Cached schema is older than ${TIMEOUT_HOURS} hours (${
+            ageMs / 1000
+          } seconds), need to re-download.`,
+        );
+      } else {
+        console.log("Cached dev schema is recent, using it.");
+        return schemaPath;
+      }
+    }
   }
 
   // Attempt download specific version

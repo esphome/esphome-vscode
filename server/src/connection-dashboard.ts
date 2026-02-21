@@ -1,5 +1,5 @@
 import * as WebSocket from "ws";
-import { ESPHomeConnection } from "./ESPHomeConnection";
+import { ESPHomeConnection } from "./connection";
 
 export class ESPHomeDashboardConnection extends ESPHomeConnection {
   private ws!: WebSocket;
@@ -19,7 +19,7 @@ export class ESPHomeDashboardConnection extends ESPHomeConnection {
     this.ws.send(send);
   }
 
-  connect(): void {
+  async connect(): Promise<void> {
     const regex = /^(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/;
     let uri = this.endPoint;
     if (uri.indexOf("//") === -1) {

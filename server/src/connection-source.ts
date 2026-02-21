@@ -1,8 +1,8 @@
-import { ESPHomeDashboardConnection } from "./ESPHomeDashboardConnection";
-import { ESPHomeLocalConnection } from "./ESPHomeLocalConnection";
-import { ESPHomeSettings } from "./ESPHomeSettings";
-import { MESSAGE_VERSION, MessageTypes } from "./esphome_types";
-import { ESPHomeConnection } from "./ESPHomeConnection";
+import { ESPHomeDashboardConnection } from "./connection-dashboard";
+import { ESPHomeLocalConnection } from "./connection-local";
+import { ESPHomeSettings } from "./settings";
+import { MESSAGE_VERSION, MessageTypes } from "./types";
+import { ESPHomeConnection } from "./connection";
 
 // This class checks configuration settings and decides which connection to use
 // The same base ESPHomeConnection is used for this.
@@ -13,7 +13,7 @@ export class ESPHomeConnectionSource extends ESPHomeConnection {
   private handleMessageSource_!: (msg: MessageTypes) => void;
   private relayType: string | undefined;
 
-  connect(): void {
+  async connect(): Promise<void> {
     throw new Error("Method not implemented.");
   }
   disconnect(): void {
@@ -23,7 +23,7 @@ export class ESPHomeConnectionSource extends ESPHomeConnection {
     throw new Error("Method not implemented.");
   }
 
-  configure(config: ESPHomeSettings) {
+  async configure(config: ESPHomeSettings) {
     const newRelayType = config.validator;
     if (this.relayType !== undefined) {
       if (this.relayType != newRelayType) this.relay.disconnect();
@@ -37,7 +37,7 @@ export class ESPHomeConnectionSource extends ESPHomeConnection {
     this.relayType = newRelayType;
     if (config.validator === "local") {
       console.log("Configuring ESPHome with local validation...");
-      this.relay = new ESPHomeLocalConnection();
+      this.relay = new ESPHomeLocalConnection(config.pythonPath);
     } else {
       if (config.dashboardUri === undefined) {
         console.error("Invalid dashboard uri. Check the configuration");
@@ -50,7 +50,7 @@ export class ESPHomeConnectionSource extends ESPHomeConnection {
       this.relay = new ESPHomeDashboardConnection(config.dashboardUri);
     }
     this.relay.onResponse(this.handleRelayResponse.bind(this));
-    this.relay.connect();
+    await this.relay.connect();
   }
 
   sendMessage(msg: any): void {
@@ -85,7 +85,7 @@ let _version_promise: Promise<string> | undefined;
 let _version_resolve: ((value: string) => void) | undefined;
 let _version_timeout: NodeJS.Timeout | undefined;
 
-function setVersion(newVersion: string) {
+export function setVersion(newVersion: string) {
   _version = newVersion;
   if (_version_resolve) {
     clearTimeout(_version_timeout);
