@@ -1,5 +1,10 @@
 # Changelog
 
+## v2026.2.0 - 2026-2-21
+
+- Adds document symbol features. See #117. Thanks @Shresht7
+- Updated some dependencies
+
 ## v2025.7.0 - 2025-7-11
 
 - Fixes ESPHome local failing into loop trying to load and causing high CPU usage. 🐛
