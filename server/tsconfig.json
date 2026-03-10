@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "composite": true,
     "strict": true,
     "alwaysStrict": true,
     "declaration": true,
@@ -14,6 +15,6 @@
     "rootDir": "src",
     "skipLibCheck": true // remove when fixed issue with vscode-json-languageservice
   },
-  "include": ["src", "src/schema/*.json"],
+  "include": ["src"],
   "exclude": ["node_modules", ".vscode-test"]
 }

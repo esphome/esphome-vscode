@@ -10,7 +10,7 @@
     "url": "https://github.com/esphome/esphome-vscode"
   },
   "engines": {
-    "vscode": "^1.52.0"
+    "vscode": "^1.85.0"
   },
   "dependencies": {
     "child-process": "1.0.2",

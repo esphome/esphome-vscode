@@ -2,13 +2,23 @@
 .vscode-test/**
 out/test/**
 script/**
-./yaml-language/**
+node_modules/**
+.github/**
+.pytest_cache/**
 
 .gitignore
 **/tsconfig.json
 **/tslint.json
 **/*.map
 **/*.ts
+eslint.config.js
+shared.webpack.config.js
+PUBLISH.md
+
+# yaml-language: only include compiled json, not yml source
+yaml-language/**
+!yaml-language/language-configuration.json
+!yaml-language/yaml.tmLanguage.json
 
 # client uses webpack
 client/**
