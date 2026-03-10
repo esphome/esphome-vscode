@@ -2,7 +2,7 @@
   "name": "esphome-vscode",
   "displayName": "ESPHome",
   "description": "Provide instant validation of ESPHome configuration files",
-  "version": "2026.2.0",
+  "version": "2026.3.0",
   "private": true,
   "workspaces": [
     "client",
