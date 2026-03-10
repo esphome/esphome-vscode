@@ -10,8 +10,7 @@ describe("typed schema", () => {
   it("ask type only", async () => {
     const result = await getCompletionsFor(
       `
-esp32:
-  framework:
+ethernet:
     `,
     );
     expect(result.length).to.be.equal(1);
@@ -21,37 +20,35 @@ esp32:
   it("suggests types", async () => {
     const result = await getCompletionsFor(
       `
-esp32:
-  framework:
-    type: `,
+external_components:
+  - source: 
+      type: `,
     );
     expect(result.length).to.be.equal(2);
-    testCompletionHaveLabels(result, ["esp-idf", "arduino"]);
+    testCompletionHaveLabels(result, ["git", "local"]);
   });
 
   it("suggests props of type", async () => {
     const result = await getCompletionsFor(
       `
-esp32:
-  framework:
-    type: esp-idf
-    `,
-      { line: 3, character: 4 },
+external_components:
+  - source: 
+      type: git
+      `,
     );
-    testCompletionHaveLabels(result, ["advanced", "version", "source"]);
+    testCompletionHaveLabels(result, ["url", "ref", "username"]);
   });
 
   it("suggests props of type 2", async () => {
     const result = await getCompletionsFor(
       `
-esp32:
-  framework:
-    type: arduino
-    `,
-      { line: 3, character: 4 },
+external_components:
+  - source: 
+      type: local
+      `,
     );
-    expect(result.length).to.be.equal(4);
-    testCompletionHaveLabels(result, ["version"]);
+    expect(result.length).to.be.equal(1);
+    testCompletionHaveLabels(result, ["path"]);
   });
 
   it("media player", async () => {
