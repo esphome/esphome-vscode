@@ -1,5 +1,10 @@
 # Changelog
 
+## v2026.3.0 - 2026-3-10
+
+- 🐛 Fixed actions completions not working, and may be other issues
+- ✨ Modernized tooling
+
 ## v2026.2.0 - 2026-2-21
 
 - Adds document symbol features. See #117. Thanks @Shresht7
