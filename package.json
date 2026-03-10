@@ -3,8 +3,13 @@
   "displayName": "ESPHome",
   "description": "Provide instant validation of ESPHome configuration files",
   "version": "2026.2.0",
+  "private": true,
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "engines": {
-    "vscode": "^1.63.0"
+    "vscode": "^1.109.0"
   },
   "publisher": "ESPHome",
   "icon": "esphome128.png",
@@ -85,7 +90,6 @@
     "vscode:prepublish": "npm run webpack",
     "compile": "tsc -b",
     "watch": "tsc -b -w",
-    "postinstall": "cd server && npm install && cd ../client && npm install && cd ..",
     "test": "npm run compile && node ./node_modules/vscode/bin/test",
     "webpack": "npm run clean && npm run compile && webpack --mode production --config ./client/webpack.config.js && webpack --mode production --config ./server/webpack.config.js",
     "webpack:dev": "npm run clean && npm run compile && webpack --mode none --config ./client/webpack.config.js && webpack --mode production --config ./server/webpack.config.js",
@@ -95,8 +99,10 @@
   "devDependencies": {
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.16.3",
-    "@typescript-eslint/parser": "^4.16.1",
-    "eslint": "^7.2.0",
+    "@types/vscode": "^1.109.0",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
+    "eslint": "^10.0.2",
     "merge-options": "^3.0.4",
     "mocha": "^11.7.1",
     "node-ts": "^5.1.2",
@@ -105,11 +111,15 @@
     "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.0.4",
+    "vscode-test": "^1.6.1",
     "webpack": "^5.105.2",
     "webpack-cli": "^4.9.1"
   },
   "mocha": {
     "files": "server/test/**/*.ts",
     "require": "ts-node/register"
+  },
+  "dependencies": {
+    "prettier": "^3.8.1"
   }
 }

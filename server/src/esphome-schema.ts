@@ -324,14 +324,11 @@ export class ESPHomeSchema {
             return (await this.getComponent(domain))[registry][actionName];
           }
         }
-        for (const c in this.schema) {
-          const schema = await this.getComponent(c);
-          if (
-            schema[registry] !== undefined &&
-            schema[registry][entry] !== undefined
-          ) {
-            return schema[registry][entry];
-          }
+        if (
+          this.schema?.core[registry] !== undefined &&
+          this.schema?.core[registry][entry] !== undefined
+        ) {
+          return this.schema?.core[registry][entry];
         }
       }
     }
