@@ -131,4 +131,59 @@ binary_sensor:
               - binary_sensor.is_on: `);
     testCompletionHaveLabels(result, ["bs_gpio2"]);
   });
+
+  it("completes area ids", async () => {
+    const result = await getCompletionsFor(`
+esphome:
+  
+  areas:
+    - name: Area 1
+      id: area_1
+
+  devices:
+    - name: Device 1
+      id: device_1
+      area_id: `);
+    testCompletionHaveLabels(result, ["area_1"]);
+  });
+
+  it("completes devices ids", async () => {
+    const result = await getCompletionsFor(`
+esphome:
+  devices:
+    - name: Device 1
+      id: device_1
+switch:
+  platform: template
+  device_id: `);
+    testCompletionHaveLabels(result, ["device_1"]);
+  });
+
+  it("completes devices ids in sensors", async () => {
+    const result = await getCompletionsFor(`
+esphome:
+  devices:
+    - name: Device 1
+      id: device_1
+sensor:
+  - platform: sim800l
+    rssi:
+      name: Generador RSSI
+      device_id: `);
+    testCompletionHaveLabels(result, ["device_1"]);
+  });
+
+  it("completes global ids", async () => {
+    const result = await getCompletionsFor(`
+globals:
+  - id: global_float
+    type: float
+    initial_value: "0.0"
+esphome:
+  on_boot:
+      # tank almost full
+      - globals.set:
+          id: `);
+    testCompletionHaveLabels(result, ["global_float"]);
+  });
 });

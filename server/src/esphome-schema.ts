@@ -526,7 +526,7 @@ export class ESPHomeSchema {
         ) {
           const component = await this.getComponent(componentName);
           const cv = component.schemas.CONFIG_SCHEMA;
-          if (isMap(k.value) && isScalar(k.value.get("id", true)) && cv) {
+          if (isMap(k.value) && cv) {
             for await (const yieldNode of this.iterDeclaringIdsInner(
               idType,
               k.value,
