@@ -19,7 +19,7 @@ import { ESPHomeDocuments } from "./esphome-document";
 import { TextBuffer } from "./utils/text-buffer";
 import { CompletionsHandler } from "./completions-handler";
 import { DefinitionHandler } from "./definition-handler";
-import { DocumentSymbolHandler } from './document-symbol-handler';
+import { DocumentSymbolHandler } from "./document-symbol-handler";
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -113,29 +113,29 @@ connection.onInitialized(async () => {
   documents.onDidOpen((e) => validation.onDocumentChange(e));
 
   documents.onDidChangeContent((e) => validation.onDocumentChange(e));
+});
 
-  const completionHandler = new CompletionsHandler(esphomeDocuments);
-  connection.onCompletion((p) => {
-    const doc = documents.get(p.textDocument.uri);
-    if (!doc) return;
-    esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
-    return completionHandler.getCompletions(p.textDocument.uri, p.position);
-  });
+const completionHandler = new CompletionsHandler(esphomeDocuments);
+connection.onCompletion((p) => {
+  const doc = documents.get(p.textDocument.uri);
+  if (!doc) return;
+  esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
+  return completionHandler.getCompletions(p.textDocument.uri, p.position);
+});
 
-  const hoverHandler = new HoverHandler(esphomeDocuments);
-  connection.onHover((p) => {
-    const doc = documents.get(p.textDocument.uri);
-    if (!doc) return;
-    esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
-    return hoverHandler.getHover(p.textDocument.uri, p.position);
-  });
-  const definitionHandler = new DefinitionHandler(esphomeDocuments);
-  connection.onDefinition((p) => {
-    const doc = documents.get(p.textDocument.uri);
-    if (!doc) return;
-    esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
-    return definitionHandler.getDefinition(p.textDocument.uri, p.position);
-  });
+const hoverHandler = new HoverHandler(esphomeDocuments);
+connection.onHover((p) => {
+  const doc = documents.get(p.textDocument.uri);
+  if (!doc) return;
+  esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
+  return hoverHandler.getHover(p.textDocument.uri, p.position);
+});
+const definitionHandler = new DefinitionHandler(esphomeDocuments);
+connection.onDefinition((p) => {
+  const doc = documents.get(p.textDocument.uri);
+  if (!doc) return;
+  esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
+  return definitionHandler.getDefinition(p.textDocument.uri, p.position);
 });
 
 const documentSymbolHandler = new DocumentSymbolHandler(esphomeDocuments);

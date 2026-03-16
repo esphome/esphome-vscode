@@ -30,7 +30,10 @@ export class DefinitionHandler {
       let fullCv = await coreSchema.getConfigVarComplete2(cv);
 
       if (fullCv.type === "schema" && fullCv.maybe !== undefined) {
-        fullCv = await coreSchema.getConfigVarComplete2(fullCv);
+        fullCv = await coreSchema.getConfigVarComplete(
+          fullCv.schema,
+          fullCv.maybe,
+        );
       }
       if (fullCv.type === "use_id" && isScalar(pathNode)) {
         const typeId = fullCv.use_id_type;

@@ -385,20 +385,37 @@ export class ESPHomeSchema {
   }
 
   async getConfigVarComplete2(cv: ConfigVar): Promise<ConfigVar> {
-    var ret = { ...cv };
+    if (cv.type !== "schema" || cv.schema.extends === undefined) {
+      return cv;
+    }
 
-    if (cv.type === "schema" && cv.schema.extends !== undefined) {
-      for (const extended of cv.schema.extends) {
-        const s_cv = await this.getExtendedConfigVar(extended);
-        ret = {
-          ...s_cv,
-          ...ret,
-        };
-        ret.type = s_cv.type;
+    let mergedConfigVars = { ...cv.schema.config_vars };
+    let maybe = cv.maybe;
+
+    for (const extended of cv.schema.extends) {
+      const s_cv = await this.getExtendedConfigVar(extended);
+      if (s_cv.type === "schema") {
+        const completedExtended = await this.getConfigVarComplete2(s_cv);
+        if (completedExtended.type === "schema") {
+          mergedConfigVars = {
+            ...completedExtended.schema.config_vars,
+            ...mergedConfigVars,
+          };
+          if (maybe === undefined) {
+            maybe = completedExtended.maybe;
+          }
+        }
       }
     }
 
-    return ret;
+    return {
+      ...cv,
+      maybe,
+      schema: {
+        config_vars: mergedConfigVars,
+        extends: [],
+      },
+    };
   }
 
   async *iterConfigVars(

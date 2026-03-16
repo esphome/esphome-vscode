@@ -259,18 +259,6 @@ export class CompletionsHandler {
     if (this.docMap.get("esp32", true) !== undefined) {
       return "esp32";
     }
-    const esphome = this.docMap.get("esphome");
-    if (isMap(esphome)) {
-      const chipset = esphome.get("platform");
-      if (isString(chipset)) {
-        if (chipset.toLowerCase() === "esp32") {
-          return "esp32";
-        }
-        if (chipset.toLowerCase() === "esp8266") {
-          return "esp8266";
-        }
-      }
-    }
     return undefined;
   }
 
@@ -292,7 +280,7 @@ export class CompletionsHandler {
   ): Promise<CompletionItem[]> {
     if (cv.is_list && isNumber(path[pathIndex])) {
       if (isSeq(pathNode)) {
-        pathNode = (pathNode.get(path[pathIndex]) as any) as YAMLMap;
+        pathNode = pathNode.get(path[pathIndex]) as any as YAMLMap;
       }
       pathIndex++;
     }
