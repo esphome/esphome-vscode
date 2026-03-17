@@ -19,7 +19,7 @@ export abstract class ESPHomeConnection {
   }
 
   protected handleMessage(msg: MessageTypes) {
-    console.log("rcvd " + JSON.stringify(msg).substring(0, 150));
+    console.log("rcvd " + JSON.stringify(msg).substring(0, 550));
     this.handleMessage_(msg);
   }
 

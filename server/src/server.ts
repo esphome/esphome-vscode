@@ -20,6 +20,7 @@ import { TextBuffer } from "./utils/text-buffer";
 import { CompletionsHandler } from "./completions-handler";
 import { DefinitionHandler } from "./definition-handler";
 import { DocumentSymbolHandler } from "./document-symbol-handler";
+import { ReferencesHandler } from "./references-handler";
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -71,6 +72,7 @@ connection.onInitialize((params: InitializeParams) => {
         workDoneProgress: false,
       },
       definitionProvider: true,
+      referencesProvider: true,
       documentSymbolProvider: true,
     },
   };
@@ -136,6 +138,14 @@ connection.onDefinition((p) => {
   if (!doc) return;
   esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
   return definitionHandler.getDefinition(p.textDocument.uri, p.position);
+});
+
+const referencesHandler = new ReferencesHandler(esphomeDocuments);
+connection.onReferences((p) => {
+  const doc = documents.get(p.textDocument.uri);
+  if (!doc) return;
+  esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
+  return referencesHandler.getReferences(p.textDocument.uri, p.position);
 });
 
 const documentSymbolHandler = new DocumentSymbolHandler(esphomeDocuments);
