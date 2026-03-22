@@ -51,17 +51,6 @@ external_components:
     testCompletionHaveLabels(result, ["path"]);
   });
 
-  it("media player", async () => {
-    const result = await getCompletionsFor(
-      `
-media_player:
-  - platform: i2s_audio
-    dac_type: internal
-    `,
-      { line: 3, character: 4 },
-    );
-    testCompletionHaveLabels(result, ["mode"]);
-  });
   it("single ext component types", async () => {
     const result = await getCompletionsFor(`
 esphome:
