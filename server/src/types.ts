@@ -32,6 +32,7 @@ export interface MessageResult {
   type: typeof MESSAGE_RESULT;
   validation_errors: ValidationError[];
   yaml_errors: YamlValidationError[];
+  validation_warnings?: ValidationError[];
 }
 export interface MessageStdErrOut {
   type: typeof MESSAGE_STD_ERR_OUT;

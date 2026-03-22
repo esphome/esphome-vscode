@@ -1,4 +1,4 @@
-import { Diagnostic, Range } from "vscode-languageserver-protocol";
+import { Diagnostic, DiagnosticSeverity, Range } from "vscode-languageserver-protocol";
 import { TextDocumentChangeEvent } from "vscode-languageserver";
 import { DocumentUri, TextDocument } from "vscode-languageserver-textdocument";
 import { ESPHomeConnection } from "./connection";
@@ -32,12 +32,19 @@ export class Validation {
     Diagnostic[]
   >();
 
-  private addError(uri: DocumentUri, range: Range, message: string) {
-    //console.log(`diag error: ${message} to ${uri}`);
+  private addDiagnostic(uri: DocumentUri, range: Range, message: string, severity: DiagnosticSeverity) {
     let diagnostics = this.diagnosticCollection.get(uri) || [];
-    const diagnostic = Diagnostic.create(range, message);
+    const diagnostic = Diagnostic.create(range, message, severity);
     diagnostics = [...diagnostics, diagnostic];
     this.diagnosticCollection.set(uri, diagnostics);
+  }
+
+  private addError(uri: DocumentUri, range: Range, message: string) {
+    this.addDiagnostic(uri, range, message, DiagnosticSeverity.Error);
+  }
+
+  private addWarning(uri: DocumentUri, range: Range, message: string) {
+    this.addDiagnostic(uri, range, message, DiagnosticSeverity.Warning);
   }
 
   private addIncludeFile(file: string, included: string) {
@@ -49,10 +56,18 @@ export class Validation {
   }
 
   private handleEsphomeError(error: ESPHomeValidationError) {
+    this.handleEsphomeDiagnostic(error, DiagnosticSeverity.Error);
+  }
+
+  private handleEsphomeWarning(error: ESPHomeValidationError) {
+    this.handleEsphomeDiagnostic(error, DiagnosticSeverity.Warning);
+  }
+
+  private handleEsphomeDiagnostic(error: ESPHomeValidationError, severity: DiagnosticSeverity) {
     const message = error.message;
 
     if (error.range !== null) {
-      this.addError(
+      this.addDiagnostic(
         this.getUriStringForValidationPath(error.range.document),
         Range.create(
           error.range.start_line,
@@ -61,9 +76,10 @@ export class Validation {
           error.range.end_col,
         ),
         message,
+        severity,
       );
     } else {
-      this.addError(this.validating_uri!, Range.create(1, 0, 1, 2), message);
+      this.addDiagnostic(this.validating_uri!, Range.create(1, 0, 1, 2), message, severity);
     }
   }
 
@@ -187,6 +203,7 @@ export class Validation {
         case MESSAGE_RESULT: {
           msg.validation_errors.forEach((e) => this.handleEsphomeError(e));
           msg.yaml_errors.forEach((e) => this.handleYamlError(e));
+          msg.validation_warnings?.forEach((e) => this.handleEsphomeWarning(e));
 
           this.diagnosticCollection.forEach((diagnostics, uri) =>
             this.sendDiagnostics(uri, diagnostics),
