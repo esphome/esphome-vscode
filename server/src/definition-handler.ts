@@ -66,18 +66,18 @@ export class DefinitionHandler {
         const typeId = fullCv.use_id_type;
         const targetId = pathNode.value as string;
         // Use document method for merged-scope ID search (includes all files)
-        const range = await document.findComponentDefinition(typeId, targetId);
-        if (!range) {
+        const result = await document.findComponentDefinition(typeId, targetId);
+        if (!result) {
           return null;
         }
-        const definition = {
-          uri: uri,
+        const { doc: defDoc, range } = result;
+        return {
+          uri: defDoc.fileUri ?? uri,
           range: {
-            start: document.text.getPosition(range[0]),
-            end: document.text.getPosition(range[0] + targetId.length),
+            start: defDoc.text.getPosition(range[0]),
+            end: defDoc.text.getPosition(range[0] + targetId.length),
           },
         };
-        return definition;
       }
     } catch (error) {
       console.log("Definition:" + error);

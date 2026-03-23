@@ -6,9 +6,14 @@ import { getTextDoc } from "./sample-esphome-yaml";
 import { DefinitionHandler } from "../src/definition-handler";
 import { setVersion } from "../src/connection-source";
 import { coreSchema } from "../src/editor-shims";
+import { TextDocument } from "vscode-languageserver-textdocument";
 
 const documents = new ESPHomeDocuments(coreSchema);
 const definitionHandler = new DefinitionHandler(documents);
+
+// Separate instance for cross-document tests
+const multiDocDocuments = new ESPHomeDocuments(coreSchema);
+const multiDocDefinitionHandler = new DefinitionHandler(multiDocDocuments);
 
 const loadYaml = (yamlString: string): string => {
   const text = getTextDoc(yamlString);
@@ -96,8 +101,8 @@ binary_sensor:
   it("switch.turn_on id reference resolves to switch id definition", async () => {
     const yaml = `
 switch:
-  - platform: output 
-    id: switchBoiler 
+  - platform: output
+    id: switchBoiler
 
 climate:
   - platform: thermostat
@@ -117,6 +122,60 @@ climate:
       result!.range.start.line,
       2,
       "definition should point to line 2 (0-based) where switchBoiler id is declared",
+    );
+  });
+
+  it("light.toggle id reference resolves to id declared in !include'd file", async () => {
+    const mainUri = "file:///test/main.yaml";
+    const lightsUri = "file:///test/lights.yaml";
+
+    const lightsContent = `light:
+  - platform: binary
+    id: luz_cocina
+  - platform: binary
+    id: luz_mesa_cocina
+    name: "Luz mesa"
+`;
+
+    multiDocDocuments.setFileLoader(async (relativePath) => {
+      if (relativePath === "lights.yaml") return lightsContent;
+      return undefined;
+    });
+
+    const mainYaml = `<<: !include lights.yaml
+
+binary_sensor:
+  - platform: gpio
+    on_state:
+      then:
+        - light.toggle: luz_mesa_cocina
+`;
+    await multiDocDocuments.update(
+      mainUri,
+      new TextBuffer(TextDocument.create(mainUri, "yaml", 0, mainYaml)),
+    );
+
+    // "        - light.toggle: luz_mesa_cocina"
+    //                          ^-- character 24
+    const position = { line: 6, character: 24 };
+
+    const result = await multiDocDefinitionHandler.getDefinition(
+      mainUri,
+      position,
+    );
+
+    assert.isNotNull(result, "expected a definition result");
+    assert.isDefined(result, "expected a definition result");
+
+    assert.equal(
+      result!.uri,
+      lightsUri,
+      "definition should point to the included lights.yaml file",
+    );
+    assert.equal(
+      result!.range.start.line,
+      4,
+      "definition should point to line 4 (0-based) in lights.yaml where luz_mesa_cocina id is declared",
     );
   });
 });

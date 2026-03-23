@@ -27,6 +27,7 @@ import {
 } from "./esphome-schema";
 import { isNumber, isString } from "./utils/objects";
 import { TextBuffer } from "./utils/text-buffer";
+import { TextDocument } from "vscode-languageserver-textdocument";
 
 class CommonTagImpl {
   tag: string;
@@ -631,11 +632,16 @@ export class ESPHomeDocument {
 
   /**
    * Iterate all nodes declaring an ID of `idType` across this file AND all
-   * included files (merged scope).
+   * included files (merged scope). Yields [owning document, node] pairs so
+   * callers can determine which file the declaration lives in.
    */
-  async *iterDeclaringIds(idType: string): AsyncGenerator<Node> {
+  async *iterDeclaringIds(
+    idType: string,
+  ): AsyncGenerator<[ESPHomeDocument, Node]> {
     for (const doc of this.getAllDocuments()) {
-      yield* doc.iterDeclaringIdsInDoc(idType, doc.yaml);
+      for await (const node of doc.iterDeclaringIdsInDoc(idType, doc.yaml)) {
+        yield [doc, node];
+      }
     }
   }
 
@@ -645,23 +651,23 @@ export class ESPHomeDocument {
    */
   async getUsableIds(use_id_type: string): Promise<string[]> {
     const ret: string[] = [];
-    for await (const item of this.iterDeclaringIds(use_id_type)) {
+    for await (const [, item] of this.iterDeclaringIds(use_id_type)) {
       ret.push(item.toString());
     }
     return ret;
   }
 
   /**
-   * Find the YAML range of an ID declaration across this document and its
-   * includes. Use this for goto-definition.
+   * Find an ID declaration across this document and its includes.
+   * Returns the owning document and YAML range for goto-definition.
    */
   async findComponentDefinition(
     id_type: string,
     id: string,
-  ): Promise<Range | null | undefined> {
-    for await (const item of this.iterDeclaringIds(id_type)) {
+  ): Promise<{ doc: ESPHomeDocument; range: Range } | null | undefined> {
+    for await (const [doc, item] of this.iterDeclaringIds(id_type)) {
       if (isScalar(item) && item.value === id) {
-        return item.range;
+        return { doc, range: item.range! };
       }
     }
     return null;
@@ -737,8 +743,10 @@ export class ESPHomeDocument {
       try {
         const content = await loader(relativePath, this.fileUri);
         if (content !== undefined) {
-          const buffer = new TextBuffer({ getText: () => content } as any);
-          const includedDoc = new ESPHomeDocument(buffer, this.schema);
+          const resolvedUri = new URL(relativePath, this.fileUri).toString();
+          const textDoc = TextDocument.create(resolvedUri, "yaml", 0, content);
+          const buffer = new TextBuffer(textDoc as any);
+          const includedDoc = new ESPHomeDocument(buffer, this.schema, resolvedUri);
           this.includedDocuments.push(includedDoc);
         }
       } catch {
