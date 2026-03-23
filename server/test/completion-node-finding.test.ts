@@ -670,6 +670,18 @@ esphome:
     ]);
   });
 
+  it("template publish actions ", async () => {
+    const result = await getCompletionsFor(`
+sensor:
+  - platform: template
+esphome:
+  name: test-completions
+  on_loop:
+    `);
+
+    testCompletionHaveLabels(result, ["sensor.template.publish"]);
+  });
+
   it("dont repeat actions", async () => {
     const result = await getCompletionsFor(`
 sim800l:

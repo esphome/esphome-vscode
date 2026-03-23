@@ -28,7 +28,7 @@
     "yaml": "^2.8.2"
   },
   "scripts": {
-    "tests": "mocha --require ts-node/register test/**/*.test.ts"
+    "tests": "mocha --require tsx/cjs test/**/*.test.ts"
   },
   "devDependencies": {
     "@types/chai": "^5.2.3",

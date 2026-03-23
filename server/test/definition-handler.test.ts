@@ -5,8 +5,9 @@ import { TextBuffer } from "../src/utils/text-buffer";
 import { getTextDoc } from "./sample-esphome-yaml";
 import { DefinitionHandler } from "../src/definition-handler";
 import { setVersion } from "../src/connection-source";
+import { coreSchema } from "../src/editor-shims";
 
-const documents = new ESPHomeDocuments();
+const documents = new ESPHomeDocuments(coreSchema);
 const definitionHandler = new DefinitionHandler(documents);
 
 const loadYaml = (yamlString: string): string => {

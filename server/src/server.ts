@@ -21,6 +21,7 @@ import { CompletionsHandler } from "./completions-handler";
 import { DefinitionHandler } from "./definition-handler";
 import { DocumentSymbolHandler } from "./document-symbol-handler";
 import { ReferencesHandler } from "./references-handler";
+import { coreSchema } from "./editor-shims";
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -33,7 +34,7 @@ console.error = connection.window.showErrorMessage.bind(connection.window);
 // Create a simple text document manager.
 let documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
 
-const esphomeDocuments: ESPHomeDocuments = new ESPHomeDocuments();
+const esphomeDocuments: ESPHomeDocuments = new ESPHomeDocuments(coreSchema);
 
 let hasConfigurationCapability: boolean = false;
 let hasWorkspaceFolderCapability: boolean = false;
@@ -87,6 +88,15 @@ connection.onInitialize((params: InitializeParams) => {
   fileAccessor = new VsCodeFileAccessor(documents);
   pythonPath = params.initializationOptions?.pythonPath;
 
+  esphomeDocuments.setFileLoader(async (relativePath, baseUri) => {
+    try {
+      const uri = fileAccessor.getRelativePathAsFileUri(baseUri, relativePath);
+      return await fileAccessor.getFileContents(uri);
+    } catch {
+      return undefined;
+    }
+  });
+
   return result;
 });
 
@@ -118,41 +128,41 @@ connection.onInitialized(async () => {
 });
 
 const completionHandler = new CompletionsHandler(esphomeDocuments);
-connection.onCompletion((p) => {
+connection.onCompletion(async (p) => {
   const doc = documents.get(p.textDocument.uri);
   if (!doc) return;
-  esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
+  await esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
   return completionHandler.getCompletions(p.textDocument.uri, p.position);
 });
 
 const hoverHandler = new HoverHandler(esphomeDocuments);
-connection.onHover((p) => {
+connection.onHover(async (p) => {
   const doc = documents.get(p.textDocument.uri);
   if (!doc) return;
-  esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
+  await esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
   return hoverHandler.getHover(p.textDocument.uri, p.position);
 });
 const definitionHandler = new DefinitionHandler(esphomeDocuments);
-connection.onDefinition((p) => {
+connection.onDefinition(async (p) => {
   const doc = documents.get(p.textDocument.uri);
   if (!doc) return;
-  esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
+  await esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
   return definitionHandler.getDefinition(p.textDocument.uri, p.position);
 });
 
 const referencesHandler = new ReferencesHandler(esphomeDocuments);
-connection.onReferences((p) => {
+connection.onReferences(async (p) => {
   const doc = documents.get(p.textDocument.uri);
   if (!doc) return;
-  esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
+  await esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
   return referencesHandler.getReferences(p.textDocument.uri, p.position);
 });
 
 const documentSymbolHandler = new DocumentSymbolHandler(esphomeDocuments);
-connection.onDocumentSymbol((p) => {
+connection.onDocumentSymbol(async (p) => {
   const doc = documents.get(p.textDocument.uri);
   if (!doc) return;
-  esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
+  await esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
   return documentSymbolHandler.getDocumentSymbols(p.textDocument.uri);
 });
 
