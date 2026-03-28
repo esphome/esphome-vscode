@@ -1,5 +1,12 @@
 # Changelog
 
+## v2026.3.1 - 2026-3-28
+- Support goto definition on ids to another file ➡️
+- Support goto definition over file names 🗃️ e.g. in packages.
+- Add find all references 🔍  (Shift F12)
+- Fix goto definition not working
+- Fix completions 🪄 for ids not working
+
 ## v2026.3.0 - 2026-3-10
 
 - 🐛 Fixed actions completions not working, and may be other issues
