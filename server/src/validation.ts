@@ -1,4 +1,8 @@
-import { Diagnostic, DiagnosticSeverity, Range } from "vscode-languageserver-protocol";
+import {
+  Diagnostic,
+  DiagnosticSeverity,
+  Range,
+} from "vscode-languageserver-protocol";
 import { TextDocumentChangeEvent } from "vscode-languageserver";
 import { DocumentUri, TextDocument } from "vscode-languageserver-textdocument";
 import { ESPHomeConnection } from "./connection";
@@ -32,7 +36,12 @@ export class Validation {
     Diagnostic[]
   >();
 
-  private addDiagnostic(uri: DocumentUri, range: Range, message: string, severity: DiagnosticSeverity) {
+  private addDiagnostic(
+    uri: DocumentUri,
+    range: Range,
+    message: string,
+    severity: DiagnosticSeverity,
+  ) {
     let diagnostics = this.diagnosticCollection.get(uri) || [];
     const diagnostic = Diagnostic.create(range, message, severity);
     diagnostics = [...diagnostics, diagnostic];
@@ -41,10 +50,6 @@ export class Validation {
 
   private addError(uri: DocumentUri, range: Range, message: string) {
     this.addDiagnostic(uri, range, message, DiagnosticSeverity.Error);
-  }
-
-  private addWarning(uri: DocumentUri, range: Range, message: string) {
-    this.addDiagnostic(uri, range, message, DiagnosticSeverity.Warning);
   }
 
   private addIncludeFile(file: string, included: string) {
@@ -63,7 +68,10 @@ export class Validation {
     this.handleEsphomeDiagnostic(error, DiagnosticSeverity.Warning);
   }
 
-  private handleEsphomeDiagnostic(error: ESPHomeValidationError, severity: DiagnosticSeverity) {
+  private handleEsphomeDiagnostic(
+    error: ESPHomeValidationError,
+    severity: DiagnosticSeverity,
+  ) {
     const message = error.message;
 
     if (error.range !== null) {
@@ -79,7 +87,12 @@ export class Validation {
         severity,
       );
     } else {
-      this.addDiagnostic(this.validating_uri!, Range.create(1, 0, 1, 2), message, severity);
+      this.addDiagnostic(
+        this.validating_uri!,
+        Range.create(1, 0, 1, 2),
+        message,
+        severity,
+      );
     }
   }
 
