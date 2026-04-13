@@ -665,12 +665,12 @@
       "name": "meta.property.yaml",
       "patterns": [
         {
-          "match": "(!lambda) (\"(.*)\"|(.*))",
+          "match": "(!lambda) (([\"'])(.*)\\3|(.*))",
           "captures": {
             "1": {
               "name": "keyword.control.directive.tag.yaml"
             },
-            "3": {
+            "4": {
               "name": "meta.embedded.block.cpp",
               "patterns": [
                 {
@@ -678,7 +678,7 @@
                 }
               ]
             },
-            "4": {
+            "5": {
               "name": "meta.embedded.block.cpp",
               "patterns": [
                 {
