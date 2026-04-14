@@ -4,6 +4,7 @@
 name: YAML
 scopeName: source.yaml-esphome
 patterns:
+  - include: "#jinja-variable"
   - include: "#comment"
   - include: "#property"
   - include: "#directive"
@@ -13,6 +14,154 @@ patterns:
     name: entity.other.document.end.yaml
   - include: "#node"
 repository:
+  jinja-variable:
+    begin: \$\{
+    beginCaptures:
+      "0":
+        name: punctuation.definition.template-expression.begin.jinja
+    end: \}
+    endCaptures:
+      "0":
+        name: punctuation.definition.template-expression.end.jinja
+    name: meta.embedded.expression.jinja
+    patterns:
+      - include: "#jinja-expression"
+  jinja-expression:
+    patterns:
+      - match: \s*\b(block)\s+([a-zA-Z_][a-zA-Z0-9_]*)\b
+        captures:
+          "1":
+            name: keyword.control.jinja
+          "2":
+            name: variable.other.jinja.block
+      - match: \s*\b(filter)\s+([a-zA-Z_][a-zA-Z0-9_]*)\b
+        captures:
+          "1":
+            name: keyword.control.jinja
+          "2":
+            name: variable.other.jinja.filter
+      - match: \s*\b(is)\s+([a-zA-Z_][a-zA-Z0-9_]*)\b
+        captures:
+          "1":
+            name: keyword.control.jinja
+          "2":
+            name: variable.other.jinja.test
+      - match: \b(and|else|if|in|import|not|or|recursive|with(out)?\s+context)\b
+        name: keyword.control.jinja
+      - match: \b(true|True|false|False|none|None)\b
+        name: constant.language.jinja
+      - match: \b(loop|super|self|varargs|kwargs)\b
+        name: variable.language.jinja
+      - match: \b[a-zA-Z_][a-zA-Z0-9_]*\b
+        name: variable.other.jinja
+      - match: (\+|\-|\*\*|\*|//|/|%)
+        name: keyword.operator.arithmetic.jinja
+      - match: "~"
+        name: keyword.operator.concatenation.jinja
+      - captures:
+          "1":
+            name: punctuation.other.jinja
+          "2":
+            name: variable.other.jinja.filter
+        match: (\|)([a-zA-Z_][a-zA-Z0-9_]*)
+      - captures:
+          "1":
+            name: punctuation.other.jinja
+          "2":
+            name: variable.other.jinja.attribute
+        match: (\.)([a-zA-Z_][a-zA-Z0-9_]*)
+      - begin: \[
+        beginCaptures:
+          "0":
+            name: punctuation.other.jinja
+        end: \]
+        endCaptures:
+          "0":
+            name: punctuation.other.jinja
+        patterns:
+          - include: "#jinja-expression"
+      - begin: \(
+        beginCaptures:
+          "0":
+            name: punctuation.other.jinja
+        end: \)
+        endCaptures:
+          "0":
+            name: punctuation.other.jinja
+        patterns:
+          - include: "#jinja-expression"
+      - match: (\.|:|,)
+        name: punctuation.other.jinja
+      - match: (==|<=|=>|<|>|!=)
+        name: keyword.operator.comparison.jinja
+      - match: "="
+        name: keyword.operator.assignment.jinja
+      - begin: '"'
+        beginCaptures:
+          "0":
+            name: punctuation.definition.string.begin.jinja
+        end: '"'
+        endCaptures:
+          "0":
+            name: punctuation.definition.string.end.jinja
+        name: string.quoted.double.jinja
+        patterns:
+          - include: "#jinja-string"
+      - begin: "'"
+        beginCaptures:
+          "0":
+            name: punctuation.definition.string.begin.jinja
+        end: "'"
+        endCaptures:
+          "0":
+            name: punctuation.definition.string.end.jinja
+        name: string.quoted.single.jinja
+        patterns:
+          - include: "#jinja-string"
+      - match: \b\d+(\.\d+)?\b
+        name: constant.numeric.jinja
+  jinja-string:
+    patterns:
+      - include: "#jinja-simple-escapes"
+      - include: "#jinja-escaped-char"
+      - include: "#jinja-escaped-unicode-char"
+  jinja-simple-escapes:
+    match: (\\\\n)|(\\\\\\\\)|(\\\\\")|(\\\\')|(\\\\a)|(\\\\b)|(\\\\f)|(\\\\n)|(\\\\r)|(\\\\t)|(\\\\v)
+    captures:
+      "1":
+        name: constant.character.escape.newline.jinja
+      "2":
+        name: constant.character.escape.backslash.jinja
+      "3":
+        name: constant.character.escape.double-quote.jinja
+      "4":
+        name: constant.character.escape.single-quote.jinja
+      "5":
+        name: constant.character.escape.bell.jinja
+      "6":
+        name: constant.character.escape.backspace.jinja
+      "7":
+        name: constant.character.escape.formfeed.jinja
+      "8":
+        name: constant.character.escape.linefeed.jinja
+      "9":
+        name: constant.character.escape.return.jinja
+      "10":
+        name: constant.character.escape.tab.jinja
+      "11":
+        name: constant.character.escape.vertical-tab.jinja
+  jinja-escaped-char:
+    match: \\x[0-9A-F]{2}
+    name: constant.character.escape.hex.jinja
+  jinja-escaped-unicode-char:
+    match: (\\U[0-9A-Fa-f]{8})|(\\u[0-9A-Fa-f]{4})|(\\N\{[a-zA-Z ]+\})
+    captures:
+      "1":
+        name: constant.character.escape.unicode.32-bit-hex.jinja
+      "2":
+        name: constant.character.escape.unicode.16-bit-hex.jinja
+      "3":
+        name: constant.character.escape.unicode.name.jinja
   block-collection:
     patterns:
       - include: "#block-sequence"
@@ -130,6 +279,8 @@ repository:
       - begin: ^([ ]+)(?! )
         end: ^(?!\1|\s*$)
         name: string.unquoted.block.yaml
+        patterns:
+          - include: "#jinja-variable"
   block-sequence:
     match: (-)(?!\S)
     name: punctuation.definition.block.sequence.item.yaml
@@ -280,6 +431,7 @@ repository:
         name: punctuation.definition.string.end.yaml
     name: string.quoted.double.yaml
     patterns:
+      - include: "#jinja-variable"
       - match: \\([0abtnvfre "/\\N_Lp]|x\d\d|u\d{4}|U\d{8})
         name: constant.character.escape.yaml
       - match: \\\n
@@ -643,6 +795,7 @@ repository:
         name: punctuation.definition.string.end.yaml
     name: string.quoted.single.yaml
     patterns:
+      - include: "#jinja-variable"
       - match: "''"
         name: constant.character.escape.single-quoted.yaml
   flow-sequence:
