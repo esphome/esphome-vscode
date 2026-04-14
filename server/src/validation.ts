@@ -281,16 +281,27 @@ export class Validation {
       this.diagnosticCollection.clear();
       this.diagnosticCollection.set(this.validating_uri, []);
       const uri = this.validating_uri;
-      // Check if this is an included file
+      // Check if this is an included file; walk up to the topmost including file
       // console.log(`this file path: ${uri}`);
-      for (let key in this.includedFiles) {
-        // TODO: When an included file is in turn included, this should call the top most file, not the next one.
-        // console.log(`testing included files in: ${key} files: ${this.includedFiles[key]}`);
-        if (this.includedFiles[key].indexOf(uri) >= 0) {
-          this.validating_uri = key;
-          // console.log(`Not validating ${uri} as is listed as included file. Validating containing document ${key} instead`);
+      const visited = new Set<string>();
+      let current = uri;
+      let foundParent = true;
+      while (foundParent) {
+        foundParent = false;
+        if (visited.has(current)) {
+          break; // cycle guard
+        }
+        visited.add(current);
+        for (let key in this.includedFiles) {
+          if (this.includedFiles[key].indexOf(current) >= 0) {
+            current = key;
+            foundParent = true;
+            // console.log(`Not validating ${uri} as is listed as included file. Validating containing document ${key} instead`);
+            break;
+          }
         }
       }
+      this.validating_uri = current;
 
       console.log(`Validating ${this.validating_uri}`);
       this.lastRequest = new Date();
