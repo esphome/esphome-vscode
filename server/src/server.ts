@@ -39,16 +39,15 @@ const esphomeDocuments: ESPHomeDocuments = new ESPHomeDocuments(coreSchema);
 let hasConfigurationCapability: boolean = false;
 let hasWorkspaceFolderCapability: boolean = false;
 
-const sendDiagnostics = (uri: string, diagnostics: Diagnostic[]) => {
-  connection.sendDiagnostics({
-    uri,
-    diagnostics,
-  });
-};
 let fileAccessor: VsCodeFileAccessor;
 
 const esphomeConnection = new ESPHomeConnectionSource();
 let pythonPath = "";
+
+let resolveValidation: (v: Validation) => void;
+const validationReady = new Promise<Validation>((resolve) => {
+  resolveValidation = resolve;
+});
 
 connection.onInitialize((params: InitializeParams) => {
   let capabilities = params.capabilities;
@@ -114,17 +113,30 @@ connection.onInitialized(async () => {
     });
   }
 
-  esphomeConnection.configure(await getSettings());
+  await esphomeConnection.configure(await getSettings());
 
   const validation = new Validation(
     fileAccessor,
     esphomeConnection,
-    sendDiagnostics,
+    (uri: string, diagnostics: Diagnostic[]) => {
+      connection.sendDiagnostics({
+        uri,
+        diagnostics,
+      });
+    },
   );
 
-  documents.onDidOpen((e) => validation.onDocumentChange(e));
+  resolveValidation(validation);
+});
 
-  documents.onDidChangeContent((e) => validation.onDocumentChange(e));
+documents.onDidOpen(async (e) => {
+  const validation = await validationReady;
+  validation.onDocumentChange(e);
+});
+
+documents.onDidChangeContent(async (e) => {
+  const validation = await validationReady;
+  validation.onDocumentChange(e);
 });
 
 const completionHandler = new CompletionsHandler(esphomeDocuments);
@@ -189,12 +201,7 @@ connection.onDidChangeConfiguration(async (change) => {
 
 // Only keep settings for open documents, and clear diagnostics.
 documents.onDidClose((e) => {
-  sendDiagnostics(e.document.uri, []);
-});
-
-connection.onDidChangeWatchedFiles((_change) => {
-  // Monitored files have change in VSCode
-  // connection.console.log('We received an file change event');
+  connection.sendDiagnostics({ uri: e.document.uri, diagnostics: [] });
 });
 
 // Make the text document manager listen on the connection

@@ -333,7 +333,7 @@ export class Validation {
         const warningRange = Range.create(0, 0, 0, 0);
         const warning = Diagnostic.create(
           warningRange,
-          "Validation is not being performed as `esphome:` section missing. If this is a package, open the file using it to perform validation",
+          "Validation is not being performed as 'esphome:' section missing. If this is a package, open the file using it to perform validation",
           DiagnosticSeverity.Warning,
         );
 
