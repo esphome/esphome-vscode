@@ -259,12 +259,25 @@ export class Validation {
 
   private validating_uri: string | null = null;
   private includedFiles: { [id: string]: string[] } = {};
+  private noEsphomeKeyWarningUri: string | null = null;
 
-  onDocumentChange(e: TextDocumentChangeEvent<TextDocument>): void {
+  async onDocumentChange(
+    e: TextDocumentChangeEvent<TextDocument>,
+  ): Promise<void> {
+    if (e.document.uri === null) return;
     try {
       if (vscodeUri.URI.parse(e.document.uri).path.endsWith("secrets.yaml")) {
         // don't validate secrets
         return;
+      }
+
+      // Clear the "no esphome: key" warning when a different document becomes active
+      if (
+        this.noEsphomeKeyWarningUri !== null &&
+        this.noEsphomeKeyWarningUri !== e.document.uri
+      ) {
+        this.sendDiagnostics(this.noEsphomeKeyWarningUri, []);
+        this.noEsphomeKeyWarningUri = null;
       }
       if (this.validating_uri !== null) {
         const lastRequestElapsedTime =
@@ -302,9 +315,35 @@ export class Validation {
         }
       }
       this.validating_uri = current;
+      // Set lastRequest before the async gap so concurrent calls are locked out
+      // by the < 10000ms guard while we await the file read.
+      this.lastRequest = new Date();
+
+      // Check if the file to be validated has an `esphome:` top-level key.
+      // Without it ESPHome will always error, and the file is likely a package
+      // meant to be validated via its including file.
+      const fileContents =
+        this.validating_uri === e.document.uri
+          ? e.document.getText()
+          : await this.fileAccessor.getFileContents(this.validating_uri);
+      const hasEsphomeKey = fileContents
+        .split("\n")
+        .some((l) => l.startsWith("esphome:"));
+      if (!hasEsphomeKey) {
+        const warningRange = Range.create(0, 0, 0, 0);
+        const warning = Diagnostic.create(
+          warningRange,
+          "Validation is not being performed as `esphome:` section missing. If this is a package, open the file using it to perform validation",
+          DiagnosticSeverity.Warning,
+        );
+
+        this.sendDiagnostics(this.validating_uri, [warning]);
+        this.noEsphomeKeyWarningUri = this.validating_uri;
+        this.validating_uri = null;
+        return;
+      }
 
       console.log(`Validating ${this.validating_uri}`);
-      this.lastRequest = new Date();
       this.connection.sendMessage({
         type: "validate",
         file: vscodeUri.URI.parse(this.validating_uri).fsPath,
