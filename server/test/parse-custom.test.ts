@@ -7,8 +7,9 @@ import { isMap } from "yaml";
 import { HoverHandler } from "../src/hover-handler";
 import { MarkupContent } from "vscode-languageserver-types";
 import { setVersion } from "../src/connection-source";
+import { coreSchema } from "../src/editor-shims";
 
-const documents = new ESPHomeDocuments();
+const documents = new ESPHomeDocuments(coreSchema);
 
 describe("custom tags", () => {
   before(async function () {

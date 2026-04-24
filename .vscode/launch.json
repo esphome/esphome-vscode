@@ -10,15 +10,15 @@
       "processId": "${command:PickProcess}",
       "request": "attach",
       "skipFiles": ["<node_internals>/**"],
-      "type": "pwa-node"
+      "type": "node"
     },
     {
       "type": "extensionHost",
       "request": "launch",
       "name": "Launch Client",
       "runtimeExecutable": "${execPath}",
-      "args": ["--extensionDevelopmentPath=${workspaceRoot}"],
-      "outFiles": ["${workspaceRoot}/client/out/**/*.js"],
+      "args": ["--extensionDevelopmentPath=${workspaceFolder}"],
+      "outFiles": ["${workspaceFolder}/client/out/**/*.js"],
       "preLaunchTask": {
         "type": "npm",
         "script": "watch"
@@ -28,9 +28,12 @@
       "type": "node",
       "request": "attach",
       "name": "Attach to Server",
+      "address": "localhost",
       "port": 6009,
       "restart": true,
-      "outFiles": ["${workspaceRoot}/server/out/**/*.js"]
+      "timeout": 10000,
+      "sourceMaps": true,
+      "outFiles": ["${workspaceFolder}/server/out/**/*.js"]
     },
     {
       "name": "Extension Tests",

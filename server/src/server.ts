@@ -19,7 +19,9 @@ import { ESPHomeDocuments } from "./esphome-document";
 import { TextBuffer } from "./utils/text-buffer";
 import { CompletionsHandler } from "./completions-handler";
 import { DefinitionHandler } from "./definition-handler";
-import { DocumentSymbolHandler } from './document-symbol-handler';
+import { DocumentSymbolHandler } from "./document-symbol-handler";
+import { ReferencesHandler } from "./references-handler";
+import { coreSchema } from "./editor-shims";
 
 // Create a connection for the server, using Node's IPC as a transport.
 // Also include all preview / proposed LSP features.
@@ -32,21 +34,20 @@ console.error = connection.window.showErrorMessage.bind(connection.window);
 // Create a simple text document manager.
 let documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
 
-const esphomeDocuments: ESPHomeDocuments = new ESPHomeDocuments();
+const esphomeDocuments: ESPHomeDocuments = new ESPHomeDocuments(coreSchema);
 
 let hasConfigurationCapability: boolean = false;
 let hasWorkspaceFolderCapability: boolean = false;
 
-const sendDiagnostics = (uri: string, diagnostics: Diagnostic[]) => {
-  connection.sendDiagnostics({
-    uri,
-    diagnostics,
-  });
-};
 let fileAccessor: VsCodeFileAccessor;
 
 const esphomeConnection = new ESPHomeConnectionSource();
 let pythonPath = "";
+
+let resolveValidation: (v: Validation) => void;
+const validationReady = new Promise<Validation>((resolve) => {
+  resolveValidation = resolve;
+});
 
 connection.onInitialize((params: InitializeParams) => {
   let capabilities = params.capabilities;
@@ -71,6 +72,7 @@ connection.onInitialize((params: InitializeParams) => {
         workDoneProgress: false,
       },
       definitionProvider: true,
+      referencesProvider: true,
       documentSymbolProvider: true,
     },
   };
@@ -84,6 +86,15 @@ connection.onInitialize((params: InitializeParams) => {
 
   fileAccessor = new VsCodeFileAccessor(documents);
   pythonPath = params.initializationOptions?.pythonPath;
+
+  esphomeDocuments.setFileLoader(async (relativePath, baseUri) => {
+    try {
+      const uri = fileAccessor.getRelativePathAsFileUri(baseUri, relativePath);
+      return await fileAccessor.getFileContents(uri);
+    } catch {
+      return undefined;
+    }
+  });
 
   return result;
 });
@@ -102,47 +113,68 @@ connection.onInitialized(async () => {
     });
   }
 
-  esphomeConnection.configure(await getSettings());
+  await esphomeConnection.configure(await getSettings());
 
   const validation = new Validation(
     fileAccessor,
     esphomeConnection,
-    sendDiagnostics,
+    (uri: string, diagnostics: Diagnostic[]) => {
+      connection.sendDiagnostics({
+        uri,
+        diagnostics,
+      });
+    },
   );
 
-  documents.onDidOpen((e) => validation.onDocumentChange(e));
+  resolveValidation(validation);
+});
 
-  documents.onDidChangeContent((e) => validation.onDocumentChange(e));
+documents.onDidOpen(async (e) => {
+  const validation = await validationReady;
+  validation.onDocumentChange(e);
+});
 
-  const completionHandler = new CompletionsHandler(esphomeDocuments);
-  connection.onCompletion((p) => {
-    const doc = documents.get(p.textDocument.uri);
-    if (!doc) return;
-    esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
-    return completionHandler.getCompletions(p.textDocument.uri, p.position);
-  });
+documents.onDidChangeContent(async (e) => {
+  const validation = await validationReady;
+  validation.onDocumentChange(e);
+});
 
-  const hoverHandler = new HoverHandler(esphomeDocuments);
-  connection.onHover((p) => {
-    const doc = documents.get(p.textDocument.uri);
-    if (!doc) return;
-    esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
-    return hoverHandler.getHover(p.textDocument.uri, p.position);
-  });
-  const definitionHandler = new DefinitionHandler(esphomeDocuments);
-  connection.onDefinition((p) => {
-    const doc = documents.get(p.textDocument.uri);
-    if (!doc) return;
-    esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
-    return definitionHandler.getDefinition(p.textDocument.uri, p.position);
-  });
+const completionHandler = new CompletionsHandler(esphomeDocuments);
+connection.onCompletion(async (p) => {
+  const doc = documents.get(p.textDocument.uri);
+  if (!doc) return;
+  await esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
+  return completionHandler.getCompletions(p.textDocument.uri, p.position);
+});
+
+const hoverHandler = new HoverHandler(esphomeDocuments);
+connection.onHover(async (p) => {
+  const doc = documents.get(p.textDocument.uri);
+  if (!doc) return;
+  await esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
+  return hoverHandler.getHover(p.textDocument.uri, p.position);
+});
+const definitionHandler = new DefinitionHandler(esphomeDocuments);
+connection.onDefinition(async (p) => {
+  const doc = documents.get(p.textDocument.uri);
+  if (!doc) return;
+  await esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
+  return definitionHandler.getDefinition(p.textDocument.uri, p.position);
+});
+
+const referencesHandler = new ReferencesHandler(esphomeDocuments);
+connection.onReferences(async (p) => {
+  const doc = documents.get(p.textDocument.uri);
+  if (!doc) return;
+  await esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
+  return referencesHandler.getReferences(p.textDocument.uri, p.position);
 });
 
 const documentSymbolHandler = new DocumentSymbolHandler(esphomeDocuments);
-connection.onDocumentSymbol((p) => {
+connection.onDocumentSymbol(async (p) => {
   const doc = documents.get(p.textDocument.uri);
   if (!doc) return;
-  esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
+  await esphomeDocuments.update(p.textDocument.uri, new TextBuffer(doc));
   return documentSymbolHandler.getDocumentSymbols(p.textDocument.uri);
 });
 
@@ -169,12 +201,7 @@ connection.onDidChangeConfiguration(async (change) => {
 
 // Only keep settings for open documents, and clear diagnostics.
 documents.onDidClose((e) => {
-  sendDiagnostics(e.document.uri, []);
-});
-
-connection.onDidChangeWatchedFiles((_change) => {
-  // Monitored files have change in VSCode
-  // connection.console.log('We received an file change event');
+  connection.sendDiagnostics({ uri: e.document.uri, diagnostics: [] });
 });
 
 // Make the text document manager listen on the connection

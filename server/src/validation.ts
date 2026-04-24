@@ -1,4 +1,8 @@
-import { Diagnostic, Range } from "vscode-languageserver-protocol";
+import {
+  Diagnostic,
+  DiagnosticSeverity,
+  Range,
+} from "vscode-languageserver-protocol";
 import { TextDocumentChangeEvent } from "vscode-languageserver";
 import { DocumentUri, TextDocument } from "vscode-languageserver-textdocument";
 import { ESPHomeConnection } from "./connection";
@@ -32,12 +36,20 @@ export class Validation {
     Diagnostic[]
   >();
 
-  private addError(uri: DocumentUri, range: Range, message: string) {
-    //console.log(`diag error: ${message} to ${uri}`);
+  private addDiagnostic(
+    uri: DocumentUri,
+    range: Range,
+    message: string,
+    severity: DiagnosticSeverity,
+  ) {
     let diagnostics = this.diagnosticCollection.get(uri) || [];
-    const diagnostic = Diagnostic.create(range, message);
+    const diagnostic = Diagnostic.create(range, message, severity);
     diagnostics = [...diagnostics, diagnostic];
     this.diagnosticCollection.set(uri, diagnostics);
+  }
+
+  private addError(uri: DocumentUri, range: Range, message: string) {
+    this.addDiagnostic(uri, range, message, DiagnosticSeverity.Error);
   }
 
   private addIncludeFile(file: string, included: string) {
@@ -49,10 +61,21 @@ export class Validation {
   }
 
   private handleEsphomeError(error: ESPHomeValidationError) {
+    this.handleEsphomeDiagnostic(error, DiagnosticSeverity.Error);
+  }
+
+  private handleEsphomeWarning(error: ESPHomeValidationError) {
+    this.handleEsphomeDiagnostic(error, DiagnosticSeverity.Warning);
+  }
+
+  private handleEsphomeDiagnostic(
+    error: ESPHomeValidationError,
+    severity: DiagnosticSeverity,
+  ) {
     const message = error.message;
 
     if (error.range !== null) {
-      this.addError(
+      this.addDiagnostic(
         this.getUriStringForValidationPath(error.range.document),
         Range.create(
           error.range.start_line,
@@ -61,9 +84,15 @@ export class Validation {
           error.range.end_col,
         ),
         message,
+        severity,
       );
     } else {
-      this.addError(this.validating_uri!, Range.create(1, 0, 1, 2), message);
+      this.addDiagnostic(
+        this.validating_uri!,
+        Range.create(1, 0, 1, 2),
+        message,
+        severity,
+      );
     }
   }
 
@@ -187,6 +216,7 @@ export class Validation {
         case MESSAGE_RESULT: {
           msg.validation_errors.forEach((e) => this.handleEsphomeError(e));
           msg.yaml_errors.forEach((e) => this.handleYamlError(e));
+          msg.validation_warnings?.forEach((e) => this.handleEsphomeWarning(e));
 
           this.diagnosticCollection.forEach((diagnostics, uri) =>
             this.sendDiagnostics(uri, diagnostics),
@@ -229,12 +259,25 @@ export class Validation {
 
   private validating_uri: string | null = null;
   private includedFiles: { [id: string]: string[] } = {};
+  private noEsphomeKeyWarningUri: string | null = null;
 
-  onDocumentChange(e: TextDocumentChangeEvent<TextDocument>): void {
+  async onDocumentChange(
+    e: TextDocumentChangeEvent<TextDocument>,
+  ): Promise<void> {
+    if (e.document.uri === null) return;
     try {
       if (vscodeUri.URI.parse(e.document.uri).path.endsWith("secrets.yaml")) {
         // don't validate secrets
         return;
+      }
+
+      // Clear the "no esphome: key" warning when a different document becomes active
+      if (
+        this.noEsphomeKeyWarningUri !== null &&
+        this.noEsphomeKeyWarningUri !== e.document.uri
+      ) {
+        this.sendDiagnostics(this.noEsphomeKeyWarningUri, []);
+        this.noEsphomeKeyWarningUri = null;
       }
       if (this.validating_uri !== null) {
         const lastRequestElapsedTime =
@@ -251,19 +294,56 @@ export class Validation {
       this.diagnosticCollection.clear();
       this.diagnosticCollection.set(this.validating_uri, []);
       const uri = this.validating_uri;
-      // Check if this is an included file
+      // Check if this is an included file; walk up to the topmost including file
       // console.log(`this file path: ${uri}`);
-      for (let key in this.includedFiles) {
-        // TODO: When an included file is in turn included, this should call the top most file, not the next one.
-        // console.log(`testing included files in: ${key} files: ${this.includedFiles[key]}`);
-        if (this.includedFiles[key].indexOf(uri) >= 0) {
-          this.validating_uri = key;
-          // console.log(`Not validating ${uri} as is listed as included file. Validating containing document ${key} instead`);
+      const visited = new Set<string>();
+      let current = uri;
+      let foundParent = true;
+      while (foundParent) {
+        foundParent = false;
+        if (visited.has(current)) {
+          break; // cycle guard
         }
+        visited.add(current);
+        for (let key in this.includedFiles) {
+          if (this.includedFiles[key].indexOf(current) >= 0) {
+            current = key;
+            foundParent = true;
+            // console.log(`Not validating ${uri} as is listed as included file. Validating containing document ${key} instead`);
+            break;
+          }
+        }
+      }
+      this.validating_uri = current;
+      // Set lastRequest before the async gap so concurrent calls are locked out
+      // by the < 10000ms guard while we await the file read.
+      this.lastRequest = new Date();
+
+      // Check if the file to be validated has an `esphome:` top-level key.
+      // Without it ESPHome will always error, and the file is likely a package
+      // meant to be validated via its including file.
+      const fileContents =
+        this.validating_uri === e.document.uri
+          ? e.document.getText()
+          : await this.fileAccessor.getFileContents(this.validating_uri);
+      const hasEsphomeKey = fileContents
+        .split("\n")
+        .some((l) => l.startsWith("esphome:"));
+      if (!hasEsphomeKey) {
+        const warningRange = Range.create(0, 0, 0, 0);
+        const warning = Diagnostic.create(
+          warningRange,
+          "Validation is not being performed as 'esphome:' section missing. If this is a package, open the file using it to perform validation",
+          DiagnosticSeverity.Warning,
+        );
+
+        this.sendDiagnostics(this.validating_uri, [warning]);
+        this.noEsphomeKeyWarningUri = this.validating_uri;
+        this.validating_uri = null;
+        return;
       }
 
       console.log(`Validating ${this.validating_uri}`);
-      this.lastRequest = new Date();
       this.connection.sendMessage({
         type: "validate",
         file: vscodeUri.URI.parse(this.validating_uri).fsPath,

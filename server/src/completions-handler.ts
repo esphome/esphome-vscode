@@ -167,7 +167,7 @@ export class CompletionsHandler {
     }
   }
 
-  private async getPlatformNames(platform_name: string, range: Range) {
+  private async getPlatformNames(platform_name: string, _range: Range) {
     const c = await coreSchema.getComponent(platform_name);
 
     if (c.components === undefined) {
@@ -197,7 +197,8 @@ export class CompletionsHandler {
     const result: CompletionItem[] = [];
 
     for (var platformName in platformList) {
-      // Don't add duplicate keys
+      // Don't add duplicate keys — check local file only (YAML doesn't allow
+      // duplicate keys in the same file, but includes can have them via ESPHome merge)
       if (this.docMap && this.mapHasScalarKey(this.docMap, platformName)) {
         continue;
       }
@@ -219,7 +220,7 @@ export class CompletionsHandler {
       if (componentName in platformList) {
         continue;
       }
-      // Don't add duplicate keys
+      // Don't add duplicate keys — check local file only
       if (this.docMap && this.mapHasScalarKey(this.docMap, componentName)) {
         continue;
       }
@@ -259,18 +260,6 @@ export class CompletionsHandler {
     if (this.docMap.get("esp32", true) !== undefined) {
       return "esp32";
     }
-    const esphome = this.docMap.get("esphome");
-    if (isMap(esphome)) {
-      const chipset = esphome.get("platform");
-      if (isString(chipset)) {
-        if (chipset.toLowerCase() === "esp32") {
-          return "esp32";
-        }
-        if (chipset.toLowerCase() === "esp8266") {
-          return "esp8266";
-        }
-      }
-    }
     return undefined;
   }
 
@@ -292,7 +281,7 @@ export class CompletionsHandler {
   ): Promise<CompletionItem[]> {
     if (cv.is_list && isNumber(path[pathIndex])) {
       if (isSeq(pathNode)) {
-        pathNode = (pathNode.get(path[pathIndex]) as any) as YAMLMap;
+        pathNode = pathNode.get(path[pathIndex]) as any as YAMLMap;
       }
       pathIndex++;
     }
@@ -313,10 +302,9 @@ export class CompletionsHandler {
           if (isScalar(cursorNode)) {
             const complete = await coreSchema.getConfigVarComplete2(cv);
             if (complete["maybe"] !== undefined) {
-              const maybe_cv = await coreSchema.findConfigVar(
+              const maybe_cv = await this.document.findConfigVar(
                 cv.schema,
                 complete["maybe"],
-                this.document.yaml,
               );
               return this.resolveConfigVar(
                 path,
@@ -429,10 +417,6 @@ export class CompletionsHandler {
       }
       return [];
     } else if (cv.type === "pin") {
-      //if (parentElement.items.length > 0 && isScalar(node) && node === parentElement.items[0].value) {
-      // cursor is in the value of the pair
-      //    return this.resolvePinNumbers(result, cv);
-      //}
       if (!cv.schema) {
         // This pin does not accept schema, e.g. i2c
         return [];
@@ -520,11 +504,9 @@ export class CompletionsHandler {
       }
       return result;
     } else if (cv.type === "use_id") {
+      // use_id completions need the merged (whole-document) scope
       let result: CompletionItem[] = [];
-      const usableIds = await coreSchema.getUsableIds(
-        cv.use_id_type,
-        this.document.yaml,
-      );
+      const usableIds = await this.document.getUsableIds(cv.use_id_type);
       for (var usableId of usableIds) {
         result.push(
           createCompletion(usableId, usableId, CompletionItemKind.Variable),
@@ -574,10 +556,8 @@ export class CompletionsHandler {
       else prefix = "- ";
     }
 
-    for await (const [prop, config] of coreSchema.iterConfigVars(
-      schema,
-      this.document.yaml,
-    )) {
+    // iterConfigVars is document-aware (MQTT filtering uses local YAML)
+    for await (const [prop, config] of this.document.iterConfigVars(schema)) {
       // Skip existent properties
       if (node !== null && this.mapHasScalarKey(node, prop)) {
         continue;
@@ -676,11 +656,8 @@ export class CompletionsHandler {
     node: Node,
   ): Promise<CompletionItem[]> {
     console.log("component: " + path[pathIndex]);
-    const cv = await coreSchema.findConfigVar(
-      schema,
-      path[pathIndex],
-      this.document.yaml,
-    );
+    // findConfigVar uses local document context for MQTT filtering
+    const cv = await this.document.findConfigVar(schema, path[pathIndex]);
     if (cv === undefined) return [];
     let innerNode =
       pathElement !== null
@@ -816,10 +793,9 @@ export class CompletionsHandler {
     // navigate into the prop
     // this can be an action or a prop of this trigger
     if (cv.schema !== undefined) {
-      const innerProp = await coreSchema.findConfigVar(
+      const innerProp = await this.document.findConfigVar(
         cv.schema,
         path[pathIndex],
-        this.document.yaml,
       );
       if (innerProp !== undefined) {
         return this.resolveSchema(
@@ -845,10 +821,9 @@ export class CompletionsHandler {
         if (isScalar(node)) {
           const complete = await coreSchema.getConfigVarComplete2(action);
           if (complete.type === "schema" && complete["maybe"] !== undefined) {
-            const maybe_cv = await coreSchema.findConfigVar(
+            const maybe_cv = await this.document.findConfigVar(
               action.schema,
               complete["maybe"],
-              this.document.yaml,
             );
             if (!maybe_cv) {
               return [];
@@ -871,6 +846,7 @@ export class CompletionsHandler {
     }
     return [];
   }
+
   private async addRegistry(
     configVar: ConfigVarRegistry,
   ): Promise<CompletionItem[]> {
@@ -884,9 +860,9 @@ export class CompletionsHandler {
     else prefix = "- ";
 
     const result: CompletionItem[] = [];
-    for await (const [value, props] of await coreSchema.getRegistry(
+    // getRegistry on the document is scope-aware (merged: all files)
+    for await (const [value, props] of this.document.getRegistry(
       configVar.registry,
-      this.document.yaml,
     )) {
       if (configVar.filter && !configVar.filter.includes(value)) {
         continue;
@@ -945,7 +921,7 @@ export class CompletionsHandler {
     let maxOffset = yaml.contents!.range![0];
 
     let closestNode: Node = this.document.yaml.contents!;
-    visit(yaml, (key, node) => {
+    visit(yaml, (_key, node) => {
       if (!node || !isNode(node)) {
         return;
       }

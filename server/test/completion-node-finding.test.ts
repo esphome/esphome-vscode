@@ -48,7 +48,7 @@ esphome:
 sensor:
   - platform: `,
     );
-    testCompletionHaveLabels(result, ["adc", "dallas", "dht"]);
+    testCompletionHaveLabels(result, ["adc", "dallas_temp", "dht"]);
   });
 
   it("partial completes properties", async () => {
@@ -670,6 +670,18 @@ esphome:
     ]);
   });
 
+  it("template publish actions ", async () => {
+    const result = await getCompletionsFor(`
+sensor:
+  - platform: template
+esphome:
+  name: test-completions
+  on_loop:
+    `);
+
+    testCompletionHaveLabels(result, ["sensor.template.publish"]);
+  });
+
   it("dont repeat actions", async () => {
     const result = await getCompletionsFor(`
 sim800l:
@@ -682,8 +694,9 @@ esphome:
   on_loop:
     `);
 
-    const matchCount = result.filter((c) => c.label === "sim800l.connect")
-      .length;
+    const matchCount = result.filter(
+      (c) => c.label === "sim800l.connect",
+    ).length;
     if (matchCount !== 1) {
       assert.fail(`expected 1 match but found ${matchCount} instead`);
     }

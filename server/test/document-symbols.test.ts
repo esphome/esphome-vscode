@@ -7,8 +7,9 @@ import { getTextDoc } from "./sample-esphome-yaml";
 
 import { DocumentSymbolHandler } from "../src/document-symbol-handler";
 import { SymbolKind } from "vscode-languageserver-types";
+import { coreSchema } from "../src/editor-shims";
 
-const documents = new ESPHomeDocuments();
+const documents = new ESPHomeDocuments(coreSchema);
 const handler = new DocumentSymbolHandler(documents);
 
 const getSymbols = (yamlString: string) => {

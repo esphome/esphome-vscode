@@ -2,7 +2,7 @@
   "name": "esphome-vscode",
   "displayName": "ESPHome",
   "description": "Provide instant validation of ESPHome configuration files",
-  "version": "2026.3.0",
+  "version": "2026.3.1",
   "private": true,
   "workspaces": [
     "client",
@@ -93,7 +93,7 @@
     "test": "npm run compile && node ./node_modules/vscode/bin/test",
     "webpack": "npm run clean && npm run compile && webpack --mode production --config ./client/webpack.config.js && webpack --mode production --config ./server/webpack.config.js",
     "webpack:dev": "npm run clean && npm run compile && webpack --mode none --config ./client/webpack.config.js && webpack --mode production --config ./server/webpack.config.js",
-    "clean": "rimraf client/out && rimraf server/out",
+    "clean": "rimraf client/out server/out client/tsconfig.tsbuildinfo server/tsconfig.tsbuildinfo",
     "test-compile": "tsc -p ./"
   },
   "devDependencies": {
@@ -104,13 +104,13 @@
     "@typescript-eslint/parser": "^8.56.1",
     "eslint": "^10.0.2",
     "merge-options": "^3.0.4",
-    "mocha": "^11.7.1",
+    "mocha": "^11.7.5",
     "node-ts": "^5.1.2",
     "rimraf": "^3.0.2",
     "ts-loader": "^8.3.0",
-    "ts-node": "^10.9.1",
+    "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
-    "typescript": "^5.0.4",
+    "typescript": "^5.9.3",
     "vscode-test": "^1.6.1",
     "webpack": "^5.105.2",
     "webpack-cli": "^4.9.1"

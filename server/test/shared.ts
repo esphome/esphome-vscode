@@ -5,6 +5,9 @@ import { ESPHomeDocuments } from "../src/esphome-document";
 import { TextBuffer } from "../src/utils/text-buffer";
 import { CompletionsHandler } from "../src/completions-handler";
 import { setVersion } from "../src/connection-source";
+import { coreSchema } from "../src/editor-shims";
+
+export { setVersion };
 
 export const testCompletionHaveLabels = (
   result: CompletionItem[],
@@ -35,7 +38,8 @@ export const testCompletionDoesNotHaveLabels = (
   }
 };
 
-const documents = new ESPHomeDocuments();
+// Schema is shared across all test documents (same singleton used in production)
+export const documents = new ESPHomeDocuments(coreSchema);
 const x = new CompletionsHandler(documents);
 
 export const getCompletionsFor = async (

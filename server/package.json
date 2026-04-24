@@ -11,9 +11,6 @@
     "type": "git",
     "url": "https://github.com/esphome/esphome-vscode"
   },
-  "optionalDependencies": {
-    "prettier": "3.8.1"
-  },
   "dependencies": {
     "jsonc-parser": "^3.3.1",
     "request-light": "^0.8.0",
@@ -28,17 +25,13 @@
     "yaml": "^2.8.2"
   },
   "scripts": {
-    "tests": "mocha --require ts-node/register test/**/*.test.ts"
+    "tests": "mocha --require tsx/cjs test/**/*.test.ts"
   },
   "devDependencies": {
     "@types/chai": "^5.2.3",
-    "@types/mocha": "^10.0.10",
     "@types/unzipper": "^0.10.11",
     "@types/ws": "^8.18.1",
     "chai": "^6.2.2",
-    "mocha": "^11.7.5",
-    "ts-node": "^10.9.2",
-    "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "tsx": "^4.21.0"
   }
 }

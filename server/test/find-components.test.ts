@@ -1,18 +1,17 @@
 import "mocha";
 import { assert } from "chai";
-import { coreSchema } from "../src/editor-shims";
 import { ESPHomeDocuments } from "../src/esphome-document";
 import { TextBuffer } from "../src/utils/text-buffer";
 import { getTextDoc } from "./sample-esphome-yaml";
-import { Document } from "yaml";
 import { setVersion } from "../src/connection-source";
+import { coreSchema } from "../src/editor-shims";
 
-const documents = new ESPHomeDocuments();
+const documents = new ESPHomeDocuments(coreSchema);
 
-const getYamlDoc = (yamlString: string): Document => {
+const getESPHomeDoc = (yamlString: string) => {
   const text = getTextDoc(yamlString);
   documents.update("test", new TextBuffer(text));
-  return documents.getDocument("test").yaml;
+  return documents.getDocument("test");
 };
 
 describe("findComponents", () => {
@@ -20,16 +19,13 @@ describe("findComponents", () => {
     setVersion("dev");
   });
   it("root component single id", async () => {
-    const result = await coreSchema.getUsableIds(
-      "i2c::I2CBus",
-      getYamlDoc(`
+    const result = await getESPHomeDoc(`
 i2c:
   id: i2c_one
 
 spi:
   id: spi_one
-  type: quad`),
-    );
+  type: quad`).getUsableIds("i2c::I2CBus");
 
     assert.include(result, "i2c_one");
 
@@ -37,13 +33,10 @@ spi:
   });
 
   it("root component list ids", async () => {
-    const result = await coreSchema.getUsableIds(
-      "i2c::I2CBus",
-      getYamlDoc(`
+    const result = await getESPHomeDoc(`
 i2c:
   - id: i2c_one
-  - id: i2c_two`),
-    );
+  - id: i2c_two`).getUsableIds("i2c::I2CBus");
 
     assert.include(result, "i2c_one");
     assert.include(result, "i2c_two");
@@ -51,24 +44,19 @@ i2c:
   });
 
   it("root component platform id", async () => {
-    const result = await coreSchema.getUsableIds(
-      "light::LightState",
-      getYamlDoc(`
+    const result = await getESPHomeDoc(`
 light:
   platform: binary
   id: light_1
   output: gpio_relay_1
-`),
-    );
+`).getUsableIds("light::LightState");
 
     assert.include(result, "light_1");
     assert.lengthOf(result, 1);
   });
 
   it("root component platform ids", async () => {
-    const result = await coreSchema.getUsableIds(
-      "light::LightState",
-      getYamlDoc(`
+    const result = await getESPHomeDoc(`
 light:
   - platform: binary
     id: light_1
@@ -77,8 +65,7 @@ light:
     id: light_2
     name: "Luz mesa cocina"
     output: gpio_relay_2
-`),
-    );
+`).getUsableIds("light::LightState");
 
     assert.include(result, "light_1");
     assert.include(result, "light_2");
@@ -86,9 +73,7 @@ light:
   });
 
   it("non component ids", async () => {
-    const result = await coreSchema.getUsableIds(
-      "sensor::Sensor",
-      getYamlDoc(`
+    const result = await getESPHomeDoc(`
 
 binary_sensor:
   - platform: gpio
@@ -102,8 +87,7 @@ sensor:
       id: test_dht_temp
     humidity:
       id: test_dht_humidity
-`),
-    );
+`).getUsableIds("sensor::Sensor");
 
     assert.include(result, "test_dht_temp");
     assert.include(result, "test_dht_humidity");
@@ -111,29 +95,23 @@ sensor:
   });
 
   it("script ids", async () => {
-    const result = await coreSchema.getUsableIds(
-      "script::Script",
-      getYamlDoc(`
+    const result = await getESPHomeDoc(`
 script:
   - id: s1
     then:
       - delay: 1s
-`),
-    );
+`).getUsableIds("script::Script");
 
     assert.include(result, "s1");
     assert.lengthOf(result, 1);
   });
   it("script id", async () => {
-    const result = await coreSchema.getUsableIds(
-      "script::Script",
-      getYamlDoc(`
+    const result = await getESPHomeDoc(`
 script:
   id: s1
   then:
     - delay: 1s
-`),
-    );
+`).getUsableIds("script::Script");
 
     assert.include(result, "s1");
     assert.lengthOf(result, 1);
