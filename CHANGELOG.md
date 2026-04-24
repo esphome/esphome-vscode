@@ -1,5 +1,13 @@
 # Changelog
 
+## v2026.4.0 - 2026-4-24
+
+- Fix to validate file already opened when loading vscode 
+- Do not show the missing esphome: section error on all packages on all files fix #111
+- Support validation triggered on deep nested included files
+- Add jinja templates coloring
+- Fix inline lambdas not colored when in single quotes #114
+
 ## v2026.3.1 - 2026-3-28
 - Support goto definition on ids to another file ➡️
 - Support goto definition over file names 🗃️ e.g. in packages.
